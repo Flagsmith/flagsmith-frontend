@@ -100,3 +100,36 @@ h2{
 		}
 	}
 }
+
+footer.homepage{
+	background: $hero-bg;
+	color:white;
+	padding:50px;
+
+	ul{
+		margin:0;
+		list-style:none;
+
+		li{
+			display: inline-block;
+			padding:0 5px;
+		}
+	}
+
+	a{
+		color:white;
+		font-weight:100;
+		font-size:14px;
+		opacity: 0.75;
+
+		&:hover{
+			opacity: 1;
+			text-decoration: none;
+		}
+	}
+	.brand-footer{
+		img{
+			width:30px;
+		}
+	}
+}

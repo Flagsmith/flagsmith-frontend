@@ -288,7 +288,16 @@ module.exports = class extends React.Component {
                                 </div>
                             </div>
                         </div>
-
+                    <footer className="homepage clearfix">
+                        <div className="brand-footer float-left">
+                            <img src="./images/icon.png" alt="Bullet Train" />
+                        </div>
+                        <ul className="float-right">
+                            <li><a href="">Demo</a></li>
+                            <li><a href="">Docs</a></li>
+                            <li><a href="">Support</a></li>
+                        </ul>
+                    </footer>
                     </div>
                 )}
             </AccountProvider>
