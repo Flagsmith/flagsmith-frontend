@@ -14,6 +14,10 @@ const TheComponent = class extends Component {
 		AppActions.acceptInvite(this.props.params.id);
 	}
 
+    componentWillMount = () => {
+        API.trackPage(Constants.pages.INVITE);
+    };
+
 	onSave = (id)=>{
 		AppActions.selectOrganisation(id);
 		this.context.router.replace("/projects?new=1");

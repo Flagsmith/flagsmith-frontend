@@ -7,10 +7,14 @@ const TheComponent = class extends Component {
 	constructor(props, context) {
 		super(props, context);
 		this.state = {};
-		AppActions.getIdentities(this.props.params.environmentId);
 	}
 
-	onSave = () => {
+    componentDidMount() {
+        AppActions.getIdentities(this.props.params.environmentId);
+        API.trackPage(Constants.pages.USERS);
+    }
+
+    onSave = () => {
 		toast('Environment Saved');
 	};
 

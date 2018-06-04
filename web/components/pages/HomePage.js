@@ -16,6 +16,7 @@ module.exports = class extends React.Component {
         if (AccountStore.getUser() && !AccountStore.isDemo) {
             this.context.router.replace("/projects?intro=1")
         }
+        API.trackPage(Constants.pages.HOME);
     }
 
     render = () => {

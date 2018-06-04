@@ -13,11 +13,12 @@ const TheComponent = class extends Component {
 	};
 
 	onSave = (environment) => {
-		this.context.router.push(`/project/${this.props.params.projectId}/environment/${environment.api_key}/features`);
-	}
-
+        this.context.router.push(`/project/${this.props.params.projectId}/environment/${environment.api_key}/features`);
+    }
 	componentDidMount = () => {
-		setTimeout(() => {
+        API.trackPage(Constants.pages.CREATE_ENVIRONMENT);
+
+        setTimeout(() => {
 			this.input.focus()
 		}, 500);
 	};

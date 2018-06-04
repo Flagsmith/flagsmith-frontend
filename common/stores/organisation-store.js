@@ -42,6 +42,7 @@ var controller = {
 					return res;
 				})
 			}
+			API.trackEvent(Constants.events.CREATE_PROJECT);
 			data.post(`${Project.api}projects/?format=json`, {name, organisation: store.id})
 				.then((project) => {
 					Promise.all([
@@ -79,20 +80,11 @@ var controller = {
 				store.model.projects = _.filter(store.model.projects, (p) => p.id != id);
 				store.model.keyedProjects = _.keyBy(store.model.projects, "id");
 			}
+            API.trackEvent(Constants.events.DELETE_PROJECT);
 			data.delete(`${Project.api}projects/${id}/?format=json`)
 				.then(() => {
 					store.trigger("removed");
 				});
-		},
-		inviteUsers: (emailAddresses) => {
-			store.saving();
-			setTimeout(() => {
-				var users = emailAddresses.replace(' ', '').split(',').map(emailAddress => {
-					return {id: Utils.GUID(), emailAddress}
-				})
-				store.model.users = store.model.users.concat(users);
-				store.saved();
-			}, 2000);
 		}
 
 	},
@@ -119,9 +111,6 @@ store.dispatcherIndex = Dispatcher.register(store, function (payload) {
 			break;
 		case Actions.CREATE_PROJECT:
 			controller.createProject(action.name);
-			break;
-		case Actions.INVITE_USERS:
-			controller.inviteUsers(action.emailAddresses);
 			break;
 		case Actions.DELETE_PROJECT:
 			controller.deleteProject(action.id);

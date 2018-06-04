@@ -13,6 +13,10 @@ const TheComponent = class extends Component {
         AppActions.getProject(this.props.params.projectId);
     }
 
+    componentWillMount = () => {
+        API.trackPage(Constants.pages.ENVIRONMENT_SETTINGS);
+    };
+
     onSave = () => {
         toast('Environment Saved');
     };

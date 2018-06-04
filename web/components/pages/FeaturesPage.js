@@ -14,6 +14,10 @@ const TheComponent = class extends Component {
         AppActions.getFeatures(this.props.params.projectId, this.props.params.environmentId);
     }
 
+    componentWillMount = () => {
+        API.trackPage(Constants.pages.FEATURES);
+    };
+
     newFlag = () => {
         openModal('New Feature', <CreateFlagModal
             environmentId={this.props.params.environmentId}
@@ -22,6 +26,7 @@ const TheComponent = class extends Component {
 
 
     editFlag = (projectFlag, environmentFlag) => {
+        API.trackEvent(Constants.events.VIEW_FEATURE);
         openModal('Edit Feature', <CreateFlagModal
             isEdit={true}
             environmentId={this.props.params.environmentId}

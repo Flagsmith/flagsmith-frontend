@@ -24,6 +24,7 @@ var controller = {
         },
         createFlag(projectId, environmentId, flag) {
             store.saving();
+            API.trackEvent(Constants.events.CREATE_FEATURE);
             data.post(`${Project.api}projects/${projectId}/features/?format=json`, flag)
                 .then((res) => {
                     return Promise.all([
@@ -41,6 +42,8 @@ var controller = {
         toggleFlag: (index, environments, comment) => {
             const flag = store.model.features[index];
             store.saving();
+
+            API.trackEvent(Constants.events.TOGGLE_FEATURE);
             return Promise.all(environments.map((e) => {
                 if (store.hasFlagInEnvironment(flag.id)) {
                     const environmentFlag = store.model.keyedEnvironmentFeatures[flag.id];
@@ -62,6 +65,7 @@ var controller = {
         editFlag: (projectId, environmentId, flag, projectFlag, environmentFlag) => {
             let prom;
             store.saving();
+            API.trackEvent(Constants.events.EDIT_FEATURE);
             if (environmentFlag) {
                 prom = data.put(`${Project.api}environments/${environmentId}/featurestates/${environmentFlag.id}/`, Object.assign({}, environmentFlag, {feature_state_value: flag.initial_value}))
             } else {
@@ -80,6 +84,7 @@ var controller = {
         },
         removeFlag: (projectId, flag) => {
             store.saving();
+            API.trackEvent(Constants.events.REMOVE_FEATURE);
             return data.delete(`${Project.api}projects/${projectId}/features/`, {id: flag.id})
                 .then(() => {
                     store.model.features = _.filter(store.model.features, (f) => f.id != flag.id);

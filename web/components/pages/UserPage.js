@@ -15,7 +15,8 @@ const TheComponent = class extends Component {
 	componentDidMount() {
 		AppActions.getIdentity(this.props.params.environmentId, this.props.params.id);
 		AppActions.getFeatures(this.props.params.projectId, this.props.params.environmentId);
-	}
+        API.trackPage(Constants.pages.USER);
+    }
 
 	confirmToggle = (projectFlag, environmentFlag, cb) => {
 		openModal("Toggle Feature", <ConfirmToggleFeature
@@ -27,6 +28,7 @@ const TheComponent = class extends Component {
 	}
 
 	editFlag = (projectFlag, environmentFlag, identityFlag) => {
+		API.trackEvent(Constants.events.VIEW_USER_FEATURE);
 		openModal('Edit User Feature', <CreateFlagModal
 			isEdit={true}
 			identity={this.props.params.id}

@@ -43,13 +43,6 @@ module.exports = Object.assign({}, require('./base/_app-actions'), {
 			env
 		});
 	},
-	inviteUsers: function (emailAddresses) { //refresh the entire app
-		Dispatcher.handleViewAction({
-			actionType: Actions.CREATE_ENV,
-			name,
-			projectId
-		});
-	},
 	refreshOrganisation: function () { //refresh the entire app
 		Dispatcher.handleViewAction({
 			actionType: Actions.GET_ORGANISATION,

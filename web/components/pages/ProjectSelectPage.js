@@ -12,6 +12,10 @@ const TheComponent = class extends Component {
 		AppActions.getOrganisation(AccountStore.getOrganisation().id);
 	}
 
+    componentWillMount = () => {
+        API.trackPage(Constants.pages.PROJECT_SELECT);
+    };
+
 	static contextTypes = {
 		router: React.PropTypes.object.isRequired
 	};

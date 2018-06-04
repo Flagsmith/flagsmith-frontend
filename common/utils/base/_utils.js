@@ -116,10 +116,6 @@ var Utils = {
     return Utils.emailRegex.test(text);
   },
 
-  isValidDate: function (date) { //returns bool
-    return moment(date).isValid();
-  },
-
   GUID: function (append) {
     var d = new Date().getTime();
     var uuid = 'xxxx-xxxx-xxxx'.replace(/[xy]/g, function (c) {
@@ -129,62 +125,6 @@ var Utils = {
     });
 
     return append ? uuid + '-' + append : uuid;
-  },
-
-  record: function (data) {
-    var event = data.event,
-      properties = data.properties;
-
-    info("Track", event, properties);
-    if (typeof analytics != "undefined") {
-      analytics.track(event, properties || {});
-    } else if (typeof gaTracker != "undefined") {
-      gaTracker.trackEvent('', event, properties);
-    }
-
-  },
-
-  recordPageView: function (data) {
-    info("Page", data.page, data.properties);
-    if (typeof analytics != "undefined") {
-      analytics.page(data.page, data.properties || {});
-    } else if (typeof gaTracker != "undefined") {
-      gaTracker.trackScreenView(data.page);
-    }
-  },
-
-  recordScreenView: function (page, properties) {
-    if (typeof analytics != "undefined") {
-      analytics.screen(page, properties);
-    } else if (typeof gaTracker != "undefined") {
-      gaTracker.trackScreenView(page);
-    }
-  },
-
-  htmlEscape: function (unsafe) {
-    return unsafe
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#039;");
-  },
-
-  playAudio: function (file) {
-    if (Audio && file) {
-      var audio = new Audio(file);
-      audio.play();
-    }
-  },
-
-  getCookies: function () {
-    var pairs = document.cookie.split(";");
-    var cookies = {};
-    for (var i = 0; i < pairs.length; i++) {
-      var pair = pairs[i].split("=");
-      cookies[pair[0].trim()] = unescape(pair[1]);
-    }
-    return cookies;
   },
 
   accents: [

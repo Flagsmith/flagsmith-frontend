@@ -11,7 +11,8 @@ const TheComponent = class extends Component {
 
     request = () => {
         const {environmentId, userId} = this.props;
-        this.setState({isLoading: true})
+        this.setState({isLoading: true});
+        API.trackEvent(Constants.events.TRY_IT);
         fetch(userId ? `${Project.api}flags/${userId}/` : `${Project.api}flags/`, {
             headers: {'X-Environment-Key': environmentId}
         })

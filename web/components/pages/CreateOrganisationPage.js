@@ -14,7 +14,8 @@ export default class ExampleOne extends Component {
 	};
 
 	componentDidMount = () => {
-		this.input.focus()
+        API.trackPage(Constants.pages.CREATE_ORGANISATION);
+        this.input.focus()
 	};
 
 	onSave = (id) => {
