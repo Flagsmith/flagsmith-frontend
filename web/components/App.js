@@ -57,7 +57,7 @@ export default class App extends Component {
                                 </div>
                                 <div className="navbar-right">
                                     {user && (
-                                        <div className="flex-column">
+                                        <div className="flex-column org-nav">
                                             <Popover className="popover-right"
                                                      renderTitle={(toggle) => organisation && (
                                                          <a id="openNavbarRight" onClick={toggle}>
@@ -67,11 +67,6 @@ export default class App extends Component {
                                                      )}>
                                                 {(toggle) => (
                                                     <div>
-                                                        <div>
-                                                            <Link id="createOrgLink" onClick={toggle} to="/create">
-                                                                Create Organisation
-                                                            </Link>
-                                                        </div>
                                                         {organisation && (
                                                             <OrganisationSelect
                                                                 clearableValue={false}
@@ -82,6 +77,11 @@ export default class App extends Component {
                                                                     this.context.router.push('/projects');
                                                                 }}/>
                                                         )}
+                                                        <div>
+                                                            <Link id="createOrgLink" onClick={toggle} to="/create" >
+                                                                Create Organisation
+                                                            </Link>
+                                                        </div>
 
                                                         <a id="logoutLink" href="#" onClick={() => AppActions.setUser(null)}
                                                            to="exampleone">Logout</a>

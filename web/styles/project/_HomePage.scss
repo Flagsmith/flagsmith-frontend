@@ -26,7 +26,7 @@
 	}
 }
 h2{
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 }
 .homepage-icon {
 	color: #d9d9d9;
@@ -86,4 +86,17 @@ h2{
 
 .feature-container{
 	padding:$input-padding-y * 3;
+}
+
+.tech{
+	background:#f9f9f9;
+	padding:40px 0;
+
+	.row > div{
+		margin: 0 auto;
+
+		img{
+			width:100px;
+		}
+	}
 }

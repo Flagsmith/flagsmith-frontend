@@ -60,24 +60,20 @@ const TheComponent = class extends Component {
 										 )}>
 									{(toggle) => (
 										<div>
-											<div>
-												<h3>Select or create your environment</h3>
-											</div>
-
 											<EnvironmentSelect
-												value={this.props.environmentId}
 												clearableValue={false}
 												onChange={(environment) => {
 													toggle();
 													this.context.router.push(`/project/${this.props.projectId}/environment/${environment}/features`);
 												}}/>
-
-											<Link
+											<div className="btn-container">
+												<Link
 													id="createEnvLink"
 													onClick={toggle}
-												  to={`/project/${this.props.projectId}/environment/create`}>
-												Create Environment
-											</Link>
+													to={`/project/${this.props.projectId}/environment/create`} className="btn btn-primary">
+													Create Environment
+												</Link>
+											</div>
 										</div>
 									)}
 								</Popover>

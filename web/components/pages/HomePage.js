@@ -235,6 +235,25 @@ module.exports = class extends React.Component {
                                 </div>
                             )}
                         </Hero>
+                        <div className="tech">
+                            <div className="container">
+                                <div className="text-center col-md-6 push-lg-3">
+                                    <h2>We currently support these popular languages</h2>
+                                    <div className="row">
+                                        <div className="col-md-3">
+                                            <img src="./images/bt-java.png" alt="Java"/>
+                                        </div>
+                                        <div className="col-md-3">
+                                            <img src="./images/bt-javascript.png" alt="Javascript"/>
+                                        </div>
+                                        <div className="col-md-3">
+                                            <img src="./images/bt-react.png" alt="Javascript"/>
+                                        </div>
+                                    </div>
+                                    <p className="text-small margin-top">Don't worry if you don't see your preferred tech, we'll be adding support for more clients as we grow but please <a href="mailto:info@bullet-train.com">get in touch</a> and let us know what you'd like to see.</p>
+                                </div>
+                            </div>
+                        </div>
                         <div className="feature-container">
                             <div className={"text-center col-md-6 push-lg-3"}>
                                 <h2>Release configurable features to segmented user groups</h2>
