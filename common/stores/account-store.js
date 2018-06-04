@@ -84,6 +84,7 @@ var controller = {
         },
 
         editOrganisation: (name) => {
+            API.trackEvent(Constants.events.EDIT_ORGANISATION);
             data.put(`${Project.api}organisations/${store.organisation.id}/?format=json`, {name})
                 .then((res) => {
                     var idx = _.findIndex(store.model.organisations, {id: store.organisation.id});
@@ -97,7 +98,7 @@ var controller = {
 
         createOrganisation: (name) => {
             store.saving();
-
+            API.trackEvent(Constants.events.CREATE_ORGANISATION);
             data.post(`${Project.api}organisations/?format=json`, {name})
                 .then((res) => {
                     store.model.organisations = store.model.organisations.concat([res])

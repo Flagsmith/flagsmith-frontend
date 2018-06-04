@@ -60,13 +60,14 @@ export default class App extends Component {
                                         <div className="flex-column org-nav">
                                             <Popover className="popover-right"
                                                      renderTitle={(toggle) => organisation && (
-                                                         <a id="openNavbarRight" onClick={toggle}>
+                                                         <a id="org-menu" onClick={toggle}>
                                                              {organisation.name}
                                                              <div className="flex-column ion ion-ios-arrow-down"/>
                                                          </a>
                                                      )}>
                                                 {(toggle) => (
                                                     <div>
+
                                                         {organisation && (
                                                             <OrganisationSelect
                                                                 clearableValue={false}
@@ -78,12 +79,12 @@ export default class App extends Component {
                                                                 }}/>
                                                         )}
                                                         <div>
-                                                            <Link id="createOrgLink" onClick={toggle} to="/create" >
+                                                            <Link id="create-org-link" onClick={toggle} to="/create" >
                                                                 Create Organisation
                                                             </Link>
                                                         </div>
 
-                                                        <a id="logoutLink" href="#" onClick={() => AppActions.setUser(null)}
+                                                        <a id="logout-link" href="#" onClick={() => AppActions.setUser(null)}
                                                            to="exampleone">Logout</a>
                                                     </div>
                                                 )}

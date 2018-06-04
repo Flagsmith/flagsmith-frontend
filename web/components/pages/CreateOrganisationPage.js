@@ -14,7 +14,8 @@ export default class ExampleOne extends Component {
 	};
 
 	componentDidMount = () => {
-		this.input.focus()
+        API.trackPage(Constants.pages.CREATE_ORGANISATION);
+        this.input.focus()
 	};
 
 	onSave = (id) => {
@@ -44,7 +45,7 @@ export default class ExampleOne extends Component {
 									placeholder="E.g. ACME Ltd"
 									onChange={(e) => this.setState({name: Utils.safeParseEventValue(e)})}/>
 								<div className="text-right">
-									<Button disabled={isSaving || !this.state.name} id="createOrgBtn">
+									<Button disabled={isSaving || !this.state.name} id="create-org-btn">
 										Create
 									</Button>
 								</div>

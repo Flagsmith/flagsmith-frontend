@@ -34,8 +34,12 @@ const TheComponent = class extends Component {
 
 	inviteUsers = (emailAddresses) => {
 		this.setState({isSaving: true});
+
 		data.post(`${Project.api}organisations/${AccountStore.organisation.id}/invite/`, {
-			emails: emailAddresses.split(",").map((e)=>e.trim()),
+			emails: emailAddresses.split(",").map((e)=>{
+                API.trackEvent(Constants.events.INVITE);
+				return e.trim()
+            }),
 			frontend_base_url: this.props.baseURL
 		}).then(() => {
 			this.setState({isSaving: false});

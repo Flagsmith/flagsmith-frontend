@@ -45,7 +45,7 @@ npm start
 ```
 **E2E Testing**
 
-This project uses http://nightwatchjs.org/ [Nightwatch](http://nightwatchjs.org/) for automated end to end testing with chromedriver.
+This project uses [Nightwatch](http://nightwatchjs.org/) for automated end to end testing with chromedriver.
 ```
 npm test
 ```

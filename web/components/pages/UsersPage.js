@@ -7,10 +7,14 @@ const TheComponent = class extends Component {
 	constructor(props, context) {
 		super(props, context);
 		this.state = {};
-		AppActions.getIdentities(this.props.params.environmentId);
 	}
 
-	onSave = () => {
+    componentDidMount() {
+        AppActions.getIdentities(this.props.params.environmentId);
+        API.trackPage(Constants.pages.USERS);
+    }
+
+    onSave = () => {
 		toast('Environment Saved');
 	};
 
@@ -35,7 +39,7 @@ const TheComponent = class extends Component {
 									{!isLoading && (
 										<FormGroup>
 											<PanelSearch
-												id="usersList"
+												id="users-list"
 												title="Users"
 												className={"no-pad"}
 												icon={"ion-md-person"}

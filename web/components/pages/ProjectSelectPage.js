@@ -12,6 +12,10 @@ const TheComponent = class extends Component {
 		AppActions.getOrganisation(AccountStore.getOrganisation().id);
 	}
 
+    componentWillMount = () => {
+        API.trackPage(Constants.pages.PROJECT_SELECT);
+    };
+
 	static contextTypes = {
 		router: React.PropTypes.object.isRequired
 	};
@@ -27,7 +31,7 @@ const TheComponent = class extends Component {
 
 	render() {
 		return (
-			<div id="projectSelectPage" className="app-container container">
+			<div id="project-select-page" className="app-container container">
 				<OrganisationProvider>
 					{({isLoading, name, projects, users}) => (
 						<div>
@@ -75,7 +79,7 @@ const TheComponent = class extends Component {
 													<div>
 														<button onClick={this.newProject}
 																className={"btn btn-primary btn-lg"}
-																id="createFirstProjectBtn">
+																id="create-first-project-btn">
 															<ion className="icon ion-ios-rocket"/> Create a project
 														</button>
 													</div>

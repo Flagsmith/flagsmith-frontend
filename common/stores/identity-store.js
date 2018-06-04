@@ -21,7 +21,8 @@ var controller = {
 		},
 		toggleUserFlag: function ({identity, projectFlag, environmentFlag, identityFlag, environmentId}) {
 			store.saving();
-			var prom = identityFlag ?
+            API.trackEvent(Constants.events.TOGGLE_USER_FEATURE);
+            var prom = identityFlag ?
 				data.put(`${Project.api}environments/${environmentId}/identities/${identity}/featurestates/${identityFlag.id}/?format=json`, Object.assign({}, {
 					id: identityFlag.id,
 					enabled: !identityFlag.enabled,
@@ -41,7 +42,8 @@ var controller = {
 		},
 		editUserFlag: function ({identity, projectFlag, environmentFlag, identityFlag, environmentId}) {
 			store.saving();
-			var prom = identityFlag.id ?
+            API.trackEvent(Constants.events.EDIT_USER_FEATURE);
+            var prom = identityFlag.id ?
 				data.put(`${Project.api}environments/${environmentId}/identities/${identity}/featurestates/${identityFlag.id}/?format=json`, Object.assign({}, {
 					id: identityFlag.id,
 					enabled: identityFlag.enabled,
@@ -60,7 +62,8 @@ var controller = {
 		},
 		removeUserFlag: function (identity, identityFlag, environmentId) {
 			store.saving();
-			data.delete(`${Project.api}environments/${environmentId}/identities/${identity}/featurestates/${identityFlag.id}/?format=json`)
+            API.trackEvent(Constants.events.REMOVE_USER_FEATURE);
+            data.delete(`${Project.api}environments/${environmentId}/identities/${identity}/featurestates/${identityFlag.id}/?format=json`)
 				.then(() => {
 					delete store.model.features[identityFlag.feature];
 					store.saved();

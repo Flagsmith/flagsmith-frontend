@@ -8,6 +8,10 @@ const TheComponent = class extends Component {
         this.state = {};
     }
 
+    componentDidMount = () => {
+        API.trackPage(Constants.pages.DOCUMENTATION);
+    };
+
     render() {
         const {environmentId} = this.props.location.query;
         return (

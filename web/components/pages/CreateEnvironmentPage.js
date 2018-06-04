@@ -13,11 +13,12 @@ const TheComponent = class extends Component {
 	};
 
 	onSave = (environment) => {
-		this.context.router.push(`/project/${this.props.params.projectId}/environment/${environment.api_key}/features`);
-	}
-
+        this.context.router.push(`/project/${this.props.params.projectId}/environment/${environment.api_key}/features`);
+    }
 	componentDidMount = () => {
-		setTimeout(() => {
+        API.trackPage(Constants.pages.CREATE_ENVIRONMENT);
+
+        setTimeout(() => {
 			this.input.focus()
 		}, 500);
 	};
@@ -47,7 +48,7 @@ const TheComponent = class extends Component {
 								placeholder="An environment name e.g. Develop"/>
 							{error && <Error error={error}/>}
 							<div className="pull-right">
-								<Button id="createEnvBtn" disabled={isSaving || !name}>
+								<Button id="create-env-btn" disabled={isSaving || !name}>
 									{isSaving ? 'Creating' : 'Create Environment'}
 								</Button>
 							</div>

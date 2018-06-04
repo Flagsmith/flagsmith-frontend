@@ -14,6 +14,10 @@ const TheComponent = class extends Component {
         AppActions.getFeatures(this.props.params.projectId, this.props.params.environmentId);
     }
 
+    componentWillMount = () => {
+        API.trackPage(Constants.pages.FEATURES);
+    };
+
     newFlag = () => {
         openModal('New Feature', <CreateFlagModal
             environmentId={this.props.params.environmentId}
@@ -22,6 +26,7 @@ const TheComponent = class extends Component {
 
 
     editFlag = (projectFlag, environmentFlag) => {
+        API.trackEvent(Constants.events.VIEW_FEATURE);
         openModal('Edit Feature', <CreateFlagModal
             isEdit={true}
             environmentId={this.props.params.environmentId}
@@ -59,7 +64,7 @@ const TheComponent = class extends Component {
 
     render() {
         return (
-            <div id="featuresPage" className="app-container container">
+            <div id="features-page" className="app-container container">
                 <FeatureListProvider onSave={this.onSave}>
                     {({isLoading, projectFlags, environmentFlags}, {environmentHasFlag, toggleFlag, editFlag, removeFlag}) => (
                         <div>
@@ -71,7 +76,7 @@ const TheComponent = class extends Component {
                                             <FormGroup>
                                                 <PanelSearch
                                                     className={"no-pad"}
-                                                    id="featuresList"
+                                                    id="features-list"
                                                     icon={"ion-ios-rocket"}
                                                     title={"Features"}
                                                     items={projectFlags}
@@ -135,7 +140,7 @@ const TheComponent = class extends Component {
                                                         <p>
 
                                                         </p>
-                                                        <Button id="showCreateFeatureBtn" onClick={this.newFlag}>
+                                                        <Button id="show-create-feature-btn" onClick={this.newFlag}>
                                                             Create Feature
                                                         </Button>
                                                     </div>
@@ -160,7 +165,7 @@ const TheComponent = class extends Component {
                                         </div>
                                     ) : (
                                         <div>
-                                            <Button id="showCreateFeatureBtn" onClick={this.newFlag}>
+                                            <Button id="show-create-feature-btn" onClick={this.newFlag}>
                                                 Create Feature
                                             </Button>
                                         </div>

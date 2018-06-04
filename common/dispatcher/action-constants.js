@@ -26,6 +26,5 @@ module.exports = Object.assign({}, require('./base/_action-constants'), {
 	"SAVE_IDENTITY": "SAVE_IDENTITY",
 	"SET_USER_FLAG": "SET_USER_FLAG",
 	"ACCEPT_INVITE": "ACCEPT_INVITE",
-	"REMOVE_USER_FLAG": "REMOVE_USER_FLAG",
-	"INVITE_USERS": "INVITE_USERS",
+	"REMOVE_USER_FLAG": "REMOVE_USER_FLAG"
 });

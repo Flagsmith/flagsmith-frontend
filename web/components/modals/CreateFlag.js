@@ -102,11 +102,11 @@ const TheComponent = class extends Component {
                                 )}
                                 <div className="pull-right">
                                     {isEdit ? (
-                                        <Button id="updateFeatureBtn" disabled={isSaving || !name}>
+                                        <Button id="update-feature-btn" disabled={isSaving || !name}>
                                             {isSaving ? 'Creating' : 'Update Feature'}
                                         </Button>
                                     ) : (
-                                        <Button id="createFeatureBtn" disabled={isSaving || !name}>
+                                        <Button id="create-feature-btn" disabled={isSaving || !name}>
                                             {isSaving ? 'Creating' : 'Create Feature'}
                                         </Button>
                                     )}

@@ -18,7 +18,9 @@ var controller = {
 				});
 			}
 		},
+
 		createEnv: (name, projectId) => {
+			API.trackEvent(Constants.events.CREATE_ENVIRONMENT);
 			data.post(`${Project.api}environments/?format=json`, {name, project: projectId})
 				.then((res) => {
 					data.post(`${Project.api}environments/${res.api_key}/identities/`, {
@@ -36,6 +38,7 @@ var controller = {
 				});
 		},
 		editEnv: (env) => {
+            API.trackEvent(Constants.events.EDIT_ENVIRONMENT);
 			data.put(`${Project.api}environments/${env.api_key}/?format=json`, env)
 				.then((res) => {
 					const index = _.findIndex(store.model.environments, {id: env.id});
@@ -45,7 +48,8 @@ var controller = {
 				});
 		},
 		deleteEnv: (env) => {
-			data.delete(`${Project.api}environments/${env.api_key}/?format=json`)
+            API.trackEvent(Constants.events.REMOVE_ENVIRONMENT);
+            data.delete(`${Project.api}environments/${env.api_key}/?format=json`)
 				.then((res) => {
 					store.model.environments = _.filter(store.model.environments, (e) => e.id != env.id);
 					store.trigger("removed");

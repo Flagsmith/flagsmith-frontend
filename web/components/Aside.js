@@ -44,13 +44,13 @@ const TheComponent = class extends Component {
 							<Flex>
 								<Popover className="aside-select"
 										 renderTitle={(toggle) => (
-											 <a id="envSelect" onClick={toggle}>
+											 <a id="env-menu" onClick={toggle}>
 												 <Row>
 													 <Flex>
 														 <span className={"faint"}>
 															 {project.name}:
 														 </span>
-														 <Row id="envSelectName">
+														 <Row id="selected-env">
 															 {_.find(project.environments, {api_key: this.props.environmentId}).name}
 														 </Row>
 													 </Flex>
@@ -68,7 +68,7 @@ const TheComponent = class extends Component {
 												}}/>
 											<div className="btn-container">
 												<Link
-													id="createEnvLink"
+													id="create-env-link"
 													onClick={toggle}
 													to={`/project/${this.props.projectId}/environment/create`} className="btn btn-primary">
 													Create Environment
@@ -91,7 +91,7 @@ const TheComponent = class extends Component {
 										Segments
 									</Link>
 									<Link
-										id="usersLink"
+										id="users-link"
 										activeClassName={"active"}
 										to={
 											`/project/${this.props.projectId}/environment/${this.props.environmentId}/users`

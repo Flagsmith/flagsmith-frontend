@@ -5,7 +5,6 @@ import App from './components/App'; //App Wrapper
 import DocumentationPage from './components/pages/DocumentationPage';
 import HomePage from './components/pages/HomePage';
 import ProjectSelectPage from './components/pages/ProjectSelectPage';
-import TeamMembersPage from './components/pages/TeamMembersPage';
 import CreateOrganisationPage from './components/pages/CreateOrganisationPage';
 import CreateEnvironmentPage from './components/pages/CreateEnvironmentPage';
 import UsersPage from './components/pages/UsersPage';
@@ -29,8 +28,6 @@ export default (
         <Route path="signup" component={HomePage}/>
         <Route path="documentation" component={DocumentationPage}/>
         <Route path="projects" component={ProjectSelectPage}/>
-        <Route path="project/:projectId/manage-team" component={TeamMembersPage}/>
-        {/*todo: to make these routes a little less convoluted, projectIds and environmentIds can have a default*/}
         <Route path="project/:projectId/environment/:environmentId/features" component={FlagsPage}/>
         <Route path="invite/:id" component={InvitePage}/>
         <Route path="project/:projectId/environment/:environmentId/settings" component={EnvironmentSettingsPage}/>
