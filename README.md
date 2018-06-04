@@ -36,7 +36,7 @@ npm run dev
 
 **Production**
 
-You can deploy this application on [Heroku](https://www.heroku.com/) and [Dokku](http://dokku.viewdocs.io/dokku/) without making any changes, other than the API URL.  
+You can deploy this application on [Heroku](https://www.heroku.com/) and [Dokku](http://dokku.viewdocs.io/dokku/) without making any changes, other than the API URL in [project_prod.js](/env/project_prod.js)  
 
 Bundles, minifies and cache busts the project to a build folder and runs node in production. This can be used as part of your deployment script.
 
