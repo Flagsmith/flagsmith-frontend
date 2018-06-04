@@ -20,7 +20,7 @@ const TheComponent = class extends Component {
 		return (
 			<ProjectProvider>
 				{({project}) => (
-					<div>
+					<div id="confirm-toggle-feature-modal">
 						<h3>
 							This will
 							turn <strong>{Format.enumeration.get(projectFlag.name)}</strong> {isEnabled ? "Off" : "On"}

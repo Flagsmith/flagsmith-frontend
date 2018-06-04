@@ -90,7 +90,7 @@ const TheComponent = class extends Component {
                                                                     </a>
                                                                     <Column>
 														<span className={"subtitle"}>
-															{environmentFlags[id] && environmentFlags[id].feature_state_value}
+															{environmentFlags[id] && environmentFlags[id].feature_state_value + ""}
 														</span>
                                                                     </Column>
                                                                 </Row>

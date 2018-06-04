@@ -24,7 +24,7 @@ const TheComponent = class extends Component {
 		return (
 			<OrganisationProvider onSave={this.close}>
 				{({isLoading, isSaving, projects, createProject, error}) => (
-					<form onSubmit={(e) => {
+					<form id="create-project-modal" onSubmit={(e) => {
 						e.preventDefault();
 						!isSaving && name && createProject(name);
 					}}>
