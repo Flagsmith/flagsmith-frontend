@@ -34,13 +34,14 @@ const TheComponent = class extends Component {
 							environment in your applications before proceeding.
 						</p>
 						<InputGroup
-							inputProps={{className: "full-width"}}
-							title="Please type the feature name to confirm"
+							inputProps={{name: "confirm-env-name", className: "full-width"}}
+							title="Please type the environment name to confirm"
 							placeholder="Environment name"
 							onChange={(e) => this.setState({challenge: Utils.safeParseEventValue(e)})}/>
 
 						<FormGroup className="text-right">
 							<Button
+								id="confirm-delete-env-btn"
 								disabled={this.state.challenge != environment.name}
 								className={"btn btn-primary"}>
 								Confirm changes

@@ -57,6 +57,7 @@ const TheComponent = class extends Component {
 								<div>
 									<FormGroup>
 										<PanelSearch
+											id="projects-list"
 											className={"no-pad"}
 											title="Projects"
 											items={projects}
