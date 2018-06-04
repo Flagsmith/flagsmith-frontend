@@ -14,127 +14,133 @@ module.exports = {
     //         .setValue('[name="companyName"]', 'Nightwatch Ltd')
     //         .setValue('[name="email"]', email)
     //         .setValue('[name="password"]', password)
-    //         .click('button[name="signupBtn"]')
+    //         .click('button[name="signup-btn"]')
 
-    //     browser.expect.element('#projectSelectPage').to.be.visible;
+    //     browser.expect.element('#project-select-page').to.be.visible;
     // },
     'Login': function (browser) {
         browser
             .url(url)
-            .waitForElementVisible('#existingMemberBtn')
-            .click('#existingMemberBtn')
+            .waitForElementVisible('#existing-member-btn')
+            .click('#existing-member-btn')
             .waitForElementVisible('[name="email"]')
             .setValue('[name="email"]', email)
             .setValue('[name="password"]', password)
-            .click('#loginBtn');
+            .click('#login-btn');
 
-        browser.expect.element('#projectSelectPage').to.be.visible;
+        browser.expect.element('#project-select-page').to.be.visible;
     },
     'Create organisation': function (browser) {
         browser
-            .click('#openNavbarRight')
-            .waitForElementVisible('#createOrgLink')
+            .click('#org-menu')
+            .waitForElementVisible('#create-org-link')
             .pause(200) // Allows the dropdown to fade in preventing it from becoming stuck after clicking links
-            .click('#createOrgLink')
+            .click('#create-org-link')
             .waitForElementVisible('[name="orgName"]')
             .setValue('[name="orgName"]', "Nightwatch Org")
-            .click('#createOrgBtn')
-            .waitForElementVisible('#projectSelectPage')
-            .assert.containsText('#openNavbarRight', 'Nightwatch Org');
+            .click('#create-org-btn')
+            .waitForElementVisible('#project-select-page')
+            .assert.containsText('#org-menu', 'Nightwatch Org');
     },
     'Create project': function (browser) {
         browser
-            .click('#createFirstProjectBtn')
+            .click('#create-first-project-btn')
             .waitForElementVisible('[name="projectName"]')
             .setValue('[name="projectName"]', 'My Test Project')
-            .click('#createProjectBtn');
+            .click('#create-project-btn');
 
-        browser.expect.element('#featuresPage').to.be.visible;
+        browser.expect.element('#features-page').to.be.visible;
     },
     'Create feature': function (browser) {
         browser
             .pause(200) // Wait for dialog to appear
-            .click('#showCreateFeatureBtn')
+            .click('#show-create-feature-btn')
             .waitForElementVisible('[name="featureID"]')
             .setValue('[name="featureID"]', 'header_size')
             .setValue('[name="featureValue"]', 'big')
             .setValue('[name="featureDesc"]', 'This determines what size the header is')
-            .click('#createFeatureBtn');
+            .click('#create-feature-btn');
 
-        browser.expect.element('#featuresList div.list-item').to.be.visible;
-        browser.expect.element('#featuresList .subtitle').text.to.equal('big');
+        browser.expect.element('#features-list div.list-item').to.be.visible;
+        browser.expect.element('#features-list .subtitle').text.to.equal('big');
     },
     'Toggle feature on': function (browser) {
         browser
             .pause(1000) // Wait for dialog to disappear. Longer wait here as it seems rc-switch can be unresponsive for a while
-            .waitForElementVisible('#featuresList span.rc-switch')
-            .click('#featuresList span.rc-switch')
-            .waitForElementVisible('#confirmToggleFeatureBtn')
-            .click('#confirmToggleFeatureBtn')
+            .waitForElementVisible('#features-list span.rc-switch')
+            .click('#features-list span.rc-switch')
+            .waitForElementVisible('#confirm-toggle-feature-btn')
+            .click('#confirm-toggle-feature-btn')
 
-        browser.expect.element('#featuresList span.rc-switch.rc-switch-checked').to.be.visible;
+        browser.expect.element('#features-list span.rc-switch.rc-switch-checked').to.be.visible;
+    },
+    'Try feature out': function (browser) {
+        browser
+            .pause(200) // Wait for confirm toggle feature dialog to disappear
+            .click('#try-it-btn')
+            .waitForElementVisible('#try-it-results');
     },
     'Switch environment': function (browser) {
         browser
             .pause(200) // Wait for confirm toggle feature dialog to disappear
-            .click('#envSelect')
+            .click('#env-menu')
             .useXpath()
-            .waitForElementVisible("//div[@id='envSelectList']//div[text()='Production']")
+            .waitForElementVisible("//div[@id='env-list']//div[text()='Production']")
             .pause(200) // Wait for environment select popover to appear
-            .click("//div[@id='envSelectList']//div[text()='Production']")
+            .click("//div[@id='env-list']//div[text()='Production']")
             .useCss();
 
-        browser.expect.element('#envSelectName').text.to.equal('Production');
+        browser.expect.element('#selected-env').text.to.equal('Production');
     },
     'Feature should be off under different environment': function (browser) {
-        browser.expect.element('#featuresList span[class="rc-switch"]').to.be.visible;
+        browser.expect.element('#features-list span[class="rc-switch"]').to.be.visible;
     },
     'Create environment': function (browser) {
         browser
-            .click('#envSelect')
-            .waitForElementVisible("#createEnvLink")
+            .click('#env-menu')
+            .waitForElementVisible("#create-env-link")
             .pause(200) // Wait for environment select popover to appear
-            .click("#createEnvLink")
+            .click("#create-env-link")
             .waitForElementVisible('[name="envName"]')
             .setValue('[name="envName"]', 'Staging')
-            .click('#createEnvBtn');
+            .click('#create-env-btn');
 
-        browser.expect.element('#envSelectName').text.to.equal('Staging');
+        browser.expect.element('#selected-env').text.to.equal('Staging');
     },
     'Edit flag for user': function (browser) {
         browser
-            .click('#usersLink')
-            .waitForElementVisible('#usersList div.list-item')
-            .click('#usersList div.list-item')
+            .click('#users-link')
+            .waitForElementVisible('#users-list div.list-item')
+            .click('#users-list div.list-item')
             .useXpath()
-            .waitForElementVisible('//div[@id="userFeaturesList"]//a[text()="header_size"]')
-            .click('//div[@id="userFeaturesList"]//a[text()="header_size"]')
+            .waitForElementVisible('//div[@id="user-features-list"]//a[text()="header_size"]')
+            .click('//div[@id="user-features-list"]//a[text()="header_size"]')
             .useCss()
             .waitForElementVisible('[name="featureValue"]')
             .clearValue('[name="featureValue"]')
             .setValue('[name="featureValue"]', 'small')
-            .click('#updateFeatureBtn')
+            .click('#update-feature-btn')
 
-        browser.expect.element('#userFeaturesList .subtitle').text.to.equal('small');
+        browser.expect.element('#user-features-list .subtitle').text.to.equal('small');
     },
     'Toggle flag for user': function (browser) {
         browser
             .pause(1000) // Wait for last dialog to fully disappear. Longer wait here as it seems rc-switch can be unresponsive for a while
-            .click('#userFeaturesList span.rc-switch')
-            .waitForElementVisible('#confirmToggleFeatureBtn')
-            .click('#confirmToggleFeatureBtn');
+            .click('#user-features-list span.rc-switch')
+            .waitForElementVisible('#confirm-toggle-feature-btn')
+            .click('#confirm-toggle-feature-btn');
 
-        browser.expect.element('#userFeaturesList span.rc-switch.rc-switch-checked').to.be.visible;
+        browser.expect.element('#user-features-list span.rc-switch.rc-switch-checked').to.be.visible;
     },
     'Logout': function (browser) {
         browser
             .pause(200) // Wait for confirm toggle feature dialog to disappear
-            .click('#openNavbarRight')
-            .waitForElementVisible('#logoutLink')
+            .click('#org-menu')
+            .waitForElementVisible('#logout-link')
             .pause(200) // Allows the dropdown to fade in
-            .click('#logoutLink');
+            .click('#logout-link');
 
-        browser.expect.element('#existingMemberBtn').to.be.visible;
+        browser.expect.element('#existing-member-btn').to.be.visible;
         browser.end();
     }
 };

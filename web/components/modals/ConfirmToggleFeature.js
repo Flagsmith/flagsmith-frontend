@@ -48,7 +48,7 @@ const TheComponent = class extends Component {
 							<Button onClick={() => {
 								this.close();
 								this.props.cb(this.state.allEnvironments ? project.environments : [_.find(project.environments, {api_key: this.props.environmentId})])
-							}} className={"btn btn-primary"} id="confirmToggleFeatureBtn">
+							}} className={"btn btn-primary"} id="confirm-toggle-feature-btn">
 								Confirm changes
 							</Button>
 						</FormGroup>

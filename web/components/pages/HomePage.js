@@ -77,7 +77,7 @@ module.exports = class extends React.Component {
 
                                                     <FormGroup>
                                                         <button
-                                                            id="loginBtn"
+                                                            id="login-btn"
                                                             disabled={isLoading || isSaving}
                                                             className="btn btn-primary full-width" type="submit">
                                                             Login
@@ -88,7 +88,7 @@ module.exports = class extends React.Component {
                                                         </div>
                                                     </FormGroup>
                                                 </fieldset>
-                                                {error && <div id="errorAlert" className="alert alert-danger">
+                                                {error && <div id="error-alert" className="alert alert-danger">
                                                     Please check your details and try again
                                                 </div>}
                                                 <div>
@@ -206,19 +206,19 @@ module.exports = class extends React.Component {
                                                 </FormGroup>
                                                 <FormGroup>
                                                     <button
-                                                        name="signupBtn"
+                                                        name="signup-btn"
                                                         disabled={isLoading || isSaving}
                                                         className="btn btn-primary full-width" type="submit">
                                                         Sign Up
                                                     </button>
                                                 </FormGroup>
-                                                <Link id="existingMemberBtn" to={`/login${redirect}`}
+                                                <Link id="existing-member-btn" to={`/login${redirect}`}
                                                       onClick={this.showForgotPassword}>Already a member?</Link>
 
                                             </fieldset>
                                             {error &&
                                             <FormGroup>
-                                                <div id="errorAlert" className="alert alert-danger">
+                                                <div id="error-alert" className="alert alert-danger">
                                                     Please check your details and try again
                                                 </div>
                                             </FormGroup>

@@ -60,7 +60,7 @@ export default class App extends Component {
                                         <div className="flex-column">
                                             <Popover className="popover-right"
                                                      renderTitle={(toggle) => organisation && (
-                                                         <a id="openNavbarRight" onClick={toggle}>
+                                                         <a id="org-menu" onClick={toggle}>
                                                              {organisation.name}
                                                              <div className="flex-column ion ion-ios-arrow-down"/>
                                                          </a>
@@ -68,7 +68,7 @@ export default class App extends Component {
                                                 {(toggle) => (
                                                     <div>
                                                         <div>
-                                                            <Link id="createOrgLink" onClick={toggle} to="/create">
+                                                            <Link id="create-org-link" onClick={toggle} to="/create">
                                                                 Create Organisation
                                                             </Link>
                                                         </div>
@@ -83,7 +83,7 @@ export default class App extends Component {
                                                                 }}/>
                                                         )}
 
-                                                        <a id="logoutLink" href="#" onClick={() => AppActions.setUser(null)}
+                                                        <a id="logout-link" href="#" onClick={() => AppActions.setUser(null)}
                                                            to="exampleone">Logout</a>
                                                     </div>
                                                 )}
