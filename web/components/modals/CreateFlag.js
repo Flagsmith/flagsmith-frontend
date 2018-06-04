@@ -58,7 +58,7 @@ const TheComponent = class extends Component {
                                     type="text"
                                     title={"Value (optional)" + (!isEdit ? "- these can be set later per environment" : "")}
                                     placeholder="e.g. 'big' "/>
-                                {initial_value || initial_value === false && (
+                                {(initial_value || initial_value === false) && (
                                     <FormGroup className={"flag-example"}>
                                         <strong>Example response:</strong>
                                         <Highlight className={"json no-pad"}>
