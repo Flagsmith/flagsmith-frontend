@@ -34,10 +34,12 @@ const TheComponent = class extends Component {
                 {({project}) => (
                     <Provider onSave={this.close}>
                         {({isLoading, isSaving, error}, {createFlag, editFlag}) => (
-                            <form onSubmit={(e) => {
-                                e.preventDefault();
-                                const func = isEdit ? editFlag : createFlag;
-                                this.save(func, isSaving);
+                            <form
+                                id="create-feature-modal"
+                                onSubmit={(e) => {
+                                    e.preventDefault();
+                                    const func = isEdit ? editFlag : createFlag;
+                                    this.save(func, isSaving);
                             }}>
                                 <InputGroup
                                     ref={(e) => this.input = e}

@@ -1,4 +1,5 @@
 var conf = require('../nightwatch.conf.js');
+const expect = require('chai').expect;
 
 const email = 'nightwatch@solidstategroup.com';
 const password = 'nightwatch';
@@ -53,7 +54,7 @@ module.exports = {
     },
     'Create feature': function (browser) {
         browser
-            .pause(200) // Wait for dialog to appear
+            .waitForElementNotPresent('#create-project-modal')
             .click('#show-create-feature-btn')
             .waitForElementVisible('[name="featureID"]')
             .setValue('[name="featureID"]', 'header_size')
@@ -66,7 +67,8 @@ module.exports = {
     },
     'Toggle feature on': function (browser) {
         browser
-            .pause(1000) // Wait for dialog to disappear. Longer wait here as it seems rc-switch can be unresponsive for a while
+            .waitForElementNotPresent('#create-feature-modal')
+            .pause(200) // Additional wait here as it seems rc-switch can be unresponsive for a while
             .waitForElementVisible('#features-list span.rc-switch')
             .click('#features-list span.rc-switch')
             .waitForElementVisible('#confirm-toggle-feature-btn')
@@ -76,13 +78,103 @@ module.exports = {
     },
     'Try feature out': function (browser) {
         browser
-            .pause(200) // Wait for confirm toggle feature dialog to disappear
+            .waitForElementNotPresent('#confirm-toggle-feature-modal')
             .click('#try-it-btn')
-            .waitForElementVisible('#try-it-results');
+            .waitForElementVisible('#try-it-results')
+            .getText('#try-it-results', res => {
+                browser.assert.equal(typeof res, "object");
+                browser.assert.equal(res.status, 0);
+                var json;
+                try {
+                    json = JSON.parse(res.value);
+                } catch (e) {
+                    throw new Error('Try it results are not valid JSON');
+                }
+                // Unfortunately chai.js expect assertions do not report success in the Nightwatch reporter (but they do report failure)
+                expect(json).to.have.property('header_size');
+                expect(json.header_size).to.have.property('value');
+                expect(json.header_size.value).to.equal('big');
+                expect(json.header_size).to.have.property('enabled');
+                expect(json.header_size.enabled).to.equal(true);
+                browser.assert.ok(true, 'Try it JSON was correct for the feature'); // Re-assurance that the chai tests above passed
+            });
+    },
+    'Change feature value to number': function (browser) {
+        browser
+            .useXpath()
+            .click('//div[@id="features-list"]//a[text()="header_size"]')
+            .useCss()
+            .waitForElementVisible('[name="featureValue"]')
+            .clearValue('[name="featureValue"]')
+            .setValue('[name="featureValue"]', '12')
+            .click('#update-feature-btn')
+
+        browser.expect.element('#features-list .subtitle').text.to.equal('12');
+    },
+    'Try feature out should return numeric value': function (browser) {
+        browser
+            .waitForElementNotPresent('#create-feature-modal')
+            .refresh()
+            .waitForElementVisible('#try-it-btn')
+            .click('#try-it-btn')
+            .waitForElementVisible('#try-it-results')
+            .getText('#try-it-results', res => {
+                browser.assert.equal(typeof res, "object");
+                browser.assert.equal(res.status, 0);
+                var json;
+                try {
+                    json = JSON.parse(res.value);
+                } catch (e) {
+                    throw new Error('Try it results are not valid JSON');
+                }
+                // Unfortunately chai.js expect assertions do not report success in the Nightwatch reporter (but they do report failure)
+                expect(json).to.have.property('header_size');
+                expect(json.header_size).to.have.property('value');
+                expect(json.header_size.value).to.equal(12);
+                expect(json.header_size).to.have.property('enabled');
+                expect(json.header_size.enabled).to.equal(true);
+                browser.assert.ok(true, 'Try it JSON was correct for the feature'); // Re-assurance that the chai tests above passed
+            });
+    },
+    'Change feature value to boolean': function (browser) {
+        browser
+            .useXpath()
+            .click('//div[@id="features-list"]//a[text()="header_size"]')
+            .useCss()
+            .waitForElementVisible('[name="featureValue"]')
+            .clearValue('[name="featureValue"]')
+            .setValue('[name="featureValue"]', 'false')
+            .click('#update-feature-btn')
+
+        browser.expect.element('#features-list .subtitle').text.to.equal('false');
+    },
+    'Try feature out should return boolean value': function (browser) {
+        browser
+            .waitForElementNotPresent('#create-feature-modal')
+            .refresh()
+            .waitForElementVisible('#try-it-btn')
+            .click('#try-it-btn')
+            .waitForElementVisible('#try-it-results')
+            .getText('#try-it-results', res => {
+                browser.assert.equal(typeof res, "object");
+                browser.assert.equal(res.status, 0);
+                var json;
+                try {
+                    json = JSON.parse(res.value);
+                } catch (e) {
+                    throw new Error('Try it results are not valid JSON');
+                }
+                // Unfortunately chai.js expect assertions do not report success in the Nightwatch reporter (but they do report failure)
+                expect(json).to.have.property('header_size');
+                expect(json.header_size).to.have.property('value');
+                expect(json.header_size.value).to.equal(false);
+                expect(json.header_size).to.have.property('enabled');
+                expect(json.header_size.enabled).to.equal(true);
+                browser.assert.ok(true, 'Try it JSON was correct for the feature'); // Re-assurance that the chai tests above passed
+            });
     },
     'Switch environment': function (browser) {
         browser
-            .pause(200) // Wait for confirm toggle feature dialog to disappear
             .click('#env-menu')
             .useXpath()
             .waitForElementVisible("//div[@id='env-list']//div[text()='Production']")
@@ -125,7 +217,8 @@ module.exports = {
     },
     'Toggle flag for user': function (browser) {
         browser
-            .pause(1000) // Wait for last dialog to fully disappear. Longer wait here as it seems rc-switch can be unresponsive for a while
+            .waitForElementNotPresent('#create-feature-modal')
+            .pause(200) // Additional wait here as it seems rc-switch can be unresponsive for a while
             .click('#user-features-list span.rc-switch')
             .waitForElementVisible('#confirm-toggle-feature-btn')
             .click('#confirm-toggle-feature-btn');
@@ -134,7 +227,7 @@ module.exports = {
     },
     'Logout': function (browser) {
         browser
-            .pause(200) // Wait for confirm toggle feature dialog to disappear
+            .waitForElementNotPresent('#confirm-toggle-feature-modal')
             .click('#org-menu')
             .waitForElementVisible('#logout-link')
             .pause(200) // Allows the dropdown to fade in
