@@ -21,24 +21,29 @@ global.API = {
         });
     },
     trackEvent: function(data) {
-        console.info("track", data);
-        if (!data || !data.category || !data.event) {
-            console.error("Invalid event provided", data);
+        if (Project.ga) {
+            console.info("track", data);
+            if (!data || !data.category || !data.event) {
+                console.error("Invalid event provided", data);
+            }
+            ga('send', {
+                hitType: 'event',
+                eventCategory: data.category,
+                eventAction: data.event,
+                eventLabel: data.label
+            });
         }
-        ga('send', {
-            hitType: 'event',
-            eventCategory: data.category,
-            eventAction: data.event,
-            eventLabel: data.label
-        });
+
     },
     trackPage: function(title) {
-        ga('send', {
-            hitType: 'pageview',
-            title,
-            location: document.location.href,
-            page: document.location.pathname
-        });
+        if (Project.ga) {
+            ga('send', {
+                hitType: 'pageview',
+                title,
+                location: document.location.href,
+                page: document.location.pathname
+            });
+        }
     },
     log() {
         console.log.apply(this,arguments)
