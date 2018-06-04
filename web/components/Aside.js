@@ -119,7 +119,7 @@ const TheComponent = class extends Component {
 									</Link>
 									<Link
 										activeClassName={"active"}
-										to={`/documentation?environmentId=${this.props.environmentId}`}>
+										to={`https://docs.bullet-train.io`}>
 										Documentation
 									</Link>
 								</div>
