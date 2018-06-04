@@ -1,0 +1,30 @@
+@import "../variables";
+
+button.btn {
+	border-radius: $btn-border-radius;
+	box-shadow: rgba(75, 75, 75, 0.11) 0px 1px 6px, rgba(75, 75, 75, 0.11) 0px 1px 4px;
+	color: $btn-default-color;
+	cursor: pointer;
+	text-decoration: none;
+	outline: none !important;
+	transform: translate3d(0px, 0px, 0px);
+	border: 10px;
+	box-sizing: border-box;
+	display: inline-block;
+	transition: $button-transition;
+	&:hover {
+		color: $btn-primary-color-hover;
+		background: $btn-primary-bg-hover;
+	}
+}
+.btn-link {
+	box-shadow: none !important;
+}
+.btn-link:hover {
+	background-color: transparent !important;
+	text-decoration: none;
+}
+
+.btn-link-secondary {
+	color: $link-color-secondary;
+}

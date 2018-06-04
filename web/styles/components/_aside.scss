@@ -1,0 +1,150 @@
+.aside-body {
+	padding-left: $aside-width;
+}
+
+
+$animation-duration: 350ms;
+$animation-timing-function: ease-in-out;
+
+@mixin keyframes($animationName) {
+	@-webkit-keyframes #{$animationName} {
+		@content;
+	}
+	@-moz-keyframes #{$animationName} {
+		@content;
+	}
+	@-o-keyframes #{$animationName} {
+		@content;
+	}
+	@keyframes #{$animationName} {
+		@content;
+	}
+}
+
+@include keyframes(asideIn) {
+	0% {
+		left: -$aside-width
+	}
+	100% {
+		left: 0
+	}
+}
+
+
+@include keyframes(navAsideIn) {
+	0% {
+		left: 0
+	}
+	100% {
+		left: $aside-width
+	}
+}
+
+.aside {
+	&.demo {
+		padding-bottom: 44px;
+	}
+	position: fixed;
+	animation-name: asideIn;
+	animation-duration: $animation-duration;
+	animation-timing-function: $animation-timing-function;
+	width: $aside-width;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	height: 100%;
+	background: $aside-bg;
+	z-index: 2;
+
+	.brand-container {
+		.flex-row {
+			justify-content: center;
+			img {
+				margin-left: -5px; //hack for now until we have a better logo
+			}
+		}
+		height: 60px;
+		line-height: 60px;
+		background: $aside-bg-brand;
+		a {
+			font-weight: 200;
+			font-size: 1em;
+			font-family: 'Andika', sans-serif;
+			padding-left: 0;
+			color: $aside-brand-color;
+		}
+	}
+	a {
+		padding-left: 20px;
+		display: block;
+		height: 44px;
+		color: $aside-link-color;
+
+	}
+	.links {
+		.dot {
+			width:8px;
+			height:8px;
+			border-radius:4px;
+			margin-right: 20px;
+			margin-bottom: 3px;
+			display: inline-block;
+			&.green {
+				background-color: #35cac3;
+			}
+			&.orange {
+				background-color: #fb9d43;
+			}
+			&.red {
+				background-color: #f94f73;
+			}
+			&.purple {
+				background-color: #a28af9;
+			}
+		}
+		line-height: 44px;
+		.active {
+			color:$aside-link-active;
+			background-color:$aside-link-bg-active;
+		}
+		a {
+			background-color: $aside-link-bg;
+		}
+		a:hover, a:focus{
+			background-color: $aside-link-bg-hover;
+			text-decoration: none;
+		}
+	}
+}
+
+.navbar-aside {
+	left: $aside-width;
+	animation-name: navAsideIn;
+	animation-duration: $animation-duration;
+	animation-timing-function: $animation-timing-function;
+}
+
+.aside-select {
+	background-color: $aside-bg-alt;
+	padding: 20px 0px;
+	color: white;
+	h3 {
+		background-color: $panel-heading-bg;
+		text-align: center;
+		font-size: 1.5em;
+		padding: 10px;
+	}
+	.faint {
+		color: rgba(0,0,0,.4);
+		font-size: 0.8em;
+	}
+	.popover-inner {
+		width: 200px;
+		left: 20px;
+		margin-top: 30px;
+		.popover {
+			padding-top: 0;
+			min-width: 400px;
+		}
+	}
+}

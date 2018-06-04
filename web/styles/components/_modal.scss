@@ -1,0 +1,43 @@
+@import "../variables";
+
+.modal.expand {
+
+	.modal-header {
+		color:#ccc;
+		font-size: 1.5em;
+	}
+  .modal-dialog {
+    width: 100%;
+    margin: auto;
+    transform: translate(0, 0);
+    .modal-content {
+		border: none;
+      box-shadow: rgba(0, 0, 0, 0.247059) 0px 14px 45px, rgba(0, 0, 0, 0.219608) 0px 10px 18px;
+
+      -webkit-transition: all 0.3s;
+      -moz-transition: all 0.3s;
+      transition: all 0.3s;
+
+      -webkit-transform: scale(.5);
+      -moz-transform: scale(.5);
+      -ms-transform: scale(.5);
+      transform: scale(.5);
+    }
+  }
+  &.in {
+    .modal-content {
+      -webkit-transform: scale(1);
+      -moz-transform: scale(1);
+      -ms-transform: scale(1);
+      transform: scale(1);
+    }
+  }
+}
+
+.modal-backdrop {
+  bottom: 0;
+}
+
+.modal-open {
+  position: relative;
+}

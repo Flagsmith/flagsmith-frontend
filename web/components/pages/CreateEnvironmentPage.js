@@ -1,0 +1,64 @@
+import React, {Component, PropTypes} from 'react';
+
+const TheComponent = class extends Component {
+	displayName: 'TheComponent'
+
+	constructor(props, context) {
+		super(props, context);
+		this.state = {};
+	}
+
+	static contextTypes = {
+		router: React.PropTypes.object.isRequired
+	};
+
+	onSave = (environment) => {
+		this.context.router.push(`/project/${this.props.params.projectId}/environment/${environment.api_key}/features`);
+	}
+
+	componentDidMount = () => {
+		setTimeout(() => {
+			this.input.focus()
+		}, 500);
+	};
+
+	render() {
+		const {name} = this.state;
+		return (
+			<div className={"app-container container"}>
+				<h3>Create Environment</h3>
+				<p>
+					{Constants.strings.ENVIRONMENT_DESCRIPTION}
+				</p>
+				<ProjectProvider id={this.props.params.projectId} onSave={this.onSave}>
+					{({isLoading, isSaving, createEnv, error}) => (
+						<form onSubmit={(e) => {
+							e.preventDefault();
+							!isSaving && name && createEnv(name, this.props.params.projectId);
+						}}>
+							<InputGroup
+								ref={(e) => {
+									if (e) this.input = e
+								}}
+								inputProps={{name: "envName", className: "full-width"}}
+								onChange={(e) => this.setState({name: Utils.safeParseEventValue(e)})}
+								isValid={name}
+								type="text" title="Name*"
+								placeholder="An environment name e.g. Develop"/>
+							{error && <Error error={error}/>}
+							<div className="pull-right">
+								<Button id="createEnvBtn" disabled={isSaving || !name}>
+									{isSaving ? 'Creating' : 'Create Environment'}
+								</Button>
+							</div>
+						</form>
+					)}
+				</ProjectProvider>
+			</div>
+		);
+	}
+};
+
+TheComponent.propTypes = {};
+
+module.exports = TheComponent;

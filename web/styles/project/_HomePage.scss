@@ -1,0 +1,89 @@
+.hero {
+	min-height: 100vh;
+	margin-top: -30px;
+	padding-top: 70px;
+	padding-bottom:40px;
+
+
+	background: $hero-bg;
+	text-align: center;
+	color: white;
+
+	h1 {
+		margin-top: -40px;
+		font-weight: 200;
+		font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif;
+	}
+	p {
+		font-weight: 200;
+		font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif;
+		font-size: 1.25em;
+		color: rgba(255,255,255,.8);
+	}
+	button {
+		font-size: 1.2em;
+		font-weight: 200;
+	}
+}
+h2{
+	margin-bottom: 20px;
+}
+.homepage-icon {
+	color: #d9d9d9;
+	font-size: 2em;
+	display: block;
+}
+.homepage-features {
+	margin-top:50px;
+
+	>div {
+		height:150px;
+		text-align: center;
+		margin:0 auto;
+
+		h5{
+			font-weight:500!important;
+			font-size:1rem;
+		}
+
+		p{
+			color: #22354a;
+			opacity: 0.65;
+			font-size: 15px;
+		}
+	}
+
+	ion{
+		color:#2cd6ca;
+	}
+}
+
+.signup-form {
+	color:#555;
+	padding:20px;
+	margin-top:40px;
+
+	ion{
+		color:#2cd6ca;
+		font-size: 3rem;
+	}
+	h3{
+		text-align: center;
+		margin: 0 0 40px;
+	}
+	.form-group {
+		text-align: left;
+	}
+
+	.btn-primary{
+		margin:40px 0 10px;
+	}
+}
+
+.hero-cta{
+	padding:20px 0;
+}
+
+.feature-container{
+	padding:$input-padding-y * 3;
+}

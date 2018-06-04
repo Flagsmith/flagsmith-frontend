@@ -1,0 +1,94 @@
+@import "variables";
+@import "3rdParty/index";
+@import "components/index";
+@import "project/index";
+@import "flexbox/index";
+
+.faint {
+  color: $text-muted;
+  font-size: 0.8em;
+}
+
+.faint-lg {
+  color: $text-muted;
+  font-size: 1.25em;
+}
+
+.flag-example {
+  padding: 10px;
+  margin-top: -10px;
+  background-color: #f1f1f1
+}
+
+body {
+  background: #fff;
+  padding-top: 30px;
+  font-family: $font-family;
+  font-weight: 200;
+}
+
+a {
+  color: $link-color;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+h1, h2, h3 {
+  font-weight: 300;
+}
+
+label {
+  font-weight: 400;
+}
+
+input:disabled {
+  opacity: 0.4;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.app-container {
+  margin-top: 50px;
+}
+
+hr {
+  color: #f1f1f1;
+}
+
+.form-group {
+  margin-bottom: $input-padding-y /2;
+}
+
+.header-icon {
+  margin-left: 10px;
+  font-size: 1.5em;
+}
+
+.footer-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  color: #fff;
+  a {
+    color: $brand-primary;
+  }
+  padding: 10px;
+  background-color: #2b2d2f;
+  text-align: center;
+
+}

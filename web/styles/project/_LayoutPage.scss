@@ -1,0 +1,7 @@
+.order-example {
+    background-color: #eee;
+    &:last-of-type {
+        background-color: #808080;
+        color: white;
+    }
+}

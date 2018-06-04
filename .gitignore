@@ -1,0 +1,10 @@
+.DS_Store
+.idea
+*.iml
+node_modules/
+build/
+*.log*
+npm-debug.log
+mobile/common/
+e2e_screenshots
+reports/

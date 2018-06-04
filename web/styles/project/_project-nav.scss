@@ -1,0 +1,46 @@
+nav.navbar {
+	box-shadow: rgba(75, 75, 75, 0.11) 0px 1px 6px, rgba(75, 75, 75, 0.11) 0px 1px 4px;
+
+	background: white;
+  margin-bottom: 0;
+  .tabs {
+    display: inline-block;
+    .tabs-nav {
+      width: 380px;
+    }
+    .btn {
+      background-color: transparent;
+      &.tab-active {
+        color: $brand-secondary;
+      }
+      border-color: transparent;
+    }
+    .tab-item {
+      padding: 0;
+    }
+  }
+  .navbar-right {
+    float: right;
+    > * {
+      display: inline-block;
+      height: 44px;
+      line-height: 44px;
+      display: inline-block;
+    }
+  }
+  .popover-right {
+    left: -175px;
+	  a {
+		  padding-top: 0;
+	  }
+  }
+	a {
+		display: inline-block;
+	}
+}
+
+
+.nav-item-brand {
+	font-size: 1em;
+	font-family: 'Andika', sans-serif;
+}

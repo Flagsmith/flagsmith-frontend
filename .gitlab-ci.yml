@@ -1,0 +1,25 @@
+
+stages:
+    - test
+    - deploy
+    - deploydevelop
+
+test:
+    image: timbru31/java-node
+    stage: test
+    script:
+        - wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
+        - sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
+        - apt-get -qq update
+        - apt-get install -y build-essential libpng-dev google-chrome-stable
+        - npm i
+        - npm run test
+    only:
+        - master
+
+deploy:
+    image: ilyasemenov/gitlab-ci-git-push
+    stage: deploy
+    script: git-push dokku@dokku1.solidstategroup.com:bullet-train-admin
+    only:
+        - master

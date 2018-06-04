@@ -1,0 +1,102 @@
+//MARGIN AND PADDING
+$font-family: Roboto, sans-serif;
+
+// COLORS
+$brand-primary: rgb(5, 141, 199);
+$brand-secondary: rgb(255,152,0);
+$alert-danger-bg: rgb(248, 105, 121);
+$alert-danger-border: rgb(248, 105, 121);
+$alert-danger-text: rgb(255, 255, 255);
+
+$body-bg: #f9f9f9;
+$navbar-background: #009de2;
+
+//Nav
+$navbar-light-color:                 #333 !default;
+$navbar-light-hover-color: #000;
+$navbar-light-active-color:          #000;
+$navbar-light-disabled-color:        #333;
+
+
+// INPUT
+$input-border-radius: 0px;
+$input-height: 40px;
+$input-line-height: 25px;
+$input-font-size: inherit;
+$input-font-weight: 200;
+$input-border-color: rgb(224, 224, 224);
+$input-placeholder-color: rgb(224, 224, 224);
+$input-border-highlight-color: rgb(0, 188, 212);
+
+$pagination-color: #333;
+
+//BUTTONS
+$btn-border-radius: 2px;
+$btn-height: 44px;
+$btn-secondary-bg: rgb(240, 240, 240);
+$btn-primary-bg: #009de2;
+$btn-primary-color-hover: white;
+$btn-primary-bg-hover: #008fd0;
+$btn-primary-light-bg: #61d0de;
+$link-color: #009de2;
+$link-color-secondary: rgb(90, 90 , 90);
+$btn-default-color: white;
+$hover-bg: rgb(240, 240, 240);
+$hover-color: inherits;
+
+//Panel
+$panel-heading-height: 50px;
+$panel-bg: #fff;
+$panel-heading-bg: #f7f7f7;
+$panel-heading-color: #919aa6;
+$panel-heading-border: 1px solid #f1f1f1;
+
+//
+$panel-icon-color: #36a39c;
+$panel-icon-border-color: #ddd;
+$panel-icon-background-color: #fff;
+
+
+//Panel Dark
+$panel-alt-heading-bg: #36a39c;
+$panel-alt-heading-color: #fff;
+
+//TABS
+$tab-inactive-color: rgba(255, 255, 255, .75);
+$tab-active-color: #36a39c;
+$tab-line-color: #36a39c;
+
+//SCAFFOLDING
+$mobile-portrait: 320px;
+$mobile-landscape: 480px;
+$tablet-portrait: 768px;
+$tablet-landscape: 1024px;
+
+//GRID
+$input-padding-x: .75rem !default;
+$input-padding-y: 1rem !default;
+
+//MODALS
+$modal-backdrop-bg: rgba(0, 0, 0, 0.870588);
+$modal-header-border-width: 0;
+
+//TRANSITIONS
+$button-transition: all 400ms cubic-bezier(0.23, 1, 0.32, 1);
+//Hero
+$hero-bg:#22354a;
+
+//Aside
+$aside-bg:#22354a;
+$aside-bg-alt: #36a39c;
+$aside-bg-brand:#22354a;
+$aside-brand-color:#fff;
+$aside-link-bg:#283d56;
+$aside-link-bg-hover:#384f68;
+$aside-link-bg-active:#384f68;
+$aside-link-color:#949ba5;
+$aside-link-active:#fff;
+$aside-width:250px;
+
+//Toast
+$toast-bg:rgba(0,0,0,.9);
+$toast-color:white;
