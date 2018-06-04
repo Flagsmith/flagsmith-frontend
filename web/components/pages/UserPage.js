@@ -63,7 +63,7 @@ const TheComponent = class extends Component {
 										</h3>
 										<FormGroup>
 											<PanelSearch
-												id="userFeaturesList"
+												id="user-features-list"
 												className={"no-pad"}
 												icon={"ion-ios-rocket"}
 												title="Features"

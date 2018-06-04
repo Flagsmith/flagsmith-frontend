@@ -45,13 +45,13 @@ const TheComponent = class extends Component {
                             {this.props.title}
                         </p>
                         <div>
-                            <Button disabled={this.state.isLoading} onClick={this.request}>
+                            <Button id="try-it-btn" disabled={this.state.isLoading} onClick={this.request}>
                                 {this.state.data ? "Test again" : "Run test"}
                             </Button>
                         </div>
                     </div>
                     {this.state.data && (
-                        <div>
+                        <div id="try-it-results">
                             <FormGroup/>
                             <Highlight className={"json"}>
                                 {this.state.data}

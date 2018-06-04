@@ -12,7 +12,7 @@ const TheComponent = class extends Component {
         return (
             <ProjectProvider id={this.props.id}>
                 {({isLoading, project}) => (
-                    <div id="envSelectList">
+                    <div id="env-list">
                         {project && project.environments && project.environments.map((environment) =>
                             this.props.renderRow ? this.props.renderRow(environment,
                                 () => {

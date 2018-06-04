@@ -37,7 +37,7 @@ const TheComponent = class extends Component {
 							placeholder="My Product Name"/>
 						{error && <Error error={error}/>}
 						<div className="pull-right">
-							<Button id="createProjectBtn" disabled={isSaving || !name}>
+							<Button id="create-project-btn" disabled={isSaving || !name}>
 								{isSaving ? 'Creating' : 'Create Project'}
 							</Button>
 						</div>

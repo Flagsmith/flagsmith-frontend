@@ -39,7 +39,7 @@ const TheComponent = class extends Component {
 									{!isLoading && (
 										<FormGroup>
 											<PanelSearch
-												id="usersList"
+												id="users-list"
 												title="Users"
 												className={"no-pad"}
 												icon={"ion-md-person"}

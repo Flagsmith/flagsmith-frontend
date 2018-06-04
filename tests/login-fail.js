@@ -8,27 +8,27 @@ module.exports = {
     'Login should fail due to invalid email address': function (browser) {
         browser
             .url(url)
-            .waitForElementVisible('#existingMemberBtn')
-            .click('#existingMemberBtn')
+            .waitForElementVisible('#existing-member-btn')
+            .click('#existing-member-btn')
             .waitForElementVisible('[name="email"]')
             .setValue('[name="email"]', "bad-email")
             .setValue('[name="password"]', password)
-            .click('#loginBtn');
+            .click('#login-btn');
 
-        browser.expect.element('#errorAlert').to.be.visible;
+        browser.expect.element('#error-alert').to.be.visible;
         browser.expect.element('#email-error').to.be.visible;
     },
     'Login should fail due to wrong password': function (browser) {
         browser
             .url(url)
-            .waitForElementVisible('#existingMemberBtn')
-            .click('#existingMemberBtn')
+            .waitForElementVisible('#existing-member-btn')
+            .click('#existing-member-btn')
             .waitForElementVisible('[name="email"]')
             .setValue('[name="email"]', email)
             .setValue('[name="password"]', 'meh')
-            .click('#loginBtn');
+            .click('#login-btn');
 
-        browser.expect.element('#errorAlert').to.be.visible;
+        browser.expect.element('#error-alert').to.be.visible;
         browser.end();
     },
 };
