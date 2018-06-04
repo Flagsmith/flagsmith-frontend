@@ -40,7 +40,12 @@ textarea {
 		background-image: none !important;
 		-webkit-appearance: none !important;
 		background-image: none;
+
+		&:read-only {
+			color: #777;
+		}
 	}
+
 	input, input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
 		font-weight: $input-font-weight;
 		-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
