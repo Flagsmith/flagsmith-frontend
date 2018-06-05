@@ -30,7 +30,7 @@ module.exports = class extends React.Component {
                     <div>
                         <Hero loginLink={`/login${redirect}`}>
                             {isLogin ? (
-                                <div className="card signup-form container animated fadeIn col-md-4 col-xl-3">
+                                <div className="card signup-form container animated fadeIn col-md-8 col-xl-8">
                                     <AccountProvider>
                                         {({isLoading, isSaving, error}, {login, loginDemo}) => (
                                             <form id="form" name="form" onSubmit={(e) => {
@@ -102,7 +102,7 @@ module.exports = class extends React.Component {
                                 </div>
                             ) : (
                                 <div>
-                                    <div className="card signup-form container animated fadeIn col-md-4 col-xl-4">
+                                    <div className="card signup-form container animated fadeIn col-md-8 col-xl-8">
                                         <form id="form" name="form" onSubmit={(e) => {
                                             Utils.preventDefault(e);
                                             const isInvite = document.location.href.indexOf("invite") != -1;
@@ -225,14 +225,14 @@ module.exports = class extends React.Component {
                                             }
                                         </form>
                                     </div>
-                                    <div className="hero-cta">
-                                        <p>Want to find out more first?</p>
-                                        <button
-                                            disabled={isLoading}
-                                            onClick={loginDemo}
-                                            className={"btn btn-primary"}>Try our Demo Account
-                                        </button>
-                                    </div>
+                                    {/*<div className="hero-cta">*/}
+                                        {/*<p>Want to find out more first?</p>*/}
+                                        {/*<button*/}
+                                            {/*disabled={isLoading}*/}
+                                            {/*onClick={loginDemo}*/}
+                                            {/*className={"btn btn-primary"}>Try our Demo Account*/}
+                                        {/*</button>*/}
+                                    {/*</div>*/}
                                 </div>
                             )}
                         </Hero>
