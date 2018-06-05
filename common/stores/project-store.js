@@ -1,4 +1,5 @@
 var BaseStore = require('./base/_store');
+var OrganisationStore = require('./organisation-store');
 
 var data = require('../data/base/_data')
 
@@ -13,6 +14,10 @@ var controller = {
 					data.get(`${Project.api}projects/${id}/environments/?format=json`)
 				]).then(([project, environments]) => {
 					store.model = Object.assign(project, {environments});
+                    if (project.organisation!=OrganisationStore.id) {
+                        AppActions.selectOrganisation(project.organisation);
+                        AppActions.getOrganisation(project.organisation);
+                    }
 					store.id = id;
 					store.loaded();
 				});
