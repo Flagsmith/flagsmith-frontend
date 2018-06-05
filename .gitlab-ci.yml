@@ -23,3 +23,9 @@ deploy:
     script: git-push dokku@dokku1.solidstategroup.com:bullet-train-admin
     only:
         - master
+deploy:
+    image: ilyasemenov/gitlab-ci-git-push
+    stage: deploy
+    script: git-push dokku@dokku1.solidstategroup.com:bullet-train-admin-dev
+    only:
+        - develop
