@@ -4,7 +4,7 @@
 	padding-top: 70px;
 	padding-bottom:40px;
 
-
+	display: flex;
 	background: $hero-bg;
 	text-align: center;
 	color: white;
@@ -82,6 +82,7 @@ h2{
 
 .hero-cta{
 	padding:20px 0;
+	border-top:rgba(255,255,255,0.25) solid 1px;
 }
 
 .feature-container{
