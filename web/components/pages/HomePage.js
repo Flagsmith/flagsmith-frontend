@@ -257,13 +257,13 @@ module.exports = class extends React.Component {
                             <div className={"homepage-features col-md-6 push-md-3 row mt-5"}>
                                 <div className="col-md-4">
                                     <ion className="homepage-icon icon ion-ios-rocket"/>
-                                    <h5>Build and Release</h5>
+                                    <h5>Feature flags</h5>
                                     <p>Ship features remotely across multiple environments.</p>
                                 </div>
                                 <div className="col-md-4">
-                                    <ion className="homepage-icon icon ion-md-done-all"/>
-                                    <h5>Track changes</h5>
-                                    <p>Audit feature changes & rollback any mistakes or issues</p>
+                                    <ion className="homepage-icon icon ion-ios-laptop"/>
+                                    <h5>Remote Config</h5>
+                                    <p>Change the behaviour, appearance and config of your app without publishing updates.</p>
                                 </div>
                                 <div className="col-md-4">
                                     <ion className="homepage-icon icon ion-ios-laptop"/>
@@ -274,9 +274,9 @@ module.exports = class extends React.Component {
                             <div className="homepage-features col-md-6 push-md-3 row mt-5 upcoming">
                                 <p className="large-para">Coming soon</p>
                                 <div className="col-md-4">
-                                    <ion className="homepage-icon icon ion-ios-laptop"/>
-                                    <h5>Access anywhere</h5>
-                                    <p>Cross platform, use Bullet Train on web, mobile or server</p>
+                                    <ion className="homepage-icon icon ion-md-done-all"/>
+                                    <h5>Track changes</h5>
+                                    <p>Audit feature changes & rollback any mistakes or issues</p>
                                 </div>
                                 <div className="col-md-4">
                                     <ion className="homepage-icon icon ion-md-contacts"/>
