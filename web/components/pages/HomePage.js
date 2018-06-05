@@ -28,7 +28,9 @@ module.exports = class extends React.Component {
             <AccountProvider onLogout={this.onLogout} onLogin={this.onLogin}>
                 {({isLoading, isSaving, error}, {register, loginDemo}) => (
                     <div>
-                        <Hero loginLink={`/login${redirect}`}>
+                        <Hero
+                            onDemoClick={loginDemo}
+                            loginLink={`/login${redirect}`}>
                             {isLogin ? (
                                 <div className="card signup-form container animated fadeIn col-md-8 col-xl-8">
                                     <AccountProvider>
@@ -225,14 +227,6 @@ module.exports = class extends React.Component {
                                             }
                                         </form>
                                     </div>
-                                    {/*<div className="hero-cta">*/}
-                                        {/*<p>Want to find out more first?</p>*/}
-                                        {/*<button*/}
-                                            {/*disabled={isLoading}*/}
-                                            {/*onClick={loginDemo}*/}
-                                            {/*className={"btn btn-primary"}>Try our Demo Account*/}
-                                        {/*</button>*/}
-                                    {/*</div>*/}
                                 </div>
                             )}
                         </Hero>
