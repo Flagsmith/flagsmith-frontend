@@ -276,6 +276,7 @@ module.exports = {
     'Logout': function (browser) {
         browser
             .waitForElementNotPresent('#confirm-toggle-feature-modal')
+            .pause(200) // Additional pause here as it seems to be not opening the menu
             .click('#org-menu')
             .waitForElementVisible('#logout-link')
             .pause(200) // Allows the dropdown to fade in
