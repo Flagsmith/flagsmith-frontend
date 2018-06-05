@@ -36,7 +36,7 @@ const TheComponent = class extends Component {
 						</p>
 						<InputGroup
 							inputProps={{className: "full-width"}}
-							title="Please type the feature name to confirm"
+							title="Please type the project name to confirm"
 							placeholder="Project name"
 							onChange={(e) => this.setState({challenge: Utils.safeParseEventValue(e)})}/>
 

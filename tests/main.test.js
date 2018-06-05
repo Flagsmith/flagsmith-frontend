@@ -1,10 +1,12 @@
 var conf = require('../nightwatch.conf.js');
 const expect = require('chai').expect;
 
+const inviteEmail = 'bullet-train@mailinator.com';
 const email = 'nightwatch@solidstategroup.com';
 const password = 'nightwatch';
 const url = 'http://localhost:' + (process.env.PORT || 8080);
-
+const append = new Date().valueOf()+""
+console.log("Test id:",append);
 module.exports = {
     // 'Register': function (browser) {
     //     browser
@@ -38,10 +40,10 @@ module.exports = {
             .pause(200) // Allows the dropdown to fade in preventing it from becoming stuck after clicking links
             .click('#create-org-link')
             .waitForElementVisible('[name="orgName"]')
-            .setValue('[name="orgName"]', "Nightwatch Org")
+            .setValue('[name="orgName"]', "Nightwatch Org" + append)
             .click('#create-org-btn')
             .waitForElementVisible('#project-select-page')
-            .assert.containsText('#org-menu', 'Nightwatch Org');
+            .assert.containsText('#org-menu', "Nightwatch Org" + append);
     },
     'Create project': function (browser) {
         browser
@@ -199,6 +201,42 @@ module.exports = {
 
         browser.expect.element('#selected-env').text.to.equal('Staging');
     },
+    'Edit environment': function (browser) {
+        browser
+            .click('#env-settings-link')
+            .waitForElementVisible("[name='env-name']")
+            .clearValue("[name='env-name']")
+            .setValue("[name='env-name']", 'Internal')
+            .click("#save-env-btn");
+
+        browser.expect.element('#selected-env').text.to.equal('Internal');
+    },
+    // TODO PENDING FIX TO SELECTED ORG ON REFRESH
+    // 'Delete environment': function (browser) {
+    //     browser
+    //         .click('#delete-env-btn')
+    //         .waitForElementVisible("[name='confirm-env-name']")
+    //         .setValue("[name='confirm-env-name']", 'Internal')
+    //         .click('#confirm-delete-env-btn');
+
+    //     browser.expect.element('#project-select-page').to.be.visible;
+    // },
+    // 'View project': function (browser) {
+    //     browser.waitForElementVisible('#projects-list a.list-item')
+    //     browser.expect.element('#projects-list a.list-item').text.to.equal('My Test Project');
+    //     browser.click('#projects-list a.list-item');
+    //     browser.expect.element('#features-page').to.be.visible;
+    // },
+    'Edit project': function (browser) {
+        browser
+            .click('#project-settings-link')
+            .waitForElementVisible("[name='proj-name']")
+            .clearValue("[name='proj-name']")
+            .setValue("[name='proj-name']", 'Test Project')
+            .click("#save-proj-btn");
+
+        browser.expect.element('#selected-proj').text.to.equal('Test Project:');
+    },
     'Edit flag for user': function (browser) {
         browser
             .click('#users-link')
@@ -225,6 +263,16 @@ module.exports = {
 
         browser.expect.element('#user-features-list span.rc-switch.rc-switch-checked').to.be.visible;
     },
+    // 'Invite user': function (browser) {
+    //     browser
+    //         .click('#organisation-settings-link')
+    //         .waitForElementVisible('#btn-invite')
+    //         .click('#btn-invite')
+    //         .waitForElementVisible('[name="inviteEmails"]')
+    //         .setValue('[name="inviteEmails"]', inviteEmail)
+    //         .click('#btn-send-invite')
+    //         .waitForElementNotPresent('#btn-invite',10000000)
+    // },
     'Logout': function (browser) {
         browser
             .waitForElementNotPresent('#confirm-toggle-feature-modal')

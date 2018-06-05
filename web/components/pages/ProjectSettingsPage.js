@@ -56,13 +56,13 @@ const TheComponent = class extends Component {
 										}}>
 											<InputGroup
 												ref={(e) => this.input = e}
-												inputProps={{defaultValue: project.name, className: "full-width"}}
+												inputProps={{name: "proj-name", defaultValue: project.name, className: "full-width"}}
 												onChange={(e) => this.setState({name: Utils.safeParseEventValue(e)})}
 												isValid={name && name.length}
 												type="text" title={<h3>Project Name</h3>}
 												placeholder="My Product Name"/>
 											<div className="text-right">
-												<Button disabled={isSaving || !name}>
+												<Button id="save-proj-btn" disabled={isSaving || !name}>
 													{isSaving ? 'Saving' : 'Save'}
 												</Button>
 											</div>

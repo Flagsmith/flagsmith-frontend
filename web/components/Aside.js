@@ -47,7 +47,7 @@ const TheComponent = class extends Component {
 											 <a id="env-menu" onClick={toggle}>
 												 <Row>
 													 <Flex>
-														 <span className={"faint"}>
+														 <span id="selected-proj" className={"faint"}>
 															 {project.name}:
 														 </span>
 														 <Row id="selected-env">
@@ -97,6 +97,7 @@ const TheComponent = class extends Component {
 											`/project/${this.props.projectId}/environment/${this.props.environmentId}/users`
 										}><span className={"dot red"}/>Users</Link>
 									<Link
+										id="env-settings-link"
 										activeClassName={"active"}
 										to={
 											`/project/${this.props.projectId}/environment/${this.props.environmentId}/settings`
@@ -104,12 +105,14 @@ const TheComponent = class extends Component {
 								</Flex>
 								<div>
 									<Link
+										id="project-settings-link"
 										activeClassName={"active"}
 										to={
 											`/project/${this.props.projectId}/environment/${this.props.environmentId}/project-settings`
 										}><span className={"dot purple"}/>Project Settings</Link>
 									<Link
-										activeClassName={"active"}
+                                        id="organisation-settings-link"
+                                        activeClassName={"active"}
 										to={`/project/${this.props.projectId}/environment/${this.props.environmentId}/organisation-settings`}>
 										Organisation Settings
 									</Link>

@@ -26,7 +26,7 @@ module.exports = Object.assign(
       done();
     }
   },
-  require('./main'), // Main flow tests
-  require('./register-fail'), // Registration failure tests
-  require('./login-fail') // Login failure tests
+  require('./main.test'), // Main flow tests
+  require('./register-fail.test'), // Registration failure tests
+  require('./login-fail.test') // Login failure tests
 );
