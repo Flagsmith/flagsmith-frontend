@@ -238,14 +238,17 @@ module.exports = class extends React.Component {
                                 <div className="text-center col-md-6 push-lg-3">
                                     <h2>We currently support these popular languages</h2>
                                     <div className="row">
-                                        <div className="col-md-3">
+                                        <div className="col-md-3 col-xs-6">
                                             <img src="./images/bt-java.png" alt="Java"/>
                                         </div>
-                                        <div className="col-md-3">
+                                        <div className="col-md-3 col-xs-6">
                                             <img src="./images/bt-javascript.png" alt="Javascript"/>
                                         </div>
-                                        <div className="col-md-3">
-                                            <img src="./images/bt-react.png" alt="Javascript"/>
+                                        <div className="col-md-3 col-xs-6">
+                                            <img src="./images/bt-react.png" alt="React JS"/>
+                                        </div>
+                                        <div className="col-md-3 col-xs-6">
+                                            <img src="./images/bt-nodejs.png" alt="Node.js"/>
                                         </div>
                                     </div>
                                     <p className="text-small margin-top">Don't worry if you don't see your preferred tech, we'll be adding support for more clients as we grow but please <a href="mailto:bullettrain@solidstategroup.com">get in touch</a> and let us know what you'd like to see.</p>
@@ -260,13 +263,13 @@ module.exports = class extends React.Component {
                             <div className={"homepage-features col-md-6 push-md-3 row mt-5"}>
                                 <div className="col-md-4">
                                     <ion className="homepage-icon icon ion-ios-rocket"/>
-                                    <h5>Build and Release</h5>
+                                    <h5>Feature flags</h5>
                                     <p>Ship features remotely across multiple environments.</p>
                                 </div>
                                 <div className="col-md-4">
-                                    <ion className="homepage-icon icon ion-md-done-all"/>
-                                    <h5>Track changes</h5>
-                                    <p>Audit feature changes & rollback any mistakes or issues</p>
+                                    <ion className="homepage-icon icon ion-ios-laptop"/>
+                                    <h5>Remote Config</h5>
+                                    <p>Change the behaviour, appearance and config of your app without publishing updates.</p>
                                 </div>
                                 <div className="col-md-4">
                                     <ion className="homepage-icon icon ion-ios-laptop"/>
@@ -277,9 +280,9 @@ module.exports = class extends React.Component {
                             <div className="homepage-features col-md-6 push-md-3 row mt-5 upcoming">
                                 <p className="large-para">Coming soon</p>
                                 <div className="col-md-4">
-                                    <ion className="homepage-icon icon ion-ios-laptop"/>
-                                    <h5>Access anywhere</h5>
-                                    <p>Cross platform, use Bullet Train on web, mobile or server</p>
+                                    <ion className="homepage-icon icon ion-md-done-all"/>
+                                    <h5>Track changes</h5>
+                                    <p>Audit feature changes & rollback any mistakes or issues</p>
                                 </div>
                                 <div className="col-md-4">
                                     <ion className="homepage-icon icon ion-md-contacts"/>
@@ -299,8 +302,8 @@ module.exports = class extends React.Component {
                         </div>
                         <ul className="float-right">
                             <li><a href="">Demo</a></li>
-                            <li><a href="">Docs</a></li>
-                            <li><a href="">Support</a></li>
+                            <li><a href="https://docs.bullet-train.io/">Docs</a></li>
+                            <li><a href="mailto:bullettrain@solidstategroup.com">Support</a></li>
                         </ul>
                     </footer>
                     </div>

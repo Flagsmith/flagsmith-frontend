@@ -1,5 +1,5 @@
 .hero {
-	min-height: 100vh;
+	min-height: 100%;
 	margin-top: -30px;
 	padding-top: 70px;
 	padding-bottom:40px;
@@ -144,5 +144,17 @@ footer.homepage{
 		img{
 			width:30px;
 		}
+	}
+}
+
+@media (max-width: 576px) {
+	.hero{
+		display:block;
+		margin-left:0;
+		margin-right:0;
+	}
+
+	.hero-brand{
+		display: none;
 	}
 }

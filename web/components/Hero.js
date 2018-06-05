@@ -33,13 +33,12 @@ const TheComponent = class extends React.Component {
 					</div>
 				</nav>
 				<div className={"hero"}>
-					<div className="col-md-6">
+					<div className="col-md-6 col-xs-12">
 						<div className="col-md-8 push-md-4 text-left">
-							<img height={256} src={"/images/icon-big.svg"}/>
+							<img height={256} src={"/images/icon-big.svg"} className="hero-brand"/>
 							<h1>Ship features with confidence</h1>
 							<p className="">
-								Bullet Train lets you manage features flags across web, mobile
-								and server side applications. Get builds out faster. Control who has access to new features.
+								Bullet Train lets you manage features flags and remote config across web, mobile and server side applications. Deliver true Continuous Integration. Get builds out faster. Control who has access to new features.
 							</p>
 							<p className="">
 								We're <a href="https://github.com/SolidStateGroup/Bullet-Train-API">100% Open Source</a>. Host with us or on your own infrastructure.
@@ -55,7 +54,7 @@ const TheComponent = class extends React.Component {
 						</div>
 
 					</div>
-					<div className="col-md-6">
+					<div className="col-md-6 col-xs-12">
 						{this.props.children}
 					</div>
 				</div>
