@@ -109,7 +109,8 @@ const TheComponent = class extends Component {
 											`/project/${this.props.projectId}/environment/${this.props.environmentId}/project-settings`
 										}><span className={"dot purple"}/>Project Settings</Link>
 									<Link
-										activeClassName={"active"}
+                                        id="organisation-settings-link"
+                                        activeClassName={"active"}
 										to={`/project/${this.props.projectId}/environment/${this.props.environmentId}/organisation-settings`}>
 										Organisation Settings
 									</Link>

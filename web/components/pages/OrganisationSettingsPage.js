@@ -97,7 +97,7 @@ const TheComponent = class extends Component {
 										</FormGroup>
 
 										<div className="text-right">
-											<Button onClick={() => openModal(<InviteUsersModal/>)}>
+											<Button id={"btn-invite"} onClick={() => openModal(<InviteUsersModal/>)}>
 												Invite Users
 											</Button>
 										</div>

@@ -1,10 +1,12 @@
 var conf = require('../nightwatch.conf.js');
 const expect = require('chai').expect;
 
+const inviteEmail = 'bullet-train@mailinator.com';
 const email = 'nightwatch@solidstategroup.com';
 const password = 'nightwatch';
 const url = 'http://localhost:' + (process.env.PORT || 8080);
-
+const append = new Date().valueOf()+""
+console.log("Test id:",append);
 module.exports = {
     // 'Register': function (browser) {
     //     browser
@@ -38,10 +40,10 @@ module.exports = {
             .pause(200) // Allows the dropdown to fade in preventing it from becoming stuck after clicking links
             .click('#create-org-link')
             .waitForElementVisible('[name="orgName"]')
-            .setValue('[name="orgName"]', "Nightwatch Org")
+            .setValue('[name="orgName"]', "Nightwatch Org" + append)
             .click('#create-org-btn')
             .waitForElementVisible('#project-select-page')
-            .assert.containsText('#org-menu', 'Nightwatch Org');
+            .assert.containsText('#org-menu', "Nightwatch Org" + append);
     },
     'Create project': function (browser) {
         browser
@@ -225,6 +227,16 @@ module.exports = {
 
         browser.expect.element('#user-features-list span.rc-switch.rc-switch-checked').to.be.visible;
     },
+    // 'Invite user': function (browser) {
+    //     browser
+    //         .click('#organisation-settings-link')
+    //         .waitForElementVisible('#btn-invite')
+    //         .click('#btn-invite')
+    //         .waitForElementVisible('[name="inviteEmails"]')
+    //         .setValue('[name="inviteEmails"]', inviteEmail)
+    //         .click('#btn-send-invite')
+    //         .waitForElementNotPresent('#btn-invite',10000000)
+    // },
     'Logout': function (browser) {
         browser
             .waitForElementNotPresent('#confirm-toggle-feature-modal')
