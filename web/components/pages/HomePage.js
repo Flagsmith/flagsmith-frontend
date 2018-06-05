@@ -242,7 +242,10 @@ module.exports = class extends React.Component {
                                             <img src="./images/bt-javascript.png" alt="Javascript"/>
                                         </div>
                                         <div className="col-md-3">
-                                            <img src="./images/bt-react.png" alt="Javascript"/>
+                                            <img src="./images/bt-react.png" alt="React JS"/>
+                                        </div>
+                                        <div className="col-md-3">
+                                            <img src="./images/bt-nodejs.png" alt="Node.js"/>
                                         </div>
                                     </div>
                                     <p className="text-small margin-top">Don't worry if you don't see your preferred tech, we'll be adding support for more clients as we grow but please <a href="mailto:bullettrain@solidstategroup.com">get in touch</a> and let us know what you'd like to see.</p>
