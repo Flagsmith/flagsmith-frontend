@@ -296,8 +296,8 @@ module.exports = class extends React.Component {
                         </div>
                         <ul className="float-right">
                             <li><a href="">Demo</a></li>
-                            <li><a href="">Docs</a></li>
-                            <li><a href="">Support</a></li>
+                            <li><a href="https://docs.bullet-train.io/">Docs</a></li>
+                            <li><a href="mailto:bullettrain@solidstategroup.com">Support</a></li>
                         </ul>
                     </footer>
                     </div>
