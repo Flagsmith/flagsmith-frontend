@@ -201,6 +201,42 @@ module.exports = {
 
         browser.expect.element('#selected-env').text.to.equal('Staging');
     },
+    'Edit environment': function (browser) {
+        browser
+            .click('#env-settings-link')
+            .waitForElementVisible("[name='env-name']")
+            .clearValue("[name='env-name']")
+            .setValue("[name='env-name']", 'Internal')
+            .click("#save-env-btn");
+
+        browser.expect.element('#selected-env').text.to.equal('Internal');
+    },
+    // TODO PENDING FIX TO SELECTED ORG ON REFRESH
+    // 'Delete environment': function (browser) {
+    //     browser
+    //         .click('#delete-env-btn')
+    //         .waitForElementVisible("[name='confirm-env-name']")
+    //         .setValue("[name='confirm-env-name']", 'Internal')
+    //         .click('#confirm-delete-env-btn');
+
+    //     browser.expect.element('#project-select-page').to.be.visible;
+    // },
+    // 'View project': function (browser) {
+    //     browser.waitForElementVisible('#projects-list a.list-item')
+    //     browser.expect.element('#projects-list a.list-item').text.to.equal('My Test Project');
+    //     browser.click('#projects-list a.list-item');
+    //     browser.expect.element('#features-page').to.be.visible;
+    // },
+    'Edit project': function (browser) {
+        browser
+            .click('#project-settings-link')
+            .waitForElementVisible("[name='proj-name']")
+            .clearValue("[name='proj-name']")
+            .setValue("[name='proj-name']", 'Test Project')
+            .click("#save-proj-btn");
+
+        browser.expect.element('#selected-proj').text.to.equal('Test Project:');
+    },
     'Edit flag for user': function (browser) {
         browser
             .click('#users-link')
