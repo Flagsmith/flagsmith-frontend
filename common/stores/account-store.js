@@ -121,6 +121,16 @@ var controller = {
                     store.trigger('logout');
                 }
             }
+        },
+
+        deleteOrganisation: () => {
+            API.trackEvent(Constants.events.DELETE_ORGANISATION);
+            data.delete(`${Project.api}organisations/${store.organisation.id}/?format=json`)
+                .then(res => {
+                    store.model.organisations = _.filter(store.model.organisations, org => org.id !== store.organisation.id);
+                    store.organisation = store.model.organisations[0];
+                    store.trigger("removed");
+                })
         }
     },
     store = Object.assign({}, BaseStore, {
@@ -156,7 +166,7 @@ store.dispatcherIndex = Dispatcher.register(store, function (payload) {
             controller.acceptInvite(action.id);
             break;
         case Actions.DELETE_ORGANISATION:
-            controller.createOrganisation(action.name);
+            controller.deleteOrganisation();
             break;
         case Actions.EDIT_ORGANISATION:
             controller.editOrganisation(action.name);
@@ -169,6 +179,9 @@ store.dispatcherIndex = Dispatcher.register(store, function (payload) {
             break;
         case Actions.LOGIN:
             controller.login(action.details);
+            break;
+        case Actions.GET_ORGANISATIONS:
+            controller.getOrganisations();
             break;
         default:
             return;

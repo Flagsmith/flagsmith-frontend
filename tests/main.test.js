@@ -8,6 +8,7 @@ const url = 'http://localhost:' + (process.env.PORT || 8080);
 const append = new Date().valueOf()+""
 console.log("Test id:",append);
 module.exports = {
+    // TODO need teardown of user to use this
     // 'Register': function (browser) {
     //     browser
     //         .url(url)   // visit the url
@@ -211,7 +212,6 @@ module.exports = {
 
         browser.expect.element('#selected-env').text.to.equal('Internal');
     },
-    // TODO PENDING FIX TO SELECTED ORG ON REFRESH
     // 'Delete environment': function (browser) {
     //     browser
     //         .click('#delete-env-btn')

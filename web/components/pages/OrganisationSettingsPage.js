@@ -3,6 +3,7 @@ import CreateProjectModal from '../modals/CreateProject'
 import AccountStore from '../../../common/stores/account-store';
 import EditOrganisationModal from '../modals/EditOrganisation'
 import InviteUsersModal from '../modals/InviteUsers'
+import ConfirmRemoveOrganisation from '../modals/ConfirmRemoveOrganisation'
 
 const TheComponent = class extends Component {
 	displayName: 'TheComponent'
@@ -34,36 +35,64 @@ const TheComponent = class extends Component {
 		toast("Saved organisation")
 	}
 
+	confirmRemove = (organisation, cb) => {
+		openModal("Remove Organisation", <ConfirmRemoveOrganisation
+			organisation={organisation}
+			cb={cb}/>)
+	};
+
+	onRemove = () => {
+		toast("Your organisation has been removed");
+		this.context.router.replace("/");
+	};
+
 	render() {
 		const {name} = this.state;
 
 		return (
 			<div className="app-container container">
 				<FormGroup>
-					<AccountProvider onSave={this.onSave}>
+					<AccountProvider onSave={this.onSave} onRemove={this.onRemove}>
 						{({
 							  isLoading,
 							  isSaving,
 							  user,
 							  organisation
-						  }, {createOrganisation, selectOrganisation, editOrganisation}) => (
-							<form onSubmit={(e) => {
-								e.preventDefault();
-								!isSaving && name && editOrganisation(name);
-							}}>
-								<InputGroup
-									ref={(e) => this.input = e}
-									inputProps={{defaultValue: organisation.name, className: "full-width"}}
-									onChange={(e) => this.setState({name: Utils.safeParseEventValue(e)})}
-									isValid={name && name.length}
-									type="text" title={<h3>Organisation Name</h3>}
-									placeholder="My Organisation"/>
-								<div className="text-right">
-									<Button disabled={isSaving || !name}>
-										{isSaving ? 'Saving' : 'Save'}
+						  }, {createOrganisation, selectOrganisation, editOrganisation, deleteOrganisation}) => (
+							<div className="margin-bottom">
+								<form onSubmit={(e) => {
+									e.preventDefault();
+									!isSaving && name && editOrganisation(name);
+								}}>
+									<InputGroup
+										ref={(e) => this.input = e}
+										inputProps={{defaultValue: organisation.name, className: "full-width"}}
+										onChange={(e) => this.setState({name: Utils.safeParseEventValue(e)})}
+										isValid={name && name.length}
+										type="text" title={<h3>Organisation Name</h3>}
+										placeholder="My Organisation"/>
+									<div className="text-right">
+										<Button disabled={isSaving || !name}>
+											{isSaving ? 'Saving' : 'Save'}
+										</Button>
+									</div>
+								</form>
+								<FormGroup>
+									<strong>
+										Delete Organisation
+									</strong>
+									<p>
+										This organisation will be deleted permanently along with all projects & features.
+									</p>
+									<Button
+										onClick={() => this.confirmRemove(organisation, () => {
+											deleteOrganisation();
+										})}
+										className={"btn btn-danger"}>
+										Delete
 									</Button>
-								</div>
-							</form>
+								</FormGroup>
+							</div>
 						)}
 					</AccountProvider>
 				</FormGroup>

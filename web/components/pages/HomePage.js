@@ -13,9 +13,12 @@ module.exports = class extends React.Component {
     }
 
     componentWillMount() {
-        if (AccountStore.getUser() && !AccountStore.isDemo) {
+        if (AccountStore.getOrganisation() && AccountStore.getUser() && !AccountStore.isDemo) {
             this.context.router.replace("/projects?intro=1")
+        } else if (!AccountStore.getOrganisation() && AccountStore.getUser() && !AccountStore.isDemo) {
+            this.context.router.replace("/create")
         }
+
         API.trackPage(Constants.pages.HOME);
     }
 

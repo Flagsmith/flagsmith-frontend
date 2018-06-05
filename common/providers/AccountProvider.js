@@ -11,9 +11,10 @@ const TheComponent = class extends Component {
 			organisation: AccountStore.getOrganisation(),
 			user: AccountStore.getUser()
 		};
+	}
 
+	componentDidMount() {
 		ES6Component(this);
-
 		this.listenTo(AccountStore, 'change', () => {
 			this.setState({
 				isLoading: AccountStore.isLoading,
@@ -57,7 +58,17 @@ const TheComponent = class extends Component {
 				error: AccountStore.error
 			})
 		});
-
+		this.listenTo(AccountStore, 'removed', () => {
+			this.props.onRemove && this.props.onRemove();
+			if (this.props.onLogin) {
+				this.setState({
+					isLoading: false,
+					isSaving: false,
+					organisation: AccountStore.getOrganisation(),
+					user: AccountStore.getUser()
+				});
+			}
+		});
 	}
 
 
@@ -89,7 +100,8 @@ const TheComponent = class extends Component {
 				selectOrganisation: AppActions.selectOrganisation,
 				createOrganisation: AppActions.createOrganisation,
 				editOrganisation: AppActions.editOrganisation,
-				acceptInvite: AppActions.acceptInvite
+				acceptInvite: AppActions.acceptInvite,
+				deleteOrganisation: AppActions.deleteOrganisation
 			})
 		);
 	}
