@@ -261,16 +261,6 @@ module.exports = class extends React.Component {
                                     <p>Ship features remotely across multiple environments.</p>
                                 </div>
                                 <div className="col-md-4">
-                                    <ion className="homepage-icon icon ion-md-contacts"/>
-                                    <h5>Segment users</h5>
-                                    <p>Create detailed user segments for feature targeting</p>
-                                </div>
-                                <div className="col-md-4">
-                                    <ion className="homepage-icon icon ion-ios-flask"/>
-                                    <h5>A/B Testing</h5>
-                                    <p> A/B test feature sets or individual features</p>
-                                </div>
-                                <div className="col-md-4">
                                     <ion className="homepage-icon icon ion-md-done-all"/>
                                     <h5>Track changes</h5>
                                     <p>Audit feature changes & rollback any mistakes or issues</p>
@@ -279,6 +269,24 @@ module.exports = class extends React.Component {
                                     <ion className="homepage-icon icon ion-ios-laptop"/>
                                     <h5>Access anywhere</h5>
                                     <p>Cross platform, use Bullet Train on web, mobile or server</p>
+                                </div>
+                            </div>
+                            <div className="homepage-features col-md-6 push-md-3 row mt-5 upcoming">
+                                <p className="large-para">Coming soon</p>
+                                <div className="col-md-4">
+                                    <ion className="homepage-icon icon ion-ios-laptop"/>
+                                    <h5>Access anywhere</h5>
+                                    <p>Cross platform, use Bullet Train on web, mobile or server</p>
+                                </div>
+                                <div className="col-md-4">
+                                    <ion className="homepage-icon icon ion-md-contacts"/>
+                                    <h5>Segment users</h5>
+                                    <p>Create detailed user segments for feature targeting</p>
+                                </div>
+                                <div className="col-md-4">
+                                    <ion className="homepage-icon icon ion-ios-flask"/>
+                                    <h5>A/B Testing</h5>
+                                    <p> A/B test feature sets or individual features</p>
                                 </div>
                             </div>
                         </div>

@@ -37,7 +37,7 @@ h2{
 	margin-top:50px;
 
 	>div {
-		height:150px;
+		//height:150px;
 		text-align: center;
 		margin:0 auto;
 
@@ -55,6 +55,18 @@ h2{
 
 	ion{
 		color:#2cd6ca;
+	}
+}
+
+.upcoming{
+	margin-top:20px;
+	border-top: 1px rgba(34,53,74, 0.5) dashed;
+	padding-top: 20px;
+
+	& > p{
+		width:100%;
+		text-align: center;
+		margin-bottom:10px;
 	}
 }
 
