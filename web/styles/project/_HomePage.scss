@@ -146,3 +146,15 @@ footer.homepage{
 		}
 	}
 }
+
+@media (max-width: 576px) {
+	.hero{
+		display:block;
+		margin-left:0;
+		margin-right:0;
+	}
+
+	.hero-brand{
+		display: none;
+	}
+}

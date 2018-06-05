@@ -33,9 +33,9 @@ const TheComponent = class extends React.Component {
 					</div>
 				</nav>
 				<div className={"hero"}>
-					<div className="col-md-6">
+					<div className="col-md-6 col-xs-12">
 						<div className="col-md-8 push-md-4 text-left">
-							<img height={256} src={"/images/icon-big.svg"}/>
+							<img height={256} src={"/images/icon-big.svg"} className="hero-brand"/>
 							<h1>Ship features with confidence</h1>
 							<p className="">
 								Bullet Train lets you manage features flags and remote config across web, mobile and server side applications. Deliver true Continuous Integration. Get builds out faster. Control who has access to new features.
@@ -54,7 +54,7 @@ const TheComponent = class extends React.Component {
 						</div>
 
 					</div>
-					<div className="col-md-6">
+					<div className="col-md-6 col-xs-12">
 						{this.props.children}
 					</div>
 				</div>

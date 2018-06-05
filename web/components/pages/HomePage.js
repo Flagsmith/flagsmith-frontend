@@ -235,16 +235,16 @@ module.exports = class extends React.Component {
                                 <div className="text-center col-md-6 push-lg-3">
                                     <h2>We currently support these popular languages</h2>
                                     <div className="row">
-                                        <div className="col-md-3">
+                                        <div className="col-md-3 col-xs-6">
                                             <img src="./images/bt-java.png" alt="Java"/>
                                         </div>
-                                        <div className="col-md-3">
+                                        <div className="col-md-3 col-xs-6">
                                             <img src="./images/bt-javascript.png" alt="Javascript"/>
                                         </div>
-                                        <div className="col-md-3">
+                                        <div className="col-md-3 col-xs-6">
                                             <img src="./images/bt-react.png" alt="React JS"/>
                                         </div>
-                                        <div className="col-md-3">
+                                        <div className="col-md-3 col-xs-6">
                                             <img src="./images/bt-nodejs.png" alt="Node.js"/>
                                         </div>
                                     </div>
