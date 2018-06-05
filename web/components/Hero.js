@@ -12,6 +12,7 @@ const TheComponent = class extends React.Component {
 
 
 	render () {
+		const {onDemoClick} = this.props;
 		return (
 			<div>
 				<nav className={"navbar navbar-fixed-top navbar-light"}>
@@ -43,11 +44,14 @@ const TheComponent = class extends React.Component {
 							<p className="">
 								We're <a href="https://github.com/SolidStateGroup/Bullet-Train-API">100% Open Source</a>. Host with us or on your own infrastructure.
 							</p>
-							<div className="hero-cta">
-								<p className="text-left text-small">Want to find out more?</p>
-								<button className={"btn btn-primary"}>Try our Demo Account
-								</button>
-							</div>
+							{onDemoClick && (
+                                <div className="hero-cta">
+                                    <p className="text-left text-small">Want to find out more?</p>
+                                    <button onClick={onDemoClick} className={"btn btn-primary"}>Try our Demo Account
+                                    </button>
+                                </div>
+							)}
+
 						</div>
 
 					</div>
