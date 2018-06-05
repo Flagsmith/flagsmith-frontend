@@ -251,7 +251,7 @@ module.exports = class extends React.Component {
                                             <img src="./images/bt-react.png" alt="Javascript"/>
                                         </div>
                                     </div>
-                                    <p className="text-small margin-top">Don't worry if you don't see your preferred tech, we'll be adding support for more clients as we grow but please <a href="mailto:info@bullet-train.com">get in touch</a> and let us know what you'd like to see.</p>
+                                    <p className="text-small margin-top">Don't worry if you don't see your preferred tech, we'll be adding support for more clients as we grow but please <a href="mailto:bullettrain@solidstategroup.com">get in touch</a> and let us know what you'd like to see.</p>
                                 </div>
                             </div>
                         </div>
