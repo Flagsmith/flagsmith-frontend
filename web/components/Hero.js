@@ -29,8 +29,8 @@ const TheComponent = class extends React.Component {
 					<div className="navbar-right">
 						<div className="navbar-nav">
 							<ul className="nav-list dark list-unstyled">
-								<li><a href="">Demo</a></li>
-								<li><a href="https://docs.bullet-train.io/">Docs</a></li>
+								<li><a onClick={this.props.onDemoClick}>Demo</a></li>
+								<li><a target={"_blank"} href="https://docs.bullet-train.io/">Docs</a></li>
 								<li><Link to={this.props.loginLink} className="bold-link login">Login <ion className="ion-ios-arrow-dropright"/></Link></li>
 							</ul>
 						</div>

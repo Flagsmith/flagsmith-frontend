@@ -339,7 +339,7 @@ module.exports = class extends React.Component {
                             <img src="./images/icon.png" alt="Bullet Train" />
                         </div>
                         <ul className="float-right nav-list">
-                            <li><a href="">Demo</a></li>
+                            <li><a onClick={loginDemo}>Demo</a></li>
                             <li><a href="https://docs.bullet-train.io/">Docs</a></li>
                             <li><a href="mailto:bullettrain@solidstategroup.com">Support</a></li>
                         </ul>
