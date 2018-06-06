@@ -42,7 +42,7 @@ const TheComponent = class extends React.Component {
 							<img height={256} src={"/images/icon-big.svg"} className="hero-brand"/>
 							<h1>Ship features with confidence</h1>
 							<p className="">
-								Bullet Train lets you manage features flags and remote config across web, mobile and server side applications. Deliver true Continuous Integration. Get builds out faster. Control who has access to new features.
+								Bullet Train lets you manage feature flags and remote config across web, mobile and server side applications. Deliver true Continuous Integration. Get builds out faster. Control who has access to new features.
 							</p>
 							<p className="">
 								We're <a href="https://github.com/SolidStateGroup/Bullet-Train-API">100% Open Source</a>. Host with us or on your own infrastructure.

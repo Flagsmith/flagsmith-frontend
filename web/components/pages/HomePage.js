@@ -239,23 +239,36 @@ module.exports = class extends React.Component {
                                     <h2>We currently support these popular languages</h2>
                                     <div className="row">
                                         <div className="col-md-3 col-xs-6">
-                                            <img src="./images/bt-java.png" alt="Java"/>
+                                            <a href="https://github.com/SolidStateGroup/bullet-train-java-client">
+                                                <img src="./images/bt-java.png" alt="Java"/>
+                                            </a>
                                         </div>
                                         <div className="col-md-3 col-xs-6">
-                                            <img src="./images/bt-javascript.png" alt="Javascript"/>
+                                            <a href="https://github.com/SolidStateGroup/bullet-train-js-client">
+                                                <img src="./images/bt-javascript.png" alt="Javascript"/>
+                                            </a>
                                         </div>
                                         <div className="col-md-3 col-xs-6">
-                                            <img src="./images/bt-react.png" alt="React JS"/>
+                                            <a href="https://github.com/SolidStateGroup/bullet-train-js-client">
+                                                <img src="./images/bt-react.png" alt="React JS"/>
+                                            </a>
                                         </div>
                                         <div className="col-md-3 col-xs-6">
-                                            <img src="./images/bt-nodejs.png" alt="Node.js"/>
+                                            <a href="https://github.com/SolidStateGroup/bullet-train-nodejs-client">
+                                                <img src="./images/bt-nodejs.png" alt="Node.js"/>
+                                            </a>
                                         </div>
                                     </div>
-                                    <p className="text-small margin-top">Don't worry if you don't see your preferred tech, we'll be adding support for more clients as we grow but please <a href="mailto:bullettrain@solidstategroup.com">get in touch</a> and let us know what you'd like to see.</p>
+                                    <p className="text-small margin-top no-mb">Don't worry if you don't see your preferred tech, we'll be adding support for more clients as we grow but please <a href="mailto:bullettrain@solidstategroup.com">get in touch</a> and let us know what you'd like to see.</p>
                                 </div>
                             </div>
                         </div>
                         {/*<div className="featured-container">*/}
+                            {/*<div className="col-md-1">*/}
+                                {/*<ul className="step-list vertical">*/}
+                                    {/*<li><span>1</span></li>*/}
+                                {/*</ul>*/}
+                            {/*</div>*/}
                             {/*<div className={"text-center col-md-6 push-lg-3"}>*/}
                                 {/*<h2>How Bullet Train works</h2>*/}
                             {/*</div>*/}
