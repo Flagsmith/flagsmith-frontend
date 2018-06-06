@@ -337,7 +337,7 @@ module.exports = class extends React.Component {
                     <footer className="homepage clearfix">
                         <div className="clearfix">
                             <div className="brand-footer float-left">
-                                <img src="./images/icon.png" alt="Bullet Train" />
+                                <img src="./images/bullet-train-1-mark.png" alt="Bullet Train" />
                             </div>
                             <ul className="float-right nav-list">
                                 <li><a href="">Demo</a></li>
