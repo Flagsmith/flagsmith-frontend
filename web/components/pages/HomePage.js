@@ -235,7 +235,7 @@ module.exports = class extends React.Component {
                         </Hero>
                         <div className="tech">
                             <div className="container">
-                                <div className="text-center col-md-6 push-lg-3">
+                                <div className="text-center col-md-12 col-lg-6 push-lg-3">
                                     <h2>We currently support these popular languages</h2>
                                     <div className="row">
                                         <div className="col-md-3 col-xs-6">
@@ -294,7 +294,7 @@ module.exports = class extends React.Component {
                             {/*</div>*/}
                         {/*</div>*/}
                         <div className="feature-container">
-                            <div className={"text-center col-md-6 push-lg-3"}>
+                            <div className={"text-center col-md-12 col-lg-6 push-lg-3"}>
                                 <h2>Release configurable features to segmented user groups</h2>
                                 <p>With Bullet Train you can configure attributes of your features as well as turning them on or off for specific user groups.</p>
                             </div>
@@ -335,14 +335,19 @@ module.exports = class extends React.Component {
                             </div>
                         </div>
                     <footer className="homepage clearfix">
-                        <div className="brand-footer float-left">
-                            <img src="./images/icon.png" alt="Bullet Train" />
+                        <div className="clearfix">
+                            <div className="brand-footer float-left">
+                                <img src="./images/icon.png" alt="Bullet Train" />
+                            </div>
+                            <ul className="float-right nav-list">
+                                <li><a href="">Demo</a></li>
+                                <li><a href="https://docs.bullet-train.io/">Docs</a></li>
+                                <li><a href="mailto:bullettrain@solidstategroup.com">Support</a></li>
+                            </ul>
                         </div>
-                        <ul className="float-right nav-list">
-                            <li><a href="">Demo</a></li>
-                            <li><a href="https://docs.bullet-train.io/">Docs</a></li>
-                            <li><a href="mailto:bullettrain@solidstategroup.com">Support</a></li>
-                        </ul>
+                        <div className="built-by text-center">
+                            <p>Built by <a href="http://www.solidstategroup.com"><img src="./images/ssg-logotype-white-transparent-bg.png" alt="Solid state group"/></a></p>
+                        </div>
                     </footer>
                     </div>
                 )}
