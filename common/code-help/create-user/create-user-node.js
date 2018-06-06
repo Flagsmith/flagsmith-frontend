@@ -1,35 +1,20 @@
-module.exports = (envId, {LIB_NAME, NPM_CLIENT, USER_ID, USER_FEATURE_FUNCTION, USER_FEATURE_NAME}) => {
-	return `import ${LIB_NAME} from '${NPM_CLIENT}';
+module.exports = (envId, {LIB_NAME, FEATURE_NAME, USER_ID, FEATURE_FUNCTION, FEATURE_NAME_ALT, FEATURE_NAME_ALT_VALUE, NPM_CLIENT}, customFeature) => {
+    return `import ${LIB_NAME} from "${NPM_CLIENT}"; //Add this line if you're using ${LIB_NAME} via npm
 
-/*
-Can be called both before or after you're done initialising the project.
-Calling identify before will prevent flags being fetched twice.
-*/
-${LIB_NAME}.identify("${USER_ID}",{traits}); //This will create a user in the dashboard if they don't already exist
-
-//Standard project initialisation
 ${LIB_NAME}.init({
-	environmentID: "${envId}",
-		onChange: (oldFlags,params)=>{ //Occurs whenever flags are changed
-	
-		const {isFromServer} = params; //determines if the update came from the server or local cached storage
-		
-		//Check for a feature
-		if (${LIB_NAME}.hasFeature("${USER_FEATURE_NAME}")){
-			${USER_FEATURE_FUNCTION}();
-		}
-		
-		
-		//Or, use the value of a feature
-		const ${USER_FEATURE_NAME} = ${LIB_NAME}.getValue("${USER_FEATURE_NAME}");
-		
-		//Check whether value has changed
-		const ${USER_FEATURE_NAME}Old = oldFlags["${USER_FEATURE_NAME}"] && oldFlags["${USER_FEATURE_NAME}"].value;
-		if (${USER_FEATURE_NAME} !== ${USER_FEATURE_NAME}Old) {
-		
-		}
+	environmentID:"${envId}"
+});
 
-	}
+${LIB_NAME}.hasFeature("${customFeature || FEATURE_NAME}", "${USER_ID}")
+.then((featureEnabled) => {
+    if (featureEnabled) {
+        //Show my awesome cool new feature to the world
+    }
+});
+
+${LIB_NAME}.getValue("${customFeature || FEATURE_NAME_ALT}", "${USER_ID}")
+.then((value) => {
+    //Show a value to the world
 });
 `
 }
