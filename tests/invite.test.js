@@ -50,7 +50,7 @@ module.exports = {
       .click(`//div[contains(@class,"all_message-min_text") and contains(text(),"${"Nightwatch Org" + append}")]`)
       .useCss()
       .waitForElementVisible('#msg_body')
-      .pause(500) // TODO revise this. currently necessary as the msg_body does not appear to show text immediately leading to an empty result
+      .pause(1000) // TODO revise this. currently necessary as the msg_body does not appear to show text immediately leading to an empty result
       .frame('msg_body')
       .getText('body', res => {
         inviteUrl = res.value.substr(res.value.indexOf('http'), res.value.indexOf('.') - res.value.indexOf('http'));
