@@ -22,7 +22,8 @@ export default class App extends Component {
     onLogin = () => {
         const {redirect} = this.props.location.query;
 
-        if (!AccountStore.getOrganisation() && this.props.location.pathname != '/invite') { //If user has no organisation redirect to /create
+
+        if (!AccountStore.getOrganisation() && document.location.href.indexOf('invite')==-1) { //If user has no organisation redirect to /create
             this.context.router.replace('/create');
             return
         }
