@@ -288,7 +288,7 @@ module.exports = class extends React.Component {
                             <div className={"homepage-features col-md-6 push-md-3 row mt-5"}>
                                 <div className="col-md-4">
                                     <ion className="homepage-icon icon ion-ios-rocket"/>
-                                    <h5>Feature flags</h5>
+                                    <h5>Feature Flags</h5>
                                     <p>Ship features remotely across multiple environments.</p>
                                 </div>
                                 <div className="col-md-4">
