@@ -1,8 +1,10 @@
 const keywords = {
     URL_CLIENT: "https://cdn.jsdelivr.net/npm/bullet-train-client/lib/index.js",
     LIB_NAME: "bulletTrain",
+    LIB_NAME_JAVA: "BulletTrain",
     NPM_CLIENT: "bullet-train-client",
     NPM_RN_CLIENT: "react-native-bullet-train",
+    NPM_NODE_CLIENT: "bullet-train-nodejs",
     USER_ID: "bullet_train_sample_user",
     FEATURE_FUNCTION: "myCoolFeature",
     FEATURE_NAME: "myCoolFeature",
@@ -36,7 +38,7 @@ var Constants = {
         "REMOVE_USER_FEATURE": {"event": "User feature removed", "category": "User Features"},
         "TOGGLE_FEATURE": {"event": "Feature toggled", "category": "Features"},
         "TOGGLE_USER_FEATURE": {"event": "User feature toggled", "category": "User Features"},
-        "TRY_IT": {"event": "Try it clicked", "category": "Click"},
+        "TRY_IT": {"event": "Try it clicked", "category": "TryIt"},
         "VIEW_USER_FEATURE": {"event": "User feature viewed", "category": "User Features"},
         "VIEW_FEATURE": {"event": "Feature viewed", "category": "Features"}
     },
@@ -61,15 +63,18 @@ var Constants = {
     },
     codeHelp: {
         keys: {
+            "Java": "java",
             "JavaScript": "javascript",
-            "React Native": "javascript"
+            "React Native": "javascript",
+            "Node JS": "javascript"
         },
 
         "CREATE_USER": (envId) => {
             return {
                 "JavaScript": require('./code-help/create-user/create-user-js')(envId, keywords),
                 "React Native": require('./code-help/create-user/create-user-rn')(envId, keywords),
-                "Java": `Coming soon`,
+                "Node JS": require('./code-help/create-user/create-user-node')(envId, keywords),
+                "Java": require('./code-help/create-user/create-user-java')(envId, keywords),
                 ".NET": "Coming soon"
             }
         },
@@ -78,7 +83,8 @@ var Constants = {
             return {
                 "JavaScript": require('./code-help/init/init-js')(envId, keywords, flagName),
                 "React Native": require('./code-help/init/init-rn')(envId, keywords, flagName),
-                "Java": "Coming soon",
+                "Node JS": require('./code-help/init/init-node')(envId, keywords, flagName),
+                "Java": require('./code-help/init/init-java')(envId, keywords, flagName),
                 ".NET": "Coming soon"
             }
         },
@@ -86,7 +92,8 @@ var Constants = {
         "INSTALL": {
             "JavaScript": require('./code-help/install/install-js')(keywords),
             "React Native": require('./code-help/install/install-rn')(keywords),
-            "Java": "Coming soon",
+            "Node JS": require('./code-help/install/install-node')(keywords),
+            "Java": require('./code-help/install/install-java')(keywords),
             ".NET": "Coming soon"
         }
     }
