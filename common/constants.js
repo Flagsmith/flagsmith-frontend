@@ -36,7 +36,7 @@ var Constants = {
         "REMOVE_USER_FEATURE": {"event": "User feature removed", "category": "User Features"},
         "TOGGLE_FEATURE": {"event": "Feature toggled", "category": "Features"},
         "TOGGLE_USER_FEATURE": {"event": "User feature toggled", "category": "User Features"},
-        "TRY_IT": {"event": "Try it clicked", "category": "Click"},
+        "TRY_IT": {"event": "Try it clicked", "category": "TryIt"},
         "VIEW_USER_FEATURE": {"event": "User feature viewed", "category": "User Features"},
         "VIEW_FEATURE": {"event": "Feature viewed", "category": "Features"}
     },
@@ -62,13 +62,15 @@ var Constants = {
     codeHelp: {
         keys: {
             "JavaScript": "javascript",
-            "React Native": "javascript"
+            "React Native": "javascript",
+            "Node JS": "javascript"
         },
 
         "CREATE_USER": (envId) => {
             return {
                 "JavaScript": require('./code-help/create-user/create-user-js')(envId, keywords),
                 "React Native": require('./code-help/create-user/create-user-rn')(envId, keywords),
+                "Node JS": require('./code-help/create-user/create-user-node')(envId, keywords),
                 "Java": `Coming soon`,
                 ".NET": "Coming soon"
             }
@@ -78,6 +80,8 @@ var Constants = {
             return {
                 "JavaScript": require('./code-help/init/init-js')(envId, keywords, flagName),
                 "React Native": require('./code-help/init/init-rn')(envId, keywords, flagName),
+                "Node JS": require('./code-help/init/init-node')(envId, keywords),
+
                 "Java": "Coming soon",
                 ".NET": "Coming soon"
             }
@@ -86,6 +90,7 @@ var Constants = {
         "INSTALL": {
             "JavaScript": require('./code-help/install/install-js')(keywords),
             "React Native": require('./code-help/install/install-rn')(keywords),
+            "Node JS": require('./code-help/install/install-node')(keywords),
             "Java": "Coming soon",
             ".NET": "Coming soon"
         }
