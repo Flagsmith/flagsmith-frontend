@@ -127,6 +127,19 @@ footer.homepage{
 	}
 }
 
+.built-by{
+	margin-top:20px;
+	p{
+		color:#fff;
+		font-weight:100;
+		font-size:14px;
+		opacity:0.75;
+	}
+	img{
+		height:20px;
+	}
+}
+
 @media (max-width: 576px) {
 	.hero{
 		display:block;
