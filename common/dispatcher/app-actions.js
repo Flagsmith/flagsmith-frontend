@@ -185,5 +185,10 @@ module.exports = Object.assign({}, require('./base/_app-actions'), {
 			actionType: Actions.INVITE_USERS,
 			emailAddresses
 		});
+	},
+	deleteOrganisation: function () {
+		Dispatcher.handleViewAction({
+			actionType: Actions.DELETE_ORGANISATION
+		});
 	}
 });

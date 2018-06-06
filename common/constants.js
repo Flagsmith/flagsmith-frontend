@@ -20,6 +20,7 @@ var Constants = {
         "CREATE_ORGANISATION": {"event": "Organisation created", "category": "Organisation"},
         "CREATE_PROJECT": {"event": "Project created", "category": "Project"},
         "CREATE_USER_FEATURE": {"event": "User feature created", "category": "User Features"},
+        "DELETE_ORGANISATION": {"event": "Organisation deleted", "category": "Organisation"},
         "DEMO_ACCOUNT": {"event": "User demo login", "category": "User"},
         "EDIT_ENVIRONMENT": {"event": "Environment edited", "category": "Environment"},
         "EDIT_FEATURE": {"event": "Feature edited", "category": "Features"},
