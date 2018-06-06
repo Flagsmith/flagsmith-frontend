@@ -1,52 +1,25 @@
-var conf = require('../nightwatch.conf.js');
 const expect = require('chai').expect;
 
 const inviteEmail = 'bullet-train@mailinator.com';
 const email = 'nightwatch@solidstategroup.com';
 const password = 'nightwatch';
 const url = 'http://localhost:' + (process.env.PORT || 8080);
-const append = new Date().valueOf()+""
-console.log("Test id:",append);
-module.exports = {
-    // TODO need teardown of user to use this
-    // 'Register': function (browser) {
-    //     browser
-    //         .url(url)   // visit the url
-    //         .waitForElementVisible('[name="firstName"]') // wait for the sign up fields to show
-    //         .setValue('[name="firstName"]', 'Night')
-    //         .setValue('[name="lastName"]', 'Watch')
-    //         .setValue('[name="companyName"]', 'Nightwatch Ltd')
-    //         .setValue('[name="email"]', email)
-    //         .setValue('[name="password"]', password)
-    //         .click('button[name="signup-btn"]')
 
-    //     browser.expect.element('#project-select-page').to.be.visible;
-    // },
-    'Login': function (browser) {
+module.exports = {
+    '[Main Tests] - Register': function (browser) {
         browser
-            .url(url)
-            .waitForElementVisible('#existing-member-btn')
-            .click('#existing-member-btn')
-            .waitForElementVisible('[name="email"]')
+            .url(url)   // visit the url
+            .waitForElementVisible('[name="firstName"]') // wait for the sign up fields to show
+            .setValue('[name="firstName"]', 'Night')
+            .setValue('[name="lastName"]', 'Watch')
+            .setValue('[name="companyName"]', 'Nightwatch Ltd')
             .setValue('[name="email"]', email)
             .setValue('[name="password"]', password)
-            .click('#login-btn');
+            .click('button[name="signup-btn"]')
 
         browser.expect.element('#project-select-page').to.be.visible;
     },
-    'Create organisation': function (browser) {
-        browser
-            .click('#org-menu')
-            .waitForElementVisible('#create-org-link')
-            .pause(200) // Allows the dropdown to fade in preventing it from becoming stuck after clicking links
-            .click('#create-org-link')
-            .waitForElementVisible('[name="orgName"]')
-            .setValue('[name="orgName"]', "Nightwatch Org" + append)
-            .click('#create-org-btn')
-            .waitForElementVisible('#project-select-page')
-            .assert.containsText('#org-menu', "Nightwatch Org" + append);
-    },
-    'Create project': function (browser) {
+    '[Main Tests] - Create project': function (browser) {
         browser
             .click('#create-first-project-btn')
             .waitForElementVisible('[name="projectName"]')
@@ -55,7 +28,7 @@ module.exports = {
 
         browser.expect.element('#features-page').to.be.visible;
     },
-    'Create feature': function (browser) {
+    '[Main Tests] - Create feature': function (browser) {
         browser
             .waitForElementNotPresent('#create-project-modal')
             .click('#show-create-feature-btn')
@@ -68,7 +41,7 @@ module.exports = {
         browser.expect.element('#features-list div.list-item').to.be.visible;
         browser.expect.element('#features-list .subtitle').text.to.equal('big');
     },
-    'Toggle feature on': function (browser) {
+    '[Main Tests] - Toggle feature on': function (browser) {
         browser
             .waitForElementNotPresent('#create-feature-modal')
             .pause(200) // Additional wait here as it seems rc-switch can be unresponsive for a while
@@ -79,7 +52,7 @@ module.exports = {
 
         browser.expect.element('#features-list span.rc-switch.rc-switch-checked').to.be.visible;
     },
-    'Try feature out': function (browser) {
+    '[Main Tests] - Try feature out': function (browser) {
         browser
             .waitForElementNotPresent('#confirm-toggle-feature-modal')
             .click('#try-it-btn')
@@ -102,7 +75,7 @@ module.exports = {
                 browser.assert.ok(true, 'Try it JSON was correct for the feature'); // Re-assurance that the chai tests above passed
             });
     },
-    'Change feature value to number': function (browser) {
+    '[Main Tests] - Change feature value to number': function (browser) {
         browser
             .useXpath()
             .click('//div[@id="features-list"]//a[text()="header_size"]')
@@ -114,7 +87,7 @@ module.exports = {
 
         browser.expect.element('#features-list .subtitle').text.to.equal('12');
     },
-    'Try feature out should return numeric value': function (browser) {
+    '[Main Tests] - Try feature out should return numeric value': function (browser) {
         browser
             .waitForElementNotPresent('#create-feature-modal')
             .refresh()
@@ -139,7 +112,7 @@ module.exports = {
                 browser.assert.ok(true, 'Try it JSON was correct for the feature'); // Re-assurance that the chai tests above passed
             });
     },
-    'Change feature value to boolean': function (browser) {
+    '[Main Tests] - Change feature value to boolean': function (browser) {
         browser
             .useXpath()
             .click('//div[@id="features-list"]//a[text()="header_size"]')
@@ -151,7 +124,7 @@ module.exports = {
 
         browser.expect.element('#features-list .subtitle').text.to.equal('false');
     },
-    'Try feature out should return boolean value': function (browser) {
+    '[Main Tests] - Try feature out should return boolean value': function (browser) {
         browser
             .waitForElementNotPresent('#create-feature-modal')
             .refresh()
@@ -176,7 +149,7 @@ module.exports = {
                 browser.assert.ok(true, 'Try it JSON was correct for the feature'); // Re-assurance that the chai tests above passed
             });
     },
-    'Switch environment': function (browser) {
+    '[Main Tests] - Switch environment': function (browser) {
         browser
             .click('#env-menu')
             .useXpath()
@@ -187,10 +160,10 @@ module.exports = {
 
         browser.expect.element('#selected-env').text.to.equal('Production');
     },
-    'Feature should be off under different environment': function (browser) {
+    '[Main Tests] - Feature should be off under different environment': function (browser) {
         browser.expect.element('#features-list span[class="rc-switch"]').to.be.visible;
     },
-    'Create environment': function (browser) {
+    '[Main Tests] - Create environment': function (browser) {
         browser
             .click('#env-menu')
             .waitForElementVisible("#create-env-link")
@@ -202,42 +175,7 @@ module.exports = {
 
         browser.expect.element('#selected-env').text.to.equal('Staging');
     },
-    'Edit environment': function (browser) {
-        browser
-            .click('#env-settings-link')
-            .waitForElementVisible("[name='env-name']")
-            .clearValue("[name='env-name']")
-            .setValue("[name='env-name']", 'Internal')
-            .click("#save-env-btn");
-
-        browser.expect.element('#selected-env').text.to.equal('Internal');
-    },
-    // 'Delete environment': function (browser) {
-    //     browser
-    //         .click('#delete-env-btn')
-    //         .waitForElementVisible("[name='confirm-env-name']")
-    //         .setValue("[name='confirm-env-name']", 'Internal')
-    //         .click('#confirm-delete-env-btn');
-
-    //     browser.expect.element('#project-select-page').to.be.visible;
-    // },
-    // 'View project': function (browser) {
-    //     browser.waitForElementVisible('#projects-list a.list-item')
-    //     browser.expect.element('#projects-list a.list-item').text.to.equal('My Test Project');
-    //     browser.click('#projects-list a.list-item');
-    //     browser.expect.element('#features-page').to.be.visible;
-    // },
-    'Edit project': function (browser) {
-        browser
-            .click('#project-settings-link')
-            .waitForElementVisible("[name='proj-name']")
-            .clearValue("[name='proj-name']")
-            .setValue("[name='proj-name']", 'Test Project')
-            .click("#save-proj-btn");
-
-        browser.expect.element('#selected-proj').text.to.equal('Test Project:');
-    },
-    'Edit flag for user': function (browser) {
+    '[Main Tests] - Edit flag for user': function (browser) {
         browser
             .click('#users-link')
             .waitForElementVisible('#users-list div.list-item')
@@ -253,36 +191,64 @@ module.exports = {
 
         browser.expect.element('#user-features-list .subtitle').text.to.equal('small');
     },
-    'Toggle flag for user': function (browser) {
+    '[Main Tests] - Toggle flag for user': function (browser) {
         browser
             .waitForElementNotPresent('#create-feature-modal')
             .pause(200) // Additional wait here as it seems rc-switch can be unresponsive for a while
             .click('#user-features-list span.rc-switch')
             .waitForElementVisible('#confirm-toggle-feature-btn')
-            .click('#confirm-toggle-feature-btn');
+            .click('#confirm-toggle-feature-btn')
+            .waitForElementNotPresent('#confirm-toggle-feature-btn')
 
         browser.expect.element('#user-features-list span.rc-switch.rc-switch-checked').to.be.visible;
     },
-    // 'Invite user': function (browser) {
-    //     browser
-    //         .click('#organisation-settings-link')
-    //         .waitForElementVisible('#btn-invite')
-    //         .click('#btn-invite')
-    //         .waitForElementVisible('[name="inviteEmails"]')
-    //         .setValue('[name="inviteEmails"]', inviteEmail)
-    //         .click('#btn-send-invite')
-    //         .waitForElementNotPresent('#btn-invite',10000000)
-    // },
-    'Logout': function (browser) {
+    '[Main Tests] - Edit environment': function (browser) {
         browser
-            .waitForElementNotPresent('#confirm-toggle-feature-modal')
-            .pause(2000) // TODO https://gist.github.com/JamesBoon/dc19bc202673e19baf4b9b85d78df27f
-            .click('#org-menu')
-            .waitForElementVisible('#logout-link')
-            .pause(200) // Allows the dropdown to fade in
-            .click('#logout-link');
+            .click('#env-settings-link')
+            .waitForElementVisible("[name='env-name']")
+            .clearValue("[name='env-name']")
+            .setValue("[name='env-name']", 'Internal')
+            .click("#save-env-btn");
 
-        browser.expect.element('#existing-member-btn').to.be.visible;
+        browser.expect.element('#selected-env').text.to.equal('Internal');
+    },
+    '[Main Tests] - Delete environment': function (browser) {
+        browser
+            .click('#delete-env-btn')
+            .waitForElementVisible("[name='confirm-env-name']")
+            .setValue("[name='confirm-env-name']", 'Internal')
+            .click('#confirm-delete-env-btn');
+
+        browser.expect.element('#project-select-page').to.be.visible;
+    },
+    '[Main Tests] - View project': function (browser) {
+        browser.waitForElementVisible('#projects-list a.list-item')
+        browser.expect.element('#projects-list a.list-item').text.to.equal('My Test Project');
+        browser.click('#projects-list a.list-item');
+        browser.expect.element('#features-page').to.be.visible;
+    },
+    '[Main Tests] - Edit project': function (browser) {
+        browser
+            .waitForElementVisible('#project-settings-link')
+            .pause(200) // Slide in transition
+            .click('#project-settings-link')
+            .waitForElementVisible("[name='proj-name']")
+            .clearValue("[name='proj-name']")
+            .setValue("[name='proj-name']", 'Test Project')
+            .click("#save-proj-btn");
+
+        browser.expect.element('#selected-proj').text.to.equal('Test Project:');
+    },
+    '[Main Tests] - Delete Nightwatch Ltd organisation': function (browser) {
+        browser
+            .click('#organisation-settings-link')
+            .waitForElementVisible('#delete-org-btn')
+            .click('#delete-org-btn')
+            .waitForElementVisible('[name="confirm-org-name"]')
+            .setValue('[name="confirm-org-name"]', "Nightwatch Ltd")
+            .click('#confirm-del-org-btn')
+
+        browser.expect.element('#create-org-page').to.be.visible;
         browser.end();
     }
 };

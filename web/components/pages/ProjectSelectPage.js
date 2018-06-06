@@ -24,7 +24,7 @@ const TheComponent = class extends Component {
 	};
 
 	newProject = () => {
-		openModal('Create  Project', <CreateProjectModal onSave={({projectId, environmentId}) => {
+		openModal('Create Project', <CreateProjectModal onSave={({projectId, environmentId}) => {
 			this.context.router.push(`/project/${projectId}/environment/${environmentId}/features?new=true`)
 		}}/>)
 	};

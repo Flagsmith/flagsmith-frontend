@@ -35,13 +35,14 @@ const TheComponent = class extends Component {
 							organisation in your applications before proceeding.
 						</p>
 						<InputGroup
-							inputProps={{className: "full-width"}}
+							inputProps={{name: 'confirm-org-name', className: "full-width"}}
 							title="Please type the organisation name to confirm"
 							placeholder="Organisation name"
 							onChange={(e) => this.setState({challenge: Utils.safeParseEventValue(e)})}/>
 
 						<FormGroup className="text-right">
 							<Button
+								id="confirm-del-org-btn"
 								disabled={this.state.challenge != organisation.name}
 								className={"btn btn-primary"}>
 								Confirm changes

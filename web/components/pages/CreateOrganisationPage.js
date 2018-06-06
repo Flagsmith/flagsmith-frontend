@@ -25,7 +25,7 @@ export default class ExampleOne extends Component {
 
 	render() {
 		return (
-			<div className="container app-container">
+			<div id="create-org-page" className="container app-container">
 				<h3>
 					Create your organisation
 				</h3>
