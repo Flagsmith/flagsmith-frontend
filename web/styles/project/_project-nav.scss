@@ -44,3 +44,41 @@ nav.navbar {
 	font-size: 1em;
 	font-family: 'Andika', sans-serif;
 }
+
+.nav-list{
+    margin:0;
+    list-style:none;
+
+    li{
+        display: inline-block;
+        padding:0 5px;
+
+        a{
+            color:white;
+            font-weight:100;
+            font-size:14px;
+            opacity: 0.75;
+
+            &:hover{
+                opacity: 1;
+                text-decoration: none;
+            }
+        }
+    }
+
+    &.dark{
+        li a {
+            color: #22354a;
+        }
+    }
+
+    .login{
+        padding-left:10px;
+
+        ion{
+            font-size:16px;
+            position: relative;
+            top:2px;
+        }
+    }
+}

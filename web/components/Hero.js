@@ -28,7 +28,11 @@ const TheComponent = class extends React.Component {
 					</div>
 					<div className="navbar-right">
 						<div className="navbar-nav">
-							<Link to={this.props.loginLink} className="nav-item nav-link">Login</Link>
+							<ul className="nav-list dark list-unstyled">
+								<li><a href="">Demo</a></li>
+								<li><a href="https://docs.bullet-train.io/">Docs</a></li>
+								<li><Link to={this.props.loginLink} className="bold-link login">Login <ion className="ion-ios-arrow-dropright"/></Link></li>
+							</ul>
 						</div>
 					</div>
 				</nav>
