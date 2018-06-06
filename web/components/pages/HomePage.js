@@ -88,8 +88,8 @@ module.exports = class extends React.Component {
                                                             Login
                                                         </button>
                                                         <div className={"text-right"}>
-                                                            <Link to={`/password-recovery${redirect}`}
-                                                                  onClick={this.showForgotPassword}>Forgot password?</Link>
+                                                            {/*<Link to={`/password-recovery${redirect}`}*/}
+                                                                  {/*onClick={this.showForgotPassword}>Forgot password?</Link>*/}
                                                         </div>
                                                     </FormGroup>
                                                 </fieldset>
