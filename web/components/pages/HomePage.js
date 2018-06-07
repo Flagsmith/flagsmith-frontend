@@ -263,6 +263,11 @@ module.exports = class extends React.Component {
                                 </div>
                             </div>
                         </div>
+                        <div className="container text-center">
+                            <div className="video embed-responsive embed-responsive-16by9">
+                                <iframe className="embed-responsive-item" src="https://www.youtube.com/embed/rf8ZHGkZRUw?rel=0" allowFullScreen></iframe>
+                            </div>
+                        </div>
                         {/*<div className="featured-container">*/}
                             {/*<div className="col-md-1">*/}
                                 {/*<ul className="step-list vertical">*/}
