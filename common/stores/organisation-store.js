@@ -46,7 +46,7 @@ var controller = {
 			data.post(`${Project.api}projects/?format=json`, {name, organisation: store.id})
 				.then((project) => {
 					Promise.all([
-						data.post(`${Project.api}environments/?format=json`, {name: "Develop", project: project.id})
+						data.post(`${Project.api}environments/?format=json`, {name: "Development", project: project.id})
 							.then(createSampleUser),
 						data.post(`${Project.api}environments/?format=json`, {name: "Production", project: project.id})
 							.then(createSampleUser)
