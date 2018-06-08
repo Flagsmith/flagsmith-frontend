@@ -22,6 +22,9 @@ global.API = {
     },
     trackEvent: function(data) {
         if (Project.ga) {
+            if (!data)  {
+                console.error("Passed null event data")
+            }
             console.info("track", data);
             if (!data || !data.category || !data.event) {
                 console.error("Invalid event provided", data);

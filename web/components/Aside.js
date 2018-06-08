@@ -82,14 +82,14 @@ const TheComponent = class extends Component {
 										activeClassName={"active"}
 										to={`/project/${this.props.projectId}/environment/${this.props.environmentId}/features`
 										}><span className={"dot green"}/>Features</Link>
-									<Link
-										activeClassName={"active"}
-										to={
-											`/project/${this.props.projectId}/environment/${this.props.environmentId}/segments`
-										}>
-										<span className={"dot orange"}/>
-										Segments
-									</Link>
+									{/*<Link*/}
+										{/*activeClassName={"active"}*/}
+										{/*to={*/}
+											{/*`/project/${this.props.projectId}/environment/${this.props.environmentId}/segments`*/}
+										{/*}>*/}
+										{/*<span className={"dot orange"}/>*/}
+										{/*Segments*/}
+									{/*</Link>*/}
 									<Link
 										id="users-link"
 										activeClassName={"active"}
@@ -116,11 +116,12 @@ const TheComponent = class extends Component {
 										to={`/project/${this.props.projectId}/environment/${this.props.environmentId}/organisation-settings`}>
 										Organisation Settings
 									</Link>
-									<Link
+									<a
 										activeClassName={"active"}
-										to={`https://docs.bullet-train.io`}>
+										target={"blank"}
+										href={`https://docs.bullet-train.io`}>
 										Documentation
-									</Link>
+									</a>
 								</div>
 							</Flex>
 						)}

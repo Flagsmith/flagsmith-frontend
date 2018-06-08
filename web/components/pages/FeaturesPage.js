@@ -63,6 +63,7 @@ const TheComponent = class extends Component {
     }
 
     render() {
+        const {projectId,environmentId} = this.props.params;
         return (
             <div id="features-page" className="app-container container">
                 <FeatureListProvider onSave={this.onSave}>
@@ -81,11 +82,11 @@ const TheComponent = class extends Component {
                                                     title={"Features"}
                                                     items={projectFlags}
                                                     renderRow={({name, id, enabled, created_date}, i) =>
-                                                        <Row className={"list-item"} key={id} space>
-                                                            <div>
+                                                        <Row className={"list-item clickable"} key={id} space
+                                                             onClick={() => this.editFlag(projectFlags[i], environmentFlags[id])}>
+                                                            <div className={"flex flex-1"}>
                                                                 <Row>
-                                                                    <a onClick={() => this.editFlag(projectFlags[i], environmentFlags[id])}
-                                                                       href={"#"}>
+                                                                    <a href={"#"}>
                                                                         {name}
                                                                     </a>
                                                                     <Column>
@@ -149,10 +150,10 @@ const TheComponent = class extends Component {
 
                                             <FormGroup>
                                                 <CodeHelp
-                                                    title={"Step 1: Installing the SDK"}
+                                                    title={"1: Installing the SDK"}
                                                     snippets={Constants.codeHelp.INSTALL}/>
                                                 <CodeHelp
-                                                    title={"Step 2: Initialising your project"}
+                                                    title={"2: Initialising your project"}
                                                     snippets={Constants.codeHelp.INIT(this.props.params.environmentId, projectFlags && projectFlags[0] && projectFlags[0].name)}
                                                 />
                                             </FormGroup>
@@ -165,9 +166,79 @@ const TheComponent = class extends Component {
                                         </div>
                                     ) : (
                                         <div>
-                                            <Button id="show-create-feature-btn" onClick={this.newFlag}>
-                                                Create Feature
-                                            </Button>
+                                            <h3>Brilliant! Now create your features.</h3>
+
+                                            <FormGroup>
+                                                <Panel icon={"ion-ios-rocket"} title={"1. creating a feature"}>
+                                                    <p>
+                                                        You can two types of features for your project:
+                                                        <ul>
+                                                            <li>
+                                                                <strong>Remote configuration</strong>: configuration for
+                                                                a
+                                                                particular feature
+                                                                <p className={"faint"}>
+                                                                    EXAMPLE: This could be absolutely anything from a
+                                                                    hero
+                                                                    size for a website/mobile app or an environment
+                                                                    variable
+                                                                    for a server
+                                                                </p>
+                                                            </li>
+                                                            <li>
+                                                                <strong>Feature Flags</strong>: These allows you to
+                                                                toggle
+                                                                features on and off:
+                                                                <p className={"faint"}>
+                                                                    EXAMPLE: You're working on a new messaging feature
+                                                                    for
+                                                                    your app but only show it on develop.
+                                                                </p>
+                                                            </li>
+                                                        </ul>
+                                                    </p>
+                                                </Panel>
+                                            </FormGroup>
+                                            <FormGroup>
+                                                <Panel icon={"ion-ios-settings"}
+                                                       title={"2. configuring features per environment"}>
+                                                    <p>
+                                                        We've created 2 environments for
+                                                        you <strong>Development</strong> and <strong>Production</strong>.
+                                                        When
+                                                        you create a feature it makes copies of them for each
+                                                        environment,
+                                                        allowing you to edit the values separately.
+                                                    </p>
+                                                </Panel>
+                                            </FormGroup>
+
+                                            <FormGroup>
+                                                <Panel icon={"ion-ios-person"}
+                                                       title={"3. configuring features per user"}>
+                                                    <p>
+                                                        When users login to your application, you
+                                                        can <strong>identify</strong> them using one of our SDKs, this
+                                                        will add
+                                                        them to the users page.
+                                                        From there you can configure their features. We've created an example user for you which you can see in the{" "}
+                                                        <Link to={`/project/${projectId}/environment/${environmentId}/users`}>Users page</Link>
+                                                        <p className={"faint"}>
+                                                            EXAMPLE: You're working on a new messaging feature for your
+                                                            app but
+                                                            only show it on for that user.
+                                                        </p>
+                                                    </p>
+                                                </Panel>
+                                            </FormGroup>
+                                            <FormGroup className={"text-center"}>
+
+                                                <Button className={"btn-lg btn-primary"} id="show-create-feature-btn"
+                                                        onClick={this.newFlag}>
+                                                    <ion className="icon ion-ios-rocket"/>
+                                                    {" "}Create your first Feature
+                                                </Button>
+                                            </FormGroup>
                                         </div>
                                     )}
 

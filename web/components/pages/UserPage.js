@@ -50,6 +50,7 @@ const TheComponent = class extends Component {
 
     render() {
         const {name, flags} = this.state;
+        const {projectId,environmentId} = this.props.params;
         return (
             <div className={"app-container"}>
                 <IdentityProvider onSave={this.onSave}>
@@ -61,6 +62,10 @@ const TheComponent = class extends Component {
                                         <h3>
                                             {this.props.params.id}
                                         </h3>
+                                        <p>
+                                            View and manage features states for this user. To view and manage features
+                                            for all users within this environment go to <Link to={`/project/${projectId}/environment/${environmentId}/features`}>features</Link>.
+                                        </p>
                                         <FormGroup>
                                             <PanelSearch
                                                 id="user-features-list"
@@ -72,11 +77,12 @@ const TheComponent = class extends Component {
                                                     const identityFlag = identityFlags[id];
                                                     const values = Object.assign({}, environmentFlags[id], identityFlag || {})
                                                     return (
-                                                        <Row className={"list-item"} key={id} space>
-                                                            <div>
+                                                        <Row className={"list-item clickable"} key={id} space>
+                                                            <div
+                                                                onClick={() => this.editFlag(projectFlags[i], environmentFlags[id], identityFlag)}
+                                                                className={"flex flex-1"}>
                                                                 <Row>
-                                                                    <a onClick={() => this.editFlag(projectFlags[i], environmentFlags[id], identityFlag)}
-                                                                       href={"#"}>
+                                                                    <a href={"#"}>
                                                                         {name}
                                                                     </a>
                                                                     <Column>

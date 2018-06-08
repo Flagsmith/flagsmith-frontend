@@ -18,6 +18,9 @@
     @include flex-value(1);
     @include justify-content(space-between);
   }
+  &.row-center {
+    @include justify-content(center);
+  }
 }
 
 .centered-container {

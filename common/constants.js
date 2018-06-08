@@ -5,7 +5,7 @@ const keywords = {
     NPM_CLIENT: "bullet-train-client",
     NPM_RN_CLIENT: "react-native-bullet-train",
     NPM_NODE_CLIENT: "bullet-train-nodejs",
-    USER_ID: "bullet_train_sample_user",
+    USER_ID: "user_123456",
     FEATURE_FUNCTION: "myCoolFeature",
     FEATURE_NAME: "myCoolFeature",
     USER_FEATURE_FUNCTION: "myPowerUserFeature",
@@ -69,12 +69,12 @@ var Constants = {
             "Node JS": "javascript"
         },
 
-        "CREATE_USER": (envId) => {
+        "CREATE_USER": (envId,userId) => {
             return {
-                "JavaScript": require('./code-help/create-user/create-user-js')(envId, keywords),
-                "React Native": require('./code-help/create-user/create-user-rn')(envId, keywords),
-                "Node JS": require('./code-help/create-user/create-user-node')(envId, keywords),
-                "Java": require('./code-help/create-user/create-user-java')(envId, keywords),
+                "JavaScript": require('./code-help/create-user/create-user-js')(envId, keywords,userId),
+                "React Native": require('./code-help/create-user/create-user-rn')(envId, keywords,userId),
+                "Node JS": require('./code-help/create-user/create-user-node')(envId, keywords,userId),
+                "Java": require('./code-help/create-user/create-user-java')(envId, keywords,userId),
                 ".NET": "Coming soon"
             }
         },
