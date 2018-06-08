@@ -50,7 +50,7 @@ export default class App extends Component {
                                     <div className="navbar-nav">
                                         <Link to={"/"} className="nav-item nav-item-brand nav-link">
                                             <Row>
-                                                <img height={34} src={"/images/icon-light.png"}/>
+                                                <img height={34} src={"/images/icon-light-2.png"}/>
                                                 Bullet Train
                                             </Row>
                                         </Link>
