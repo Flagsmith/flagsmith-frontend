@@ -97,6 +97,11 @@ h2{
 	border-top:rgba(255,255,255,0.25) solid 1px;
 }
 
+.hero-brand{
+	height:55px;
+	margin: 65px 0;
+}
+
 .feature-container{
 	padding:$input-padding-y * 3;
 }
@@ -114,6 +119,10 @@ h2{
 	}
 }
 
+.video {
+	margin-top: 2em;
+}
+
 footer.homepage{
 	background: $hero-bg;
 	color:white;
@@ -127,11 +136,28 @@ footer.homepage{
 	}
 }
 
+.built-by{
+	margin-top:20px;
+	p{
+		color:#fff;
+		font-weight:100;
+		font-size:14px;
+		opacity:0.75;
+	}
+	img{
+		height:20px;
+	}
+}
+
 @media (max-width: 576px) {
 	.hero{
 		display:block;
 		margin-left:0;
 		margin-right:0;
+
+		h1{
+			margin-top:20px;
+		}
 	}
 
 	.hero-brand{

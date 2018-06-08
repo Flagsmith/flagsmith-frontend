@@ -60,7 +60,7 @@ const TheComponent = class extends Component {
 							  organisation
 						  }, {createOrganisation, selectOrganisation, editOrganisation, deleteOrganisation}) => (
 							<div className="margin-bottom">
-								<form onSubmit={(e) => {
+								<form key={organisation.id} onSubmit={(e) => {
 									e.preventDefault();
 									!isSaving && name && editOrganisation(name);
 								}}>
@@ -85,6 +85,7 @@ const TheComponent = class extends Component {
 										This organisation will be deleted permanently along with all projects & features.
 									</p>
 									<Button
+										id="delete-org-btn"
 										onClick={() => this.confirmRemove(organisation, () => {
 											deleteOrganisation();
 										})}
@@ -109,6 +110,7 @@ const TheComponent = class extends Component {
 									<div>
 										<FormGroup>
 											<PanelSearch
+												id="org-members-list"
 												title="Users"
 												className={"no-pad"}
 												items={users}

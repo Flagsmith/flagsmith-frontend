@@ -35,7 +35,7 @@ var controller = {
             })
         },
         login: ({email, password}) => {
-            store.saving();
+            store.loading();
             data.post(`${Project.api}auth/login/`, {
                 email,
                 password
