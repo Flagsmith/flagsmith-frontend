@@ -8,10 +8,12 @@ const TheComponent = class extends Component {
 
     constructor(props, context) {
         super(props, context);
-        const {name, feature_state_value, description, enabled} = this.props.isEdit ? Utils.getFlagValue(this.props.projectFlag, this.props.environmentFlag, this.props.identityFlag) : {};
+        const {name, feature_state_value, description, enabled, type} = this.props.isEdit ? Utils.getFlagValue(this.props.projectFlag, this.props.environmentFlag, this.props.identityFlag) : {};
         const {allowEditDescription} = this.props;
         this.state = {
-            enabled,
+            type,
+            tab: type == "FLAG" ? 0 : 1,
+            initial_enabled: enabled,
             name,
             initial_value: Utils.getTypedValue(feature_state_value),
             description,
@@ -31,12 +33,24 @@ const TheComponent = class extends Component {
             }, 500);
         }
     };
+    setTab = (tab) => {
+        this.setState({tab, type: this.getTypeFromTab(tab)})
+    };
+
+    getTypeFromTab = (i) => {
+        switch (i) {
+            case 0:
+                return "FLAG"
+        }
+        return "CONFIG"
+    }
 
     render() {
-        const {name, initial_value, description, enabled} = this.state;
+        const {name, initial_value, initial_enabled, featureType, type, description} = this.state;
         const {isEdit, projectFlag, environmentFlag, identity} = this.props;
         const Provider = identity ? IdentityProvider : FeatureListProvider;
         const valueString = isEdit ? "Value" : "Initial value";
+        const enabledString = isEdit ? "Enabled by default" : "Enabled";
         return (
             <ProjectProvider
                 id={this.props.projectId}>
@@ -50,22 +64,25 @@ const TheComponent = class extends Component {
                                     const func = isEdit ? editFlag : createFlag;
                                     this.save(func, isSaving);
                                 }}>
-                                <FormGroup>
-                                    <label>Feature type</label>
-                                    <Tabs className={"pill"} value={this.state.tab}
-                                          onChange={(tab) => this.setState({tab})}>
-                                        <TabItem id={"btn-select-flags"}
-                                                 value={"FLAG"}
-                                                 tabLabel={<Row className={"row-center"}>
-                                            <ion className="tab-icon ion-ios-switch"/>
-                                            Feature Flag</Row>}/>
-                                        <TabItem
-                                            value={"CONFIG"}
-                                            id={"btn-select-remote-config"} tabLabel={<Row className={"row-center"}>
-                                            <ion className="tab-icon ion-ios-settings"/>
-                                            Remote config</Row>}/>
-                                    </Tabs>
-                                </FormGroup>
+                                {!isEdit && !identity && (
+                                    <FormGroup>
+                                        <label>Feature type</label>
+                                        <Tabs className={"pill"} value={this.state.tab}
+                                              onChange={this.setTab}>
+                                            <TabItem id={"btn-select-flags"}
+                                                     value={"FLAG"}
+                                                     tabLabel={<Row className={"row-center"}>
+                                                         <ion className="tab-icon ion-ios-switch"/>
+                                                         Feature Flag</Row>}/>
+                                            <TabItem
+                                                value={"CONFIG"}
+                                                id={"btn-select-remote-config"} tabLabel={<Row className={"row-center"}>
+                                                <ion className="tab-icon ion-ios-settings"/>
+                                                Remote config</Row>}/>
+                                        </Tabs>
+                                    </FormGroup>
+                                )}
+
                                 <InputGroup
                                     ref={(e) => this.input = e}
                                     inputProps={{
@@ -78,13 +95,27 @@ const TheComponent = class extends Component {
                                     isValid={name && name.length}
                                     type="text" title={isEdit ? "ID" : "ID*"}
                                     placeholder="E.g. header_size"/>
-                                <InputGroup
-                                    value={initial_value}
-                                    inputProps={{name: "featureValue", className: "full-width"}}
-                                    onChange={(e) => this.setState({initial_value: Utils.getTypedValue(Utils.safeParseEventValue(e))})}
-                                    type="text"
-                                    title={valueString + " (optional)" + (!isEdit ? " - these can be set later per environment" : "")}
-                                    placeholder="e.g. 'big' "/>
+                                {type == "CONFIG" ? (
+                                    <InputGroup
+                                        value={initial_value}
+                                        inputProps={{name: "featureValue", className: "full-width"}}
+                                        onChange={(e) => this.setState({initial_value: Utils.getTypedValue(Utils.safeParseEventValue(e))})}
+                                        type="text"
+                                        title={valueString + " (optional)" + (!isEdit ? " - these can be set later per environment" : "")}
+                                        placeholder="e.g. 'big' "/>
+                                ) : (
+                                    <FormGroup>
+                                        <div>
+                                            <label>{enabledString}</label>
+                                        </div>
+                                        <Switch
+                                            defaultChecked={initial_enabled}
+                                            checked={initial_enabled}
+                                            onChange={(initial_enabled) => this.setState({initial_enabled})}
+                                        />
+                                    </FormGroup>
+                                )}
+
 
                                 <InputGroup
                                     value={description}
@@ -122,7 +153,11 @@ const TheComponent = class extends Component {
                                 <FormGroup className={"flag-example"}>
                                     <strong>Example SDK response:</strong>
                                     <Highlight className={"json no-pad"}>
-                                        {JSON.stringify({value: initial_value, name, enabled})}
+                                        {type == "CONFIG" ?
+                                            JSON.stringify({value: initial_value, name})
+                                            : JSON.stringify({name, enabled: initial_enabled})
+
+                                        }
                                     </Highlight>
                                 </FormGroup>
 
@@ -148,19 +183,24 @@ const TheComponent = class extends Component {
 
     save = (func, isSaving) => {
         const {projectFlag, environmentFlag, identity, identityFlag, environmentId} = this.props;
-        const {name, initial_value, description} = this.state;
+        const {name, initial_value, description, type, initial_enabled} = this.state;
         if (identity) {
             !isSaving && name && func({
                 identity,
                 projectFlag,
                 environmentFlag,
-                identityFlag: Object.assign({}, identityFlag || {}, {feature_state_value: initial_value}),
+                identityFlag: Object.assign({}, identityFlag || {}, {
+                    feature_state_value: initial_value,
+                    enabled: initial_enabled
+                }),
                 environmentId
             })
         } else {
             !isSaving && name && func(this.props.projectId, this.props.environmentId, {
                 name,
+                type,
                 initial_value,
+                default_enabled: initial_enabled,
                 description
             }, projectFlag, environmentFlag)
         }

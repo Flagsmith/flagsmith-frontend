@@ -25,6 +25,7 @@ var controller = {
         createFlag(projectId, environmentId, flag) {
             store.saving();
             API.trackEvent(Constants.events.CREATE_FEATURE);
+            debugger
             data.post(`${Project.api}projects/${projectId}/features/?format=json`, flag)
                 .then((res) => {
                     return Promise.all([
@@ -67,7 +68,7 @@ var controller = {
             store.saving();
             API.trackEvent(Constants.events.EDIT_FEATURE);
             if (environmentFlag) {
-                prom = data.put(`${Project.api}environments/${environmentId}/featurestates/${environmentFlag.id}/`, Object.assign({}, environmentFlag, {feature_state_value: flag.initial_value}))
+                prom = data.put(`${Project.api}environments/${environmentId}/featurestates/${environmentFlag.id}/`, Object.assign({}, environmentFlag, {feature_state_value: flag.initial_value,enabled:flag.initial_enabled}))
             } else {
                 prom = data.post(`${Project.api}environments/${environmentId}/featurestates/`, Object.assign({}, flag, {
                     enabled: false,

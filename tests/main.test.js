@@ -32,14 +32,26 @@ module.exports = {
         browser
             .waitForElementNotPresent('#create-project-modal')
             .click('#show-create-feature-btn')
-            .waitForElementVisible('[name="featureID"]')
+            .waitForElementVisible('#btn-select-remote-config')
+            .click('#btn-select-remote-config')
             .setValue('[name="featureID"]', 'header_size')
             .setValue('[name="featureValue"]', 'big')
             .setValue('[name="featureDesc"]', 'This determines what size the header is')
             .click('#create-feature-btn');
 
         browser.expect.element('#features-list div.list-item').to.be.visible;
-        browser.expect.element('#features-list .subtitle').text.to.equal('big');
+        browser.expect.element('#features-list .feature-value').text.to.equal('big');
+    },
+    '[Main Tests] - Create feature 2': function (browser) {
+        browser
+            .waitForElementNotPresent('#create-feature-modal')
+            .click('#show-create-feature-btn')
+            .waitForElementVisible('[name="featureID"]')
+            .setValue('[name="featureID"]', 'header_enabled')
+            .setValue('[name="featureDesc"]', 'This determines whether header is shown')
+            .click('#create-feature-btn');
+
+        browser.expect.element('#features-list div.list-item:nth-child(2)').to.be.visible;
     },
     '[Main Tests] - Toggle feature on': function (browser) {
         browser
@@ -70,8 +82,6 @@ module.exports = {
                 expect(json).to.have.property('header_size');
                 expect(json.header_size).to.have.property('value');
                 expect(json.header_size.value).to.equal('big');
-                expect(json.header_size).to.have.property('enabled');
-                expect(json.header_size.enabled).to.equal(true);
                 browser.assert.ok(true, 'Try it JSON was correct for the feature'); // Re-assurance that the chai tests above passed
             });
     },
@@ -85,7 +95,7 @@ module.exports = {
             .setValue('[name="featureValue"]', '12')
             .click('#update-feature-btn')
 
-        browser.expect.element('#features-list .subtitle').text.to.equal('12');
+        browser.expect.element('#features-list .feature-value').text.to.equal('12');
     },
     '[Main Tests] - Try feature out should return numeric value': function (browser) {
         browser
@@ -107,8 +117,8 @@ module.exports = {
                 expect(json).to.have.property('header_size');
                 expect(json.header_size).to.have.property('value');
                 expect(json.header_size.value).to.equal(12);
-                expect(json.header_size).to.have.property('enabled');
-                expect(json.header_size.enabled).to.equal(true);
+                expect(json.header_enabled).to.have.property('enabled');
+                expect(json.header_enabled.enabled).to.equal(true);
                 browser.assert.ok(true, 'Try it JSON was correct for the feature'); // Re-assurance that the chai tests above passed
             });
     },
@@ -122,7 +132,7 @@ module.exports = {
             .setValue('[name="featureValue"]', 'false')
             .click('#update-feature-btn')
 
-        browser.expect.element('#features-list .subtitle').text.to.equal('false');
+        browser.expect.element('#features-list .feature-value').text.to.equal('false');
     },
     '[Main Tests] - Try feature out should return boolean value': function (browser) {
         browser
@@ -144,8 +154,8 @@ module.exports = {
                 expect(json).to.have.property('header_size');
                 expect(json.header_size).to.have.property('value');
                 expect(json.header_size.value).to.equal(false);
-                expect(json.header_size).to.have.property('enabled');
-                expect(json.header_size.enabled).to.equal(true);
+                expect(json.header_enabled).to.have.property('enabled');
+                expect(json.header_enabled.enabled).to.equal(true);
                 browser.assert.ok(true, 'Try it JSON was correct for the feature'); // Re-assurance that the chai tests above passed
             });
     },
@@ -189,7 +199,7 @@ module.exports = {
             .setValue('[name="featureValue"]', 'small')
             .click('#update-feature-btn')
 
-        browser.expect.element('#user-features-list .subtitle').text.to.equal('small');
+        browser.expect.element('#user-features-list .feature-value').text.to.equal('small');
     },
     '[Main Tests] - Toggle flag for user': function (browser) {
         browser

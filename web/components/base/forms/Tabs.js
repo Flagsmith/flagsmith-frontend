@@ -12,7 +12,7 @@ const Tabs = class extends React.Component {
                         var isSelected = this.props.value == i;
                         return (
                             <Button
-                                id={this.props.id}
+                                id={child.props.id}
                                 key={'button' + i}
                                 onClick={(e) => {
                                     e.stopPropagation();

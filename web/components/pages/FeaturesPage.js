@@ -63,7 +63,7 @@ const TheComponent = class extends Component {
     }
 
     render() {
-        const {projectId,environmentId} = this.props.params;
+        const {projectId, environmentId} = this.props.params;
         return (
             <div id="features-page" className="app-container container">
                 <FeatureListProvider onSave={this.onSave}>
@@ -81,18 +81,16 @@ const TheComponent = class extends Component {
                                                     icon={"ion-ios-rocket"}
                                                     title={"Features"}
                                                     items={projectFlags}
-                                                    renderRow={({name, id, enabled, created_date}, i) =>
-                                                        <Row className={"list-item clickable"} key={id} space
-                                                             onClick={() => this.editFlag(projectFlags[i], environmentFlags[id])}>
-                                                            <div className={"flex flex-1"}>
+                                                    renderRow={({name, id, enabled, created_date, type}, i) =>
+                                                        <Row className={"list-item clickable"} key={id} space>
+                                                            <div className={"flex flex-1"}
+                                                                 onClick={() => this.editFlag(projectFlags[i], environmentFlags[id])}>
                                                                 <Row>
                                                                     <a href={"#"}>
                                                                         {name}
                                                                     </a>
                                                                     <Column>
-														<span className={"subtitle"}>
-															{environmentFlags[id] && environmentFlags[id].feature_state_value + ""}
-														</span>
+
                                                                     </Column>
                                                                 </Row>
                                                                 <div className={"list-item-footer faint"}>
@@ -100,12 +98,21 @@ const TheComponent = class extends Component {
                                                                 </div>
                                                             </div>
                                                             <Row>
+
                                                                 <Column>
-                                                                    <Switch
-                                                                        checked={environmentFlags[id] && environmentFlags[id].enabled}
-                                                                        onChange={() => this.confirmToggle(projectFlags[i], environmentFlags[id], (environments) => {
-                                                                            toggleFlag(i, environments)
-                                                                        })}/>
+                                                                    {type == "FLAG" ? (
+                                                                        <Switch
+                                                                            checked={environmentFlags[id] && environmentFlags[id].enabled}
+                                                                            onChange={() => this.confirmToggle(projectFlags[i], environmentFlags[id], (environments) => {
+                                                                                toggleFlag(i, environments)
+                                                                            })}/>
+                                                                    ) : (
+                                                                        <span
+                                                                            onClick={() => this.editFlag(projectFlags[i], environmentFlags[id])}
+                                                                            className={"subtitle"}>
+                                                                            Value: <span className={"feature-value"}>{environmentFlags[id] && environmentFlags[id].feature_state_value + ""}</span>
+														                </span>
+                                                                    )}
                                                                 </Column>
                                                                 <Column>
                                                                     <a
@@ -207,7 +214,8 @@ const TheComponent = class extends Component {
                                                         When
                                                         you create a feature it makes copies of them for each
                                                         environment,
-                                                        allowing you to edit the values separately. You can create more environments too if you need to.
+                                                        allowing you to edit the values separately. You can create more
+                                                        environments too if you need to.
                                                     </p>
                                                 </Panel>
                                             </FormGroup>
@@ -220,8 +228,11 @@ const TheComponent = class extends Component {
                                                         can <strong>identify</strong> them using one of our SDKs, this
                                                         will add
                                                         them to the users page.
-                                                        From there you can configure their features. We've created an example user for you which you can see in the{" "}
-                                                        <Link to={`/project/${projectId}/environment/${environmentId}/users`}>Users page</Link>
+                                                        From there you can configure their features. We've created an
+                                                        example user for you which you can see in the{" "}
+                                                        <Link
+                                                            to={`/project/${projectId}/environment/${environmentId}/users`}>Users
+                                                            page</Link>
                                                         <p className={"faint"}>
                                                             EXAMPLE: You're working on a new messaging feature for your
                                                             app but

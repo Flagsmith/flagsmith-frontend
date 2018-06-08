@@ -3,12 +3,14 @@ module.exports = Object.assign({}, require('./base/_utils'), {
         if (!environmentFlag) {
             return {
                 name: projectFlag.name,
+                type: projectFlag.type,
                 feature_state_value: projectFlag.initial_value,
                 enabled: false,
                 description: projectFlag.description,
             }
         } else if (identityFlag) {
             return {
+                type: projectFlag.type,
                 name: projectFlag.name,
                 feature_state_value: identityFlag.feature_state_value,
                 enabled: identityFlag.enabled,
@@ -17,6 +19,7 @@ module.exports = Object.assign({}, require('./base/_utils'), {
         }
         else {
             return {
+                type: projectFlag.type,
                 name: projectFlag.name,
                 feature_state_value: environmentFlag.feature_state_value,
                 enabled: environmentFlag.enabled,

@@ -50,7 +50,7 @@ const TheComponent = class extends Component {
 
     render() {
         const {name, flags} = this.state;
-        const {projectId,environmentId} = this.props.params;
+        const {projectId, environmentId} = this.props.params;
         return (
             <div className={"app-container"}>
                 <IdentityProvider onSave={this.onSave}>
@@ -64,7 +64,8 @@ const TheComponent = class extends Component {
                                         </h3>
                                         <p>
                                             View and manage features states for this user. To view and manage features
-                                            for all users within this environment go to <Link to={`/project/${projectId}/environment/${environmentId}/features`}>features</Link>.
+                                            for all users within this environment go to <Link
+                                            to={`/project/${projectId}/environment/${environmentId}/features`}>features</Link>.
                                         </p>
                                         <FormGroup>
                                             <PanelSearch
@@ -73,7 +74,7 @@ const TheComponent = class extends Component {
                                                 icon={"ion-ios-rocket"}
                                                 title="Features"
                                                 items={projectFlags}
-                                                renderRow={({name, id, enabled, created_date, feature}, i) => {
+                                                renderRow={({name, id, enabled, created_date, feature, type}, i) => {
                                                     const identityFlag = identityFlags[id];
                                                     const values = Object.assign({}, environmentFlags[id], identityFlag || {})
                                                     return (
@@ -85,11 +86,6 @@ const TheComponent = class extends Component {
                                                                     <a href={"#"}>
                                                                         {name}
                                                                     </a>
-                                                                    <Column>
-																	<span className={"subtitle"}>
-																		{values.feature_state_value + ""}
-																	</span>
-                                                                    </Column>
                                                                 </Row>
                                                                 {identityFlag ? (
                                                                     <Row className={"chip"}>
@@ -108,17 +104,25 @@ const TheComponent = class extends Component {
                                                             </div>
                                                             <Row>
                                                                 <Column>
-                                                                    <Switch
-                                                                        checked={identityFlags[id] ? identityFlags[id].enabled : environmentFlags[id].enabled}
-                                                                        onChange={() => this.confirmToggle(projectFlags[i], environmentFlags[id], (environments) => {
-                                                                            toggleFlag({
-                                                                                environmentId: this.props.params.environmentId,
-                                                                                identity: this.props.params.id,
-                                                                                projectFlag: {id},
-                                                                                environmentFlag: environmentFlags[id],
-                                                                                identityFlag
-                                                                            })
-                                                                        })}/>
+                                                                    {type == "FLAG" ? (
+                                                                        <Switch
+                                                                            checked={identityFlags[id] ? identityFlags[id].enabled : environmentFlags[id].enabled}
+                                                                            onChange={() => this.confirmToggle(projectFlags[i], environmentFlags[id], (environments) => {
+                                                                                toggleFlag({
+                                                                                    environmentId: this.props.params.environmentId,
+                                                                                    identity: this.props.params.id,
+                                                                                    projectFlag: {id},
+                                                                                    environmentFlag: environmentFlags[id],
+                                                                                    identityFlag
+                                                                                })
+                                                                            })}/>
+                                                                    ) : (
+                                                                        <span className={"subtitle"}>
+                                                                            Value: <span
+                                                                            className={"feature-value"}>{values.feature_state_value + ""}</span>
+														                </span>
+                                                                    )}
+
                                                                 </Column>
                                                                 {identityFlag && (
                                                                     <Column>

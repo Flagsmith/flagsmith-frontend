@@ -18,15 +18,16 @@ const TheComponent = class extends Component {
         })
             .then((res) => res.json())
             .then((data) => {
-                data = data.map(({feature, enabled,feature_state_value}) => {
-                    return {
-                        name: feature.name,
-                        value: feature_state_value,
+                var res = {};
+                data.map(({feature, type, enabled, feature_state_value}) => {
+                    res[feature.name] = feature.type == "FLAG" ? {
                         enabled
+                    } : res[feature.name] ={
+                        value: feature_state_value,
                     }
                 });
-                data = JSON.stringify(_.keyBy(data, "name"), null, 2);
-                this.setState({isLoading: false, data});
+                res = JSON.stringify(res, null, 2);
+                this.setState({isLoading: false, data:res});
                 toast("Retrieved results");
             })
 
