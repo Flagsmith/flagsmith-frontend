@@ -174,18 +174,6 @@ const TheComponent = class extends Component {
                                                         You can two types of features for your project:
                                                         <ul>
                                                             <li>
-                                                                <strong>Remote configuration</strong>: configuration for
-                                                                a
-                                                                particular feature
-                                                                <p className={"faint"}>
-                                                                    EXAMPLE: This could be absolutely anything from a
-                                                                    hero
-                                                                    size for a website/mobile app or an environment
-                                                                    variable
-                                                                    for a server
-                                                                </p>
-                                                            </li>
-                                                            <li>
                                                                 <strong>Feature Flags</strong>: These allows you to
                                                                 toggle
                                                                 features on and off:
@@ -193,6 +181,17 @@ const TheComponent = class extends Component {
                                                                     EXAMPLE: You're working on a new messaging feature
                                                                     for
                                                                     your app but only show it on develop.
+                                                                </p>
+                                                            </li>
+                                                            <li>
+                                                                <strong>Remote configuration</strong>: configuration for
+                                                                a
+                                                                particular feature
+                                                                <p className={"faint"}>
+                                                                    EXAMPLE: This could be absolutely anything from a
+                                                                    font size for a website/mobile app or an environment
+                                                                    variable
+                                                                    for a server
                                                                 </p>
                                                             </li>
                                                         </ul>
