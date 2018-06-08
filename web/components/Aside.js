@@ -34,7 +34,7 @@ const TheComponent = class extends Component {
 						<div className="brand-container text-center">
 							<Link to="/projects">
 								<Row>
-									<img height={34} src={"/images/icon.png"}/>
+									<img height={34} src={"/images/icon-2.png"}/>
 									Bullet Train
 								</Row>
 							</Link>
