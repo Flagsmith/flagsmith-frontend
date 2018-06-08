@@ -207,7 +207,7 @@ const TheComponent = class extends Component {
                                                         When
                                                         you create a feature it makes copies of them for each
                                                         environment,
-                                                        allowing you to edit the values separately.
+                                                        allowing you to edit the values separately. You can create more environments too if you need to.
                                                     </p>
                                                 </Panel>
                                             </FormGroup>
@@ -225,7 +225,7 @@ const TheComponent = class extends Component {
                                                         <p className={"faint"}>
                                                             EXAMPLE: You're working on a new messaging feature for your
                                                             app but
-                                                            only show it on for that user.
+                                                            only show it for that user.
                                                         </p>
                                                     </p>
                                                 </Panel>
