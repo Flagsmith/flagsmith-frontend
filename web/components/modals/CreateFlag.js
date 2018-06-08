@@ -1,14 +1,22 @@
 import React, {Component, PropTypes} from 'react';
 import Highlight from '../Highlight';
+import Tabs from '../base/forms/Tabs';
+import TabItem from '../base/forms/TabItem';
 
 const TheComponent = class extends Component {
     displayName: 'TheComponent'
 
     constructor(props, context) {
         super(props, context);
-        const {name, feature_state_value, description} = this.props.isEdit ? Utils.getFlagValue(this.props.projectFlag, this.props.environmentFlag, this.props.identityFlag) : {};
+        const {name, feature_state_value, description, enabled} = this.props.isEdit ? Utils.getFlagValue(this.props.projectFlag, this.props.environmentFlag, this.props.identityFlag) : {};
         const {allowEditDescription} = this.props;
-        this.state = {name, initial_value: Utils.getTypedValue(feature_state_value), description, allowEditDescription};
+        this.state = {
+            enabled,
+            name,
+            initial_value: Utils.getTypedValue(feature_state_value),
+            description,
+            allowEditDescription
+        };
     }
 
     close() {
@@ -25,9 +33,10 @@ const TheComponent = class extends Component {
     };
 
     render() {
-        const {name, initial_value, description} = this.state;
+        const {name, initial_value, description, enabled} = this.state;
         const {isEdit, projectFlag, environmentFlag, identity} = this.props;
         const Provider = identity ? IdentityProvider : FeatureListProvider;
+        const valueString = isEdit ? "Value" : "Initial value";
         return (
             <ProjectProvider
                 id={this.props.projectId}>
@@ -40,7 +49,23 @@ const TheComponent = class extends Component {
                                     e.preventDefault();
                                     const func = isEdit ? editFlag : createFlag;
                                     this.save(func, isSaving);
-                            }}>
+                                }}>
+                                <FormGroup>
+                                    <label>Feature type</label>
+                                    <Tabs className={"pill"} value={this.state.tab}
+                                          onChange={(tab) => this.setState({tab})}>
+                                        <TabItem id={"btn-select-flags"}
+                                                 value={"FLAG"}
+                                                 tabLabel={<Row className={"row-center"}>
+                                            <ion className="tab-icon ion-ios-switch"/>
+                                            Feature Flag</Row>}/>
+                                        <TabItem
+                                            value={"CONFIG"}
+                                            id={"btn-select-remote-config"} tabLabel={<Row className={"row-center"}>
+                                            <ion className="tab-icon ion-ios-settings"/>
+                                            Remote config</Row>}/>
+                                    </Tabs>
+                                </FormGroup>
                                 <InputGroup
                                     ref={(e) => this.input = e}
                                     inputProps={{
@@ -58,17 +83,8 @@ const TheComponent = class extends Component {
                                     inputProps={{name: "featureValue", className: "full-width"}}
                                     onChange={(e) => this.setState({initial_value: Utils.getTypedValue(Utils.safeParseEventValue(e))})}
                                     type="text"
-                                    title={"Value (optional)" + (!isEdit ? "- these can be set later per environment" : "")}
+                                    title={valueString + " (optional)" + (!isEdit ? " - these can be set later per environment" : "")}
                                     placeholder="e.g. 'big' "/>
-                                {(initial_value || initial_value === false) && (
-                                    <FormGroup className={"flag-example"}>
-                                        <strong>Example response:</strong>
-                                        <Highlight className={"json no-pad"}>
-                                            {JSON.stringify({value:initial_value})}
-                                        </Highlight>
-                                    </FormGroup>
-                                )}
-
 
                                 <InputGroup
                                     value={description}
@@ -102,6 +118,14 @@ const TheComponent = class extends Component {
 
                                     </div>
                                 )}
+
+                                <FormGroup className={"flag-example"}>
+                                    <strong>Example SDK response:</strong>
+                                    <Highlight className={"json no-pad"}>
+                                        {JSON.stringify({value: initial_value, name, enabled})}
+                                    </Highlight>
+                                </FormGroup>
+
                                 <div className="pull-right">
                                     {isEdit ? (
                                         <Button id="update-feature-btn" disabled={isSaving || !name}>

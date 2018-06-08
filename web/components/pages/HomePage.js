@@ -307,11 +307,11 @@ module.exports = class extends React.Component {
                                 <div className="col-md-4">
                                     <ion className="homepage-icon icon ion-ios-laptop"/>
                                     <h5>Remote Config</h5>
-                                    <p>Change the behaviour, appearance and config of your app without publishing updates.</p>
+                                    <p>Change the behaviour, appearance and config of your app here without needing to build.</p>
                                 </div>
                                 <div className="col-md-4">
                                     <ion className="homepage-icon icon ion-ios-laptop"/>
-                                    <h5>Access anywhere</h5>
+                                    <h5>Use anywhere</h5>
                                     <p>Cross platform, use Bullet Train on web, mobile or server</p>
                                 </div>
                             </div>

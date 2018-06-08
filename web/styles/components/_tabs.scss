@@ -34,28 +34,48 @@
 	transition: left 1s cubic-bezier(0.23, 1, 0.32, 1) 0ms;
 	background-color: $tab-line-color;
 }
-
-.btn.btn-tab {
-	&:first-child{
-		border-top-left-radius: 15px;
+.tab-icon {
+	margin-right: $input-padding-x;
+}
+.tabs.pill {
+	.btn.btn-tab {
+		&:first-child{
+			border-top-left-radius: 15px;
+			border-bottom-left-radius: 15px;
+		}
+		&:last-child {
+			border-top-right-radius: 15px;
+			border-bottom-right-radius: 15px;
+		}
 	}
-	&:last-child {
-		border-top-right-radius: 15px;
+	.tabs-nav {
+		border-radius: 15px;
 	}
-	color: $tab-inactive-color;
-	&.tab-active {
-		color: $tab-active-color;
+	.tab-line {
+		display: none;
 	}
 }
+	.btn.btn-tab {
+		&:first-child{
+			border-top-left-radius: 15px;
+		}
+		&:last-child {
+			border-top-right-radius: 15px;
+		}
+		color: $tab-inactive-color;
+		&.tab-active {
+			color: $tab-active-color;
+		}
+	}
 
-.tab-item {
-	display: none;
-	&.tab-active {
+	.tab-item {
+		display: none;
+		&.tab-active {
+			display: block;
+		}
+	}
+
+	.tab-icon {
+		font-size: 1.4em;
 		display: block;
 	}
-}
-
-.tab-icon {
-	font-size: 1.4em;
-	display: block;
-}

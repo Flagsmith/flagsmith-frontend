@@ -1,6 +1,7 @@
 @import "../variables";
 
 .chip {
+	align-self: flex-start !important;
 	height: 26px;
 	background-color: $input-placeholder-color;
 	padding: 0 10px;

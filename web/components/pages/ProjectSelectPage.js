@@ -50,11 +50,11 @@ const TheComponent = class extends Component {
                             ) : (<div className="text-center">
                                 <h3>Great! Now you can create your first project.</h3>
                                 <p>
-                                    When you create a project we'll also generate a development and production
-                                    environment for you.
+                                    When you create a project we'll also generate a <strong>development</strong> and <strong>production</strong>
+                                    {" "}environment for you.
                                 </p>
                                 <p>
-                                    You can then create features for your project then enable and configure them per
+                                    You can create features for your project, then enable and configure them per
                                     environment.
                                 </p>
                             </div>)
@@ -84,14 +84,12 @@ const TheComponent = class extends Component {
                                             }
                                             renderNoResults={<div className={"text-center"}>
                                                 <div className="text-center">
-                                                    <img src="/images/tumble.png" alt="No projects"
-                                                         className="key-graphic"/>
                                                     <div>
                                                         <button onClick={this.newProject}
                                                                 className={"btn btn-primary btn-lg"}
                                                                 id="create-first-project-btn">
                                                             <ion className="icon ion-ios-rocket"/>
-                                                            Create a project
+                                                            {" "}Create a project
                                                         </button>
                                                     </div>
                                                 </div>
