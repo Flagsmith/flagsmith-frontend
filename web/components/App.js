@@ -3,6 +3,7 @@ import {Link} from 'react-router';
 import Aside from './Aside';
 import Popover from '../components/base/Popover';
 import AccountStore from '../../common/stores/account-store';
+import Feedback from '../components/modals/Feedback';
 
 
 export default class App extends Component {
@@ -37,6 +38,10 @@ export default class App extends Component {
     onLogout = () => {
         this.context.router.replace('/');
     };
+
+    feedback = () => {
+        openModal('Feedback', <Feedback />)
+    }
 
     render() {
         const pageHasAside = this.props.params.environmentId;
@@ -112,6 +117,9 @@ export default class App extends Component {
                         </div>
                     )}
                 </AccountProvider>
+                <div className="feedback-btn">
+                    <Button onClick={this.feedback} className="btn btn-primary">Give Us Feedback</Button>
+                </div>
             </div>
         );
     }
