@@ -23,7 +23,7 @@ export default class App extends Component {
         const {redirect} = this.props.location.query;
 
 
-        if (!AccountStore.getOrganisation() && document.location.href.indexOf('invite')==-1) { //If user has no organisation redirect to /create
+        if (!AccountStore.getOrganisation() && document.location.href.indexOf('invite') == -1) { //If user has no organisation redirect to /create
             this.context.router.replace('/create');
             return
         }
@@ -39,25 +39,32 @@ export default class App extends Component {
     };
 
     render() {
-        const pageHasAside = this.props.params.environmentId;
+        const {projectId, environmentId} = this.props.params;
+        const pageHasAside = environmentId;
+        const redirect = this.props.location.query.redirect ? `?redirect=${this.props.location.query.redirect}` : "";
+
         return (
             <div>
                 <AccountProvider onNoUser={this.onNoUser} onLogout={this.onLogout} onLogin={this.onLogin}>
-                    {({isLoading, user, organisation}) => (
+                    {({isLoading, user, organisation}, {loginDemo}) => (
                         <div className={pageHasAside && "aside-body"}>
                             <nav className={"navbar navbar-fixed-top navbar-light " + (pageHasAside && "navbar-aside")}>
                                 <div className="navbar-left">
                                     <div className="navbar-nav">
-                                        <Link to={"/"} className="nav-item nav-item-brand nav-link">
-                                            <Row>
-                                                <img height={34} src={"/images/icon-light-2.png"}/>
-                                                Bullet Train
-                                            </Row>
-                                        </Link>
+                                        {!projectId && (
+                                            <Link to={user ? "/projects" : "/"}
+                                                  className="nav-item nav-item-brand nav-link">
+                                                <Row>
+                                                    <img title={"Bullet Train"} height={24}
+                                                         src={"/images/bullet-train-black.svg"}/>
+                                                </Row>
+                                            </Link>
+                                        )}
+
                                     </div>
                                 </div>
                                 <div className="navbar-right">
-                                    {user && (
+                                    {user ? (
                                         <div className="flex-column org-nav">
                                             <Popover className="popover-right"
                                                      renderTitle={(toggle) => organisation && (
@@ -80,17 +87,25 @@ export default class App extends Component {
                                                                 }}/>
                                                         )}
                                                         <div>
-                                                            <Link id="create-org-link" onClick={toggle} to="/create" >
+                                                            <Link id="create-org-link" onClick={toggle} to="/create">
                                                                 Create Organisation
                                                             </Link>
                                                         </div>
 
-                                                        <a id="logout-link" href="#" onClick={() => AppActions.setUser(null)}
+                                                        <a id="logout-link" href="#"
+                                                           onClick={() => AppActions.setUser(null)}
                                                            to="exampleone">Logout</a>
                                                     </div>
                                                 )}
                                             </Popover>
                                         </div>
+                                    ) : (
+                                        <ul className="nav-list dark list-unstyled">
+                                            <li><a onClick={loginDemo}>Demo</a></li>
+                                            <li><a target={"_blank"} href="https://docs.bullet-train.io/">Docs</a></li>
+                                            <li><Link to={`/login${redirect}`} className="bold-link login">Login <ion
+                                                className="ion-ios-arrow-dropright"/></Link></li>
+                                        </ul>
                                     )}
 
                                 </div>

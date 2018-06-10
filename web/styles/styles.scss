@@ -20,6 +20,26 @@
   background-color: #f1f1f1
 }
 
+.feature-value-container {
+  font-size: 0.8em;
+  background: #23364a;
+  color: #bababa;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  .feature-value {
+    color: #6896ba;
+  }
+  &.string {
+    .quot {
+      color: #6a8759;
+    }
+    .feature-value {
+      color: #6a8759;
+    }
+  }
+}
+
 .clickable {
   cursor: pointer;
 }

@@ -7,7 +7,7 @@ const Tooltip = class extends React.Component {
 	render() {
 		return (
 			<span className="question-tooltip">
-                    <span className="fa fa-question-circle" data-for={this.id} data-tip/>
+				{this.props.title ? <span data-for={this.id} data-tip>{this.props.title}</span> : <span className="ion ion-ios-help" data-for={this.id} data-tip/>}
                 <ReactTooltip id={this.id} place={this.props.place || "top"} type="dark" effect="solid">
                     {this.props.children}
                 </ReactTooltip>
