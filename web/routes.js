@@ -26,6 +26,7 @@ export default (
         <Route path="login" component={HomePage}/>
         <Route path="signup" component={HomePage}/>
         <Route path="projects" component={ProjectSelectPage}/>
+        <Route path="password-reset/confirm/:uid/:token/" component={PasswordResetPage}/>
         <Route path="project/:projectId/environment/:environmentId/features" component={FlagsPage}/>
         <Route path="invite/:id" component={InvitePage}/>
         <Route path="project/:projectId/environment/:environmentId/settings" component={EnvironmentSettingsPage}/>
