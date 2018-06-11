@@ -19,15 +19,29 @@ var controller = {
                         return controller.onLogin();
                     } else {
                         return data.post(`${Project.api}organisations/?format=json`, {name: organisation_name})
-                            .then(()=>controller.onLogin())
+                            .then(() => controller.onLogin())
                     }
+                })
+                .catch((e) => API.ajaxHandler(store, e))
+        },
+        resetPassword: (uid, token, new_password1, new_password2) => {
+            store.saving();
+            data.post(`${Project.api}auth/password/reset/confirm/`, {
+                uid,
+                token,
+                new_password1,
+                new_password2,
+            })
+                .then((res) => {
+                    debugger
+                    store.saved();
                 })
                 .catch((e) => API.ajaxHandler(store, e))
         },
         setToken: (token) => {
             store.user = {};
-            AsyncStorage.getItem("isDemo",(err,res)=>{
-                if(res){
+            AsyncStorage.getItem("isDemo", (err, res) => {
+                if (res) {
                     store.isDemo = true;
                 }
                 data.setToken(token);
@@ -176,6 +190,9 @@ store.dispatcherIndex = Dispatcher.register(store, function (payload) {
             break;
         case Actions.REGISTER:
             controller.register(action.details, action.isInvite);
+            break;
+        case Actions.RESET_PASSWORD:
+            controller.resetPassword(action.uid, action.token, action.new_password1, action.new_password2);
             break;
         case Actions.LOGIN:
             controller.login(action.details);

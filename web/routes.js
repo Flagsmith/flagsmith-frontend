@@ -12,6 +12,7 @@ import FlagsPage from './components/pages/FeaturesPage';
 import OrganisationSettingsPage from './components/pages/OrganisationSettingsPage';
 import ComingSoon from './components/pages/ComingSoonPage';
 import ProjectSettingsPage from './components/pages/ProjectSettingsPage';
+import PasswordResetPage from './components/pages/PasswordResetPage';
 import EnvironmentSettingsPage from './components/pages/EnvironmentSettingsPage';
 import InvitePage from './components/pages/InvitePage';
 import NotFoundPage from './components/pages/NotFoundPage';
