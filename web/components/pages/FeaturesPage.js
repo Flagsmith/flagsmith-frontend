@@ -74,6 +74,14 @@ const TheComponent = class extends Component {
                                 <div>
                                     {projectFlags && projectFlags.length ? (
                                         <div>
+                                            <h3>Features</h3>
+                                            <p>
+                                                View and manage <Tooltip title={<a href={"#"}>feature flags</a>}
+                                                                         place="right">{Constants.strings.FEATURE_FLAG_DESCRIPTION}</Tooltip> and {" "}
+                                                <Tooltip title={<a href={"#"}>remote config</a>}
+                                                         place="right">{Constants.strings.REMOTE_CONFIG_DESCRIPTION}</Tooltip> for
+                                                your selected environment.
+                                            </p>
                                             <FormGroup>
                                                 <PanelSearch
                                                     className={"no-pad"}
@@ -107,11 +115,9 @@ const TheComponent = class extends Component {
                                                                                 toggleFlag(i, environments)
                                                                             })}/>
                                                                     ) : (
-                                                                        <span
+                                                                        <FeatureValue
                                                                             onClick={() => this.editFlag(projectFlags[i], environmentFlags[id])}
-                                                                            className={"subtitle"}>
-                                                                            Value: <span className={"feature-value"}>{environmentFlags[id] && environmentFlags[id].feature_state_value + ""}</span>
-														                </span>
+                                                                            value={environmentFlags[id] && environmentFlags[id].feature_state_value}/>
                                                                     )}
                                                                 </Column>
                                                                 <Column>

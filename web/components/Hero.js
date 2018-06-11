@@ -15,26 +15,6 @@ const TheComponent = class extends React.Component {
 		const {onDemoClick} = this.props;
 		return (
 			<div>
-				<nav className={"navbar navbar-fixed-top navbar-light"}>
-					<div className="navbar-left">
-						<div className="navbar-nav">
-							<Link to={"/"} className="nav-item nav-item-brand nav-link">
-								<Row>
-									<img height={28} src={"/images/bullet-train-black.svg"}/>
-								</Row>
-							</Link>
-						</div>
-					</div>
-					<div className="navbar-right">
-						<div className="navbar-nav">
-							<ul className="nav-list dark list-unstyled">
-								<li><a onClick={this.props.onDemoClick}>Demo</a></li>
-								<li><a target={"_blank"} href="https://docs.bullet-train.io/">Docs</a></li>
-								<li><Link to={this.props.loginLink} className="bold-link login">Login <ion className="ion-ios-arrow-dropright"/></Link></li>
-							</ul>
-						</div>
-					</div>
-				</nav>
 				<div className={"hero"}>
 					<div className="col-md-6 col-xs-12">
 						<div className="col-md-8 push-md-4 text-left">

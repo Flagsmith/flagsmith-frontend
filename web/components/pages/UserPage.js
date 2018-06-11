@@ -41,7 +41,7 @@ const TheComponent = class extends Component {
     };
 
     confirmRemove = (projectFlag, cb) => {
-        openModal("Remove Feature", <ConfirmRemoveFeature
+        openModal("Reset User Feature", <ConfirmRemoveFeature
             identity={this.props.params.id}
             environmentId={this.props.params.environmentId}
             projectFlag={projectFlag}
@@ -63,9 +63,8 @@ const TheComponent = class extends Component {
                                             {this.props.params.id}
                                         </h3>
                                         <p>
-                                            View and manage features states for this user. To view and manage features
-                                            for all users within this environment go to <Link
-                                            to={`/project/${projectId}/environment/${environmentId}/features`}>features</Link>.
+                                            View and manage feature states for this user. This will override any feature
+                                            states you have for your current environment for this user only. Any features that are not overriden for this user will fallback to the environment defaults.
                                         </p>
                                         <FormGroup>
                                             <PanelSearch
@@ -117,29 +116,25 @@ const TheComponent = class extends Component {
                                                                                 })
                                                                             })}/>
                                                                     ) : (
-                                                                        <span className={"subtitle"}>
-                                                                            Value: <span
-                                                                            className={"feature-value"}>{values.feature_state_value + ""}</span>
-														                </span>
+                                                                        <FeatureValue
+                                                                            value={values.feature_state_value + ""}/>
                                                                     )}
 
                                                                 </Column>
                                                                 {identityFlag && (
                                                                     <Column>
-                                                                        <a
+                                                                        <Button
                                                                             onClick={() => this.confirmRemove(projectFlags[i], () => {
                                                                                 removeFlag({
                                                                                     environmentId: this.props.params.environmentId,
                                                                                     identity: this.props.params.id,
                                                                                     identityFlag
                                                                                 })
-                                                                            })}
-                                                                            className={"btn btn-link"}>
+                                                                            })}>
                                                                             Reset
-                                                                        </a>
+                                                                        </Button>
                                                                     </Column>
                                                                 )}
-
                                                             </Row>
                                                         </Row>
                                                     )
@@ -166,55 +161,55 @@ const TheComponent = class extends Component {
                                             />
                                         </FormGroup>
                                     </div>
-                                    <div className={"col-md-12"}>
-                                        <FormGroup>
-                                            <PanelSearch
-                                                className={"no-pad"}
-                                                title="User Traits"
-                                                items={[1]}
-                                                renderRow={({name, id, enabled, created_date}, i) =>
-                                                    <div className={"text-center"}>
-                                                        <FormGroup>
-                                                            Coming Soon
-                                                        </FormGroup>
-                                                    </div>
-                                                }
-                                                renderNoResults={<div className={"text-center"}>
-                                                    <FormGroup>
-                                                        Coming Soon
-                                                    </FormGroup>
-                                                </div>}
-                                                filterRow={({name}, search) => {
-                                                    return name.toLowerCase().indexOf(search) > -1;
-                                                }}
-                                            />
-                                        </FormGroup>
-                                    </div>
+                                    {/*<div className={"col-md-12"}>*/}
+                                        {/*<FormGroup>*/}
+                                            {/*<PanelSearch*/}
+                                                {/*className={"no-pad"}*/}
+                                                {/*title="User Traits"*/}
+                                                {/*items={[1]}*/}
+                                                {/*renderRow={({name, id, enabled, created_date}, i) =>*/}
+                                                    {/*<div className={"text-center"}>*/}
+                                                        {/*<FormGroup>*/}
+                                                            {/*Coming Soon*/}
+                                                        {/*</FormGroup>*/}
+                                                    {/*</div>*/}
+                                                {/*}*/}
+                                                {/*renderNoResults={<div className={"text-center"}>*/}
+                                                    {/*<FormGroup>*/}
+                                                        {/*Coming Soon*/}
+                                                    {/*</FormGroup>*/}
+                                                {/*</div>}*/}
+                                                {/*filterRow={({name}, search) => {*/}
+                                                    {/*return name.toLowerCase().indexOf(search) > -1;*/}
+                                                {/*}}*/}
+                                            {/*/>*/}
+                                        {/*</FormGroup>*/}
+                                    {/*</div>*/}
 
-                                    <div className={"col-md-12"}>
-                                        <FormGroup>
-                                            <PanelSearch
-                                                className={"no-pad"}
-                                                title="Events"
-                                                items={[1]}
-                                                renderRow={({name, id, enabled, created_date}, i) =>
-                                                    <div className={"text-center"}>
-                                                        <FormGroup>
-                                                            Coming Soon
-                                                        </FormGroup>
-                                                    </div>
-                                                }
-                                                renderNoResults={<div className={"text-center"}>
-                                                    <FormGroup>
-                                                        Coming Soon
-                                                    </FormGroup>
-                                                </div>}
-                                                filterRow={({name}, search) => {
-                                                    return name.toLowerCase().indexOf(search) > -1;
-                                                }}
-                                            />
-                                        </FormGroup>
-                                    </div>
+                                    {/*<div className={"col-md-12"}>*/}
+                                        {/*<FormGroup>*/}
+                                            {/*<PanelSearch*/}
+                                                {/*className={"no-pad"}*/}
+                                                {/*title="Events"*/}
+                                                {/*items={[1]}*/}
+                                                {/*renderRow={({name, id, enabled, created_date}, i) =>*/}
+                                                    {/*<div className={"text-center"}>*/}
+                                                        {/*<FormGroup>*/}
+                                                            {/*Coming Soon*/}
+                                                        {/*</FormGroup>*/}
+                                                    {/*</div>*/}
+                                                {/*}*/}
+                                                {/*renderNoResults={<div className={"text-center"}>*/}
+                                                    {/*<FormGroup>*/}
+                                                        {/*Coming Soon*/}
+                                                    {/*</FormGroup>*/}
+                                                {/*</div>}*/}
+                                                {/*filterRow={({name}, search) => {*/}
+                                                    {/*return name.toLowerCase().indexOf(search) > -1;*/}
+                                                {/*}}*/}
+                                            {/*/>*/}
+                                        {/*</FormGroup>*/}
+                                    {/*</div>*/}
                                 </div>
                             </div>
                         )

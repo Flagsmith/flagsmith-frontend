@@ -58,6 +58,8 @@ var Constants = {
         "USERS": "Users Page"
     },
     strings: {
+        REMOTE_CONFIG_DESCRIPTION: "A feature that you can turn configure per environment or user. E.g. a font size for a banner or an environment variable for a server.",
+        FEATURE_FLAG_DESCRIPTION: "A feature that you can turn on or off per environment or user. E.g. instant messaging for a mobile app or an endpoint for an API.",
         ORGANISATION_DESCRIPTION: "This is used to create a default organisation for team members to create and manage projects.",
         ENVIRONMENT_DESCRIPTION: "Environments are versions of your projects, environments within a project all share the same features but can be individually turned on/off or have different values."
     },

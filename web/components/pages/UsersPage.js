@@ -31,9 +31,8 @@ const TheComponent = class extends Component {
                     <div>
                         <h3>Users</h3>
                         <p>
-                            View and manage features states for individual users. This will override the default feature
-                            settings <Link to={`/project/${projectId}/environment/${environmentId}/features`}>for your
-                            selected environment</Link>.
+                            View and manage features states for individual users. This will override individual default feature
+                            settings for your selected environment.
                         </p>
                         <FormGroup>
                             <IdentityListProvider>

@@ -40,8 +40,7 @@ module.exports = class extends React.Component {
                 {({isLoading, isSaving, error}, {register, loginDemo}) => (
                     <div>
                         <Hero
-                            onDemoClick={loginDemo}
-                            loginLink={`/login${redirect}`}>
+                            onDemoClick={loginDemo}>
                             {isLogin ? (
                                 <div className="card signup-form container animated fadeIn col-md-8 col-xl-8">
                                     <AccountProvider>
