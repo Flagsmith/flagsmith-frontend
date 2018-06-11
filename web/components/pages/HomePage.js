@@ -316,7 +316,7 @@ module.exports = class extends React.Component {
                                 <div className="col-md-4">
                                     <ion className="homepage-icon icon ion-ios-laptop"/>
                                     <h5>Use anywhere</h5>
-                                    <p>Cross platform, use Bullet Train on web, mobile or server</p>
+                                    <p>Integrate Bullet Train with your website, mobile apps or server</p>
                                 </div>
                             </div>
                             <div className="homepage-features col-md-6 push-md-3 row mt-5 upcoming">
