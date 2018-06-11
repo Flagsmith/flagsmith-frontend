@@ -33,7 +33,6 @@ var controller = {
                 new_password2,
             })
                 .then((res) => {
-                    debugger
                     store.saved();
                 })
                 .catch((e) => API.ajaxHandler(store, e))
