@@ -32,8 +32,7 @@ module.exports = class extends React.Component {
                 {({isLoading, isSaving, error}, {register, loginDemo}) => (
                     <div>
                         <Hero
-                            onDemoClick={loginDemo}
-                            loginLink={`/login${redirect}`}>
+                            onDemoClick={loginDemo}>
                             {isLogin ? (
                                 <div className="card signup-form container animated fadeIn col-md-8 col-xl-8">
                                     <AccountProvider>
@@ -342,7 +341,7 @@ module.exports = class extends React.Component {
                     <footer className="homepage clearfix">
                         <div className="clearfix">
                             <div className="brand-footer float-left">
-                                <img src="./images/bullet-train-1-mark.png" alt="Bullet Train" />
+                                <img src="./images/icon-light-2.png" alt="Bullet Train" />
                             </div>
                             <ul className="float-right nav-list">
                                 <li><a onClick={loginDemo}>Demo</a></li>

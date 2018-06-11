@@ -33,6 +33,7 @@ window.InputGroup = require('../components/base/forms/InputGroup');
 
 
 window.PanelSearch = require('../components/PanelSearch');
+window.FeatureValue = require('../components/FeatureValue');
 window.CodeHelp = require('../components/CodeHelp');
 
 //Useful for components used all the time within a project
