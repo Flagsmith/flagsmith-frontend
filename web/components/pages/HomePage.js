@@ -1,5 +1,6 @@
 import React from "react";
 import AccountStore from '../../../common/stores/account-store';
+import ForgotPasswordModal from '../ForgotPasswordModal';
 import Hero from '../Hero';
 
 module.exports = class extends React.Component {
@@ -20,6 +21,13 @@ module.exports = class extends React.Component {
         }
 
         API.trackPage(Constants.pages.HOME);
+    }
+
+    showForgotPassword = (e) => {
+        e.preventDefault()
+        openModal('Forgot password', <ForgotPasswordModal onComplete={() => {
+            toast("Forgot password submitted")
+        }}/>)
     }
 
     render = () => {
@@ -47,7 +55,7 @@ module.exports = class extends React.Component {
                                                     <FormGroup>
                                                         <InputGroup
                                                             inputProps={{
-                                                                name:"email",
+                                                                name: "email",
                                                                 className: "full-width",
                                                                 error: error && error.email
                                                             }}
@@ -63,7 +71,7 @@ module.exports = class extends React.Component {
                                                     <FormGroup>
                                                         <InputGroup
                                                             inputProps={{
-                                                                name:"password",
+                                                                name: "password",
                                                                 className: "full-width",
                                                                 error: error && error.password1
                                                             }}
@@ -87,8 +95,9 @@ module.exports = class extends React.Component {
                                                             Login
                                                         </button>
                                                         <div className={"text-right"}>
-                                                            {/*<Link to={`/password-recovery${redirect}`}*/}
-                                                                  {/*onClick={this.showForgotPassword}>Forgot password?</Link>*/}
+                                                            <Link to={`/password-recovery${redirect}`}
+                                                                  onClick={this.showForgotPassword}>Forgot
+                                                                password?</Link>
                                                         </div>
                                                     </FormGroup>
                                                 </fieldset>
@@ -96,8 +105,7 @@ module.exports = class extends React.Component {
                                                     Please check your details and try again
                                                 </div>}
                                                 <div>
-                                                    <Link to={`/${redirect}`}
-                                                          onClick={this.showForgotPassword}>Not a member?</Link>
+                                                    <Link to={`/${redirect}`}>Not a member?</Link>
                                                 </div>
 
                                             </form>
@@ -121,7 +129,7 @@ module.exports = class extends React.Component {
                                                     <div className={"col-md-6"}>
                                                         <InputGroup
                                                             inputProps={{
-                                                                name:"firstName",
+                                                                name: "firstName",
                                                                 className: "full-width",
                                                                 error: error && error.first_name
                                                             }}
@@ -137,7 +145,7 @@ module.exports = class extends React.Component {
                                                     <div className={"col-md-6"}>
                                                         <InputGroup
                                                             inputProps={{
-                                                                name:"lastName",
+                                                                name: "lastName",
                                                                 className: "full-width",
                                                                 error: error && error.last_name
                                                             }}
@@ -155,8 +163,9 @@ module.exports = class extends React.Component {
                                                     <FormGroup>
                                                         <InputGroup
                                                             inputProps={{
-                                                                name:"companyName",
-                                                                className: "full-width"}}
+                                                                name: "companyName",
+                                                                className: "full-width"
+                                                            }}
                                                             title={
                                                                 <span>
 															Organisation Name {(
@@ -178,7 +187,7 @@ module.exports = class extends React.Component {
                                                 <FormGroup>
                                                     <InputGroup
                                                         inputProps={{
-                                                            name:"email",
+                                                            name: "email",
                                                             className: "full-width",
                                                             error: error && error.email
                                                         }}
@@ -216,8 +225,7 @@ module.exports = class extends React.Component {
                                                         Sign Up
                                                     </button>
                                                 </FormGroup>
-                                                <Link id="existing-member-btn" to={`/login${redirect}`}
-                                                      onClick={this.showForgotPassword}>Already a member?</Link>
+                                                <Link id="existing-member-btn" to={`/login${redirect}`}>Already a member?</Link>
 
                                             </fieldset>
                                             {error &&
@@ -258,7 +266,10 @@ module.exports = class extends React.Component {
                                             </a>
                                         </div>
                                     </div>
-                                    <p className="text-small margin-top no-mb">Don't worry if you don't see your preferred tech, we'll be adding support for more clients as we grow but please <a href="mailto:bullettrain@solidstategroup.com">get in touch</a> and let us know what you'd like to see.</p>
+                                    <p className="text-small margin-top no-mb">Don't worry if you don't see your
+                                        preferred tech, we'll be adding support for more clients as we grow but
+                                        please <a href="mailto:bullettrain@solidstategroup.com">get in touch</a> and let
+                                        us know what you'd like to see.</p>
                                 </div>
                             </div>
                         </div>
@@ -268,39 +279,40 @@ module.exports = class extends React.Component {
                             </div>
                         </div>
                         {/*<div className="featured-container">*/}
-                            {/*<div className="col-md-1">*/}
-                                {/*<ul className="step-list vertical">*/}
-                                    {/*<li><span>1</span></li>*/}
-                                {/*</ul>*/}
-                            {/*</div>*/}
-                            {/*<div className={"text-center col-md-6 push-lg-3"}>*/}
-                                {/*<h2>How Bullet Train works</h2>*/}
-                            {/*</div>*/}
-                            {/*<div className="row">*/}
-                                {/*<div className="col-md-3">*/}
-                                    {/*<div className="round-container">*/}
-                                        {/*<ion className="homepage-icon icon ion-ios-rocket"/>*/}
-                                    {/*</div>*/}
-                                    {/*<p>Create a project</p>*/}
-                                {/*</div>*/}
-                                {/*<div className="col-md-3">*/}
-                                    {/*<ion className="homepage-icon icon ion-ios-rocket"/>*/}
-                                    {/*<p>Add your features, whether they are enabled and what values they have for your development and production evnironments</p>*/}
-                                {/*</div>*/}
-                                {/*<div className="col-md-3">*/}
-                                    {/*<ion className="homepage-icon icon ion-ios-rocket"/>*/}
-                                    {/*<p>Integrate an sdk into your project</p>*/}
-                                {/*</div>*/}
-                                {/*<div className="col-md-3">*/}
-                                    {/*<ion className="homepage-icon icon ion-ios-rocket"/>*/}
-                                    {/*<p>Identify users when they login to your app and configure what they see from your dashboard</p>*/}
-                                {/*</div>*/}
-                            {/*</div>*/}
+                        {/*<div className="col-md-1">*/}
+                        {/*<ul className="step-list vertical">*/}
+                        {/*<li><span>1</span></li>*/}
+                        {/*</ul>*/}
+                        {/*</div>*/}
+                        {/*<div className={"text-center col-md-6 push-lg-3"}>*/}
+                        {/*<h2>How Bullet Train works</h2>*/}
+                        {/*</div>*/}
+                        {/*<div className="row">*/}
+                        {/*<div className="col-md-3">*/}
+                        {/*<div className="round-container">*/}
+                        {/*<ion className="homepage-icon icon ion-ios-rocket"/>*/}
+                        {/*</div>*/}
+                        {/*<p>Create a project</p>*/}
+                        {/*</div>*/}
+                        {/*<div className="col-md-3">*/}
+                        {/*<ion className="homepage-icon icon ion-ios-rocket"/>*/}
+                        {/*<p>Add your features, whether they are enabled and what values they have for your development and production evnironments</p>*/}
+                        {/*</div>*/}
+                        {/*<div className="col-md-3">*/}
+                        {/*<ion className="homepage-icon icon ion-ios-rocket"/>*/}
+                        {/*<p>Integrate an sdk into your project</p>*/}
+                        {/*</div>*/}
+                        {/*<div className="col-md-3">*/}
+                        {/*<ion className="homepage-icon icon ion-ios-rocket"/>*/}
+                        {/*<p>Identify users when they login to your app and configure what they see from your dashboard</p>*/}
+                        {/*</div>*/}
+                        {/*</div>*/}
                         {/*</div>*/}
                         <div className="feature-container">
                             <div className={"text-center col-md-12 col-lg-6 push-lg-3"}>
                                 <h2>Release configurable features to segmented user groups</h2>
-                                <p>With Bullet Train you can configure attributes of your features as well as turning them on or off for specific user groups.</p>
+                                <p>With Bullet Train you can configure attributes of your features as well as turning
+                                    them on or off for specific user groups.</p>
                             </div>
                             <div className={"homepage-features col-md-6 push-md-3 row mt-5"}>
                                 <div className="col-md-4">
@@ -311,7 +323,8 @@ module.exports = class extends React.Component {
                                 <div className="col-md-4">
                                     <ion className="homepage-icon icon ion-ios-laptop"/>
                                     <h5>Remote Config</h5>
-                                    <p>Change the behaviour, appearance and config of your app here without needing to build.</p>
+                                    <p>Change the behaviour, appearance and config of your app here without needing to
+                                        build.</p>
                                 </div>
                                 <div className="col-md-4">
                                     <ion className="homepage-icon icon ion-ios-laptop"/>

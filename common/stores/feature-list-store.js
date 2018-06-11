@@ -25,7 +25,6 @@ var controller = {
         createFlag(projectId, environmentId, flag) {
             store.saving();
             API.trackEvent(Constants.events.CREATE_FEATURE);
-            debugger
             data.post(`${Project.api}projects/${projectId}/features/?format=json`, flag)
                 .then((res) => {
                     return Promise.all([

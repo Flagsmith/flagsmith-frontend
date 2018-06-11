@@ -12,6 +12,7 @@ import FlagsPage from './components/pages/FeaturesPage';
 import OrganisationSettingsPage from './components/pages/OrganisationSettingsPage';
 import ComingSoon from './components/pages/ComingSoonPage';
 import ProjectSettingsPage from './components/pages/ProjectSettingsPage';
+import PasswordResetPage from './components/pages/PasswordResetPage';
 import EnvironmentSettingsPage from './components/pages/EnvironmentSettingsPage';
 import InvitePage from './components/pages/InvitePage';
 import NotFoundPage from './components/pages/NotFoundPage';
@@ -26,6 +27,7 @@ export default (
         <Route path="login" component={HomePage}/>
         <Route path="signup" component={HomePage}/>
         <Route path="projects" component={ProjectSelectPage}/>
+        <Route path="password-reset/confirm/:uid/:token/" component={PasswordResetPage}/>
         <Route path="project/:projectId/environment/:environmentId/features" component={FlagsPage}/>
         <Route path="invite/:id" component={InvitePage}/>
         <Route path="project/:projectId/environment/:environmentId/settings" component={EnvironmentSettingsPage}/>
