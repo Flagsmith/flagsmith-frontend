@@ -149,6 +149,12 @@ footer.homepage{
 	}
 }
 
+.feedback-btn {
+	position: fixed;
+	right: 20px;
+	bottom: 20px;
+}
+
 @media (max-width: 576px) {
 	.hero{
 		display:block;
