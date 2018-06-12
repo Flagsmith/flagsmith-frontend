@@ -3,7 +3,7 @@ import AccountStore from '../../../common/stores/account-store';
 import ForgotPasswordModal from '../ForgotPasswordModal';
 import Hero from '../Hero';
 
-module.exports = class extends React.Component {
+const HomePage = class extends React.Component {
     static contextTypes = {
         router: React.PropTypes.object.isRequired
     };
@@ -35,6 +35,7 @@ module.exports = class extends React.Component {
         const redirect = this.props.location.query.redirect ? `?redirect=${this.props.location.query.redirect}` : "";
         const isInvite = document.location.href.indexOf("invite") != -1;
         const isLogin = document.location.href.indexOf("login") != -1;
+        const {hasFeature} = this.props;
         return (
             <AccountProvider onLogout={this.onLogout} onLogin={this.onLogin}>
                 {({isLoading, isSaving, error}, {register, loginDemo}) => (
@@ -94,11 +95,14 @@ module.exports = class extends React.Component {
                                                             className="btn btn-primary full-width" type="submit">
                                                             Login
                                                         </button>
-                                                        <div className={"text-right"}>
-                                                            <Link to={`/password-recovery${redirect}`}
-                                                                  onClick={this.showForgotPassword}>Forgot
-                                                                password?</Link>
-                                                        </div>
+                                                        {hasFeature('forgot_password') && (
+                                                            <div className={"text-right"}>
+                                                                <Link to={`/password-recovery${redirect}`}
+                                                                      onClick={this.showForgotPassword}>Forgot
+                                                                    password?</Link>
+                                                            </div>
+                                                        )}
+
                                                     </FormGroup>
                                                 </fieldset>
                                                 {error && <div id="error-alert" className="alert alert-danger">
@@ -372,3 +376,4 @@ module.exports = class extends React.Component {
         );
     }
 };
+module.exports = ConfigProvider(HomePage);

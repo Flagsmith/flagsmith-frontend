@@ -24,6 +24,12 @@ module.exports = Object.assign({}, require('./base/_app-actions'), {
 			projectId
 		});
 	},
+    getConfig: function (projectId) { //refresh the entire app
+		Dispatcher.handleViewAction({
+			actionType: Actions.GET_CONFIG,
+			projectId
+		});
+	},
 	resetPassword: function (data) { //refresh the entire app
 		Dispatcher.handleViewAction({
 			actionType: Actions.RESET_PASSWORD,

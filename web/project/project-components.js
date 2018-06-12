@@ -14,6 +14,7 @@ window.SelectedProjectProvider = require('../../common/providers/SelectedProject
 window.ProjectProvider = require('../../common/providers/ProjectProvider');
 window.EnvironmentProvider = require('../../common/providers/EnvironmentProvider');
 window.IdentityListProvider = require('../../common/providers/IdentityListProvider');
+window.ConfigProvider = require('../../common/providers/ConfigProvider');
 window.OrganisationSelect = require('../components/OrganisationSelect');
 
 

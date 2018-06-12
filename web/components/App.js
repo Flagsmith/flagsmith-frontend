@@ -18,6 +18,7 @@ export default class App extends Component {
 
     constructor(props, context) {
         super(props, context);
+        AppActions.getConfig();
     }
 
     onLogin = () => {
