@@ -13,6 +13,8 @@ var controller = {
         loaded(oldFlags) { //Occurs whenever flags are changed
             if (!oldFlags) {
                 store.loaded();
+            } else {
+                store.changed();
             }
             store.model = bulletTrain.getAllFlags();
         }
