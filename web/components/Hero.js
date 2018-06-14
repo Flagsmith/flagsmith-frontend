@@ -24,7 +24,7 @@ const TheComponent = class extends React.Component {
 								Bullet Train lets you manage feature flags and remote config across web, mobile and server side applications. Deliver true Continuous Integration. Get builds out faster. Control who has access to new features.
 							</p>
 							<p className="">
-								We're <a href="https://github.com/SolidStateGroup/Bullet-Train-API">100% Open Source</a>. Host with us or on your own infrastructure.
+								We're <a href="https://github.com/SolidStateGroup?utf8=%E2%9C%93&q=bullet-train" target="_blank">100% Open Source</a>. Host with us or on your own infrastructure.
 							</p>
 							{onDemoClick && (
                                 <div className="hero-cta">
