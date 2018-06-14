@@ -184,7 +184,7 @@ const TheComponent = class extends Component {
                                             <FormGroup>
                                                 <Panel icon={"ion-ios-rocket"} title={"1. creating a feature"}>
                                                     <p>
-                                                        You can two types of features for your project:
+                                                        You can create two types of features for your project:
                                                         <ul>
                                                             <li>
                                                                 <strong>Feature Flags</strong>: These allows you to
