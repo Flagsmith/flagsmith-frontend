@@ -151,8 +151,12 @@ footer.homepage{
 
 .feedback-btn {
 	position: fixed;
+	z-index: 1001;
 	right: 20px;
-	bottom: 20px;
+	bottom: 10px;
+	.btn {
+		border-radius: 20px;
+	}
 }
 
 @media (max-width: 576px) {

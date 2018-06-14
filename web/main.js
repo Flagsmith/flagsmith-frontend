@@ -26,9 +26,10 @@ AsyncStorage.getItem("t", (err, res) => {
 
     setTimeout(() => {
         //redirect before login
+        //todo: move to util to decide if url is public
         if (
             document.location.pathname.indexOf("password-reset") == -1 &&
-            document.location.pathname != '/' && document.location.pathname != '/login' && document.location.pathname != '/signup' && !AccountStore.getUser()) {
+            document.location.pathname != '/' && document.location.pathname != '/login' && document.location.pathname != '/demo' && document.location.pathname != '/signup' && !AccountStore.getUser()) {
             browserHistory.push('/?redirect=' + encodeURIComponent(document.location.pathname));
         }
 

@@ -3,6 +3,7 @@ import {Route, IndexRoute, Redirect} from 'react-router';
 
 import App from './components/App'; //App Wrapper
 import HomePage from './components/pages/HomePage';
+import DemoPage from './components/pages/DemoPage';
 import ProjectSelectPage from './components/pages/ProjectSelectPage';
 import CreateOrganisationPage from './components/pages/CreateOrganisationPage';
 import CreateEnvironmentPage from './components/pages/CreateEnvironmentPage';
@@ -25,6 +26,7 @@ export default (
     <Route path="/" component={App}>
         <IndexRoute component={HomePage}/>
         <Route path="login" component={HomePage}/>
+        <Route path="demo" component={DemoPage}/>
         <Route path="signup" component={HomePage}/>
         <Route path="projects" component={ProjectSelectPage}/>
         <Route path="password-reset/confirm/:uid/:token/" component={PasswordResetPage}/>

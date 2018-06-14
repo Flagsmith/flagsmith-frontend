@@ -103,6 +103,7 @@ hr {
 }
 
 .footer-bar {
+  z-index: 1000;
   position: fixed;
   bottom: 0;
   left: 0;
@@ -111,8 +112,9 @@ hr {
   a {
     color: $brand-primary;
   }
-  padding: 10px;
-  background-color: #2b2d2f;
+  padding: 15px;
+  font-size: 1.2em;
+  background-color: #000000cf;
   text-align: center;
 
 }

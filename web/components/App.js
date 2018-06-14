@@ -31,7 +31,7 @@ export default class App extends Component {
         }
 
         //Redirect on login
-        if (this.props.location.pathname == '/' || this.props.location.pathname == '/login' || this.props.location.pathname == '/signup') {
+        if (this.props.location.pathname == '/' || this.props.location.pathname == '/login' || this.props.location.pathname == '/demo' || this.props.location.pathname == '/signup') {
             this.context.router.replace(redirect ? redirect : '/projects');
         }
     };
@@ -52,7 +52,7 @@ export default class App extends Component {
         return (
             <div>
                 <AccountProvider onNoUser={this.onNoUser} onLogout={this.onLogout} onLogin={this.onLogin}>
-                    {({isLoading, user, organisation}, {loginDemo}) => (
+                    {({isLoading, user, organisation}) => (
                         <div className={pageHasAside && "aside-body"}>
                             <nav className={"navbar navbar-fixed-top navbar-light " + (pageHasAside && "navbar-aside")}>
                                 <div className="navbar-left">
@@ -107,7 +107,7 @@ export default class App extends Component {
                                         </div>
                                     ) : (
                                         <ul className="nav-list dark list-unstyled">
-                                            <li><a onClick={loginDemo}>Demo</a></li>
+                                            <li><Link to={"/demo"}>Demo</Link></li>
                                             <li><a target={"_blank"} href="https://docs.bullet-train.io/">Docs</a></li>
                                             <li><Link to={`/login${redirect}`} className="bold-link login">Login <ion
                                                 className="ion-ios-arrow-dropright"/></Link></li>
@@ -125,7 +125,7 @@ export default class App extends Component {
                             )}
                             {this.props.children}
                             {AccountStore.isDemo && (
-                                <div className={"footer-bar"}>
+                                <div className={"footer-bar pulse"}>
                                     You are using a demo account. Finding this useful?{" "}
                                     <Link onClick={() => AppActions.setUser(null)} to={"/"}>Click here to Sign up</Link>
                                 </div>
@@ -134,7 +134,7 @@ export default class App extends Component {
                     )}
                 </AccountProvider>
                 <div className="feedback-btn">
-                    <Button onClick={this.feedback} className="btn btn-primary">Give Us Feedback</Button>
+                    <Button onClick={this.feedback} className="btn btn-primary">Have any feedback?</Button>
                 </div>
             </div>
         );

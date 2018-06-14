@@ -38,14 +38,13 @@ const HomePage = class extends React.Component {
         const {hasFeature} = this.props;
         return (
             <AccountProvider onLogout={this.onLogout} onLogin={this.onLogin}>
-                {({isLoading, isSaving, error}, {register, loginDemo}) => (
+                {({isLoading, isSaving, error}, {register}) => (
                     <div>
-                        <Hero
-                            onDemoClick={loginDemo}>
+                        <Hero>
                             {isLogin ? (
                                 <div className="card signup-form container animated fadeIn col-md-8 col-xl-8">
                                     <AccountProvider>
-                                        {({isLoading, isSaving, error}, {login, loginDemo}) => (
+                                        {({isLoading, isSaving, error}, {login}) => (
                                             <form id="form" name="form" onSubmit={(e) => {
                                                 Utils.preventDefault(e);
                                                 login({email, password});
@@ -361,7 +360,7 @@ const HomePage = class extends React.Component {
                                 <img src="./images/icon-light-2.png" alt="Bullet Train" />
                             </div>
                             <ul className="float-right nav-list">
-                                <li><a onClick={loginDemo}>Demo</a></li>
+                                <li><Link to={"/demo"}>Demo</Link></li>
                                 <li><a href="https://docs.bullet-train.io/">Docs</a></li>
                                 <li><a href="mailto:bullettrain@solidstategroup.com">Support</a></li>
                             </ul>
