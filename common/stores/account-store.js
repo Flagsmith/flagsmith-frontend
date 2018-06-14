@@ -15,6 +15,7 @@ var controller = {
             })
                 .then((res) => {
                     data.setToken(res.key);
+                    API.trackEvent(Constants.events.REGISTER);
                     if (isInvite) {
                         return controller.onLogin();
                     } else {
@@ -58,6 +59,9 @@ var controller = {
                     store.isDemo = isDemo;
                     if (isDemo) {
                         AsyncStorage.setItem("isDemo", isDemo);
+                        API.trackEvent(Constants.events.LOGIN_DEMO);
+                    } else {
+                        API.trackEvent(Constants.events.LOGIN);
                     }
                     data.setToken(res.key);
                     return controller.onLogin();

@@ -30,6 +30,7 @@ var Constants = {
         "EDIT_PROJECT": {"event": "Project edited", "category": "Project"},
         "EDIT_USER_FEATURE": {"event": "User feature edited", "category": "Features"},
         "INVITE": {"event": "Invite sent", "category": "Invite"},
+        "LOGIN_DEMO": {"event": "User demo login", "category": "User"},
         "LOGIN": {"event": "User login", "category": "User"},
         "REGISTER": {"event": "User register", "category": "User"},
         "REMOVE_ENVIRONMENT": {"event": "Environment edited", "category": "Environment"},
