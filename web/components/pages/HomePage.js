@@ -356,13 +356,17 @@ const HomePage = class extends React.Component {
                                         <p> A/B test feature sets or individual features</p>
                                     </div>
                                 </div>
+                                <hr/>
                                 {getValue("home_copy") && JSON.parse(getValue("home_copy"))
                                     .map(({title, content}) => (
                                         <div className={"col-md-6 push-md-3 row mt-5"}>
-                                            <h3>
-                                                {title}
-                                            </h3>
-                                            <div dangerouslySetInnerHTML={{__html: content}} className={"col-md-12"}/>
+                                            <div className={"text-center"}>
+                                                <h2>
+                                                    {title}
+                                                </h2>
+                                                <div dangerouslySetInnerHTML={{__html: content}}
+                                                     className={"col-md-12"}/>
+                                            </div>
                                         </div>
                                     ))}
                             </div>
