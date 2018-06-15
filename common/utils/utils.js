@@ -50,6 +50,6 @@ module.exports = Object.assign({}, require('./base/_utils'), {
             }
         }
 
-        return str;
+        return str.replace(/\n/g,"");
     }
 });

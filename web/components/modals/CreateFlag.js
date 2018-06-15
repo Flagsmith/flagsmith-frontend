@@ -97,8 +97,8 @@ const TheComponent = class extends Component {
                                     placeholder="E.g. header_size"/>
                                 {type == "CONFIG" ? (
                                     <InputGroup
-                                        value={initial_value}
-                                        inputProps={{name: "featureValue", className: "full-width"}}
+                                        textarea={true}
+                                        inputProps={{initialValue:initial_value,name: "featureValue", className: "full-width"}}
                                         onChange={(e) => this.setState({initial_value: Utils.getTypedValue(Utils.safeParseEventValue(e))})}
                                         type="text"
                                         title={valueString + " (optional)" + (!isEdit ? " - these can be set later per environment" : "")}
@@ -154,8 +154,8 @@ const TheComponent = class extends Component {
                                     <strong>Example SDK response:</strong>
                                     <Highlight className={"json no-pad"}>
                                         {type == "CONFIG" ?
-                                            JSON.stringify({value: initial_value, name})
-                                            : JSON.stringify({name, enabled: initial_enabled})
+                                            JSON.stringify({value: initial_value, name},null,2)
+                                            : JSON.stringify({name, enabled: initial_enabled},null,2)
 
                                         }
                                     </Highlight>

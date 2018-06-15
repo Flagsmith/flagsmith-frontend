@@ -33,10 +33,20 @@ const FormGroup = class extends Component {
 
 				<div>
 					<div>
-						<Input ref="input" {...props.inputProps} isValid={props.isValid} disabled={props.disabled}
-							   value={props.value}
-							   onChange={props.onChange} type={props.type || 'text'} id={id}
-							   placeholder={props.placeholder}/>
+						{
+							this.props.textarea ?  (
+                                <textarea ref="input" {...props.inputProps} isValid={props.isValid} disabled={props.disabled}
+                                       value={props.value}
+                                       onChange={props.onChange} type={props.type || 'text'} id={id}
+                                       placeholder={props.placeholder}/>
+							) : (
+                                <Input ref="input" {...props.inputProps} isValid={props.isValid} disabled={props.disabled}
+                                       value={props.value}
+                                       onChange={props.onChange} type={props.type || 'text'} id={id}
+                                       placeholder={props.placeholder}/>
+							)
+						}
+
 					</div>
 				</div>
 			</div>

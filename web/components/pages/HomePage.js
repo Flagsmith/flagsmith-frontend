@@ -35,7 +35,7 @@ const HomePage = class extends React.Component {
         const redirect = this.props.location.query.redirect ? `?redirect=${this.props.location.query.redirect}` : "";
         const isInvite = document.location.href.indexOf("invite") != -1;
         const isLogin = document.location.href.indexOf("login") != -1;
-        const {hasFeature} = this.props;
+        const {hasFeature, getValue} = this.props;
         return (
             <AccountProvider onLogout={this.onLogout} onLogin={this.onLogin}>
                 {({isLoading, isSaving, error}, {register}) => (
@@ -228,7 +228,8 @@ const HomePage = class extends React.Component {
                                                         Sign Up
                                                     </button>
                                                 </FormGroup>
-                                                <Link id="existing-member-btn" to={`/login${redirect}`}>Already a member?</Link>
+                                                <Link id="existing-member-btn" to={`/login${redirect}`}>Already a
+                                                    member?</Link>
 
                                             </fieldset>
                                             {error &&
@@ -278,7 +279,8 @@ const HomePage = class extends React.Component {
                         </div>
                         <div className="container text-center">
                             <div className="video embed-responsive embed-responsive-16by9">
-                                <iframe className="embed-responsive-item" src="https://www.youtube.com/embed/GPkCLO0F-5g?rel=0" allowFullScreen></iframe>
+                                <iframe className="embed-responsive-item"
+                                        src="https://www.youtube.com/embed/GPkCLO0F-5g?rel=0" allowFullScreen></iframe>
                             </div>
                         </div>
                         {/*<div className="featured-container">*/}
@@ -335,40 +337,53 @@ const HomePage = class extends React.Component {
                                     <p>Integrate Bullet Train with your website, mobile apps or server</p>
                                 </div>
                             </div>
-                            <div className="homepage-features col-md-6 push-md-3 row mt-5 upcoming">
-                                <p className="large-para">Coming soon</p>
-                                <div className="col-md-4">
-                                    <ion className="homepage-icon icon ion-md-done-all"/>
-                                    <h5>Track changes</h5>
-                                    <p>Audit feature changes & rollback any mistakes or issues</p>
+                            <div className="home-sections">
+                                <div className="homepage-features col-md-6 push-md-3 row mt-5 upcoming">
+                                    <p className="large-para">Coming soon</p>
+                                    <div className="col-md-4">
+                                        <ion className="homepage-icon icon ion-md-done-all"/>
+                                        <h5>Track changes</h5>
+                                        <p>Audit feature changes & rollback any mistakes or issues</p>
+                                    </div>
+                                    <div className="col-md-4">
+                                        <ion className="homepage-icon icon ion-md-contacts"/>
+                                        <h5>Segment users</h5>
+                                        <p>Create detailed user segments for feature targeting</p>
+                                    </div>
+                                    <div className="col-md-4">
+                                        <ion className="homepage-icon icon ion-ios-flask"/>
+                                        <h5>A/B Testing</h5>
+                                        <p> A/B test feature sets or individual features</p>
+                                    </div>
                                 </div>
-                                <div className="col-md-4">
-                                    <ion className="homepage-icon icon ion-md-contacts"/>
-                                    <h5>Segment users</h5>
-                                    <p>Create detailed user segments for feature targeting</p>
-                                </div>
-                                <div className="col-md-4">
-                                    <ion className="homepage-icon icon ion-ios-flask"/>
-                                    <h5>A/B Testing</h5>
-                                    <p> A/B test feature sets or individual features</p>
-                                </div>
+                                {getValue("home_copy") && JSON.parse(getValue("home_copy"))
+                                    .map(({title, content}) => (
+                                        <div className={"col-md-6 push-md-3 row mt-5"}>
+                                            <h3>
+                                                {title}
+                                            </h3>
+                                            <div dangerouslySetInnerHTML={{__html: content}} className={"col-md-12"}/>
+                                        </div>
+                                    ))}
                             </div>
                         </div>
-                    <footer className="homepage clearfix">
-                        <div className="clearfix">
-                            <div className="brand-footer float-left">
-                                <img src="./images/icon-light-2.png" alt="Bullet Train" />
+                        <footer className="homepage clearfix">
+                            <div className="clearfix">
+                                <div className="brand-footer float-left">
+                                    <img src="./images/icon-light-2.png" alt="Bullet Train"/>
+                                </div>
+                                <ul className="float-right nav-list">
+                                    <li><Link to={"/demo"}>Demo</Link></li>
+                                    <li><a href="https://docs.bullet-train.io/">Docs</a></li>
+                                    <li><a href="mailto:bullettrain@solidstategroup.com">Support</a></li>
+                                </ul>
                             </div>
-                            <ul className="float-right nav-list">
-                                <li><Link to={"/demo"}>Demo</Link></li>
-                                <li><a href="https://docs.bullet-train.io/">Docs</a></li>
-                                <li><a href="mailto:bullettrain@solidstategroup.com">Support</a></li>
-                            </ul>
-                        </div>
-                        <div className="built-by text-center">
-                            <p>Built by <a href="http://www.solidstategroup.com"><img src="./images/ssg-logotype-white-transparent-bg.png" alt="Solid state group"/></a></p>
-                        </div>
-                    </footer>
+                            <div className="built-by text-center">
+                                <p>Built by <a href="http://www.solidstategroup.com"><img
+                                    src="./images/ssg-logotype-white-transparent-bg.png" alt="Solid state group"/></a>
+                                </p>
+                            </div>
+                        </footer>
                     </div>
                 )}
             </AccountProvider>
