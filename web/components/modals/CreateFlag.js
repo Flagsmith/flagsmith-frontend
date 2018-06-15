@@ -98,7 +98,8 @@ const TheComponent = class extends Component {
                                 {type == "CONFIG" ? (
                                     <InputGroup
                                         textarea={true}
-                                        inputProps={{initialValue:initial_value,name: "featureValue", className: "full-width"}}
+                                        value={initial_value}
+                                        inputProps={{name: "featureValue", className: "full-width"}}
                                         onChange={(e) => this.setState({initial_value: Utils.getTypedValue(Utils.safeParseEventValue(e))})}
                                         type="text"
                                         title={valueString + " (optional)" + (!isEdit ? " - these can be set later per environment" : "")}
