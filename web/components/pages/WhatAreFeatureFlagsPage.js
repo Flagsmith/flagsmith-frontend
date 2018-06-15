@@ -8,6 +8,10 @@ const TheComponent = class extends Component {
         this.state = {};
     }
 
+    componentWillMount() {
+        API.trackPage(Constants.pages.WHAT_ARE_FEATURE_FLAGS);
+    }
+
     render() {
         return (
             <div className={"app-container"}>
