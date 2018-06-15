@@ -377,6 +377,12 @@ const HomePage = class extends React.Component {
                                     <img src="./images/icon-light-2.png" alt="Bullet Train"/>
                                 </div>
                                 <ul className="float-right nav-list">
+                                    {hasFeature("explain_flags") && (
+                                        <li><Link to={"/blog/remote-config-and-feature-flags"}>What are feature flags?</Link></li>
+                                    )}
+                                    {hasFeature("explain_flags") && (
+                                        <li><Link to={"/blog/remote-config-and-feature-flags"}>What is remote config?</Link></li>
+                                    )}
                                     <li><Link to={"/demo"}>Demo</Link></li>
                                     <li><a href="https://docs.bullet-train.io/">Docs</a></li>
                                     <li><a href="mailto:bullettrain@solidstategroup.com">Support</a></li>

@@ -35,7 +35,8 @@ const TheComponent = class extends Component {
     };
 
     render() {
-        return (
+        const {hasFeature} = this.props;
+        return  hasFeature("try_it") ? (
             <Panel
                 icon={"ion-md-code"}
                 title={"Try it out"}
@@ -64,10 +65,10 @@ const TheComponent = class extends Component {
                     </div>}
                 </div>
             </Panel>
-        );
+        ): <div/>;
     }
 };
 
 TheComponent.propTypes = {};
 
-module.exports = TheComponent;
+module.exports = ConfigProvider(TheComponent);

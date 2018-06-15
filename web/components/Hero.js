@@ -12,6 +12,8 @@ const TheComponent = class extends React.Component {
 
 
     render() {
+        const {hasFeature} = this.props;
+        const explain = hasFeature("explain");
         return (
             <div>
                 <div className={"hero"}>
@@ -20,7 +22,9 @@ const TheComponent = class extends React.Component {
                             <img height={256} src={"/images/bullet-train-1.svg"} className="hero-brand"/>
                             <h1>Ship features with confidence</h1>
                             <p className="">
-                                Bullet Train lets you manage feature flags and remote config across web, mobile and
+                                Bullet Train lets you manage {explain ? <Link to={"/blog/remote-config-and-feature-flags"}>feature
+                                flags</Link>: "feature flags"} and {explain?<Link to={"/blog/remote-config-and-feature-flags"}>remote
+                                config</Link>:"remote config"} across web, mobile and
                                 server side applications. Deliver true Continuous Integration. Get builds out faster.
                                 Control who has access to new features.
                             </p>
@@ -55,4 +59,4 @@ TheComponent.propTypes = {
     defaultValue: OptionalBool,
 };
 
-module.exports = TheComponent;
+module.exports = ConfigProvider(TheComponent);

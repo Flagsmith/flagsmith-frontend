@@ -13,6 +13,7 @@ import FlagsPage from './components/pages/FeaturesPage';
 import OrganisationSettingsPage from './components/pages/OrganisationSettingsPage';
 import ComingSoon from './components/pages/ComingSoonPage';
 import ProjectSettingsPage from './components/pages/ProjectSettingsPage';
+import WhatAreFeatureFlagsPage from './components/pages/WhatAreFeatureFlagsPage';
 import PasswordResetPage from './components/pages/PasswordResetPage';
 import EnvironmentSettingsPage from './components/pages/EnvironmentSettingsPage';
 import InvitePage from './components/pages/InvitePage';
@@ -29,6 +30,7 @@ export default (
         <Route path="demo" component={DemoPage}/>
         <Route path="signup" component={HomePage}/>
         <Route path="projects" component={ProjectSelectPage}/>
+        <Route path="/blog/remote-config-and-feature-flags" component={WhatAreFeatureFlagsPage}/>
         <Route path="password-reset/confirm/:uid/:token/" component={PasswordResetPage}/>
         <Route path="project/:projectId/environment/:environmentId/features" component={FlagsPage}/>
         <Route path="invite/:id" component={InvitePage}/>
