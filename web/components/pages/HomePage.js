@@ -283,36 +283,6 @@ const HomePage = class extends React.Component {
                                         src="https://www.youtube.com/embed/GPkCLO0F-5g?rel=0" allowFullScreen></iframe>
                             </div>
                         </div>
-                        {/*<div className="featured-container">*/}
-                        {/*<div className="col-md-1">*/}
-                        {/*<ul className="step-list vertical">*/}
-                        {/*<li><span>1</span></li>*/}
-                        {/*</ul>*/}
-                        {/*</div>*/}
-                        {/*<div className={"text-center col-md-6 push-lg-3"}>*/}
-                        {/*<h2>How Bullet Train works</h2>*/}
-                        {/*</div>*/}
-                        {/*<div className="row">*/}
-                        {/*<div className="col-md-3">*/}
-                        {/*<div className="round-container">*/}
-                        {/*<ion className="homepage-icon icon ion-ios-rocket"/>*/}
-                        {/*</div>*/}
-                        {/*<p>Create a project</p>*/}
-                        {/*</div>*/}
-                        {/*<div className="col-md-3">*/}
-                        {/*<ion className="homepage-icon icon ion-ios-rocket"/>*/}
-                        {/*<p>Add your features, whether they are enabled and what values they have for your development and production evnironments</p>*/}
-                        {/*</div>*/}
-                        {/*<div className="col-md-3">*/}
-                        {/*<ion className="homepage-icon icon ion-ios-rocket"/>*/}
-                        {/*<p>Integrate an sdk into your project</p>*/}
-                        {/*</div>*/}
-                        {/*<div className="col-md-3">*/}
-                        {/*<ion className="homepage-icon icon ion-ios-rocket"/>*/}
-                        {/*<p>Identify users when they login to your app and configure what they see from your dashboard</p>*/}
-                        {/*</div>*/}
-                        {/*</div>*/}
-                        {/*</div>*/}
                         <div className="feature-container">
                             <div className={"text-center col-md-12 col-lg-6 push-lg-3"}>
                                 <h2>Release configurable features to segmented user groups</h2>
