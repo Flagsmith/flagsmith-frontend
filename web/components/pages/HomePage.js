@@ -246,7 +246,7 @@ const HomePage = class extends React.Component {
                         </Hero>
                         <div className="tech">
                             <div className="container">
-                                <div className="text-center col-md-12 col-lg-6 push-lg-3">
+                                <div className="text-center col-md-12 col-lg-8 push-lg-2">
                                     <h2>We currently support these popular languages</h2>
                                     <div className="row">
                                         <div className="col-md-2 col-xs-6">
