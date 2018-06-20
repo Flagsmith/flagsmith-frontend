@@ -20,17 +20,13 @@ test:
 deploy:
     image: ilyasemenov/gitlab-ci-git-push
     stage: deploy
-    script:
-      - ENV=prod node ./bin/env.js
-      - git-push dokku@dokku1.solidstategroup.com:bullet-train-admin
+    script: git-push dokku@dokku1.solidstategroup.com:bullet-train-admin
     only:
         - master
 
 deploydevelop:
     image: ilyasemenov/gitlab-ci-git-push
     stage: deploydevelop
-    script:
-     - ENV=dev node ./bin/env.js
-     - git-push dokku@dokku1.solidstategroup.com:bullet-train-admin-dev
+    script: git-push dokku@dokku1.solidstategroup.com:bullet-train-admin-dev
     only:
         - develop

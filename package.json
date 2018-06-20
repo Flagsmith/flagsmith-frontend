@@ -5,10 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "nightwatch ./tests/index.test.js",
-    "env_prod": "ENV=prod node ./bin/env.js",
-    "env_dev": "ENV=dev node ./bin/env.js",
-    "start": "npm run bundle && NODE_ENV=production node ./server",
-    "dev": "npm run env_dev && node_modules/.bin/nodemon --watch server --ignore server/config/config.json --watch webpack --exec node ./server",
+    "env": "node ./bin/env.js",
+    "start": "npm run env && npm run bundle && NODE_ENV=production node ./server",
+    "dev": "npm run env && node_modules/.bin/nodemon --watch server --ignore server/config/config.json --watch webpack --exec node ./server",
     "bundle": "node node_modules/.bin/webpack -p --progress --config ./webpack/webpack.config.prod.js"
   },
   "engines": {
