@@ -53,7 +53,8 @@ module.exports = {
       .pause(1000) // TODO revise this. currently necessary as the msg_body does not appear to show text immediately leading to an empty result
       .frame('msg_body')
       .getText('body', res => {
-        inviteUrl = res.value.substr(res.value.indexOf('http'), res.value.indexOf('.') - res.value.indexOf('http'));
+          console.log(res.value);
+        inviteUrl = res.value.split(/\n/g)[2];
         console.log('Invite URL:', inviteUrl);
 
         browser
