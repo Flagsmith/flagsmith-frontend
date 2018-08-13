@@ -85,7 +85,7 @@ var controller = {
         removeFlag: (projectId, flag) => {
             store.saving();
             API.trackEvent(Constants.events.REMOVE_FEATURE);
-            return data.delete(`${Project.api}projects/${projectId}/features/`, {id: flag.id})
+            return data.delete(`${Project.api}projects/${projectId}/features/${flag.id}/`)
                 .then(() => {
                     store.model.features = _.filter(store.model.features, (f) => f.id != flag.id);
                     store.saved();
