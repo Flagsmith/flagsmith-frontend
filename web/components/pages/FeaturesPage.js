@@ -14,6 +14,14 @@ const TheComponent = class extends Component {
         AppActions.getFeatures(this.props.params.projectId, this.props.params.environmentId);
     }
 
+    componentWillUpdate(newProps) {
+        const {params} = newProps;
+        const {params: oldParams} = this.props;
+        if (params.environmentId != oldParams.environmentId || params.projectId != oldParams.projectId) {
+            AppActions.getFeatures(params.projectId, params.environmentId);
+        }
+    }
+
     componentWillMount = () => {
         API.trackPage(Constants.pages.FEATURES);
     };
