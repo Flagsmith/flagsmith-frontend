@@ -39,6 +39,15 @@ var controller = {
                     });
                 })
         },
+        editFlag(projectId, flag) {
+            data.put(`${Project.api}projects/${projectId}/features/${flag.id}/`, flag)
+                .then((res) => {
+                    const index = _.findIndex(store.model.features, {id: flag.id});
+                    store.model.features[index] = flag;
+                    store.changed();
+                })
+
+        },
         toggleFlag: (index, environments, comment) => {
             const flag = store.model.features[index];
             store.saving();
@@ -62,7 +71,7 @@ var controller = {
                 })
 
         },
-        editFlag: (projectId, environmentId, flag, projectFlag, environmentFlag) => {
+        editFeatureState: (projectId, environmentId, flag, projectFlag, environmentFlag) => {
             let prom;
             store.saving();
             API.trackEvent(Constants.events.EDIT_FEATURE);
@@ -75,7 +84,7 @@ var controller = {
                 prom = data.post(`${Project.api}environments/${environmentId}/featurestates/`, Object.assign({}, flag, {
                     enabled: false,
                     environment: environmentId,
-                    feature
+                    feature: projectFlag
                 }))
             }
 
@@ -125,7 +134,10 @@ store.dispatcherIndex = Dispatcher.register(store, function (payload) {
             controller.createFlag(action.projectId, action.environmentId, action.flag);
             break;
         case Actions.EDIT_ENVIRONMENT_FLAG:
-            controller.editFlag(action.projectId, action.environmentId, action.flag, action.projectFlag, action.environmentFlag);
+            controller.editFeatureState(action.projectId, action.environmentId, action.flag, action.projectFlag, action.environmentFlag);
+            break;
+        case Actions.EDIT_FLAG:
+            controller.editFlag(action.projectId, action.flag);
             break;
         case Actions.REMOVE_FLAG:
             controller.removeFlag(action.projectId, action.flag);
