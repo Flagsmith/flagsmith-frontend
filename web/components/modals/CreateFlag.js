@@ -12,7 +12,7 @@ const TheComponent = class extends Component {
         const {allowEditDescription} = this.props;
         this.state = {
             type,
-            tab: type == "FLAG" ? 0 : 1,
+            tab: !type || type == "FLAG" ? 0 : 1,
             initial_enabled: enabled,
             name,
             initial_value: Utils.getTypedValue(feature_state_value),
