@@ -247,7 +247,7 @@ module.exports = {
             .setValue("[name='proj-name']", 'Test Project')
             .click("#save-proj-btn");
 
-        browser.expect.element('#selected-proj').text.to.equal('Test Project:');
+        browser.expect.element('#selected-proj').text.to.equal('Test Project');
     },
     '[Main Tests] - Delete Nightwatch Ltd organisation': function (browser) {
         browser
