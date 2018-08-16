@@ -54,7 +54,7 @@ module.exports = {
       .frame('msg_body')
       .getText('body', res => {
           console.log(res.value);
-        inviteUrl = res.value.split(/\n/g)[2];
+        inviteUrl = res.value.match(/(https?[^.]*)/g)[0];
         console.log('Invite URL:', inviteUrl);
 
         browser

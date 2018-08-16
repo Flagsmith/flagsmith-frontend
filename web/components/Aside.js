@@ -48,13 +48,13 @@ const TheComponent = class extends Component {
 												 <Row>
 													 <Flex>
 														 <span id="selected-proj" className={"faint"}>
-															 {project.name}:
+															 {project.name}
 														 </span>
 														 <Row id="selected-env">
 															 {_.find(project.environments, {api_key: this.props.environmentId}).name}
 														 </Row>
 													 </Flex>
-													 <div className="flex-column icon ion-ios-arrow-down"/>
+													 <div style={{fontSize:"1.25em"}} className="flex-column icon ion-ios-arrow-down"/>
 												 </Row>
 											 </a>
 										 )}>
