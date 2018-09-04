@@ -55,6 +55,7 @@ var Constants = {
         "INVITE": "User Invited Page",
         "NOT_FOUND": "404 Page",
         "ORGANISATION_SETTINGS": "Organisation Settings Page",
+        "POLICIES": "Terms & Policies Page",
         "PRICING": "Pricing Page",
         "PROJECT_SELECT": "Project Select Page",
         "PROJECT_SETTINGS": "Project Settings Page",

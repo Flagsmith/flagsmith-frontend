@@ -19,6 +19,7 @@ import EnvironmentSettingsPage from './components/pages/EnvironmentSettingsPage'
 import InvitePage from './components/pages/InvitePage';
 import NotFoundPage from './components/pages/NotFoundPage';
 import PricingPage from './components/pages/PricingPage';
+import TermsPoliciesPage from './components/pages/TermsPoliciesPage';
 
 window.Link = Link;
 
@@ -31,6 +32,8 @@ export default (
         <Route path="signup" component={HomePage}/>
         <Route path="home" component={HomePage}/>
         <Route path="pricing" component={PricingPage}/>
+        <Route path="policies/:section" component={TermsPoliciesPage}/>
+        <Route path="policies" component={TermsPoliciesPage}/>
         <Route path="projects" component={ProjectSelectPage}/>
         <Route path="/blog/remote-config-and-feature-flags" component={WhatAreFeatureFlagsPage}/>
         <Route path="password-reset/confirm/:uid/:token/" component={PasswordResetPage}/>
