@@ -109,6 +109,7 @@ export default class App extends Component {
                                         <ul className="nav-list dark list-unstyled">
                                             <li><Link to={"/demo"}>Demo</Link></li>
                                             <li><a target={"_blank"} href="https://docs.bullet-train.io/">Docs</a></li>
+                                            <li><Link to={'/pricing'}>Pricing</Link></li>
                                             <li><Link to={`/login${redirect}`} className="bold-link login">Login <ion
                                                 className="ion-ios-arrow-dropright"/></Link></li>
                                         </ul>

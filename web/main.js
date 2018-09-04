@@ -28,6 +28,7 @@ AsyncStorage.getItem("t", (err, res) => {
         //redirect before login
         //todo: move to util to decide if url is public
         if (
+            document.location.pathname.indexOf('/pricing') == -1 &&
             document.location.pathname.indexOf("password-reset") == -1 &&
             document.location.pathname.indexOf("/blog") == -1 &&
             document.location.pathname != '/' && document.location.pathname != '/login' && document.location.pathname != '/demo' && document.location.pathname != '/signup' && !AccountStore.getUser()) {

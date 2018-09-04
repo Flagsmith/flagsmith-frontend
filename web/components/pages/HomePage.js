@@ -365,6 +365,7 @@ const HomePage = class extends React.Component {
                                     )}
                                     <li><Link to={"/demo"}>Demo</Link></li>
                                     <li><a href="https://docs.bullet-train.io/">Docs</a></li>
+                                    <li><Link to={"/pricing"}>Pricing</Link></li>
                                     <li><a href="mailto:bullettrain@solidstategroup.com">Support</a></li>
                                 </ul>
                             </div>

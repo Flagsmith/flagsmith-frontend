@@ -18,7 +18,7 @@ import PasswordResetPage from './components/pages/PasswordResetPage';
 import EnvironmentSettingsPage from './components/pages/EnvironmentSettingsPage';
 import InvitePage from './components/pages/InvitePage';
 import NotFoundPage from './components/pages/NotFoundPage';
-
+import PricingPage from './components/pages/PricingPage';
 
 window.Link = Link;
 
@@ -29,6 +29,8 @@ export default (
         <Route path="login" component={HomePage}/>
         <Route path="demo" component={DemoPage}/>
         <Route path="signup" component={HomePage}/>
+        <Route path="home" component={HomePage}/>
+        <Route path="pricing" component={PricingPage}/>
         <Route path="projects" component={ProjectSelectPage}/>
         <Route path="/blog/remote-config-and-feature-flags" component={WhatAreFeatureFlagsPage}/>
         <Route path="password-reset/confirm/:uid/:token/" component={PasswordResetPage}/>
