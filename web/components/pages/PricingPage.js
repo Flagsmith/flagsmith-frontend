@@ -1,6 +1,6 @@
 import React from "react";
 
-const HomePage = class extends React.Component {
+const PricingPage = class extends React.Component {
     static contextTypes = {
         router: React.PropTypes.object.isRequired
     };
@@ -15,6 +15,7 @@ const HomePage = class extends React.Component {
     }
 
     componentDidMount() {
+        Chargebee.getInstance().site = Project.chargebee.site;
         Chargebee.registerAgain();
     }
 
@@ -94,4 +95,4 @@ const HomePage = class extends React.Component {
         );
     }
 };
-module.exports = ConfigProvider(HomePage);
+module.exports = ConfigProvider(PricingPage);
