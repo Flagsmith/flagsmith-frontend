@@ -26,7 +26,20 @@ const HomePage = class extends React.Component {
                     <div className="container">
                         <h2>Start using Bullet Train for free, then scale-up over time.</h2>
                         <div className={"col-md-12 row"}>
-                            <div className={"col-md-4"}>
+                            <div className={"col-md-3"}>
+                                <Panel title="Free">
+                                    <p className="price">$Free</p>
+                                    <ul className="pricing-features">
+                                        <li><p>Up to 2,000 Monthly Active Users</p></li>
+                                        <li><p>Unlimited Administrator Accounts</p></li>
+                                        <li><p>Unlimited Projects</p></li>
+                                        <li><p>Unlimited Environments</p></li>
+                                        <li><p>Unlimited Feature Flags</p></li>
+                                    </ul>
+                                    <a href="#">Sign Up</a>
+                                </Panel>
+                            </div>
+                            <div className={"col-md-3"}>
                                 <Panel title="Startup">
                                     <p className="price">$29 / month</p>
                                     <ul className="pricing-features">
@@ -40,7 +53,7 @@ const HomePage = class extends React.Component {
                                     <a href="javascript:void(0)" data-cb-type="checkout" data-cb-plan-id="startup">Subscribe</a>
                                 </Panel>
                             </div>
-                            <div className={"col-md-4"}>
+                            <div className={"col-md-3"}>
                                 <Panel title="Scale-Up">
                                     <p className="price">$99 / month</p>
                                     <ul className="pricing-features">
@@ -51,7 +64,7 @@ const HomePage = class extends React.Component {
                                     <a href="javascript:void(0)" data-cb-type="checkout" data-cb-plan-id="scale-up">Subscribe</a>
                                 </Panel>
                             </div>
-                            <div className={"col-md-4"}>
+                            <div className={"col-md-3"}>
                                 <Panel title="Enterprise">
                                     <p>$Contact Us</p>
                                     <ul>
