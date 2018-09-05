@@ -14,6 +14,10 @@ const HomePage = class extends React.Component {
         API.trackPage(Constants.pages.PRICING);
     }
 
+    componentDidMount() {
+        Chargebee.registerAgain();
+    }
+
     render = () => {
         const { hasFeature, getValue } = this.props;
         return (
@@ -33,6 +37,7 @@ const HomePage = class extends React.Component {
                                         <li><p>Unlimited Feature Flags</p></li>
                                         <li><p>Email Technical Support</p></li>
                                     </ul>
+                                    <a href="javascript:void(0)" data-cb-type="checkout" data-cb-plan-id="startup">Subscribe</a>
                                 </Panel>
                             </div>
                             <div className={"col-md-4"}>
@@ -43,6 +48,7 @@ const HomePage = class extends React.Component {
                                         <li><p>All Startup Features</p></li>
                                         <li><p>Telephone Technical Support</p></li>
                                     </ul>
+                                    <a href="javascript:void(0)" data-cb-type="checkout" data-cb-plan-id="scale-up">Subscribe</a>
                                 </Panel>
                             </div>
                             <div className={"col-md-4"}>
@@ -54,6 +60,7 @@ const HomePage = class extends React.Component {
                                         <li><p>Telephone Technical Support</p></li>
                                         <li><p>Optional On Premise Installation</p></li>
                                     </ul>
+                                    <a href="javascript:void(0)" data-cb-type="checkout" data-cb-plan-id="enterprise">Subscribe</a>
                                 </Panel>
                             </div>
                         </div>
