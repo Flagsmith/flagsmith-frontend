@@ -27,8 +27,8 @@ const HomePage = class extends React.Component {
                         <h2>Start using Bullet Train for free, then scale-up over time.</h2>
                         <div className={"col-md-12 row"}>
                             <div className={"col-md-3"}>
-                                <Panel title="Free">
-                                    <p className="price">$Free</p>
+                                <Panel title={<h4 className="pricing-type">Free</h4>}>
+                                    <h5 className="pricing-price">$Free</h5>
                                     <ul className="pricing-features">
                                         <li><p>Up to 2,000 Monthly Active Users</p></li>
                                         <li><p>Unlimited Administrator Accounts</p></li>
@@ -40,8 +40,8 @@ const HomePage = class extends React.Component {
                                 </Panel>
                             </div>
                             <div className={"col-md-3"}>
-                                <Panel title="Startup">
-                                    <p className="price">$29 / month</p>
+                                <Panel title={<h4 className="pricing-type">Start-Up</h4>}>
+                                    <h5 className="pricing-price">$29 / month</h5>
                                     <ul className="pricing-features">
                                         <li><p>Up to 10,000 Monthly Active Users</p></li>
                                         <li><p>Unlimited Administrator Accounts</p></li>
@@ -54,8 +54,8 @@ const HomePage = class extends React.Component {
                                 </Panel>
                             </div>
                             <div className={"col-md-3"}>
-                                <Panel title="Scale-Up">
-                                    <p className="price">$99 / month</p>
+                                <Panel title={<h4 className="pricing-type">Scale-Up</h4>}>
+                                    <h5 className="pricing-price">$99 / month</h5>
                                     <ul className="pricing-features">
                                         <li><p>Up to 50,000 Monthly Active Users</p></li>
                                         <li><p>All Startup Features</p></li>
@@ -65,9 +65,9 @@ const HomePage = class extends React.Component {
                                 </Panel>
                             </div>
                             <div className={"col-md-3"}>
-                                <Panel title="Enterprise">
-                                    <p>$Contact Us</p>
-                                    <ul>
+                                <Panel title={<h4 className="pricing-type">Enterprise</h4>}>
+                                    <h5 className="pricing-price">$Contact Us</h5>
+                                    <ul className="pricing-features">
                                         <li><p>Over 50,000 Monthly Active Users</p></li>
                                         <li><p>All Startup Features</p></li>
                                         <li><p>Telephone Technical Support</p></li>
