@@ -33,6 +33,7 @@ const HomePage = class extends React.Component {
                                     <li><p>Unlimited Feature Flags</p></li>
                                     <li><p>Email Technical Support</p></li>
                                 </ul>
+                                <a href="javascript:void(0)" data-cb-type="checkout" data-cb-plan-id="scale-up" >subscribe</a>
                             </div>
                             <div className={"col-md-4"}>
                                 <h5>Scale-Up</h5>
