@@ -1,4 +1,5 @@
 import React from "react";
+import makeAsyncScriptLoader from "react-async-script";
 
 const PricingPage = class extends React.Component {
     static contextTypes = {
@@ -12,11 +13,6 @@ const PricingPage = class extends React.Component {
 
     componentWillMount() {
         API.trackPage(Constants.pages.PRICING);
-    }
-
-    componentDidMount() {
-        Chargebee.getInstance().site = Project.chargebee.site;
-        Chargebee.registerAgain();
     }
 
     render = () => {
@@ -108,4 +104,16 @@ const PricingPage = class extends React.Component {
         );
     }
 };
-module.exports = ConfigProvider(PricingPage);
+
+const WrappedPricingPage = makeAsyncScriptLoader(ConfigProvider(PricingPage), 'https://js.chargebee.com/v2/chargebee.js', {
+    removeOnUnmount: true
+});
+
+module.exports = () => (
+    <WrappedPricingPage asyncScriptOnLoad={() => {
+        Chargebee.init({
+            site: Project.chargebee.site
+        });
+        Chargebee.registerAgain();
+    }}/>
+);
