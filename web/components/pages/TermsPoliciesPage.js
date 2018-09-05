@@ -39,16 +39,16 @@ const HomePage = class extends React.Component {
 
                         <h5>Data We Collect</h5>
                         <ol>
-                            <li><p className={"faint"}>Personal Data. We call data that identifies, or could be used to reasonably identify you as "Personal Data". We collect Personal Data in various ways, like when you register for trial accounts or interact with our sales team. Personal Data does not include data that has been anonymized, psuedonymised, or minimized such that it cannot be reasonably associated with a person.</p></li>
-                            <li><p className={"faint"}>Service Data. We call data that our members send to us about their users "Service data". Bullet Train's core service allows our members to submit details about their end-users to enrich their experiences through our platform. Our members have a responsibility to understand the data they send to us and to take the appropriate disclosures, precautions, and responsibilities regarding the content of the service data they provide to us.</p></li>
+                            <li><p className={"faint"}><b>Personal Data.</b> We call data that identifies, or could be used to reasonably identify you as "Personal Data". We collect Personal Data in various ways, like when you register for trial accounts or interact with our sales team. Personal Data does not include data that has been anonymized, psuedonymised, or minimized such that it cannot be reasonably associated with a person.</p></li>
+                            <li><p className={"faint"}><b>Service Data.</b> We call data that our members send to us about their users "Service data". Bullet Train's core service allows our members to submit details about their end-users to enrich their experiences through our platform. Our members have a responsibility to understand the data they send to us and to take the appropriate disclosures, precautions, and responsibilities regarding the content of the service data they provide to us.</p></li>
                             <li>
-                                <p className={"faint"}>Other Data. We call any other data that is not Personal Data or Service Data "Other Data". We collect Other Data through a variety of sources. One of those sources are cookies and other technologies that record data about the use of our website. Other data that we may collect include:</p>
+                                <p className={"faint"}><b>Other Data.</b> We call any other data that is not Personal Data or Service Data "Other Data". We collect Other Data through a variety of sources. One of those sources are cookies and other technologies that record data about the use of our website. Other data that we may collect include:</p>
                                 <ul>
-                                    <li><p className={"faint"}>Browser and device data, such as IP address, device type, operating system and internet browser type, screen resolution, operating system name and version, device manufacturer and model, language, plug-ins, add-ons and the version of the Services you are using;</p></li>
-                                    <li><p className={"faint"}>Transaction data, such as purchases, purchase amount, date of purchase, and payment method that you have submitted to us as a course of ordering our services;</p></li>
-                                    <li><p className={"faint"}>Cookie and tracking technology data, such as time spent on the Services, pages visited, language preferences, and other anonymous traffic data; and</p></li>
-                                    <li><p className={"faint"}>Company data, such as a company's legal structure, product and service offerings, jurisdiction, company records, and information submitted to us by you in interacting with our sales team.</p></li>
-                                    <li><p className={"faint"}>Browser and device data, such as IP address, device type, operating system and internet browser type, screen resolution, operating system name and version, device manufacturer and model, language, plug-ins, add-ons and the version of the Services you are using;</p></li>
+                                    <li><p className={"faint"}><b>Browser and device data</b>, such as IP address, device type, operating system and internet browser type, screen resolution, operating system name and version, device manufacturer and model, language, plug-ins, add-ons and the version of the Services you are using;</p></li>
+                                    <li><p className={"faint"}><b>Transaction data</b>, such as purchases, purchase amount, date of purchase, and payment method that you have submitted to us as a course of ordering our services;</p></li>
+                                    <li><p className={"faint"}><b>Cookie and tracking technology data</b>, such as time spent on the Services, pages visited, language preferences, and other anonymous traffic data; and</p></li>
+                                    <li><p className={"faint"}><b>Company data</b>, such as a company's legal structure, product and service offerings, jurisdiction, company records, and information submitted to us by you in interacting with our sales team.</p></li>
+                                    <li><p className={"faint"}><b>Browser and device data</b>, such as IP address, device type, operating system and internet browser type, screen resolution, operating system name and version, device manufacturer and model, language, plug-ins, add-ons and the version of the Services you are using;</p></li>
                                 </ul>
                             </li>
                         </ol>
@@ -57,7 +57,7 @@ const HomePage = class extends React.Component {
                         <p className={"faint"}>We collect information about our customers for the following reasons and not for other reasons:</p>
 
                         <ol>
-                            <li><p className={"faint"}>Personal Data. We and our service providers use Personal Data to provide our Service. Examples of how we use personal data include:</p></li>
+                            <li><p className={"faint"}><b>Personal Data.</b> We and our service providers use Personal Data to provide our Service. Examples of how we use personal data include:</p></li>
                             <ul>
                                 <li><p className={"faint"}>Enumerating you and your team for the purposes of access to our platform</p></li>
                                 <li><p className={"faint"}>To deliver information to your subscribed applications in order to provide service</p></li>
@@ -68,18 +68,18 @@ const HomePage = class extends React.Component {
                                 <li><p className={"faint"}>To improve or modify our services</p></li>
                                 <li><p className={"faint"}>To conduct analysis and develop insights that enable us to operate, protect, make informed decisions and report on our business.</p></li>
                             </ul>
-                            <li><p className={"faint"}>Service Data. We utilize service data for no purpose except to deliver the functionality that our platform provides to our members.</p></li>
-                            <li><p className={"faint"}>Other data. We utilize other data in a number of ways, but we comply with applicable law and contractual agreements. In some areas, like the European Economic Area Countries, we may be required to treat Other Data like Personal data. In areas where this is the case, we will process this data as if it were Personal data under our privacy policy.</p></li>
+                            <li><p className={"faint"}><b>Service Data.</b> We utilize service data for no purpose except to deliver the functionality that our platform provides to our members.</p></li>
+                            <li><p className={"faint"}><b>Other data.</b> We utilize other data in a number of ways, but we comply with applicable law and contractual agreements. In some areas, like the European Economic Area Countries, we may be required to treat Other Data like Personal data. In areas where this is the case, we will process this data as if it were Personal data under our privacy policy.</p></li>
                         </ol>
 
                         <h5>How We Disclose Data</h5>
                         <p className={"faint"}>Bullet Train does not sell Personal Data or Service Data to marketers or unaffiliated third parties. Data collected by Bullet Train will only used for the purposes of furthering, improving, and expanding the Bullet Train business. We share Personal and Service Data with the following third parties:</p>
 
                         <ol>
-                            <li><p className={"faint"}>To Bullet Train Service Providers. In order to deliver the services that make up the Bullet Train Product, we rely on service providers (e.g. infrastructure providers, and affiliated) to provide key functionality both in the operation of our product as well as the operation of the Bullet Train company.</p></li>
-                            <li><p className={"faint"}>To our members. We process and collate service data that is provided to us by our members in order to deliver the services to our members.</p></li>
-                            <li><p className={"faint"}>To third parties. In the event of a reorganization, merger, sale, joint venture, assignment, transfer of any part of our business to third parties.</p></li>
-                            <li><p className={"faint"}>Safety, Legal and Law Enforcement. We use and disclose data as we believe necessary under the applicable law, to enforce our own terms and conditions, to protect our rights, privacy, safety, or property, as well as to respond to requests from courts, law enforcement, regulatory agencies, and government authorities, which may include countries outside of your country of residence.</p></li>
+                            <li><p className={"faint"}><b>To Bullet Train Service Providers.</b> In order to deliver the services that make up the Bullet Train Product, we rely on service providers (e.g. infrastructure providers, and affiliated) to provide key functionality both in the operation of our product as well as the operation of the Bullet Train company.</p></li>
+                            <li><p className={"faint"}><b>To our members.</b> We process and collate service data that is provided to us by our members in order to deliver the services to our members.</p></li>
+                            <li><p className={"faint"}><b>To third parties.</b> In the event of a reorganization, merger, sale, joint venture, assignment, transfer of any part of our business to third parties.</p></li>
+                            <li><p className={"faint"}><b>Safety, Legal and Law Enforcement.</b> We use and disclose data as we believe necessary under the applicable law, to enforce our own terms and conditions, to protect our rights, privacy, safety, or property, as well as to respond to requests from courts, law enforcement, regulatory agencies, and government authorities, which may include countries outside of your country of residence.</p></li>
                         </ol>
 
                         <h5>Security and Notification of Breaches</h5>
