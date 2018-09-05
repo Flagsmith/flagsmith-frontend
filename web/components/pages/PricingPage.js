@@ -23,35 +23,38 @@ const HomePage = class extends React.Component {
                         <h2>Start using Bullet Train for free, then scale-up over time.</h2>
                         <div className={"col-md-12 row"}>
                             <div className={"col-md-4"}>
-                                <h5>Startup</h5>
-                                <p>$29 / month</p>
-                                <ul>
-                                    <li><p>10,000 Monthly Active Users</p></li>
-                                    <li><p>Unlimited Administrator Accounts</p></li>
-                                    <li><p>Unlimited Projects</p></li>
-                                    <li><p>Unlimited Environments</p></li>
-                                    <li><p>Unlimited Feature Flags</p></li>
-                                    <li><p>Email Technical Support</p></li>
-                                </ul>
+                                <Panel title="Startup">
+                                    <p className="price">$29 / month</p>
+                                    <ul className="pricing-features">
+                                        <li><p>10,000 Monthly Active Users</p></li>
+                                        <li><p>Unlimited Administrator Accounts</p></li>
+                                        <li><p>Unlimited Projects</p></li>
+                                        <li><p>Unlimited Environments</p></li>
+                                        <li><p>Unlimited Feature Flags</p></li>
+                                        <li><p>Email Technical Support</p></li>
+                                    </ul>
+                                </Panel>
                             </div>
                             <div className={"col-md-4"}>
-                                <h5>Scale-Up</h5>
-                                <p>$99 / month</p>
-                                <ul>
-                                    <li><p>50,000 Monthly Active Users</p></li>
-                                    <li><p>All Startup Features</p></li>
-                                    <li><p>Telephone Technical Support</p></li>
-                                </ul>
+                                <Panel title="Scale-Up">
+                                    <p className="price">$99 / month</p>
+                                    <ul className="pricing-features">
+                                        <li><p>50,000 Monthly Active Users</p></li>
+                                        <li><p>All Startup Features</p></li>
+                                        <li><p>Telephone Technical Support</p></li>
+                                    </ul>
+                                </Panel>
                             </div>
                             <div className={"col-md-4"}>
-                                <h5>Enterprise</h5>
-                                <p>$Contact Us</p>
-                                <ul>
-                                    <li><p>Over 50,000 Monthly Active Users</p></li>
-                                    <li><p>All Startup Features</p></li>
-                                    <li><p>Telephone Technical Support</p></li>
-                                    <li><p>Optional On Premise Installation</p></li>
-                                </ul>
+                                <Panel title="Enterprise">
+                                    <p>$Contact Us</p>
+                                    <ul>
+                                        <li><p>Over 50,000 Monthly Active Users</p></li>
+                                        <li><p>All Startup Features</p></li>
+                                        <li><p>Telephone Technical Support</p></li>
+                                        <li><p>Optional On Premise Installation</p></li>
+                                    </ul>
+                                </Panel>
                             </div>
                         </div>
                     </div>
