@@ -60,7 +60,7 @@ const HomePage = class extends React.Component {
                                         <li><p>Telephone Technical Support</p></li>
                                         <li><p>Optional On Premise Installation</p></li>
                                     </ul>
-                                    <a href="javascript:void(0)" data-cb-type="checkout" data-cb-plan-id="enterprise">Subscribe</a>
+                                    <a href="mailto:enterprise@bullettrain.io">Contact Us</a>
                                 </Panel>
                             </div>
                         </div>
