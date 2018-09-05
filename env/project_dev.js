@@ -7,5 +7,8 @@ module.exports = {
     demoAccount: {
         email:"kyle+bullet-train@solidstategroup.com",
         password:"demo_account"
+    },
+    chargebee: {
+        site: 'bullettrain-test'
     }
 };
