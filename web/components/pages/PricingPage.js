@@ -31,8 +31,8 @@ const PricingPage = class extends React.Component {
                                         <p className="pricing-price">Free</p>
                                         <img src="/images/growth.svg" alt="free icon" className="pricing-icon"/>
                                         <p className="pricing-type">Free</p>
-                                        <p className="text-small text-center">30 day trial</p>
-                                        <a href="#" className="pricing-cta blue">Sign Up</a>
+                                        <p className="text-small text-center">more flags than the UN</p>
+                                        <a href="#" className="pricing-cta blue">Sign up</a>
                                     </div>
                                     <div className="panel-footer">
                                         <p className="text-small text-center link-style">What's included</p>
@@ -54,11 +54,12 @@ const PricingPage = class extends React.Component {
                                         <img src="/images/startup.svg" alt="Startup icon" className="pricing-icon"/>
                                         <p className="pricing-type">$29</p>
                                         <p className="text-small text-center">billed monthly</p>
-                                        <a href="javascript:void(0)" data-cb-type="checkout" data-cb-plan-id="startup" className="pricing-cta blue">Subscribe</a>
+                                        <a href="javascript:void(0)" data-cb-type="checkout" data-cb-plan-id="startup" className="pricing-cta blue">Start free trial</a>
                                     </div>
                                     <div className="panel-footer">
                                         <p className="text-small text-center link-style">What's included</p>
                                         <ul className="pricing-features">
+                                            <li><p>30 Day free trial</p></li>
                                             <li><p>Up to 10,000 Monthly Active Users</p></li>
                                             <li><p>Unlimited Administrator Accounts</p></li>
                                             <li><p>Unlimited Projects</p></li>
@@ -77,11 +78,12 @@ const PricingPage = class extends React.Component {
                                         <img src="/images/layers.svg" alt="Scale-up icon" className="pricing-icon"/>
                                         <p className="pricing-type">$99</p>
                                         <p className="text-small text-center">billed monthly</p>
-                                        <a href="javascript:void(0)" data-cb-type="checkout" data-cb-plan-id="scale-up" className="pricing-cta">Subscribe</a>
+                                        <a href="javascript:void(0)" data-cb-type="checkout" data-cb-plan-id="scale-up" className="pricing-cta">Start free trial</a>
                                     </div>
                                     <div className="panel-footer">
                                         <p className="text-small text-center link-style">What's included</p>
                                         <ul className="pricing-features">
+                                            <li><p>30 Day free trial</p></li>
                                             <li><p>Up to 50,000 Monthly Active Users</p></li>
                                             <li><p>All Startup Features</p></li>
                                             <li><p>Telephone Technical Support</p></li>
