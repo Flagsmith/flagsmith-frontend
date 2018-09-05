@@ -30,7 +30,7 @@ const HomePage = class extends React.Component {
                                 <Panel title="Startup">
                                     <p className="price">$29 / month</p>
                                     <ul className="pricing-features">
-                                        <li><p>10,000 Monthly Active Users</p></li>
+                                        <li><p>Up to 10,000 Monthly Active Users</p></li>
                                         <li><p>Unlimited Administrator Accounts</p></li>
                                         <li><p>Unlimited Projects</p></li>
                                         <li><p>Unlimited Environments</p></li>
@@ -44,7 +44,7 @@ const HomePage = class extends React.Component {
                                 <Panel title="Scale-Up">
                                     <p className="price">$99 / month</p>
                                     <ul className="pricing-features">
-                                        <li><p>50,000 Monthly Active Users</p></li>
+                                        <li><p>Up to 50,000 Monthly Active Users</p></li>
                                         <li><p>All Startup Features</p></li>
                                         <li><p>Telephone Technical Support</p></li>
                                     </ul>
