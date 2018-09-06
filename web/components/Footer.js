@@ -1,5 +1,5 @@
 export default ConfigProvider(({hasFeature, className}) => (
-    <footer className="homepage clearfix">
+    <footer className={className + " clearfix"}>
       <div className="clearfix">
         <div className="float-left">
           <div className="brand-footer float-left">
