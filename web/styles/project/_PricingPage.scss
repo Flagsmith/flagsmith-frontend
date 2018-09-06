@@ -85,5 +85,35 @@
 	background:#f7f7f7;
 	padding:10px;
 	text-align: left;
-	min-height: 235px;
+	min-height: 240px;
+}
+
+.panel-grey{
+	background: #F5F8FD;
+	border-radius: 8px;
+	padding: 20px;
+	margin-bottom: 20px;
+
+	.question{
+		font-weight:bold;
+		margin-bottom:5px;
+	}
+
+	.answer{
+		font-size: 15px;
+		opacity: 0.65;
+		margin-bottom:0;
+	}
+}
+
+.faq{
+	padding:60px 0;
+}
+
+.cta-container{
+	margin-top:60px;
+
+	a{
+		width:300px;
+	}
 }

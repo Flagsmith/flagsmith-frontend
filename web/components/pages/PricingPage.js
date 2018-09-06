@@ -75,7 +75,7 @@ const PricingPage = class extends React.Component {
                                     <div className="panel-content">
                                         <p className="featured">Most Popular</p>
                                         <p className="pricing-price">Scale-Up</p>
-                                        <img src="/images/layers.svg" alt="Scale-up icon" className="pricing-icon"/>
+                                        <img src="/images/layers2.svg" alt="Scale-up icon" className="pricing-icon"/>
                                         <p className="pricing-type">$99</p>
                                         <p className="text-small text-center">billed monthly</p>
                                         <a href="javascript:void(0)" data-cb-type="checkout" data-cb-plan-id="scale-up" className="pricing-cta">Start free trial</a>
@@ -114,6 +114,32 @@ const PricingPage = class extends React.Component {
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="faq">
+                    <div className="container">
+                        <h2 className="text-center margin-bottom">FAQs</h2>
+                        <div className="panel panel-default panel-grey">
+                            <p className="question">This is a frequently asked question?</p>
+                            <p className="answer">This is the answer to this question. This is the answer to this question. This is the answer to this question. This is the answer to this question. This is the answer to this question. This is the answer to this question.</p>
+                        </div>
+                        <div className="panel panel-default panel-grey">
+                            <p className="question">This is a frequently asked question?</p>
+                            <p className="answer">This is the answer to this question. This is the answer to this question. This is the answer to this question. This is the answer to this question. This is the answer to this question. This is the answer to this question.</p>
+                        </div>
+                        <div className="panel panel-default panel-grey">
+                            <p className="question">This is a frequently asked question?</p>
+                            <p className="answer">This is the answer to this question. This is the answer to this question. This is the answer to this question. This is the answer to this question. This is the answer to this question. This is the answer to this question.</p>
+                        </div>
+                        <div className="panel panel-default panel-grey">
+                            <p className="question">This is a frequently asked question?</p>
+                            <p className="answer">This is the answer to this question. This is the answer to this question. This is the answer to this question. This is the answer to this question. This is the answer to this question. This is the answer to this question.</p>
+                        </div>
+                        <div className="text-center cta-container">
+                            <h5>Didn't find an answer to your question?</h5>
+                            <a href="mailto:support@bullettrain.io" className="pricing-cta blue">Get in touch</a>
                         </div>
                     </div>
                 </div>
