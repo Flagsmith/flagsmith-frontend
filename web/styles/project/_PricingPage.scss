@@ -6,6 +6,7 @@
 .pricing-panel{
 	padding-left:8px;
 	padding-right:8px;
+	margin-bottom:20px;
 
 	.panel{
 		overflow:hidden;
@@ -102,7 +103,10 @@
 	.answer{
 		font-size: 15px;
 		opacity: 0.65;
-		margin-bottom:0;
+
+		&:last-of-type{
+			margin-bottom:0;
+		}
 	}
 }
 

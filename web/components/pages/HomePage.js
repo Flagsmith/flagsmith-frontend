@@ -362,13 +362,7 @@ const HomePage = class extends React.Component {
                                     </div>
                                 </div>
                                 <div className="float-right">
-                                    <ul className="float-right nav-list">
-                                        <li><a href="mailto:bullettrain@solidstategroup.com">Support</a></li>
-                                        <li><Link to={"/policies/privacy-policy"}>Privacy Policy</Link></li>
-                                    </ul>
-                                </div>
-                                <div className="float-right">
-                                    <ul className="float-right nav-list">
+                                    <ul className=" float-left nav-list">
                                         <li><Link to={"/demo"}>Demo</Link></li>
                                         <li><a href="https://docs.bullet-train.io/">Docs</a></li>
                                         <li><Link to={"/pricing"}>Pricing</Link></li>
@@ -378,6 +372,10 @@ const HomePage = class extends React.Component {
                                         {hasFeature("explain") && (
                                             <li><Link to={"/blog/remote-config-and-feature-flags"}>What is remote config?</Link></li>
                                         )}
+                                    </ul>
+                                    <ul className=" float-left nav-list">
+                                        <li><a href="mailto:bullettrain@solidstategroup.com">Support</a></li>
+                                        <li><Link to={"/policies/privacy-policy"}>Privacy Policy</Link></li>
                                     </ul>
                                 </div>
                             </div>

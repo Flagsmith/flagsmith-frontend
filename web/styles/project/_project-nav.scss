@@ -90,3 +90,9 @@ nav.navbar {
         }
     }
 }
+
+@media (max-width: 576px) {
+    .navbar .nav-list{
+        display: none ;
+    }
+}
