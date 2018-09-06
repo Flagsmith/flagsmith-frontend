@@ -19,7 +19,7 @@ const TheComponent = class extends React.Component {
                 <div className={"hero"}>
                     <div className="col-md-6 col-xs-12">
                         <div className="col-md-8 push-md-4 text-left">
-                            <img height={256} src={"/images/bullet-train-1.svg"} className="hero-brand"/>
+                            <img height={256} src={"/images/bullet-train-1.svg"} className="hero-brand" alt="Feature Flags, Feature Toggles and Remote Config"/>
                             <h1>Ship features with confidence</h1>
                             <p className="">
                                 Bullet Train lets you manage {explain ? <Link to={"/blog/remote-config-and-feature-flags"}>feature
