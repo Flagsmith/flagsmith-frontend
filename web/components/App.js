@@ -62,7 +62,7 @@ export default class App extends Component {
                                                   className="nav-item nav-item-brand nav-link">
                                                 <Row>
                                                     <img title={"Bullet Train"} height={24}
-                                                         src={"/images/bullet-train-black.svg"}/>
+                                                         src={"/images/bullet-train-black.svg"} className="brand"/>
                                                 </Row>
                                             </Link>
                                         )}
@@ -106,13 +106,14 @@ export default class App extends Component {
                                             </Popover>
                                         </div>
                                     ) : (
-                                        <ul className="nav-list dark list-unstyled">
-                                            <li><Link to={"/demo"}>Demo</Link></li>
-                                            <li><a target={"_blank"} href="https://docs.bullet-train.io/">Docs</a></li>
-                                            <li><Link to={'/pricing'}>Pricing</Link></li>
-                                            <li><Link to={`/login${redirect}`} className="bold-link login">Login <ion
-                                                className="ion-ios-arrow-dropright"/></Link></li>
-                                        </ul>
+                                        <div>
+                                            <Link to={`/login${redirect}`} className="button-blue float-right">Login</Link>
+                                            <ul className="nav-list dark list-unstyled float-right">
+                                                <li><Link to={"/demo"}>Demo</Link></li>
+                                                <li><a target={"_blank"} href="https://docs.bullet-train.io/">Docs</a></li>
+                                                <li><Link to={'/pricing'}>Pricing</Link></li>
+                                            </ul>
+                                        </div>
                                     )}
 
                                 </div>

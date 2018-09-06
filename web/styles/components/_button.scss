@@ -28,3 +28,19 @@ button.btn {
 .btn-link-secondary {
 	color: $link-color-secondary;
 }
+
+.button-blue{
+	background:#2cd6ca;
+	margin:0 auto;
+	border-radius: 25px;
+	color:#fff;
+	display: block;
+	text-align: center;
+	padding: 0 20px;
+	font-weight: 100;
+	font-size: 14px;
+
+	&:hover{
+		color:#fff;
+	}
+}

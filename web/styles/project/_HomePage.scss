@@ -135,8 +135,20 @@ footer.homepage{
 
 
 	.brand-footer{
-		img{
-			width:30px;
+	}
+}
+
+.brand-ssg{
+	width:175px;
+}
+
+footer{
+	.nav-list{
+		margin:0 0 50px;
+
+		li{
+			display: block;
+
 		}
 	}
 }

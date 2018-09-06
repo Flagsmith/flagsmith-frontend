@@ -25,7 +25,6 @@ nav.navbar {
       display: inline-block;
       height: 44px;
       line-height: 44px;
-      display: inline-block;
     }
   }
   .popover-right {
@@ -37,6 +36,15 @@ nav.navbar {
 	a {
 		display: inline-block;
 	}
+
+    .navbar-right{
+        height: 50px;
+        padding-top: 3px;
+    }
+
+    .brand{
+        margin-top: 5px;
+    }
 }
 
 
@@ -46,12 +54,12 @@ nav.navbar {
 }
 
 .nav-list{
-    margin:0;
+    margin:0 20px 0;
     list-style:none;
 
     li{
         display: inline-block;
-        padding:0 5px;
+        padding:0 15px;
 
         a{
             color:white;
