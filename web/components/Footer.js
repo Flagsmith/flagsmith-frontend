@@ -24,7 +24,7 @@ export default ConfigProvider(({hasFeature, className}) => (
           <ul className=" float-left nav-list">
             <li><a href="mailto:bullettrain@solidstategroup.com">Support</a></li>
             <li><Link to={"/legal/privacy-policy"}>Privacy Policy</Link></li>
-            <li><Link to={"/legal/sla"}>Privacy Policy</Link></li>
+            <li><Link to={"/legal/sla"}>Service Level Agreement</Link></li>
           </ul>
         </div>
       </div>
