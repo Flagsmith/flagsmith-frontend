@@ -1,4 +1,32 @@
-.privacy-policy {
+.legal-container {
 	background:#f9f9f9;
 	padding: 40px 0;
+}
+
+footer.legalpage{
+	background: $hero-bg;
+	color:white;
+	padding:50px 50px 50px 250px;
+
+
+	.brand-footer{
+		img{
+			width:30px;
+		}
+	}
+}
+
+.sla-list {
+	padding-left: 0;
+	list-style-position: inside;
+	counter-reset: sla-counter;
+	h5 {
+		display: inline;
+	}
+	li {
+		counter-increment: sla-counter;
+		&::before {
+			font-size: 2em;
+		}
+	}
 }

@@ -22,7 +22,7 @@ const PricingPage = class extends React.Component {
                 <div className="pricing">
                     <div className="container">
                         <h2 className="text-center margin-bottom">Start using Bullet Train for free</h2>
-                        <p className="text-center">Then increase your your plan as your business grows.</p>
+                        <p className="text-center">Then increase your plan as your business grows.</p>
                         <div className={"col-md-12 row"}>
                             <div className={"col-md-3 pricing-panel"}>
                                 <div className="panel panel-default">
@@ -59,7 +59,7 @@ const PricingPage = class extends React.Component {
                                     <div className="panel-footer">
                                         <p className="text-small text-center link-style">What's included</p>
                                         <ul className="pricing-features">
-                                            <li><p>30 Day free trial</p></li>
+                                            <li><p>30 day free trial</p></li>
                                             <li><p>Up to 10,000 Monthly Active Users</p></li>
                                             <li><p>Unlimited Administrator Accounts</p></li>
                                             <li><p>Unlimited Projects</p></li>
@@ -83,7 +83,7 @@ const PricingPage = class extends React.Component {
                                     <div className="panel-footer">
                                         <p className="text-small text-center link-style">What's included</p>
                                         <ul className="pricing-features">
-                                            <li><p>30 Day free trial</p></li>
+                                            <li><p>30 day free trial</p></li>
                                             <li><p>Up to 50,000 Monthly Active Users</p></li>
                                             <li><p>All Startup Features</p></li>
                                             <li><p>Telephone Technical Support</p></li>
@@ -122,20 +122,44 @@ const PricingPage = class extends React.Component {
                     <div className="container">
                         <h2 className="text-center margin-bottom">FAQs</h2>
                         <div className="panel panel-default panel-grey">
-                            <p className="question">This is a frequently asked question?</p>
-                            <p className="answer">This is the answer to this question. This is the answer to this question. This is the answer to this question. This is the answer to this question. This is the answer to this question. This is the answer to this question.</p>
+                            <p className="question">So how does this all work?</p>
+                            <p className="answer">
+                                First off, you're free to host Bullet Train yourself, free of charge. We're open source, and totally fine with you doing that. 
+                            </p>
+                            <p className="answer">
+                                If you want to support the project, or you don't fancy going through the hassle of managing that infrastructure, we'd love you to sign up. 
+                            </p>
+                            <p className="answer">
+                                The only metric you need to count when deciding on your plan is the number of Monthly Active Users you need to serve flags for (see below). 
+                                You can create as many projects, flags, admin users as you like. We feel that this is the fairest measure of usage. 
+                            </p>
                         </div>
                         <div className="panel panel-default panel-grey">
-                            <p className="question">This is a frequently asked question?</p>
-                            <p className="answer">This is the answer to this question. This is the answer to this question. This is the answer to this question. This is the answer to this question. This is the answer to this question. This is the answer to this question.</p>
+                            <p className="question">What is a monthly active user?</p>
+                            <p className="answer">
+                                Whenever you serve a set of feature flags or remote configurations to one of your users, we'll track it as a single user. 
+                                That user can request feature flags as often as they like for the current 30 day period. It just tracks as a single Monthly Active User (MAU). 
+                                We total up all users across all projects and environments over the 30 day period (based on your initial billing date), and that makes up your total MAU.
+                            </p>
                         </div>
                         <div className="panel panel-default panel-grey">
-                            <p className="question">This is a frequently asked question?</p>
-                            <p className="answer">This is the answer to this question. This is the answer to this question. This is the answer to this question. This is the answer to this question. This is the answer to this question. This is the answer to this question.</p>
+                            <p className="question">What happens if I go over my plan limit?</p>
+                            <p className="answer">
+                                Don't worry - we'll carry on serving your flags to your users. We realise that this is important to your application. 
+                                If this does happen, we'll be in touch to discuss moving you to a new plan.
+                            </p>
                         </div>
                         <div className="panel panel-default panel-grey">
-                            <p className="question">This is a frequently asked question?</p>
-                            <p className="answer">This is the answer to this question. This is the answer to this question. This is the answer to this question. This is the answer to this question. This is the answer to this question. This is the answer to this question.</p>
+                            <p className="question">What about an annual discount?</p>
+                            <p className="answer">
+                                We're working on this - please <a href="mailto:support@bullettrain.io">get in touch</a> if this is important to you right now. 
+                            </p>
+                        </div>
+                        <div className="panel panel-default panel-grey">
+                            <p className="question">Wait, what? This seems too cheap?</p>
+                            <p className="answer">
+                                We like to think of it as offering great value 🤪
+                            </p>
                         </div>
                         <div className="text-center cta-container">
                             <h5>Didn't find an answer to your question?</h5>
