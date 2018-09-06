@@ -138,7 +138,7 @@ const PricingPage = class extends React.Component {
                             <p className="question">What is a monthly active user?</p>
                             <p className="answer">
                                 Whenever you serve a set of feature flags or remote configurations to one of your users, we'll track it as a single user. 
-                                That user can request feature flags as often as they like for the current 30 day period. It just tracks as a single Monthl Active User (MAU). 
+                                That user can request feature flags as often as they like for the current 30 day period. It just tracks as a single Monthly Active User (MAU). 
                                 We total up all users across all projects and environments over the 30 day period (based on your initial billing date), and that makes up your total MAU.
                             </p>
                         </div>
