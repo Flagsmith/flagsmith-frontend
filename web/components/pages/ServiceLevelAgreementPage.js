@@ -16,7 +16,7 @@ export default (props) => (
                 <p><b>“Maintenance”</b> means scheduled Unavailability of Bullet Train Services, as announced by us prior to Bullet Train Services becoming Unavailable.</p>
                 <p><b>“Monthly Uptime Percentage”</b> is calculated by subtracting from 100% the percentage of minutes during the month in which Bullet Train Services were Unavailable. Monthly Uptime Percentage measurements exclude downtime resulting directly or indirectly from any SLA Exclusion.</p>
                 <p><b>“Service Credit”</b> means a credit denominated in US dollars, calculated as set forth below, that we may credit back to an eligible account.</p>
-                <p><b>“Unavailable”</b> and <b>“Unavailability”</b> mean, for app services and databases, when your service or database is not running or not reachable due to Solid State Group's fault. <span style={{color: 'red'}}>TODO "This excludes"?</span></p>
+                <p><b>“Unavailable”</b> and <b>“Unavailability”</b> mean, for app services and databases, when your service or database is not running or not reachable due to Solid State Group's fault. This excludes reasons where the fault lies with Amazon Web Services.</p>
             </li>
             <li>
                 <h5>Service Commitments and Service Credits</h5>

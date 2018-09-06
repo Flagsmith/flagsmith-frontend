@@ -1,7 +1,9 @@
 import React from "react";
+
 import LegalAside from '../LegalAside';
 import PrivacyPolicy from './PrivacyPolicyPage';
 import ServiceLevelAgreement from './ServiceLevelAgreementPage';
+import Footer from '../Footer';
 
 const HomePage = class extends React.Component {
     static contextTypes = {
@@ -40,30 +42,7 @@ const HomePage = class extends React.Component {
                         }
                     })()}
                 </div>
-                <footer className="legalpage clearfix">
-                    <div className="clearfix">
-                        <div className="brand-footer float-left">
-                            <img src="./images/icon-light-2.png" alt="Bullet Train" />
-                        </div>
-                        <ul className="float-right nav-list">
-                            {hasFeature("explain") && (
-                                <li><Link to={"/blog/remote-config-and-feature-flags"}>What are feature flags?</Link></li>
-                            )}
-                            {hasFeature("explain") && (
-                                <li><Link to={"/blog/remote-config-and-feature-flags"}>What is remote config?</Link></li>
-                            )}
-                            <li><Link to={"/demo"}>Demo</Link></li>
-                            <li><a href="https://docs.bullet-train.io/">Docs</a></li>
-                            <li><Link to={"/pricing"}>Pricing</Link></li>
-                            <li><a href="mailto:bullettrain@solidstategroup.com">Support</a></li>
-                        </ul>
-                    </div>
-                    <div className="built-by text-center">
-                        <p>Built by <a href="http://www.solidstategroup.com"><img
-                            src="./images/ssg-logotype-white-transparent-bg.png" alt="Solid state group" /></a>
-                        </p>
-                    </div>
-                </footer>
+                <Footer className="legalpage" />
             </div>
         );
     }

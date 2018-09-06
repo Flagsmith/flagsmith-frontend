@@ -1,6 +1,8 @@
 import React from "react";
 import makeAsyncScriptLoader from "react-async-script";
 
+import Footer from '../Footer';
+
 const PricingPage = class extends React.Component {
     static contextTypes = {
         router: React.PropTypes.object.isRequired
@@ -124,35 +126,35 @@ const PricingPage = class extends React.Component {
                         <div className="panel panel-default panel-grey">
                             <p className="question">So how does this all work?</p>
                             <p className="answer">
-                                First off, you're free to host Bullet Train yourself, free of charge. We're open source, and totally fine with you doing that. 
+                                First off, you're free to host Bullet Train yourself, free of charge. We're open source, and totally fine with you doing that.
                             </p>
                             <p className="answer">
-                                If you want to support the project, or you don't fancy going through the hassle of managing that infrastructure, we'd love you to sign up. 
+                                If you want to support the project, or you don't fancy going through the hassle of managing that infrastructure, we'd love you to sign up.
                             </p>
                             <p className="answer">
-                                The only metric you need to count when deciding on your plan is the number of Monthly Active Users you need to serve flags for (see below). 
-                                You can create as many projects, flags, admin users as you like. We feel that this is the fairest measure of usage. 
+                                The only metric you need to count when deciding on your plan is the number of Monthly Active Users you need to serve flags for (see below).
+                                You can create as many projects, flags, admin users as you like. We feel that this is the fairest measure of usage.
                             </p>
                         </div>
                         <div className="panel panel-default panel-grey">
                             <p className="question">What is a monthly active user?</p>
                             <p className="answer">
-                                Whenever you serve a set of feature flags or remote configurations to one of your users, we'll track it as a single user. 
-                                That user can request feature flags as often as they like for the current 30 day period. It just tracks as a single Monthly Active User (MAU). 
+                                Whenever you serve a set of feature flags or remote configurations to one of your users, we'll track it as a single user.
+                                That user can request feature flags as often as they like for the current 30 day period. It just tracks as a single Monthly Active User (MAU).
                                 We total up all users across all projects and environments over the 30 day period (based on your initial billing date), and that makes up your total MAU.
                             </p>
                         </div>
                         <div className="panel panel-default panel-grey">
                             <p className="question">What happens if I go over my plan limit?</p>
                             <p className="answer">
-                                Don't worry - we'll carry on serving your flags to your users. We realise that this is important to your application. 
+                                Don't worry - we'll carry on serving your flags to your users. We realise that this is important to your application.
                                 If this does happen, we'll be in touch to discuss moving you to a new plan.
                             </p>
                         </div>
                         <div className="panel panel-default panel-grey">
                             <p className="question">What about an annual discount?</p>
                             <p className="answer">
-                                We're working on this - please <a href="mailto:support@bullettrain.io">get in touch</a> if this is important to you right now. 
+                                We're working on this - please <a href="mailto:support@bullettrain.io">get in touch</a> if this is important to you right now.
                             </p>
                         </div>
                         <div className="panel panel-default panel-grey">
@@ -167,30 +169,7 @@ const PricingPage = class extends React.Component {
                         </div>
                     </div>
                 </div>
-                <footer className="homepage clearfix">
-                    <div className="clearfix">
-                        <div className="brand-footer float-left">
-                            <img src="./images/icon-light-2.png" alt="Bullet Train" />
-                        </div>
-                        <ul className="float-right nav-list">
-                            {hasFeature("explain") && (
-                                <li><Link to={"/blog/remote-config-and-feature-flags"}>What are feature flags?</Link></li>
-                            )}
-                            {hasFeature("explain") && (
-                                <li><Link to={"/blog/remote-config-and-feature-flags"}>What is remote config?</Link></li>
-                            )}
-                            <li><Link to={"/demo"}>Demo</Link></li>
-                            <li><a href="https://docs.bullet-train.io/">Docs</a></li>
-                            <li><a href="mailto:bullettrain@solidstategroup.com">Support</a></li>
-                            <li><Link to={"/policies/privacy-policy"}>Privacy Policy</Link></li>
-                        </ul>
-                    </div>
-                    <div className="built-by text-center">
-                        <p>Built by <a href="http://www.solidstategroup.com"><img
-                            src="./images/ssg-logotype-white-transparent-bg.png" alt="Solid state group" /></a>
-                        </p>
-                    </div>
-                </footer>
+                <Footer className="homepage" />
             </div>
         );
     }
