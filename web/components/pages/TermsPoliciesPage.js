@@ -102,15 +102,11 @@ const HomePage = class extends React.Component {
                         <h5>Jurisdiction</h5>
                         <p className={"faint"}>Our services are global and Data (of all classifications) may be stored and processed anywhere where we or one of our service providers has services. We may transfer data to countries outside of your country of residence, which may have different rules applicable to your data. Bullet Train will take measures to ensure that any transfers comply with applicable laws and your data remains protected as per this policy.</p>
 
-                        <h5>How Do I contact the Bullet Train Data Privacy Officer?</h5>
+                        <h5>How do I contact the Bullet Train Data Privacy Officer?</h5>
                         <p className={"faint"}>Bullet Train's Data Privacy Officer is Matthew Elwell, and you can contact him at <a href="mailto:privacy@bullettrain.io">privacy@bullettrain.io.</a></p>
 
-                        <h5>Does Bullet Train adhere to Privacy Shield?</h5>
-                        <p className={"faint"}>We're committed to the Privacy Shield principles of notice, choice, accountability, security, data integrity and purpose limitation, access and recourse, and are certified by the U.S. Department of Commerce. Bullet Train's Privacy Shield notice can be found here, which means that we are deemed to provide "adequate" privacy protection which is a requirement for the transfer of personal data under the General Data Protection Regulation (GDPR).</p>
-
                         <h5>Is Bullet Train compliant with the General Data Protection Regulation (GDPR)?</h5>
-                        <p className={"faint"}>Bullet Train has taken steps to elect a Data Privacy Officer, to ensure that we have adequate data protection policies, procedures, and practices, and has completed Privacy Shield certification. As of April 2nd, 2018, we believe that we are fully in compliance with the provisions and principles of GDPR.</p>
-                        <p className={"faint"}>Of course, GDPR isn't just a line in the sand, but a continual journey—Bullet Train is committed to adapting to the changing landscape of privacy and renewing its practices as the landscape evolves.</p>
+                        <p className={"faint"}>Bullet Train has taken steps to elect a Data Privacy Officer, to ensure that we have adequate data protection policies, procedures, and practices. We believe that we are fully in compliance with the provisions and principles of GDPR.</p>
                     </div>
                 </div>
                 <footer className="homepage clearfix">
