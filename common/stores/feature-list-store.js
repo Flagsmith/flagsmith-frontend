@@ -78,7 +78,7 @@ var controller = {
             if (environmentFlag) {
                 prom = data.put(`${Project.api}environments/${environmentId}/featurestates/${environmentFlag.id}/`, Object.assign({}, environmentFlag, {
                     feature_state_value: flag.initial_value,
-                    enabled: flag.initial_enabled
+                    enabled: flag.default_enabled
                 }))
             } else {
                 prom = data.post(`${Project.api}environments/${environmentId}/featurestates/`, Object.assign({}, flag, {
