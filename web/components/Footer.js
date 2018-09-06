@@ -4,8 +4,8 @@ export default ConfigProvider(({ hasFeature, className }) => (
       <div className="float-left">
         <div className="brand-footer float-left">
           <ul className="list-unstyled">
-            <li><img src="./images/icon-light-2.png" alt="Bullet Train" /></li>
-            <li><a href="http://www.solidstategroup.com"><img src="./images/ssg-logotype-white-transparent-bg.png" alt="Solid state group" className="brand-ssg" /></a></li>
+            <li><img src="/images/icon-light-2.png" alt="Bullet Train" /></li>
+            <li><a href="http://www.solidstategroup.com"><img src="/images/ssg-logotype-white-transparent-bg.png" alt="Solid state group" className="brand-ssg" /></a></li>
           </ul>
         </div>
       </div>
