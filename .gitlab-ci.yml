@@ -14,8 +14,6 @@ test:
         - apt-get install -y build-essential libpng-dev google-chrome-stable
         - npm i
         - npm run test
-    only:
-        - master
 
 deploy:
     image: ilyasemenov/gitlab-ci-git-push

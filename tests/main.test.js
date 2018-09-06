@@ -16,17 +16,15 @@ module.exports = {
             .setValue('[name="email"]', email)
             .setValue('[name="password"]', password)
             .click('button[name="signup-btn"]')
-
-        browser.expect.element('#project-select-page').to.be.visible;
+            .waitForElementVisible('#project-select-page');
     },
     '[Main Tests] - Create project': function (browser) {
         browser
             .click('#create-first-project-btn')
             .waitForElementVisible('[name="projectName"]')
             .setValue('[name="projectName"]', 'My Test Project')
-            .click('#create-project-btn');
-
-        browser.expect.element('#features-page').to.be.visible;
+            .click('#create-project-btn')
+            .waitForElementVisible('#features-page');
     },
     '[Main Tests] - Create feature': function (browser) {
         browser
@@ -37,9 +35,9 @@ module.exports = {
             .setValue('[name="featureID"]', 'header_size')
             .setValue('[name="featureValue"]', 'big')
             .setValue('[name="featureDesc"]', 'This determines what size the header is')
-            .click('#create-feature-btn');
+            .click('#create-feature-btn')
+            .waitForElementVisible('#features-list div.list-item');
 
-        browser.expect.element('#features-list div.list-item').to.be.visible;
         browser.expect.element('#features-list .feature-value').text.to.equal('big');
     },
     '[Main Tests] - Create feature 2': function (browser) {
@@ -49,9 +47,8 @@ module.exports = {
             .waitForElementVisible('[name="featureID"]')
             .setValue('[name="featureID"]', 'header_enabled')
             .setValue('[name="featureDesc"]', 'This determines whether header is shown')
-            .click('#create-feature-btn');
-
-        browser.expect.element('#features-list div.list-item:nth-child(2)').to.be.visible;
+            .click('#create-feature-btn')
+            .waitForElementVisible('#features-list div.list-item:nth-child(2)');
     },
     '[Main Tests] - Toggle feature on': function (browser) {
         browser
@@ -61,8 +58,7 @@ module.exports = {
             .click('#features-list span.rc-switch')
             .waitForElementVisible('#confirm-toggle-feature-btn')
             .click('#confirm-toggle-feature-btn')
-
-        browser.expect.element('#features-list span.rc-switch.rc-switch-checked').to.be.visible;
+            .waitForElementVisible('#features-list span.rc-switch.rc-switch-checked');
     },
     '[Main Tests] - Try feature out': function (browser) {
         browser
@@ -94,6 +90,7 @@ module.exports = {
             .clearValue('[name="featureValue"]')
             .setValue('[name="featureValue"]', '12')
             .click('#update-feature-btn')
+            .waitForElementVisible('#features-list .feature-value');
 
         browser.expect.element('#features-list .feature-value').text.to.equal('12');
     },
@@ -209,8 +206,7 @@ module.exports = {
             .waitForElementVisible('#confirm-toggle-feature-btn')
             .click('#confirm-toggle-feature-btn')
             .waitForElementNotPresent('#confirm-toggle-feature-btn')
-
-        browser.expect.element('#user-features-list span.rc-switch.rc-switch-checked').to.be.visible;
+            .waitForElementVisible('#user-features-list span.rc-switch.rc-switch-checked');
     },
     '[Main Tests] - Edit environment': function (browser) {
         browser
@@ -227,15 +223,14 @@ module.exports = {
             .click('#delete-env-btn')
             .waitForElementVisible("[name='confirm-env-name']")
             .setValue("[name='confirm-env-name']", 'Internal')
-            .click('#confirm-delete-env-btn');
-
-        browser.expect.element('#project-select-page').to.be.visible;
+            .click('#confirm-delete-env-btn')
+            .waitForElementVisible('#project-select-page');
     },
     '[Main Tests] - View project': function (browser) {
         browser.waitForElementVisible('#projects-list a.list-item')
         browser.expect.element('#projects-list a.list-item').text.to.equal('My Test Project');
         browser.click('#projects-list a.list-item');
-        browser.expect.element('#features-page').to.be.visible;
+        browser.waitForElementVisible('#features-page');
     },
     '[Main Tests] - Edit project': function (browser) {
         browser
@@ -257,8 +252,8 @@ module.exports = {
             .waitForElementVisible('[name="confirm-org-name"]')
             .setValue('[name="confirm-org-name"]', "Nightwatch Ltd")
             .click('#confirm-del-org-btn')
+            .waitForElementVisible('#create-org-page');
 
-        browser.expect.element('#create-org-page').to.be.visible;
         browser.end();
     }
 };
