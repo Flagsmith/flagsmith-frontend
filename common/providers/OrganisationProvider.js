@@ -44,7 +44,11 @@ const TheComponent = class extends Component {
 		}).then(() => {
 			this.setState({isSaving: false});
 			this.props.onSave && this.props.onSave();
-		})
+			toast('Invite(s) sent successfully');
+		}).catch((e) => {
+			this.setState({isSaving: false});
+			toast('Failed to send invite(s). Please try again later');
+		});
 	}
 
 	render() {

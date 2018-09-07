@@ -52,6 +52,7 @@ const HomePage = class extends React.Component {
                                             }}>
                                                 <ion className="homepage-icon icon ion-ios-hand"/>
                                                 <h3>Hello again.</h3>
+                                                {isInvite && <p>Login to accept your invite</p>}
                                                 <fieldset id="details">
                                                     <FormGroup>
                                                         <InputGroup
@@ -128,6 +129,7 @@ const HomePage = class extends React.Component {
                                         }}>
                                             <ion className="homepage-icon icon ion-ios-rocket"/>
                                             <h3>It's free to get started.</h3>
+                                            {isInvite && <p>Sign up to accept your invite</p>}
                                             <fieldset id="details">
                                                 <div className={"row"}>
                                                     <div className={"col-md-6"}>
