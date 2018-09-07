@@ -13,7 +13,7 @@ const TheComponent = class extends Component {
         this.state = {
             type,
             tab: !type || type == "FLAG" ? 0 : 1,
-            initial_enabled: enabled,
+            default_enabled: enabled,
             name,
             initial_value: Utils.getTypedValue(feature_state_value),
             description,
@@ -46,7 +46,7 @@ const TheComponent = class extends Component {
     }
 
     render() {
-        const {name, initial_value, initial_enabled, featureType, type, description} = this.state;
+        const {name, initial_value, default_enabled, featureType, type, description} = this.state;
         const {isEdit, projectFlag, environmentFlag, identity} = this.props;
         const Provider = identity ? IdentityProvider : FeatureListProvider;
         const valueString = isEdit ? "Value" : "Initial value";
@@ -110,13 +110,13 @@ const TheComponent = class extends Component {
                                             <label>{enabledString}</label>
                                         </div>
                                         <Switch
-                                            defaultChecked={initial_enabled}
-                                            checked={initial_enabled}
-                                            onChange={(initial_enabled) => this.setState({initial_enabled})}
+                                            defaultChecked={default_enabled}
+                                            checked={default_enabled}
+                                            onChange={(default_enabled) => this.setState({default_enabled})}
                                         />
                                     </FormGroup>
                                 )}
-
+``
 
                                 <InputGroup
                                     value={description}
@@ -156,7 +156,7 @@ const TheComponent = class extends Component {
                                     <Highlight className={"json no-pad"}>
                                         {type == "CONFIG" ?
                                             JSON.stringify({value: initial_value, name},null,2)
-                                            : JSON.stringify({name, enabled: initial_enabled},null,2)
+                                            : JSON.stringify({name, enabled: default_enabled},null,2)
 
                                         }
                                     </Highlight>
@@ -184,7 +184,7 @@ const TheComponent = class extends Component {
 
     save = (func, isSaving) => {
         const {projectFlag, environmentFlag, identity, identityFlag, environmentId} = this.props;
-        const {name, initial_value, description, type, initial_enabled} = this.state;
+        const {name, initial_value, description, type, default_enabled} = this.state;
         if (identity) {
             !isSaving && name && func({
                 identity,
@@ -192,7 +192,7 @@ const TheComponent = class extends Component {
                 environmentFlag,
                 identityFlag: Object.assign({}, identityFlag || {}, {
                     feature_state_value: initial_value,
-                    enabled: initial_enabled
+                    enabled: default_enabled
                 }),
                 environmentId
             })
@@ -201,7 +201,7 @@ const TheComponent = class extends Component {
                 name,
                 type,
                 initial_value,
-                default_enabled: initial_enabled,
+                default_enabled,
                 description
             }, projectFlag, environmentFlag)
         }
