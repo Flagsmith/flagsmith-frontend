@@ -26,10 +26,10 @@ const TheComponent = class extends Component {
 				<Flex>
 					<Flex className="links">
 						<h3 className="link-header">Agreeements</h3>
-						{/* <Link
+						<Link
 							activeClassName={"active"}
 							to={`/legal/tos`
-							}>Terms of Service</Link> */}
+							}>Terms of Service</Link>
 						<Link
 							activeClassName={"active"}
 							to={`/legal/sla`
