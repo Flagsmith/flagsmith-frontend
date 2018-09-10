@@ -48,7 +48,7 @@ const TheComponent = class extends Component {
 		}).catch((e) => {
 			console.error(e);
 			this.setState({isSaving: false});
-			toast('Failed to send invite(s). Please try again later');
+			toast(`Failed to send invite(s). ${e && e.error ? e.error : 'Please try again later'}`);
 		});
 	}
 
