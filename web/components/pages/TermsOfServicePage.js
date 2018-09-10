@@ -2,11 +2,10 @@ export default (props) => (
   <div className="legal-container">
     <div className="container">
         <h2>Terms of Service</h2>
-        <p className="text-small">
+        <p>
         These Bullet Train terms of service ("agreement") contains the terms for use of the Bullet Train service and is between Solid State Group Ltd ("Bullet Train"), a London based company having a place of business at 86-90 Paul St, London, EC2A 4NE and the party agreeing to the terms of this agreement ("customer"). By executing an order form that references this agreement, clicking an "accept" or similar button, or otherwise downloading or using the Bullet Train service, the person performing any of the foregoing represents that is authorized to do so on behalf of customer and customer agrees to be bound by the terms of this agreement. Customer may not use the Bullet Train service without agreeing to this agreement first. If a written agreement regarding customer's use of the Bullet Train service exists between and has been executed by both Bullet Train and customer, the terms of that written agreement shall take precedence over this agreement.
         </p><h3>1. Definitions</h3>
-        <p className="text-small">
-            </p><ul>
+        <ul>
             <li><strong>"Affiliate"</strong> means, with respect to a party, any entity which directly or indirectly Controls, is Controlled by, or is under common Control with such party.</li>
             <li><strong>"Confidential Information"</strong> has the meaning set forth in Section 8.</li>
             <li><strong>"Control"</strong> means ownership or control, directly or indirectly, of at least 50% of the voting interests of the subject entity.</li>
@@ -24,8 +23,7 @@ export default (props) => (
             <li><strong>"Taxes"</strong> means any direct or indirect local, state, federal or foreign value-added, sales, use or withholding taxes.</li>
             <li><strong>"Term"</strong> as it relates to an Order Form means the Initial Term and any Extension Term applicable to each Order Form, and as it relates to this Agreement, is as defined in Section 10.1 below.</li>
             <li><strong>"Users"</strong> means Customer's and its Affiliates and their respective employees, agents, contractors, service providers or consultants who are authorized by Customer to use the Bullet Train Service and who have been supplied user identifications and passwords by Customer or by Bullet Train at Customer's or its Affiliates' request.</li>
-            </ul>
-        <p></p>
+        </ul>
         <h3>2. Terms of Bullet Train Service</h3>
         <p>Bullet Train shall make the Bullet Train Service available to Customer and its Affiliates in accordance with this Agreement, and each Order Form mutually entered into and, to the extent not in conflict with this Agreement or an Order Form or the Documentation. Subject to the terms of this Agreement, Bullet Train grants Customer and its Affiliates a world-wide, fully-paid, royalty-free, limited term, non-sublicensable, non-transferable (except as otherwise provided herein), and non-exclusive license to access, use, and download (for the SDK only) the Bullet Train Service solely for its internal business purposes. The license granted hereunder is limited to the maximum number of Users specified in each Order Form and is subject to any additional terms and conditions specified on an Order Form. Any third party component embedded, included or provided by Bullet Train for use with the Bullet Train Service may only be used in conjunction with the Bullet Train Service, and such use is subject to this Agreement.</p>
         <h3>3. Customer Responsabilities Relatings to Use of the Bullet Train Service</h3>
