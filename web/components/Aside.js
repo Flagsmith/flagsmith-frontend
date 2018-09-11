@@ -117,7 +117,6 @@ const TheComponent = class extends Component {
 										Organisation Settings
 									</Link>
 									<a
-										activeClassName={"active"}
 										target={"blank"}
 										href={`https://docs.bullet-train.io`}>
 										Documentation

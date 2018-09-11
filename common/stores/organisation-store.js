@@ -12,9 +12,10 @@ var controller = {
                 Promise.all([
                     data.get(`${Project.api}organisations/${id}/projects/?format=json`),
                     data.get(`${Project.api}organisations/${id}/users/?format=json`),
+                    data.get(`${Project.api}organisations/${id}/invites/?format=json`)
                 ]).then((res) => {
-                    const [projects, users] = res;
-                    store.model = {users};
+                    const [projects, users, invites] = res;
+                    store.model = {users, invites: invites && invites.results};
                     return Promise.all(projects.map((project, i) => {
                         return data.get(`${Project.api}projects/${project.id}/environments/?format=json`)
                             .then((res) => {
@@ -63,7 +64,7 @@ var controller = {
         },
         editOrganisation: (name) => {
             store.saving();
-            data.put(`${Project.api}organisations/${store.organisation.id}/?format=json`, {name})
+            data.put(`${Project.api}organisations/${store.id}/?format=json`, {name})
                 .then((res) => {
                     var idx = _.findIndex(store.model.organisations, {id: store.organisation.id});
                     if (idx != -1) {
@@ -84,6 +85,48 @@ var controller = {
                 .then(() => {
                     store.trigger("removed");
                 });
+        },
+        inviteUsers: (emailAddresses) => {
+            store.saving();
+            data.post(`${Project.api}organisations/${store.id}/invite/?format=json`, {
+                emails: emailAddresses.split(",").map((e)=>{
+                    API.trackEvent(Constants.events.INVITE);
+                    return e.trim()
+                }),
+                frontend_base_url: `${document.location.origin}/invite/`
+            }).then(res => {
+                store.model.invites = store.model.invites || [];
+                store.model.invites.concat(res);
+                store.saved();
+                toast('Invite(s) sent successfully');
+            }).catch((e) => {
+                console.error('Failed to send invite(s)', e);
+                store.saved();
+                toast(`Failed to send invite(s). ${e && e.error ? e.error : 'Please try again later'}`);
+            });
+        },
+        deleteInvite: (id) => {
+            store.saving();
+            data.delete(`${Project.api}organisations/${store.id}/invites/${id}/?format=json`)
+                .then(() => {
+                    API.trackEvent(Constants.events.DELETE_INVITE);
+                    if (store.model) {
+                        store.model.invites = _.filter(store.model.invites, i => i.id != id);
+                    }
+                    store.saved();
+                })
+                .catch((e) => API.ajaxHandler(store, e))
+        },
+        resendInvite: (id) => {
+            data.post(`${Project.api}organisations/${store.id}/invites/${id}/resend/?format=json`)
+                .then(() => {
+                    API.trackEvent(Constants.events.RESEND_INVITE);
+                    toast('Invite resent successfully');
+                })
+                .catch((e) => {
+                    console.error('Failed to resend invite', e);
+                    toast(`Failed to resend invite. ${e && e.error ? e.error : 'Please try again later'}`);
+                });
         }
 
     },
@@ -97,6 +140,9 @@ var controller = {
         },
         getUsers: () => {
             return store.model && store.model.users;
+        },
+        getInvites: () => {
+            return store.model && store.model.invites;
         }
     });
 
@@ -113,6 +159,15 @@ store.dispatcherIndex = Dispatcher.register(store, function (payload) {
             break;
         case Actions.DELETE_PROJECT:
             controller.deleteProject(action.id);
+            break;
+        case Actions.INVITE_USERS:
+            controller.inviteUsers(action.emailAddresses);
+            break;
+        case Actions.DELETE_INVITE:
+            controller.deleteInvite(action.id);
+            break;
+        case Actions.RESEND_INVITE:
+            controller.resendInvite(action.id);
             break;
         default:
             return;

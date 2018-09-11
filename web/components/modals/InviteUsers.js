@@ -33,13 +33,12 @@ const TheComponent = class extends Component {
         const {emailAddresses} = this.state;
         return (
             <OrganisationProvider
-                baseURL={`${document.location.origin}/invite/`}
                 onSave={this.close}>
-                {({isSaving, error, inviteUsers}) => (
+                {({isSaving, error}) => (
                     <div>
                         <form onSubmit={(e) => {
                             e.preventDefault();
-                            inviteUsers(emailAddresses);
+                            AppActions.inviteUsers(emailAddresses);
                         }}>
                             <InputGroup
                                 ref={(e) => this.input = e}
@@ -59,7 +58,7 @@ const TheComponent = class extends Component {
                         <div className="pull-right">
                             <Button
                                 id={"btn-send-invite"}
-                                disabled={isSaving || !this.isValid()} onClick={() => inviteUsers(emailAddresses)}>
+                                disabled={isSaving || !this.isValid()} onClick={() => AppActions.inviteUsers(emailAddresses)}>
                                 {isSaving ? 'Sending' : 'Send Invites'}
                             </Button>
                         </div>

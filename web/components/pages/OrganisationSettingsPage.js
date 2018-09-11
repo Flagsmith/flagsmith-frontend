@@ -46,6 +46,10 @@ const TheComponent = class extends Component {
 		this.context.router.replace("/");
 	};
 
+	deleteInvite = (id) => {
+		openConfirm(<h3>Delete Invite</h3>, <p>Are you sure you want to delete this invite?</p>, () => AppActions.deleteInvite(id));
+	}
+
 	render() {
 		const {name} = this.state;
 
@@ -99,7 +103,7 @@ const TheComponent = class extends Component {
 				</FormGroup>
 				<FormGroup>
 					<OrganisationProvider>
-						{({isLoading, name, projects, users}) => (
+						{({isLoading, name, projects, users, invites}) => (
 							<div>
 								<h3>Team members</h3>
 								<p>
@@ -116,13 +120,16 @@ const TheComponent = class extends Component {
 												items={users}
 												renderRow={({id, first_name,last_name,email}) =>
 													<div className={"list-item"} key={id}>
-														{first_name ? first_name + " " + last_name : email + ' <Pending Invite>'} {id == AccountStore.getUserId() && "(You)"}
+														{first_name + " " + last_name} {id == AccountStore.getUserId() && "(You)"}
+														<div className={"list-item-footer faint"}>
+															{email}
+														</div>
 													</div>
 												}
 												renderNoResults={<div>You have no users in this organisation.</div>}
 												filterRow={(item, search) => {
-													//TODO:
-													return true;
+													const strToSearch = `${item.first_name} ${item.last_name} ${item.email}`;
+													return strToSearch.toLowerCase().indexOf(search.toLowerCase()) !== -1;
 												}}
 											/>
 										</FormGroup>
@@ -132,6 +139,51 @@ const TheComponent = class extends Component {
 												Invite Users
 											</Button>
 										</div>
+
+										{invites ? (
+											<FormGroup>
+												<PanelSearch
+													id="org-members-list"
+													title="Invites Pending"
+													className={"no-pad"}
+													items={invites}
+													renderRow={({id, email, date_created, invited_by}) =>
+														<Row className={"list-item"} key={id}>
+															<div className={"flex flex-1"}>
+																{email}
+																<div className={"list-item-footer faint"}>
+																		Created {moment(date_created).format("DD/MMM/YYYY")}
+																</div>
+																{invited_by ? (
+																	<div className={"list-item-footer faint"}>
+																		Invited by {invited_by.first_name ? invited_by.first_name + ' ' + invited_by.last_name : invited_by.email}
+																	</div>
+																) : null}
+															</div>
+															<Row>
+																<Column>
+																	<a
+																			onClick={() => AppActions.resendInvite(id)}
+																			className={"btn btn-link"}>
+																			Resend
+																	</a>
+																</Column>
+																<Column>
+																	<a
+																			onClick={() => this.deleteInvite(id)}
+																			className={"btn btn-link"}>
+																			Delete
+																	</a>
+																</Column>
+															</Row>
+														</Row>
+													}
+													filterRow={(item, search) => {
+														return item.email.toLowerCase().indexOf(search.toLowerCase()) !== -1;
+													}}
+												/>
+											</FormGroup>
+										) : null}
 
 									</div>
 								)}

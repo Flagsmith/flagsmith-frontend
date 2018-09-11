@@ -12,6 +12,7 @@ const TheComponent = class extends Component {
 			isLoading: !OrganisationStore.getProjects(),
 			projects: OrganisationStore.getProjects(),
 			users: OrganisationStore.getUsers(),
+			invites: OrganisationStore.getInvites(),
 			name: AccountStore.getOrganisation() && AccountStore.getOrganisation().name,
 		};
 		ES6Component(this);
@@ -21,6 +22,7 @@ const TheComponent = class extends Component {
 				isLoading: OrganisationStore.isLoading,
 				projects: OrganisationStore.getProjects(),
 				users: OrganisationStore.getUsers(),
+				invites: OrganisationStore.getInvites(),
 			});
 		})
 		this.listenTo(OrganisationStore, 'saved', () => {
@@ -32,33 +34,12 @@ const TheComponent = class extends Component {
 		AppActions.createProject(name)
 	};
 
-	inviteUsers = (emailAddresses) => {
-		this.setState({isSaving: true});
-
-		data.post(`${Project.api}organisations/${AccountStore.organisation.id}/invite/`, {
-			emails: emailAddresses.split(",").map((e)=>{
-                API.trackEvent(Constants.events.INVITE);
-				return e.trim()
-            }),
-			frontend_base_url: this.props.baseURL
-		}).then(() => {
-			this.setState({isSaving: false});
-			this.props.onSave && this.props.onSave();
-			toast('Invite(s) sent successfully');
-		}).catch((e) => {
-			console.error(e);
-			this.setState({isSaving: false});
-			toast(`Failed to send invite(s). ${e && e.error ? e.error : 'Please try again later'}`);
-		});
-	}
-
 	render() {
 		return (
 			this.props.children(
 				{
 					...this.state,
 					createProject: this.createProject,
-					inviteUsers: this.inviteUsers,
 				},
 			)
 		);
