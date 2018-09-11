@@ -105,10 +105,16 @@ const TheComponent = class extends Component {
 					<OrganisationProvider>
 						{({isLoading, name, projects, users, invites}) => (
 							<div>
-								<h3>Team members</h3>
-								<p>
-									Invite email addresses, comma separated
-								</p>
+								<div className="margin-top clearfix">
+									<div className="float-left">
+										<h3>Team members</h3>
+										<p>Invite email addresses, comma separated</p>
+									</div>
+									<Button id={"btn-invite"} onClick={() => openModal(<InviteUsersModal/>)} className={'float-right btn-primary'}>
+										Invite Users
+									</Button>
+								</div>
+
 								{isLoading && <div className="centered-container"><Loader/></div>}
 								{!isLoading && (
 									<div>
@@ -134,14 +140,8 @@ const TheComponent = class extends Component {
 											/>
 										</FormGroup>
 
-										<div className="text-right">
-											<Button id={"btn-invite"} onClick={() => openModal(<InviteUsersModal/>)}>
-												Invite Users
-											</Button>
-										</div>
-
 										{invites && invites.length ? (
-											<FormGroup>
+											<FormGroup className={"margin-top"}>
 												<PanelSearch
 													id="org-invites-list"
 													title="Invites Pending"
@@ -162,20 +162,20 @@ const TheComponent = class extends Component {
 															</div>
 															<Row>
 																<Column>
-																	<a
+																	<button
 																		id="resend-invite"
 																		onClick={() => AppActions.resendInvite(id)}
-																		className={"btn btn-link"}>
+																		className={"btn btn-primary"}>
 																		Resend
-																	</a>
+																	</button>
 																</Column>
 																<Column>
-																	<a
+																	<button
 																		id="delete-invite"
 																		onClick={() => this.deleteInvite(id)}
-																		className={"btn btn-link"}>
+																		className={"btn btn-danger"}>
 																		Delete
-																	</a>
+																	</button>
 																</Column>
 															</Row>
 														</Row>
