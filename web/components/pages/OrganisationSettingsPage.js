@@ -140,10 +140,10 @@ const TheComponent = class extends Component {
 											</Button>
 										</div>
 
-										{invites ? (
+										{invites && invites.length ? (
 											<FormGroup>
 												<PanelSearch
-													id="org-members-list"
+													id="org-invites-list"
 													title="Invites Pending"
 													className={"no-pad"}
 													items={invites}
@@ -163,16 +163,18 @@ const TheComponent = class extends Component {
 															<Row>
 																<Column>
 																	<a
-																			onClick={() => AppActions.resendInvite(id)}
-																			className={"btn btn-link"}>
-																			Resend
+																		id="resend-invite"
+																		onClick={() => AppActions.resendInvite(id)}
+																		className={"btn btn-link"}>
+																		Resend
 																	</a>
 																</Column>
 																<Column>
 																	<a
-																			onClick={() => this.deleteInvite(id)}
-																			className={"btn btn-link"}>
-																			Delete
+																		id="delete-invite"
+																		onClick={() => this.deleteInvite(id)}
+																		className={"btn btn-link"}>
+																		Delete
 																	</a>
 																</Column>
 															</Row>

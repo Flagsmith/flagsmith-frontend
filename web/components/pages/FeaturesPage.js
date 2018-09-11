@@ -130,6 +130,7 @@ const TheComponent = class extends Component {
                                                                 </Column>
                                                                 <Column>
                                                                     <a
+                                                                        id="remove-feature"
                                                                         onClick={() => this.confirmRemove(projectFlags[i], () => {
                                                                             removeFlag(this.props.params.projectId, projectFlags[i])
                                                                         })}

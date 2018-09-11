@@ -20,6 +20,7 @@ module.exports = {
     },
     '[Main Tests] - Create project': function (browser) {
         browser
+            .waitForElementVisible('#create-first-project-btn')
             .click('#create-first-project-btn')
             .waitForElementVisible('[name="projectName"]')
             .setValue('[name="projectName"]', 'My Test Project')
@@ -49,6 +50,25 @@ module.exports = {
             .setValue('[name="featureDesc"]', 'This determines whether header is shown')
             .click('#create-feature-btn')
             .waitForElementVisible('#features-list div.list-item:nth-child(2)');
+    },
+    '[Main Tests] - Create feature 3': function (browser) {
+        browser
+            .waitForElementNotPresent('#create-feature-modal')
+            .click('#show-create-feature-btn')
+            .waitForElementVisible('[name="featureID"]')
+            .setValue('[name="featureID"]', 'short_life_feature')
+            .setValue('[name="featureDesc"]', 'This feature is pointless')
+            .click('#create-feature-btn')
+            .waitForElementVisible('#features-list div.list-item:nth-child(3)');
+    },
+    '[Main Tests] - Delete feature 3': function (browser) {
+        browser
+            .waitForElementVisible('#features-list div.list-item:nth-child(3) #remove-feature')
+            .click('#features-list div.list-item:nth-child(3) #remove-feature')
+            .waitForElementVisible('[name="confirm-feature-name"]')
+            .setValue('[name="confirm-feature-name"]', 'short_life_feature')
+            .click('#confirm-remove-feature-btn')
+            .waitForElementNotPresent('#features-list div.list-item:nth-child(3)');
     },
     '[Main Tests] - Toggle feature on': function (browser) {
         browser

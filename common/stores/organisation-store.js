@@ -96,7 +96,7 @@ var controller = {
                 frontend_base_url: `${document.location.origin}/invite/`
             }).then(res => {
                 store.model.invites = store.model.invites || [];
-                store.model.invites.concat(res);
+                store.model.invites = store.model.invites.concat(res);
                 store.saved();
                 toast('Invite(s) sent successfully');
             }).catch((e) => {

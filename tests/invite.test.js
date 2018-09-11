@@ -39,14 +39,30 @@ module.exports = {
       .setValue('[name="inviteEmails"]', inviteEmail)
       .click('#btn-send-invite')
       .waitForElementNotPresent('#btn-send-invite')
-      .url('http://www.mailinator.com/v2/inbox.jsp?zone=public&query=bullet-train')
-      .useXpath()
-      .waitForElementVisible(`//div[contains(@class,"all_message-min_text") and contains(text(),"${"Nightwatch Org" + append}")]`, 10000)
-
+      .waitForElementVisible('#org-invites-list div.list-item');
+  },
+  '[Invite Tests] - Invite user 2': function (browser) {
+    browser
+      .click('#btn-invite')
+      .waitForElementVisible('[name="inviteEmails"]')
+      .setValue('[name="inviteEmails"]', 'test@test.com')
+      .click('#btn-send-invite')
+      .waitForElementNotPresent('#btn-send-invite')
+      .waitForElementVisible('#org-invites-list div.list-item:nth-child(2)')
+  },
+  '[Invite Tests] - Delete user 2': function (browser) {
+    browser
+      .click('#org-invites-list div.list-item:nth-child(2) #delete-invite')
+      .waitForElementVisible('#confirm-btn-yes')
+      .click('#confirm-btn-yes')
+      .waitForElementNotPresent('#org-invites-list div.list-item:nth-child(2)');
   },
   '[Invite Tests] - Accept invite': function (browser) {
     var inviteUrl;
     browser
+      .url('http://www.mailinator.com/v2/inbox.jsp?zone=public&query=bullet-train')
+      .useXpath()
+      .waitForElementVisible(`//div[contains(@class,"all_message-min_text") and contains(text(),"${"Nightwatch Org" + append}")]`, 30000)
       .click(`//div[contains(@class,"all_message-min_text") and contains(text(),"${"Nightwatch Org" + append}")]`)
       .useCss()
       .waitForElementVisible('#msg_body')
@@ -86,6 +102,7 @@ module.exports = {
       .waitForElementVisible('#organisation-settings-link')
       .pause(200) // slide in transition
       .click('#organisation-settings-link')
+      .waitForElementNotPresent('#org-invites-list')
       .waitForElementVisible('#delete-org-btn')
       .click('#delete-org-btn')
       .waitForElementVisible('[name="confirm-org-name"]')
