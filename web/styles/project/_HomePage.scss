@@ -157,6 +157,29 @@ footer{
 
 		}
 	}
+	.service-status {
+		margin-bottom: 20px;
+	}
+	.dot {
+		width:8px;
+		height:8px;
+		border-radius:4px;
+		margin-right: 20px;
+		margin-bottom: 3px;
+		display: inline-block;
+		&.green {
+			background-color: #35cac3;
+		}
+		&.orange {
+			background-color: #fb9d43;
+		}
+		&.red {
+			background-color: #f94f73;
+		}
+		&.purple {
+			background-color: #a28af9;
+		}
+	}
 }
 
 .built-by{
