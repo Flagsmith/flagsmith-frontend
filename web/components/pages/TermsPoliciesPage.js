@@ -4,6 +4,7 @@ import LegalAside from '../LegalAside';
 import PrivacyPolicy from './PrivacyPolicyPage';
 import ServiceLevelAgreement from './ServiceLevelAgreementPage';
 import Footer from '../Footer';
+import TermsOfService from './TermsOfServicePage';
 
 const HomePage = class extends React.Component {
     static contextTypes = {
@@ -21,7 +22,7 @@ const HomePage = class extends React.Component {
 
     componentDidMount() {
         if (this.props.location.pathname == '/legal') {
-            this.context.router.replace('/legal/privacy-policy');
+            this.context.router.replace('/legal/tos');
         }
     }
 
@@ -34,11 +35,14 @@ const HomePage = class extends React.Component {
                     {(() => {
                         switch (section) {
                             case 'privacy-policy':
-                            default:
                                 return <PrivacyPolicy />;
 
                             case 'sla':
                                 return <ServiceLevelAgreement />;
+
+                            case 'tos':
+                            default:
+                                return <TermsOfService />;
                         }
                     })()}
                 </div>

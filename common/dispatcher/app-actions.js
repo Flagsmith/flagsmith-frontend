@@ -202,5 +202,17 @@ module.exports = Object.assign({}, require('./base/_app-actions'), {
 		Dispatcher.handleViewAction({
 			actionType: Actions.DELETE_ORGANISATION
 		});
+	},
+	deleteInvite: function (id) {
+		Dispatcher.handleViewAction({
+			actionType: Actions.DELETE_INVITE,
+			id
+		});
+	},
+	resendInvite: function (id) {
+		Dispatcher.handleViewAction({
+			actionType: Actions.RESEND_INVITE,
+			id
+		});
 	}
 });

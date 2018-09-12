@@ -21,7 +21,7 @@ const TheComponent = class extends Component {
         const {search} = this.state;
         const {title, items, renderRow, renderNoResults} = this.props;
         var filteredItems = this.filter(items);
-        return (!filteredItems || !filteredItems.length) ? renderNoResults : (
+        return (!search && (!filteredItems || !filteredItems.length)) ? renderNoResults : (
             <Panel
                 className={this.props.className}
                 title={this.props.title}

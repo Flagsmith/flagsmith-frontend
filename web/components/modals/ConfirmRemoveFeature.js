@@ -43,13 +43,14 @@ const TheComponent = class extends Component {
 						)}
 
 						<InputGroup
-							inputProps={{className: "full-width"}}
+							inputProps={{name: 'confirm-feature-name', className: "full-width"}}
 							title="Please type the feature name to confirm"
 							placeholder="feature_name"
 							onChange={(e) => this.setState({challenge: Utils.safeParseEventValue(e)})}/>
 
 						<FormGroup className="text-right">
 							<Button
+								id="confirm-remove-feature-btn"
 								disabled={this.state.challenge != projectFlag.name}
 								className={"btn btn-primary"}>
 								Confirm changes
