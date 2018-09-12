@@ -63,6 +63,7 @@ module.exports = {
     },
     '[Main Tests] - Delete feature 3': function (browser) {
         browser
+            .waitForElementNotPresent('#create-feature-modal')
             .waitForElementVisible('#features-list div.list-item:nth-child(3) #remove-feature')
             .click('#features-list div.list-item:nth-child(3) #remove-feature')
             .waitForElementVisible('[name="confirm-feature-name"]')
@@ -72,7 +73,7 @@ module.exports = {
     },
     '[Main Tests] - Toggle feature on': function (browser) {
         browser
-            .waitForElementNotPresent('#create-feature-modal')
+            .waitForElementNotPresent('#confirm-remove-feature-modal')
             .pause(200) // Additional wait here as it seems rc-switch can be unresponsive for a while
             .waitForElementVisible('#features-list span.rc-switch')
             .click('#features-list span.rc-switch')
