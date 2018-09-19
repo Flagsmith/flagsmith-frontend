@@ -1,98 +1,97 @@
 nav.navbar {
-	box-shadow: rgba(75, 75, 75, 0.11) 0px 1px 6px, rgba(75, 75, 75, 0.11) 0px 1px 4px;
+    box-shadow:none;
+    background:transparent;
 
-	background: white;
-  margin-bottom: 0;
-  .tabs {
-    display: inline-block;
-    .tabs-nav {
-      width: 380px;
+    margin-bottom: 0;
+    .tabs {
+        display: inline-block;
+        .tabs-nav {
+            width: 380px;
+        }
+        .btn {
+            background-color: transparent;
+            &.tab-active {
+                color: $brand-secondary;
+            }
+            border-color: transparent;
+        }
+        .tab-item {
+            padding: 0;
+        }
     }
-    .btn {
-      background-color: transparent;
-      &.tab-active {
-        color: $brand-secondary;
-      }
-      border-color: transparent;
+    .navbar-right {
+        float: right;
+        > * {
+            display: inline-block;
+            height: 44px;
+            line-height: 44px;
+        }
     }
-    .tab-item {
-      padding: 0;
+    .popover-right {
+        left: -175px;
+        a {
+            padding-top: 0;
+        }
     }
-  }
-  .navbar-right {
-    float: right;
-    > * {
-      display: inline-block;
-      height: 44px;
-      line-height: 44px;
+    a {
+        display: inline-block;
     }
-  }
-  .popover-right {
-    left: -175px;
-	  a {
-		  padding-top: 0;
-	  }
-  }
-	a {
-		display: inline-block;
-	}
 
-    .navbar-right{
+    .navbar-right {
         height: 50px;
         padding-top: 3px;
     }
 
-    .brand{
+    .brand {
         margin-top: 5px;
     }
 }
 
-
 .nav-item-brand {
-	font-size: 1em;
-	font-family: 'Andika', sans-serif;
+    font-size: 1em;
+    font-family: 'Andika', sans-serif;
 }
 
-.nav-list{
-    margin:0 20px 0;
-    list-style:none;
+.nav-list {
+    margin: 0 20px 0;
+    list-style: none;
 
-    li{
+    li {
         display: inline-block;
-        padding:0 15px;
+        padding: 0 15px;
 
-        a{
-            color:white;
-            font-weight:100;
-            font-size:14px;
+        a {
+            color: white;
+            font-weight: 100;
+            font-size: 14px;
             opacity: 0.75;
 
-            &:hover{
+            &:hover {
                 opacity: 1;
                 text-decoration: none;
             }
         }
     }
 
-    &.dark{
+    &.dark {
         li a {
             color: #22354a;
         }
     }
 
-    .login{
-        padding-left:10px;
+    .login {
+        padding-left: 10px;
 
-        ion{
-            font-size:16px;
+        ion {
+            font-size: 16px;
             position: relative;
-            top:2px;
+            top: 2px;
         }
     }
 }
 
 @media (max-width: 576px) {
-    .navbar .nav-list{
-        display: none ;
+    .navbar .nav-list {
+        display: none;
     }
 }

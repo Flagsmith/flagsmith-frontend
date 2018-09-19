@@ -33,11 +33,9 @@ const TheComponent = class extends React.Component {
                                          target="_blank">100% Open Source</a>. Host with us or on your own
                                 infrastructure.
                             </p>
-                            <div className="hero-cta">
-                                <p className="text-left text-small">Want to find out more?</p>
-                                <Link to={"/demo"} className={"btn btn-primary"} className={"btn btn-primary"}>Try our
-                                    Demo Account
-                                </Link>
+                            <div className="hero-cta mt-1">
+                                <a href="#sign-up" className="btn">Start free trial</a>
+                                <p className="text-left text-small">Not ready to sign up yet?  Try the fully featured BulletTrain <Link to={"/demo"}>Demo Account</Link></p>
                             </div>
 
                         </div>

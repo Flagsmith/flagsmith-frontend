@@ -62,7 +62,7 @@ export default class App extends Component {
                                                   className="nav-item nav-item-brand nav-link">
                                                 <Row>
                                                     <img title={"Bullet Train"} height={24}
-                                                         src={"/images/bullet-train-black.svg"} className="brand"/>
+                                                         src={"/images/bullet-train-1.svg"} className="brand"/>
                                                 </Row>
                                             </Link>
                                         )}
@@ -107,8 +107,8 @@ export default class App extends Component {
                                         </div>
                                     ) : (
                                         <div>
-                                            <Link to={`/login${redirect}`} className="button-blue float-right">Login</Link>
-                                            <ul className="nav-list dark list-unstyled float-right">
+                                            <Link to={`/login${redirect}`} className="btn float-right">Login</Link>
+                                            <ul className="nav-list list-unstyled float-right">
                                                 <li><Link to={"/demo"}>Demo</Link></li>
                                                 <li><a target={"_blank"} href="https://docs.bullet-train.io/">Docs</a></li>
                                                 <li><Link to={'/pricing'}>Pricing</Link></li>

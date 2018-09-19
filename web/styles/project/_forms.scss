@@ -1,0 +1,31 @@
+.input-container{
+    background-color:transparent;
+    margin-bottom:20px;
+
+    input.input{
+        height:50px;
+        border-radius: 25px;
+        background-color:transparent!important;
+        border:1px solid rgba(255,255,255,0.5)!important;
+        text-indent: 15px;
+        color:#fff;
+
+        &::placeholder{
+            color:rgba(255,255,255,0.75);
+        }
+    }
+}
+
+.form-cta{
+    text-align: center;
+    .btn{
+        margin-bottom:10px;
+        border-radius: 25px;
+        padding:15px;
+
+        &:hover{
+            background:darken(#fff,5);
+            color:#000;
+        }
+    }
+}

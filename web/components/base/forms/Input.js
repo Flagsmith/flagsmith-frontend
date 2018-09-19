@@ -93,8 +93,6 @@ const Input = class extends React.Component {
 							onBlur={this.onBlur}
 							className={inputClassName}/>
 					)}
-				<hr/>
-				<hr className="highlight"/>
 			</div>
 		);
 	}
