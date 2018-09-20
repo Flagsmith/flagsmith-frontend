@@ -1,13 +1,14 @@
 .btn{
     background:#2cd6ca;
     margin:0 auto;
-    border-radius: 25px;
+    border-radius: 25px!important;
     color:#fff;
     display: block;
     text-align: center;
     padding: 10px 20px;
     font-weight: 100;
     font-size: 14px;
+    height:50px;
 
     &:hover{
         color:#fff;

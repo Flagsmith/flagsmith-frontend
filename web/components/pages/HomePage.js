@@ -40,7 +40,7 @@ const HomePage = class extends React.Component {
         return (
             <AccountProvider onLogout={this.onLogout} onLogin={this.onLogin}>
                 {({isLoading, isSaving, error}, {register}) => (
-                    <div>
+                    <div className="homepage">
                         <Hero>
 
                         </Hero>
@@ -256,7 +256,7 @@ const HomePage = class extends React.Component {
                                                 Utils.preventDefault(e);
                                                 login({email, password});
                                             }}>
-                                                <h3>Member login</h3>
+                                                <h3 className="margin-bottom">User login</h3>
                                                 {isInvite && <p>Login to accept your invite</p>}
                                                 <fieldset id="details" className="col-lg-6 offset-lg-3">
                                                         <Input
@@ -295,8 +295,9 @@ const HomePage = class extends React.Component {
                                                                 Login
                                                             </button>
                                                             {hasFeature('forgot_password') && (
-                                                                <div className={"text-right"}>
-                                                                    <Link to={`/password-recovery${redirect}`}
+                                                                <div>
+                                                                    <Link to={`/${redirect}`} className="float-left">Not got an account?</Link>
+                                                                    <Link className="float-right" to={`/password-recovery${redirect}`}
                                                                           onClick={this.showForgotPassword}>Forgot
                                                                         password?</Link>
                                                                 </div>
@@ -306,10 +307,6 @@ const HomePage = class extends React.Component {
                                                 {error && <div id="error-alert" className="alert alert-danger">
                                                     Please check your details and try again
                                                 </div>}
-                                                <div className="col-lg-6 offset-lg-3 text-center">
-                                                    <h5>Not a member?</h5>
-                                                    <Link to={`/${redirect}`} className="btn">Sign up</Link>
-                                                </div>
 
                                             </form>
                                         )}
@@ -399,14 +396,14 @@ const HomePage = class extends React.Component {
                                                         name="password"
                                                         id="password"
                                                     />
-                                                <div className="form-cta">
+                                                <div className="form-cta margin-top">
                                                     <button
                                                         name="signup-btn"
                                                         disabled={isLoading || isSaving}
                                                         className="btn white full-width" type="submit">
                                                         Sign Up
                                                     </button>
-                                                    <Link id="existing-member-btn" to={`/login${redirect}`}>
+                                                    <Link id="existing-member-btn" to={'/login'}>
                                                         Already a member?
                                                     </Link>
                                                 </div>
