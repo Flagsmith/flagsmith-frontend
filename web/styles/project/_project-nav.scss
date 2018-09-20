@@ -1,8 +1,12 @@
 nav.navbar {
     box-shadow:none;
     background:transparent;
-
     margin-bottom: 0;
+
+    &.scrolled{
+        background:#22354a;
+    }
+
     .tabs {
         display: inline-block;
         .tabs-nav {
