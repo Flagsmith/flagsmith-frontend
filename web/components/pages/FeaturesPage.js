@@ -76,7 +76,7 @@ const TheComponent = class extends Component {
             <div id="features-page" className="app-container container">
                 <FeatureListProvider onSave={this.onSave}>
                     {({isLoading, projectFlags, environmentFlags}, {environmentHasFlag, toggleFlag, editFlag, removeFlag}) => (
-                        <div>
+                        <div className="features-page">
                             {isLoading && <div className="centered-container"><Loader/></div>}
                             {!isLoading && (
                                 <div>

@@ -70,7 +70,7 @@ const TheComponent = class extends Component {
 												<Link
 													id="create-env-link"
 													onClick={toggle}
-													to={`/project/${this.props.projectId}/environment/create`} className="btn btn-primary">
+													to={`/project/${this.props.projectId}/environment/create`} className="btn">
 													Create Environment
 												</Link>
 											</div>

@@ -1,4 +1,6 @@
 .input-container{
+    height:50px;
+
     input.input{
         border:1px solid #2cd6ca!important;
         border-radius:25px;
@@ -11,6 +13,10 @@
             opacity:0.5;
         }
     }
+}
+
+.form-group{
+    margin-bottom:1rem;
 }
 
 .homepage{

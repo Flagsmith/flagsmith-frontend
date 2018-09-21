@@ -1,4 +1,4 @@
-.btn{
+.btn, button.btn{
     background:#2cd6ca;
     margin:0 auto;
     border-radius: 25px!important;
@@ -18,5 +18,42 @@
     &.white{
         background:#fff;
         color:black;
+    }
+
+    &.btn-danger{
+        background:#d9534f;
+    }
+}
+
+.pill{
+    .btn:first-child{
+        border-bottom-left-radius:15px!important;
+        border-top-left-radius:15px!important;
+        border-bottom-right-radius:0!important;
+        border-top-right-radius:0!important;
+    }
+    .btn:last-child{
+        border-bottom-right-radius:15px!important;
+        border-top-right-radius:15px!important;
+        border-bottom-left-radius:0!important;
+        border-top-left-radius:0!important;
+    }
+}
+
+.tabs-nav{
+    .btn{
+        border-radius: 0!important;
+    }
+    .btn:first-child{
+        border-bottom-left-radius:0!important;
+        border-top-left-radius:15px!important;
+        border-bottom-right-radius:0!important;
+        border-top-right-radius:0!important;
+    }
+    .btn:last-child{
+        border-bottom-right-radius:0!important;
+        border-top-right-radius:15px!important;
+        border-bottom-left-radius:0!important;
+        border-top-left-radius:0!important;
     }
 }

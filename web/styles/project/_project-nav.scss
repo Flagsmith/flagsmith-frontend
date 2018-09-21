@@ -98,6 +98,12 @@ nav.navbar {
     }
 }
 
+.tabs-nav{
+    button.btn{
+        color:#373a3c;
+    }
+}
+
 @media (max-width: 576px) {
     .navbar .nav-list {
         display: none;
