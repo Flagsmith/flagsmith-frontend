@@ -260,6 +260,7 @@ const HomePage = class extends React.Component {
                                                 <h3 className="margin-bottom">User login</h3>
                                                 {isInvite && <p>Login to accept your invite</p>}
                                                 <fieldset id="details" className="col-lg-6 offset-lg-3">
+                                                        {error && error.email ? (<span id="email-error" className="text-danger">{error.email}</span>) : null}
                                                         <Input
                                                             inputProps={{
                                                                 name: "email",
@@ -273,6 +274,7 @@ const HomePage = class extends React.Component {
                                                             placeholder="Email"
                                                             type="text"
                                                             name="email" id="email"/>
+                                                        {error && error.password ? (<span id="password-error" className="text-danger">{error.password}</span>) : null}
                                                         <Input
                                                             inputProps={{
                                                                 name: "password",
