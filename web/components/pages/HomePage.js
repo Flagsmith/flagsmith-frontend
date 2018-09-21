@@ -214,8 +214,8 @@ const HomePage = class extends React.Component {
                                                     <ul className="pricing-features">
                                                         <li><p>30 day free trial</p></li>
                                                         <li><p>Up to 50,000 Monthly Active Users</p></li>
-                                                        <li><p>All Startup Features</p></li>
                                                         <li><p>Telephone Technical Support</p></li>
+                                                        <li><p>All Startup Features</p></li>
                                                     </ul>
 
                                                 </div>
@@ -235,10 +235,11 @@ const HomePage = class extends React.Component {
                                                 <div className="panel-footer">
                                                     <p className="text-small text-center link-style">What's included</p>
                                                     <ul className="pricing-features">
-                                                        <li><p>Over 50,000 Monthly Active Users</p></li>
-                                                        <li><p>All Startup Features</p></li>
-                                                        <li><p>Telephone Technical Support</p></li>
                                                         <li><p>Optional On Premise Installation</p></li>
+                                                        <li><p>Over 50,000 Monthly Active Users</p></li>
+                                                        <li><p>Telephone Technical Support</p></li>
+                                                        <li><p>All Startup Features</p></li>
+
                                                     </ul>
                                                 </div>
                                             </div>
