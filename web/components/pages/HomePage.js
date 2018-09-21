@@ -378,7 +378,7 @@ const HomePage = class extends React.Component {
                                                         name="companyName" id="organisation"/>
                                                 )}
 
-                                                {error && error.email ? (<span id="email-error" className="text-danger">A user is already registered with this e-mail address.</span>) : null}
+                                                {error && error.email ? (<span id="email-error" className="text-danger">{error.email}</span>) : null}
                                                 <Input
                                                         inputProps={{
                                                             name: "email",
@@ -393,7 +393,7 @@ const HomePage = class extends React.Component {
                                                         type="text"
                                                         name="email" id="email"/>
 
-                                                {error && error.password1 ? (<span id="password-error" className="text-danger">Your password does not meet the minimum requirements.</span>) : null}
+                                                {error && error.password1 ? (<span id="password-error" className="text-danger">{error.password}</span>) : null}
                                                 <Input
                                                         inputProps={{
                                                             name: "password",
