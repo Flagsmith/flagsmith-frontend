@@ -274,7 +274,7 @@ const HomePage = class extends React.Component {
                                                             placeholder="Email"
                                                             type="text"
                                                             name="email" id="email"/>
-                                                        {error && error.password ? (<span id="password-error" className="text-danger">{error.password}</span>) : null}
+                                                        {error && error.password1 ? (<span id="password-error" className="text-danger">{error.password1}</span>) : null}
                                                         <Input
                                                             inputProps={{
                                                                 name: "password",
@@ -395,7 +395,7 @@ const HomePage = class extends React.Component {
                                                         type="text"
                                                         name="email" id="email"/>
 
-                                                {error && error.password1 ? (<span id="password-error" className="text-danger">{error.password}</span>) : null}
+                                                {error && error.password1 ? (<span id="password-error" className="text-danger">{error.password1}</span>) : null}
                                                 <Input
                                                         inputProps={{
                                                             name: "password",
