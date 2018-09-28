@@ -16,6 +16,8 @@ var controller = {
                 .then((res) => {
                     data.setToken(res.key);
                     API.trackEvent(Constants.events.REGISTER);
+                    API.alias(email);
+                    API.register(email, first_name, last_name);
                     if (isInvite) {
                         return controller.onLogin();
                     } else {
@@ -62,6 +64,7 @@ var controller = {
                         API.trackEvent(Constants.events.LOGIN_DEMO);
                     } else {
                         API.trackEvent(Constants.events.LOGIN);
+                        API.identify(email);
                     }
                     data.setToken(res.key);
                     return controller.onLogin();
@@ -136,6 +139,7 @@ var controller = {
                     store.isDemo = false;
                     store.model = user;
                     store.trigger('logout');
+                    API.reset();
                 }
             }
         },
