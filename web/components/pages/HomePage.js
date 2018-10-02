@@ -1,4 +1,5 @@
 import React from "react";
+import makeAsyncScriptLoader from "react-async-script";
 import AccountStore from '../../../common/stores/account-store';
 import ForgotPasswordModal from '../ForgotPasswordModal';
 import Hero from '../Hero';
@@ -451,4 +452,16 @@ const HomePage = class extends React.Component {
         );
     }
 };
-module.exports = ConfigProvider(HomePage);
+
+const WrappedHomePage = makeAsyncScriptLoader(ConfigProvider(HomePage), 'https://js.chargebee.com/v2/chargebee.js', {
+    removeOnUnmount: true
+});
+
+module.exports = (props) => (
+    <WrappedHomePage {...props} asyncScriptOnLoad={() => {
+        Chargebee.init({
+            site: Project.chargebee.site
+        });
+        Chargebee.registerAgain();
+    }}/>
+);
