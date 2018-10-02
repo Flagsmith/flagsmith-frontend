@@ -23,7 +23,7 @@ const PricingPage = class extends React.Component {
             <div>
                 <div className="pricing">
                     <div className="container">
-                        <h2 className="text-center margin-bottom">Start using Bullet Train for free</h2>
+                        <h2 className="text-center margin-bottom margin-top">Start using Bullet Train for free</h2>
                         <p className="text-center">Then increase your plan as your business grows.</p>
                         <div className="col-md-12">
                             <div className={"row"}>
