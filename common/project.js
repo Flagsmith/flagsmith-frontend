@@ -10,5 +10,6 @@ module.exports = {
     },
     chargebee: {
         site: 'bullettrain-test'
-    }
+    },
+    mixpanel: '6143f9ceefb1c67640a0771345e8c095'
 };
