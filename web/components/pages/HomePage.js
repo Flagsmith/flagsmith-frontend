@@ -53,7 +53,7 @@ const HomePage = class extends React.Component {
         return (
             <AccountProvider onLogout={this.onLogout} onLogin={this.onLogin}>
                 {({isLoading, isSaving, error}, {register}) => (
-                    <div>
+                    <div className="homepage">
                         <Hero>
 
                         </Hero>
@@ -229,8 +229,8 @@ const HomePage = class extends React.Component {
                                                     <ul className="pricing-features">
                                                         <li><p>30 day free trial</p></li>
                                                         <li><p>Up to 50,000 Monthly Active Users</p></li>
-                                                        <li><p>All Startup Features</p></li>
                                                         <li><p>Telephone Technical Support</p></li>
+                                                        <li><p>All Startup Features</p></li>
                                                     </ul>
 
                                                 </div>
@@ -250,10 +250,11 @@ const HomePage = class extends React.Component {
                                                 <div className="panel-footer">
                                                     <p className="text-small text-center link-style">What's included</p>
                                                     <ul className="pricing-features">
-                                                        <li><p>Over 50,000 Monthly Active Users</p></li>
-                                                        <li><p>All Startup Features</p></li>
-                                                        <li><p>Telephone Technical Support</p></li>
                                                         <li><p>Optional On Premise Installation</p></li>
+                                                        <li><p>Over 50,000 Monthly Active Users</p></li>
+                                                        <li><p>Telephone Technical Support</p></li>
+                                                        <li><p>All Startup Features</p></li>
+
                                                     </ul>
                                                 </div>
                                             </div>
@@ -271,9 +272,10 @@ const HomePage = class extends React.Component {
                                                 Utils.preventDefault(e);
                                                 login({email, password});
                                             }}>
-                                                <h3>Member login</h3>
+                                                <h3 className="margin-bottom">User login</h3>
                                                 {isInvite && <p>Login to accept your invite</p>}
                                                 <fieldset id="details" className="col-lg-6 offset-lg-3">
+                                                        {error && error.email ? (<span id="email-error" className="text-danger">{error.email}</span>) : null}
                                                         <Input
                                                             inputProps={{
                                                                 name: "email",
@@ -287,6 +289,7 @@ const HomePage = class extends React.Component {
                                                             placeholder="Email"
                                                             type="text"
                                                             name="email" id="email"/>
+                                                        {error && error.password1 ? (<span id="password-error" className="text-danger">{error.password1}</span>) : null}
                                                         <Input
                                                             inputProps={{
                                                                 name: "password",
@@ -310,8 +313,9 @@ const HomePage = class extends React.Component {
                                                                 Login
                                                             </button>
                                                             {hasFeature('forgot_password') && (
-                                                                <div className={"text-right"}>
-                                                                    <Link to={`/password-recovery${redirect}`}
+                                                                <div>
+                                                                    <Link to={`/${redirect}`} className="float-left">Not got an account?</Link>
+                                                                    <Link className="float-right" to={`/password-recovery${redirect}`}
                                                                           onClick={this.showForgotPassword}>Forgot
                                                                         password?</Link>
                                                                 </div>
@@ -321,10 +325,6 @@ const HomePage = class extends React.Component {
                                                 {error && <div id="error-alert" className="alert alert-danger">
                                                     Please check your details and try again
                                                 </div>}
-                                                <div className="col-lg-6 offset-lg-3 text-center">
-                                                    <h5>Not a member?</h5>
-                                                    <Link to={`/${redirect}`} className="btn">Sign up</Link>
-                                                </div>
 
                                             </form>
                                         )}
@@ -340,10 +340,18 @@ const HomePage = class extends React.Component {
                                                 , isInvite
                                             );
                                         }}>
+
                                             <div className="form-intro text-center">
                                                 <h3>It's free to get started.</h3>
                                                 <p className="">Sign up for a 30 day free trial</p>
                                             </div>
+                                            {error &&
+                                            <FormGroup className="col-lg-6 offset-lg-3">
+                                                <div id="error-alert" className="alert alert-danger">
+                                                    Please check your details and try again
+                                                </div>
+                                            </FormGroup>
+                                            }
                                             {isInvite && <p>Sign up to accept your invite</p>}
                                             <fieldset id="details" className="col-lg-6 offset-lg-3">
                                                 <Input inputProps={{
@@ -357,7 +365,7 @@ const HomePage = class extends React.Component {
                                                     className="input-default full-width"
                                                     placeholder="First name"
                                                     type="text"
-                                                    name="email" id="email"/>
+                                                    name="firstName" id="email"/>
                                                 <Input
                                                     inputProps={{
                                                         name: "lastName",
@@ -370,7 +378,7 @@ const HomePage = class extends React.Component {
                                                     }}
                                                     className="input-default full-width"
                                                     type="text"
-                                                    name="email" id="email"/>
+                                                    name="lastName" id="email"/>
                                                 {!isInvite && (
                                                     <Input
                                                         inputProps={{
@@ -384,9 +392,11 @@ const HomePage = class extends React.Component {
                                                         }}
                                                         className="input-default full-width"
                                                         type="text"
-                                                        name="organisation" id="organisation"/>
+                                                        name="companyName" id="organisation"/>
                                                 )}
-                                                    <Input
+
+                                                {error && error.email ? (<span id="email-error" className="text-danger">{error.email}</span>) : null}
+                                                <Input
                                                         inputProps={{
                                                             name: "email",
                                                             className: "full-width",
@@ -399,7 +409,9 @@ const HomePage = class extends React.Component {
                                                         className="input-default full-width"
                                                         type="text"
                                                         name="email" id="email"/>
-                                                    <Input
+
+                                                {error && error.password1 ? (<span id="password-error" className="text-danger">{error.password1}</span>) : null}
+                                                <Input
                                                         inputProps={{
                                                             name: "password",
                                                             className: "full-width",
@@ -414,7 +426,7 @@ const HomePage = class extends React.Component {
                                                         name="password"
                                                         id="password"
                                                     />
-                                                <div className="form-cta">
+                                                <div className="form-cta margin-top">
                                                     <button
                                                         name="signup-btn"
                                                         disabled={isLoading || isSaving}
@@ -426,13 +438,6 @@ const HomePage = class extends React.Component {
                                                     </Link>
                                                 </div>
                                             </fieldset>
-                                            {error &&
-                                            <FormGroup>
-                                                <div id="error-alert" className="alert alert-danger">
-                                                    Please check your details and try again
-                                                </div>
-                                            </FormGroup>
-                                            }
                                         </form>
                                     </div>
                                 </div>

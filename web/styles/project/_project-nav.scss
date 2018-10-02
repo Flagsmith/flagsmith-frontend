@@ -49,6 +49,10 @@ nav.navbar {
     .brand {
         margin-top: 5px;
     }
+
+    .btn{
+        height:auto;
+    }
 }
 
 .nav-item-brand {
@@ -91,6 +95,12 @@ nav.navbar {
             position: relative;
             top: 2px;
         }
+    }
+}
+
+.tabs-nav{
+    button.btn{
+        color:#373a3c;
     }
 }
 

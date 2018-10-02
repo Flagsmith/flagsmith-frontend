@@ -116,7 +116,6 @@ const TheComponent = class extends Component {
                                         />
                                     </FormGroup>
                                 )}
-``
 
                                 <InputGroup
                                     value={description}

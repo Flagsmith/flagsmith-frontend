@@ -62,7 +62,7 @@ module.exports = {
     browser
       .url('http://www.mailinator.com/v2/inbox.jsp?zone=public&query=bullet-train')
       .useXpath()
-      .waitForElementVisible(`//div[contains(@class,"all_message-min_text") and contains(text(),"${"Nightwatch Org" + append}")]`, 30000)
+      .waitForElementVisible(`//div[contains(@class,"all_message-min_text") and contains(text(),"${"Nightwatch Org" + append}")]`, 60000)
       .click(`//div[contains(@class,"all_message-min_text") and contains(text(),"${"Nightwatch Org" + append}")]`)
       .useCss()
       .waitForElementVisible('#msg_body')
