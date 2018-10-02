@@ -28,7 +28,7 @@ const TheComponent = class extends Component {
 		return (
 			<ProjectProvider>
 				{() => (
-					<form onSubmit={this.submit}>
+					<form id="confirm-remove-feature-modal" onSubmit={this.submit}>
 						{identity ? (
 							<p>
 								This will reset <strong>{projectFlag.name}</strong> for to the environment defaults

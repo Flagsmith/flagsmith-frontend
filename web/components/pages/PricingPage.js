@@ -181,8 +181,8 @@ const WrappedPricingPage = makeAsyncScriptLoader(ConfigProvider(PricingPage), 'h
     removeOnUnmount: true
 });
 
-module.exports = () => (
-    <WrappedPricingPage asyncScriptOnLoad={() => {
+module.exports = (props) => (
+    <WrappedPricingPage {...props} asyncScriptOnLoad={() => {
         Chargebee.init({
             site: Project.chargebee.site
         });
