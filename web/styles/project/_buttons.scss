@@ -1,0 +1,59 @@
+.btn, button.btn{
+    background:#2cd6ca;
+    margin:0 auto;
+    border-radius: 25px!important;
+    color:#fff;
+    display: block;
+    text-align: center;
+    padding: 10px 20px;
+    font-weight: 100;
+    font-size: 14px;
+    height:50px;
+
+    &:hover{
+        color:#fff;
+        background:darken(#2cd6ca,5);
+    }
+
+    &.white{
+        background:#fff;
+        color:black;
+    }
+
+    &.btn-danger{
+        background:#d9534f;
+    }
+}
+
+.pill{
+    .btn:first-child{
+        border-bottom-left-radius:15px!important;
+        border-top-left-radius:15px!important;
+        border-bottom-right-radius:0!important;
+        border-top-right-radius:0!important;
+    }
+    .btn:last-child{
+        border-bottom-right-radius:15px!important;
+        border-top-right-radius:15px!important;
+        border-bottom-left-radius:0!important;
+        border-top-left-radius:0!important;
+    }
+}
+
+.tabs-nav{
+    .btn{
+        border-radius: 0!important;
+    }
+    .btn:first-child{
+        border-bottom-left-radius:0!important;
+        border-top-left-radius:15px!important;
+        border-bottom-right-radius:0!important;
+        border-top-right-radius:0!important;
+    }
+    .btn:last-child{
+        border-bottom-right-radius:0!important;
+        border-top-right-radius:15px!important;
+        border-bottom-left-radius:0!important;
+        border-top-left-radius:0!important;
+    }
+}

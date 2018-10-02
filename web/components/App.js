@@ -16,10 +16,16 @@ export default class App extends Component {
         router: React.PropTypes.object.isRequired
     };
 
+    state = {}
+
     constructor(props, context) {
         super(props, context);
         AppActions.getConfig();
     }
+
+    componentDidMount= () => {
+        window.addEventListener('scroll', this.handleScroll);
+    };
 
     onLogin = () => {
         const {redirect} = this.props.location.query;
@@ -36,6 +42,20 @@ export default class App extends Component {
         }
     };
 
+    scrollToSignUp = () => {
+        window.scrollTo(0,document.body.scrollHeight);
+    };
+
+
+    handleScroll = () => {
+        if (this.scrollPos < 768 && $(document).scrollTop() >= 768){
+            this.setState({myClassName: 'scrolled'})
+        } else if (this.scrollPos >= 768 && $(document).scrollTop() < 768) {
+            this.setState({myClassName: ''})
+        }
+        this.scrollPos = $(document).scrollTop();
+    }
+
     onLogout = () => {
         this.context.router.replace('/');
     };
@@ -47,6 +67,7 @@ export default class App extends Component {
     render() {
         const {projectId, environmentId} = this.props.params;
         const pageHasAside = environmentId;
+        const isHomepage = this.props.location.pathname == '/' || this.props.location.pathname == '/login';
         const redirect = this.props.location.query.redirect ? `?redirect=${this.props.location.query.redirect}` : "";
 
         return (
@@ -54,15 +75,16 @@ export default class App extends Component {
                 <AccountProvider onNoUser={this.onNoUser} onLogout={this.onLogout} onLogin={this.onLogin}>
                     {({isLoading, user, organisation}) => (
                         <div className={pageHasAside && "aside-body"}>
-                            <nav className={"navbar navbar-fixed-top navbar-light " + (pageHasAside && "navbar-aside")}>
+                            <nav className={"navbar navbar-fixed-top navbar-light" + (pageHasAside ? " navbar-aside" : '') + (isHomepage ? " navbar-homepage " : '') + this.state.myClassName}>
                                 <div className="navbar-left">
                                     <div className="navbar-nav">
                                         {!projectId && (
                                             <Link to={user ? "/projects" : "/"}
                                                   className="nav-item nav-item-brand nav-link">
                                                 <Row>
-                                                    <img title={"Bullet Train"} height={24}
-                                                         src={"/images/bullet-train-black.svg"} className="brand"/>
+                                                    {isHomepage ? (<img title={"Bullet Train"} height={24} src={"/images/bullet-train-1.svg"} className="brand"/>) :
+                                                                (<img title={"Bullet Train"} height={24} src={"/images/bullet-train-black.svg"} className="brand"/>) }
+
                                                 </Row>
                                             </Link>
                                         )}
@@ -107,8 +129,8 @@ export default class App extends Component {
                                         </div>
                                     ) : (
                                         <div>
-                                            <Link to={`/login${redirect}`} className="button-blue float-right">Login</Link>
-                                            <ul className="nav-list dark list-unstyled float-right">
+                                            <Link to={`/login${redirect}`} className="btn float-right" onClick={this.scrollToSignUp}>Login</Link>
+                                            <ul className="nav-list list-unstyled float-right">
                                                 <li><Link to={"/demo"}>Demo</Link></li>
                                                 <li><a target={"_blank"} href="https://docs.bullet-train.io/">Docs</a></li>
                                                 <li><Link to={'/pricing'}>Pricing</Link></li>

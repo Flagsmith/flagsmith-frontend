@@ -23,7 +23,7 @@ const PricingPage = class extends React.Component {
             <div>
                 <div className="pricing">
                     <div className="container">
-                        <h2 className="text-center margin-bottom">Start using Bullet Train for free</h2>
+                        <h2 className="text-center margin-bottom margin-top">Start using Bullet Train for free</h2>
                         <p className="text-center">Then increase your plan as your business grows.</p>
                         <div className="col-md-12">
                             <div className={"row"}>
@@ -31,11 +31,11 @@ const PricingPage = class extends React.Component {
                                     <div className="panel panel-default">
                                         <div className="panel-content">
                                             <p className="featured"> </p>
-                                            <p className="pricing-price">Free</p>
+                                            <p className="pricing-price">Side Project</p>
                                             <img src="/images/growth.svg" alt="free icon" className="pricing-icon"/>
-                                            <p className="pricing-type">Free</p>
-                                            <p className="text-small text-center">more flags than the UN</p>
-                                            <a href="register" className="pricing-cta blue">Sign up</a>
+                                            <p className="pricing-type">$5</p>
+                                            <p className="text-small text-center">Billed monthly</p>
+                                            <a href="javascript:void(0)" data-cb-type="checkout" data-cb-plan-id="side-project" className="pricing-cta blue">Start free trial</a>
                                         </div>
                                         <div className="panel-footer">
                                             <p className="text-small text-center link-style">What's included</p>
