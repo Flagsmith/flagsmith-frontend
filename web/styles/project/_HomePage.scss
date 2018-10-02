@@ -83,7 +83,6 @@ h2 {
 .signup-form {
     color: #fff;
     padding: 20px;
-    margin-top: 40px;
     margin-bottom: 0;
     background: none;
     border: none;
@@ -121,7 +120,6 @@ h2 {
     .btn {
         @extend .btn;
         width: 300px;
-        margin: 0;
     }
 
     p {
