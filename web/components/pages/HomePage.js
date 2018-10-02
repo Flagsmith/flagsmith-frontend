@@ -22,6 +22,19 @@ const HomePage = class extends React.Component {
         }
 
         API.trackPage(Constants.pages.HOME);
+
+        $(window).scroll(function() {
+            var scroll = $(window).scrollTop();
+
+            //>=, not <=
+            if (scroll >= 580) {
+                //clearHeader, not clearheader - caps H
+                $(".navbar-fixed-top").addClass("dark-header");
+
+            } else if (scroll <= 580){
+                $(".navbar-fixed-top").removeClass("dark-header");
+            }
+        });
     }
 
     showForgotPassword = (e) => {
@@ -157,20 +170,22 @@ const HomePage = class extends React.Component {
                                             <div className="panel panel-default">
                                                 <div className="panel-content">
                                                     <p className="featured"> </p>
-                                                    <p className="pricing-price">Free</p>
+                                                    <p className="pricing-price">Side Project</p>
                                                     <img src="/images/growth.svg" alt="free icon" className="pricing-icon"/>
-                                                    <p className="pricing-type">Free</p>
-                                                    <p className="text-small text-center">more flags than the UN</p>
-                                                    <a href="register" className="pricing-cta blue">Sign up</a>
+                                                    <p className="pricing-type">$5</p>
+                                                    <p className="text-small text-center">Billed monthly</p>
+                                                    <a href="javascript:void(0)" data-cb-type="checkout" data-cb-plan-id="side-project" className="pricing-cta blue">Sign up</a>
                                                 </div>
                                                 <div className="panel-footer">
                                                     <p className="text-small text-center link-style">What's included</p>
                                                     <ul className="pricing-features">
+                                                        <li><p>30 day free trial</p></li>
                                                         <li><p>Up to 2,000 Monthly Active Users</p></li>
                                                         <li><p>Unlimited Administrator Accounts</p></li>
                                                         <li><p>Unlimited Projects</p></li>
                                                         <li><p>Unlimited Environments</p></li>
                                                         <li><p>Unlimited Feature Flags</p></li>
+                                                        <li><p>Email Technical Support</p></li>
                                                     </ul>
                                                 </div>
                                             </div>
