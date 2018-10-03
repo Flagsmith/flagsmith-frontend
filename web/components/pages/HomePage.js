@@ -175,7 +175,7 @@ const HomePage = class extends React.Component {
                                                     <img src="/images/growth.svg" alt="free icon" className="pricing-icon"/>
                                                     <p className="pricing-type">$5</p>
                                                     <p className="text-small text-center">Billed monthly</p>
-                                                    <a href="javascript:void(0)" data-cb-type="checkout" data-cb-plan-id="side-project" className="pricing-cta blue">Sign up</a>
+                                                    <a href="javascript:void(0)" data-cb-type="checkout" data-cb-plan-id="side-project" className="pricing-cta blue">Start free trial</a>
                                                 </div>
                                                 <div className="panel-footer">
                                                     <p className="text-small text-center link-style">What's included</p>
