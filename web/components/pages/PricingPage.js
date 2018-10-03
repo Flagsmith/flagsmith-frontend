@@ -40,11 +40,13 @@ const PricingPage = class extends React.Component {
                                         <div className="panel-footer">
                                             <p className="text-small text-center link-style">What's included</p>
                                             <ul className="pricing-features">
+                                                <li><p>30 day free trial</p></li>
                                                 <li><p>Up to 2,000 Monthly Active Users</p></li>
                                                 <li><p>Unlimited Administrator Accounts</p></li>
                                                 <li><p>Unlimited Projects</p></li>
                                                 <li><p>Unlimited Environments</p></li>
                                                 <li><p>Unlimited Feature Flags</p></li>
+                                                <li><p>Email Technical Support</p></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -103,7 +105,7 @@ const PricingPage = class extends React.Component {
                                             <img src="/images/cubes.svg" alt="Enterprise icon" className="pricing-icon"/>
                                             <p className="pricing-type">Contact Us</p>
                                             <p className="text-small text-center">for enterprise pricing</p>
-                                            <a href="mailto:enterprise@bullettrain.io" className="pricing-cta blue">Contact Us</a>
+                                            <a href="mailto:enterprise@bullet-train.io" className="pricing-cta blue">Contact Us</a>
                                         </div>
 
                                         <div className="panel-footer">
@@ -167,7 +169,7 @@ const PricingPage = class extends React.Component {
                         </div>
                         <div className="text-center cta-container">
                             <h5>Didn't find an answer to your question?</h5>
-                            <a href="mailto:support@bullettrain.io" className="pricing-cta blue">Get in touch</a>
+                            <a href="mailto:enterprise@bullet-train.io" className="pricing-cta blue">Get in touch</a>
                         </div>
                     </div>
                 </div>

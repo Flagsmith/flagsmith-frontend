@@ -96,7 +96,7 @@ const HomePage = class extends React.Component {
                                     </div>
                                     <p className="text-small margin-top no-mb">Don't worry if you don't see your
                                         preferred tech, we'll be adding support for more clients as we grow but
-                                        please <a href="mailto:bullettrain@solidstategroup.com">get in touch</a> and let
+                                        please <a href="mailto:support@bullet-train.io">get in touch</a> and let
                                         us know what you'd like to see.</p>
                                 </div>
                             </div>
@@ -245,7 +245,7 @@ const HomePage = class extends React.Component {
                                                     <img src="/images/cubes.svg" alt="Enterprise icon" className="pricing-icon"/>
                                                     <p className="pricing-type">Contact Us</p>
                                                     <p className="text-small text-center">for enterprise pricing</p>
-                                                    <a href="mailto:enterprise@bullettrain.io" className="pricing-cta blue">Contact Us</a>
+                                                    <a href="mailto:enterprise@bullet-train.io" className="pricing-cta blue">Contact Us</a>
                                                 </div>
 
                                                 <div className="panel-footer">

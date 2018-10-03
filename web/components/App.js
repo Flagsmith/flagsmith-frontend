@@ -76,7 +76,7 @@ export default class App extends Component {
                 <AccountProvider onNoUser={this.onNoUser} onLogout={this.onLogout} onLogin={this.onLogin}>
                     {({isLoading, user, organisation}) => (
                         <div className={pageHasAside && "aside-body"}>
-                            <nav className={"navbar navbar-fixed-top navbar-light " + (pageHasAside ? " navbar-aside" : '') + (isHomepage ? " navbar-homepage " : '')  + (isLegal ? "navbar-aside dark-header " : '') + this.state.myClassName}>
+                            <nav className={"navbar navbar-fixed-top " + (pageHasAside ? " navbar-aside" : '') + (isHomepage ? " navbar-homepage " : '')  + (isLegal ? "navbar-aside dark-header " : '') + this.state.myClassName}>
                                 <div className="navbar-left">
                                     <div className="navbar-nav">
                                         {!projectId && (
