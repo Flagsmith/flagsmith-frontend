@@ -68,6 +68,7 @@ export default class App extends Component {
         const {projectId, environmentId} = this.props.params;
         const pageHasAside = environmentId;
         const isHomepage = this.props.location.pathname == '/' || this.props.location.pathname == '/login';
+        const isLegal = this.props.location.pathname == '/legal/tos' || this.props.location.pathname == '/legal/sla' || this.props.location.pathname == '/legal/privacy-policy';
         const redirect = this.props.location.query.redirect ? `?redirect=${this.props.location.query.redirect}` : "";
 
         return (
@@ -75,17 +76,18 @@ export default class App extends Component {
                 <AccountProvider onNoUser={this.onNoUser} onLogout={this.onLogout} onLogin={this.onLogin}>
                     {({isLoading, user, organisation}) => (
                         <div className={pageHasAside && "aside-body"}>
-                            <nav className={"navbar navbar-fixed-top navbar-light" + (pageHasAside ? " navbar-aside" : '') + (isHomepage ? " navbar-homepage " : '') + this.state.myClassName}>
+                            <nav className={"navbar navbar-fixed-top navbar-light " + (pageHasAside ? " navbar-aside" : '') + (isHomepage ? " navbar-homepage " : '')  + (isLegal ? "navbar-aside dark-header " : '') + this.state.myClassName}>
                                 <div className="navbar-left">
                                     <div className="navbar-nav">
                                         {!projectId && (
                                             <Link to={user ? "/projects" : "/"}
                                                   className="nav-item nav-item-brand nav-link">
-                                                <Row>
+                                                {isLegal ? null : (<Row>
                                                     {isHomepage ? (<img title={"Bullet Train"} height={24} src={"/images/bullet-train-1.svg"} className="brand"/>) :
-                                                                (<img title={"Bullet Train"} height={24} src={"/images/bullet-train-black.svg"} className="brand"/>) }
+                                                        (<img title={"Bullet Train"} height={24} src={"/images/bullet-train-black.svg"} className="brand"/>) }
+                                                </Row>)}
 
-                                                </Row>
+
                                             </Link>
                                         )}
 
