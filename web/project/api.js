@@ -37,6 +37,19 @@ global.API = {
             });
         }
 
+        if (Project.mixpanel) {
+            if (!data)  {
+                console.error("Passed null event data")
+            }
+            console.info("track", data);
+            if (!data || !data.category || !data.event) {
+                console.error("Invalid event provided", data);
+            }
+            mixpanel.track(data.event, {
+                category: data.category
+            });
+        }
+
     },
     trackPage: function(title) {
         if (Project.ga) {
@@ -46,6 +59,38 @@ global.API = {
                 location: document.location.href,
                 page: document.location.pathname
             });
+        }
+
+        if (Project.mixpanel) {
+            mixpanel.track("Page View", {
+                title,
+                location: document.location.href,
+                page: document.location.pathname
+            })
+        }
+    },
+    alias: function(id) {
+        if (Project.mixpanel) {
+            mixpanel.alias(id);
+        }
+    },
+    identify: function (id) {
+        if (Project.mixpanel) {
+            mixpanel.identify(id);
+        }
+    },
+    register: function (email, firstName, lastName) {
+        if (Project.mixpanel) {
+            mixpanel.register({
+                'Email': email,
+                'First Name': firstName,
+                'Last Name': lastName
+            });
+        }
+    },
+    reset: function () {
+        if (Project.mixpanel) {
+            mixpanel.reset();
         }
     },
     log() {

@@ -51,11 +51,11 @@
     padding:10px;
 
     .btn{
-        border-color: #009de2;
         color:white;
 
         &:hover{
-            background-color:#007aaf;
+            color:#fff;
+            background:darken(#2cd6ca,5);
         }
     }
 }

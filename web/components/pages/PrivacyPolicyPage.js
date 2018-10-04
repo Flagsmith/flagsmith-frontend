@@ -84,7 +84,7 @@ export default (props) => (
         <p>Our services are global and Data (of all classifications) may be stored and processed anywhere where we or one of our service providers has services. We may transfer data to countries outside of your country of residence, which may have different rules applicable to your data. Bullet Train will take measures to ensure that any transfers comply with applicable laws and your data remains protected as per this policy.</p>
 
         <h5>How do I contact the Bullet Train Data Privacy Officer?</h5>
-        <p>Bullet Train's Data Privacy Officer is Matthew Elwell, and you can contact him at <a href="mailto:privacy@bullettrain.io">privacy@bullettrain.io.</a></p>
+        <p>Bullet Train's Data Privacy Officer is Matthew Elwell, and you can contact him at <a href="mailto:privacy@bullet-train.io">privacy@bullet-train.io.</a></p>
 
         <h5>Is Bullet Train compliant with the General Data Protection Regulation (GDPR)?</h5>
         <p>Bullet Train has taken steps to elect a Data Privacy Officer, to ensure that we have adequate data protection policies, procedures, and practices. We believe that we are fully in compliance with the provisions and principles of GDPR.</p>

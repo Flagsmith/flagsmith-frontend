@@ -83,8 +83,8 @@ const TheComponent = class extends Component {
                                                 isValid={name && name.length}
                                                 type="text" title={<h3>Environment Name</h3>}
                                                 placeholder="My Product Name"/>
-                                            <div className="text-right">
-                                                <Button id="save-env-btn" disabled={isSaving || !name}>
+                                            <div className="text-right clearfix">
+                                                <Button id="save-env-btn" className="float-right" disabled={isSaving || !name}>
                                                     {isSaving ? 'Saving' : 'Save'}
                                                 </Button>
                                             </div>
@@ -102,7 +102,7 @@ const TheComponent = class extends Component {
                                             onClick={() => this.confirmRemove(_.find(project.environments, {api_key: this.props.params.environmentId}), () => {
                                                 deleteEnv(_.find(project.environments, {api_key: this.props.params.environmentId}))
                                             })}
-                                            className={"btn btn-danger"}>
+                                            className={"btn btn-danger float-left"}>
                                             Delete
                                         </Button>
                                     </FormGroup>

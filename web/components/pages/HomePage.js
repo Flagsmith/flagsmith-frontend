@@ -23,6 +23,19 @@ const HomePage = class extends React.Component {
         }
 
         API.trackPage(Constants.pages.HOME);
+
+        $(window).scroll(function() {
+            var scroll = $(window).scrollTop();
+
+            //>=, not <=
+            if (scroll >= 675) {
+                //clearHeader, not clearheader - caps H
+                $(".navbar-homepage").addClass("dark-header");
+
+            } else if (scroll <= 675){
+                $(".navbar-homepage").removeClass("dark-header");
+            }
+        });
     }
 
     showForgotPassword = (e) => {
@@ -41,212 +54,9 @@ const HomePage = class extends React.Component {
         return (
             <AccountProvider onLogout={this.onLogout} onLogin={this.onLogin}>
                 {({isLoading, isSaving, error}, {register}) => (
-                    <div>
+                    <div className="homepage">
                         <Hero>
-                            {isLogin ? (
-                                <div className="card signup-form container animated fadeIn col-md-8 col-xl-8">
-                                    <AccountProvider>
-                                        {({isLoading, isSaving, error}, {login}) => (
-                                            <form id="form" name="form" onSubmit={(e) => {
-                                                Utils.preventDefault(e);
-                                                login({email, password});
-                                            }}>
-                                                <ion className="homepage-icon icon ion-ios-hand"/>
-                                                <h3>Hello again.</h3>
-                                                {isInvite && <p>Login to accept your invite</p>}
-                                                <fieldset id="details">
-                                                    <FormGroup>
-                                                        <InputGroup
-                                                            inputProps={{
-                                                                name: "email",
-                                                                className: "full-width",
-                                                                error: error && error.email
-                                                            }}
-                                                            title={"Email Address"}
-                                                            onChange={(e) => {
-                                                                this.setState({email: Utils.safeParseEventValue(e)})
-                                                            }}
-                                                            className="input-default full-width"
-                                                            placeholder="Email/Username"
-                                                            type="text"
-                                                            name="email" id="email"/>
-                                                    </FormGroup>
-                                                    <FormGroup>
-                                                        <InputGroup
-                                                            inputProps={{
-                                                                name: "password",
-                                                                className: "full-width",
-                                                                error: error && error.password1
-                                                            }}
-                                                            title={"Password"}
-                                                            onChange={(e) => {
-                                                                this.setState({password: Utils.safeParseEventValue(e)})
-                                                            }}
-                                                            className="input-default full-width"
-                                                            placeholder="Password"
-                                                            type="password"
-                                                            name="password"
-                                                            id="password"
-                                                        />
-                                                    </FormGroup>
 
-                                                    <FormGroup>
-                                                        <button
-                                                            id="login-btn"
-                                                            disabled={isLoading || isSaving}
-                                                            className="btn btn-primary full-width" type="submit">
-                                                            Login
-                                                        </button>
-                                                        {hasFeature('forgot_password') && (
-                                                            <div className={"text-right"}>
-                                                                <Link to={`/password-recovery${redirect}`}
-                                                                      onClick={this.showForgotPassword}>Forgot
-                                                                    password?</Link>
-                                                            </div>
-                                                        )}
-
-                                                    </FormGroup>
-                                                </fieldset>
-                                                {error && <div id="error-alert" className="alert alert-danger">
-                                                    Please check your details and try again
-                                                </div>}
-                                                <div>
-                                                    <Link to={`/${redirect}`}>Not a member?</Link>
-                                                </div>
-
-                                            </form>
-                                        )}
-                                    </AccountProvider>
-                                </div>
-                            ) : (
-                                <div>
-                                    <div className="card signup-form container animated fadeIn col-md-8 col-xl-8">
-                                        <form id="form" name="form" onSubmit={(e) => {
-                                            Utils.preventDefault(e);
-                                            const isInvite = document.location.href.indexOf("invite") != -1;
-                                            register({email, password, organisation_name, first_name, last_name}
-                                                , isInvite
-                                            );
-                                        }}>
-                                            <ion className="homepage-icon icon ion-ios-rocket"/>
-                                            <h3>It's free to get started.</h3>
-                                            {isInvite && <p>Sign up to accept your invite</p>}
-                                            <fieldset id="details">
-                                                <div className={"row"}>
-                                                    <div className={"col-md-6"}>
-                                                        <InputGroup
-                                                            inputProps={{
-                                                                name: "firstName",
-                                                                className: "full-width",
-                                                                error: error && error.first_name
-                                                            }}
-                                                            title={"First Name"}
-                                                            onChange={(e) => {
-                                                                this.setState({first_name: Utils.safeParseEventValue(e)})
-                                                            }}
-                                                            className="input-default full-width"
-                                                            placeholder=""
-                                                            type="text"
-                                                            name="email" id="email"/>
-                                                    </div>
-                                                    <div className={"col-md-6"}>
-                                                        <InputGroup
-                                                            inputProps={{
-                                                                name: "lastName",
-                                                                className: "full-width",
-                                                                error: error && error.last_name
-                                                            }}
-                                                            title={"Last Name"}
-                                                            onChange={(e) => {
-                                                                this.setState({last_name: Utils.safeParseEventValue(e)})
-                                                            }}
-                                                            className="input-default full-width"
-                                                            placeholder=""
-                                                            type="text"
-                                                            name="email" id="email"/>
-                                                    </div>
-                                                </div>
-                                                {!isInvite && (
-                                                    <FormGroup>
-                                                        <InputGroup
-                                                            inputProps={{
-                                                                name: "companyName",
-                                                                className: "full-width"
-                                                            }}
-                                                            title={
-                                                                <span>
-															Organisation Name {(
-                                                                    <Tooltip place="right">
-                                                                        {Constants.strings.ORGANISATION_DESCRIPTION}
-                                                                    </Tooltip>
-                                                                )}
-															</span>
-                                                            }
-                                                            onChange={(e) => {
-                                                                this.setState({organisation_name: Utils.safeParseEventValue(e)})
-                                                            }}
-                                                            className="input-default full-width"
-                                                            placeholder=""
-                                                            type="text"
-                                                            name="organisation" id="organisation"/>
-                                                    </FormGroup>
-                                                )}
-                                                <FormGroup>
-                                                    <InputGroup
-                                                        inputProps={{
-                                                            name: "email",
-                                                            className: "full-width",
-                                                            error: error && error.email
-                                                        }}
-                                                        title={"Email Address"}
-                                                        onChange={(e) => {
-                                                            this.setState({email: Utils.safeParseEventValue(e)})
-                                                        }}
-                                                        className="input-default full-width"
-                                                        placeholder=""
-                                                        type="text"
-                                                        name="email" id="email"/>
-                                                </FormGroup>
-                                                <FormGroup>
-                                                    <InputGroup
-                                                        inputProps={{
-                                                            name: "password",
-                                                            className: "full-width",
-                                                            error: error && error.password1
-                                                        }}
-                                                        title={"Password"}
-                                                        onChange={(e) => {
-                                                            this.setState({password: Utils.safeParseEventValue(e)})
-                                                        }}
-                                                        className="input-default full-width"
-                                                        type="password"
-                                                        name="password"
-                                                        id="password"
-                                                    />
-                                                </FormGroup>
-                                                <FormGroup>
-                                                    <button
-                                                        name="signup-btn"
-                                                        disabled={isLoading || isSaving}
-                                                        className="btn btn-primary full-width" type="submit">
-                                                        Sign Up
-                                                    </button>
-                                                </FormGroup>
-                                                <Link id="existing-member-btn" to={`/login${redirect}`}>Already a
-                                                    member?</Link>
-
-                                            </fieldset>
-                                            {error &&
-                                            <FormGroup>
-                                                <div id="error-alert" className="alert alert-danger">
-                                                    Please check your details and try again
-                                                </div>
-                                            </FormGroup>
-                                            }
-                                        </form>
-                                    </div>
-                                </div>
-                            )}
                         </Hero>
                         <div className="tech">
                             <div className="container">
@@ -286,7 +96,7 @@ const HomePage = class extends React.Component {
                                     </div>
                                     <p className="text-small margin-top no-mb">Don't worry if you don't see your
                                         preferred tech, we'll be adding support for more clients as we grow but
-                                        please <a href="mailto:bullettrain@solidstategroup.com">get in touch</a> and let
+                                        please <a href="mailto:support@bullet-train.io">get in touch</a> and let
                                         us know what you'd like to see.</p>
                                 </div>
                             </div>
@@ -335,19 +145,19 @@ const HomePage = class extends React.Component {
                                         <p> A/B test feature sets or individual features</p>
                                     </div>
                                 </div>
-                                <hr/>
-                                {getValue("home_copy") && JSON.parse(getValue("home_copy"))
-                                    .map(({title, content}) => (
-                                        <div className={"col-md-6 push-md-3 row mt-5"}>
-                                            <div className={"text-center"}>
-                                                <h2>
-                                                    {title}
-                                                </h2>
-                                                <div dangerouslySetInnerHTML={{__html: content}}
-                                                     className={"col-md-12"}/>
-                                            </div>
-                                        </div>
-                                    ))}
+                                {/*<hr/>*/}
+                                {/*{getValue("home_copy") && JSON.parse(getValue("home_copy"))*/}
+                                    {/*.map(({title, content}) => (*/}
+                                        {/*<div className={"col-md-6 push-md-3 row mt-5"}>*/}
+                                            {/*<div className={"text-center"}>*/}
+                                                {/*<h2>*/}
+                                                    {/*{title}*/}
+                                                {/*</h2>*/}
+                                                {/*<div dangerouslySetInnerHTML={{__html: content}}*/}
+                                                     {/*className={"col-md-12"}/>*/}
+                                            {/*</div>*/}
+                                        {/*</div>*/}
+                                    {/*))}*/}
                             </div>
                         </div>
 
@@ -361,20 +171,22 @@ const HomePage = class extends React.Component {
                                             <div className="panel panel-default">
                                                 <div className="panel-content">
                                                     <p className="featured"> </p>
-                                                    <p className="pricing-price">Free</p>
+                                                    <p className="pricing-price">Side Project</p>
                                                     <img src="/images/growth.svg" alt="free icon" className="pricing-icon"/>
-                                                    <p className="pricing-type">Free</p>
-                                                    <p className="text-small text-center">more flags than the UN</p>
-                                                    <a href="register" className="pricing-cta blue">Sign up</a>
+                                                    <p className="pricing-type">$5</p>
+                                                    <p className="text-small text-center">Billed monthly</p>
+                                                    <a href="javascript:void(0)" data-cb-type="checkout" data-cb-plan-id="side-project" className="pricing-cta blue">Start free trial</a>
                                                 </div>
                                                 <div className="panel-footer">
                                                     <p className="text-small text-center link-style">What's included</p>
                                                     <ul className="pricing-features">
+                                                        <li><p>30 day free trial</p></li>
                                                         <li><p>Up to 2,000 Monthly Active Users</p></li>
                                                         <li><p>Unlimited Administrator Accounts</p></li>
                                                         <li><p>Unlimited Projects</p></li>
                                                         <li><p>Unlimited Environments</p></li>
                                                         <li><p>Unlimited Feature Flags</p></li>
+                                                        <li><p>Email Technical Support</p></li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -418,8 +230,8 @@ const HomePage = class extends React.Component {
                                                     <ul className="pricing-features">
                                                         <li><p>30 day free trial</p></li>
                                                         <li><p>Up to 50,000 Monthly Active Users</p></li>
-                                                        <li><p>All Startup Features</p></li>
                                                         <li><p>Telephone Technical Support</p></li>
+                                                        <li><p>All Startup Features</p></li>
                                                     </ul>
 
                                                 </div>
@@ -433,16 +245,17 @@ const HomePage = class extends React.Component {
                                                     <img src="/images/cubes.svg" alt="Enterprise icon" className="pricing-icon"/>
                                                     <p className="pricing-type">Contact Us</p>
                                                     <p className="text-small text-center">for enterprise pricing</p>
-                                                    <a href="mailto:enterprise@bullettrain.io" className="pricing-cta blue">Contact Us</a>
+                                                    <a href="mailto:enterprise@bullet-train.io" className="pricing-cta blue">Contact Us</a>
                                                 </div>
 
                                                 <div className="panel-footer">
                                                     <p className="text-small text-center link-style">What's included</p>
                                                     <ul className="pricing-features">
-                                                        <li><p>Over 50,000 Monthly Active Users</p></li>
-                                                        <li><p>All Startup Features</p></li>
-                                                        <li><p>Telephone Technical Support</p></li>
                                                         <li><p>Optional On Premise Installation</p></li>
+                                                        <li><p>Over 50,000 Monthly Active Users</p></li>
+                                                        <li><p>Telephone Technical Support</p></li>
+                                                        <li><p>All Startup Features</p></li>
+
                                                     </ul>
                                                 </div>
                                             </div>
@@ -450,6 +263,186 @@ const HomePage = class extends React.Component {
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                        <div className="sign-up" id="sign-up">
+                            {isLogin ? (
+                                <div className="card signup-form container animated fadeIn col-md-8 col-xl-8">
+                                    <AccountProvider>
+                                        {({isLoading, isSaving, error}, {login}) => (
+                                            <form id="form" name="form" onSubmit={(e) => {
+                                                Utils.preventDefault(e);
+                                                login({email, password});
+                                            }}>
+                                                <h3 className="margin-bottom">User login</h3>
+                                                {isInvite && <p>Login to accept your invite</p>}
+                                                <fieldset id="details" className="col-lg-6 offset-lg-3">
+                                                        {error && error.email ? (<span id="email-error" className="text-danger">{error.email}</span>) : null}
+                                                        <Input
+                                                            inputProps={{
+                                                                name: "email",
+                                                                className: "full-width",
+                                                                error: error && error.email
+                                                            }}
+                                                            onChange={(e) => {
+                                                                this.setState({email: Utils.safeParseEventValue(e)})
+                                                            }}
+                                                            className="input-default full-width"
+                                                            placeholder="Email"
+                                                            type="text"
+                                                            name="email" id="email"/>
+                                                        {error && error.password1 ? (<span id="password-error" className="text-danger">{error.password1}</span>) : null}
+                                                        <Input
+                                                            inputProps={{
+                                                                name: "password",
+                                                                className: "full-width",
+                                                                error: error && error.password1
+                                                            }}
+                                                            onChange={(e) => {
+                                                                this.setState({password: Utils.safeParseEventValue(e)})
+                                                            }}
+                                                            className="input-default full-width"
+                                                            placeholder="Password"
+                                                            type="password"
+                                                            name="password"
+                                                            id="password"
+                                                        />
+                                                        <div className="form-cta">
+                                                            <button
+                                                                id="login-btn"
+                                                                disabled={isLoading || isSaving}
+                                                                className="btn white full-width" type="submit">
+                                                                Login
+                                                            </button>
+                                                            {hasFeature('forgot_password') && (
+                                                                <div>
+                                                                    <Link to={`/${redirect}`} className="float-left">Not got an account?</Link>
+                                                                    <Link className="float-right" to={`/password-recovery${redirect}`}
+                                                                          onClick={this.showForgotPassword}>Forgot
+                                                                        password?</Link>
+                                                                </div>
+                                                            )}
+                                                        </div>
+                                                </fieldset>
+                                                {error && <div id="error-alert" className="alert alert-danger">
+                                                    Please check your details and try again
+                                                </div>}
+
+                                            </form>
+                                        )}
+                                    </AccountProvider>
+                                </div>
+                            ) : (
+                                <div>
+                                    <div className="card signup-form container animated fadeIn col-md-8 col-xl-8">
+                                        <form id="form" name="form" onSubmit={(e) => {
+                                            Utils.preventDefault(e);
+                                            const isInvite = document.location.href.indexOf("invite") != -1;
+                                            register({email, password, organisation_name, first_name, last_name}
+                                                , isInvite
+                                            );
+                                        }}>
+
+                                            <div className="form-intro text-center">
+                                                <h3>It's free to get started.</h3>
+                                                <p className="">Sign up for a 30 day free trial</p>
+                                            </div>
+                                            {error &&
+                                            <FormGroup className="col-lg-6 offset-lg-3">
+                                                <div id="error-alert" className="alert alert-danger">
+                                                    Please check your details and try again
+                                                </div>
+                                            </FormGroup>
+                                            }
+                                            {isInvite && <p>Sign up to accept your invite</p>}
+                                            <fieldset id="details" className="col-lg-6 offset-lg-3">
+                                                <Input inputProps={{
+                                                        name: "firstName",
+                                                        className: "full-width",
+                                                        error: error && error.first_name
+                                                    }}
+                                                    onChange={(e) => {
+                                                        this.setState({first_name: Utils.safeParseEventValue(e)})
+                                                    }}
+                                                    className="input-default full-width"
+                                                    placeholder="First name"
+                                                    type="text"
+                                                    name="firstName" id="email"/>
+                                                <Input
+                                                    inputProps={{
+                                                        name: "lastName",
+                                                        className: "full-width",
+                                                        error: error && error.last_name
+                                                    }}
+                                                    placeholder={"Last Name"}
+                                                    onChange={(e) => {
+                                                        this.setState({last_name: Utils.safeParseEventValue(e)})
+                                                    }}
+                                                    className="input-default full-width"
+                                                    type="text"
+                                                    name="lastName" id="email"/>
+                                                {!isInvite && (
+                                                    <Input
+                                                        inputProps={{
+                                                            name: "companyName",
+                                                            className: "full-width"
+                                                        }}
+                                                        placeholder="Organisation name"
+
+                                                        onChange={(e) => {
+                                                            this.setState({organisation_name: Utils.safeParseEventValue(e)})
+                                                        }}
+                                                        className="input-default full-width"
+                                                        type="text"
+                                                        name="companyName" id="organisation"/>
+                                                )}
+
+                                                {error && error.email ? (<span id="email-error" className="text-danger">{error.email}</span>) : null}
+                                                <Input
+                                                        inputProps={{
+                                                            name: "email",
+                                                            className: "full-width",
+                                                            error: error && error.email
+                                                        }}
+                                                        placeholder={"Email Address"}
+                                                        onChange={(e) => {
+                                                            this.setState({email: Utils.safeParseEventValue(e)})
+                                                        }}
+                                                        className="input-default full-width"
+                                                        type="text"
+                                                        name="email" id="email"/>
+
+                                                {error && error.password1 ? (<span id="password-error" className="text-danger">{error.password1}</span>) : null}
+                                                <Input
+                                                        inputProps={{
+                                                            name: "password",
+                                                            className: "full-width",
+                                                            error: error && error.password1
+                                                        }}
+                                                        placeholder={"Password"}
+                                                        onChange={(e) => {
+                                                            this.setState({password: Utils.safeParseEventValue(e)})
+                                                        }}
+                                                        className="input-default full-width"
+                                                        type="password"
+                                                        name="password"
+                                                        id="password"
+                                                    />
+                                                <div className="form-cta margin-top">
+                                                    <button
+                                                        name="signup-btn"
+                                                        disabled={isLoading || isSaving}
+                                                        className="btn white full-width" type="submit">
+                                                        Sign Up
+                                                    </button>
+                                                    <Link id="existing-member-btn" to={`/login${redirect}`}>
+                                                        Already a member?
+                                                    </Link>
+                                                </div>
+                                            </fieldset>
+                                        </form>
+                                    </div>
+                                </div>
+                            )}
                         </div>
 
                         <Footer className="homepage" />

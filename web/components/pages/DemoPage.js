@@ -34,7 +34,7 @@ const TheComponent = class extends Component {
                                         </h3>
                                         <p>
                                             We could not login to the demo account please contact <a
-                                            href="mailto:bullettrain@solidstategroup.com">Support</a>
+                                            href="support@bullet-train.io">Support</a>
                                         </p>
                                     </div>
                                 ) : (

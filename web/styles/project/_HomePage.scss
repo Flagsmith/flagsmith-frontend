@@ -1,79 +1,95 @@
 .hero {
-	min-height: 100%;
+	min-height: 768px;
 	margin-top: -30px;
-	padding-top: 70px;
+	padding-top: 170px;
 	padding-bottom:40px;
 
 	display: flex;
-	background: $hero-bg;
+	background: linear-gradient($hero-bg, $hero-bg-dark);
 	text-align: center;
 	color: white;
 
 	h1 {
-		margin-top: -40px;
 		font-weight: 200;
 		font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif;
+        font-size: 3rem;
 	}
 	p {
 		font-weight: 200;
 		font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif;
-		font-size: 1.25em;
+		font-size: 1em;
 		color: rgba(255,255,255,.8);
+		opacity:1;
 	}
-	button {
+	.btn {
 		font-size: 1.2em;
 		font-weight: 200;
+		padding:15px 20px;
 	}
+
+    a {
+        color: #fff;
+        font-weight: bold;
+    }
 }
-h2{
-	margin-bottom: 10px;
+
+h2 {
+    margin-bottom: 10px;
 }
+
 .homepage-icon {
-	color: #d9d9d9;
-	font-size: 2em;
-	display: block;
+    color: #d9d9d9;
+    font-size: 2em;
+    display: block;
 }
+
 .homepage-features {
-	margin-top:50px;
+    margin-top: 50px;
 
-	>div {
-		//height:150px;
-		text-align: center;
-		margin:0 auto;
+    > div {
+        //height:150px;
+        text-align: center;
+        margin: 0 auto;
 
-		h5{
-			font-weight:500!important;
-			font-size:1rem;
-		}
+        h5 {
+            font-weight: 500 !important;
+            font-size: 1rem;
+        }
 
-		p{
-			color: #22354a;
-			opacity: 0.85;
-			font-size: 15px;
-		}
-	}
+        p {
+            color: #22354a;
+            opacity: 0.85;
+            font-size: 15px;
+        }
+    }
 
-	ion{
-		color:#2cd6ca;
-	}
+    ion {
+        color: #2cd6ca;
+    }
 }
 
-.upcoming{
-	margin-top:20px;
-	border-top: 1px rgba(34,53,74, 0.5) dashed;
-	padding-top: 20px;
+.upcoming {
+    margin-top: 20px;
+    border-top: 1px rgba(34, 53, 74, 0.5) dashed;
+    padding-top: 20px;
 
-	& > p{
-		width:100%;
-		text-align: center;
-		margin-bottom:10px;
-	}
+    & > p {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 10px;
+    }
 }
 
 .signup-form {
-	color:#555;
-	padding:20px;
-	margin-top:40px;
+    color: #fff;
+    padding: 20px;
+    margin-bottom: 0;
+    background: none;
+    border: none;
+
+    .form-intro {
+        padding: 30px;
+    }
 
 	ion{
 		color:#2cd6ca;
@@ -81,10 +97,9 @@ h2{
 	}
 	h3{
 		text-align: center;
-		margin: 0 0 40px;
 	}
 	p {
-		color: #555;
+		color: #fff;
 	}
 	.form-group {
 		text-align: left;
@@ -93,143 +108,163 @@ h2{
 	.btn-primary{
 		margin:40px 0 10px;
 	}
-}
 
-.hero-cta{
-	padding:20px 0;
-	border-top:rgba(255,255,255,0.25) solid 1px;
-}
-
-.hero-brand{
-	height:46px;
-	margin: 65px 0;
-}
-
-.feature-container{
-	padding:$input-padding-y * 3;
-}
-
-.tech{
-	background:#f9f9f9;
-	padding:40px 0;
-
-	.row > div{
-		margin: 0 auto;
-
-		img{
-			width: 50px;
-			margin-top: 20px;
-			margin-bottom: 20px;
-			opacity: 0.75;
-		}
+	.btn{
+		font-size: 18px;
 	}
+}
+
+.hero-cta {
+    padding: 20px 0;
+
+    .btn {
+        @extend .btn;
+        width: 300px;
+    }
+
+    p {
+        margin-top: 10px;
+    }
+}
+
+.hero-brand {
+    height: 46px;
+    margin: 65px 0;
+}
+
+.feature-container {
+    padding: $input-padding-y * 3;
+}
+
+.tech {
+    background: #f9f9f9;
+    padding: 40px 0;
+
+    .row > div {
+        margin: 0 auto;
+
+        img {
+            width: 50px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            opacity: 0.75;
+        }
+    }
+
+    a {
+        color: #22354a;
+        font-weight: bold;
+    }
 }
 
 .pricing {
-	background:#f9f9f9;
-	padding: 40px 0;
+    background: #f9f9f9;
+    padding: 40px 0;
 }
 
 .video {
-	margin-top: 2em;
+    margin-top: 2em;
 }
 
-footer.homepage{
-	background: $hero-bg;
-	color:white;
-	padding:50px;
-
-
-	.brand-footer{
-	}
+.sign-up {
+    background: linear-gradient(#407a7d, #22354a);
 }
 
-.brand-ssg{
-	width:175px;
+footer.homepage {
+    background: $hero-bg;
+    color: white;
+    padding: 50px;
+
+    .brand-footer {
+    }
 }
 
-footer{
-	.nav-list{
-		margin:0 0 50px;
-
-		li{
-			display: block;
-
-		}
-	}
-	.service-status {
-		margin-bottom: 20px;
-	}
-	.dot {
-		width:8px;
-		height:8px;
-		border-radius:4px;
-		margin-right: 20px;
-		margin-bottom: 3px;
-		display: inline-block;
-		&.green {
-			background-color: #35cac3;
-		}
-		&.orange {
-			background-color: #fb9d43;
-		}
-		&.red {
-			background-color: #f94f73;
-		}
-		&.purple {
-			background-color: #a28af9;
-		}
-	}
+.brand-ssg {
+    width: 175px;
 }
 
-.built-by{
-	margin-top:20px;
-	p{
-		color:#fff;
-		font-weight:100;
-		font-size:14px;
-		opacity:0.75;
-	}
-	img{
-		height:20px;
-	}
+footer {
+    .nav-list {
+        margin: 0 0 50px;
+
+        li {
+            display: block;
+
+        }
+    }
+    .service-status {
+        margin-bottom: 20px;
+    }
+    .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 4px;
+        margin-right: 20px;
+        margin-bottom: 3px;
+        display: inline-block;
+        &.green {
+            background-color: #35cac3;
+        }
+        &.orange {
+            background-color: #fb9d43;
+        }
+        &.red {
+            background-color: #f94f73;
+        }
+        &.purple {
+            background-color: #a28af9;
+        }
+    }
+}
+
+.built-by {
+    margin-top: 20px;
+    p {
+        color: #fff;
+        font-weight: 100;
+        font-size: 14px;
+        opacity: 0.75;
+    }
+    img {
+        height: 20px;
+    }
 }
 
 .feedback-btn {
-	position: fixed;
-	z-index: 1001;
-	right: 20px;
-	bottom: 10px;
-	.btn {
-		border-radius: 20px;
-	}
+    position: fixed;
+    z-index: 1001;
+    right: 20px;
+    bottom: 10px;
+    .btn {
+        border-radius: 20px;
+    }
 }
 
 @media (max-width: 576px) {
-	.hero{
-		display:block;
-		margin-left:0;
-		margin-right:0;
+    .hero {
+        display: block;
+        margin-left: 0;
+        margin-right: 0;
 
-		h1{
-			margin-top:20px;
-		}
-	}
+        h1 {
+            margin-top: 20px;
+        }
+    }
 
-	.hero-brand{
-		display: none;
-	}
+    .hero-brand {
+        display: none;
+    }
 
-	footer{
-		.nav-list{
-			margin: 0 0 20px 0;
-			width: 100%;
-			text-align: center;
-			padding: 0;
-		}
+    footer {
+        .nav-list {
+            margin: 0 0 20px 0;
+            width: 100%;
+            text-align: center;
+            padding: 0;
+        }
 
-		.brand-footer{
-			display: none;
-		}
-	}
+        .brand-footer {
+            display: none;
+        }
+    }
 }

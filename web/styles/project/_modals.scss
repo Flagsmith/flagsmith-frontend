@@ -1,0 +1,24 @@
+.modal{
+    .modal-header{
+        background:linear-gradient(#2cd6ca,#28b7ad);
+        color:#fff!important;
+        border-radius: 4px 4px 0 0;
+        text-align: center;
+    }
+
+    .modal-body{
+        .input-container{
+            input.input{
+                border:1px solid #2cd6ca!important;
+                border-radius:25px;
+                color:#2e2e2e;
+
+                &::placeholder{
+                    color:#2e2e2e;
+                    opacity:0.5;
+                }
+            }
+        }
+    }
+}
+

@@ -68,6 +68,7 @@
 
 	&.blue{
 		background:#22354a;
+		color:#fff;
 	}
 
 	&:hover{
@@ -75,6 +76,8 @@
 		text-decoration: none;
 		box-shadow:0 1px 10px 0 rgba(0,0,0,0.2);
 	}
+
+
 }
 
 .pricing-icon{
