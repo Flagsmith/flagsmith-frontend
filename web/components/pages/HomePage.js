@@ -255,7 +255,6 @@ const HomePage = class extends React.Component {
                                                         <li><p>Over 50,000 Monthly Active Users</p></li>
                                                         <li><p>Telephone Technical Support</p></li>
                                                         <li><p>All Startup Features</p></li>
-
                                                     </ul>
                                                 </div>
                                             </div>

@@ -69,6 +69,8 @@ export default class App extends Component {
         const pageHasAside = environmentId;
         const isHomepage = this.props.location.pathname == '/' || this.props.location.pathname == '/login';
         const isLegal = this.props.location.pathname == '/legal/tos' || this.props.location.pathname == '/legal/sla' || this.props.location.pathname == '/legal/privacy-policy';
+        const isDark = this.props.location.pathname == '/blog/remote-config-and-feature-flags';
+
         const redirect = this.props.location.query.redirect ? `?redirect=${this.props.location.query.redirect}` : "";
 
         return (
@@ -76,21 +78,18 @@ export default class App extends Component {
                 <AccountProvider onNoUser={this.onNoUser} onLogout={this.onLogout} onLogin={this.onLogin}>
                     {({isLoading, user, organisation}) => (
                         <div className={pageHasAside && "aside-body"}>
-                            <nav className={"navbar navbar-fixed-top " + (pageHasAside ? " navbar-aside" : '') + (isHomepage ? " navbar-homepage " : '')  + (isLegal ? "navbar-aside dark-header " : '') + this.state.myClassName}>
+                            <nav className={"navbar navbar-fixed-top " + (pageHasAside ? " navbar-aside" : '') + (isHomepage ? " navbar-homepage " : '')  + (isLegal ? "navbar-aside dark-header " : '') + (isDark ? " dark-header " : '') + this.state.myClassName}>
                                 <div className="navbar-left">
                                     <div className="navbar-nav">
                                         {!projectId && (
                                             <Link to={user ? "/projects" : "/"}
                                                   className="nav-item nav-item-brand nav-link">
                                                 {isLegal ? null : (<Row>
-                                                    {isHomepage ? (<img title={"Bullet Train"} height={24} src={"/images/bullet-train-1.svg"} className="brand"/>) :
+                                                    {isHomepage || isDark ? (<img title={"Bullet Train"} height={24} src={"/images/bullet-train-1.svg"} className="brand"/>) :
                                                         (<img title={"Bullet Train"} height={24} src={"/images/bullet-train-black.svg"} className="brand"/>) }
                                                 </Row>)}
-
-
                                             </Link>
                                         )}
-
                                     </div>
                                 </div>
                                 <div className="navbar-right">
