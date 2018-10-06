@@ -46,6 +46,7 @@ var Constants = {
         "VIEW_FEATURE": {"event": "Feature viewed", "category": "Features"}
     },
     pages: {
+        "ACCOUNT": "Account Page",
         "WHAT_ARE_FEATURE_FLAGS": "What are feature flags Page",
         "RESET_PASSWORD": "Reset Password Page",
         "COMING_SOON": "Coming Soon Page",

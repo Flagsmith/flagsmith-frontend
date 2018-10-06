@@ -80,6 +80,10 @@ const TheComponent = class extends Component {
 								<Flex className="links">
 									<Link
 										activeClassName={"active"}
+										to={`/project/${this.props.projectId}/environment/${this.props.environmentId}/account`
+										}><span className={"dot yellow"}/>Account</Link>
+									<Link
+										activeClassName={"active"}
 										to={`/project/${this.props.projectId}/environment/${this.props.environmentId}/features`
 										}><span className={"dot green"}/>Features</Link>
 									{/*<Link*/}

@@ -10,16 +10,9 @@ const TheComponent = class extends React.Component {
         this.setState({value: !this.state.value});
     };
 
-    scrollToSignUp = () => {
-        window.scrollTo(0,document.body.scrollHeight);
-    };
-
-
     render() {
-        const {hasFeature} = this.props;
+        const {hasFeature, location} = this.props;
         const explain = hasFeature("explain");
-        // const redirect = this.props.location.query.redirect ? `?redirect=${this.props.location.query.redirect}` : "";
-
         return (
             <div className={"hero"}>
                 <div className="col-lg-12 col-xs-12">
@@ -38,7 +31,7 @@ const TheComponent = class extends React.Component {
                             infrastructure.
                         </p>
                         <div className="hero-cta mt-1 text-center">
-                            <a href="/#sign-up" className="btn" onClick={this.scrollToSignUp}>Start free trial</a>
+                            <Link to={`/${this.props.redirect}#sign-up`} className="btn">Start free trial</Link>
                             <p className="text-small">No payment card required</p>
                         </div>
 

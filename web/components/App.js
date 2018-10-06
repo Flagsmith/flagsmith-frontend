@@ -42,11 +42,6 @@ export default class App extends Component {
         }
     };
 
-    scrollToSignUp = () => {
-        window.scrollTo(0,document.body.scrollHeight);
-    };
-
-
     handleScroll = () => {
         if (this.scrollPos < 768 && $(document).scrollTop() >= 768){
             this.setState({myClassName: 'scrolled'})
@@ -130,7 +125,7 @@ export default class App extends Component {
                                         </div>
                                     ) : (
                                         <div>
-                                            <Link to={`/login${redirect}`} className="btn float-right" onClick={this.scrollToSignUp}>Login</Link>
+                                            <Link to={`/login${redirect}#sign-up`} className="btn float-right">Login</Link>
                                             <ul className="nav-list list-unstyled float-right">
                                                 <li><Link to={"/demo"}>Demo</Link></li>
                                                 <li><a target={"_blank"} href="https://docs.bullet-train.io/">Docs</a></li>
@@ -153,6 +148,12 @@ export default class App extends Component {
                                 <div className={"footer-bar pulse"}>
                                     You are using a demo account. Finding this useful?{" "}
                                     <Link onClick={() => AppActions.setUser(null)} to={"/"}>Click here to Sign up</Link>
+                                </div>
+                            )}
+                            {pageHasAside && !AccountStore.isDemo && true && (
+                                <div className={"footer-bar"}>
+                                    You have 29 days of your free trial left.
+                                    <Link to={`/project/${this.props.params.projectId}/environment/${this.props.params.environmentId}/account`}> Click here to upgrade plan</Link>
                                 </div>
                             )}
                         </div>

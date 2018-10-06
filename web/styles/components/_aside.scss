@@ -102,7 +102,7 @@ $animation-timing-function: ease-in-out;
 			margin-bottom: 3px;
 			display: inline-block;
 			&.green {
-				background-color: #35cac3;
+				background-color: #41cec7;
 			}
 			&.orange {
 				background-color: #fb9d43;
@@ -112,6 +112,9 @@ $animation-timing-function: ease-in-out;
 			}
 			&.purple {
 				background-color: #a28af9;
+			}
+			&.yellow {
+				background-color: #FFFF00;
 			}
 		}
 		line-height: 44px;

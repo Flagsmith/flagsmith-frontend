@@ -20,6 +20,7 @@ import InvitePage from './components/pages/InvitePage';
 import NotFoundPage from './components/pages/NotFoundPage';
 import PricingPage from './components/pages/PricingPage';
 import TermsPoliciesPage from './components/pages/TermsPoliciesPage';
+import AccountPage from './components/pages/AccountPage';
 
 window.Link = Link;
 
@@ -37,6 +38,7 @@ export default (
         <Route path="projects" component={ProjectSelectPage}/>
         <Route path="/blog/remote-config-and-feature-flags" component={WhatAreFeatureFlagsPage}/>
         <Route path="password-reset/confirm/:uid/:token/" component={PasswordResetPage}/>
+        <Route path="project/:projectId/environment/:environmentId/account" component={AccountPage}/>
         <Route path="project/:projectId/environment/:environmentId/features" component={FlagsPage}/>
         <Route path="invite/:id" component={InvitePage}/>
         <Route path="project/:projectId/environment/:environmentId/settings" component={EnvironmentSettingsPage}/>
