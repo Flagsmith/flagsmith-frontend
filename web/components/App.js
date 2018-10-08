@@ -150,6 +150,7 @@ export default class App extends Component {
                                     <Link onClick={() => AppActions.setUser(null)} to={"/"}>Click here to Sign up</Link>
                                 </div>
                             )}
+                            {/* is within free trial */}
                             {pageHasAside && !AccountStore.isDemo && true && (
                                 <div className={"footer-bar"}>
                                     You have 29 days of your free trial left.
