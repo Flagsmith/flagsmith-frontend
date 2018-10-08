@@ -153,7 +153,6 @@ export default class App extends Component {
                             {pageHasAside && !AccountStore.isDemo && true && (
                                 <div className={"footer-bar"}>
                                     You have 29 days of your free trial left.
-                                    <Link to={`/project/${this.props.params.projectId}/environment/${this.props.params.environmentId}/account`}> Click here to upgrade plan</Link>
                                 </div>
                             )}
                         </div>
