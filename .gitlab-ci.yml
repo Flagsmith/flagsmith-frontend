@@ -2,7 +2,6 @@
 stages:
     - test
     - deploy
-    - deploydevelop
 
 test:
     image: timbru31/java-node
@@ -12,6 +11,7 @@ test:
         - sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
         - apt-get -qq update
         - apt-get install -y build-essential libpng-dev google-chrome-stable
+        - if [ $CI_COMMIT_REF_NAME == "staging" ]; then export ENV=staging; echo 'Setting env to' $ENV; npm run env; fi;
         - npm i
         - npm run test
 
@@ -22,9 +22,16 @@ deploy:
     only:
         - master
 
+deploystaging:
+    image: ilyasemenov/gitlab-ci-git-push
+    stage: deploy
+    script: git-push dokku@dokku1.solidstategroup.com:bullet-train-admin-staging
+    only:
+        - staging
+
 deploydevelop:
     image: ilyasemenov/gitlab-ci-git-push
-    stage: deploydevelop
+    stage: deploy
     script: git-push dokku@dokku1.solidstategroup.com:bullet-train-admin-dev
     only:
         - develop
