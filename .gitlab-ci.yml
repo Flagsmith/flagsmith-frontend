@@ -11,8 +11,8 @@ test:
         - sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
         - apt-get -qq update
         - apt-get install -y build-essential libpng-dev google-chrome-stable
-        - if [ $CI_COMMIT_REF_NAME == "staging" ]; then export ENV=staging; echo 'Setting env to' $ENV; npm run env; fi;
         - npm i
+        - if [ $CI_COMMIT_REF_NAME == "staging" ]; then export ENV=staging; echo 'Setting env to' $ENV; npm run env; fi;
         - npm run test
 
 deploy:
