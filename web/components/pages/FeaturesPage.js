@@ -129,14 +129,14 @@ const TheComponent = class extends Component {
                                                                     )}
                                                                 </Column>
                                                                 <Column>
-                                                                    <a
+                                                                    <button
                                                                         id="remove-feature"
                                                                         onClick={() => this.confirmRemove(projectFlags[i], () => {
                                                                             removeFlag(this.props.params.projectId, projectFlags[i])
                                                                         })}
-                                                                        className={"btn btn-link"}>
+                                                                        className={"btn btn-primary"}>
                                                                         Remove
-                                                                    </a>
+                                                                    </button>
                                                                 </Column>
                                                             </Row>
                                                         </Row>

@@ -103,9 +103,9 @@ var controller = {
             store.changed();
         },
 
-        editOrganisation: (name) => {
+        editOrganisation: (org) => {
             API.trackEvent(Constants.events.EDIT_ORGANISATION);
-            data.put(`${Project.api}organisations/${store.organisation.id}/?format=json`, {name})
+            data.put(`${Project.api}organisations/${store.organisation.id}/?format=json`, org)
                 .then((res) => {
                     var idx = _.findIndex(store.model.organisations, {id: store.organisation.id});
                     if (idx != -1) {
@@ -190,7 +190,7 @@ store.dispatcherIndex = Dispatcher.register(store, function (payload) {
             controller.deleteOrganisation();
             break;
         case Actions.EDIT_ORGANISATION:
-            controller.editOrganisation(action.name);
+            controller.editOrganisation(action.org);
             break;
         case Actions.LOGOUT:
             controller.setUser(null);

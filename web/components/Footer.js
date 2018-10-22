@@ -46,10 +46,10 @@ const Footer = class extends React.Component {
               )}
             </ul>
             <ul className=" float-left nav-list">
-              <li><a href="mailto:bullettrain@solidstategroup.com">Support</a></li>
-              <li><Link to={"/legal/tos"}>Terms of Service</Link></li>
-              <li><Link to={"/legal/privacy-policy"}>Privacy Policy</Link></li>
-              <li><Link to={"/legal/sla"}>Service Level Agreement</Link></li>
+              <li><a href="mailto:support@bullet-train.io">Support</a></li>
+              <li><Link to={"/legal/tos"}  target="_blank">Terms of Service</Link></li>
+              <li><Link to={"/legal/privacy-policy"} target="_blank">Privacy Policy</Link></li>
+              <li><Link to={"/legal/sla"} target="_blank">Service Level Agreement</Link></li>
             </ul>
           </div>
         </div>

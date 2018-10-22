@@ -11,6 +11,12 @@ global.API = {
             // ErrorModal(null, error);
         }
 
+        // Catch coding errors that end up here
+        if (res instanceof Error) {
+            console.log(res);
+            return;
+        }
+
         res.json().then(error => {
             if (store) {
                 store.error = error;

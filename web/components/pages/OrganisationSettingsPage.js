@@ -50,8 +50,41 @@ const TheComponent = class extends Component {
 		openConfirm(<h3>Delete Invite</h3>, <p>Are you sure you want to delete this invite?</p>, () => AppActions.deleteInvite(id));
 	}
 
+	save = (e) => {
+		e.preventDefault();
+		const {name, webhook_notification_email} = this.state;
+		if (AccountStore.isSaving || (!name && webhook_notification_email === undefined)) {
+			return;
+		}
+
+		const org = AccountStore.getOrganisation();
+		AppActions.editOrganisation({
+			name: name ? name : org.name,
+			webhook_notification_email: webhook_notification_email !== undefined ? webhook_notification_email : org.webhook_notification_email
+		});
+	}
+
+	saveDisabled = () => {
+		const {name, webhook_notification_email} = this.state;
+		if (AccountStore.isSaving || (!name && webhook_notification_email === undefined)) {
+			return true;
+		}
+
+		// Must have name
+		if (name !== undefined && !name) {
+			return true;
+		}
+
+		// Must be valid email for webhook notification email
+		if (webhook_notification_email && !Utils.isValidEmail(webhook_notification_email)) {
+			return true;
+		}
+
+		return false;
+	}
+
 	render() {
-		const {name} = this.state;
+		const {name, webhook_notification_email} = this.state;
 
 		return (
 			<div className="app-container container">
@@ -64,10 +97,7 @@ const TheComponent = class extends Component {
 							  organisation
 						  }, {createOrganisation, selectOrganisation, editOrganisation, deleteOrganisation}) => (
 							<div className="margin-bottom">
-								<form key={organisation.id} onSubmit={(e) => {
-									e.preventDefault();
-									!isSaving && name && editOrganisation(name);
-								}}>
+								<form key={organisation.id} onSubmit={this.save}>
 									<InputGroup
 										ref={(e) => this.input = e}
 										inputProps={{defaultValue: organisation.name, className: "full-width"}}
@@ -75,8 +105,14 @@ const TheComponent = class extends Component {
 										isValid={name && name.length}
 										type="text" title={<h3>Organisation Name</h3>}
 										placeholder="My Organisation"/>
+									<InputGroup
+										inputProps={{defaultValue: organisation.webhook_notification_email, className: "full-width"}}
+										onChange={(e) => this.setState({webhook_notification_email: Utils.safeParseEventValue(e)})}
+										isValid={webhook_notification_email && webhook_notification_email.length && Utils.isValidEmail(webhook_notification_email)}
+										type="text" title={<h3>Webhook Notification Email</h3>}
+										placeholder="Email address"/>
 									<div className="text-right">
-										<Button disabled={isSaving || !name}>
+										<Button disabled={this.saveDisabled()}>
 											{isSaving ? 'Saving' : 'Save'}
 										</Button>
 									</div>

@@ -180,10 +180,10 @@ module.exports = Object.assign({}, require('./base/_app-actions'), {
 			name
 		});
 	},
-	editOrganisation: function (name) { //refresh the entire app
+	editOrganisation: function (org) { //refresh the entire app
 		Dispatcher.handleViewAction({
 			actionType: Actions.EDIT_ORGANISATION,
-			name
+			org
 		});
 	},
 	removeFlag: function (projectId, flag) { //refresh the entire app
