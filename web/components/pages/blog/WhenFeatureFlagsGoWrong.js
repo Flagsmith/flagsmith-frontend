@@ -31,7 +31,7 @@ const TheComponent = class extends Component {
             <div className={"app-container"}>
 
                     <div className={"container blog-post col-md-8 offset-md-2"}>
-                        <div className={""}>
+                        <div className={"clearfix"}>
                             <h1 className="blog-post__title">When feature flags go wrong</h1>
                             <p className="blog-post__author">by Kyle Johnson</p>
 
