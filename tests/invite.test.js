@@ -60,10 +60,12 @@ module.exports = {
   '[Invite Tests] - Accept invite': function (browser) {
     var inviteUrl;
     browser
-      .url('http://www.mailinator.com/v2/inbox.jsp?zone=public&query=bullet-train')
+      .url('https://mailinator.com/v3/#/#inboxpane')
+      .waitForElementVisible('#inbox_field')
+      .setValue('#inbox_field', ['bullet-train', browser.Keys.ENTER])
       .useXpath()
-      .waitForElementVisible(`//div[contains(@class,"all_message-min_text") and contains(text(),"${"Nightwatch Org" + append}")]`, 60000)
-      .click(`//div[contains(@class,"all_message-min_text") and contains(text(),"${"Nightwatch Org" + append}")]`)
+      .waitForElementVisible(`//tbody/tr/td[contains(text(),"${"Nightwatch Org" + append}")]`, 60000)
+      .click(`//tbody/tr/td[contains(text(),"${"Nightwatch Org" + append}")]`)
       .useCss()
       .waitForElementVisible('#msg_body')
       .pause(1000) // TODO revise this. currently necessary as the msg_body does not appear to show text immediately leading to an empty result
