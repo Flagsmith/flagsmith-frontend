@@ -78,10 +78,10 @@ const TheComponent = class extends Component {
 									)}
 								</Popover>
 								<Flex className="links">
-									<Link
+									{/* <Link
 										activeClassName={"active"}
 										to={`/project/${this.props.projectId}/environment/${this.props.environmentId}/account`
-										}><span className={"dot yellow"}/>Account</Link>
+										}><span className={"dot yellow"}/>Account</Link> */}
 									<Link
 										activeClassName={"active"}
 										to={`/project/${this.props.projectId}/environment/${this.props.environmentId}/features`

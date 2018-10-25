@@ -4,7 +4,7 @@ import Aside from './Aside';
 import Popover from '../components/base/Popover';
 import AccountStore from '../../common/stores/account-store';
 import Feedback from '../components/modals/Feedback';
-
+import PaymentModal from '../components/modals/Payment';
 
 export default class App extends Component {
 
@@ -151,9 +151,9 @@ export default class App extends Component {
                                 </div>
                             )}
                             {/* is within free trial */}
-                            {pageHasAside && !AccountStore.isDemo && true && (
-                                <div className={"footer-bar"}>
-                                    You have 29 days of your free trial left.
+                            {AccountStore.getUser() && !AccountStore.isDemo && true /* Condition here for the org that is within free trial */ && (
+                                <div className={"footer-bar"} onClick={() => openModal(null, <PaymentModal />, null, {large: true})}>
+                                    Your organisation has 29 days of it's free trial left.
                                 </div>
                             )}
                         </div>
