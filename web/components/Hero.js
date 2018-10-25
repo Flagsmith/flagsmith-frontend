@@ -11,7 +11,7 @@ const TheComponent = class extends React.Component {
     };
 
     scrollToSignUp = () => {
-        window.scrollTo(0,document.body.scrollHeight);
+        Utils.scrollToElement('.signup-form');
     };
 
 

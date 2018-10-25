@@ -51,5 +51,13 @@ module.exports = Object.assign({}, require('./base/_utils'), {
         }
 
         return str;
+    },
+
+    scrollToTop: (timeout = 500) => {
+        $('html,body').animate({scrollTop: 0}, timeout);
+    },
+
+    scrollToElement: (selector, timeout = 500) => {
+        $('html,body').animate({scrollTop: $(selector).offset().top}, timeout);
     }
 });
