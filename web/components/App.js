@@ -42,6 +42,10 @@ export default class App extends Component {
         }
     };
 
+    scrollToSignUp = () => {
+        Utils.scrollToElement('.signup-form');
+    };
+
     handleScroll = () => {
         if (this.scrollPos < 768 && $(document).scrollTop() >= 768){
             this.setState({myClassName: 'scrolled'})

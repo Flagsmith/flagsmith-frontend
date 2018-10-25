@@ -10,6 +10,10 @@ const TheComponent = class extends React.Component {
         this.setState({value: !this.state.value});
     };
 
+    scrollToSignUp = () => {
+        Utils.scrollToElement('.signup-form');
+    };
+
     render() {
         const {hasFeature, location} = this.props;
         const explain = hasFeature("explain");

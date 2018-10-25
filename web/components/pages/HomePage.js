@@ -27,11 +27,11 @@ const HomePage = class extends React.Component {
             var scroll = $(window).scrollTop();
 
             //>=, not <=
-            if (scroll >= 675) {
+            if (scroll >= 75) {
                 //clearHeader, not clearheader - caps H
                 $(".navbar-homepage").addClass("dark-header");
 
-            } else if (scroll <= 675){
+            } else if (scroll <= 75){
                 $(".navbar-homepage").removeClass("dark-header");
             }
         });
