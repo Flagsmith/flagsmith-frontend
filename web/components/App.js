@@ -5,6 +5,7 @@ import Popover from '../components/base/Popover';
 import AccountStore from '../../common/stores/account-store';
 import Feedback from '../components/modals/Feedback';
 import PaymentModal from '../components/modals/Payment';
+import CancelPaymentPlanModal from './modals/CancelPaymentPlan';
 
 export default class App extends Component {
 
@@ -63,13 +64,23 @@ export default class App extends Component {
         openModal('Feedback', <Feedback />)
     }
 
+    cancelTrial = () => {
+        openModal(
+			<h2>Are you sure you want to cancel your trial?</h2>,
+			<CancelPaymentPlanModal trial={true} />,
+		);
+    }
+
     render() {
         const {projectId, environmentId} = this.props.params;
         const pageHasAside = environmentId;
         const isHomepage = this.props.location.pathname == '/' || this.props.location.pathname == '/login';
         const isLegal = this.props.location.pathname == '/legal/tos' || this.props.location.pathname == '/legal/sla' || this.props.location.pathname == '/legal/privacy-policy';
         const isDark = this.props.location.pathname == '/blog/remote-config-and-feature-flags';
-        const hasFreeTrial = AccountStore.getUser() && !AccountStore.isDemo && true; /* Condition here for the org that is within free trial */
+        const loggedInUser = AccountStore.getUser() && !AccountStore.isDemo;
+        const hasPaid = Constants.simulate.HAS_PAID; // Organisation has paid via chargebee
+        const hasFreeTrial = loggedInUser && hasPaid && Constants.simulate.HAS_FREE_TRIAL; // Organisation has paid via chargebee but is still within their free trial
+        const hasFreeUse = loggedInUser && Constants.simulate.HAS_FREE_USE; /* Organisation was created before payment options came in and therefore they have free usage (for now) */
 
         const redirect = this.props.location.query.redirect ? `?redirect=${this.props.location.query.redirect}` : "";
 
@@ -143,7 +154,7 @@ export default class App extends Component {
                             </nav>
                             {pageHasAside && (
                                 <Aside
-                                    className={`${AccountStore.isDemo ? "demo" : ''} ${AccountStore.isDemo || hasFreeTrial ? 'footer' : ''}`}
+                                    className={`${AccountStore.isDemo ? "demo" : ''} ${AccountStore.isDemo || hasFreeTrial || !hasPaid ? 'footer' : ''}`}
                                     projectId={this.props.params.projectId}
                                     environmentId={this.props.params.environmentId}
                                 />
@@ -157,8 +168,12 @@ export default class App extends Component {
                             )}
                             {/* is within free trial */}
                             {hasFreeTrial ? (
-                                <div className={"footer-bar"} onClick={() => openModal(null, <PaymentModal />, null, {large: true})}>
-                                    Your organisation has 29 days of it's free trial left.
+                                <div className={"footer-bar"}>
+                                    Your organisation has 29 days of it's free trial left. Click <a onClick={this.cancelTrial}>here</a> to cancel your free trial.
+                                </div>
+                            ) : !hasPaid ? (
+                                <div className={"footer-bar clickable"} onClick={() => openModal(null, <PaymentModal />, null, {large: true})}>
+                                    {hasFreeUse ? 'Your organisation is currently using Bullet Train for free. Click here to see payment plans.' : 'Thanks for signing up to use Bullet Train. Click here to start your free trial'}.
                                 </div>
                             ) : null}
                         </div>

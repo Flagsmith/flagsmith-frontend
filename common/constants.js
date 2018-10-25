@@ -106,6 +106,11 @@ var Constants = {
             "Java": require('./code-help/install/install-java')(keywords),
             ".NET": "Coming soon"
         }
+    },
+    simulate: {
+        HAS_PAID: false,
+        HAS_FREE_TRIAL: true,
+        HAS_FREE_USE: true
     }
 };
 
