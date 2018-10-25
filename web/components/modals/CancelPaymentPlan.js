@@ -10,14 +10,13 @@ const CancelPaymentPlanModal = class extends Component {
   state = {}
 
   render() {
-    const plan = this.props.trial ? 'trial' : 'plan';
     return (
       <div>
-        <div>You will continue being able to use Bullet Train till the end of your {plan} even after cancelling</div>
+        <div>You will continue being able to use Bullet Train till the end of your plan even after cancelling</div>
         <FormGroup>
           <div>
               <strong>
-                  Would you like to tell us why you decided to cancel your {plan}?
+                  Would you like to tell us why you decided to cancel your plan?
               </strong>
           </div>
           <textarea name="cancellationReason" rows={5} value={this.state.cancellationReason} onChange={(e) => Utils.safeParseEventValue(e)}></textarea>
@@ -26,7 +25,7 @@ const CancelPaymentPlanModal = class extends Component {
           <Button
             id="confirm-cancel-plan"
             className={"btn btn-primary"}>
-            Yes, cancel {plan}
+            Yes, cancel plan
           </Button>
         </FormGroup>
       </div>

@@ -109,8 +109,8 @@ var Constants = {
     },
     simulate: {
         HAS_PAID: false, // Organisation has paid via chargebee
-        HAS_FREE_TRIAL: true, // Organisation has paid via chargebee but is still within their free trial
-        HAS_FREE_USE: true // Organisation was created before payment options came in and therefore they have free usage until a certain date
+        HAS_FREE_USE: true, // Organisation was created before payment options came in and therefore they have free usage until a certain date
+        SUBSCRIPTION_DATE: null // Organisation subscription date i.e. when their free trial started
     }
 };
 

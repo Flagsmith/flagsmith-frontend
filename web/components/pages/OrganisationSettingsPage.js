@@ -85,17 +85,18 @@ const TheComponent = class extends Component {
 		return false;
 	}
 
-	cancelPaymentPlan = (trial) => {
+	cancelPaymentPlan = () => {
 		openModal(
-			<h2>Are you sure you want to cancel your {trial ? 'free trial': 'plan'}?</h2>,
-			<CancelPaymentPlanModal trial={trial} />,
+			<h2>Are you sure you want to cancel your plan?</h2>,
+			<CancelPaymentPlanModal />,
 		);
 	}
 
 	render() {
 		const {name, webhook_notification_email} = this.state;
 		const hasPaid = Constants.simulate.HAS_PAID; // Organisation has paid via chargebee
-		const hasFreeTrial = hasPaid && Constants.simulate.HAS_FREE_TRIAL; // Organisation has paid via chargebee but is still within their free trial
+		const freeTrialDaysRemaining = Utils.freeTrialDaysRemaining(Constants.simulate.SUBSCRIPTION_DATE);
+		const hasFreeTrial = freeTrialDaysRemaining > 0; // Organisation is still within their free trial
 		const hasFreeUse = Constants.simulate.HAS_FREE_USE; // Organisation was created before payment options came in and therefore they have free usage (for now)
 
 		return (
@@ -111,20 +112,25 @@ const TheComponent = class extends Component {
 							<div className="margin-bottom">
 								{hasFreeTrial ? (
 									<div>
-										<h2 className="text-center margin-bottom">Your organisation is currently trialling the Startup plan</h2>
-										<div className="text-center margin-bottom">You currently have 29 days remaining until you are charged. Click <a onClick={() => this.cancelPaymentPlan(true)}>here</a> to cancel your trial</div>
+										<h2 className="text-center margin-bottom">Your organisation is within the free trial period</h2>
+										<div className="text-center margin-bottom">You have {freeTrialDaysRemaining} days remaining until you need to choose a payment plan.</div>
 									</div>
 								) : hasPaid ? (
 									<div>
 										<h2 className="text-center margin-bottom">Your organisation is on the Startup plan</h2>
-										<div className="text-center margin-bottom">Click <a onClick={() => this.cancelPaymentPlan()}>here</a> to cancel your automatic renewal of your plan</div>
+										<div className="text-center margin-bottom">Click <a onClick={this.cancelPaymentPlan}>here</a> to cancel your automatic renewal of your plan</div>
 										{/* TODO upgrades? */}
+									</div>
+								) : hasFreeUse ? (
+									<div>
+										<h2 className="text-center margin-bottom">Your organisation is using Bullet Train for free.</h2>
+										{hasFreeUse ? <div className="text-center margin-bottom">As an early adopter of Bullet Train you will be able to use this service for free until DD/MM/YYYY. You will then need to choose a payment plan to continue using Bullet Train.</div> : null}
+										<div className="text-center margin-bottom">Click <a onClick={() => openModal(null, <PaymentModal viewOnly={true} />, null, {large: true})}>here</a> to view payment plans</div>
 									</div>
 								) : (
 									<div>
-										<h2 className="text-center margin-bottom">{hasFreeUse ? 'Your organisation is currently using Bullet Train for free' : 'Thanks for signing up to use Bullet Train.'}</h2>
-										{hasFreeUse ? <div className="text-center margin-bottom">Free usage of Bullet Train will come to an end on DD/MM/YYYY. Please make sure you upgrade to a payment plan before then</div> : null}
-										<div className="text-center margin-bottom">Click <a onClick={() => openModal(null, <PaymentModal />, null, {large: true})}>here</a> to {hasFreeUse ? 'see payment plans' : 'start your free trial'}</div>
+										<h2 className="text-center margin-bottom">Your trial period of Bullet Train is over.</h2>
+										<div className="text-center margin-bottom">Click <a onClick={() => openModal(null, <PaymentModal />, null, {large: true})}>here</a> to view payment plans to continue using Bullet Train</div>
 									</div>
 								)}
 								<form key={organisation.id} onSubmit={this.save}>

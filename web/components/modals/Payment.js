@@ -26,6 +26,7 @@ const PaymentModal = class extends Component {
 
   render() {
     const hasFreeUse = Constants.simulate.HAS_FREE_USE; // Organisation was created before payment options came in and therefore they have free usage (for now)
+    const viewOnly = this.props.viewOnly;
     return (
       <div className="app-container container">
         <AccountProvider onSave={this.onSave} onRemove={this.onRemove}>
@@ -49,7 +50,7 @@ const PaymentModal = class extends Component {
                             <img src="/images/growth.svg" alt="free icon" className="pricing-icon" />
                             <p className="pricing-type">$5</p>
                             <p className="text-small text-center">Billed monthly</p>
-                            <a href="javascript:void(0)" data-cb-type="checkout" data-cb-plan-id="side-project" className="pricing-cta blue">Start free trial</a>
+                            {!viewOnly ? <a href="javascript:void(0)" data-cb-type="checkout" data-cb-plan-id="side-project" className="pricing-cta blue">Buy</a> : null}
                           </div>
                           <div className="panel-footer">
                             <p className="text-small text-center link-style">What's included</p>
@@ -73,7 +74,7 @@ const PaymentModal = class extends Component {
                             <img src="/images/startup.svg" alt="Startup icon" className="pricing-icon" />
                             <p className="pricing-type">$29</p>
                             <p className="text-small text-center">billed monthly</p>
-                            <a href="javascript:void(0)" data-cb-type="checkout" data-cb-plan-id="startup" className="pricing-cta blue">Start free trial</a>
+                            {!viewOnly ? <a href="javascript:void(0)" data-cb-type="checkout" data-cb-plan-id="startup" className="pricing-cta blue">Buy</a> : null}
                           </div>
                           <div className="panel-footer">
                             <p className="text-small text-center link-style">What's included</p>
@@ -97,7 +98,7 @@ const PaymentModal = class extends Component {
                             <img src="/images/layers2.svg" alt="Scale-up icon" className="pricing-icon" />
                             <p className="pricing-type">$99</p>
                             <p className="text-small text-center">billed monthly</p>
-                            <a href="javascript:void(0)" data-cb-type="checkout" data-cb-plan-id="scale-up" className="pricing-cta">Start free trial</a>
+                            {!viewOnly ? <a href="javascript:void(0)" data-cb-type="checkout" data-cb-plan-id="scale-up" className="pricing-cta">Buy</a> : null}
                           </div>
                           <div className="panel-footer">
                             <p className="text-small text-center link-style">What's included</p>
@@ -119,7 +120,7 @@ const PaymentModal = class extends Component {
                             <img src="/images/cubes.svg" alt="Enterprise icon" className="pricing-icon" />
                             <p className="pricing-type">Contact Us</p>
                             <p className="text-small text-center">for enterprise pricing</p>
-                            <a href="mailto:enterprise@bullet-train.io" className="pricing-cta blue">Contact Us</a>
+                            {!viewOnly ? <a href="mailto:enterprise@bullet-train.io" className="pricing-cta blue">Contact Us</a> : null}
                           </div>
 
                           <div className="panel-footer">

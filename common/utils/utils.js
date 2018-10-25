@@ -59,5 +59,9 @@ module.exports = Object.assign({}, require('./base/_utils'), {
 
     scrollToElement: (selector, timeout = 500) => {
         $('html,body').animate({scrollTop: $(selector).offset().top}, timeout);
+    },
+
+    freeTrialDaysRemaining: (subscriptionDate) => {
+        return moment(subscriptionDate).add('30', 'd').endOf('d').diff(moment(), 'd');
     }
 });
