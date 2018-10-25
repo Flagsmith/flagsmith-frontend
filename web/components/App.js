@@ -65,6 +65,7 @@ export default class App extends Component {
         const isHomepage = this.props.location.pathname == '/' || this.props.location.pathname == '/login';
         const isLegal = this.props.location.pathname == '/legal/tos' || this.props.location.pathname == '/legal/sla' || this.props.location.pathname == '/legal/privacy-policy';
         const isDark = this.props.location.pathname == '/blog/remote-config-and-feature-flags';
+        const hasFreeTrial = AccountStore.getUser() && !AccountStore.isDemo && true; /* Condition here for the org that is within free trial */
 
         const redirect = this.props.location.query.redirect ? `?redirect=${this.props.location.query.redirect}` : "";
 
@@ -138,7 +139,7 @@ export default class App extends Component {
                             </nav>
                             {pageHasAside && (
                                 <Aside
-                                    className={AccountStore.isDemo && "demo"}
+                                    className={`${AccountStore.isDemo ? "demo" : ''} ${AccountStore.isDemo || hasFreeTrial ? 'footer' : ''}`}
                                     projectId={this.props.params.projectId}
                                     environmentId={this.props.params.environmentId}
                                 />
@@ -151,11 +152,11 @@ export default class App extends Component {
                                 </div>
                             )}
                             {/* is within free trial */}
-                            {AccountStore.getUser() && !AccountStore.isDemo && true /* Condition here for the org that is within free trial */ && (
+                            {hasFreeTrial ? (
                                 <div className={"footer-bar"} onClick={() => openModal(null, <PaymentModal />, null, {large: true})}>
                                     Your organisation has 29 days of it's free trial left.
                                 </div>
-                            )}
+                            ) : null}
                         </div>
                     )}
                 </AccountProvider>
