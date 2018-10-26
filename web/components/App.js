@@ -69,117 +69,121 @@ export default class App extends Component {
         const isHomepage = this.props.location.pathname == '/' || this.props.location.pathname == '/login';
         const isLegal = this.props.location.pathname == '/legal/tos' || this.props.location.pathname == '/legal/sla' || this.props.location.pathname == '/legal/privacy-policy';
         const isDark = this.props.location.pathname == '/blog/remote-config-and-feature-flags';
-        const loggedInUser = AccountStore.getUser() && !AccountStore.isDemo;
-        const hasPaid = loggedInUser && Constants.simulate.HAS_PAID; // Organisation has paid via chargebee
-        const freeTrialDaysRemaining = loggedInUser && Utils.freeTrialDaysRemaining(Constants.simulate.SUBSCRIPTION_DATE);
-		const hasFreeTrial = loggedInUser && freeTrialDaysRemaining > 0; // Organisation is still within their free trial
-        const hasFreeUse = loggedInUser && Constants.simulate.HAS_FREE_USE; /* Organisation was created before payment options came in and therefore they have free usage (for now) */
 
         const redirect = this.props.location.query.redirect ? `?redirect=${this.props.location.query.redirect}` : "";
 
         return (
             <div>
                 <AccountProvider onNoUser={this.onNoUser} onLogout={this.onLogout} onLogin={this.onLogin}>
-                    {({isLoading, user, organisation}) => (
-                        <div className={pageHasAside && "aside-body"}>
-                            <nav className={"navbar navbar-fixed-top " + (pageHasAside ? " navbar-aside" : '') + (isHomepage ? " navbar-homepage " : '')  + (isLegal ? "navbar-aside dark-header " : '') + (isDark ? " dark-header " : '') + this.state.myClassName}>
-                                <div className="navbar-left">
-                                    <div className="navbar-nav">
-                                        {!projectId && (
-                                            <Link to={user ? "/projects" : "/"}
-                                                  className="nav-item nav-item-brand nav-link">
-                                                {isLegal ? null : (<Row>
-                                                    {isHomepage || isDark ? (<img title={"Bullet Train"} height={24} src={"/images/bullet-train-1.svg"} className="brand"/>) :
-                                                        (<img title={"Bullet Train"} height={24} src={"/images/bullet-train-black.svg"} className="brand"/>) }
-                                                </Row>)}
-                                            </Link>
-                                        )}
+                    {({isLoading, user, organisation}) => {
+
+                        const loggedInUser = organisation && !AccountStore.isDemo;
+                        const hasPaid = loggedInUser && organisation.paid_subscription; // Organisation has paid via chargebee
+                        const freeTrialDaysRemaining = loggedInUser && Utils.freeTrialDaysRemaining(organisation.subscription_date);
+                        const hasFreeTrial = loggedInUser && freeTrialDaysRemaining > 0; // Organisation is still within their free trial
+                        const hasFreeUse = loggedInUser && organisation.free_to_use_subscription; /* Organisation was created before payment options came in and therefore they have free usage (for now) */
+
+                        return (
+                            <div className={pageHasAside && "aside-body"}>
+                                <nav className={"navbar navbar-fixed-top " + (pageHasAside ? " navbar-aside" : '') + (isHomepage ? " navbar-homepage " : '')  + (isLegal ? "navbar-aside dark-header " : '') + (isDark ? " dark-header " : '') + this.state.myClassName}>
+                                    <div className="navbar-left">
+                                        <div className="navbar-nav">
+                                            {!projectId && (
+                                                <Link to={user ? "/projects" : "/"}
+                                                    className="nav-item nav-item-brand nav-link">
+                                                    {isLegal ? null : (<Row>
+                                                        {isHomepage || isDark ? (<img title={"Bullet Train"} height={24} src={"/images/bullet-train-1.svg"} className="brand"/>) :
+                                                            (<img title={"Bullet Train"} height={24} src={"/images/bullet-train-black.svg"} className="brand"/>) }
+                                                    </Row>)}
+                                                </Link>
+                                            )}
+                                        </div>
                                     </div>
-                                </div>
-                                <div className="navbar-right">
-                                    {user ? (
-                                        <div className="flex-column org-nav">
-                                            <Popover className="popover-right"
-                                                     renderTitle={(toggle) => organisation && (
-                                                         <a id="org-menu" onClick={toggle}>
-                                                             {organisation.name}
-                                                             <div className="flex-column ion ion-ios-arrow-down"/>
-                                                         </a>
-                                                     )}>
-                                                {(toggle) => (
-                                                    <div>
-
-                                                        {organisation && (
-                                                            <OrganisationSelect
-                                                                clearableValue={false}
-                                                                onChange={(organisation) => {
-                                                                    toggle();
-                                                                    AppActions.selectOrganisation(organisation.id);
-                                                                    AppActions.getOrganisation(organisation.id);
-                                                                    this.context.router.push('/projects');
-                                                                }}/>
-                                                        )}
+                                    <div className="navbar-right">
+                                        {user ? (
+                                            <div className="flex-column org-nav">
+                                                <Popover className="popover-right"
+                                                        renderTitle={(toggle) => organisation && (
+                                                            <a id="org-menu" onClick={toggle}>
+                                                                {organisation.name}
+                                                                <div className="flex-column ion ion-ios-arrow-down"/>
+                                                            </a>
+                                                        )}>
+                                                    {(toggle) => (
                                                         <div>
-                                                            <Link id="create-org-link" onClick={toggle} to="/create">
-                                                                Create Organisation
-                                                            </Link>
+
+                                                            {organisation && (
+                                                                <OrganisationSelect
+                                                                    clearableValue={false}
+                                                                    onChange={(organisation) => {
+                                                                        toggle();
+                                                                        AppActions.selectOrganisation(organisation.id);
+                                                                        AppActions.getOrganisation(organisation.id);
+                                                                        this.context.router.push('/projects');
+                                                                    }}/>
+                                                            )}
+                                                            <div>
+                                                                <Link id="create-org-link" onClick={toggle} to="/create">
+                                                                    Create Organisation
+                                                                </Link>
+                                                            </div>
+
+                                                            <a id="logout-link" href="#"
+                                                            onClick={() => AppActions.setUser(null)}
+                                                            to="exampleone">Logout</a>
                                                         </div>
+                                                    )}
+                                                </Popover>
+                                            </div>
+                                        ) : (
+                                            <div>
+                                                <Link to={`/login${redirect}#sign-up`} className="btn float-right">Login</Link>
+                                                <ul className="nav-list list-unstyled float-right">
+                                                    <li><Link to={"/demo"}>Demo</Link></li>
+                                                    <li><a target={"_blank"} href="https://docs.bullet-train.io/">Docs</a></li>
+                                                    <li><Link to={'/pricing'}>Pricing</Link></li>
+                                                </ul>
+                                            </div>
+                                        )}
 
-                                                        <a id="logout-link" href="#"
-                                                           onClick={() => AppActions.setUser(null)}
-                                                           to="exampleone">Logout</a>
-                                                    </div>
-                                                )}
-                                            </Popover>
-                                        </div>
-                                    ) : (
-                                        <div>
-                                            <Link to={`/login${redirect}#sign-up`} className="btn float-right">Login</Link>
-                                            <ul className="nav-list list-unstyled float-right">
-                                                <li><Link to={"/demo"}>Demo</Link></li>
-                                                <li><a target={"_blank"} href="https://docs.bullet-train.io/">Docs</a></li>
-                                                <li><Link to={'/pricing'}>Pricing</Link></li>
-                                            </ul>
-                                        </div>
-                                    )}
-
-                                </div>
-                            </nav>
-                            {pageHasAside && (
-                                <Aside
-                                    className={`${AccountStore.isDemo ? "demo" : ''} ${AccountStore.isDemo || hasFreeTrial || (hasFreeUse && !hasPaid) || !hasPaid ? 'footer' : ''}`}
-                                    projectId={this.props.params.projectId}
-                                    environmentId={this.props.params.environmentId}
-                                />
-                            )}
-                            {this.props.children}
-                            {AccountStore.isDemo && (
-                                <div className={"footer-bar pulse"}>
-                                    You are using a demo account. Finding this useful?{" "}
-                                    <Link onClick={() => AppActions.setUser(null)} to={"/"}>Click here to Sign up</Link>
-                                </div>
-                            )}
-                            {hasFreeTrial ? (
-                                <div className={"footer-bar"}>
-                                    Your organisation has {freeTrialDaysRemaining} days remaining on it's free trial.
-                                </div>
-                            ) : hasPaid ? null :
-                            hasFreeUse ? (
-                                <div className={"footer-bar"}>
-                                    Your organisation is using Bullet Train for free. Click <Link
-                                        id="organisation-settings-link"
-                                        activeClassName={"active"}
-										to={`/project/${this.props.params.projectId}/environment/${this.props.params.environmentId}/organisation-settings`}>
-										here
-									</Link> for further information on migrating to a paid plan.
-                                </div>
-                            ) : (
-                                <div className={"footer-bar clickable"} onClick={() => openModal(null, <PaymentModal />, null, {large: true})}>
-                                    Your trial period has expired. Click here to view payment plans.
-                                </div>
-                            )}
-                        </div>
-                    )}
+                                    </div>
+                                </nav>
+                                {pageHasAside && (
+                                    <Aside
+                                        className={`${AccountStore.isDemo ? "demo" : ''} ${AccountStore.isDemo || hasFreeTrial || (hasFreeUse && !hasPaid) || !hasPaid ? 'footer' : ''}`}
+                                        projectId={this.props.params.projectId}
+                                        environmentId={this.props.params.environmentId}
+                                    />
+                                )}
+                                {this.props.children}
+                                {AccountStore.isDemo && (
+                                    <div className={"footer-bar pulse"}>
+                                        You are using a demo account. Finding this useful?{" "}
+                                        <Link onClick={() => AppActions.setUser(null)} to={"/"}>Click here to Sign up</Link>
+                                    </div>
+                                )}
+                                {hasFreeTrial ? (
+                                    <div className={"footer-bar"}>
+                                        Your organisation has {freeTrialDaysRemaining} days remaining on it's free trial.
+                                    </div>
+                                ) : hasPaid ? null :
+                                hasFreeUse ? (
+                                    <div className={"footer-bar"}>
+                                        Your organisation is using Bullet Train for free. Click <Link
+                                            id="organisation-settings-link"
+                                            activeClassName={"active"}
+                                            to={`/project/${this.props.params.projectId}/environment/${this.props.params.environmentId}/organisation-settings`}>
+                                            here
+                                        </Link> for further information on migrating to a paid plan.
+                                    </div>
+                                ) : loggedInUser ? (
+                                    <div className={"footer-bar clickable"} onClick={() => openModal(null, <PaymentModal />, null, {large: true})}>
+                                        Your trial period has expired. Click here to view payment plans.
+                                    </div>
+                                ) : null}
+                            </div>
+                        )
+                    }}
                 </AccountProvider>
                 <div className="feedback-btn">
                     <Button onClick={this.feedback} className="btn btn-primary">Have any feedback?</Button>

@@ -362,7 +362,7 @@ const HomePage = class extends React.Component {
                                                     className="input-default full-width"
                                                     placeholder="First name"
                                                     type="text"
-                                                    name="firstName" id="email"/>
+                                                    name="firstName" id="firstName"/>
                                                 <Input
                                                     inputProps={{
                                                         name: "lastName",
@@ -375,7 +375,7 @@ const HomePage = class extends React.Component {
                                                     }}
                                                     className="input-default full-width"
                                                     type="text"
-                                                    name="lastName" id="email"/>
+                                                    name="lastName" id="lastName"/>
                                                 {!isInvite && (
                                                     <Input
                                                         inputProps={{

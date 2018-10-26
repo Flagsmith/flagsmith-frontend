@@ -94,10 +94,7 @@ const TheComponent = class extends Component {
 
 	render() {
 		const {name, webhook_notification_email} = this.state;
-		const hasPaid = Constants.simulate.HAS_PAID; // Organisation has paid via chargebee
-		const freeTrialDaysRemaining = Utils.freeTrialDaysRemaining(Constants.simulate.SUBSCRIPTION_DATE);
-		const hasFreeTrial = freeTrialDaysRemaining > 0; // Organisation is still within their free trial
-		const hasFreeUse = Constants.simulate.HAS_FREE_USE; // Organisation was created before payment options came in and therefore they have free usage (for now)
+		const freeTrialDaysRemaining = Utils.freeTrialDaysRemaining(AccountStore.getOrganisation().subscription_date);
 
 		return (
 			<div className="app-container container">
@@ -110,21 +107,21 @@ const TheComponent = class extends Component {
 							  organisation
 						  }, {createOrganisation, selectOrganisation, editOrganisation, deleteOrganisation}) => (
 							<div className="margin-bottom">
-								{hasFreeTrial ? (
+								{freeTrialDaysRemaining > 0 ? (
 									<div>
 										<h2 className="text-center margin-bottom">Your organisation is within the free trial period</h2>
 										<div className="text-center margin-bottom">You have {freeTrialDaysRemaining} days remaining until you need to choose a payment plan.</div>
 									</div>
-								) : hasPaid ? (
+								) : organisation.paid_subscription ? (
 									<div>
 										<h2 className="text-center margin-bottom">Your organisation is on the Startup plan</h2>
 										<div className="text-center margin-bottom">Click <a onClick={this.cancelPaymentPlan}>here</a> to cancel your automatic renewal of your plan</div>
 										{/* TODO upgrades? */}
 									</div>
-								) : hasFreeUse ? (
+								) : organisation.free_to_use_subscription ? (
 									<div>
 										<h2 className="text-center margin-bottom">Your organisation is using Bullet Train for free.</h2>
-										{hasFreeUse ? <div className="text-center margin-bottom">As an early adopter of Bullet Train you will be able to use this service for free until DD/MM/YYYY. You will then need to choose a payment plan to continue using Bullet Train.</div> : null}
+										<div className="text-center margin-bottom">As an early adopter of Bullet Train you will be able to use this service for free until DD/MM/YYYY. You will then need to choose a payment plan to continue using Bullet Train.</div>
 										<div className="text-center margin-bottom">Click <a onClick={() => openModal(null, <PaymentModal viewOnly={true} />, null, {large: true})}>here</a> to view payment plans</div>
 									</div>
 								) : (

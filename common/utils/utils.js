@@ -62,6 +62,7 @@ module.exports = Object.assign({}, require('./base/_utils'), {
     },
 
     freeTrialDaysRemaining: (subscriptionDate) => {
+        if (!subscriptionDate) return 0;
         return moment(subscriptionDate).add('30', 'd').endOf('d').diff(moment(), 'd');
     }
 });
