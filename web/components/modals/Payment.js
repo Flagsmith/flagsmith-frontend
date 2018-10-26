@@ -3,10 +3,7 @@ import AccountStore from '../../../common/stores/account-store';
 import makeAsyncScriptLoader from "react-async-script";
 
 const PaymentModal = class extends Component {
-  displayName: 'TheComponent'
-  static contextTypes = {
-    router: React.PropTypes.object.isRequired
-  };
+  static displayName = 'PaymentModal'
 
   constructor(props, context) {
     super(props, context);
@@ -25,8 +22,8 @@ const PaymentModal = class extends Component {
   }
 
   render() {
-    const hasFreeUse = Constants.simulate.HAS_FREE_USE; // Organisation was created before payment options came in and therefore they have free usage (for now)
     const viewOnly = this.props.viewOnly;
+    const hasFreeTrial = Utils.freeTrialDaysRemaining(AccountStore.getOrganisation().subscription_date) > 0;
     return (
       <div className="app-container container">
         <AccountProvider onSave={this.onSave} onRemove={this.onRemove}>
@@ -38,8 +35,8 @@ const PaymentModal = class extends Component {
           }, { createOrganisation, selectOrganisation, editOrganisation, deleteOrganisation }) => (
               <div>
                 <div style={{ backgroundColor: 'white' }}>
-                  <h2 className="text-center margin-bottom">{hasFreeUse ? 'Your organisation is currently using Bullet Train for free' : 'Start using Bullet Train for free'}</h2>
-                  <p className="text-center">Increase your plan as your business grows.</p>
+                  <h2 className="text-center margin-bottom">{`Your organisation ${hasFreeTrial ? 'is within its free trial' : organisation.free_to_use_subscription ? 'is using Bullet Train for free' : 'has completed its trial period'}`}</h2>
+                  <p className="text-center">{!hasFreeTrial && !organisation.free_to_use_subscription ? `Buy a plan now to continue using Bullet Train` : `Increase your plan as your business grows.`}</p>
                   <div className="col-md-12">
                     <div className={"row"}>
                       <div className={"col-md-3 pricing-panel"}>
@@ -158,5 +155,12 @@ module.exports = (props) => (
       site: Project.chargebee.site
     });
     Chargebee.registerAgain();
+    Chargebee.getInstance().setCheckoutCallbacks((cart) => ({
+      success: () => {
+        console.log(cart);
+        //TODO edit org
+        // AppActions.editOrganisation(Object.assign({}, AccountStore.getOrganisation(), {paid_subscription: true, plan: cart.plan}))
+      }
+    }))
   }} />
 );
