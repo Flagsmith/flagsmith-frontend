@@ -43,7 +43,7 @@ export default class App extends Component {
     };
 
     scrollToSignUp = () => {
-        window.scrollTo(0,document.body.scrollHeight);
+        Utils.scrollToElement('.signup-form');
     };
 
 
