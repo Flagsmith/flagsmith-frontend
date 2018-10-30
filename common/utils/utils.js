@@ -64,5 +64,16 @@ module.exports = Object.assign({}, require('./base/_utils'), {
     freeTrialDaysRemaining: (subscriptionDate) => {
         if (!subscriptionDate) return 0;
         return moment(subscriptionDate).add('30', 'd').endOf('d').diff(moment(), 'd');
+    },
+
+    getPlanName: (plan) => {
+        switch (plan) {
+            case 'side-project':
+                return 'Side Project';
+            case 'startup':
+                return 'Startup';
+            case 'scale-up':
+                return 'Scale-Up';
+        }
     }
 });
