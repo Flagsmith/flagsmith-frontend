@@ -78,7 +78,7 @@ export default class App extends Component {
                 <AccountProvider onNoUser={this.onNoUser} onLogout={this.onLogout} onLogin={this.onLogin}>
                     {({isLoading, user, organisation}) => (
                         <div className={pageHasAside && "aside-body"}>
-                            <nav className={"navbar navbar-fixed-top " + (pageHasAside ? " navbar-aside" : '') + (isHomepage ? " navbar-homepage " : '')  + (isLegal ? "navbar-aside dark-header " : '') + (isDark ? " dark-header " : '') + this.state.myClassName}>
+                            <nav className={"navbar navbar-fixed-top " + (pageHasAside ? " navbar-aside" : '') + (isHomepage ? " navbar-homepage " : '')  + (isLegal ? "navbar-aside dark-header " : '') + (isDark ? " dark-header " : '') + (this.state.myClassName || '')}>
                                 <div className="navbar-left">
                                     <div className="navbar-nav">
                                         {!projectId && (
@@ -96,9 +96,9 @@ export default class App extends Component {
                                     {user ? (
                                         <div className="flex-column org-nav">
                                             <Popover className="popover-right"
-                                                     renderTitle={(toggle) => organisation && (
+                                                     renderTitle={(toggle) => (
                                                          <a id="org-menu" onClick={toggle}>
-                                                             {organisation.name}
+                                                             {organisation ? organisation.name : ''}
                                                              <div className="flex-column ion ion-ios-arrow-down"/>
                                                          </a>
                                                      )}>
@@ -158,9 +158,11 @@ export default class App extends Component {
                         </div>
                     )}
                 </AccountProvider>
-                <div className="feedback-btn">
-                    <Button onClick={this.feedback} className="btn btn-primary">Have any feedback?</Button>
-                </div>
+                {navigator.webdriver ? null : (
+                    <div className="feedback-btn">
+                        <Button onClick={this.feedback} className="btn btn-primary">Have any feedback?</Button>
+                    </div>
+                )}
             </div>
         );
     }
