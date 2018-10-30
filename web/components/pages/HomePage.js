@@ -1,5 +1,4 @@
 import React from "react";
-import makeAsyncScriptLoader from "react-async-script";
 import AccountStore from '../../../common/stores/account-store';
 import ForgotPasswordModal from '../ForgotPasswordModal';
 import Hero from '../Hero';
@@ -55,9 +54,7 @@ const HomePage = class extends React.Component {
             <AccountProvider onLogout={this.onLogout} onLogin={this.onLogin}>
                 {({isLoading, isSaving, error}, {register}) => (
                     <div className="homepage">
-                        <Hero>
-
-                        </Hero>
+                        <Hero redirect={redirect} />
                         <div className="tech">
                             <div className="container">
                                 <div className="text-center col-md-12 col-lg-8 push-lg-2">
@@ -175,7 +172,7 @@ const HomePage = class extends React.Component {
                                                     <img src="/images/growth.svg" alt="free icon" className="pricing-icon"/>
                                                     <p className="pricing-type">$5</p>
                                                     <p className="text-small text-center">Billed monthly</p>
-                                                    <a href="javascript:void(0)" data-cb-type="checkout" data-cb-plan-id="side-project" className="pricing-cta blue">Start free trial</a>
+                                                    <Link to={`/${redirect}#sign-up`} className="pricing-cta blue">Start free trial</Link>
                                                 </div>
                                                 <div className="panel-footer">
                                                     <p className="text-small text-center link-style">What's included</p>
@@ -199,7 +196,7 @@ const HomePage = class extends React.Component {
                                                     <img src="/images/startup.svg" alt="Startup icon" className="pricing-icon"/>
                                                     <p className="pricing-type">$29</p>
                                                     <p className="text-small text-center">billed monthly</p>
-                                                    <a href="javascript:void(0)" data-cb-type="checkout" data-cb-plan-id="startup" className="pricing-cta blue">Start free trial</a>
+                                                    <Link to={`/${redirect}#sign-up`} className="pricing-cta blue">Start free trial</Link>
                                                 </div>
                                                 <div className="panel-footer">
                                                     <p className="text-small text-center link-style">What's included</p>
@@ -223,7 +220,7 @@ const HomePage = class extends React.Component {
                                                     <img src="/images/layers2.svg" alt="Scale-up icon" className="pricing-icon"/>
                                                     <p className="pricing-type">$99</p>
                                                     <p className="text-small text-center">billed monthly</p>
-                                                    <a href="javascript:void(0)" data-cb-type="checkout" data-cb-plan-id="scale-up" className="pricing-cta">Start free trial</a>
+                                                    <Link to={`/${redirect}#sign-up`} className="pricing-cta">Start free trial</Link>
                                                 </div>
                                                 <div className="panel-footer">
                                                     <p className="text-small text-center link-style">What's included</p>
@@ -365,7 +362,7 @@ const HomePage = class extends React.Component {
                                                     className="input-default full-width"
                                                     placeholder="First name"
                                                     type="text"
-                                                    name="firstName" id="email"/>
+                                                    name="firstName" id="firstName"/>
                                                 <Input
                                                     inputProps={{
                                                         name: "lastName",
@@ -378,7 +375,7 @@ const HomePage = class extends React.Component {
                                                     }}
                                                     className="input-default full-width"
                                                     type="text"
-                                                    name="lastName" id="email"/>
+                                                    name="lastName" id="lastName"/>
                                                 {!isInvite && (
                                                     <Input
                                                         inputProps={{
@@ -452,15 +449,4 @@ const HomePage = class extends React.Component {
     }
 };
 
-const WrappedHomePage = makeAsyncScriptLoader(ConfigProvider(HomePage), 'https://js.chargebee.com/v2/chargebee.js', {
-    removeOnUnmount: true
-});
-
-module.exports = (props) => (
-    <WrappedHomePage {...props} asyncScriptOnLoad={() => {
-        Chargebee.init({
-            site: Project.chargebee.site
-        });
-        Chargebee.registerAgain();
-    }}/>
-);
+module.exports = ConfigProvider(HomePage);

@@ -14,12 +14,9 @@ const TheComponent = class extends React.Component {
         Utils.scrollToElement('.signup-form');
     };
 
-
     render() {
         const {hasFeature} = this.props;
         const explain = hasFeature("explain");
-        // const redirect = this.props.location.query.redirect ? `?redirect=${this.props.location.query.redirect}` : "";
-
         return (
             <div className={"hero"}>
                 <div className="container-fluid">
@@ -39,7 +36,7 @@ const TheComponent = class extends React.Component {
                                 infrastructure.
                             </p>
                             <div className="hero-cta mt-1">
-                                <a href="/#sign-up" className="btn" onClick={this.scrollToSignUp}>Start free trial</a>
+                                <Link to={`/${this.props.redirect}#sign-up`} className="btn" onClick={this.scrollToSignUp}>Start free trial</Link>
                                 <p className="text-small">No payment card required</p>
                             </div>
 

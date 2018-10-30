@@ -138,6 +138,7 @@ var controller = {
                     data.setToken(null);
                     store.isDemo = false;
                     store.model = user;
+                    store.organisation = null;
                     store.trigger('logout');
                     API.reset();
                 }

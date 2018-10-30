@@ -45,7 +45,11 @@ var Constants = {
         "VIEW_USER_FEATURE": {"event": "User feature viewed", "category": "User Features"},
         "VIEW_FEATURE": {"event": "Feature viewed", "category": "Features"}
     },
+    modals: {
+        "PAYMENT": "Payment Modal"
+    },
     pages: {
+        "ACCOUNT": "Account Page",
         "WHAT_ARE_FEATURE_FLAGS": "What are feature flags Page",
         "RESET_PASSWORD": "Reset Password Page",
         "COMING_SOON": "Coming Soon Page",
@@ -105,6 +109,8 @@ var Constants = {
             "Java": require('./code-help/install/install-java')(keywords),
             ".NET": "Coming soon"
         }
+    },
+    simulate: {
     }
 };
 
