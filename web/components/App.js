@@ -137,7 +137,7 @@ export default class App extends Component {
                                             </div>
                                         ) : (
                                             <div>
-                                                <Link to={`/login${redirect}#sign-up`} className="btn float-right">Login</Link>
+                                                <Link to={`/login${redirect}#sign-up`} className="btn float-right" onClick={this.scrollToSignUp}>Login</Link>
                                                 <ul className="nav-list list-unstyled float-right">
                                                     <li><Link to={"/demo"}>Demo</Link></li>
                                                     <li><a target={"_blank"} href="https://docs.bullet-train.io/">Docs</a></li>
