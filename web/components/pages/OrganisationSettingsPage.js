@@ -107,17 +107,17 @@ const TheComponent = class extends Component {
 							  organisation
 						  }, {createOrganisation, selectOrganisation, editOrganisation, deleteOrganisation}) => (
 							<div className="margin-bottom">
-								{freeTrialDaysRemaining > 0 ? (
+								{organisation.paid_subscription ? (
+									<div>
+										<h2 className="text-center margin-bottom">Your organisation is on the {Utils.getPlanName(organisation.plan)} plan</h2>
+										<div className="text-center margin-bottom">Click <a onClick={this.cancelPaymentPlan}>here</a> to cancel your automatic renewal of your plan</div>
+										{/* TODO upgrades? */}
+									</div>
+								) : freeTrialDaysRemaining > 0 ? (
 									<div>
 										<h2 className="text-center margin-bottom">Your organisation is within the free trial period</h2>
 										<div className="text-center margin-bottom">You have {freeTrialDaysRemaining} days remaining until you need to choose a payment plan.</div>
 										<div className="text-center margin-bottom">Click <a onClick={() => openModal(null, <PaymentModal viewOnly={true} />, null, {large: true})}>here</a> to view payment plans</div>
-									</div>
-								) : organisation.paid_subscription ? (
-									<div>
-										<h2 className="text-center margin-bottom">Your organisation is on the Startup plan</h2>
-										<div className="text-center margin-bottom">Click <a onClick={this.cancelPaymentPlan}>here</a> to cancel your automatic renewal of your plan</div>
-										{/* TODO upgrades? */}
 									</div>
 								) : organisation.free_to_use_subscription ? (
 									<div>

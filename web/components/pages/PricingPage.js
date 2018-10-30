@@ -1,6 +1,4 @@
 import React from "react";
-import makeAsyncScriptLoader from "react-async-script";
-
 import Footer from '../Footer';
 
 const PricingPage = class extends React.Component {
@@ -19,6 +17,7 @@ const PricingPage = class extends React.Component {
 
     render = () => {
         const { hasFeature, getValue } = this.props;
+        const redirect = this.props.location.query.redirect ? `?redirect=${this.props.location.query.redirect}` : "";
         return (
             <div>
                 <div className="pricing">
@@ -35,7 +34,7 @@ const PricingPage = class extends React.Component {
                                             <img src="/images/growth.svg" alt="free icon" className="pricing-icon"/>
                                             <p className="pricing-type">$5</p>
                                             <p className="text-small text-center">Billed monthly</p>
-                                            <a href="javascript:void(0)" data-cb-type="checkout" data-cb-plan-id="side-project" className="pricing-cta blue">Start free trial</a>
+                                            <Link to={`/${redirect}#sign-up`} className="pricing-cta blue">Start free trial</Link>
                                         </div>
                                         <div className="panel-footer">
                                             <p className="text-small text-center link-style">What's included</p>
@@ -59,7 +58,7 @@ const PricingPage = class extends React.Component {
                                             <img src="/images/startup.svg" alt="Startup icon" className="pricing-icon"/>
                                             <p className="pricing-type">$29</p>
                                             <p className="text-small text-center">billed monthly</p>
-                                            <a href="javascript:void(0)" data-cb-type="checkout" data-cb-plan-id="startup" className="pricing-cta blue">Start free trial</a>
+                                            <Link to={`/${redirect}#sign-up`} className="pricing-cta blue">Start free trial</Link>
                                         </div>
                                         <div className="panel-footer">
                                             <p className="text-small text-center link-style">What's included</p>
@@ -83,7 +82,7 @@ const PricingPage = class extends React.Component {
                                             <img src="/images/layers2.svg" alt="Scale-up icon" className="pricing-icon"/>
                                             <p className="pricing-type">$99</p>
                                             <p className="text-small text-center">billed monthly</p>
-                                            <a href="javascript:void(0)" data-cb-type="checkout" data-cb-plan-id="scale-up" className="pricing-cta">Start free trial</a>
+                                            <Link to={`/${redirect}#sign-up`} className="pricing-cta blue">Start free trial</Link>
                                         </div>
                                         <div className="panel-footer">
                                             <p className="text-small text-center link-style">What's included</p>
@@ -179,15 +178,4 @@ const PricingPage = class extends React.Component {
     }
 };
 
-const WrappedPricingPage = makeAsyncScriptLoader(ConfigProvider(PricingPage), 'https://js.chargebee.com/v2/chargebee.js', {
-    removeOnUnmount: true
-});
-
-module.exports = (props) => (
-    <WrappedPricingPage {...props} asyncScriptOnLoad={() => {
-        Chargebee.init({
-            site: Project.chargebee.site
-        });
-        Chargebee.registerAgain();
-    }}/>
-);
+module.exports = PricingPage;
