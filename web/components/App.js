@@ -103,9 +103,9 @@ export default class App extends Component {
                                         {user ? (
                                             <div className="flex-column org-nav">
                                                 <Popover className="popover-right"
-                                                        renderTitle={(toggle) => organisation && (
+                                                        renderTitle={(toggle) => (
                                                             <a id="org-menu" onClick={toggle}>
-                                                                {organisation.name}
+                                                                {organisation ? organisation.name : ''}
                                                                 <div className="flex-column ion ion-ios-arrow-down"/>
                                                             </a>
                                                         )}>
@@ -185,9 +185,11 @@ export default class App extends Component {
                         )
                     }}
                 </AccountProvider>
-                <div className="feedback-btn">
-                    <Button onClick={this.feedback} className="btn btn-primary">Have any feedback?</Button>
-                </div>
+                {navigator.webdriver ? null : (
+                    <div className="feedback-btn">
+                        <Button onClick={this.feedback} className="btn btn-primary">Have any feedback?</Button>
+                    </div>
+                )}
             </div>
         );
     }
