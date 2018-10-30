@@ -157,9 +157,7 @@ module.exports = (props) => (
     Chargebee.registerAgain();
     Chargebee.getInstance().setCheckoutCallbacks((cart) => ({
       success: () => {
-        console.log(cart);
-        //TODO edit org
-        // AppActions.editOrganisation(Object.assign({}, AccountStore.getOrganisation(), {paid_subscription: true, plan: cart.plan}))
+        AppActions.editOrganisation({paid_subscription: true, plan: cart.products[0].planId})
       }
     }))
   }} />
