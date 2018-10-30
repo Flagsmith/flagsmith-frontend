@@ -110,7 +110,10 @@ const TheComponent = class extends Component {
 								{organisation.paid_subscription ? (
 									<div>
 										<h2 className="text-center margin-bottom">Your organisation is on the {Utils.getPlanName(organisation.plan)} plan</h2>
-										<div className="text-center margin-bottom">Click <a onClick={this.cancelPaymentPlan}>here</a> to cancel your automatic renewal of your plan</div>
+										{!organisation.pending_cancellation ?
+											<div className="text-center margin-bottom">Click <a onClick={this.cancelPaymentPlan}>here</a> to cancel your automatic renewal of your plan</div> :
+											<div>This plan has been cancelled and will not automatically be renewed</div>
+										}
 										{/* TODO upgrades? */}
 									</div>
 								) : freeTrialDaysRemaining > 0 ? (

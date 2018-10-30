@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import AccountStore from '../../../common/stores/account-store';
 
 const CancelPaymentPlanModal = class extends Component {
   static displayName = 'CancelPaymentPlanModal'
@@ -9,7 +10,33 @@ const CancelPaymentPlanModal = class extends Component {
 
   state = {}
 
+  sendCancellation = () => {
+    this.setState({isSending: true});
+    const {cancellationReason} = this.state;
+    const org = AccountStore.getOrganisation();
+    fetch(`https://3fbs97w0nb.execute-api.eu-west-1.amazonaws.com/dev/bullet-train-payment-plan-cancellation`, {
+        method: "POST",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json; charset=utf-8'
+        },
+        body: JSON.stringify({
+          orgId: org.id,
+          cancellationReason
+        })
+    })
+        .then((res) => {
+            const isSuccess = res.status >= 200 && res.status < 300;
+            closeModal();
+            toast(isSuccess ? 'Cancellation request sent' : 'Failed to send, try again later');
+            if (isSuccess) {
+              AppActions.editOrganisation(Object.assign({}, org, {pending_cancellation: true}));
+            }
+        })
+  }
+
   render() {
+    const { isSending } = this.state;
     return (
       <div>
         <div>You will continue being able to use Bullet Train till the end of your plan even after cancelling</div>
@@ -19,12 +46,14 @@ const CancelPaymentPlanModal = class extends Component {
                   Would you like to tell us why you decided to cancel your plan?
               </strong>
           </div>
-          <textarea name="cancellationReason" rows={5} value={this.state.cancellationReason} onChange={(e) => Utils.safeParseEventValue(e)}></textarea>
+          <textarea name="cancellationReason" rows={5} value={this.state.cancellationReason} onChange={(e) => this.setState({cancellationReason: Utils.safeParseEventValue(e)})}></textarea>
         </FormGroup>
         <FormGroup className="text-right">
           <Button
             id="confirm-cancel-plan"
-            className={"btn btn-primary"}>
+            className={"btn btn-primary"}
+            disabled={isSending}
+            onClick={this.sendCancellation}>
             Yes, cancel plan
           </Button>
         </FormGroup>

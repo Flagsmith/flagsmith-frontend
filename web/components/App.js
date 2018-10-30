@@ -150,7 +150,7 @@ export default class App extends Component {
                                 </nav>
                                 {pageHasAside && (
                                     <Aside
-                                        className={`${AccountStore.isDemo ? "demo" : ''} ${AccountStore.isDemo || hasFreeTrial || (hasFreeUse && !hasPaid) || !hasPaid ? 'footer' : ''}`}
+                                        className={`${AccountStore.isDemo ? "demo" : ''} ${AccountStore.isDemo || (hasFreeTrial && !hasPaid) || (hasFreeUse && !hasPaid) || !hasPaid ? 'footer' : ''}`}
                                         projectId={this.props.params.projectId}
                                         environmentId={this.props.params.environmentId}
                                     />
@@ -162,12 +162,11 @@ export default class App extends Component {
                                         <Link onClick={() => AppActions.setUser(null)} to={"/"}>Click here to Sign up</Link>
                                     </div>
                                 )}
-                                {hasFreeTrial ? (
+                                {hasPaid ? null : hasFreeTrial ? (
                                     <div className={"footer-bar"}>
                                         Your organisation has {freeTrialDaysRemaining} days remaining on it's free trial.
                                     </div>
-                                ) : hasPaid ? null :
-                                hasFreeUse ? (
+                                ) : hasFreeUse ? (
                                     <div className={"footer-bar"}>
                                         Your organisation is using Bullet Train for free. Click <Link
                                             id="organisation-settings-link"
