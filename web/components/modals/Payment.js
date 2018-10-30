@@ -11,7 +11,7 @@ const PaymentModal = class extends Component {
   }
 
   componentWillMount = () => {
-    // API.trackPage(Constants.pages.ACCOUNT);
+    API.trackPage(Constants.modals.PAYMENT);
   };
 
   onSave = () => {

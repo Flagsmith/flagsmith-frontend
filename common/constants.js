@@ -45,6 +45,9 @@ var Constants = {
         "VIEW_USER_FEATURE": {"event": "User feature viewed", "category": "User Features"},
         "VIEW_FEATURE": {"event": "Feature viewed", "category": "Features"}
     },
+    modals: {
+        "PAYMENT": "Payment Modal"
+    },
     pages: {
         "ACCOUNT": "Account Page",
         "WHAT_ARE_FEATURE_FLAGS": "What are feature flags Page",
@@ -108,9 +111,6 @@ var Constants = {
         }
     },
     simulate: {
-        HAS_PAID: false, // Organisation has paid via chargebee
-        HAS_FREE_USE: true, // Organisation was created before payment options came in and therefore they have free usage until a certain date
-        SUBSCRIPTION_DATE: null // Organisation subscription date i.e. when their free trial started
     }
 };
 

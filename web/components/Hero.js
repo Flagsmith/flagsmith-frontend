@@ -15,7 +15,7 @@ const TheComponent = class extends React.Component {
     };
 
     render() {
-        const {hasFeature, location} = this.props;
+        const {hasFeature} = this.props;
         const explain = hasFeature("explain");
         return (
             <div className={"hero"}>
