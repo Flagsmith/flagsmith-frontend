@@ -121,7 +121,7 @@ var controller = {
             store.saving();
             API.trackEvent(Constants.events.CREATE_ORGANISATION);
             var opts = {};
-            if (ConfigStore.model.free_tier.enabled) {
+            if (ConfigStore.model && ConfigStore.model.free_tier && ConfigStore.model.free_tier.enabled) {
                 opts.free_to_use_subscription = true;
             } else {
                 opts.subscription_date = moment();
