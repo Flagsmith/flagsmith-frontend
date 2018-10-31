@@ -37,6 +37,20 @@ module.exports = {
             .setValue('[name="featureValue"]', 'big')
             .setValue('[name="featureDesc"]', 'This determines what size the header is')
             .click('#create-feature-btn')
+            .waitForElementVisible('#features-list div.list-item')
+            .waitForElementNotPresent('#create-feature-modal')
+            .click('#features-list div.list-item')
+            .waitForElementVisible('#update-feature-btn')
+            .getValue('[name="featureID"]', res => {
+                browser.assert.equal(res.value, 'header_size');
+            })
+            .getValue('[name="featureValue"]', res => {
+                browser.assert.equal(res.value, 'big');
+            })
+            .getValue('[name="featureDesc"]', res => {
+                browser.assert.equal(res.value, 'This determines what size the header is');
+            })
+            .click('#update-feature-btn')
             .waitForElementVisible('#features-list div.list-item');
 
         browser.expect.element('#features-list .feature-value').text.to.equal('big');
