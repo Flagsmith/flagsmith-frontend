@@ -162,11 +162,7 @@ export default class App extends Component {
                                         <Link onClick={() => AppActions.setUser(null)} to={"/"}>Click here to Sign up</Link>
                                     </div>
                                 )}
-                                {hasPaid ? null : hasFreeTrial ? (
-                                    <div className={"footer-bar"}>
-                                        Your organisation has {freeTrialDaysRemaining} days remaining on it's free trial.
-                                    </div>
-                                ) : hasFreeUse ? (
+                                {hasPaid ? null : hasFreeUse ? (
                                     <div className={"footer-bar"}>
                                         Your organisation is using Bullet Train for free. Click <Link
                                             id="organisation-settings-link"
@@ -174,6 +170,10 @@ export default class App extends Component {
                                             to={`/project/${this.props.params.projectId}/environment/${this.props.params.environmentId}/organisation-settings`}>
                                             here
                                         </Link> for further information on migrating to a paid plan.
+                                    </div>
+                                ) : hasFreeTrial ? (
+                                    <div className={"footer-bar"}>
+                                        Your organisation has {freeTrialDaysRemaining} days remaining on it's free trial.
                                     </div>
                                 ) : loggedInUser ? (
                                     <div className={"footer-bar clickable"} onClick={() => openModal(null, <PaymentModal />, null, {large: true})}>

@@ -116,16 +116,16 @@ const TheComponent = class extends Component {
 										}
 										{/* TODO upgrades? */}
 									</div>
-								) : freeTrialDaysRemaining > 0 ? (
-									<div>
-										<h2 className="text-center margin-bottom">Your organisation is within the free trial period</h2>
-										<div className="text-center margin-bottom">You have {freeTrialDaysRemaining} days remaining until you need to choose a payment plan.</div>
-										<div className="text-center margin-bottom">Click <a onClick={() => openModal(null, <PaymentModal viewOnly={true} />, null, {large: true})}>here</a> to view payment plans</div>
-									</div>
 								) : organisation.free_to_use_subscription ? (
 									<div>
 										<h2 className="text-center margin-bottom">Your organisation is using Bullet Train for free.</h2>
 										<div className="text-center margin-bottom">As an early adopter of Bullet Train you will be able to use this service for free until DD/MM/YYYY. You will then need to choose a payment plan to continue using Bullet Train.</div>
+										<div className="text-center margin-bottom">Click <a onClick={() => openModal(null, <PaymentModal viewOnly={true} />, null, {large: true})}>here</a> to view payment plans</div>
+									</div>
+								) : freeTrialDaysRemaining > 0 ? (
+									<div>
+										<h2 className="text-center margin-bottom">Your organisation is within the free trial period</h2>
+										<div className="text-center margin-bottom">You have {freeTrialDaysRemaining} days remaining until you need to choose a payment plan.</div>
 										<div className="text-center margin-bottom">Click <a onClick={() => openModal(null, <PaymentModal viewOnly={true} />, null, {large: true})}>here</a> to view payment plans</div>
 									</div>
 								) : (
