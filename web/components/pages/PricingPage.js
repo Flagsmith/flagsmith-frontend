@@ -60,7 +60,7 @@ const PricingPage = class extends React.Component {
                                                 <img src="/images/growth.svg" alt="free icon" className="pricing-icon"/>
                                                 <p className="pricing-type">Free</p>
                                                 <p className="text-small text-center">more flags than the UN</p>
-                                                <a href="register" className="pricing-cta blue">Sign up</a>
+                                                <Link to={`/${redirect}#sign-up`} className="pricing-cta blue">Sign up</Link>
                                             </div>
                                             <div className="panel-footer">
                                                 <p className="text-small text-center link-style">What's included</p>
