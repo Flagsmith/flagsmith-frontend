@@ -3,6 +3,8 @@ import AccountStore from '../../../common/stores/account-store';
 import ForgotPasswordModal from '../ForgotPasswordModal';
 import Hero from '../Hero';
 import Footer from '../Footer';
+import lazyframe from 'lazyframe';
+import 'lazyframe/dist/lazyframe.css';
 
 const HomePage = class extends React.Component {
     static contextTypes = {
@@ -35,6 +37,10 @@ const HomePage = class extends React.Component {
                 $(".navbar-homepage").removeClass("dark-header");
             }
         });
+    }
+
+    componentDidMount() {
+        lazyframe('.lazyframe');
     }
 
     showForgotPassword = (e) => {
@@ -96,6 +102,12 @@ const HomePage = class extends React.Component {
                                         please <a href="mailto:support@bullet-train.io">get in touch</a> and let
                                         us know what you'd like to see.</p>
                                 </div>
+                            </div>
+                        </div>
+
+                        <div className="container text-center">
+                            <div className="video embed-responsive embed-responsive-16by9">
+                                <div className="lazyframe embed-responsive-item" data-src="https://www.youtube.com/embed/GPkCLO0F-5g" data-vendor="youtube" data-apikey={Project.youtubeApi}></div>
                             </div>
                         </div>
 

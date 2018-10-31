@@ -36,6 +36,7 @@
     "image-webpack-loader": "2.0.0",
     "ionicons": "^4.0.0",
     "json-loader": "0.5.4",
+    "lazyframe": "^1.1.6",
     "lodash": "^4.17.10",
     "moment": "^2.22.1",
     "node-fetch": "^2.1.2",

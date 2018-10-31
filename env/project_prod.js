@@ -11,5 +11,6 @@ module.exports = {
     chargebee: {
         site: 'bullettrain'
     },
-    mixpanel: '9448f5be8a5555c380e5dd4b7ac2c345'
+    mixpanel: '9448f5be8a5555c380e5dd4b7ac2c345',
+    youtubeApi: 'AIzaSyCAjMzgz8vbxqReBxkQGcwsda6zAO0L2JE'
 };
