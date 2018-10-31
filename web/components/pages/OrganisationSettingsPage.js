@@ -93,6 +93,7 @@ const TheComponent = class extends Component {
 	}
 
 	render() {
+		const {hasFeature, getValue} = this.props;
 		const {name, webhook_notification_email} = this.state;
 		const freeTrialDaysRemaining = Utils.freeTrialDaysRemaining(AccountStore.getOrganisation().subscription_date);
 
@@ -107,7 +108,7 @@ const TheComponent = class extends Component {
 							  organisation
 						  }, {createOrganisation, selectOrganisation, editOrganisation, deleteOrganisation}) => (
 							<div className="margin-bottom">
-								{organisation.paid_subscription ? (
+								{AccountStore.isDemo ? null : organisation.paid_subscription ? (
 									<div>
 										<h2 className="text-center margin-bottom">Your organisation is on the {Utils.getPlanName(organisation.plan)} plan</h2>
 										{!organisation.pending_cancellation ?
@@ -119,8 +120,11 @@ const TheComponent = class extends Component {
 								) : organisation.free_to_use_subscription ? (
 									<div>
 										<h2 className="text-center margin-bottom">Your organisation is using Bullet Train for free.</h2>
-										<div className="text-center margin-bottom">As an early adopter of Bullet Train you will be able to use this service for free until DD/MM/YYYY. You will then need to choose a payment plan to continue using Bullet Train.</div>
-										<div className="text-center margin-bottom">Click <a onClick={() => openModal(null, <PaymentModal viewOnly={true} />, null, {large: true})}>here</a> to view payment plans</div>
+										{hasFeature('free_tier') ?
+											<div className="text-center margin-bottom">You may want to consider upgrading to a paid plan that includes more usage.</div> :
+											<div className="text-center margin-bottom">As an early adopter of Bullet Train you will be able to use this service for free until DD/MM/YYYY. You will then need to choose a payment plan to continue using Bullet Train.</div>
+										}
+										<div className="text-center margin-bottom">Click <a onClick={() => openModal(null, <PaymentModal viewOnly={!hasFeature('free_tier')} />, null, {large: true})}>here</a> to view payment plans</div>
 									</div>
 								) : freeTrialDaysRemaining > 0 ? (
 									<div>
@@ -273,4 +277,4 @@ const TheComponent = class extends Component {
 
 TheComponent.propTypes = {};
 
-module.exports = TheComponent;
+module.exports = ConfigProvider(TheComponent);

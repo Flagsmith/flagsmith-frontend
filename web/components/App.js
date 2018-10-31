@@ -6,7 +6,7 @@ import AccountStore from '../../common/stores/account-store';
 import Feedback from '../components/modals/Feedback';
 import PaymentModal from '../components/modals/Payment';
 
-export default class App extends Component {
+const App = class extends Component {
 
     static propTypes = {
         children: PropTypes.element.isRequired
@@ -64,13 +64,15 @@ export default class App extends Component {
     }
 
     render() {
-        const {projectId, environmentId} = this.props.params;
+        const {hasFeature, getValue, params, location} = this.props;
+        const {projectId, environmentId} = params;
         const pageHasAside = environmentId;
-        const isHomepage = this.props.location.pathname == '/' || this.props.location.pathname == '/login';
-        const isLegal = this.props.location.pathname == '/legal/tos' || this.props.location.pathname == '/legal/sla' || this.props.location.pathname == '/legal/privacy-policy';
-        const isDark = this.props.location.pathname == '/blog/remote-config-and-feature-flags';
+        const pathname = location.pathname;
+        const isHomepage = pathname == '/' || pathname == '/login';
+        const isLegal = pathname == '/legal/tos' || pathname == '/legal/sla' || pathname == '/legal/privacy-policy';
+        const isDark = pathname == '/blog/remote-config-and-feature-flags';
 
-        const redirect = this.props.location.query.redirect ? `?redirect=${this.props.location.query.redirect}` : "";
+        const redirect = location.query.redirect ? `?redirect=${location.query.redirect}` : "";
 
         return (
             <div>
@@ -164,12 +166,14 @@ export default class App extends Component {
                                 )}
                                 {hasPaid ? null : hasFreeUse ? (
                                     <div className={"footer-bar"}>
-                                        Your organisation is using Bullet Train for free. Click <Link
+                                        Your organisation is using Bullet Train for free. {pathname.indexOf('organisation-settings') === -1 ? (
+                                            <span>Click <Link
                                             id="organisation-settings-link"
                                             activeClassName={"active"}
                                             to={`/project/${this.props.params.projectId}/environment/${this.props.params.environmentId}/organisation-settings`}>
                                             here
-                                        </Link> for further information on migrating to a paid plan.
+                                        </Link> for further information on {hasFeature('free_tier') ? 'upgrading' : 'migrating'} to a paid plan.</span>
+                                        ) : null}
                                     </div>
                                 ) : hasFreeTrial ? (
                                     <div className={"footer-bar"}>
@@ -198,3 +202,5 @@ App.propTypes = {
     location: RequiredObject,
     history: RequiredObject,
 };
+
+export default ConfigProvider(App);

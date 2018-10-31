@@ -18,6 +18,7 @@ const PricingPage = class extends React.Component {
     render = () => {
         const { hasFeature, getValue } = this.props;
         const redirect = this.props.location.query.redirect ? `?redirect=${this.props.location.query.redirect}` : "";
+
         return (
             <div>
                 <div className="pricing">
@@ -25,31 +26,55 @@ const PricingPage = class extends React.Component {
                         <h2 className="text-center margin-bottom margin-top">Start using Bullet Train for free</h2>
                         <p className="text-center">Then increase your plan as your business grows.</p>
                         <div className="col-md-12">
-                            <div className={"row"}>
-                                <div className={"col-md-3 pricing-panel"}>
-                                    <div className="panel panel-default">
-                                        <div className="panel-content">
-                                            <p className="featured"> </p>
-                                            <p className="pricing-price">Side Project</p>
-                                            <img src="/images/growth.svg" alt="free icon" className="pricing-icon"/>
-                                            <p className="pricing-type">$5</p>
-                                            <p className="text-small text-center">Billed monthly</p>
-                                            <Link to={`/${redirect}#sign-up`} className="pricing-cta blue">Start free trial</Link>
-                                        </div>
-                                        <div className="panel-footer">
-                                            <p className="text-small text-center link-style">What's included</p>
-                                            <ul className="pricing-features">
-                                                <li><p>30 day free trial</p></li>
-                                                <li><p>Up to 2,000 Monthly Active Users</p></li>
-                                                <li><p>Unlimited Administrator Accounts</p></li>
-                                                <li><p>Unlimited Projects</p></li>
-                                                <li><p>Unlimited Environments</p></li>
-                                                <li><p>Unlimited Feature Flags</p></li>
-                                                <li><p>Email Technical Support</p></li>
-                                            </ul>
+                            <div className={"flex-row row-center"}>
+                                {!hasFeature('free_tier') ? (
+                                    <div className={"col-md-3 pricing-panel"}>
+                                        <div className="panel panel-default">
+                                            <div className="panel-content">
+                                                <p className="featured"> </p>
+                                                <p className="pricing-price">Side Project</p>
+                                                <img src="/images/growth.svg" alt="free icon" className="pricing-icon"/>
+                                                <p className="pricing-type">$5</p>
+                                                <p className="text-small text-center">Billed monthly</p>
+                                                <Link to={`/${redirect}#sign-up`} className="pricing-cta blue">Start free trial</Link>
+                                            </div>
+                                            <div className="panel-footer">
+                                                <p className="text-small text-center link-style">What's included</p>
+                                                <ul className="pricing-features">
+                                                    <li><p>Up to 2,000 Monthly Active Users</p></li>
+                                                    <li><p>Unlimited Administrator Accounts</p></li>
+                                                    <li><p>Unlimited Projects</p></li>
+                                                    <li><p>Unlimited Environments</p></li>
+                                                    <li><p>Unlimited Feature Flags</p></li>
+                                                    <li><p>Email Technical Support</p></li>
+                                                </ul>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                ) : (
+                                    <div className={"col-md-3 pricing-panel"}>
+                                        <div className="panel panel-default">
+                                            <div className="panel-content">
+                                                <p className="featured"> </p>
+                                                <p className="pricing-price">Free</p>
+                                                <img src="/images/growth.svg" alt="free icon" className="pricing-icon"/>
+                                                <p className="pricing-type">Free</p>
+                                                <p className="text-small text-center">more flags than the UN</p>
+                                                <a href="register" className="pricing-cta blue">Sign up</a>
+                                            </div>
+                                            <div className="panel-footer">
+                                                <p className="text-small text-center link-style">What's included</p>
+                                                <ul className="pricing-features">
+                                                    <li><p>Up to 2,000 Monthly Active Users</p></li>
+                                                    <li><p>Unlimited Administrator Accounts</p></li>
+                                                    <li><p>Unlimited Projects</p></li>
+                                                    <li><p>Unlimited Environments</p></li>
+                                                    <li><p>Unlimited Feature Flags</p></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )}
                                 <div className={"col-md-3 pricing-panel"}>
                                     <div className="panel panel-default">
                                         <div className="panel-content">
@@ -58,12 +83,11 @@ const PricingPage = class extends React.Component {
                                             <img src="/images/startup.svg" alt="Startup icon" className="pricing-icon"/>
                                             <p className="pricing-type">$29</p>
                                             <p className="text-small text-center">billed monthly</p>
-                                            <Link to={`/${redirect}#sign-up`} className="pricing-cta blue">Start free trial</Link>
+                                            <Link to={`/${redirect}#sign-up`} className="pricing-cta blue">{hasFeature('free_tier') ? 'Sign up for free' : 'Start free trial'}</Link>
                                         </div>
                                         <div className="panel-footer">
                                             <p className="text-small text-center link-style">What's included</p>
                                             <ul className="pricing-features">
-                                                <li><p>30 day free trial</p></li>
                                                 <li><p>Up to 10,000 Monthly Active Users</p></li>
                                                 <li><p>Unlimited Administrator Accounts</p></li>
                                                 <li><p>Unlimited Projects</p></li>
@@ -82,12 +106,11 @@ const PricingPage = class extends React.Component {
                                             <img src="/images/layers2.svg" alt="Scale-up icon" className="pricing-icon"/>
                                             <p className="pricing-type">$99</p>
                                             <p className="text-small text-center">billed monthly</p>
-                                            <Link to={`/${redirect}#sign-up`} className="pricing-cta blue">Start free trial</Link>
+                                            <Link to={`/${redirect}#sign-up`} className="pricing-cta blue">{hasFeature('free_tier') ? 'Sign up for free' : 'Start free trial'}</Link>
                                         </div>
                                         <div className="panel-footer">
                                             <p className="text-small text-center link-style">What's included</p>
                                             <ul className="pricing-features">
-                                                <li><p>30 day free trial</p></li>
                                                 <li><p>Up to 50,000 Monthly Active Users</p></li>
                                                 <li><p>All Startup Features</p></li>
                                                 <li><p>Telephone Technical Support</p></li>
@@ -178,4 +201,4 @@ const PricingPage = class extends React.Component {
     }
 };
 
-module.exports = PricingPage;
+module.exports = ConfigProvider(PricingPage);
