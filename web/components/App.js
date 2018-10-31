@@ -42,10 +42,6 @@ const App = class extends Component {
         }
     };
 
-    scrollToSignUp = () => {
-        Utils.scrollToElement('.signup-form');
-    };
-
     handleScroll = () => {
         if (this.scrollPos < 768 && $(document).scrollTop() >= 768){
             this.setState({myClassName: 'scrolled'})
@@ -139,7 +135,7 @@ const App = class extends Component {
                                             </div>
                                         ) : (
                                             <div>
-                                                <Link to={`/login${redirect}#sign-up`} className="btn float-right" onClick={this.scrollToSignUp}>Login</Link>
+                                                <Link to={`/login${redirect}#sign-up`} className="btn float-right" onClick={Utils.scrollToSignUp}>Login</Link>
                                                 <ul className="nav-list list-unstyled float-right">
                                                     <li><Link to={"/demo"}>Demo</Link></li>
                                                     <li><a target={"_blank"} href="https://docs.bullet-train.io/">Docs</a></li>

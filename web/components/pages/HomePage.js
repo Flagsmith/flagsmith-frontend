@@ -186,7 +186,7 @@ const HomePage = class extends React.Component {
                                                         <img src="/images/growth.svg" alt="free icon" className="pricing-icon"/>
                                                         <p className="pricing-type">$5</p>
                                                         <p className="text-small text-center">Billed monthly</p>
-                                                        <Link to={`/${redirect}#sign-up`} className="pricing-cta blue">Start free trial</Link>
+                                                        <Link to={`/${redirect}#sign-up`} className="pricing-cta blue" onClick={Utils.scrollToSignUp}>Start free trial</Link>
                                                     </div>
                                                     <div className="panel-footer">
                                                         <p className="text-small text-center link-style">What's included</p>
@@ -210,7 +210,7 @@ const HomePage = class extends React.Component {
                                                         <img src="/images/growth.svg" alt="free icon" className="pricing-icon"/>
                                                         <p className="pricing-type">Free</p>
                                                         <p className="text-small text-center">more flags than the UN</p>
-                                                        <Link to={`/${redirect}#sign-up`} className="pricing-cta blue">Sign up</Link>
+                                                        <Link to={`/${redirect}#sign-up`} className="pricing-cta blue" onClick={Utils.scrollToSignUp}>Sign up</Link>
                                                     </div>
                                                     <div className="panel-footer">
                                                         <p className="text-small text-center link-style">What's included</p>
@@ -233,7 +233,7 @@ const HomePage = class extends React.Component {
                                                     <img src="/images/startup.svg" alt="Startup icon" className="pricing-icon"/>
                                                     <p className="pricing-type">$29</p>
                                                     <p className="text-small text-center">billed monthly</p>
-                                                    <Link to={`/${redirect}#sign-up`} className="pricing-cta blue">{hasFeature('free_tier') ? 'Sign up for free' : 'Start free trial'}</Link>
+                                                    <Link to={`/${redirect}#sign-up`} className="pricing-cta blue" onClick={Utils.scrollToSignUp}>{hasFeature('free_tier') ? 'Sign up for free' : 'Start free trial'}</Link>
                                                 </div>
                                                 <div className="panel-footer">
                                                     <p className="text-small text-center link-style">What's included</p>
@@ -256,7 +256,7 @@ const HomePage = class extends React.Component {
                                                     <img src="/images/layers2.svg" alt="Scale-up icon" className="pricing-icon"/>
                                                     <p className="pricing-type">$99</p>
                                                     <p className="text-small text-center">billed monthly</p>
-                                                    <Link to={`/${redirect}#sign-up`} className="pricing-cta">{hasFeature('free_tier') ? 'Sign up for free' : 'Start free trial'}</Link>
+                                                    <Link to={`/${redirect}#sign-up`} className="pricing-cta" onClick={Utils.scrollToSignUp}>{hasFeature('free_tier') ? 'Sign up for free' : 'Start free trial'}</Link>
                                                 </div>
                                                 <div className="panel-footer">
                                                     <p className="text-small text-center link-style">What's included</p>

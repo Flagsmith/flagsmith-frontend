@@ -10,10 +10,6 @@ const TheComponent = class extends React.Component {
         this.setState({value: !this.state.value});
     };
 
-    scrollToSignUp = () => {
-        Utils.scrollToElement('.signup-form');
-    };
-
     render() {
         const {hasFeature} = this.props;
         const explain = hasFeature("explain");
@@ -36,7 +32,7 @@ const TheComponent = class extends React.Component {
                                 infrastructure.
                             </p>
                             <div className="hero-cta mt-1">
-                                <Link to={`/${this.props.redirect}#sign-up`} className="btn" onClick={this.scrollToSignUp}>Start free trial</Link>
+                                <Link to={`/${this.props.redirect}#sign-up`} className="btn" onClick={Utils.scrollToSignUp}>{hasFeature('free_tier') ? 'Sign up now' : 'Start free trial'}</Link>
                                 <p className="text-small">No payment card required</p>
                             </div>
 
