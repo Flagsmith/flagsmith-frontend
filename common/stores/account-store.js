@@ -1,4 +1,5 @@
 import OrganisationStore from "./organisation-store";
+import ConfigStore from './config-store';
 
 var BaseStore = require('./base/_store');
 var data = require('../data/base/_data');
@@ -119,7 +120,13 @@ var controller = {
         createOrganisation: (name) => {
             store.saving();
             API.trackEvent(Constants.events.CREATE_ORGANISATION);
-            data.post(`${Project.api}organisations/?format=json`, {name})
+            var opts = {};
+            if (ConfigStore.model.free_tier.enabled) {
+                opts.free_to_use_subscription = true;
+            } else {
+                opts.subscription_date = moment();
+            }
+            data.post(`${Project.api}organisations/?format=json`, Object.assign({name}, opts))
                 .then((res) => {
                     store.model.organisations = store.model.organisations.concat([res])
                     store.savedId = res.id;
