@@ -1,7 +1,7 @@
 const keywords = {
     URL_CLIENT: "https://cdn.jsdelivr.net/npm/bullet-train-client/lib/index.js",
     LIB_NAME: "bulletTrain",
-    LIB_NAME_JAVA: "BulletTrain",
+    LIB_NAME_JAVA: "BulletTrainClient",
     NPM_CLIENT: "bullet-train-client",
     NPM_RN_CLIENT: "react-native-bullet-train",
     NPM_NODE_CLIENT: "bullet-train-nodejs",
