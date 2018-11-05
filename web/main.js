@@ -27,7 +27,7 @@ function hashLinkScroll() {
         setTimeout(() => {
             const id = hash.replace('#', '');
             const element = document.getElementById(id);
-            if (element) element.scrollIntoView();
+            if (element) element.scrollIntoView({behavior: 'smooth'});
         }, 0);
     }
 }
