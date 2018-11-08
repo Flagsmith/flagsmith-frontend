@@ -1,6 +1,7 @@
 
 stages:
     - test
+    - build
     - deploy
 
 test:
@@ -20,6 +21,17 @@ test:
         - master
         - staging
         - develop
+
+build:
+    image: node:8-jessie
+    stage: build
+    dependencies: test
+    script:
+        - npm run bundle
+    only:
+        - develop
+        - staging
+        - master
 
 deploy:
     image: ilyasemenov/gitlab-ci-git-push
