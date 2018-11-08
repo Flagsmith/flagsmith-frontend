@@ -38,7 +38,6 @@ deploystaging:
 deploydevelop:
     image: solidstategroup/gitlabci-node-gcloud
     stage: deploy
-    script: 
         - npm install
         - npm run bundle
         - echo $DEPLOY_KEY_FILE_DEV > /tmp/$CI_PIPELINE_ID.json
