@@ -27,14 +27,7 @@ deploy:
     only:
         - master
 
-deploystaging:
-    image: ilyasemenov/gitlab-ci-git-push
-    stage: deploy
-    script: git-push dokku@dokku1.solidstategroup.com:bullet-train-admin-staging
-    only:
-        - staging
-
-deploydevelop:
+deploydevelopstaging:
     image: solidstategroup/gitlabci-node-gcloud:1.1
     stage: deploy
     script:
@@ -49,3 +42,5 @@ deploydevelop:
         - gcloud app deploy
     only:
         - develop
+        - staging
+
