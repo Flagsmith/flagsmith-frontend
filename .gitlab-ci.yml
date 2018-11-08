@@ -19,7 +19,7 @@ test:
     only:
         - master
         - staging
-        - develop
+        # - develop
 
 deploy:
     image: ilyasemenov/gitlab-ci-git-push
@@ -36,8 +36,13 @@ deploystaging:
         - staging
 
 deploydevelop:
-    image: ilyasemenov/gitlab-ci-git-push
-    stage: deploy
-    script: git-push dokku@dokku1.solidstategroup.com:bullet-train-admin-dev
+    image: gcr.io/google-appengine/nodejs
+    stage: deploydevelop
+    script: 
+        - npm install
+        - npm run bundle
+        - echo $DEPLOY_KEY_FILE_DEV > /tmp/$CI_PIPELINE_ID.json
+        - gcloud auth activate-service-account --key-file /tmp/$CI_PIPELINE_ID.json
+        - gcloud deploy
     only:
         - develop
