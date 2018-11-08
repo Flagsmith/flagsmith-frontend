@@ -25,6 +25,7 @@ deploymaster:
     stage: deploy
     script:
         - npm i
+        - export ENV=master; npm run env
         - npm run bundle
         - echo $DEPLOY_KEY_FILE_PROD > /tmp/$CI_PIPELINE_ID.json
         - gcloud auth activate-service-account --key-file /tmp/$CI_PIPELINE_ID.json
@@ -38,6 +39,7 @@ deploystaging:
     stage: deploy
     script:
         - npm i
+        - export ENV=staging; npm run env
         - npm run bundle
         - echo $DEPLOY_KEY_FILE_STAGING > /tmp/$CI_PIPELINE_ID.json
         - gcloud auth activate-service-account --key-file /tmp/$CI_PIPELINE_ID.json
@@ -51,6 +53,7 @@ deploydevelop:
     stage: deploy
     script:
         - npm i
+        - export ENV=dev; npm run env
         - npm run bundle
         - echo $DEPLOY_KEY_FILE_DEV > /tmp/$CI_PIPELINE_ID.json
         - gcloud auth activate-service-account --key-file /tmp/$CI_PIPELINE_ID.json
