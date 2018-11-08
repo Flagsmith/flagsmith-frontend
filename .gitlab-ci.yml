@@ -27,20 +27,28 @@ deploy:
     only:
         - master
 
-deploydevelopstaging:
+deploystaging:
     image: solidstategroup/gitlabci-node-gcloud:1.1
     stage: deploy
     script:
         - npm i
-        - if [ $CI_COMMIT_REF_NAME == "develop" ]; then export ENV=dev; echo 'Setting env to' $ENV; npm run env; fi;
-        - if [ $CI_COMMIT_REF_NAME == "staging" ]; then export ENV=staging; echo 'Setting env to' $ENV; npm run env; fi;
-        - if [ $CI_COMMIT_REF_NAME == "master" ]; then export ENV=prod; echo 'Setting env to' $ENV; npm run env; fi;
+        - npm run bundle
+        - echo $DEPLOY_KEY_FILE_STAGING > /tmp/$CI_PIPELINE_ID.json
+        - gcloud auth activate-service-account --key-file /tmp/$CI_PIPELINE_ID.json
+        - gcloud config set project bullet-train-front-end-staging
+        - gcloud app deploy
+    only:
+        - staging
+
+deploydevelop:
+    image: solidstategroup/gitlabci-node-gcloud:1.1
+    stage: deploy
+    script:
+        - npm i
         - npm run bundle
         - echo $DEPLOY_KEY_FILE_DEV > /tmp/$CI_PIPELINE_ID.json
         - gcloud auth activate-service-account --key-file /tmp/$CI_PIPELINE_ID.json
-        - gcloud config set project bullet-train-front-end-$ENV
+        - gcloud config set project bullet-train-front-end-dev
         - gcloud app deploy
     only:
         - develop
-        - staging
-
