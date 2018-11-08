@@ -1,7 +1,6 @@
 
 stages:
     - test
-    - build
     - deploy
 
 test:
@@ -20,18 +19,7 @@ test:
     only:
         - master
         - staging
-        - develop
-
-build:
-    image: node:8-jessie
-    stage: build
-    dependencies: test
-    script:
-        - npm run bundle
-    only:
-        - develop
-        - staging
-        - master
+        # - develop
 
 deploy:
     image: ilyasemenov/gitlab-ci-git-push
@@ -48,8 +36,15 @@ deploystaging:
         - staging
 
 deploydevelop:
-    image: ilyasemenov/gitlab-ci-git-push
+    image: lakoo/node-alpine-gcloud
     stage: deploy
-    script: git-push dokku@dokku1.solidstategroup.com:bullet-train-admin-dev
+    script:
+        - apt-get -qq update
+        - apt-get install -y --allow-unauthenticated build-essential libpng-dev
+        - npm install
+        - npm run bundle
+        - echo $DEPLOY_KEY_FILE_DEV > /tmp/$CI_PIPELINE_ID.json
+        - gcloud auth activate-service-account --key-file /tmp/$CI_PIPELINE_ID.json
+        - gcloud deploy
     only:
         - develop
