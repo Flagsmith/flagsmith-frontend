@@ -20,10 +20,16 @@ test:
         - staging
         - develop
 
-deploy:
-    image: ilyasemenov/gitlab-ci-git-push
+deploymaster:
+    image: solidstategroup/gitlabci-node-gcloud:1.1
     stage: deploy
-    script: git-push dokku@dokku1.solidstategroup.com:bullet-train-admin
+    script:
+        - npm i
+        - npm run bundle
+        - echo $DEPLOY_KEY_FILE_PROD > /tmp/$CI_PIPELINE_ID.json
+        - gcloud auth activate-service-account --key-file /tmp/$CI_PIPELINE_ID.json
+        - gcloud config set project bullet-train-front-end-prod
+        - gcloud app deploy
     only:
         - master
 
