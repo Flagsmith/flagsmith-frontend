@@ -1,5 +1,6 @@
 var Utils = {
   emailRegex: /^([\w-+]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i,
+  urlRegex: /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/,
 
   keys: {
     isUndo: function (e) {
@@ -114,6 +115,10 @@ var Utils = {
 
   isValidEmail: function (text) {  //returns bool
     return Utils.emailRegex.test(text);
+  },
+
+  isValidURL: function (url) {
+    return Utils.urlRegex.test(url);
   },
 
   GUID: function (append) {

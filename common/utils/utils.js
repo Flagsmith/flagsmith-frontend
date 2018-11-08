@@ -51,5 +51,33 @@ module.exports = Object.assign({}, require('./base/_utils'), {
         }
 
         return str;
+    },
+
+    scrollToTop: (timeout = 500) => {
+        $('html,body').animate({scrollTop: 0}, timeout);
+    },
+
+    scrollToElement: (selector, timeout = 500) => {
+        $('html,body').animate({scrollTop: $(selector).offset().top}, timeout);
+    },
+
+    scrollToSignUp: () => {
+        Utils.scrollToElement('.signup-form');
+    },
+
+    freeTrialDaysRemaining: (subscriptionDate) => {
+        if (!subscriptionDate) return 0;
+        return moment(subscriptionDate).add('30', 'd').endOf('d').diff(moment(), 'd');
+    },
+
+    getPlanName: (plan) => {
+        switch (plan) {
+            case 'side-project':
+                return 'Side Project';
+            case 'startup':
+                return 'Startup';
+            case 'scale-up':
+                return 'Scale-Up';
+        }
     }
 });

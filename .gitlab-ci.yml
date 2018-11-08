@@ -1,8 +1,6 @@
-
 stages:
     - test
     - deploy
-    - deploydevelop
 
 test:
     image: timbru31/java-node
@@ -11,20 +9,55 @@ test:
         - wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
         - sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
         - apt-get -qq update
-        - apt-get install -y build-essential libpng-dev google-chrome-stable
+        - apt-get install -y --allow-unauthenticated build-essential libpng-dev google-chrome-stable
         - npm i
+        - if [ $CI_COMMIT_REF_NAME == "staging" ]; then export ENV=staging; echo 'Setting env to' $ENV; npm run env; fi;
+        - if [ $CI_COMMIT_REF_NAME == "develop" ]; then export ENV=dev; echo 'Setting env to' $ENV; npm run env; fi;
+        - if [ $CI_COMMIT_REF_NAME == "master" ]; then export ENV=prod; echo 'Setting env to' $ENV; npm run env; fi;
         - npm run test
+    only:
+        - master
+        - staging
+        - develop
 
-deploy:
-    image: ilyasemenov/gitlab-ci-git-push
+deploymaster:
+    image: solidstategroup/gitlabci-node-gcloud:1.1
     stage: deploy
-    script: git-push dokku@dokku1.solidstategroup.com:bullet-train-admin
+    script:
+        - npm i
+        - export ENV=master; npm run env
+        - npm run bundle
+        - echo $DEPLOY_KEY_FILE_PROD > /tmp/$CI_PIPELINE_ID.json
+        - gcloud auth activate-service-account --key-file /tmp/$CI_PIPELINE_ID.json
+        - gcloud config set project bullet-train-front-end-prod
+        - gcloud app deploy
     only:
         - master
 
+deploystaging:
+    image: solidstategroup/gitlabci-node-gcloud:1.1
+    stage: deploy
+    script:
+        - npm i
+        - export ENV=staging; npm run env
+        - npm run bundle
+        - echo $DEPLOY_KEY_FILE_STAGING > /tmp/$CI_PIPELINE_ID.json
+        - gcloud auth activate-service-account --key-file /tmp/$CI_PIPELINE_ID.json
+        - gcloud config set project bullet-train-front-end-staging
+        - gcloud app deploy
+    only:
+        - staging
+
 deploydevelop:
-    image: ilyasemenov/gitlab-ci-git-push
-    stage: deploydevelop
-    script: git-push dokku@dokku1.solidstategroup.com:bullet-train-admin-dev
+    image: solidstategroup/gitlabci-node-gcloud:1.1
+    stage: deploy
+    script:
+        - npm i
+        - export ENV=dev; npm run env
+        - npm run bundle
+        - echo $DEPLOY_KEY_FILE_DEV > /tmp/$CI_PIPELINE_ID.json
+        - gcloud auth activate-service-account --key-file /tmp/$CI_PIPELINE_ID.json
+        - gcloud config set project bullet-train-front-end-dev
+        - gcloud app deploy
     only:
         - develop

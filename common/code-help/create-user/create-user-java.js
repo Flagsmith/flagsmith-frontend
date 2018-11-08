@@ -2,17 +2,22 @@ module.exports = (envId, {LIB_NAME, USER_ID, LIB_NAME_JAVA, FEATURE_NAME, FEATUR
     return `User user = new User();
 user.setIdentifier("${userId||USER_ID}");
 
-${LIB_NAME_JAVA} ${LIB_NAME} = ${LIB_NAME}.newBuilder()
-.setApiKey("${envId}")
-.build();
-        
-boolean featureEnabled = bulletClient.hasFeatureFlag("${FEATURE_NAME}", user);
+${LIB_NAME_JAVA} ${LIB_NAME} = ${LIB_NAME_JAVA}.newBuilder()
+    .setApiKey("${envId}")
+    .build();
+
+boolean featureEnabled = ${LIB_NAME}.hasFeatureFlag("${FEATURE_NAME}", user);
 if (featureEnabled) {
-    // run the code to execute enabled feature
+    // Run the code to execute enabled feature
 } else {
-    // run the code if feature switched off
+    // Run the code if feature switched off
 }
 
-String myRemoteConfig = bulletClient.getFeatureFlagValue("${FEATURE_NAME_ALT}", user);
+String myRemoteConfig = ${LIB_NAME}.getFeatureFlagValue("${FEATURE_NAME_ALT}", user);
+if (myRemoteConfig != null) {
+    // Run the code to use remote config value
+} else {
+    // Run the code without remote config
+}
 `
 }

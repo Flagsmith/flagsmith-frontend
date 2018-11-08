@@ -1,8 +1,11 @@
 module.exports = ({NPM_CLIENT,URL_CLIENT}) => {
-    return `#VIA npm
+    return `// npm
 npm i ${NPM_CLIENT} --save
-	
-#Or script tag
+
+// yarn
+yarn add bullet-train-client
+
+// Or script tag
 <script src="${URL_CLIENT}"></script>
 `
 }

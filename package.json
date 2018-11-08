@@ -6,12 +6,12 @@
   "scripts": {
     "test": "nightwatch ./tests/index.test.js",
     "env": "node ./bin/env.js",
-    "start": "npm run env && npm run bundle && NODE_ENV=production node ./server",
+    "start": "NODE_ENV=production node ./server",
     "dev": "npm run env && node_modules/.bin/nodemon --watch server --ignore server/config/config.json --watch webpack --exec node ./server",
     "bundle": "node node_modules/.bin/webpack -p --progress --config ./webpack/webpack.config.prod.js"
   },
   "engines": {
-    "node": "9.10.1",
+    "node": "8.x",
     "npm": "5.6.0"
   },
   "dependencies": {
@@ -36,6 +36,7 @@
     "image-webpack-loader": "2.0.0",
     "ionicons": "^4.0.0",
     "json-loader": "0.5.4",
+    "lazyframe": "^1.1.6",
     "lodash": "^4.17.10",
     "moment": "^2.22.1",
     "node-fetch": "^2.1.2",

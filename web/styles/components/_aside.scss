@@ -45,6 +45,9 @@ $animation-timing-function: ease-in-out;
 	&.demo {
 		padding-bottom: 64px;
 	}
+	&.footer {
+		height: calc(100% - (30px + 1.2em * 1.5)) // 15px padding top/bottom + font size * line height of footer bar
+	}
 	position: fixed;
 	animation-name: asideIn;
 	animation-duration: $animation-duration;
@@ -102,7 +105,7 @@ $animation-timing-function: ease-in-out;
 			margin-bottom: 3px;
 			display: inline-block;
 			&.green {
-				background-color: #35cac3;
+				background-color: #41cec7;
 			}
 			&.orange {
 				background-color: #fb9d43;
@@ -112,6 +115,9 @@ $animation-timing-function: ease-in-out;
 			}
 			&.purple {
 				background-color: #a28af9;
+			}
+			&.yellow {
+				background-color: #FFFF00;
 			}
 		}
 		line-height: 44px;

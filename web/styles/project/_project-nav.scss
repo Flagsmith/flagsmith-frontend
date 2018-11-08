@@ -7,6 +7,13 @@ nav.navbar {
         background:#22354a;
     }
 
+    &.light-header{
+        background:#fff;
+    }
+
+    &.scrolled{
+    }
+
     .tabs {
         display: inline-block;
         .tabs-nav {

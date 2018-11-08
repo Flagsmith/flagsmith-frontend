@@ -1,9 +1,10 @@
 import React from "react";
-import makeAsyncScriptLoader from "react-async-script";
 import AccountStore from '../../../common/stores/account-store';
 import ForgotPasswordModal from '../ForgotPasswordModal';
 import Hero from '../Hero';
 import Footer from '../Footer';
+import lazyframe from 'lazyframe';
+import 'lazyframe/dist/lazyframe.css';
 
 const HomePage = class extends React.Component {
     static contextTypes = {
@@ -28,14 +29,18 @@ const HomePage = class extends React.Component {
             var scroll = $(window).scrollTop();
 
             //>=, not <=
-            if (scroll >= 675) {
+            if (scroll >= 75) {
                 //clearHeader, not clearheader - caps H
                 $(".navbar-homepage").addClass("dark-header");
 
-            } else if (scroll <= 675){
+            } else if (scroll <= 75){
                 $(".navbar-homepage").removeClass("dark-header");
             }
         });
+    }
+
+    componentDidMount() {
+        lazyframe('.lazyframe');
     }
 
     showForgotPassword = (e) => {
@@ -51,13 +56,12 @@ const HomePage = class extends React.Component {
         const isInvite = document.location.href.indexOf("invite") != -1;
         const isLogin = document.location.href.indexOf("login") != -1;
         const {hasFeature, getValue} = this.props;
+
         return (
             <AccountProvider onLogout={this.onLogout} onLogin={this.onLogin}>
                 {({isLoading, isSaving, error}, {register}) => (
                     <div className="homepage">
-                        <Hero>
-
-                        </Hero>
+                        <Hero redirect={redirect} />
                         <div className="tech">
                             <div className="container">
                                 <div className="text-center col-md-12 col-lg-8 push-lg-2">
@@ -99,6 +103,12 @@ const HomePage = class extends React.Component {
                                         please <a href="mailto:support@bullet-train.io">get in touch</a> and let
                                         us know what you'd like to see.</p>
                                 </div>
+                            </div>
+                        </div>
+
+                        <div className="container text-center">
+                            <div className="video embed-responsive embed-responsive-16by9">
+                                <div className="lazyframe embed-responsive-item" data-src="https://www.youtube.com/embed/GPkCLO0F-5g" data-vendor="youtube" data-apikey={Project.youtubeApi}></div>
                             </div>
                         </div>
 
@@ -166,31 +176,55 @@ const HomePage = class extends React.Component {
                                 <h2 className="text-center margin-bottom">Start using Bullet Train for free</h2>
                                 <p className="text-center">Then increase your plan as your business grows.</p>
                                 <div className="col-md-12">
-                                    <div className={"row"}>
-                                        <div className={"col-md-3 pricing-panel"}>
-                                            <div className="panel panel-default">
-                                                <div className="panel-content">
-                                                    <p className="featured"> </p>
-                                                    <p className="pricing-price">Side Project</p>
-                                                    <img src="/images/growth.svg" alt="free icon" className="pricing-icon"/>
-                                                    <p className="pricing-type">$5</p>
-                                                    <p className="text-small text-center">Billed monthly</p>
-                                                    <a href="javascript:void(0)" data-cb-type="checkout" data-cb-plan-id="side-project" className="pricing-cta blue">Start free trial</a>
-                                                </div>
-                                                <div className="panel-footer">
-                                                    <p className="text-small text-center link-style">What's included</p>
-                                                    <ul className="pricing-features">
-                                                        <li><p>30 day free trial</p></li>
-                                                        <li><p>Up to 2,000 Monthly Active Users</p></li>
-                                                        <li><p>Unlimited Administrator Accounts</p></li>
-                                                        <li><p>Unlimited Projects</p></li>
-                                                        <li><p>Unlimited Environments</p></li>
-                                                        <li><p>Unlimited Feature Flags</p></li>
-                                                        <li><p>Email Technical Support</p></li>
-                                                    </ul>
+                                    <div className={"flex-row row-center"}>
+                                        {!hasFeature('free_tier') ? (
+                                            <div className={"col-md-3 pricing-panel"}>
+                                                <div className="panel panel-default">
+                                                    <div className="panel-content">
+                                                        <p className="featured"> </p>
+                                                        <p className="pricing-price">Side Project</p>
+                                                        <img src="/images/growth.svg" alt="free icon" className="pricing-icon"/>
+                                                        <p className="pricing-type">$5</p>
+                                                        <p className="text-small text-center">Billed monthly</p>
+                                                        <Link to={`/${redirect}#sign-up`} className="pricing-cta blue" onClick={Utils.scrollToSignUp}>Start free trial</Link>
+                                                    </div>
+                                                    <div className="panel-footer">
+                                                        <p className="text-small text-center link-style">What's included</p>
+                                                        <ul className="pricing-features">
+                                                            <li><p>Up to 2,000 Monthly Active Users</p></li>
+                                                            <li><p>Unlimited Administrator Accounts</p></li>
+                                                            <li><p>Unlimited Projects</p></li>
+                                                            <li><p>Unlimited Environments</p></li>
+                                                            <li><p>Unlimited Feature Flags</p></li>
+                                                            <li><p>Email Technical Support</p></li>
+                                                        </ul>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        ) : (
+                                            <div className={"col-md-3 pricing-panel"}>
+                                                <div className="panel panel-default">
+                                                    <div className="panel-content">
+                                                        <p className="featured"> </p>
+                                                        <p className="pricing-price">Free</p>
+                                                        <img src="/images/growth.svg" alt="free icon" className="pricing-icon"/>
+                                                        <p className="pricing-type">Free</p>
+                                                        <p className="text-small text-center">more flags than the UN</p>
+                                                        <Link to={`/${redirect}#sign-up`} className="pricing-cta blue" onClick={Utils.scrollToSignUp}>Sign up</Link>
+                                                    </div>
+                                                    <div className="panel-footer">
+                                                        <p className="text-small text-center link-style">What's included</p>
+                                                        <ul className="pricing-features">
+                                                            <li><p>Up to 2,000 Monthly Active Users</p></li>
+                                                            <li><p>Unlimited Administrator Accounts</p></li>
+                                                            <li><p>Unlimited Projects</p></li>
+                                                            <li><p>Unlimited Environments</p></li>
+                                                            <li><p>Unlimited Feature Flags</p></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        )}
                                         <div className={"col-md-3 pricing-panel"}>
                                             <div className="panel panel-default">
                                                 <div className="panel-content">
@@ -199,12 +233,11 @@ const HomePage = class extends React.Component {
                                                     <img src="/images/startup.svg" alt="Startup icon" className="pricing-icon"/>
                                                     <p className="pricing-type">$29</p>
                                                     <p className="text-small text-center">billed monthly</p>
-                                                    <a href="javascript:void(0)" data-cb-type="checkout" data-cb-plan-id="startup" className="pricing-cta blue">Start free trial</a>
+                                                    <Link to={`/${redirect}#sign-up`} className="pricing-cta blue" onClick={Utils.scrollToSignUp}>{hasFeature('free_tier') ? 'Sign up for free' : 'Start free trial'}</Link>
                                                 </div>
                                                 <div className="panel-footer">
                                                     <p className="text-small text-center link-style">What's included</p>
                                                     <ul className="pricing-features">
-                                                        <li><p>30 day free trial</p></li>
                                                         <li><p>Up to 10,000 Monthly Active Users</p></li>
                                                         <li><p>Unlimited Administrator Accounts</p></li>
                                                         <li><p>Unlimited Projects</p></li>
@@ -223,12 +256,11 @@ const HomePage = class extends React.Component {
                                                     <img src="/images/layers2.svg" alt="Scale-up icon" className="pricing-icon"/>
                                                     <p className="pricing-type">$99</p>
                                                     <p className="text-small text-center">billed monthly</p>
-                                                    <a href="javascript:void(0)" data-cb-type="checkout" data-cb-plan-id="scale-up" className="pricing-cta">Start free trial</a>
+                                                    <Link to={`/${redirect}#sign-up`} className="pricing-cta" onClick={Utils.scrollToSignUp}>{hasFeature('free_tier') ? 'Sign up for free' : 'Start free trial'}</Link>
                                                 </div>
                                                 <div className="panel-footer">
                                                     <p className="text-small text-center link-style">What's included</p>
                                                     <ul className="pricing-features">
-                                                        <li><p>30 day free trial</p></li>
                                                         <li><p>Up to 50,000 Monthly Active Users</p></li>
                                                         <li><p>Telephone Technical Support</p></li>
                                                         <li><p>All Startup Features</p></li>
@@ -255,7 +287,6 @@ const HomePage = class extends React.Component {
                                                         <li><p>Over 50,000 Monthly Active Users</p></li>
                                                         <li><p>Telephone Technical Support</p></li>
                                                         <li><p>All Startup Features</p></li>
-
                                                     </ul>
                                                 </div>
                                             </div>
@@ -366,7 +397,7 @@ const HomePage = class extends React.Component {
                                                     className="input-default full-width"
                                                     placeholder="First name"
                                                     type="text"
-                                                    name="firstName" id="email"/>
+                                                    name="firstName" id="firstName"/>
                                                 <Input
                                                     inputProps={{
                                                         name: "lastName",
@@ -379,7 +410,7 @@ const HomePage = class extends React.Component {
                                                     }}
                                                     className="input-default full-width"
                                                     type="text"
-                                                    name="lastName" id="email"/>
+                                                    name="lastName" id="lastName"/>
                                                 {!isInvite && (
                                                     <Input
                                                         inputProps={{
@@ -453,15 +484,4 @@ const HomePage = class extends React.Component {
     }
 };
 
-const WrappedHomePage = makeAsyncScriptLoader(ConfigProvider(HomePage), 'https://js.chargebee.com/v2/chargebee.js', {
-    removeOnUnmount: true
-});
-
-module.exports = (props) => (
-    <WrappedHomePage {...props} asyncScriptOnLoad={() => {
-        Chargebee.init({
-            site: Project.chargebee.site
-        });
-        Chargebee.registerAgain();
-    }}/>
-);
+module.exports = ConfigProvider(HomePage);

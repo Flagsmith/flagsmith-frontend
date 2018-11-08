@@ -14,6 +14,7 @@ import OrganisationSettingsPage from './components/pages/OrganisationSettingsPag
 import ComingSoon from './components/pages/ComingSoonPage';
 import ProjectSettingsPage from './components/pages/ProjectSettingsPage';
 import WhatAreFeatureFlagsPage from './components/pages/WhatAreFeatureFlagsPage';
+import WhenFeatureFlagsGoWrong from './components/pages/blog/WhenFeatureFlagsGoWrong';
 import PasswordResetPage from './components/pages/PasswordResetPage';
 import EnvironmentSettingsPage from './components/pages/EnvironmentSettingsPage';
 import InvitePage from './components/pages/InvitePage';
@@ -36,6 +37,7 @@ export default (
         <Route path="legal" component={TermsPoliciesPage}/>
         <Route path="projects" component={ProjectSelectPage}/>
         <Route path="/blog/remote-config-and-feature-flags" component={WhatAreFeatureFlagsPage}/>
+        <Route path="/blog/01" component={WhenFeatureFlagsGoWrong}/>
         <Route path="password-reset/confirm/:uid/:token/" component={PasswordResetPage}/>
         <Route path="project/:projectId/environment/:environmentId/features" component={FlagsPage}/>
         <Route path="invite/:id" component={InvitePage}/>

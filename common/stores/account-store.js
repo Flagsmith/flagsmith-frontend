@@ -1,4 +1,5 @@
 import OrganisationStore from "./organisation-store";
+import ConfigStore from './config-store';
 
 var BaseStore = require('./base/_store');
 var data = require('../data/base/_data');
@@ -103,9 +104,9 @@ var controller = {
             store.changed();
         },
 
-        editOrganisation: (name) => {
+        editOrganisation: (org) => {
             API.trackEvent(Constants.events.EDIT_ORGANISATION);
-            data.put(`${Project.api}organisations/${store.organisation.id}/?format=json`, {name})
+            data.put(`${Project.api}organisations/${store.organisation.id}/?format=json`, org)
                 .then((res) => {
                     var idx = _.findIndex(store.model.organisations, {id: store.organisation.id});
                     if (idx != -1) {
@@ -119,7 +120,13 @@ var controller = {
         createOrganisation: (name) => {
             store.saving();
             API.trackEvent(Constants.events.CREATE_ORGANISATION);
-            data.post(`${Project.api}organisations/?format=json`, {name})
+            var opts = {};
+            if (ConfigStore.model && ConfigStore.model.free_tier && ConfigStore.model.free_tier.enabled) {
+                opts.free_to_use_subscription = true;
+            } else {
+                opts.subscription_date = moment();
+            }
+            data.post(`${Project.api}organisations/?format=json`, Object.assign({name}, opts))
                 .then((res) => {
                     store.model.organisations = store.model.organisations.concat([res])
                     store.savedId = res.id;
@@ -138,6 +145,7 @@ var controller = {
                     data.setToken(null);
                     store.isDemo = false;
                     store.model = user;
+                    store.organisation = null;
                     store.trigger('logout');
                     API.reset();
                 }
@@ -190,7 +198,7 @@ store.dispatcherIndex = Dispatcher.register(store, function (payload) {
             controller.deleteOrganisation();
             break;
         case Actions.EDIT_ORGANISATION:
-            controller.editOrganisation(action.name);
+            controller.editOrganisation(action.org);
             break;
         case Actions.LOGOUT:
             controller.setUser(null);

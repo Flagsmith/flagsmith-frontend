@@ -4,6 +4,8 @@ import AccountStore from '../../../common/stores/account-store';
 import EditOrganisationModal from '../modals/EditOrganisation'
 import InviteUsersModal from '../modals/InviteUsers'
 import ConfirmRemoveOrganisation from '../modals/ConfirmRemoveOrganisation'
+import PaymentModal from '../modals/Payment';
+import CancelPaymentPlanModal from '../modals/CancelPaymentPlan';
 
 const TheComponent = class extends Component {
 	displayName: 'TheComponent'
@@ -50,8 +52,50 @@ const TheComponent = class extends Component {
 		openConfirm(<h3>Delete Invite</h3>, <p>Are you sure you want to delete this invite?</p>, () => AppActions.deleteInvite(id));
 	}
 
+	save = (e) => {
+		e.preventDefault();
+		const {name, webhook_notification_email} = this.state;
+		if (AccountStore.isSaving || (!name && webhook_notification_email === undefined)) {
+			return;
+		}
+
+		const org = AccountStore.getOrganisation();
+		AppActions.editOrganisation({
+			name: name ? name : org.name,
+			webhook_notification_email: webhook_notification_email !== undefined ? webhook_notification_email : org.webhook_notification_email
+		});
+	}
+
+	saveDisabled = () => {
+		const {name, webhook_notification_email} = this.state;
+		if (AccountStore.isSaving || (!name && webhook_notification_email === undefined)) {
+			return true;
+		}
+
+		// Must have name
+		if (name !== undefined && !name) {
+			return true;
+		}
+
+		// Must be valid email for webhook notification email
+		if (webhook_notification_email && !Utils.isValidEmail(webhook_notification_email)) {
+			return true;
+		}
+
+		return false;
+	}
+
+	cancelPaymentPlan = () => {
+		openModal(
+			<h2>Are you sure you want to cancel your plan?</h2>,
+			<CancelPaymentPlanModal />,
+		);
+	}
+
 	render() {
-		const {name} = this.state;
+		const {hasFeature, getValue} = this.props;
+		const {name, webhook_notification_email} = this.state;
+		const freeTrialDaysRemaining = Utils.freeTrialDaysRemaining(AccountStore.getOrganisation().subscription_date);
 
 		return (
 			<div className="app-container container">
@@ -64,10 +108,37 @@ const TheComponent = class extends Component {
 							  organisation
 						  }, {createOrganisation, selectOrganisation, editOrganisation, deleteOrganisation}) => (
 							<div className="margin-bottom">
-								<form key={organisation.id} onSubmit={(e) => {
-									e.preventDefault();
-									!isSaving && name && editOrganisation(name);
-								}}>
+								{AccountStore.isDemo ? null : organisation.paid_subscription ? (
+									<div>
+										<h2 className="text-center margin-bottom">Your organisation is on the {Utils.getPlanName(organisation.plan)} plan</h2>
+										{!organisation.pending_cancellation ?
+											<div className="text-center margin-bottom">Click <a onClick={this.cancelPaymentPlan}>here</a> to cancel your automatic renewal of your plan</div> :
+											<div>This plan has been cancelled and will not automatically be renewed</div>
+										}
+										{/* TODO upgrades? */}
+									</div>
+								) : organisation.free_to_use_subscription ? (
+									<div>
+										<h2 className="text-center margin-bottom">Your organisation is using Bullet Train for free.</h2>
+										{hasFeature('free_tier') ?
+											<div className="text-center margin-bottom">You may want to consider upgrading to a paid plan that includes more usage.</div> :
+											<div className="text-center margin-bottom">As an early adopter of Bullet Train you will be able to use this service for free until DD/MM/YYYY. You will then need to choose a payment plan to continue using Bullet Train.</div>
+										}
+										<div className="text-center margin-bottom">Click <a onClick={() => openModal(null, <PaymentModal viewOnly={!hasFeature('free_tier')} />, null, {large: true})}>here</a> to view payment plans</div>
+									</div>
+								) : freeTrialDaysRemaining > 0 ? (
+									<div>
+										<h2 className="text-center margin-bottom">Your organisation is within the free trial period</h2>
+										<div className="text-center margin-bottom">You have {freeTrialDaysRemaining} days remaining until you need to choose a payment plan.</div>
+										<div className="text-center margin-bottom">Click <a onClick={() => openModal(null, <PaymentModal viewOnly={true} />, null, {large: true})}>here</a> to view payment plans</div>
+									</div>
+								) : (
+									<div>
+										<h2 className="text-center margin-bottom">Your trial period of Bullet Train is over.</h2>
+										<div className="text-center margin-bottom">Click <a onClick={() => openModal(null, <PaymentModal />, null, {large: true})}>here</a> to view payment plans to continue using Bullet Train</div>
+									</div>
+								)}
+								<form key={organisation.id} onSubmit={this.save}>
 									<InputGroup
 										ref={(e) => this.input = e}
 										inputProps={{defaultValue: organisation.name, className: "full-width"}}
@@ -75,8 +146,14 @@ const TheComponent = class extends Component {
 										isValid={name && name.length}
 										type="text" title={<h3>Organisation Name</h3>}
 										placeholder="My Organisation"/>
+									<InputGroup
+										inputProps={{defaultValue: organisation.webhook_notification_email, className: "full-width"}}
+										onChange={(e) => this.setState({webhook_notification_email: Utils.safeParseEventValue(e)})}
+										isValid={webhook_notification_email && webhook_notification_email.length && Utils.isValidEmail(webhook_notification_email)}
+										type="text" title={<h3>Webhook Notification Email</h3>}
+										placeholder="Email address"/>
 									<div className="text-right">
-										<Button disabled={isSaving || !name}>
+										<Button disabled={this.saveDisabled()}>
 											{isSaving ? 'Saving' : 'Save'}
 										</Button>
 									</div>
@@ -200,4 +277,4 @@ const TheComponent = class extends Component {
 
 TheComponent.propTypes = {};
 
-module.exports = TheComponent;
+module.exports = ConfigProvider(TheComponent);
