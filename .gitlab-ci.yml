@@ -36,11 +36,9 @@ deploystaging:
         - staging
 
 deploydevelop:
-    image: lakoo/node-alpine-gcloud
+    image: solidstategroup/gitlabci-node-gcloud
     stage: deploy
     script: 
-        - apt-get -qq update
-        - apt-get install -y --allow-unauthenticated build-essential libpng-dev
         - npm install
         - npm run bundle
         - echo $DEPLOY_KEY_FILE_DEV > /tmp/$CI_PIPELINE_ID.json
