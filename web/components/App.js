@@ -162,7 +162,7 @@ const App = class extends Component {
                                 )}
                                 {hasPaid ? null : hasFreeUse ? (
                                     <div className={"footer-bar"}>
-                                        Your organisation is using Bullet Train for free. {pathname.indexOf('organisation-settings') === -1 ? (
+                                        Your organisation is using Bullet Train for free. {pathname.indexOf('organisation-settings') === -1 && this.props.params.projectId && this.props.params.environmentId ? (
                                             <span>Click <Link
                                             id="organisation-settings-link"
                                             activeClassName={"active"}
