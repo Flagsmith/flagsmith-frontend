@@ -4,7 +4,7 @@ import './project/api';
 import './project/project-components';
 import './styles/styles.scss';
 import ToastMessages from './project/toast';
-import {Router, browserHistory} from 'react-router';
+import { Router, browserHistory } from 'react-router';
 import routes from './routes';
 
 window.Project = require('../common/project');
@@ -17,6 +17,20 @@ window.openConfirm = require('./project/modals').openConfirm;
 import AccountStore from '../common/stores/account-store';
 
 const rootElement = document.getElementById('app');
+
+function hashLinkScroll() {
+    const { hash } = window.location;
+    if (hash !== '') {
+        // Push onto callback queue so it runs after the DOM is updated,
+        // this is required when navigating from a different page so that
+        // the element is rendered on the page before trying to getElementById.
+        setTimeout(() => {
+            const id = hash.replace('#', '');
+            const element = document.getElementById(id);
+            if (element) element.scrollIntoView({behavior: 'smooth'});
+        }, 0);
+    }
+}
 
 // Render the React application to the DOM
 AsyncStorage.getItem("t", (err, res) => {
@@ -37,7 +51,7 @@ AsyncStorage.getItem("t", (err, res) => {
         }
 
         ReactDOM.render(
-            <Router history={browserHistory} routes={routes}/>,
+            <Router history={browserHistory} routes={routes} onUpdate={hashLinkScroll} />,
             rootElement
         );
     }, 1)
@@ -46,4 +60,4 @@ AsyncStorage.getItem("t", (err, res) => {
 });
 
 //Setup for toast messages
-ReactDOM.render(<ToastMessages/>, document.getElementById('toast'));
+ReactDOM.render(<ToastMessages />, document.getElementById('toast'));

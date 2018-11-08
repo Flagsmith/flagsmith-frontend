@@ -4,6 +4,8 @@ import AccountStore from '../../../common/stores/account-store';
 import EditOrganisationModal from '../modals/EditOrganisation'
 import InviteUsersModal from '../modals/InviteUsers'
 import ConfirmRemoveOrganisation from '../modals/ConfirmRemoveOrganisation'
+import PaymentModal from '../modals/Payment';
+import CancelPaymentPlanModal from '../modals/CancelPaymentPlan';
 
 const TheComponent = class extends Component {
 	displayName: 'TheComponent'
@@ -83,8 +85,17 @@ const TheComponent = class extends Component {
 		return false;
 	}
 
+	cancelPaymentPlan = () => {
+		openModal(
+			<h2>Are you sure you want to cancel your plan?</h2>,
+			<CancelPaymentPlanModal />,
+		);
+	}
+
 	render() {
+		const {hasFeature, getValue} = this.props;
 		const {name, webhook_notification_email} = this.state;
+		const freeTrialDaysRemaining = Utils.freeTrialDaysRemaining(AccountStore.getOrganisation().subscription_date);
 
 		return (
 			<div className="app-container container">
@@ -97,6 +108,36 @@ const TheComponent = class extends Component {
 							  organisation
 						  }, {createOrganisation, selectOrganisation, editOrganisation, deleteOrganisation}) => (
 							<div className="margin-bottom">
+								{AccountStore.isDemo ? null : organisation.paid_subscription ? (
+									<div>
+										<h2 className="text-center margin-bottom">Your organisation is on the {Utils.getPlanName(organisation.plan)} plan</h2>
+										{!organisation.pending_cancellation ?
+											<div className="text-center margin-bottom">Click <a onClick={this.cancelPaymentPlan}>here</a> to cancel your automatic renewal of your plan</div> :
+											<div>This plan has been cancelled and will not automatically be renewed</div>
+										}
+										{/* TODO upgrades? */}
+									</div>
+								) : organisation.free_to_use_subscription ? (
+									<div>
+										<h2 className="text-center margin-bottom">Your organisation is using Bullet Train for free.</h2>
+										{hasFeature('free_tier') ?
+											<div className="text-center margin-bottom">You may want to consider upgrading to a paid plan that includes more usage.</div> :
+											<div className="text-center margin-bottom">As an early adopter of Bullet Train you will be able to use this service for free until DD/MM/YYYY. You will then need to choose a payment plan to continue using Bullet Train.</div>
+										}
+										<div className="text-center margin-bottom">Click <a onClick={() => openModal(null, <PaymentModal viewOnly={!hasFeature('free_tier')} />, null, {large: true})}>here</a> to view payment plans</div>
+									</div>
+								) : freeTrialDaysRemaining > 0 ? (
+									<div>
+										<h2 className="text-center margin-bottom">Your organisation is within the free trial period</h2>
+										<div className="text-center margin-bottom">You have {freeTrialDaysRemaining} days remaining until you need to choose a payment plan.</div>
+										<div className="text-center margin-bottom">Click <a onClick={() => openModal(null, <PaymentModal viewOnly={true} />, null, {large: true})}>here</a> to view payment plans</div>
+									</div>
+								) : (
+									<div>
+										<h2 className="text-center margin-bottom">Your trial period of Bullet Train is over.</h2>
+										<div className="text-center margin-bottom">Click <a onClick={() => openModal(null, <PaymentModal />, null, {large: true})}>here</a> to view payment plans to continue using Bullet Train</div>
+									</div>
+								)}
 								<form key={organisation.id} onSubmit={this.save}>
 									<InputGroup
 										ref={(e) => this.input = e}
@@ -236,4 +277,4 @@ const TheComponent = class extends Component {
 
 TheComponent.propTypes = {};
 
-module.exports = TheComponent;
+module.exports = ConfigProvider(TheComponent);

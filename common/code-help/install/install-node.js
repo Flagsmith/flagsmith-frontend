@@ -1,5 +1,5 @@
 module.exports = ({NPM_NODE_CLIENT,URL_CLIENT}) => {
-    return `#VIA npm
+    return `// npm
 npm i ${NPM_NODE_CLIENT} --save
 `
 }

@@ -98,7 +98,8 @@ const TheComponent = class extends Component {
                                                 value={this.props.params.environmentId}
                                                 inputProps={{
                                                     className: "full-width",
-                                                    readOnly: true
+                                                    readOnly: true,
+                                                    style: {userSelect: 'all'}
                                                 }}
                                                 onChange={(e) => this.setState({name: Utils.safeParseEventValue(e)})}
                                                 isValid={name && name.length}

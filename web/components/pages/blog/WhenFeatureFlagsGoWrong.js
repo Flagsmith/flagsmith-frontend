@@ -2,6 +2,8 @@
  * Created by andrewmoffatt on 23/10/2018.
  */
 import React, {Component, PropTypes} from 'react';
+import lazyframe from 'lazyframe';
+import 'lazyframe/dist/lazyframe.css';
 
 const TheComponent = class extends Component {
     displayName: 'TheComponent'
@@ -24,6 +26,10 @@ const TheComponent = class extends Component {
                 $(".navbar").removeClass("light-header");
             }
         });
+    }
+
+    componentDidMount() {
+        lazyframe('.lazyframe');
     }
 
     render() {
@@ -57,13 +63,13 @@ const TheComponent = class extends Component {
                                     <li className=" blog-post__list__item">Rule 3: name it something sensible for crying out loud.</li>
                                 </ul>
                                 <div className="blog-post__video">
-                                    <iframe width="560" height="315" src="https://www.youtube.com/embed/r7VI5x2XKXw" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                                    <div className="lazyframe" data-src="https://www.youtube.com/embed/r7VI5x2XKXw" data-vendor="youtube" data-apikey={Project.youtubeApi}></div>
                                 </div>
                                 <p>Andy also gives us some examples of feature toggles done well, he’s a proponent of trunk-based delivery, he takes us through the four types of toggles (compile toggles, startup toggles for microservices, periodic toggles, and activity toggles) and accidentally invents the word “contrologging”, controlling with toggles, which should totally be a thing.</p>
                                 <h2 className="blog-post__subtitle">Disaster Two</h2>
                                 <p className="blog-post__text">Edith Harbaugh presents this next video.</p>
                                 <div className="blog-post__video">
-                                    <iframe width="560" height="315" src="https://www.youtube.com/embed/28ZAoStv-Xw" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                                    <div className="lazyframe" data-src="https://www.youtube.com/embed/28ZAoStv-Xw" data-vendor="youtube" data-apikey={Project.youtubeApi}></div>
                                 </div>
                             </div>
 

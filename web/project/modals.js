@@ -64,8 +64,8 @@ const Modal = class extends React.Component {
 
     return (
       <Provider ref="modal">
-        <div tabIndex="-1" className="modal alert fade expand" role="dialog" aria-hidden="true">
-          <div className="modal-dialog">
+        <div tabIndex="-1" className={`modal alert fade expand ${this.props.className ? this.props.className : ''}`} role="dialog" aria-hidden="true">
+          <div className={`modal-dialog ${this.props.large ? 'modal-lg' : ''}`}>
             <div className="modal-content">
               <div className="modal-header">{this.header()}</div>
               <div className="modal-body">{this.body()}</div>
@@ -144,8 +144,8 @@ Confirm.propTypes = {
   noText: OptionalString,
 };
 
-exports.openModal = (header, body, footer) => {
-  render(<Modal header={header} footer={footer} body={body}/>, document.getElementById('modal'));
+exports.openModal = (header, body, footer, other) => {
+  render(<Modal header={header} footer={footer} body={body} {...other} />, document.getElementById('modal'));
 };
 
 exports.openConfirm = (header, body, onYes, onNo) => {

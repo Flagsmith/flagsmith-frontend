@@ -1,7 +1,7 @@
 const keywords = {
     URL_CLIENT: "https://cdn.jsdelivr.net/npm/bullet-train-client/lib/index.js",
     LIB_NAME: "bulletTrain",
-    LIB_NAME_JAVA: "BulletTrain",
+    LIB_NAME_JAVA: "BulletTrainClient",
     NPM_CLIENT: "bullet-train-client",
     NPM_RN_CLIENT: "react-native-bullet-train",
     NPM_NODE_CLIENT: "bullet-train-nodejs",
@@ -45,7 +45,11 @@ var Constants = {
         "VIEW_USER_FEATURE": {"event": "User feature viewed", "category": "User Features"},
         "VIEW_FEATURE": {"event": "Feature viewed", "category": "Features"}
     },
+    modals: {
+        "PAYMENT": "Payment Modal"
+    },
     pages: {
+        "ACCOUNT": "Account Page",
         "WHAT_ARE_FEATURE_FLAGS": "What are feature flags Page",
         "RESET_PASSWORD": "Reset Password Page",
         "COMING_SOON": "Coming Soon Page",
@@ -105,6 +109,8 @@ var Constants = {
             "Java": require('./code-help/install/install-java')(keywords),
             ".NET": "Coming soon"
         }
+    },
+    simulate: {
     }
 };
 
