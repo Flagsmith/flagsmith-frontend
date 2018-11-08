@@ -37,7 +37,7 @@ deploystaging:
 
 deploydevelop:
     image: gcr.io/google-appengine/nodejs
-    stage: deploydevelop
+    stage: deploy
     script: 
         - npm install
         - npm run bundle
