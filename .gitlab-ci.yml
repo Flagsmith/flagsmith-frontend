@@ -18,7 +18,7 @@ test:
     only:
         - master
         - staging
-        # - develop
+        - develop
 
 deploy:
     image: ilyasemenov/gitlab-ci-git-push
