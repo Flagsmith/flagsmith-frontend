@@ -36,7 +36,7 @@ deploystaging:
         - staging
 
 deploydevelop:
-    image: gcr.io/google-appengine/nodejs
+    image: lakoo/node-alpine-gcloud
     stage: deploy
     script: 
         - npm install
