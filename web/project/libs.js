@@ -65,3 +65,7 @@ if (Project.mixpanel) {
     })(document, window.mixpanel || []);
     mixpanel.init(Project.mixpanel);
 }
+
+if (Project.sentry && typeof Sentry !== 'undefined') {
+    Sentry.init({ dsn: Project.sentry });
+}

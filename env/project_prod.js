@@ -4,6 +4,7 @@ module.exports = {
     bulletTrain:'4vfqhypYjcPoGGu8ByrBaj',
     api:'https://api.bullet-train.io/api/v1/',
     ga: 'UA-120237963-1',
+    sentry: 'https://11c8828dc24041b0a875e324b0380769@sentry.io/1320942',
     demoAccount: {
         email:"kyle+bullet-train@solidstategroup.com",
         password:"demo_account"
