@@ -8,7 +8,7 @@ cache:
     - node_modules/
 
 test:
-    image: timbru31/java-node:bgshcxv8fkzpt4tf9acqjvd
+    image: timbru31/java-node#bgshcxv8fkzpt4tf9acqjvd
     stage: test
     script:
         - wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
