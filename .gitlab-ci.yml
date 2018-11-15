@@ -8,13 +8,9 @@ cache:
     - node_modules/
 
 test:
-    image: timbru31/java-node#bgshcxv8fkzpt4tf9acqjvd
+    image: solidstategroup/node-java-chrome
     stage: test
     script:
-        - wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
-        - sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
-        - apt-get -qq update
-        - apt-get install -y --allow-unauthenticated build-essential libpng-dev google-chrome-stable
         - npm i
         - if [ $CI_COMMIT_REF_NAME == "staging" ]; then export ENV=staging; echo 'Setting env to' $ENV; npm run env; fi;
         - if [ $CI_COMMIT_REF_NAME == "develop" ]; then export ENV=dev; echo 'Setting env to' $ENV; npm run env; fi;
