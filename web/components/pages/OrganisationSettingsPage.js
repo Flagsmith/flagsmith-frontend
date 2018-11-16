@@ -146,12 +146,12 @@ const TheComponent = class extends Component {
 										isValid={name && name.length}
 										type="text" title={<h3>Organisation Name</h3>}
 										placeholder="My Organisation"/>
-									<InputGroup
+									{/* <InputGroup
 										inputProps={{defaultValue: organisation.webhook_notification_email, className: "full-width"}}
 										onChange={(e) => this.setState({webhook_notification_email: Utils.safeParseEventValue(e)})}
 										isValid={webhook_notification_email && webhook_notification_email.length && Utils.isValidEmail(webhook_notification_email)}
 										type="text" title={<h3>Webhook Notification Email</h3>}
-										placeholder="Email address"/>
+										placeholder="Email address"/> */}
 									<div className="text-right">
 										<Button disabled={this.saveDisabled()}>
 											{isSaving ? 'Saving' : 'Save'}
