@@ -119,7 +119,7 @@ const TheComponent = class extends Component {
                                                     isValid={name && name.length}
                                                     type="text" title={<h3>Environment Name</h3>}
                                                     placeholder="Environment Name"/>
-                                                <FormGroup>
+                                                {/* <FormGroup>
                                                     <div>
                                                         <h3>Webhooks Enabled?</h3>
                                                     </div>
@@ -138,7 +138,7 @@ const TheComponent = class extends Component {
                                                     isValid={webhook_url && webhook_url.length && Utils.isValidURL(webhook_url)}
                                                     type="text" title={<h3>Webhook URL</h3>}
                                                     placeholder="https://webhook.url"
-                                                    disabled={webhooks_enabled === undefined ? !env.webhooks_enabled : !webhooks_enabled}/>
+                                                    disabled={webhooks_enabled === undefined ? !env.webhooks_enabled : !webhooks_enabled}/> */}
                                                 <div className="text-right clearfix">
                                                     <Button id="save-env-btn" className="float-right" disabled={this.saveDisabled()}>
                                                         {isSaving ? 'Saving' : 'Save'}
