@@ -26,7 +26,7 @@ deploymaster:
     stage: deploy
     script:
         - npm i
-        - export ENV=master; npm run env
+        - export ENV=prod; npm run env
         - npm run bundle
         - echo $DEPLOY_KEY_FILE_PROD > /tmp/$CI_PIPELINE_ID.json
         - gcloud auth activate-service-account --key-file /tmp/$CI_PIPELINE_ID.json
