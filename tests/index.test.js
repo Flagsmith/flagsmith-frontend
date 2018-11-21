@@ -11,8 +11,8 @@ const fetch = require('node-fetch');
 global.testHelpers = require('./helpers');
 const clearDown = function(browser,done) {
     var token;
-    if (process.env['E2E_TEST_TOKEN']) {
-        token = process.env['E2E_TEST_TOKEN'];
+    if (process.env['E2E_TEST_TOKEN_' + Project.env.toUpperCase()]) {
+        token = process.env['E2E_TEST_TOKEN_' + Project.env.toUpperCase()];
     } else {
         const fs = require('fs');
         if (fs.existsSync('./tests/tokens.json')) {
