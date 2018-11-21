@@ -22,7 +22,13 @@ var controller = {
                     if (isInvite) {
                         return controller.onLogin();
                     } else {
-                        return data.post(`${Project.api}organisations/?format=json`, {name: organisation_name})
+                        var opts = {};
+                        if (ConfigStore.model && ConfigStore.model.free_tier && ConfigStore.model.free_tier.enabled) {
+                            opts.free_to_use_subscription = true;
+                        } else {
+                            opts.subscription_date = moment();
+                        }
+                        return data.post(`${Project.api}organisations/?format=json`, Object.assign({}, {name: organisation_name}, opts))
                             .then(() => controller.onLogin())
                     }
                 })
