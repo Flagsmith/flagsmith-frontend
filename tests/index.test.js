@@ -55,13 +55,13 @@ module.exports = Object.assign(
             });
         },
         after: (browser, done) => {
-            if (SLACK_TOKEN) {
+            if (SLACK_TOKEN && browser.sessionId) {
                 return browser.waitForElementVisible('#e2e-request', ()=> {
                     return browser.getText('#e2e-error', error => {
                         return browser.getText('#e2e-request', request => {
                             if (error) {
-                                const lastRequest = JSON.parse(request.value||{})
-                                const lastError = JSON.parse(error.value||{})
+                                const lastRequest = request.value  ? JSON.parse(request.value) : {};
+                                const lastError = error.value ? JSON.parse(error.value) : {};
                                 console.log("Last request:", lastRequest);
                                 console.log("Last error:", lastError);
                                 const uri = path.join(__dirname, 'screenshot.png');
@@ -79,7 +79,7 @@ module.exports = Object.assign(
                             }
                         })
                     })
-                });
+                })
             } else {
                 server.kill('SIGINT');
                 browser.end();
