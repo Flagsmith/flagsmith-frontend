@@ -41,7 +41,7 @@ deploystaging:
     script:
         - npm i
         - export ENV=staging; npm run env
-        - npm run bundle
+        - npm run bundlestaging
         - echo $DEPLOY_KEY_FILE_STAGING > /tmp/$CI_PIPELINE_ID.json
         - gcloud auth activate-service-account --key-file /tmp/$CI_PIPELINE_ID.json
         - gcloud config set project bullet-train-front-end-staging
