@@ -29,13 +29,17 @@ app.use('/api', api());
 app.use(spm);
 app.get('/', function (req, res) {
     console.log("Returning index");
-    return res.render('index', {
-        isDev
-    });
+    if (isDev) {
+        return res.render('index', {
+            isDev
+        });
+    } else {
+        return res.render('static/index', {
+            isDev
+        });
+    }
 });
 
 app.listen(port, function () {
     console.log('Server listening on: ' + port);
 });
-
-

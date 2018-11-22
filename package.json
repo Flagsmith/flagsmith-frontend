@@ -8,7 +8,8 @@
     "env": "node ./bin/env.js",
     "start": "NODE_ENV=production node ./server",
     "dev": "npm run env && node_modules/.bin/nodemon --watch server --ignore server/config/config.json --watch webpack --exec node ./server",
-    "bundle": "node node_modules/.bin/webpack -p --progress --config ./webpack/webpack.config.prod.js"
+    "bundle": "node node_modules/.bin/webpack -p --progress --config ./webpack/webpack.config.prod.js",
+    "bundlestaging": "node node_modules/.bin/webpack -p --progress --config ./webpack/webpack.config.staging.js"
   },
   "engines": {
     "node": "8.x",
