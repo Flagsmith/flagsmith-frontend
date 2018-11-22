@@ -18,6 +18,14 @@ module.exports = {
 			}
 			response.clone().text() // cloned so response body can be used downstream
 				.then((err) => {
+					if (E2E) {
+                        const error = {
+                            url: response.url,
+                            status: response.status,
+                            error: err,
+                        };
+                        document.getElementById('e2e-error').innerText = JSON.stringify(error);
+					}
 					API.log(response.url, response.status, err);
 				});
 			return Promise.reject(response);
@@ -77,7 +85,15 @@ module.exports = {
 			options.body = "{}";
 		}
 
-		req = fetch(url, options);
+		if (E2E) {
+            const payload = {
+                url,
+                options,
+            };
+            document.getElementById('e2e-request').innerText = JSON.stringify(payload);
+		}
+
+        req = fetch(url, options);
 		return req
 			.then(this.status)
 			.then(function (response) { //always return json

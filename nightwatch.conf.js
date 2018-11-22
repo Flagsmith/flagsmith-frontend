@@ -21,6 +21,7 @@ module.exports = {
     },
     "test_settings": {
         "default": {
+            "end_session_on_fail": false,
             "screenshots": {
                 "enabled": false, // if you want to keep screenshots
                 "path": './e2e_screenshots', // save screenshots here

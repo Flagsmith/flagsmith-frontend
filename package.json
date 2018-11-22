@@ -4,11 +4,11 @@
   "description": "The frontend application for Bullet Train",
   "main": "index.js",
   "scripts": {
-    "test": "nightwatch ./tests/index.test.js",
+    "test": "cross-env E2E=true nightwatch ./tests/index.test.js",
     "env": "node ./bin/env.js",
-    "start": "NODE_ENV=production node ./server",
-    "dev": "npm run env && node_modules/.bin/nodemon --watch server --ignore server/config/config.json --watch webpack --exec node ./server",
-    "bundle": "node node_modules/.bin/webpack -p --progress --config ./webpack/webpack.config.prod.js",
+    "start": "cross-env NODE_ENV=production node ./server",
+    "dev": "cross-env E2E=true npm run env && node_modules/.bin/nodemon --watch server --ignore server/config/config.json --watch webpack --exec E2E=true node ./server",
+    "bundle": "node node_modules/.bin/webpack -p --progress --config ./webpack/webpack.config.prod.js"
     "bundlestaging": "node node_modules/.bin/webpack -p --progress --config ./webpack/webpack.config.staging.js"
   },
   "engines": {
@@ -67,8 +67,11 @@
   "devDependencies": {
     "chai": "^4.1.2",
     "chromedriver": "^2.33.2",
+    "cross-env": "^5.2.0",
+    "dotenv": "^6.1.0",
     "env2": "^2.2.0",
     "nightwatch": "^0.9.21",
+    "node-slack-upload": "^1.2.1",
     "nodemon": "^1.17.5",
     "selenium-server": "^3.8.1"
   }
