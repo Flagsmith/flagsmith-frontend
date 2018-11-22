@@ -1,9 +1,12 @@
 // All tests are run from this file, that way we can ensure ordering
 // of tests (without needing to resort to alphabetical filenaming)
-
+require('dotenv').config();
+const path = require('path')
+const slackUpload = require('./slack-upload.test')
 const fork = require('child_process').fork;
 process.env.PORT = 8081;
-
+const SLACK_TOKEN = process.env.SLACK_TOKEN;
+const E2E_SLACK_CHANNEL = process.env.E2E_SLACK_CHANNEL;
 var server;
 
 const Project = require('../common/project');
@@ -52,12 +55,40 @@ module.exports = Object.assign(
             });
         },
         after: (browser, done) => {
-            server.kill('SIGINT');
-            clearDown(browser,done);
+            if (SLACK_TOKEN) {
+                return browser.waitForElementVisible('#e2e-request', ()=> {
+                    return browser.getText('#e2e-error', error => {
+                        return browser.getText('#e2e-request', request => {
+                            if (error) {
+                                const lastRequest = JSON.parse(request.value||{})
+                                const lastError = JSON.parse(error.value||{})
+                                console.log("Last request:", lastRequest);
+                                console.log("Last error:", lastError);
+                                const uri = path.join(__dirname, 'screenshot.png');
+                                browser.saveScreenshot(uri, ()=>{
+                                    slackUpload(uri,'E2E for Bullet Train Failed \n```' +JSON.stringify({
+                                        request: lastRequest,
+                                        error: lastError,
+                                    }, null,2).replace(/\\/g,'')+'```', E2E_SLACK_CHANNEL, 'Screenshot')
+                                        .then((res)=>{
+                                            server.kill('SIGINT');
+                                            browser.end();
+                                            done();
+                                        });
+                                })
+                            }
+                        })
+                    })
+                });
+            } else {
+                server.kill('SIGINT');
+                browser.end();
+                done();
+            }
         }
     },
     require('./main.test'), // Main flow tests
     require('./invite.test'), // Invite user tests
     require('./register-fail.test'), // Registration failure tests
-    require('./login-fail.test') // Login failure tests
+    require('./login-fail.test'), // Login failure tests
 );

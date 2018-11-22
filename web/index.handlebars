@@ -34,15 +34,15 @@
 </head>
 
 <body>
-
     <div id="app"></div>
     <div id="toast"></div>
     <div id="modal"></div>
     <div id="confirm"></div>
-
     {{#if isDev}}
     <!--This is inserted by webpack in production-->
     <script src="/build/main.js"></script> {{/if}}
+    <div id="e2e-request"></div>
+    <div id="e2e-error"></div>
 </body>
 
 </html>
