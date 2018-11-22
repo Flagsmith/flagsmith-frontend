@@ -79,9 +79,9 @@ module.exports = {
         // },
     },
     output: {
-        path: path.join(__dirname, '../build'),
+        path: path.join(__dirname, '../build/static'),
         filename: '[name].[hash].js',
-        publicPath: '/'
+        publicPath: 'https://cdn.bullet-train.io/static/'
     },
 
     plugins: require('./plugins')
