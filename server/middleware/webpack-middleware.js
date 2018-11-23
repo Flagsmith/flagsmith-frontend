@@ -1,5 +1,5 @@
 //Uses webpack dev + hot middleware
-var config = require('../../webpack/webpack.config.dev');
+var config = require('../../webpack/webpack.config.local');
 
 const webpack = require("webpack");
 const webpackDevMiddleware = require("webpack-dev-middleware");
