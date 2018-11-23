@@ -61,13 +61,13 @@
     "uglifyjs-webpack-plugin": "^1.2.5",
     "webpack": "4.4.1",
     "webpack-cli": "2.0.13",
+    "cross-env": "^5.2.0",
     "webpack-dev-middleware": "3.1.0",
     "webpack-hot-middleware": "2.21.2"
   },
   "devDependencies": {
     "chai": "^4.1.2",
     "chromedriver": "^2.33.2",
-    "cross-env": "^5.2.0",
     "dotenv": "^6.1.0",
     "env2": "^2.2.0",
     "nightwatch": "^0.9.21",
