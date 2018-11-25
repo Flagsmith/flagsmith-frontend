@@ -6,13 +6,11 @@ var controller = {
 
 		getIdentity: (envId, id) => {
 			store.loading();
-			Promise.all([
-				data.get(`${Project.api}environments/${envId}/identities/${id}/featurestates/?format=json`)
-
-			])
-				.then(([res]) => {
-					const features = res.results;
-					store.model = {features};
+			data.get(`${Project.api}identities/${id}/`, null, { 'x-environment-key': envId })
+				.then((res) => {
+					const features = res.flags;
+					const traits = res.traits;
+					store.model = {features, traits};
 					store.model.features = features && _.keyBy(features, (f) => {
 						return f.feature
 					});
@@ -40,6 +38,16 @@ var controller = {
 			})
 
 		},
+        editTrait: function({identity, environmentId, trait:{trait_key,trait_value}}) {
+		    store.saving();
+            data.post(`${Project.api}identities/${identity}/traits/${trait_key}`, {trait_value}, { 'x-environment-key': environmentId })
+                .then(()=>{
+                    store.saved();
+                    controller.getIdentity(environmentId,identity)
+                })
+                .catch((e) => API.ajaxHandler(store, e))
+
+        },
 		editUserFlag: function ({identity, projectFlag, environmentFlag, identityFlag, environmentId}) {
 			store.saving();
             API.trackEvent(Constants.events.EDIT_USER_FEATURE);
@@ -77,6 +85,9 @@ var controller = {
 		},
 		getIdentityFlags: function () {
 			return store.model && store.model.features
+		},
+		getTraits: function () {
+			return store.model && store.model.traits
 		}
 	});
 
@@ -84,7 +95,7 @@ var controller = {
 store.dispatcherIndex = Dispatcher.register(store, function (payload) {
 	var action = payload.action; // this is our action from	handleViewAction
 	const {
-		identity, projectFlag, environmentFlag, identityFlag, environmentId
+		identity, projectFlag, environmentFlag, identityFlag, environmentId, trait
 	} = action;
 	switch (action.actionType) {
 		case Actions.GET_IDENTITY:
@@ -99,6 +110,9 @@ store.dispatcherIndex = Dispatcher.register(store, function (payload) {
 			break;
 		case Actions.EDIT_USER_FLAG:
 			controller.editUserFlag({identity, projectFlag, environmentFlag, identityFlag, environmentId});
+			break;
+		case Actions.EDIT_TRAIT:
+			controller.editTrait({identity, environmentId, trait});
 			break;
 		case Actions.REMOVE_USER_FLAG:
 			controller.removeUserFlag(identity, identityFlag, environmentId);
