@@ -48,6 +48,10 @@ const clearDown = function(browser,done) {
 
 module.exports = Object.assign(
     {
+        // afterEach(browser, done) {
+        //     browser.pause(1000)
+        //     setTimeout(done,4000)
+        // },
         before: (browser, done) => {
             server = fork('./server');
             server.on('message', () => {

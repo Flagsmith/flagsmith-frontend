@@ -143,6 +143,12 @@ module.exports = Object.assign({}, require('./base/_app-actions'), {
 			...params
 		});
 	},
+	editTrait: function (params) { //refresh the entire app
+		Dispatcher.handleViewAction({
+			actionType: Actions.EDIT_TRAIT,
+			...params
+		});
+	},
 	toggleUserFlag: function (params) { //refresh the entire app
 		Dispatcher.handleViewAction({
 			actionType: Actions.TOGGLE_USER_FLAG,

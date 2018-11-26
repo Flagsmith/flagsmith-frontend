@@ -84,9 +84,9 @@ const TheComponent = class extends Component {
                                         <div>
                                             <h3>Features</h3>
                                             <p>
-                                                View and manage <Tooltip title={<a href={"#"}>feature flags</a>}
+                                                View and manage <Tooltip title={<a className="dark" href={"#"}>feature flags</a>}
                                                                          place="right">{Constants.strings.FEATURE_FLAG_DESCRIPTION}</Tooltip> and {" "}
-                                                <Tooltip title={<a href={"#"}>remote config</a>}
+                                                <Tooltip title={<a className="dark" href={"#"}>remote config</a>}
                                                          place="right">{Constants.strings.REMOTE_CONFIG_DESCRIPTION}</Tooltip> for
                                                 your selected environment.
                                             </p>
