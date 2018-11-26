@@ -243,6 +243,28 @@ module.exports = {
             .waitForElementNotPresent('#confirm-toggle-feature-btn')
             .waitForElementVisible('#user-features-list span.rc-switch.rc-switch-checked');
     },
+    '[Main Tests] - Add trait for user': function (browser) {
+        browser
+            .click('#add-trait')
+            .waitForElementVisible('[name="traitID"]')
+            .setValue('[name="traitID"]', 'color')
+            .setValue('[name="traitValue"]', 'red')
+            .click('#create-trait-btn')
+            .waitForElementNotPresent('#create-trait-btn')
+            .waitForElementVisible('#user-traits-list .js-trait-value');
+        browser.expect.element('#user-traits-list .js-trait-value').text.to.equal('"red"');
+    },
+    '[Main Tests] - Edit trait for user': function (browser) {
+        browser
+            .click('#user-traits-list .list-item')
+            .waitForElementVisible('[name="traitID"]')
+            .clearValue("[name='traitValue']")
+            .setValue('[name="traitValue"]', "1")
+            .click('#update-trait-btn')
+            .waitForElementNotPresent('#update-trait-btn')
+            .waitForElementVisible('#user-traits-list .js-trait-value');
+        browser.expect.element('#user-traits-list .js-trait-value').text.to.equal('1');
+    },
     '[Main Tests] - Edit environment': function (browser) {
         browser
             .click('#env-settings-link')

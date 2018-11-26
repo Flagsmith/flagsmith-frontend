@@ -211,7 +211,7 @@ const TheComponent = class extends Component {
                                                                     className={"flex flex-1"}
                                                                 >
                                                                     <Row>
-                                                                        <a href={"#"}>
+                                                                        <a className="js-trait-key" href={"#"}>
                                                                             {trait_key}
                                                                         </a>
                                                                     </Row>
@@ -219,6 +219,7 @@ const TheComponent = class extends Component {
                                                                 <Row>
                                                                     <Column>
                                                                         <FeatureValue
+                                                                            className="js-trait-value"
                                                                             value={trait_value + ""}
                                                                         />
                                                                     </Column>
@@ -240,7 +241,7 @@ const TheComponent = class extends Component {
                                                 />
                                             </FormGroup>
                                             <FormGroup className="text-center">
-                                                <Button onClick={this.createTrait}>Add new trait</Button>
+                                                <Button id="add-trait" onClick={this.createTrait}>Add new trait</Button>
                                             </FormGroup>
                                         </FormGroup>
                                     </div>
