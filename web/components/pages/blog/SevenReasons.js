@@ -1,6 +1,9 @@
+/**
+ * Created by niall on 27/11/2018.
+ */
 import React, {Component, PropTypes} from 'react';
 const ReactMarkdown = require('react-markdown')
-import md from './markdown/how-to-use-feature-flags-in-continuous-integration.md';
+import md from './markdown/7-reasons-for-devs-to-use-feature-flags-as-a-growth-hack.md';
 import lazyframe from 'lazyframe';
 import 'lazyframe/dist/lazyframe.css';
 

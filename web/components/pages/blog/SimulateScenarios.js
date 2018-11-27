@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 const ReactMarkdown = require('react-markdown')
-import md from './using-feature-flags-for-client-demos-and-simulating-complex-scenarios.md';
+import md from './markdown/using-feature-flags-for-client-demos-and-simulating-complex-scenarios.md';
 import lazyframe from 'lazyframe';
 import 'lazyframe/dist/lazyframe.css';
 
