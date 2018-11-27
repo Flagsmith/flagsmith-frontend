@@ -74,6 +74,8 @@
     "nightwatch": "^0.9.21",
     "node-slack-upload": "^1.2.1",
     "nodemon": "^1.17.5",
+    "raw-loader": "^0.5.1",
+    "react-markdown": "^4.0.3",
     "selenium-server": "^3.8.1"
   }
 }
