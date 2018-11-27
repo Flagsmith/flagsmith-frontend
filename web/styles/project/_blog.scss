@@ -72,6 +72,29 @@
     }
 }
 
+.markdown-content {
+    img {
+        max-width: 100%;
+    }
+    a {
+        font-weight:bold;
+        color: $pagination-color;
+        
+        &:hover{
+            color: $pagination-color;
+        }
+    }
+    pre {
+        background: $panel-heading-bg;
+        padding: 20px;
+        white-space: pre-wrap;
+        margin-top: 1em;
+    }
+    h2 {
+        margin-top:3rem;
+    }
+}
+
 .read-more{
     margin-top:3rem;
 
