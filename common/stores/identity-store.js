@@ -12,7 +12,7 @@ var controller = {
 					const traits = res.traits;
 					store.model = {features, traits};
 					store.model.features = features && _.keyBy(features, (f) => {
-						return f.feature
+						return f.feature.id
 					});
 					store.loaded()
 				})

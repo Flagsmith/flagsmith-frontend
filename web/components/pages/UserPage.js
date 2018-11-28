@@ -100,6 +100,7 @@ const TheComponent = class extends Component {
                                                     items={projectFlags}
                                                     renderRow={({ name, id, enabled, created_date, feature, type }, i) => {
                                                         const identityFlag = identityFlags[id];
+                                                        const featureIsDifferent = (identityFlag.enabled!== identityFlag.feature.default_enabled) || (identityFlag.feature_state_value!==identityFlag.feature.initial_value)
                                                         const values = Object.assign({}, environmentFlags[id], identityFlag || {})
                                                         return (
                                                             <Row className={"list-item clickable"} key={id} space>
@@ -112,7 +113,7 @@ const TheComponent = class extends Component {
                                                                             {name}
                                                                         </a>
                                                                     </Row>
-                                                                    {identityFlag ? (
+                                                                    {featureIsDifferent  ? (
                                                                         <Row className={"chip"}>
                                                                             <span>
                                                                                 Overriding defaults
