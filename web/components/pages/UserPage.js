@@ -152,7 +152,7 @@ const TheComponent = class extends Component {
                                                                         )}
 
                                                                     </Column>
-                                                                    {identityFlag && (
+                                                                    {featureIsDifferent && (
                                                                         <Column>
                                                                             <Button
                                                                                 onClick={() => this.confirmRemove(projectFlags[i], () => {
