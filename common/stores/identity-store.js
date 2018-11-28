@@ -6,7 +6,7 @@ var controller = {
 
 		getIdentity: (envId, id) => {
 			store.loading();
-			data.get(`${Project.api}identities/${id}/`, null, { 'x-environment-key': envId })
+			return data.get(`${Project.api}identities/${id}/`, null, { 'x-environment-key': envId })
 				.then((res) => {
 					const features = res.flags;
 					const traits = res.traits;
@@ -42,8 +42,8 @@ var controller = {
 		    store.saving();
             data.post(`${Project.api}identities/${identity}/traits/${trait_key}`, {trait_value}, { 'x-environment-key': environmentId })
                 .then(()=>{
-                    store.saved();
-                    controller.getIdentity(environmentId,identity)
+                    return controller.getIdentity(environmentId,identity)
+                        .then(()=>store.saved());
                 })
                 .catch((e) => API.ajaxHandler(store, e))
 
@@ -64,8 +64,8 @@ var controller = {
 				});
 
 			prom.then((res) => {
-				store.model.features[res.feature] = res;
-				store.saved();
+                return controller.getIdentity(environmentId,identity)
+                    .then(()=>store.saved());
 			})
 		},
 		removeUserFlag: function (identity, identityFlag, environmentId) {
@@ -73,8 +73,8 @@ var controller = {
             API.trackEvent(Constants.events.REMOVE_USER_FEATURE);
             data.delete(`${Project.api}environments/${environmentId}/identities/${identity}/featurestates/${identityFlag.id}/?format=json`)
 				.then(() => {
-					delete store.model.features[identityFlag.feature];
-					store.saved();
+                    return controller.getIdentity(environmentId,identity)
+                        .then(()=>store.saved());
 				})
 		}
 	},
