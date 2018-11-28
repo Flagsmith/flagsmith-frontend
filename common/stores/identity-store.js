@@ -20,7 +20,7 @@ var controller = {
 		toggleUserFlag: function ({identity, projectFlag, environmentFlag, identityFlag, environmentId}) {
 			store.saving();
             API.trackEvent(Constants.events.TOGGLE_USER_FEATURE);
-            var prom = identityFlag ?
+            var prom = identityFlag.identity ?
 				data.put(`${Project.api}environments/${environmentId}/identities/${identity}/featurestates/${identityFlag.id}/?format=json`, Object.assign({}, {
 					id: identityFlag.id,
 					enabled: !identityFlag.enabled,
@@ -51,7 +51,7 @@ var controller = {
 		editUserFlag: function ({identity, projectFlag, environmentFlag, identityFlag, environmentId}) {
 			store.saving();
             API.trackEvent(Constants.events.EDIT_USER_FEATURE);
-            var prom = identityFlag.id ?
+            var prom = identityFlag.identity ?
 				data.put(`${Project.api}environments/${environmentId}/identities/${identity}/featurestates/${identityFlag.id}/?format=json`, Object.assign({}, {
 					id: identityFlag.id,
 					enabled: identityFlag.enabled,
