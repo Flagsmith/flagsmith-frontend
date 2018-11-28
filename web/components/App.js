@@ -66,7 +66,7 @@ const App = class extends Component {
         const pathname = location.pathname;
         const isHomepage = pathname == '/' || pathname == '/login';
         const isLegal = pathname == '/legal/tos' || pathname == '/legal/sla' || pathname == '/legal/privacy-policy';
-        const isDark = pathname == '/blog/remote-config-and-feature-flags';
+        const isDark = pathname.indexOf('/blog') !== -1;
 
         const redirect = location.query.redirect ? `?redirect=${location.query.redirect}` : "";
 
@@ -83,12 +83,12 @@ const App = class extends Component {
 
                         return (
                             <div className={pageHasAside && "aside-body"}>
-                                <nav className={"navbar navbar-fixed-top " + (pageHasAside ? " navbar-aside" : '') + (isHomepage ? " navbar-homepage " : '')  + (isLegal ? "navbar-aside dark-header " : '') + (isDark ? " dark-header " : '') + this.state.myClassName}>
+                                <nav className={"navbar navbar-fixed-top " + (pageHasAside ? " navbar-aside" : '') + (isHomepage ? " navbar-homepage " : '')  + (isLegal ? "navbar-aside dark-header " : '') + (isDark ? " dark-header " : '') + (this.state.myClassName ? this.state.myClassName : '')}>
                                     <div className="navbar-left">
                                         <div className="navbar-nav">
                                             {!projectId && (
                                                 <Link to={user ? "/projects" : "/"}
-                                                    className="nav-item nav-item-brand nav-link">
+                                                      className="nav-item nav-item-brand nav-link">
                                                     {isLegal ? null : (<Row>
                                                         {isHomepage || isDark ? (<img title={"Bullet Train"} height={24} src={"/images/bullet-train-1.svg"} className="brand"/>) :
                                                             (<img title={"Bullet Train"} height={24} src={"/images/bullet-train-black.svg"} className="brand"/>) }
@@ -101,12 +101,12 @@ const App = class extends Component {
                                         {user ? (
                                             <div className="flex-column org-nav">
                                                 <Popover className="popover-right"
-                                                        renderTitle={(toggle) => (
-                                                            <a id="org-menu" onClick={toggle}>
-                                                                {organisation ? organisation.name : ''}
-                                                                <div className="flex-column ion ion-ios-arrow-down"/>
-                                                            </a>
-                                                        )}>
+                                                         renderTitle={(toggle) => (
+                                                             <a id="org-menu" onClick={toggle}>
+                                                                 {organisation ? organisation.name : ''}
+                                                                 <div className="flex-column ion ion-ios-arrow-down"/>
+                                                             </a>
+                                                         )}>
                                                     {(toggle) => (
                                                         <div>
 
@@ -127,8 +127,8 @@ const App = class extends Component {
                                                             </div>
 
                                                             <a id="logout-link" href="#"
-                                                            onClick={() => AppActions.setUser(null)}
-                                                            to="exampleone">Logout</a>
+                                                               onClick={() => AppActions.setUser(null)}
+                                                               to="exampleone">Logout</a>
                                                         </div>
                                                     )}
                                                 </Popover>
@@ -163,13 +163,13 @@ const App = class extends Component {
                                 {hasPaid ? null : hasFreeUse ? (
                                     <div className={"footer-bar"}>
                                         Your organisation is using Bullet Train for free. {pathname.indexOf('organisation-settings') === -1 && this.props.params.projectId && this.props.params.environmentId ? (
-                                            <span>Click <Link
+                                        <span>Click <Link
                                             id="organisation-settings-link"
                                             activeClassName={"active"}
                                             to={`/project/${this.props.params.projectId}/environment/${this.props.params.environmentId}/organisation-settings`}>
                                             here
                                         </Link> for further information on {hasFeature('free_tier') ? 'upgrading' : 'migrating'} to a paid plan.</span>
-                                        ) : null}
+                                    ) : null}
                                     </div>
                                 ) : hasFreeTrial ? (
                                     <div className={"footer-bar"}>
