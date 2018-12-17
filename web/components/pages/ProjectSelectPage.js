@@ -1,10 +1,9 @@
 import React, {Component, PropTypes} from 'react';
 import CreateProjectModal from '../modals/CreateProject'
-import AccountStore from '../../../common/stores/account-store';
 import EditOrganisationModal from '../modals/EditOrganisation'
 
 const TheComponent = class extends Component {
-    displayName: 'TheComponent'
+    static displayName = 'ProjectSelectPage';
 
     constructor(props, context) {
         super(props, context);

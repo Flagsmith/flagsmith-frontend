@@ -25,6 +25,15 @@ const TheComponent = class extends Component {
         this.listenTo(FeatureListStore, 'saved', () => {
             this.props.onSave && this.props.onSave();
         });
+
+        this.listenTo(FeatureListStore, 'problem', () => {
+            this.setState({
+                isSaving: FeatureListStore.isSaving,
+                isLoading: FeatureListStore.isLoading,
+                error: FeatureListStore.error,
+            });
+            this.props.onError && this.props.onError(FeatureListStore.error);
+        });
     }
 
     toggleFlag = (i, environments) => {

@@ -3,7 +3,7 @@ import EnvironmentSelect from './EnvironmentSelect'
 import Popover from './base/Popover';
 
 const TheComponent = class extends Component {
-	displayName: 'TheComponent'
+	static displayName = 'Aside';
 
 	static contextTypes = {
 		router: React.PropTypes.object.isRequired
@@ -65,6 +65,11 @@ const TheComponent = class extends Component {
 												onChange={(environment) => {
 													toggle();
 													this.context.router.push(`/project/${this.props.projectId}/environment/${environment}/features`);
+													AsyncStorage.setItem('lastEnv', JSON.stringify({
+															orgId: AccountStore.getOrganisation().id,
+															projectId: this.props.projectId,
+															environmentId: environment
+													}));
 												}}/>
 											<div className="btn-container">
 												<Link

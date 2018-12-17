@@ -2,7 +2,6 @@ import React, {Component, PropTypes} from 'react';
 import {Link} from 'react-router';
 import Aside from './Aside';
 import Popover from '../components/base/Popover';
-import AccountStore from '../../common/stores/account-store';
 import Feedback from '../components/modals/Feedback';
 import PaymentModal from '../components/modals/Payment';
 
@@ -38,7 +37,32 @@ const App = class extends Component {
 
         //Redirect on login
         if (this.props.location.pathname == '/' || this.props.location.pathname == '/login' || this.props.location.pathname == '/demo' || this.props.location.pathname == '/signup') {
-            this.context.router.replace(redirect ? redirect : '/projects');
+            if (redirect) {
+                this.context.router.replace(redirect);
+            } else {
+                AsyncStorage.getItem('lastEnv')
+                    .then(res => {
+                        if (res) {
+                            const lastEnv = JSON.parse(res);
+                            const lastOrg = _.find(AccountStore.getUser().organisations, {id: lastEnv.orgId});
+                            if (!lastOrg) {
+                                this.context.router.replace("/projects");
+                                return;
+                            }
+
+                            const org = AccountStore.getOrganisation();
+                            if (!org || org.id !== lastOrg.id) {
+                                AppActions.selectOrganisation(lastOrg.id);
+                                AppActions.getOrganisation(lastOrg.id);
+                            }
+
+                            this.context.router.replace(`/project/${lastEnv.projectId}/environment/${lastEnv.environmentId}/features`);
+                            return;
+                        }
+
+                        this.context.router.replace("/projects");
+                    });
+            }
         }
     };
 

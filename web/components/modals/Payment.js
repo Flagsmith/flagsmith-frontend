@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import AccountStore from '../../../common/stores/account-store';
 import makeAsyncScriptLoader from "react-async-script";
 
 const PaymentModal = class extends Component {

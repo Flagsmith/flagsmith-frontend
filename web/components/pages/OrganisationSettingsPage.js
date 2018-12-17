@@ -1,6 +1,5 @@
 import React, {Component, PropTypes} from 'react';
 import CreateProjectModal from '../modals/CreateProject'
-import AccountStore from '../../../common/stores/account-store';
 import EditOrganisationModal from '../modals/EditOrganisation'
 import InviteUsersModal from '../modals/InviteUsers'
 import ConfirmRemoveOrganisation from '../modals/ConfirmRemoveOrganisation'
@@ -8,7 +7,7 @@ import PaymentModal from '../modals/Payment';
 import CancelPaymentPlanModal from '../modals/CancelPaymentPlan';
 
 const TheComponent = class extends Component {
-	displayName: 'TheComponent'
+	static displayName = 'OrganisationSettingsPage';
 
 	constructor(props, context) {
 		super(props, context);

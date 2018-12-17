@@ -1,5 +1,4 @@
 import React from "react";
-import AccountStore from '../../../common/stores/account-store';
 import ForgotPasswordModal from '../ForgotPasswordModal';
 import Hero from '../Hero';
 import Footer from '../Footer';
@@ -16,12 +15,8 @@ const HomePage = class extends React.Component {
         this.state = {};
     }
 
-    componentWillMount() {
-        if (AccountStore.getOrganisation() && AccountStore.getUser() && !AccountStore.isDemo) {
-            this.context.router.replace("/projects?intro=1")
-        } else if (!AccountStore.getOrganisation() && AccountStore.getUser() && !AccountStore.isDemo) {
-            this.context.router.replace("/create")
-        }
+    componentDidMount() {
+        lazyframe('.lazyframe');
 
         API.trackPage(Constants.pages.HOME);
 
@@ -37,10 +32,6 @@ const HomePage = class extends React.Component {
                 $(".navbar-homepage").removeClass("dark-header");
             }
         });
-    }
-
-    componentDidMount() {
-        lazyframe('.lazyframe');
     }
 
     showForgotPassword = (e) => {
