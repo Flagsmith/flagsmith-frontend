@@ -148,7 +148,7 @@ $animation-timing-function: ease-in-out;
 
 .aside-select {
 	background-color: $aside-bg-alt;
-	padding: 20px 0px;
+	padding: 10px 0px;
 	color: white;
 	h3 {
 		background-color: $panel-heading-bg;
@@ -163,10 +163,13 @@ $animation-timing-function: ease-in-out;
 	.popover-inner {
 		width: 200px;
 		left: 0px;
-		margin-top: 30px;
+		margin-top: 10px;
 		.popover {
 			padding-top: 0;
 			min-width: 250px;
 		}
+	}
+	&--project {
+		background-color: $aside-bg-project;
 	}
 }

@@ -11,8 +11,12 @@ const TheComponent = class extends Component {
         AppActions.getOrganisation(AccountStore.getOrganisation().id);
     }
 
-    componentWillMount = () => {
+    componentDidMount = () => {
         API.trackPage(Constants.pages.PROJECT_SELECT);
+        const { state } = this.props.location;
+        if (state && state.create) {
+            this.newProject();
+        }
     };
 
     static contextTypes = {

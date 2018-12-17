@@ -163,7 +163,7 @@ var controller = {
             data.delete(`${Project.api}organisations/${store.organisation.id}/?format=json`)
                 .then(res => {
                     store.model.organisations = _.filter(store.model.organisations, org => org.id !== store.organisation.id);
-                    store.organisation = store.model.organisations[0];
+                    store.organisation = store.model.organisations.length ? store.model.organisations[0] : null;
                     store.trigger("removed");
                 })
         }
