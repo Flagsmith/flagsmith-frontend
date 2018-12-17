@@ -44,7 +44,11 @@ const TheComponent = class extends Component {
 
 	onRemove = () => {
 		toast("Your organisation has been removed");
-		this.context.router.replace("/projects");
+		if (AccountStore.getOrganisation()) {
+			this.context.router.replace("/projects");
+		} else {
+			this.context.router.replace("/create");
+		}
 	};
 
 	deleteInvite = (id) => {
