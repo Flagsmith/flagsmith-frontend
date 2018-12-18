@@ -109,22 +109,27 @@ const HomePage = class extends React.Component {
                                 <p>With Bullet Train you can configure attributes of your features as well as turning
                                     them on or off for specific user groups.</p>
                             </div>
-                            <div className={"homepage-features col-md-6 push-md-3 row mt-5"}>
-                                <div className="col-md-4">
+                            <div className={"homepage-features col-md-8 push-md-2 row mt-5"}>
+                                <div className="col-md-3">
                                     <ion className="homepage-icon icon ion-ios-rocket"/>
                                     <h5>Feature Flags</h5>
                                     <p>Ship features remotely across multiple environments.</p>
                                 </div>
-                                <div className="col-md-4">
-                                    <ion className="homepage-icon icon ion-ios-laptop"/>
+                                <div className="col-md-3">
+                                    <ion className="homepage-icon icon ion-ios-color-palette"/>
                                     <h5>Remote Config</h5>
                                     <p>Change the behaviour, appearance and config of your app here without needing to
                                         build.</p>
                                 </div>
-                                <div className="col-md-4">
+                                <div className="col-md-3">
                                     <ion className="homepage-icon icon ion-ios-laptop"/>
                                     <h5>Use anywhere</h5>
                                     <p>Integrate Bullet Train with your website, mobile apps or server</p>
+                                </div>
+                                <div className="col-md-3">
+                                    <ion className="homepage-icon icon ion-ios-person"/>
+                                    <h5>User Traits</h5>
+                                    <p>Store traits against your users without modifying your back-end.</p>
                                 </div>
                             </div>
                             <div className="home-sections">
