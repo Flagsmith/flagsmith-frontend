@@ -249,7 +249,7 @@ const TheComponent = class extends Component {
                                     <div className={"col-md-12"}>
                                         <FormGroup>
                                             <TryIt
-                                                title={"Check to see what features are coming back for this user"}
+                                                title={"Check to see what features and traits are coming back for this user"}
                                                 environmentId={this.props.params.environmentId}
                                                 userId={this.props.params.id}
                                             />
