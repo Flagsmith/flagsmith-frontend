@@ -1,15 +1,16 @@
 {
   "name": "bullet-train-frontend",
-  "version": "1.0.0",
+  "version": "1.3.0",
   "description": "The frontend application for Bullet Train",
   "main": "index.js",
   "scripts": {
-    "test": "nightwatch ./tests/index.test.js",
+    "test": "cross-env E2E=true nightwatch ./tests/index.test.js",
     "env": "node ./bin/env.js",
-    "start": "NODE_ENV=production node ./server",
-    "dev": "npm run env && node_modules/.bin/nodemon --watch server --ignore server/config/config.json --watch webpack --exec node ./server",
+    "start": "cross-env NODE_ENV=production node ./server",
+    "dev": "cross-env npm run env && node_modules/.bin/nodemon --watch server --ignore server/config/config.json --watch webpack --exec node ./server",
     "bundle": "node node_modules/.bin/webpack -p --progress --config ./webpack/webpack.config.prod.js",
-    "bundlestaging": "node node_modules/.bin/webpack -p --progress --config ./webpack/webpack.config.staging.js"
+    "bundlestaging": "node node_modules/.bin/webpack -p --progress --config ./webpack/webpack.config.staging.js",
+    "bundledev": "node node_modules/.bin/webpack -p --progress --config ./webpack/webpack.config.dev.js"
   },
   "engines": {
     "node": "8.x",
@@ -29,7 +30,9 @@
     "clean-webpack-plugin": "0.1.10",
     "colors": "^1.3.0",
     "copy-webpack-plugin": "4.5.1",
+    "cross-env": "^5.2.0",
     "css-loader": "0.23.1",
+    "dotenv": "^6.1.0",
     "extract-text-webpack-plugin": "4.0.0-beta.0",
     "flux-react-dispatcher": "1.2.5",
     "html-loader": "0.4.3",
@@ -69,7 +72,10 @@
     "chromedriver": "^2.33.2",
     "env2": "^2.2.0",
     "nightwatch": "^0.9.21",
+    "node-slack-upload": "^1.2.1",
     "nodemon": "^1.17.5",
+    "raw-loader": "^0.5.1",
+    "react-markdown": "^4.0.3",
     "selenium-server": "^3.8.1"
   }
 }

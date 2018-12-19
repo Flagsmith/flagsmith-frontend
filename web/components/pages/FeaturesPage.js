@@ -6,7 +6,11 @@ import TryIt from '../TryIt';
 import ConfirmRemoveFeature from '../modals/ConfirmRemoveFeature';
 
 const TheComponent = class extends Component {
-    displayName: 'TheComponent'
+    static displayName = 'FeaturesPage';
+
+    static contextTypes = {
+        router: React.PropTypes.object.isRequired
+    };
 
     constructor(props, context) {
         super(props, context);
@@ -22,8 +26,14 @@ const TheComponent = class extends Component {
         }
     }
 
-    componentWillMount = () => {
+    componentDidMount = () => {
         API.trackPage(Constants.pages.FEATURES);
+        const { params } = this.props;
+        AsyncStorage.setItem('lastEnv', JSON.stringify({
+            orgId: AccountStore.getOrganisation().id,
+            projectId: params.projectId,
+            environmentId: params.environmentId
+        }));
     };
 
     newFlag = () => {
@@ -70,11 +80,16 @@ const TheComponent = class extends Component {
                                                           cb={cb}/>)
     }
 
+    onError = (error) => {
+        // Kick user back out to projects
+        this.context.router.replace('/projects');
+    }
+
     render() {
         const {projectId, environmentId} = this.props.params;
         return (
             <div id="features-page" className="app-container container">
-                <FeatureListProvider onSave={this.onSave}>
+                <FeatureListProvider onSave={this.onSave} onError={this.onError}>
                     {({isLoading, projectFlags, environmentFlags}, {environmentHasFlag, toggleFlag, editFlag, removeFlag}) => (
                         <div className="features-page">
                             {isLoading && <div className="centered-container"><Loader/></div>}
@@ -84,9 +99,9 @@ const TheComponent = class extends Component {
                                         <div>
                                             <h3>Features</h3>
                                             <p>
-                                                View and manage <Tooltip title={<a href={"#"}>feature flags</a>}
+                                                View and manage <Tooltip title={<a className="dark" href={"#"}>feature flags</a>}
                                                                          place="right">{Constants.strings.FEATURE_FLAG_DESCRIPTION}</Tooltip> and {" "}
-                                                <Tooltip title={<a href={"#"}>remote config</a>}
+                                                <Tooltip title={<a className="dark" href={"#"}>remote config</a>}
                                                          place="right">{Constants.strings.REMOTE_CONFIG_DESCRIPTION}</Tooltip> for
                                                 your selected environment.
                                             </p>

@@ -13,21 +13,6 @@ const TheComponent = class extends Component {
         this.state = {};
     }
 
-    componentWillMount() {
-        $(window).scroll(function() {
-            var scroll = $(window).scrollTop();
-
-            //>=, not <=
-            if (scroll >= 60) {
-                //clearHeader, not clearheader - caps H
-                $(".navbar").addClass("light-header");
-
-            } else if (scroll <= 60){
-                $(".navbar").removeClass("light-header");
-            }
-        });
-    }
-
     componentDidMount() {
         lazyframe('.lazyframe');
     }
@@ -99,48 +84,6 @@ const TheComponent = class extends Component {
                             <p className="blog-post__text">And for all we know, it’s working. But, maybe, don’t do that in your company…</p>
                             <p className="blog-post__text">And, if you know any more feature flag disasters, or best use cases, send them my way. We’re obsessed with feature flags because that’s why we built Bullet Train in the first place.</p>
                             <p className="blog-post__text">Also, more feature flag content coming up, and continuous integration stuff, for more info on all of that, visit our content here.</p>
-                        </div>
-                        <div className="read-more">
-                            <hr/>
-                            <h4 className="text-center read-more__title">More articles from us</h4>
-                            <div className="row">
-                                <div className="col-12 col-md-4">
-                                    <div className="panel panel-default blog-summary">
-                                        <div>
-                                            <img className="blog-summary__image" src="http://placehold.it/100x50"/>
-                                        </div>
-                                        <div className="panel-footer blog-summary__footer">
-                                            <p className="text-small muted">Other posts like this</p>
-                                            <h5>When feature flags go wrong</h5>
-                                            <p className="text-small">by Kyle Johnson</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-12 col-md-4">
-                                    <div className="panel panel-default blog-summary">
-                                        <div>
-                                            <img className="blog-summary__image" src="http://placehold.it/100x50"/>
-                                        </div>
-                                        <div className="panel-footer blog-summary__footer">
-                                            <p className="text-small muted">Other posts like this</p>
-                                            <h5>When feature flags go wrong</h5>
-                                            <p className="text-small">by Kyle Johnson</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-12 col-md-4">
-                                    <div className="panel panel-default blog-summary">
-                                        <div>
-                                            <img className="blog-summary__image" src="http://placehold.it/100x50"/>
-                                        </div>
-                                        <div className="panel-footer blog-summary__footer">
-                                            <p className="text-small muted">Other posts like this</p>
-                                            <h5>When feature flags go wrong</h5>
-                                            <p className="text-small">by Kyle Johnson</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
 
                     </div>

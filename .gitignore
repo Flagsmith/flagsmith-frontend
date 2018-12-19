@@ -9,3 +9,4 @@ mobile/common/
 e2e_screenshots
 reports/
 tests/tokens.json
+*.env

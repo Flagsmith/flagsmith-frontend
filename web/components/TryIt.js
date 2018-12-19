@@ -13,19 +13,29 @@ const TheComponent = class extends Component {
         const {environmentId, userId} = this.props;
         this.setState({isLoading: true});
         API.trackEvent(Constants.events.TRY_IT);
-        fetch(userId ? `${Project.api}flags/${userId}/` : `${Project.api}flags/`, {
+        fetch(userId ? `${Project.api}identities/${userId}/` : `${Project.api}flags/`, {
             headers: {'X-Environment-Key': environmentId}
         })
             .then((res) => res.json())
             .then((data) => {
                 var res = {};
-                data.map(({feature, type, enabled, feature_state_value}) => {
-                    res[feature.name] = feature.type == "FLAG" ? {
+                if (userId) {
+                    res.features = {};
+                    res.traits = {};
+                }
+                const features = userId ? data.flags : data;
+                features.map(({feature, type, enabled, feature_state_value}) => {
+                    (userId ? res.features : res)[feature.name] = feature.type == "FLAG" ? {
                         enabled
-                    } : res[feature.name] ={
+                    } : (userId ? res.features : res)[feature.name] ={
                         value: feature_state_value,
                     }
                 });
+                if (userId) {
+                    data.traits.map(({trait_key, trait_value}) => {
+                        res.traits[trait_key] = trait_value;
+                    });
+                }
                 res = JSON.stringify(res, null, 2);
                 this.setState({isLoading: false, data:res});
                 toast("Retrieved results");

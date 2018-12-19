@@ -2,24 +2,16 @@ var data = require('../../common/data/base/_data');
 
 const Footer = class extends React.Component {
   state = {
-    servicesOk: true
+    operational: true
   }
   componentDidMount() {
-    data.get('https://cachet.dokku1.solidstategroup.com/api/v1/components')
-      .then(res => {
-        var ok = true;
-        _.each(res.data, component => {
-          if (component.status !== 1) ok = false;
-        })
-        this.setState({servicesOk: ok});
-      });
   }
   render() {
     const { hasFeature, className } = this.props;
     return (
       <footer className={className + " clearfix"}>
         <div className="service-status text-center">
-          {this.state.servicesOk ?
+          {this.state.operational ?
             <div><span className={"dot green"} />Bullet Train services are operational</div> :
             <div><span className={"dot orange"} />Bullet Train services are experiencing problems. Click <a href="https://cachet.dokku1.solidstategroup.com/">here</a> for more info</div>
           }

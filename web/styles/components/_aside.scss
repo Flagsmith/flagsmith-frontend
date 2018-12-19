@@ -1,6 +1,6 @@
 .aside-body {
 	padding-left: $aside-width;
-	padding-bottom: 44px;
+	//padding-bottom: 44px;
 }
 
 
@@ -45,9 +45,9 @@ $animation-timing-function: ease-in-out;
 	&.demo {
 		padding-bottom: 64px;
 	}
-	&.footer {
-		height: calc(100% - (30px + 1.2em * 1.5)) // 15px padding top/bottom + font size * line height of footer bar
-	}
+	//&.footer {
+	//	height: calc(100% - (30px + 1.2em * 1.5)) // 15px padding top/bottom + font size * line height of footer bar
+	//}
 	position: fixed;
 	animation-name: asideIn;
 	animation-duration: $animation-duration;
@@ -59,6 +59,9 @@ $animation-timing-function: ease-in-out;
 	height: 100%;
 	background: $aside-bg;
 	z-index: 2;
+	-webkit-box-shadow: 5px 0px 2px -2px rgba(0,0,0,0.25);
+	-moz-box-shadow: 5px 0px 2px -2px rgba(0,0,0,0.25);
+	box-shadow: 5px 0px 2px -2px rgba(0,0,0,0.25);
 
 	.brand-container {
 		.flex-row {
@@ -148,7 +151,7 @@ $animation-timing-function: ease-in-out;
 
 .aside-select {
 	background-color: $aside-bg-alt;
-	padding: 20px 0px;
+	padding: 10px 0px;
 	color: white;
 	h3 {
 		background-color: $panel-heading-bg;
@@ -159,14 +162,25 @@ $animation-timing-function: ease-in-out;
 	.faint {
 		color: rgba(0,0,0,.4);
 		font-size: 1em;
+		&--white {
+			color: rgba(255, 255, 255, .4);
+		}
 	}
 	.popover-inner {
 		width: 200px;
 		left: 0px;
-		margin-top: 30px;
+		margin-top: 10px;
 		.popover {
 			padding-top: 0;
 			min-width: 250px;
 		}
 	}
+	&--project {
+		background-color: $aside-bg-project;
+	}
+}
+
+.aside-content-bottom {
+	flex-direction: column;
+	justify-content: flex-end;
 }

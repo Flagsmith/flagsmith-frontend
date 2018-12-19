@@ -16,6 +16,10 @@
     float:right;
 }
 
+.hidden {
+    display: none;
+}
+
 .float-left{
     float:left;
 }
@@ -40,3 +44,6 @@
     text-decoration: underline;
 }
 
+.e2e {
+    pointer-events: none !important;
+}

@@ -55,7 +55,7 @@ deploydevelop:
     script:
         - npm i
         - export ENV=dev; npm run env
-        - npm run bundle
+        - npm run bundledev
         - echo $DEPLOY_KEY_FILE_DEV > /tmp/$CI_PIPELINE_ID.json
         - gcloud auth activate-service-account --key-file /tmp/$CI_PIPELINE_ID.json
         - gcloud config set project bullet-train-front-end-dev
