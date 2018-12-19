@@ -32,6 +32,7 @@ const TheComponent = class extends Component {
 	}
 
 	render() {
+		const isDark = /*pathname.indexOf('/blog') !== -1*/ true;
 		return (
 			<OrganisationProvider>
         {({isLoading: isLoadingOrg, projects}) => (
@@ -40,10 +41,14 @@ const TheComponent = class extends Component {
 							<Flex className={"aside " + (this.props.className||"")}>
 								<div className="brand-container text-center">
 									<Link to="/projects">
-										<Row>
-											<img height={34} src={"/images/icon-2.png"}/>
-											Bullet Train
-										</Row>
+										<div>
+											{isDark ? (<img title={"Bullet Train"} height={24}
+																			src={"/images/bullet-train-1.svg"}
+																			className="brand"/>) :
+											(<img title={"Bullet Train"} height={24}
+														src={"/images/bullet-train-black.svg"}
+														className="brand"/>)}
+										</div>
 									</Link>
 								</div>
 								{(isLoading || isLoadingOrg) && <Loader/>}
