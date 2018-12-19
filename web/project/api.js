@@ -23,7 +23,9 @@ global.API = {
                 store.goneABitWest();
             }
         }).catch((e) => {
-            // TODO?
+            if (store) {
+                store.goneABitWest();
+            }
         });
     },
     trackEvent: function(data) {

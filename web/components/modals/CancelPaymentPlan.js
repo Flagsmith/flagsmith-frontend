@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import AccountStore from '../../../common/stores/account-store';
 
 const CancelPaymentPlanModal = class extends Component {
   static displayName = 'CancelPaymentPlanModal'
