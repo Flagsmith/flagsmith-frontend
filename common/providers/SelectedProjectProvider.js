@@ -3,7 +3,7 @@ import OrganisationStore from '../stores/organisation-store';
 import AccountStore from '../stores/account-store';
 
 const TheComponent = class extends Component {
-	displayName: 'TheComponent'
+	static displayName = 'SelectedProjectProvider';
 
 	constructor(props, context) {
 		super(props, context);

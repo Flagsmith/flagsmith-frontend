@@ -19,7 +19,7 @@ var controller = {
                         keyedEnvironmentFeatures: environmentFeatures.results && _.keyBy(environmentFeatures.results, "feature"),
                     };
                     store.loaded();
-                });
+                }).catch((e) => API.ajaxHandler(store, e));
             }
         },
         createFlag(projectId, environmentId, flag) {

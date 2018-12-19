@@ -30,7 +30,7 @@ const TheComponent = class extends Component {
 
     onRemove = () => {
         toast("Your project has been removed");
-        this.context.router.replace("/");
+        this.context.router.replace("/projects");
     };
 
     confirmRemove = (environment, cb) => {

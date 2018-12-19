@@ -5,150 +5,155 @@
 @import "project/index";
 
 .faint {
-  color: $text-muted;
-  font-size: 0.8em;
+    color: $text-muted;
+    font-size: 0.8em;
 }
 
 .faint-lg {
-  color: $text-muted;
-  font-size: 1.25em;
+    color: $text-muted;
+    font-size: 1.25em;
 }
 
 .flag-example {
-  margin-left: -15px;
-  margin-right: -15px;
-  padding: 20px;
-  background-color: #f1f1f1;
-  margin-top:20px;
-  margin-bottom:20px;
+    margin-left: -15px;
+    margin-right: -15px;
+    padding: 20px;
+    background-color: #f1f1f1;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .striped-section {
-  padding: 20px;
-  &:nth-child(2) {
-    background-color: #f7f7f7;
-  }
+    padding: 20px;
+    &:nth-child(2) {
+        background-color: #f7f7f7;
+    }
 }
 
 .gif {
-  position: relative;
-  cursor: pointer;
-  ion {
-    box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12);
-    height: 64px;
-    line-height: 64px;
-    border-radius: 32px;
-    width: 64px;
-    background: #f1f1f1;
-    display: inline-block;
-    position: absolute;
-    font-size: 1.5em;
-  }
-  &.playing {
+    position: relative;
+    cursor: pointer;
     ion {
-      display: none;
+        box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12);
+        height: 64px;
+        line-height: 64px;
+        border-radius: 32px;
+        width: 64px;
+        background: #f1f1f1;
+        display: inline-block;
+        position: absolute;
+        font-size: 1.5em;
     }
-  }
-  &:hover {
-    ion {
-      color:#999;
+    &.playing {
+        ion {
+            display: none;
+        }
     }
-  }
+    &:hover {
+        ion {
+            color: #999;
+        }
+    }
 }
 
 .feature-value-container {
-  font-size: 0.8em;
-  background: #23364a;
-  color: #bababa;
-  padding: 5px 10px;
-  border-radius: 20px;
-  font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  .feature-value {
-    color: #6896ba;
-  }
-  &.string {
-    .quot {
-      color: #6a8759;
-    }
+    font-size: 0.8em;
+    background: #23364a;
+    color: #bababa;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
     .feature-value {
-      color: #6a8759;
+        color: #6896ba;
     }
-  }
+    &.string {
+        .quot {
+            color: #6a8759;
+        }
+        .feature-value {
+            color: #6a8759;
+        }
+    }
 }
 
 .clickable {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 body {
-  background: #fff;
-  font-family: $font-family;
-  font-weight: 200;
+    background: #fff;
+    font-family: $font-family;
+    font-weight: 200;
 }
 
 a {
-  color: $link-color;
-  font-weight: 400;
-  cursor: pointer;
+    color: $link-color;
+    font-weight: 400;
+    cursor: pointer;
 }
 
 h1, h2, h3 {
-  font-weight: 300;
+    font-weight: 300;
 }
 
 label {
-  font-weight: 400;
+    font-weight: 400;
 }
 
 input:disabled {
-  opacity: 0.4;
+    opacity: 0.4;
 }
 
 .full-width {
-  width: 100%;
+    width: 100%;
 }
 
 .text-center {
-  text-align: center;
+    text-align: center;
 }
 
 .text-right {
-  text-align: right;
+    text-align: right;
 }
 
 .inline-block {
-  display: inline-block;
+    display: inline-block;
 }
 
 .app-container {
-  margin-top: 50px;
+    margin-top: 70px;
+    margin-bottom: 70px;
 }
 
 hr {
-  color: #f1f1f1;
+    color: #f1f1f1;
 }
 
 .form-group {
-  margin-bottom: $input-padding-y /2;
+    margin-bottom: $input-padding-y /2;
 }
 
 .header-icon {
-  margin-left: 10px;
-  font-size: 1.5em;
+    margin-left: 10px;
+    font-size: 1.5em;
 }
 
 .footer-bar {
-  z-index: 1000;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  color: #fff;
-  a {
-    color: $brand-primary;
-  }
-  padding: 15px;
-  font-size: 1.2em;
-  background-color: #000000cf;
-  text-align: center;
+    z-index: 3;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    color: #fff;
+    a {
+        color: white;
+    }
+    padding: 15px;
+    font-size: 1.2em;
+    background-color: #f94f73;
+    text-align: center;
+    &.pulse {
+        background-color: purple;
+    }
 }
+
