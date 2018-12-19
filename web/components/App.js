@@ -135,7 +135,7 @@ const App = class extends Component {
                                                 activeClassName={"active"}
                                                 to={`/project/${this.props.params.projectId}/environment/${this.props.params.environmentId}/organisation-settings`}>
                                             here
-                                        </Link> for further information on {hasFeature('free_tier') ? 'upgrading ' : 'migrating '}
+                                            </Link> for further information on {hasFeature('free_tier') ? 'upgrading ' : 'migrating '}
                                                 to a paid plan.</span>
                                         ) : null}
                                         </div>
@@ -149,6 +149,7 @@ const App = class extends Component {
                                             up</Link>
                                     </AlertBar>
                                 )}
+
                                 <div className={pageHasAside && "aside-body"}>
                                     <nav
                                         className={"navbar navbar-fixed-top " + (pageHasAside ? " navbar-aside" : '') + (isHomepage ? " navbar-homepage " : '') + (isLegal ? "navbar-aside dark-header " : '') + (isDark ? " dark-header " : '') + (this.state.myClassName ? this.state.myClassName : '')}>
