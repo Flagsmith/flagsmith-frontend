@@ -162,6 +162,9 @@ $animation-timing-function: ease-in-out;
 	.faint {
 		color: rgba(0,0,0,.4);
 		font-size: 1em;
+		&--white {
+			color: rgba(255, 255, 255, .4);
+		}
 	}
 	.popover-inner {
 		width: 200px;

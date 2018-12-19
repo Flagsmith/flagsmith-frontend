@@ -59,6 +59,9 @@ const TheComponent = class extends Component {
 													<a id="project-menu" onClick={toggle}>
 														<Row>
 															<Flex>
+																<span className={"faint--white"}>
+																	Project
+																</span>
 																<Row id="selected-proj">
 																	{_.find(projects, {id: parseInt(this.props.projectId)}).name}
 																</Row>
@@ -97,6 +100,9 @@ const TheComponent = class extends Component {
 													<a id="env-menu" onClick={toggle}>
 														<Row>
 															<Flex>
+																<span className={"faint"}>
+																	Environment
+																</span>
 																<Row id="selected-env">
 																	{_.find(project.environments, {api_key: this.props.environmentId}).name}
 																</Row>
