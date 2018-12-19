@@ -18,14 +18,22 @@ module.exports = {
 			}
 			response.clone().text() // cloned so response body can be used downstream
 				.then((err) => {
+					if (E2E && document.getElementById('e2e-error')) {
+                        const error = {
+                            url: response.url,
+                            status: response.status,
+                            error: err,
+                        };
+                        document.getElementById('e2e-error').innerText = JSON.stringify(error);
+					}
 					API.log(response.url, response.status, err);
 				});
 			return Promise.reject(response);
 		}
 	},
 
-	get: function (url, data) {
-		return this._request('get', url, data || null);
+	get: function (url, data, headers) {
+		return this._request('get', url, data || null, headers);
 	},
 
 	dummy: function (data) {
@@ -36,24 +44,25 @@ module.exports = {
 		};
 	},
 
-	put: function (url, data) {
-		return this._request('put', url, data);
+	put: function (url, data, headers) {
+		return this._request('put', url, data, headers);
 	},
 
-	post: function (url, data) {
-		return this._request('post', url, data);
+	post: function (url, data, headers) {
+		return this._request('post', url, data, headers);
 	},
 
-	delete: function (url, data) {
-		return this._request('delete', url, data);
+	delete: function (url, data, headers) {
+		return this._request('delete', url, data, headers);
 	},
 
-	_request: function (method, url, data) {
+	_request: function (method, url, data, headers={}) {
 		var options = {
 				timeout: 60000,
 				method: method,
 				headers: {
 					'Accept': 'application/json',
+					...headers,
 				}
 			},
 			req,
@@ -77,7 +86,15 @@ module.exports = {
 			options.body = "{}";
 		}
 
-		req = fetch(url, options);
+		if (E2E && document.getElementById('e2e-request')) {
+            const payload = {
+                url,
+                options,
+            };
+            document.getElementById('e2e-request').innerText = JSON.stringify(payload);
+		}
+
+        req = fetch(url, options);
 		return req
 			.then(this.status)
 			.then(function (response) { //always return json

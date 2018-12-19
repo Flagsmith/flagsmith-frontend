@@ -9,6 +9,7 @@ module.exports = Object.assign({}, require('./base/_action-constants'), {
 	"GET_ENVIRONMENT": "GET_ENVIRONMENT",
 	"TOGGLE_FLAG": "TOGGLE_FLAG",
 	"EDIT_USER_FLAG": "EDIT_USER_FLAG",
+	"EDIT_TRAIT": "EDIT_TRAIT",
 	"TOGGLE_USER_FLAG": "TOGGLE_USER_FLAG",
 	"REMOVE_FLAG": "REMOVE_FLAG",
 	"GET_ENVIRONMENTS": "GET_ENVIRONMENTS",

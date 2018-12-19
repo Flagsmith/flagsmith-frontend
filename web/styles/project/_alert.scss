@@ -1,0 +1,27 @@
+.alert-shown {
+    .navbar {
+        margin-top: 3.6em;
+    }
+    .app-container {
+        margin-top: 130px;
+    }
+    .aside {
+        margin-top: 3.6em;
+        height: calc(100% - 3.6em);
+    }
+    .aside-content-bottom {
+        margin-bottom: 4em;
+    }
+    @media screen and (max-width: 932px) {
+        .navbar {
+            margin-top: 5.4em;
+        }
+        .app-container {
+            margin-top: 130px;
+        }
+        .aside {
+            margin-top: 5.4em;
+            height: calc(100% - 5em);
+        }
+    }
+}
