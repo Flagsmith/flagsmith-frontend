@@ -29,7 +29,8 @@ const TheComponent = class extends Component {
     componentDidMount = () => {
         if (!this.props.isEdit) {
             this.focusTimeout = setTimeout(() => {
-                this.input.focus()
+                this.input.focus();
+                this.focusTimeout = null;
             }, 500);
         }
     };

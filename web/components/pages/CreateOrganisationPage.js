@@ -16,7 +16,8 @@ export default class ExampleOne extends Component {
 	componentDidMount = () => {
 		API.trackPage(Constants.pages.CREATE_ORGANISATION);
 		this.focusTimeout = setTimeout(() => {
-			this.input.focus()
+			this.input.focus();
+			this.focusTimeout = null;
 		}, 500);
 	};
 

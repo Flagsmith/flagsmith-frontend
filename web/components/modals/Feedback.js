@@ -16,7 +16,8 @@ const TheComponent = class extends Component {
 
     componentDidMount = () => {
         this.focusTimeout = setTimeout(() => {
-            this.nameInput.focus()
+            this.nameInput.focus();
+            this.focusTimeout = null;
         }, 500);
     };
 

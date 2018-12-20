@@ -19,7 +19,8 @@ const TheComponent = class extends Component {
 		API.trackPage(Constants.pages.CREATE_ENVIRONMENT);
 
 		this.focusTimeout = setTimeout(() => {
-			this.input.focus()
+			this.input.focus();
+			this.focusTimeout = null;
 		}, 500);
 	};
 
