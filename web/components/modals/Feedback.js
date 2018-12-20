@@ -15,10 +15,16 @@ const TheComponent = class extends Component {
     }
 
     componentDidMount = () => {
-        setTimeout(() => {
+        this.focusTimeout = setTimeout(() => {
             this.nameInput.focus()
         }, 500);
     };
+
+    componentWillUnmount() {
+		if (this.focusTimeout) {
+			clearTimeout(this.focusTimeout);
+		}
+	}
 
     isValid = () => {
         if (!this.state.name || this.state.name.trim().length === 0) {

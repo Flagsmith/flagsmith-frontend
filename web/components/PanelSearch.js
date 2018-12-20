@@ -27,8 +27,8 @@ const TheComponent = class extends Component {
                 title={this.props.title}
                 icon={this.props.icon}
                 action={(
-                    <Row onClick={() => this.refs.input.focus()}>
-                        <input ref="input"
+                    <Row onClick={() => this.input.focus()}>
+                        <input ref={c => this.input = c}
                                onChange={(e) => this.props.onChange || this.setState({search: Utils.safeParseEventValue(e)})}
                                type="text"/>
                         <span style={{marginLeft: 10, position: 'absolute'}} className="icon ion-ios-search"></span>

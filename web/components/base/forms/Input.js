@@ -34,12 +34,12 @@ const Input = class extends React.Component {
 	}
 
 	focus = () => {
-		this.refs.input.focus()
+		this.input.focus()
 	}
 
 	onKeyDown = (e) => {
 		if (Utils.keys.isEscape(e)) {
-			this.refs.input.blur();
+			this.input.blur();
 		}
 		this.props.onKeyDown && this.props.onKeyDown(e);
 	}
@@ -76,7 +76,7 @@ const Input = class extends React.Component {
 				className={className}>
 				{mask ? (
 						<MaskedInput
-							ref="input"
+							ref={c => this.input = c}
 							{...rest}
 							mask={this.props.mask}
 							formatCharacters={maskedCharacters}
@@ -87,7 +87,7 @@ const Input = class extends React.Component {
 							placeholderChar={placeholderChar}/>
 					) : (
 						<input
-							ref="input"
+							ref={c => this.input = c}
 							{...rest} onFocus={this.onFocus}
 							onKeyDown={this.onKeyDown}
 							onBlur={this.onBlur}

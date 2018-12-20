@@ -15,11 +15,17 @@ const TheComponent = class extends Component {
 
     componentDidMount = () => {
         if (!this.props.isEdit) {
-            setTimeout(() => {
+            this.focusTimeout = setTimeout(() => {
                 this.input.focus()
             }, 500);
         }
     };
+
+    componentWillUnmount() {
+		if (this.focusTimeout) {
+			clearTimeout(this.focusTimeout);
+		}
+	}
 
     render() {
         const { props: { isEdit, identity, environmentId, projectId } } = this;

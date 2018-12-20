@@ -16,12 +16,18 @@ const TheComponent = class extends Component {
         this.context.router.push(`/project/${this.props.params.projectId}/environment/${environment.api_key}/features`);
     }
 	componentDidMount = () => {
-        API.trackPage(Constants.pages.CREATE_ENVIRONMENT);
+		API.trackPage(Constants.pages.CREATE_ENVIRONMENT);
 
-        setTimeout(() => {
+		this.focusTimeout = setTimeout(() => {
 			this.input.focus()
 		}, 500);
 	};
+
+	componentWillUnmount() {
+		if (this.focusTimeout) {
+			clearTimeout(this.focusTimeout);
+		}
+	}
 
 	render() {
 		const {name} = this.state;
