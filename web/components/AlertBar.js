@@ -8,7 +8,7 @@ const AlertBar = class extends React.Component {
     }
 
     componentWillUnmount() {
-        document.body.classList.remove('alert-shown');
+        document.body.classList.remove('alert-shown', 'hide');
     }
 
     hide = () => {
