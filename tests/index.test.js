@@ -87,15 +87,9 @@ module.exports = Object.assign(
                                 });
                             });
                         } else {
-                            const uri = path.join(__dirname, 'screenshot.png');
-                            browser.saveScreenshot(uri, () => {
-                                slackUpload(uri,'E2E for Bullet Train Failed \n', E2E_SLACK_CHANNEL, 'Screenshot')
-                                    .then((res)=>{
-                                        server.kill('SIGINT');
-                                        browser.end();
-                                        done();
-                                    });
-                            })
+                            server.kill('SIGINT');
+                            browser.end();
+                            done();
                         }
                     })
                 });
