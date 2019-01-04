@@ -46,7 +46,7 @@ const TheComponent = class extends Component {
     sendFeedback = () => {
         this.setState({isSending: true});
         const {name, email, comments} = this.state;
-        fetch(`https://3fbs97w0nb.execute-api.eu-west-1.amazonaws.com/dev/bullet-train`, {
+        fetch(`https://post.formlyapp.com/bullet-train`, {
             method: "POST",
             headers: {
                 'Accept': 'application/json',
