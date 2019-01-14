@@ -9,9 +9,6 @@
         margin-top: 3.6em;
         height: calc(100% - 3.6em);
     }
-    .aside-content-bottom {
-        margin-bottom: 4em;
-    }
     @media screen and (max-width: 932px) {
         .navbar {
             margin-top: 5.4em;
@@ -22,6 +19,18 @@
         .aside {
             margin-top: 5.4em;
             height: calc(100% - 5em);
+        }
+    }
+    &.hide {
+        .navbar {
+            margin-top: 0;
+        }
+        .app-container {
+            margin-top: 70px;
+        }
+        .aside {
+            margin-top: 0;
+            height: 100%;
         }
     }
 }

@@ -1,19 +1,27 @@
 import React from 'react';
 
 const AlertBar = class extends React.Component {
+    state = {}
+
     componentDidMount() {
         document.body.classList.add('alert-shown');
     }
 
     componentWillUnmount() {
-        document.body.classList.remove('alert-shown');
+        document.body.classList.remove('alert-shown', 'hide');
+    }
+
+    hide = () => {
+        document.body.classList.add('hide');
+        this.setState({hide: true});
     }
 
     render() {
         return (
-            <div className={"footer-bar " + (this.props.className||'')}>
-                {this.props.children}
-            </div>
+            <Row className={"alert-bar " + (this.props.className||'') + (this.state.hide ? 'animated slideOut' : '')}>
+                <Flex>{this.props.children}</Flex>
+                <a className="close-btn" onClick={this.hide}><ion className="icon ion-md-close"/></a>
+            </Row>
         )
     }
 };

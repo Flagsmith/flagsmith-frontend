@@ -123,6 +123,9 @@ input:disabled {
 .app-container {
     margin-top: 70px;
     margin-bottom: 70px;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 hr {
@@ -138,8 +141,7 @@ hr {
     font-size: 1.5em;
 }
 
-.footer-bar {
-    z-index: 3;
+.alert-bar {
     position: fixed;
     top: 0;
     left: 0;
@@ -147,13 +149,23 @@ hr {
     color: #fff;
     a {
         color: white;
+        &.close-btn {
+            font-size: 30px;
+            line-height: 30px;
+        }
     }
     padding: 15px;
     font-size: 1.2em;
     background-color: #f94f73;
     text-align: center;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    transition: all 0.3s ease;
     &.pulse {
         background-color: purple;
+    }
+    &.slideOut {
+        padding: 0;
     }
 }
 
