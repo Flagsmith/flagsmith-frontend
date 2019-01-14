@@ -15,10 +15,17 @@ const TheComponent = class extends Component {
     }
 
     componentDidMount = () => {
-        setTimeout(() => {
-            this.nameInput.focus()
+        this.focusTimeout = setTimeout(() => {
+            this.nameInput.focus();
+            this.focusTimeout = null;
         }, 500);
     };
+
+    componentWillUnmount() {
+		if (this.focusTimeout) {
+			clearTimeout(this.focusTimeout);
+		}
+	}
 
     isValid = () => {
         if (!this.state.name || this.state.name.trim().length === 0) {
@@ -39,7 +46,7 @@ const TheComponent = class extends Component {
     sendFeedback = () => {
         this.setState({isSending: true});
         const {name, email, comments} = this.state;
-        fetch(`https://3fbs97w0nb.execute-api.eu-west-1.amazonaws.com/dev/bullet-train`, {
+        fetch(`https://post.formlyapp.com/bullet-train`, {
             method: "POST",
             headers: {
                 'Accept': 'application/json',

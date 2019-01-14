@@ -14,9 +14,18 @@ export default class ExampleOne extends Component {
 	};
 
 	componentDidMount = () => {
-        API.trackPage(Constants.pages.CREATE_ORGANISATION);
-        this.input.focus()
+		API.trackPage(Constants.pages.CREATE_ORGANISATION);
+		this.focusTimeout = setTimeout(() => {
+			this.input.focus();
+			this.focusTimeout = null;
+		}, 500);
 	};
+
+	componentWillUnmount() {
+		if (this.focusTimeout) {
+			clearTimeout(this.focusTimeout);
+		}
+	}
 
 	onSave = (id) => {
 		AppActions.selectOrganisation(id);

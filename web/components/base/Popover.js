@@ -11,7 +11,7 @@ const Popover = class extends React.Component {
   _focusChanged = (isActive)=>this.setState({ isActive });
 
   toggle = ()=>{
-    this.refs.focus.toggle();
+    this.focus.toggle();
   }
 
   render () {
@@ -22,7 +22,7 @@ const Popover = class extends React.Component {
 
     return (
         <FocusMonitor
-            ref="focus"
+            ref={c => this.focus = c}
             onFocusChanged={this._focusChanged}
             isHover={this.props.isHover}>
           <div className={this.props.className}>

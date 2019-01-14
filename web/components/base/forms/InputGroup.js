@@ -12,7 +12,7 @@ const FormGroup = class extends Component {
 	}
 
 	focus = () => {
-		this.refs.input.focus();
+		this.input.focus();
 	};
 
 	render() {
@@ -35,12 +35,12 @@ const FormGroup = class extends Component {
 					<div>
 						{
 							this.props.textarea ?  (
-                                <textarea ref="input" {...props.inputProps} isValid={props.isValid} disabled={props.disabled}
+                                <textarea ref={c => this.input = c} {...props.inputProps} isValid={props.isValid} disabled={props.disabled}
                                        value={props.value}
                                        onChange={props.onChange} type={props.type || 'text'} id={id}
                                        placeholder={props.placeholder}/>
 							) : (
-                                <Input ref="input" {...props.inputProps} isValid={props.isValid} disabled={props.disabled}
+                                <Input ref={c => this.input = c} {...props.inputProps} isValid={props.isValid} disabled={props.disabled}
                                        value={props.value}
                                        onChange={props.onChange} type={props.type || 'text'} id={id}
                                        placeholder={props.placeholder}/>

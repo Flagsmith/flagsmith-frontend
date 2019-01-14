@@ -13,10 +13,17 @@ const TheComponent = class extends Component {
 	}
 
 	componentDidMount = () => {
-		setTimeout(() => {
-			this.refs.input.focus()
+		this.focusTimeout = setTimeout(() => {
+			this.input.focus();
+			this.focusTimeout = null;
 		}, 500);
 	};
+
+	componentWillUnmount() {
+		if (this.focusTimeout) {
+			clearTimeout(this.focusTimeout);
+		}
+	}
 
 	render() {
 		const {name} = this.state;
@@ -28,7 +35,7 @@ const TheComponent = class extends Component {
 						!isSaving && name && createEnv(name);
 					}}>
 						<InputGroup
-							ref={"input"}
+							ref={c => this.input = c}
 							inputProps={{className: "full-width"}}
 							onChange={(e) => this.setState({name: Utils.safeParseEventValue(e)})}
 							isValid={name}

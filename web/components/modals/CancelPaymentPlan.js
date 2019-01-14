@@ -13,7 +13,7 @@ const CancelPaymentPlanModal = class extends Component {
     this.setState({isSending: true});
     const {cancellationReason} = this.state;
     const org = AccountStore.getOrganisation();
-    fetch(`https://3fbs97w0nb.execute-api.eu-west-1.amazonaws.com/dev/bullet-train-payment-plan-cancellation`, {
+    fetch(`https://post.formlyapp.com/bullet-train-payment-plan-cancellation`, {
         method: "POST",
         headers: {
             'Accept': 'application/json',

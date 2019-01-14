@@ -60,30 +60,39 @@ module.exports = Object.assign(
         },
         after: (browser, done) => {
             if (SLACK_TOKEN && browser.sessionId) {
-                return browser.waitForElementVisible('#e2e-request', ()=> {
-                    return browser.getText('#e2e-error', error => {
-                        return browser.getText('#e2e-request', request => {
-                            if (error) {
-                                const lastRequest = request.value  ? JSON.parse(request.value) : {};
-                                const lastError = error.value ? JSON.parse(error.value) : {};
-                                console.log("Last request:", lastRequest);
-                                console.log("Last error:", lastError);
-                                const uri = path.join(__dirname, 'screenshot.png');
-                                browser.saveScreenshot(uri, ()=>{
-                                    slackUpload(uri,'E2E for Bullet Train Failed \n```' +JSON.stringify({
-                                        request: lastRequest,
-                                        error: lastError,
-                                    }, null,2).replace(/\\/g,'')+'```', E2E_SLACK_CHANNEL, 'Screenshot')
-                                        .then((res)=>{
-                                            server.kill('SIGINT');
-                                            browser.end();
-                                            done();
-                                        });
-                                })
-                            }
-                        })
+                browser.waitForElementVisible('#e2e-request', false, () => {
+                    // There is a chance e2e request will not be present if tests failed on another website i.e. mailinator
+                    browser.isVisible('#e2e-request', result => {
+                        if (result.value) {
+                            browser.getText('#e2e-error', error => {
+                                browser.getText('#e2e-request', request => {
+                                    if (error) {
+                                        const lastRequest = request.value  ? JSON.parse(request.value) : {};
+                                        const lastError = error.value ? JSON.parse(error.value) : {};
+                                        console.log("Last request:", lastRequest);
+                                        console.log("Last error:", lastError);
+                                        const uri = path.join(__dirname, 'screenshot.png');
+                                        browser.saveScreenshot(uri, () => {
+                                            slackUpload(uri,'E2E for Bullet Train Failed \n```' +JSON.stringify({
+                                                request: lastRequest,
+                                                error: lastError,
+                                            }, null,2).replace(/\\/g,'')+'```', E2E_SLACK_CHANNEL, 'Screenshot')
+                                                .then((res)=>{
+                                                    server.kill('SIGINT');
+                                                    browser.end();
+                                                    done();
+                                                });
+                                        })
+                                    }
+                                });
+                            });
+                        } else {
+                            server.kill('SIGINT');
+                            browser.end();
+                            done();
+                        }
                     })
-                })
+                });
             } else {
                 server.kill('SIGINT');
                 browser.end();
