@@ -1,6 +1,6 @@
 module.exports = (envId, {LIB_NAME, LIB_NAME_JAVA, FEATURE_NAME, FEATURE_FUNCTION, FEATURE_NAME_ALT, FEATURE_NAME_ALT_VALUE, NPM_CLIENT}, customFeature) => {
     return `${LIB_NAME_JAVA} ${LIB_NAME} = new ${LIB_NAME_JAVA}() {
-    environmentKey = ${envId}
+    environmentKey = "${envId}"
 };
 
 bool featureEnabled = await ${LIB_NAME}.HasFeatureFlag("${customFeature||FEATURE_NAME}");

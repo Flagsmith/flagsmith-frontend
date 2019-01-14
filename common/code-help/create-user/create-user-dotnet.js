@@ -1,6 +1,6 @@
 module.exports = (envId, {LIB_NAME, USER_ID, LIB_NAME_JAVA, FEATURE_NAME, FEATURE_FUNCTION, FEATURE_NAME_ALT, FEATURE_NAME_ALT_VALUE, NPM_CLIENT}, userId) => {
     return `${LIB_NAME_JAVA} ${LIB_NAME} = new ${LIB_NAME_JAVA}() {
-    environmentKey = ${envId}
+    environmentKey = "${envId}"
 };
 
 bool featureEnabled = await ${LIB_NAME}.HasFeatureFlag("${FEATURE_NAME}", ${USER_ID});
