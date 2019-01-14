@@ -88,7 +88,7 @@ var Constants = {
                 "React Native": require('./code-help/create-user/create-user-rn')(envId, keywords,userId),
                 "Node JS": require('./code-help/create-user/create-user-node')(envId, keywords,userId),
                 "Java": require('./code-help/create-user/create-user-java')(envId, keywords,userId),
-                ".NET": "Coming soon"
+                ".NET": require('./code-help/create-user/create-user-dotnet')(envId, keywords,userId),
             }
         },
 
@@ -98,7 +98,7 @@ var Constants = {
                 "React Native": require('./code-help/init/init-rn')(envId, keywords, flagName),
                 "Node JS": require('./code-help/init/init-node')(envId, keywords, flagName),
                 "Java": require('./code-help/init/init-java')(envId, keywords, flagName),
-                ".NET": "Coming soon"
+                ".NET": require('./code-help/init/init-dotnet')(envId, keywords, flagName),
             }
         },
 
@@ -107,7 +107,7 @@ var Constants = {
             "React Native": require('./code-help/install/install-rn')(keywords),
             "Node JS": require('./code-help/install/install-node')(keywords),
             "Java": require('./code-help/install/install-java')(keywords),
-            ".NET": "Coming soon"
+            ".NET": require('./code-help/install/install-dotnet')(keywords),
         }
     },
     simulate: {
