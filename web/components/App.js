@@ -144,9 +144,11 @@ const App = class extends Component {
 
                                 {AccountStore.isDemo && (
                                     <AlertBar className={"pulse"}>
-                                        You are using a demo account. Finding this useful?{" "}
-                                        <Link onClick={() => AppActions.setUser(null)} to={"/"}>Click here to Sign
-                                            up</Link>
+                                        <div>
+                                            You are using a demo account. Finding this useful?{" "}
+                                            <Link onClick={() => AppActions.setUser(null)} to={"/"}>Click here to Sign
+                                                up</Link>
+                                        </div>
                                     </AlertBar>
                                 )}
                                 <div className={pageHasAside && "aside-body"}>
