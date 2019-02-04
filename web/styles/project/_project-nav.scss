@@ -115,6 +115,13 @@ nav.navbar {
                     }
                 }
             }
+            .popover-bt{
+                border-top:0px !important;
+                &:before {
+                    border-bottom: 16px solid white;
+                    top: -16px;
+                }
+            }
         }
     }
 }
