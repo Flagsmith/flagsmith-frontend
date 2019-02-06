@@ -11,7 +11,11 @@ nav.navbar {
     &.dark-header{
         background:#22354a;
     }
-
+    
+    &-homepage {
+        margin-top: 3.5em;
+    }
+    
     &.light-header{
         background:#fff;
     }
@@ -64,6 +68,61 @@ nav.navbar {
 
     .btn{
         height:auto;
+    }
+    &__master-brand {
+        background-color: #F4F5F7;
+        z-index: 99999;
+        position: fixed;
+        width: 100%;
+        margin-top: 1.75em;
+        display: none;
+        border-radius: 0;
+        .products-button {
+            cursor: pointer;
+            color: black;
+            ion {
+                margin-left: .5em;
+            }
+        }
+        .popover-right {
+            left: 30px;
+            .popover-inner {
+                width: 300px;
+                .product-item {
+                    text-align: left;
+                    height: 80px;
+                    padding-left: 20px;
+                    &:hover {
+                        //background-color: l;
+                    }
+                    h5 {
+                        display: inline-block;
+                        padding-left: 15px;
+                        color: rgba(34, 53, 74, 0.75);
+                    }
+                    img {
+                        width: 30px;
+                    }
+                    small {
+                        display: block;
+                        color: rgba(34, 53, 74, 0.5);
+                        font-weight: bold;
+                        -webkit-font-smoothing: antialiased;
+                        -moz-osx-font-smoothing: grayscale;
+                        position: relative;
+                        bottom: 13px;
+                        margin-left: 46px;
+                    }
+                }
+            }
+            .popover-bt{
+                border-top:0px !important;
+                &:before {
+                    border-bottom: 16px solid white;
+                    top: -16px;
+                }
+            }
+        }
     }
 }
 

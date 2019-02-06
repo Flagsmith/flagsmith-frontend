@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="368px" height="290px" viewBox="0 0 368 290" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
+    <title>logo</title>
+    <desc>Created with Sketch.</desc>
+    <g id="coloured" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Icon" transform="translate(-64.000000, -107.000000)">
+            <g id="logo" transform="translate(73.000000, 116.000000)">
+                <path d="M349.757817,7.56538462 L212.558901,7.56538462" id="Shape" stroke="#345995" stroke-width="16.22" stroke-linecap="round" stroke-linejoin="round"></path>
+                <ellipse id="Oval" fill="#345995" fill-rule="nonzero" cx="345.18452" cy="52.666716" rx="13.7198916" ry="13.5303994"></ellipse>
+                <path d="M221.705495,52.666716 L304.024845,52.666716" id="Shape" stroke="#345995" stroke-width="16.22" stroke-linecap="round" stroke-linejoin="round"></path>
+                <ellipse id="Oval" fill="#345995" fill-rule="nonzero" cx="226.278793" cy="97.7680473" rx="13.7198916" ry="13.5303994"></ellipse>
+                <path d="M349.757817,97.7680473 L267.438467,97.7680473" id="Shape" stroke="#345995" stroke-width="16.22" stroke-linecap="round" stroke-linejoin="round"></path>
+                <ellipse id="Oval" fill="#345995" fill-rule="nonzero" cx="345.18452" cy="142.869379" rx="13.7198916" ry="13.5303994"></ellipse>
+                <path d="M221.705495,142.869379 L304.024845,142.869379" id="Shape" stroke="#345995" stroke-width="16.22" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M185.119118,187.97071 L349.757817,187.97071" id="Shape" stroke="#345995" stroke-width="16.22" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M0,54.4707692 L0,254.832415 C0.344000727,264.611192 8.40969364,272.359841 18.2383367,272.353846 L182.383367,272.353846 C192.110483,272.365958 200.135355,264.77636 200.621704,255.104769 L200.621704,236.04" id="Shape-Copy" stroke="#345995" stroke-width="16.22" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M45.5958418,18.1569231 C45.5958418,8.12913136 53.7614233,0 63.8341785,0 L179.28285,0" id="Shape" stroke="#345995" stroke-width="16.22" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M264.455882,236.04 L63.8341785,236.04 C53.7614233,236.04 45.5958418,227.910869 45.5958418,217.883077 L45.5958418,54.4707692" id="Shape" stroke="#345995" stroke-width="16.22" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M91.1916836,145.255385 L164.14503,145.255385" id="Shape" stroke="#345995" stroke-width="16.22" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M91.1916836,90.7846154 L136.787525,90.7846154" id="Shape-Copy-2" stroke="#345995" stroke-width="16.22" stroke-linecap="round" stroke-linejoin="round"></path>
+            </g>
+        </g>
+    </g>
+</svg>
