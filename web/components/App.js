@@ -114,7 +114,8 @@ const App = class extends Component {
                             <div>
                                 {inTrial && (
                                     <AlertBar>
-                                        Your organisation has {freeTrialDaysRemaining} days remaining on it's free trial.
+                                        Your organisation has {freeTrialDaysRemaining} days remaining on it's free
+                                        trial.
                                     </AlertBar>
                                 )}
 
@@ -152,6 +153,58 @@ const App = class extends Component {
                                     </AlertBar>
                                 )}
                                 <div className={pageHasAside && "aside-body"}>
+
+                                    <nav className={isHomepage && "show navbar navbar__master-brand"}>
+                                        <div className="navbar-left">
+                                            <div className="navbar-nav">
+
+                                                <a href="https://labs.solidstategroup.com/" target="__blank"
+                                                   className="nav-item nav-item-brand nav-link">
+                                                    <div className="nav-item-brand">
+                                                        <img style={{width: 250}}
+                                                             src="/images/products-nav/labs-logo-dark.svg"/>
+                                                    </div>
+                                                </a>
+
+                                            </div>
+                                        </div>
+                                        <div className="navbar-right">
+                                            <Popover style={{padding: 10}} className="popover-right"
+                                                     renderTitle={(toggle, isActive) => (
+                                                         <div className="products-button" onClick={toggle}>Products
+                                                             <ion
+                                                                 className={isActive ? "ion-ios-arrow-dropup" : "ion-ios-arrow-dropdown"}/>
+                                                         </div>
+                                                     )}>
+                                                {(toggle) => (
+                                                    <div>
+                                                        <a href="https://bullet-train.io/" target="__blank"
+                                                           className="product-item">
+                                                            <img src="/images/products-nav/bullet-train-logo-mark.svg"/>
+                                                            <h5>Bullet Train</h5>
+                                                            <small>Release features with confidence</small>
+                                                        </a>
+                                                        <a href="https://formlyapp.com/" target="__blank"
+                                                           className="product-item">
+                                                            <img
+                                                                src="/images/products-nav/formly-logo-mark-colour.svg"/>
+                                                            <h5>Formly</h5>
+                                                            <small>Contact Forms, Simplified</small>
+                                                        </a>
+                                                        <a href="https://uptimely.app/" target="__blank"
+                                                           className="product-item">
+                                                            <img
+                                                                src="/images/products-nav/uptimely-logo-mark-colour-filled.svg"/>
+                                                            <h5>Uptimely</h5>
+                                                            <small>Website Monitoring. Sorted.</small>
+                                                        </a>
+                                                    </div>
+                                                )}
+                                            </Popover>
+                                        </div>
+                                    </nav>
+
+
                                     <nav
                                         className={"animated navbar navbar-fixed-top " + (pageHasAside ? " navbar-aside" : '') + (isHomepage ? " navbar-homepage " : '') + (isLegal ? "navbar-aside dark-header " : '') + (isDark ? " dark-header " : '') + (this.state.myClassName ? this.state.myClassName : '')}>
 
@@ -161,9 +214,10 @@ const App = class extends Component {
                                                     <Link to={user ? "/projects" : "/"}
                                                           className="nav-item nav-item-brand nav-link">
                                                         {isLegal ? null : (<Row>
-                                                            {isHomepage || isDark ? (<img title={"Bullet Train"} height={24}
-                                                                                          src={"/images/bullet-train-1.svg"}
-                                                                                          className="brand"/>) :
+                                                            {isHomepage || isDark ? (
+                                                                <img title={"Bullet Train"} height={24}
+                                                                     src={"/images/bullet-train-1.svg"}
+                                                                     className="brand"/>) :
                                                                 (<img title={"Bullet Train"} height={24}
                                                                       src={"/images/bullet-train-black.svg"}
                                                                       className="brand"/>) }
@@ -179,7 +233,8 @@ const App = class extends Component {
                                                              renderTitle={(toggle) => (
                                                                  <a id="org-menu" onClick={toggle}>
                                                                      {organisation ? organisation.name : ''}
-                                                                     <div className="flex-column ion ion-ios-arrow-down"/>
+                                                                     <div
+                                                                         className="flex-column ion ion-ios-arrow-down"/>
                                                                  </a>
                                                              )}>
                                                         {(toggle) => (

@@ -2,6 +2,7 @@ import React from "react";
 import ForgotPasswordModal from '../ForgotPasswordModal';
 import Hero from '../Hero';
 import Footer from '../Footer';
+import Popover from '../../components/base/Popover';
 import lazyframe from 'lazyframe';
 import 'lazyframe/dist/lazyframe.css';
 
@@ -52,6 +53,7 @@ const HomePage = class extends React.Component {
             <AccountProvider onLogout={this.onLogout} onLogin={this.onLogin}>
                 {({isLoading, isSaving, error}, {register}) => (
                     <div className="homepage">
+
                         <Hero redirect={redirect} />
                         <div className="tech">
                             <div className="container">
