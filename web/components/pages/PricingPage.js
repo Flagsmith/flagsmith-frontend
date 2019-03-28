@@ -41,7 +41,7 @@ const PricingPage = class extends React.Component {
                                             <div className="panel-footer">
                                                 <p className="text-small text-center link-style">What's included</p>
                                                 <ul className="pricing-features">
-                                                    <li><p>Up to 2,000 Monthly Active Users</p></li>
+                                                    <li><p>Up to <strong>20,000</strong> requests per month</p></li>
                                                     <li><p>Unlimited Administrator Accounts</p></li>
                                                     <li><p>Unlimited Projects</p></li>
                                                     <li><p>Unlimited Environments</p></li>
@@ -65,7 +65,7 @@ const PricingPage = class extends React.Component {
                                             <div className="panel-footer">
                                                 <p className="text-small text-center link-style">What's included</p>
                                                 <ul className="pricing-features">
-                                                    <li><p>Up to 2,000 Monthly Active Users</p></li>
+                                                    <li><p>Up to <strong>20,000</strong> requests per month</p></li>
                                                     <li><p>Unlimited Administrator Accounts</p></li>
                                                     <li><p>Unlimited Projects</p></li>
                                                     <li><p>Unlimited Environments</p></li>
@@ -88,7 +88,7 @@ const PricingPage = class extends React.Component {
                                         <div className="panel-footer">
                                             <p className="text-small text-center link-style">What's included</p>
                                             <ul className="pricing-features">
-                                                <li><p>Up to 10,000 Monthly Active Users</p></li>
+                                                <li><p>Up to <strong>250,000</strong> requests per month</p></li>
                                                 <li><p>Unlimited Administrator Accounts</p></li>
                                                 <li><p>Unlimited Projects</p></li>
                                                 <li><p>Unlimited Environments</p></li>
@@ -111,7 +111,7 @@ const PricingPage = class extends React.Component {
                                         <div className="panel-footer">
                                             <p className="text-small text-center link-style">What's included</p>
                                             <ul className="pricing-features">
-                                                <li><p>Up to 50,000 Monthly Active Users</p></li>
+                                                <li><p>Up to <strong>2 million</strong> requests per month</p></li>
                                                 <li><p>All Startup Features</p></li>
                                                 <li><p>Telephone Technical Support</p></li>
                                             </ul>
@@ -133,7 +133,7 @@ const PricingPage = class extends React.Component {
                                         <div className="panel-footer">
                                             <p className="text-small text-center link-style">What's included</p>
                                             <ul className="pricing-features">
-                                                <li><p>Over 50,000 Monthly Active Users</p></li>
+                                                <li><p>Over <strong>2 million</strong> requests per month</p></li>
                                                 <li><p>All Startup Features</p></li>
                                                 <li><p>Telephone Technical Support</p></li>
                                                 <li><p>Optional On Premise Installation</p></li>
@@ -163,11 +163,9 @@ const PricingPage = class extends React.Component {
                             </p>
                         </div>
                         <div className="panel panel-default panel-grey">
-                            <p className="question">What is a monthly active user?</p>
+                            <p className="question">How do you calculate requests per month</p>
                             <p className="answer">
-                                Whenever you serve a set of feature flags or remote configurations to one of your users, we'll track it as a single user.
-                                That user can request feature flags as often as they like for the current 30 day period. It just tracks as a single Monthly Active User (MAU).
-                                We total up all users across all projects and environments over the 30 day period (based on your initial billing date), and that makes up your total MAU.
+                                This is simply the total number of API requests you make for each calendar month, across all the projects in your organisation.
                             </p>
                         </div>
                         <div className="panel panel-default panel-grey">
