@@ -194,7 +194,7 @@ const HomePage = class extends React.Component {
                                                     <div className="panel-footer">
                                                         <p className="text-small text-center link-style">What's included</p>
                                                         <ul className="pricing-features">
-                                                            <li><p>Up to 2,000 Monthly Active Users</p></li>
+                                                            <li><p>Up to <strong>20,000</strong> requests per month</p></li>
                                                             <li><p>Unlimited Administrator Accounts</p></li>
                                                             <li><p>Unlimited Projects</p></li>
                                                             <li><p>Unlimited Environments</p></li>
@@ -218,7 +218,7 @@ const HomePage = class extends React.Component {
                                                     <div className="panel-footer">
                                                         <p className="text-small text-center link-style">What's included</p>
                                                         <ul className="pricing-features">
-                                                            <li><p>Up to 2,000 Monthly Active Users</p></li>
+                                                            <li><p>Up to <strong>20,000</strong> requests per month</p></li>
                                                             <li><p>Unlimited Administrator Accounts</p></li>
                                                             <li><p>Unlimited Projects</p></li>
                                                             <li><p>Unlimited Environments</p></li>
@@ -241,7 +241,7 @@ const HomePage = class extends React.Component {
                                                 <div className="panel-footer">
                                                     <p className="text-small text-center link-style">What's included</p>
                                                     <ul className="pricing-features">
-                                                        <li><p>Up to 10,000 Monthly Active Users</p></li>
+                                                        <li><p>Up to <strong>250,000</strong> requests per month</p></li>
                                                         <li><p>Unlimited Administrator Accounts</p></li>
                                                         <li><p>Unlimited Projects</p></li>
                                                         <li><p>Unlimited Environments</p></li>
@@ -264,7 +264,7 @@ const HomePage = class extends React.Component {
                                                 <div className="panel-footer">
                                                     <p className="text-small text-center link-style">What's included</p>
                                                     <ul className="pricing-features">
-                                                        <li><p>Up to 50,000 Monthly Active Users</p></li>
+                                                        <li><p>Up to <strong>2 million</strong> requests per month</p></li>
                                                         <li><p>Telephone Technical Support</p></li>
                                                         <li><p>All Startup Features</p></li>
                                                     </ul>
@@ -287,7 +287,7 @@ const HomePage = class extends React.Component {
                                                     <p className="text-small text-center link-style">What's included</p>
                                                     <ul className="pricing-features">
                                                         <li><p>Optional On Premise Installation</p></li>
-                                                        <li><p>Over 50,000 Monthly Active Users</p></li>
+                                                        <li><p>Over <strong>2 million</strong> requests per month</p></li>
                                                         <li><p>Telephone Technical Support</p></li>
                                                         <li><p>All Startup Features</p></li>
                                                     </ul>
