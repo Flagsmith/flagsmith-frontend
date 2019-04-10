@@ -265,7 +265,7 @@ const HomePage = class extends React.Component {
                                                     <p className="text-small text-center link-style">What's included</p>
                                                     <ul className="pricing-features">
                                                         <li><p>Up to <strong>2 million</strong> requests per month</p></li>
-                                                        <li><p>Telephone Technical Support</p></li>
+                                                        <li><p>Private Discord Technical Support</p></li>
                                                         <li><p>All Startup Features</p></li>
                                                     </ul>
 
@@ -288,7 +288,7 @@ const HomePage = class extends React.Component {
                                                     <ul className="pricing-features">
                                                         <li><p>Optional On Premise Installation</p></li>
                                                         <li><p>Over <strong>2 million</strong> requests per month</p></li>
-                                                        <li><p>Telephone Technical Support</p></li>
+                                                        <li><p>Private Discord Support</p></li>
                                                         <li><p>All Startup Features</p></li>
                                                     </ul>
                                                 </div>

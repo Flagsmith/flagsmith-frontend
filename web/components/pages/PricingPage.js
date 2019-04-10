@@ -113,7 +113,7 @@ const PricingPage = class extends React.Component {
                                             <ul className="pricing-features">
                                                 <li><p>Up to <strong>2 million</strong> requests per month</p></li>
                                                 <li><p>All Startup Features</p></li>
-                                                <li><p>Telephone Technical Support</p></li>
+                                                <li><p>Private Discord Technical Support</p></li>
                                             </ul>
 
                                         </div>
@@ -135,7 +135,7 @@ const PricingPage = class extends React.Component {
                                             <ul className="pricing-features">
                                                 <li><p>Over <strong>2 million</strong> requests per month</p></li>
                                                 <li><p>All Startup Features</p></li>
-                                                <li><p>Telephone Technical Support</p></li>
+                                                <li><p>Telephone and Discord Technical Support</p></li>
                                                 <li><p>Optional On Premise Installation</p></li>
                                             </ul>
                                         </div>
