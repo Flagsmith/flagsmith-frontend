@@ -175,6 +175,20 @@ nav.navbar {
     }
 }
 
+.project-nav{
+    &__item{
+        color:#fff;
+
+        &--header{
+
+        }
+
+        &--active{
+
+        }
+    }
+}
+
 @media (max-width: 576px) {
     .navbar .nav-list {
         display: none;

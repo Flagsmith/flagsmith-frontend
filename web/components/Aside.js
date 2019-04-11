@@ -54,87 +54,69 @@ const TheComponent = class extends Component {
 								{(isLoading || isLoadingOrg) && <Loader/>}
 								{!isLoading && !isLoadingOrg && (
 									<Flex>
-										<Popover className="aside-select aside-select--project"
-												renderTitle={(toggle) => (
-													<a id="project-menu" onClick={toggle}>
-														<Row>
-															<Flex>
-																<span className={"faint--white"}>
-																	Project
-																</span>
-																<Row id="selected-proj">
-																	{_.find(projects, {id: parseInt(this.props.projectId)}).name}
-																</Row>
-															</Flex>
-															<div style={{fontSize:"1.25em"}} className="flex-column icon ion-ios-arrow-down"/>
+										<div className="project-nav">
+											<a href="">
+												<Row id="selected-proj">
+													{_.find(projects, {id: parseInt(this.props.projectId)}).name}
+													<div style={{fontSize:"1.25em"}} className="flex-column icon ion-ios-arrow-down"/>
+												</Row>
+											</a>
+											<div>
+												<ProjectSelect
+													clearableValue={false}
+													onChange={(project) => {
+														AppActions.getProject(project.id);
+														this.context.router.push(`/project/${project.id}/environment/${project.environments[0].api_key}/features`);
+														AsyncStorage.setItem('lastEnv', JSON.stringify({
+															orgId: AccountStore.getOrganisation().id,
+															projectId: project.id,
+															environmentId: project.environments[0].api_key
+														}));
+													}}/>
+											</div>
+
+											<div className="btn-container">
+												<Link
+													id="create-project-link"
+													to={`/projects`} className="btn" state={{create: true}}>
+													Create Project
+												</Link>
+											</div>
+
+											<button id="env-menu">
+												<Row>
+													<Flex>
+														<span className={"faint"}>
+															Environment
+														</span>
+														<Row id="selected-env">
+															{_.find(project.environments, {api_key: this.props.environmentId}).name}
 														</Row>
-													</a>
-												)}>
-											{(toggle) => (
-												<div>
-													<ProjectSelect
-														clearableValue={false}
-														onChange={(project) => {
-															toggle();
-															AppActions.getProject(project.id);
-															this.context.router.push(`/project/${project.id}/environment/${project.environments[0].api_key}/features`);
-															AsyncStorage.setItem('lastEnv', JSON.stringify({
-																	orgId: AccountStore.getOrganisation().id,
-																	projectId: project.id,
-																	environmentId: project.environments[0].api_key
-															}));
-														}}/>
-													<div className="btn-container">
-														<Link
-															id="create-project-link"
-															onClick={toggle}
-															to={`/projects`} className="btn" state={{create: true}}>
-															Create Project
-														</Link>
-													</div>
-												</div>
-											)}
-										</Popover>
-										<Popover className="aside-select aside-select--env"
-												renderTitle={(toggle) => (
-													<a id="env-menu" onClick={toggle}>
-														<Row>
-															<Flex>
-																<span className={"faint"}>
-																	Environment
-																</span>
-																<Row id="selected-env">
-																	{_.find(project.environments, {api_key: this.props.environmentId}).name}
-																</Row>
-															</Flex>
-															<div style={{fontSize:"1.25em"}} className="flex-column icon ion-ios-arrow-down"/>
-														</Row>
-													</a>
-												)}>
-											{(toggle) => (
-												<div>
-													<EnvironmentSelect
-														clearableValue={false}
-														onChange={(environment) => {
-															toggle();
-															this.context.router.push(`/project/${this.props.projectId}/environment/${environment}/features`);
-															AsyncStorage.setItem('lastEnv', JSON.stringify({
-																	orgId: AccountStore.getOrganisation().id,
-																	projectId: this.props.projectId,
-																	environmentId: environment
-															}));
-														}}/>
-													<div className="btn-container">
-														<Link
-															id="create-env-link"
-															onClick={toggle}
-															to={`/project/${this.props.projectId}/environment/create`} className="btn">
-															Create Environment
-														</Link>
-													</div>
-												</div>
-											)}
-										</Popover>
+													</Flex>
+													<div style={{fontSize:"1.25em"}} className="flex-column icon ion-ios-arrow-down"/>
+												</Row>
+											</button>
+
+											<EnvironmentSelect
+												clearableValue={false}
+												onChange={(environment) => {
+													this.context.router.push(`/project/${this.props.projectId}/environment/${environment}/features`);
+													AsyncStorage.setItem('lastEnv', JSON.stringify({
+														orgId: AccountStore.getOrganisation().id,
+														projectId: this.props.projectId,
+														environmentId: environment
+													}));
+												}}/>
+											<div className="btn-container">
+												<Link
+													id="create-env-link"
+													to={`/project/${this.props.projectId}/environment/create`} className="btn">
+													Create Environment
+												</Link>
+											</div>
+										</div>
+
+
 										<Flex className="links">
 											<Link
 												activeClassName={"active"}

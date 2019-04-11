@@ -20,14 +20,14 @@ const TheComponent = class extends Component {
                                 }
                             ) : (
                                 <div key={project.id}>
-                                    <div href={"#"} className={"list-item " + (this.props.value == (project.id+"") ? "active" : "")} onClick={() => {
+                                    <div href={"#"} className={"project-nav__item" + (this.props.value == (project.id+"") ? "active" : "")} onClick={() => {
                                         this.props.onChange && this.props.onChange(project);
                                     }}>
                                         <Row>
                                             <Flex className="text-left">
                                                 {project.name}
                                             </Flex>
-                                            <span className="icon ion-ios-arrow-forward list-item"></span>
+                                            <span className={"icon " + (this.props.value == (project.id+"") ? "ion-ios-radio-button-on" : "ion-ios-radio-button-off")}></span>
                                         </Row>
                                     </div>
                                 </div>
