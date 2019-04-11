@@ -142,46 +142,34 @@ const TheComponent = class extends Component {
 									</div>
 								)}
 								<form key={organisation.id} onSubmit={this.save}>
-									<InputGroup
-										ref={(e) => this.input = e}
-										inputProps={{defaultValue: organisation.name, className: "full-width"}}
-										onChange={(e) => this.setState({name: Utils.safeParseEventValue(e)})}
-										isValid={name && name.length}
-										type="text" title={<h3>Organisation Name</h3>}
-										placeholder="My Organisation"/>
+									<h3>Organisation name</h3>
+									<Row>
+										<Column>
+											<Input
+												ref={(e) => this.input = e}
+												inputProps={{defaultValue: organisation.name, className: "full-width"}}
+												onChange={(e) => this.setState({name: Utils.safeParseEventValue(e)})}
+												isValid={name && name.length}
+												type="text"
+												inputClassName="input--wide"
+												placeholder="My Organisation"/>
+										</Column>
 									{/* <InputGroup
 										inputProps={{defaultValue: organisation.webhook_notification_email, className: "full-width"}}
 										onChange={(e) => this.setState({webhook_notification_email: Utils.safeParseEventValue(e)})}
 										isValid={webhook_notification_email && webhook_notification_email.length && Utils.isValidEmail(webhook_notification_email)}
 										type="text" title={<h3>Webhook Notification Email</h3>}
 										placeholder="Email address"/> */}
-									<div className="text-right">
-										<Button disabled={this.saveDisabled()}>
+										<Button disabled={this.saveDisabled()} className="">
 											{isSaving ? 'Saving' : 'Save'}
 										</Button>
-									</div>
+									</Row>
 								</form>
-								<FormGroup>
-									<strong>
-										Delete Organisation
-									</strong>
-									<p>
-										This organisation will be deleted permanently along with all projects & features.
-									</p>
-									<Button
-										id="delete-org-btn"
-										onClick={() => this.confirmRemove(organisation, () => {
-											deleteOrganisation();
-										})}
-										className={"btn btn-danger"}>
-										Delete
-									</Button>
-								</FormGroup>
 							</div>
 						)}
 					</AccountProvider>
 				</FormGroup>
-				<FormGroup>
+				<FormGroup className="m-y-3">
 					<OrganisationProvider>
 						{({isLoading, name, projects, users, invites}) => (
 							<div>
@@ -272,6 +260,22 @@ const TheComponent = class extends Component {
 							</div>
 						)}
 					</OrganisationProvider>
+				</FormGroup>
+				<FormGroup className="m-y-3">
+					<Row>
+						<Column className="d-flex">
+							<h5>Delete Organisation</h5>
+							<p>This organisation will be deleted permanently along with all projects & features.</p>
+						</Column>
+						<Button
+							id="delete-org-btn"
+							onClick={() => this.confirmRemove(organisation, () => {
+								deleteOrganisation();
+							})}
+							className={"btn btn-danger ml-auto"}>
+							Delete
+						</Button>
+					</Row>
 				</FormGroup>
 			</div>
 		);
