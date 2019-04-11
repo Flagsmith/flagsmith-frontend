@@ -62,37 +62,37 @@ const HomePage = class extends React.Component {
                                     <div className="row">
                                         <div className="col-md-1 col-xs-6">
                                             <a href="https://github.com/SolidStateGroup/bullet-train-java-client">
-                                                <img src="./images/bt-java.png" alt="Java"/>
+                                                <img src="./images/tech-logos/java.png" alt="Java"/>
                                             </a>
                                         </div>
                                         <div className="col-md-1 col-xs-6">
                                             <a href="https://github.com/SolidStateGroup/bullet-train-js-client">
-                                                <img src="./images/bt-javascript.png" alt="Javascript"/>
+                                                <img src="./images/tech-logos/javascript.png" alt="Javascript"/>
                                             </a>
                                         </div>
                                         <div className="col-md-1 col-xs-6">
                                             <a href="https://github.com/SolidStateGroup/bullet-train-js-client">
-                                                <img src="./images/bt-react.png" alt="React JS"/>
+                                                <img src="./images/tech-logos/react.png" alt="React JS"/>
                                             </a>
                                         </div>
                                         <div className="col-md-1 col-xs-6">
                                             <a href="https://github.com/SolidStateGroup/bullet-train-nodejs-client">
-                                                <img src="./images/bt-nodejs.png" alt="Node.js"/>
+                                                <img src="./images/tech-logos/node.png" alt="Node.js"/>
                                             </a>
                                         </div>
                                         <div className="col-md-1 col-xs-6">
                                             <a href="https://github.com/SolidStateGroup/bullet-train-python-client">
-                                                <img src="./images/bt-python.png" className="img-fluid" alt="Python"/>
+                                                <img src="./images/tech-logos/python.png" className="img-fluid" alt="Python"/>
                                             </a>
                                         </div>
                                         <div className="col-md-1 col-xs-6">
                                             <a href="https://github.com/SolidStateGroup/bullet-train-ruby-client">
-                                                <img src="./images/bt-ruby.png" alt="Ruby"/>
+                                                <img src="./images/tech-logos/ruby.png" alt="Ruby"/>
                                             </a>
                                         </div>
                                         <div className="col-md-1 col-xs-6">
                                             <a href="https://github.com/SolidStateGroup/bullet-train-dotnet-client">
-                                                <img src="./images/bt-dotnet.png" alt=".NET"/>
+                                                <img src="./images/tech-logos/dotnet.png" alt=".NET"/>
                                             </a>
                                         </div>
                                     </div>
