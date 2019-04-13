@@ -44,7 +44,7 @@
     "lodash": "^4.17.10",
     "moment": "^2.22.1",
     "node-fetch": "^2.1.2",
-    "node-sass": "^4.8.3",
+    "node-sass": "4.11.0",
     "polyfill-react-native": "^1.0.5",
     "postcss-loader": "2.1.2",
     "promise-polyfill": "^7.1.2",
