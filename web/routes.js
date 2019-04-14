@@ -10,6 +10,7 @@ import CreateEnvironmentPage from './components/pages/CreateEnvironmentPage';
 import UsersPage from './components/pages/UsersPage';
 import UserPage from './components/pages/UserPage';
 import FlagsPage from './components/pages/FeaturesPage';
+import SegmentsPage from './components/pages/SegmentsPage';
 import OrganisationSettingsPage from './components/pages/OrganisationSettingsPage';
 import ComingSoon from './components/pages/ComingSoonPage';
 import ProjectSettingsPage from './components/pages/ProjectSettingsPage';
@@ -54,7 +55,7 @@ export default (
         <Route path="project/:projectId/environment/:environmentId/users/:id" component={UserPage}/>
         <Route path="project/:projectId/environment/create"  exact={true} component={CreateEnvironmentPage}/>
         <Route path="project/:projectId/environment/:environmentId/project-settings"  exact={true} component={ProjectSettingsPage}/>
-        <Route path="project/:projectId/environment/:environmentId/segments"  exact={true} component={ComingSoon}/>
+        <Route path="project/:projectId/environment/:environmentId/segments"  exact={true} component={SegmentsPage}/>
         <Route path="project/:projectId/environment/:environmentId/organisation-settings"  exact={true} component={OrganisationSettingsPage}/>
         <Route path="create" component={CreateOrganisationPage}/>
         <Route path="404" component={NotFoundPage}/>

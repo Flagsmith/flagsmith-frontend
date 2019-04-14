@@ -17,11 +17,72 @@ button.btn {
 		background: $btn-primary-bg-hover;
 	}
 }
-.btn-link {
-	box-shadow: none !important;
+
+$remove-btn-size: 24px;
+$add-btn-size: 34px;
+.btn.btn-remove {
+	line-height: $remove-btn-size;
+	height: $remove-btn-size;
+	padding: 0;
+	width: $remove-btn-size;
+	align-items: center;
+	text-align: center;
+	color: #929292;
+	background-color: #f7f7f7;
+	&:hover {
+		background-color: #aaa;
+		color: #929292;
+	}
+	font-size: 1em;
+	span {
+		line-height: $remove-btn-size;
+	}
 }
-.btn-link:hover {
+
+.btn-anchor {
+	box-shadow: none !important;
 	background-color: transparent !important;
+	&:hover {
+		background-color: #f1f1f1 !important;
+	}
+	color: $brand-primary !important;
+}
+
+.btn.btn-add {
+	line-height: $add-btn-size;
+	height: $add-btn-size;
+	padding: 0;
+	width: $add-btn-size;
+	align-items: center;
+	text-align: center;
+	color: #929292;
+	background-color: #f7f7f7;
+	&:hover {
+		background-color: #eaeaea;
+		color: #929292;
+	}
+	font-size: 1em;
+	span {
+		line-height: $add-btn-size;
+	}
+}
+
+.btn-link {
+  box-shadow: none !important;
+}
+
+.btn-link:hover {
+  background-color: transparent !important;
+  text-decoration: none;
+}
+
+.btn-white {
+	background-color: white !important;
+	color: $body-color !important;
+}
+
+.btn-white:hover {
+	background-color: #f9f9f9 !important;
 	text-decoration: none;
 }
 

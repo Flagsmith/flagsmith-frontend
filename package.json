@@ -26,6 +26,7 @@
     "babel-preset-stage-1": "6.5.0",
     "bootstrap": "4.0.0-alpha.3",
     "bullet-train-client": "0.0.33",
+    "bullet-train-rules-engine": "0.0.4",
     "classnames": "^2.2.5",
     "clean-webpack-plugin": "0.1.10",
     "colors": "^1.3.0",
