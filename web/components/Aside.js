@@ -55,65 +55,28 @@ const TheComponent = class extends Component {
 								{!isLoading && !isLoadingOrg && (
 									<Flex>
 										<div className="project-nav">
-											<a href="">
-												<Row id="selected-proj">
-													{_.find(projects, {id: parseInt(this.props.projectId)}).name}
-													<div style={{fontSize:"1.25em"}} className="flex-column icon ion-ios-arrow-down"/>
-												</Row>
-											</a>
-											<div>
-												<ProjectSelect
-													clearableValue={false}
-													onChange={(project) => {
-														AppActions.getProject(project.id);
-														this.context.router.push(`/project/${project.id}/environment/${project.environments[0].api_key}/features`);
-														AsyncStorage.setItem('lastEnv', JSON.stringify({
-															orgId: AccountStore.getOrganisation().id,
-															projectId: project.id,
-															environmentId: project.environments[0].api_key
-														}));
-													}}/>
-											</div>
-
-											<div className="btn-container">
-												<Link
-													id="create-project-link"
-													to={`/projects`} className="btn" state={{create: true}}>
-													Create Project
-												</Link>
-											</div>
-
-											<button id="env-menu">
-												<Row>
-													<Flex>
-														<span className={"faint"}>
-															Environment
-														</span>
-														<Row id="selected-env">
-															{_.find(project.environments, {api_key: this.props.environmentId}).name}
-														</Row>
-													</Flex>
-													<div style={{fontSize:"1.25em"}} className="flex-column icon ion-ios-arrow-down"/>
-												</Row>
-											</button>
-
-											<EnvironmentSelect
+											<Row className="project-nav__item--header">
+												Projects
+											</Row>
+                                            <div className="project-nav__item">
+                                                <Link
+                                                    id="create-project-link"
+                                                    to={`/projects`} className="project-nav__button project-nav__button--cta" state={{create: true}}>
+                                                    Create Project
+                                                    <img className="project-nav__icon" src="/images/plus-button.svg" alt="New" />
+                                                </Link>
+                                            </div>
+											<ProjectSelect
 												clearableValue={false}
-												onChange={(environment) => {
-													this.context.router.push(`/project/${this.props.projectId}/environment/${environment}/features`);
+												onChange={(project) => {
+													AppActions.getProject(project.id);
+													this.context.router.push(`/project/${project.id}/environment/${project.environments[0].api_key}/features`);
 													AsyncStorage.setItem('lastEnv', JSON.stringify({
 														orgId: AccountStore.getOrganisation().id,
-														projectId: this.props.projectId,
-														environmentId: environment
+														projectId: project.id,
+														environmentId: project.environments[0].api_key
 													}));
 												}}/>
-											<div className="btn-container">
-												<Link
-													id="create-env-link"
-													to={`/project/${this.props.projectId}/environment/create`} className="btn">
-													Create Environment
-												</Link>
-											</div>
 										</div>
 
 

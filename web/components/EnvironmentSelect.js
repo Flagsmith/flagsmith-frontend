@@ -12,27 +12,27 @@ const TheComponent = class extends Component {
         return (
             <ProjectProvider id={this.props.id}>
                 {({isLoading, project}) => (
-                    <div id="env-list">
+                    <ul id="env-list" className="project-list list-unstyled">
                         {project && project.environments && project.environments.map((environment) =>
                             this.props.renderRow ? this.props.renderRow(environment,
                                 () => {
                                     this.props.onChange && this.props.onChange(environment.api_key);
                                 }
                             ) : (
-                                <div key={environment.id}>
-                                    <div href={"#"} className={"project-nav__item " + (this.props.value == (environment.api_key+"") ? "project-nav__item--active" : "")} onClick={() => {
+                                <li key={environment.id} className="project-nav__item">
+                                    <button className={"project-nav__button " + (this.props.value == (environment.api_key+"") ? "project-nav__item--active" : "")} onClick={() => {
                                         this.props.onChange && this.props.onChange(environment.api_key);
                                     }}>
                                         <Row>
                                             <Flex className="text-left">
                                                 {environment.name}
                                             </Flex>
-                                            <span className="icon ion-ios-arrow-forward list-item"></span>
+                                            <span className="flex-column icon ion-ios-arrow-forward"></span>
                                         </Row>
-                                    </div>
-                                </div>
+                                    </button>
+                                </li>
                             ))}
-                    </div>
+                    </ul>
                 )}
             </ProjectProvider>
         );

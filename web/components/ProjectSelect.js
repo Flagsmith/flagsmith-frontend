@@ -1,4 +1,5 @@
 import React, {Component, PropTypes} from 'react';
+import EnvironmentSelect from './EnvironmentSelect';
 
 const TheComponent = class extends Component {
     displayName: 'TheComponent'
@@ -8,31 +9,57 @@ const TheComponent = class extends Component {
         this.state = {};
     }
 
+    toggleNav= (event) => {
+        var closestElement = event.target.closest(".project-nav__item");
+    }
+
     render() {
         return (
             <OrganisationProvider id={this.props.id}>
                 {({isLoading, projects}) => (
-                    <div id="project-list">
+                    <ul id="project-list" className="aside-list list-unstyled">
                         {projects && projects.map((project) =>
                             this.props.renderRow ? this.props.renderRow(project,
                                 () => {
                                     this.props.onChange && this.props.onChange(project);
                                 }
                             ) : (
-                                <div key={project.id}>
-                                    <div href={"#"} className={"project-nav__item" + (this.props.value == (project.id+"") ? "active" : "")} onClick={() => {
-                                        this.props.onChange && this.props.onChange(project);
+                                <li key={project.id} className="project-nav__item project-nav__item--open">
+                                    <button className={"project-nav__button project-nav__button--title" + (this.props.value == (project.id+"") ? "active" : "")} onClick={(event) => {
+                                        this.props.onChange && this.props.onChange(project); this.toggleNav(event);
                                     }}>
                                         <Row>
                                             <Flex className="text-left">
                                                 {project.name}
                                             </Flex>
-                                            <span className={"icon " + (this.props.value == (project.id+"") ? "ion-ios-radio-button-on" : "ion-ios-radio-button-off")}></span>
+                                            <span className=" flex-column icon ion-ios-arrow-down"/>
                                         </Row>
+                                    </button>
+                                    <div className="env-list">
+                                        <ul className="project-list list-unstyled">
+                                            <li className="project-nav__item">
+                                                <Link
+                                                    id="create-env-link"
+                                                    to={`/project/${this.props.projectId}/environment/create`} className="project-nav__button project-nav__button--cta">
+                                                    Create Environment
+                                                    <img className="project-nav__icon" src="/images/plus-button.svg" alt="New" />
+                                                </Link>
+                                            </li>
+                                        </ul>
+                                        <EnvironmentSelect
+                                            clearableValue={false}
+                                            onChange={(environment) => {
+                                                this.context.router.push(`/project/${this.props.projectId}/environment/${environment}/features`);
+                                                AsyncStorage.setItem('lastEnv', JSON.stringify({
+                                                    orgId: AccountStore.getOrganisation().id,
+                                                    projectId: this.props.projectId,
+                                                    environmentId: environment
+                                                }));
+                                            }}/>
                                     </div>
-                                </div>
+                                </li>
                             ))}
-                    </div>
+                    </ul>
                 )}
             </OrganisationProvider>
         );

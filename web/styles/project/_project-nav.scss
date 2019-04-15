@@ -176,15 +176,59 @@ nav.navbar {
 }
 
 .project-nav{
+    color:#fff;
+
+    .project-aside{
+        margin-bottom:5px;
+    }
+
+    .env-list{
+        height:auto;
+        transform:scaleY(0);
+        transition:transform 0.1s ease-out;
+        transform-origin:top;
+    }
+
     &__item{
-        color:#fff;
+        padding-left:25px;
+        height:23px;
 
         &--header{
+            padding-left:20px;
+            margin-bottom:5px;
+        }
 
+        &--open{
+            height:auto;
+            .env-list{
+                transform:scaleY(1);
+            }
+        }
+    }
+
+    &__icon{
+        height:15px;
+        margin-left:5px;
+    }
+
+    &__button{
+        background:none;
+        border:none;
+        color:rgba(#fff,0.75);
+        font-size: 0.85rem;
+        padding-left:0;
+
+        &--cta{
+            color:#fff;
+        }
+
+        &--title{
+            font-size:1rem;
         }
 
         &--active{
-
+            color:#fff;
+            font-weight:bold;
         }
     }
 }
