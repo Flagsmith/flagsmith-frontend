@@ -10,17 +10,15 @@ const Panel = class extends React.Component {
         return (
             <div className={"panel panel-default " + (this.props.className || "")}>
                 <div className="panel-heading">
-
                     <Row space={true}>
                         <Row className={"flex-1"}>
                             {this.props.icon && (
                                 <span className={"panel-icon"}><ion className={`icon ${this.props.icon}`}/></span>
                             )}
-                            {this.props.title}
+                            <h6 className="m-b-0">{this.props.title}</h6>
                         </Row>
                         {this.props.action}
                     </Row>
-
                 </div>
                 <div className="panel-content">
                     {this.props.children}

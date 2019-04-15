@@ -111,160 +111,176 @@ const TheComponent = class extends Component {
 							  organisation
 						  }, {createOrganisation, selectOrganisation, editOrganisation, deleteOrganisation}) => (
 							<div className="margin-bottom">
-								{AccountStore.isDemo ? null : organisation.paid_subscription ? (
-									<div>
-										<h2 className="text-center margin-bottom">Your organisation is on the {Utils.getPlanName(organisation.plan)} plan</h2>
-										{!organisation.pending_cancellation ?
-											<div className="text-center margin-bottom">Click <a onClick={this.cancelPaymentPlan}>here</a> to cancel your automatic renewal of your plan</div> :
-											<div>This plan has been cancelled and will not automatically be renewed</div>
-										}
-										{/* TODO upgrades? */}
-									</div>
-								) : organisation.free_to_use_subscription ? (
-									<div>
-										<h2 className="text-center margin-bottom">Your organisation is using Bullet Train for free.</h2>
-										{hasFeature('free_tier') ?
-											<div className="text-center margin-bottom">You may want to consider upgrading to a paid plan that includes more usage.</div> :
-											<div className="text-center margin-bottom">As an early adopter of Bullet Train you will be able to use this service for free until DD/MM/YYYY. You will then need to choose a payment plan to continue using Bullet Train.</div>
-										}
-										<div className="text-center margin-bottom">Click <a onClick={() => openModal(null, <PaymentModal viewOnly={!hasFeature('free_tier')} />, null, {large: true})}>here</a> to view payment plans</div>
-									</div>
-								) : freeTrialDaysRemaining > 0 ? (
-									<div>
-										<h2 className="text-center margin-bottom">Your organisation is within the free trial period</h2>
-										<div className="text-center margin-bottom">You have {freeTrialDaysRemaining} days remaining until you need to choose a payment plan.</div>
-										<div className="text-center margin-bottom">Click <a onClick={() => openModal(null, <PaymentModal viewOnly={true} />, null, {large: true})}>here</a> to view payment plans</div>
-									</div>
-								) : (
-									<div>
-										<h2 className="text-center margin-bottom">Your trial period of Bullet Train is over.</h2>
-										<div className="text-center margin-bottom">Click <a onClick={() => openModal(null, <PaymentModal />, null, {large: true})}>here</a> to view payment plans to continue using Bullet Train</div>
-									</div>
-								)}
-								<form key={organisation.id} onSubmit={this.save}>
-									<h3>Organisation name</h3>
-									<Row>
-										<Column>
-											<Input
-												ref={(e) => this.input = e}
-												inputProps={{defaultValue: organisation.name, className: "full-width"}}
-												onChange={(e) => this.setState({name: Utils.safeParseEventValue(e)})}
-												isValid={name && name.length}
-												type="text"
-												inputClassName="input--wide"
-												placeholder="My Organisation"/>
-										</Column>
-									{/* <InputGroup
-										inputProps={{defaultValue: organisation.webhook_notification_email, className: "full-width"}}
-										onChange={(e) => this.setState({webhook_notification_email: Utils.safeParseEventValue(e)})}
-										isValid={webhook_notification_email && webhook_notification_email.length && Utils.isValidEmail(webhook_notification_email)}
-										type="text" title={<h3>Webhook Notification Email</h3>}
-										placeholder="Email address"/> */}
-										<Button disabled={this.saveDisabled()} className="">
-											{isSaving ? 'Saving' : 'Save'}
-										</Button>
-									</Row>
-								</form>
+                                <div className="hidden">
+                                    {AccountStore.isDemo ? null : organisation.paid_subscription ? (
+                                        <div>
+                                            <h2 className="text-center margin-bottom">Your organisation is on the {Utils.getPlanName(organisation.plan)} plan</h2>
+                                            {!organisation.pending_cancellation ?
+                                                <div className="text-center margin-bottom">Click <a onClick={this.cancelPaymentPlan}>here</a> to cancel your automatic renewal of your plan</div> :
+                                                <div>This plan has been cancelled and will not automatically be renewed</div>
+                                            }
+                                            {/* TODO upgrades? */}
+                                        </div>
+                                    ) : organisation.free_to_use_subscription ? (
+                                        <div className="text-center">
+                                            <h2 className="text-center margin-bottom">Your organisation is using Bullet Train for free.</h2>
+                                            {hasFeature('free_tier') ?
+                                                <div className="text-center margin-bottom">You may want to consider upgrading to a paid plan that includes more usage.</div> :
+                                                <div className="text-center margin-bottom">As an early adopter of Bullet Train you will be able to use this service for free until DD/MM/YYYY. You will then need to choose a payment plan to continue using Bullet Train.</div>
+                                            }
+                                            <div><button type="button" className="btn btn-primary text-center mx-auto" onClick={() => openModal(null, <PaymentModal viewOnly={!hasFeature('free_tier')} />, null, {large: true})}>View payment plans</button></div>
+                                        </div>
+                                    ) : freeTrialDaysRemaining > 0 ? (
+                                        <div>
+                                            <h2 className="text-center margin-bottom">Your organisation is within the free trial period</h2>
+                                            <div className="text-center margin-bottom">You have {freeTrialDaysRemaining} days remaining until you need to choose a payment plan.</div>
+                                            <div className="text-center margin-bottom"><button type="button" onClick={() => openModal(null, <PaymentModal viewOnly={true} />, null, {large: true})}>View payment plans</button></div>
+                                        </div>
+                                    ) : (
+                                        <div>
+                                            <h2 className="text-center margin-bottom">Your trial period of Bullet Train is over.</h2>
+                                            <div className="text-center margin-bottom"><button type="button" onClick={() => openModal(null, <PaymentModal />, null, {large: true})}>here</button>View payment plans</div>
+                                        </div>
+                                    )}
+								</div>
+
+                                <div className="panel--grey">
+                                    <form key={organisation.id} onSubmit={this.save}>
+                                        <h5>Organisation</h5>
+                                        <Row>
+                                            <Column className="m-l-0">
+                                                <Input
+                                                    ref={(e) => this.input = e}
+                                                    value={organisation.name}
+                                                    onChange={(e) => this.setState({name: Utils.safeParseEventValue(e)})}
+                                                    isValid={name && name.length}
+                                                    type="text"
+                                                    inputClassName="input--wide"
+                                                    placeholder="My Organisation"/>
+                                            </Column>
+                                            {/* <InputGroup
+                                             inputProps={{defaultValue: organisation.webhook_notification_email, className: "full-width"}}
+                                             onChange={(e) => this.setState({webhook_notification_email: Utils.safeParseEventValue(e)})}
+                                             isValid={webhook_notification_email && webhook_notification_email.length && Utils.isValidEmail(webhook_notification_email)}
+                                             type="text" title={<h3>Webhook Notification Email</h3>}
+                                             placeholder="Email address"/> */}
+                                            <Button disabled={this.saveDisabled()} className="">
+                                                {isSaving ? 'Saving' : 'Save'}
+                                            </Button>
+                                        </Row>
+                                    </form>
+
+                                    <div className="plan plan--current flex-row m-t-2">
+                                        <div className="plan__prefix">
+                                            <img src="/images/bullet-train-1-mark.png" className="plan__prefix__image" alt="BT"/>
+                                        </div>
+                                        <div className="plan__details">
+                                            <p className="text-small m-b-0">Your plan</p>
+                                            <h3 className="m-b-0">{Utils.getPlanName(organisation.plan) ? Utils.getPlanName(organisation.plan) : "Free"}</h3>
+                                        </div>
+                                        <button type="button" className="btn btn-primary text-center ml-auto" onClick={() => openModal(null, <PaymentModal viewOnly={!hasFeature('free_tier')} />, null, {large: true})}>View payment plans</button>
+                                    </div>
+                                </div>
+
 							</div>
 						)}
 					</AccountProvider>
 				</FormGroup>
 				<FormGroup className="m-y-3">
-					<OrganisationProvider>
-						{({isLoading, name, projects, users, invites}) => (
-							<div>
-								<div className="margin-top clearfix">
-									<div className="float-left">
-										<h3>Team members</h3>
-										<p>Invite email addresses, comma separated</p>
-									</div>
-									<Button id={"btn-invite"} onClick={() => openModal(<InviteUsersModal/>)} className={'float-right btn-primary'}>
-										Invite Users
-									</Button>
-								</div>
+                    <div className="panel--grey">
+                        <OrganisationProvider>
+                            {({isLoading, name, projects, users, invites}) => (
+                                <div>
+                                    <div className="flex-row header--icon">
+                                        <h5>Team members</h5>
+                                        <button id={"btn-invite"} onClick={() => openModal(<InviteUsersModal/>)} className={'btn btn--with-icon p-x-0 p-y-0'}>
+                                            <img className="btn__icon" src="/images/icons/plus-button.svg" alt="Invite"/>
+                                        </button>
+                                    </div>
 
-								{isLoading && <div className="centered-container"><Loader/></div>}
-								{!isLoading && (
-									<div>
-										<FormGroup>
-											<PanelSearch
-												id="org-members-list"
-												title="Users"
-												className={"no-pad"}
-												items={users}
-												renderRow={({id, first_name,last_name,email}) =>
-													<div className={"list-item"} key={id}>
-														{first_name + " " + last_name} {id == AccountStore.getUserId() && "(You)"}
-														<div className={"list-item-footer faint"}>
-															{email}
-														</div>
-													</div>
-												}
-												renderNoResults={<div>You have no users in this organisation.</div>}
-												filterRow={(item, search) => {
-													const strToSearch = `${item.first_name} ${item.last_name} ${item.email}`;
-													return strToSearch.toLowerCase().indexOf(search.toLowerCase()) !== -1;
-												}}
-											/>
-										</FormGroup>
+                                    {isLoading && <div className="centered-container"><Loader/></div>}
+                                    {!isLoading && (
+                                        <div>
+                                            <FormGroup>
+                                                <PanelSearch
+                                                    id="org-members-list"
+                                                    title="Members"
+                                                    className={"no-pad"}
+                                                    items={users}
+                                                    renderRow={({id, first_name,last_name,email}) =>
+                                                        <div className={"list-item"} key={id}>
+                                                            {first_name + " " + last_name} {id == AccountStore.getUserId() && "(You)"}
+                                                            <div className={"list-item-footer faint"}>
+                                                                {email}
+                                                            </div>
+                                                        </div>
+                                                    }
+                                                    renderNoResults={<div>You have no users in this organisation.</div>}
+                                                    filterRow={(item, search) => {
+                                                        const strToSearch = `${item.first_name} ${item.last_name} ${item.email}`;
+                                                        return strToSearch.toLowerCase().indexOf(search.toLowerCase()) !== -1;
+                                                    }}
+                                                />
+                                            </FormGroup>
 
-										{invites && invites.length ? (
-											<FormGroup className={"margin-top"}>
-												<PanelSearch
-													id="org-invites-list"
-													title="Invites Pending"
-													className={"no-pad"}
-													items={invites}
-													renderRow={({id, email, date_created, invited_by}) =>
-														<Row className={"list-item"} key={id}>
-															<div className={"flex flex-1"}>
-																{email}
-																<div className={"list-item-footer faint"}>
-																		Created {moment(date_created).format("DD/MMM/YYYY")}
-																</div>
-																{invited_by ? (
-																	<div className={"list-item-footer faint"}>
-																		Invited by {invited_by.first_name ? invited_by.first_name + ' ' + invited_by.last_name : invited_by.email}
-																	</div>
-																) : null}
-															</div>
-															<Row>
-																<Column>
-																	<button
-																		id="resend-invite"
-																		onClick={() => AppActions.resendInvite(id)}
-																		className={"btn btn-primary"}>
-																		Resend
-																	</button>
-																</Column>
-																<Column>
-																	<button
-																		id="delete-invite"
-																		onClick={() => this.deleteInvite(id)}
-																		className={"btn btn-danger"}>
-																		Delete
-																	</button>
-																</Column>
-															</Row>
-														</Row>
-													}
-													filterRow={(item, search) => {
-														return item.email.toLowerCase().indexOf(search.toLowerCase()) !== -1;
-													}}
-												/>
-											</FormGroup>
-										) : null}
+                                            {invites && invites.length ? (
+                                                <FormGroup className={"margin-top"}>
+                                                    <PanelSearch
+                                                        id="org-invites-list"
+                                                        title="Invites Pending"
+                                                        className={"no-pad"}
+                                                        items={invites}
+                                                        renderRow={({id, email, date_created, invited_by}) =>
+                                                            <Row className={"list-item"} key={id}>
+                                                                <div className={"flex flex-1"}>
+                                                                    {email}
+                                                                    <div className={"list-item-footer faint"}>
+                                                                            Created {moment(date_created).format("DD/MMM/YYYY")}
+                                                                    </div>
+                                                                    {invited_by ? (
+                                                                        <div className={"list-item-footer faint"}>
+                                                                            Invited by {invited_by.first_name ? invited_by.first_name + ' ' + invited_by.last_name : invited_by.email}
+                                                                        </div>
+                                                                    ) : null}
+                                                                </div>
+                                                                <Row>
+                                                                    <Column>
+                                                                        <button
+                                                                            id="resend-invite"
+                                                                            onClick={() => AppActions.resendInvite(id)}
+                                                                            className={"btn btn-primary"}>
+                                                                            Resend
+                                                                        </button>
+                                                                    </Column>
+                                                                    <Column>
+                                                                        <button
+                                                                            id="delete-invite"
+                                                                            onClick={() => this.deleteInvite(id)}
+                                                                            className={"btn btn-danger"}>
+                                                                            Delete
+                                                                        </button>
+                                                                    </Column>
+                                                                </Row>
+                                                            </Row>
+                                                        }
+                                                        filterRow={(item, search) => {
+                                                            return item.email.toLowerCase().indexOf(search.toLowerCase()) !== -1;
+                                                        }}
+                                                    />
+                                                </FormGroup>
+                                            ) : null}
 
-									</div>
-								)}
-							</div>
-						)}
-					</OrganisationProvider>
+                                        </div>
+                                    )}
+                                </div>
+                            )}
+                        </OrganisationProvider>
+                    </div>
 				</FormGroup>
 				<FormGroup className="m-y-3">
 					<Row>
 						<Column className="d-flex">
-							<h5>Delete Organisation</h5>
+							<h6>Delete Organisation</h6>
 							<p>This organisation will be deleted permanently along with all projects & features.</p>
 						</Column>
 						<Button
@@ -272,8 +288,8 @@ const TheComponent = class extends Component {
 							onClick={() => this.confirmRemove(organisation, () => {
 								deleteOrganisation();
 							})}
-							className={"btn btn-danger ml-auto"}>
-							Delete
+							className={"btn btn--with-icon ml-auto"}>
+							<img className="btn__icon" src="/images/icons/bin.svg" alt="Delete" />
 						</Button>
 					</Row>
 				</FormGroup>
