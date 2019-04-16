@@ -231,6 +231,7 @@ nav.navbar {
 
         &--title{
             font-size:1rem;
+            color: rgba(255,255,255,1);
         }
 
         &--active{
@@ -249,6 +250,7 @@ nav.navbar {
 
     &__item{
         font-size:0.75em;
+        color: rgba(255,255,255,.75);
     }
 }
 
