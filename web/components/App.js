@@ -162,7 +162,7 @@ const App = class extends Component {
                                                    className="nav-item nav-item-brand nav-link">
                                                     <div className="nav-item-brand">
                                                         <img style={{width: 250}}
-                                                             src="/images/products-nav/labs-logo-dark.svg"/>
+                                                             src="/images/products-nav/labs-logo-dark.svg" alt="Javascript feature flags"/>
                                                     </div>
                                                 </a>
 
@@ -180,21 +180,21 @@ const App = class extends Component {
                                                     <div>
                                                         <a href="https://bullet-train.io/" target="__blank"
                                                            className="product-item">
-                                                            <img src="/images/products-nav/bullet-train-logo-mark.svg"/>
+                                                            <img src="/images/products-nav/bullet-train-logo-mark.svg" alt="Javascript feature flags"/>
                                                             <h5>Bullet Train</h5>
                                                             <small>Release features with confidence</small>
                                                         </a>
                                                         <a href="https://formlyapp.com/" target="__blank"
                                                            className="product-item">
                                                             <img
-                                                                src="/images/products-nav/formly-logo-mark-colour.svg"/>
+                                                                src="/images/products-nav/formly-logo-mark-colour.svg" alt="Javascript feature flags"/>
                                                             <h5>Formly</h5>
                                                             <small>Contact Forms, Simplified</small>
                                                         </a>
                                                         <a href="https://uptimely.app/" target="__blank"
                                                            className="product-item">
                                                             <img
-                                                                src="/images/products-nav/uptimely-logo-mark-colour-filled.svg"/>
+                                                                src="/images/products-nav/uptimely-logo-mark-colour-filled.svg" alt="Javascript feature flags"/>
                                                             <h5>Uptimely</h5>
                                                             <small>Website Monitoring. Sorted.</small>
                                                         </a>
@@ -217,10 +217,10 @@ const App = class extends Component {
                                                             {isHomepage || isDark ? (
                                                                 <img title={"Bullet Train"} height={24}
                                                                      src={"/images/bullet-train-1.svg"}
-                                                                     className="brand"/>) :
+                                                                     className="brand" alt="Javascript feature flags"/>) :
                                                                 (<img title={"Bullet Train"} height={24}
                                                                       src={"/images/bullet-train-black.svg"}
-                                                                      className="brand"/>) }
+                                                                      className="brand" alt="Javascript feature flags"/>) }
                                                         </Row>)}
                                                     </Link>
                                                 )}

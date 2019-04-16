@@ -38,7 +38,7 @@ const TheComponent = class extends React.Component {
 
                         </div>
                         <div className="col-md-6 offset-md-1">
-                            <img src="/images/bullet-train-illustration.svg" className="hero-illustration"/>
+                            <img src="/images/bullet-train-illustration.svg" className="hero-illustration" alt="Javascript feature flags"/>
                         </div>
                     </div>
                 </div>
