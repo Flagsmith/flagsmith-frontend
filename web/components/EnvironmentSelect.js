@@ -32,13 +32,24 @@ const TheComponent = class extends Component {
                                     </button>
                                     <ul className="env-nav list-unstyled">
                                         <li className="env-nav__item flex-row">
-                                            <span className="flex-1">Features</span>
+                                            <Link
+                                                activeClassName={"active"}
+                                                to={`/project/${project.id}/environment/${environment.api_key}/features`
+                                                }>Features</Link>
                                         </li>
                                         <li className="env-nav__item flex-row">
-                                            <span className="flex-1">Users</span>
+                                            <Link
+                                                id="users-link"
+                                                activeClassName={"active"}
+                                                to={`/project/${project.id}/environment/${environment.api_key}/users`
+                                                }>Users</Link>
                                         </li>
                                         <li className="env-nav__item flex-row">
-                                            <span className="flex-1">Settings</span>
+                                            <Link
+                                                id="users-link"
+                                                activeClassName={"active"}
+                                                to={`/project/${project.id}/environment/${environment.api_key}/settings`
+                                                }>Settings</Link>
                                         </li>
                                     </ul>
                                 </li>
