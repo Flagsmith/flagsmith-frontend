@@ -48,7 +48,7 @@ const TheComponent = class extends Component {
                                             }}/>
                                         <ul className="project-list list-unstyled">
                                             <li className="project-nav__item flex-row">
-                                                <span className="flex-1 project-nav__item__text">Environments</span>
+                                                <span className="project-nav__item__text">Environments</span>
                                                 <Link
                                                     id="create-env-link"
                                                     to={`/project/${this.props.projectId}/environment/create`} className="project-nav__button project-nav__button--cta">
