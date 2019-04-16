@@ -56,16 +56,13 @@ const TheComponent = class extends Component {
 									<Flex>
 										<div className="project-nav">
 											<Row className="project-nav__item--header">
-												Projects
-											</Row>
-                                            <div className="project-nav__item">
+												<span className="flex-1">Projects</span>
                                                 <Link
                                                     id="create-project-link"
                                                     to={`/projects`} className="project-nav__button project-nav__button--cta" state={{create: true}}>
-                                                    Create Project
-                                                    <img className="project-nav__icon" src="/images/plus-button.svg" alt="New" />
+                                                    <img className="project-nav__icon" src="/images/plus-button--white.svg" alt="New" />
                                                 </Link>
-                                            </div>
+											</Row>
 											<ProjectSelect
 												clearableValue={false}
 												onChange={(project) => {
@@ -106,25 +103,6 @@ const TheComponent = class extends Component {
 													`/project/${this.props.projectId}/environment/${this.props.environmentId}/settings`
 												}><span className={"dot purple"}/>Environment Settings</Link>
 										</Flex>
-										<div>
-											<Link
-												id="project-settings-link"
-												activeClassName={"active"}
-												to={
-													`/project/${this.props.projectId}/environment/${this.props.environmentId}/project-settings`
-												}><span className={"dot purple"}/>Project Settings</Link>
-											<Link
-																						id="organisation-settings-link"
-																						activeClassName={"active"}
-												to={`/project/${this.props.projectId}/environment/${this.props.environmentId}/organisation-settings`}>
-												Organisation Settings
-											</Link>
-											<a
-												target={"blank"}
-												href={`https://docs.bullet-train.io`}>
-												Documentation
-											</a>
-										</div>
 									</Flex>
 								)}
 							</Flex>

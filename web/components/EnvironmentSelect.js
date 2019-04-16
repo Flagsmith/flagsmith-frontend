@@ -27,9 +27,20 @@ const TheComponent = class extends Component {
                                             <Flex className="text-left">
                                                 {environment.name}
                                             </Flex>
-                                            <span className="flex-column icon ion-ios-arrow-forward"></span>
+                                            <span className=" flex-column icon ion-ios-arrow-down"/>
                                         </Row>
                                     </button>
+                                    <ul className="env-nav list-unstyled">
+                                        <li className="env-nav__item flex-row">
+                                            <span className="flex-1">Features</span>
+                                        </li>
+                                        <li className="env-nav__item flex-row">
+                                            <span className="flex-1">Users</span>
+                                        </li>
+                                        <li className="env-nav__item flex-row">
+                                            <span className="flex-1">Settings</span>
+                                        </li>
+                                    </ul>
                                 </li>
                             ))}
                     </ul>

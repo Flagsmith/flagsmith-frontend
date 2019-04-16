@@ -24,7 +24,7 @@ const TheComponent = class extends Component {
                                     this.props.onChange && this.props.onChange(project);
                                 }
                             ) : (
-                                <li key={project.id} className="project-nav__item project-nav__item--open">
+                                <li key={project.id} className="project-nav__item project-nav__item--open m-t-1">
                                     <button className={"project-nav__button project-nav__button--title" + (this.props.value == (project.id+"") ? "active" : "")} onClick={(event) => {
                                         this.props.onChange && this.props.onChange(project); this.toggleNav(event);
                                     }}>
@@ -36,16 +36,6 @@ const TheComponent = class extends Component {
                                         </Row>
                                     </button>
                                     <div className="env-list">
-                                        <ul className="project-list list-unstyled">
-                                            <li className="project-nav__item">
-                                                <Link
-                                                    id="create-env-link"
-                                                    to={`/project/${this.props.projectId}/environment/create`} className="project-nav__button project-nav__button--cta">
-                                                    Create Environment
-                                                    <img className="project-nav__icon" src="/images/plus-button.svg" alt="New" />
-                                                </Link>
-                                            </li>
-                                        </ul>
                                         <EnvironmentSelect
                                             clearableValue={false}
                                             onChange={(environment) => {
@@ -56,6 +46,16 @@ const TheComponent = class extends Component {
                                                     environmentId: environment
                                                 }));
                                             }}/>
+                                        <ul className="project-list list-unstyled">
+                                            <li className="project-nav__item flex-row">
+                                                <span className="flex-1 project-nav__item__text">Environments</span>
+                                                <Link
+                                                    id="create-env-link"
+                                                    to={`/project/${this.props.projectId}/environment/create`} className="project-nav__button project-nav__button--cta">
+                                                    <img className="project-nav__icon" src="/images/plus-button.svg" alt="New" />
+                                                </Link>
+                                            </li>
+                                        </ul>
                                     </div>
                                 </li>
                             ))}

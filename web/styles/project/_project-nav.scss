@@ -190,12 +190,15 @@ nav.navbar {
     }
 
     &__item{
-        padding-left:25px;
-        height:23px;
+        padding:0 10px;
+
+        &__text{
+            color:#2cd6ca;
+        }
 
         &--header{
-            padding-left:20px;
-            margin-bottom:5px;
+            background:#2cd6ca;
+            padding:10px;
         }
 
         &--open{
@@ -218,6 +221,10 @@ nav.navbar {
         font-size: 0.85rem;
         padding-left:0;
 
+        &__dot{
+            margin-left:5px;
+        }
+
         &--cta{
             color:#fff;
         }
@@ -230,6 +237,18 @@ nav.navbar {
             color:#fff;
             font-weight:bold;
         }
+    }
+
+    .project-list{
+        margin-top:5px;
+    }
+}
+
+.env-nav{
+    margin-left:5px;
+
+    &__item{
+        font-size:0.75em;
     }
 }
 
