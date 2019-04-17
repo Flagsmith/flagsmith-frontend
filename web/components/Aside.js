@@ -135,6 +135,7 @@ const TheComponent = class extends Component {
 												</div>
 											)}
 										</Popover>
+                                        <div className="flex flex-1"></div>
 										<div>
 											<Link
 												id="project-settings-link"
