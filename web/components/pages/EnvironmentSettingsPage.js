@@ -92,77 +92,85 @@ const TheComponent = class extends Component {
                                 {isLoading && <div className="centered-container"><Loader/></div>}
                                 {!isLoading && (
                                     <div>
-                                        <FormGroup>
-                                            <InputGroup
-                                                ref={(e) => this.input = e}
-                                                value={this.props.params.environmentId}
-                                                inputProps={{
-                                                    className: "full-width",
-                                                    readOnly: true,
-                                                    style: {userSelect: 'all'}
-                                                }}
-                                                onChange={(e) => this.setState({name: Utils.safeParseEventValue(e)})}
-                                                isValid={name && name.length}
-                                                type="text" title={<h3>API Key</h3>}
-                                                placeholder="API Key"/>
-                                        </FormGroup>
-                                        <FormGroup>
-                                            <form onSubmit={this.saveEnv}>
-                                                <InputGroup
-                                                    ref={(e) => this.input = e}
-                                                    inputProps={{
-                                                        defaultValue: env.name,
-                                                        className: "full-width",
-                                                        name: 'env-name'
-                                                    }}
-                                                    onChange={(e) => this.setState({name: Utils.safeParseEventValue(e)})}
-                                                    isValid={name && name.length}
-                                                    type="text" title={<h3>Environment Name</h3>}
-                                                    placeholder="Environment Name"/>
-                                                {/* <FormGroup>
-                                                    <div>
-                                                        <h3>Webhooks Enabled?</h3>
-                                                    </div>
-                                                    <Switch
-                                                        checked={webhooks_enabled === undefined ? env.webhooks_enabled : webhooks_enabled}
-                                                        onChange={(webhooks_enabled) => this.setState({webhooks_enabled})}
-                                                    />
-                                                </FormGroup>
-                                                <InputGroup
-                                                    inputProps={{
-                                                        defaultValue: env.webhook_url,
-                                                        className: "full-width",
-                                                        name: 'env-webhook-url'
-                                                    }}
-                                                    onChange={(e) => this.setState({webhook_url: Utils.safeParseEventValue(e)})}
-                                                    isValid={webhook_url && webhook_url.length && Utils.isValidURL(webhook_url)}
-                                                    type="text" title={<h3>Webhook URL</h3>}
-                                                    placeholder="https://webhook.url"
-                                                    disabled={webhooks_enabled === undefined ? !env.webhooks_enabled : !webhooks_enabled}/> */}
-                                                <div className="text-right clearfix">
-                                                    <Button id="save-env-btn" className="float-right" disabled={this.saveDisabled()}>
-                                                        {isSaving ? 'Saving' : 'Save'}
-                                                    </Button>
-                                                </div>
-                                            </form>
-                                        </FormGroup>
-                                        <FormGroup>
-                                            <strong>
-                                                Delete Environment
-                                            </strong>
-                                            <p>
-                                                This project will be deleted permanently
-                                            </p>
-                                            <Button
-                                                id="delete-env-btn"
-                                                onClick={() => this.confirmRemove(_.find(project.environments, {api_key: this.props.params.environmentId}), () => {
-                                                    deleteEnv(_.find(project.environments, {api_key: this.props.params.environmentId}))
-                                                })}
-                                                className={"btn btn-danger float-left"}>
-                                                Delete
-                                            </Button>
+                                        <div className="panel--grey">
+                                            <FormGroup>
+                                                <h5>Environment</h5>
+                                                <form onSubmit={this.saveEnv}>
+                                                    <Row>
+                                                        <Column className="m-l-0">
+                                                        <Input
+                                                            ref={(e) => this.input = e}
+                                                                value={env.name}
+                                                                inputClassName="input input--wide"
+                                                                name="env-name"
+
+                                                            onChange={(e) => this.setState({name: Utils.safeParseEventValue(e)})}
+                                                            isValid={name && name.length}
+                                                            type="text" title={<h3>Environment Name</h3>}
+                                                            placeholder="Environment Name"/>
+                                                        </Column>
+                                                    {/* <FormGroup>
+                                                        <div>
+                                                            <h3>Webhooks Enabled?</h3>
+                                                        </div>
+                                                        <Switch
+                                                            checked={webhooks_enabled === undefined ? env.webhooks_enabled : webhooks_enabled}
+                                                            onChange={(webhooks_enabled) => this.setState({webhooks_enabled})}
+                                                        />
+                                                    </FormGroup>
+                                                    <InputGroup
+                                                        inputProps={{
+                                                            defaultValue: env.webhook_url,
+                                                            className: "full-width",
+                                                            name: 'env-webhook-url'
+                                                        }}
+                                                        onChange={(e) => this.setState({webhook_url: Utils.safeParseEventValue(e)})}
+                                                        isValid={webhook_url && webhook_url.length && Utils.isValidURL(webhook_url)}
+                                                        type="text" title={<h3>Webhook URL</h3>}
+                                                        placeholder="https://webhook.url"
+                                                        disabled={webhooks_enabled === undefined ? !env.webhooks_enabled : !webhooks_enabled}/> */}
+                                                        <Button id="save-env-btn" className="float-right" disabled={this.saveDisabled()}>
+                                                            {isSaving ? 'Saving' : 'Save'}
+                                                        </Button>
+                                                    </Row>
+                                                </form>
+                                            </FormGroup>
+                                            <FormGroup className="m-t-1">
+                                                    <label className="m-b-0">API Key</label>
+                                                <Row>
+                                                    <Input
+                                                        ref={(e) => this.input = e}
+                                                        value={this.props.params.environmentId}
+                                                        inputClassName="input input--wide"
+                                                        onChange={(e) => this.setState({name: Utils.safeParseEventValue(e)})}
+                                                        isValid={name && name.length}
+                                                        type="text" title={<h3>API Key</h3>}
+                                                        placeholder="API Key"/>
+                                                </Row>
+                                            </FormGroup>
+                                        </div>
+                                        <FormGroup className="m-y-3">
+                                            <Row>
+                                                <Column className="d-flex">
+                                                    <strong>
+                                                        Delete Environment
+                                                    </strong>
+                                                    <p>
+                                                        This project will be deleted permanently
+                                                    </p>
+                                                </Column>
+                                                <Button
+                                                    id="delete-env-btn"
+                                                    onClick={() => this.confirmRemove(_.find(project.environments, {api_key: this.props.params.environmentId}), () => {
+                                                        deleteEnv(_.find(project.environments, {api_key: this.props.params.environmentId}))
+                                                    })}
+                                                    className={"btn btn--with-icon ml-auto"}>
+                                                    <img className="btn__icon" src="/images/icons/bin.svg" alt="Delete" />
+                                                </Button>
+                                            </Row>
                                         </FormGroup>
                                     </div>
+
                                 )}
                             </div>
                         )
