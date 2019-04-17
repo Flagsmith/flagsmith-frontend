@@ -135,32 +135,6 @@ const TheComponent = class extends Component {
 												</div>
 											)}
 										</Popover>
-										<Flex className="links">
-											<Link
-												activeClassName={"active"}
-												to={`/project/${this.props.projectId}/environment/${this.props.environmentId}/features`
-												}><span className={"dot green"}/>Features</Link>
-											{/*<Link*/}
-												{/*activeClassName={"active"}*/}
-												{/*to={*/}
-													{/*`/project/${this.props.projectId}/environment/${this.props.environmentId}/segments`*/}
-												{/*}>*/}
-												{/*<span className={"dot orange"}/>*/}
-												{/*Segments*/}
-											{/*</Link>*/}
-											<Link
-												id="users-link"
-												activeClassName={"active"}
-												to={
-													`/project/${this.props.projectId}/environment/${this.props.environmentId}/users`
-												}><span className={"dot red"}/>Users</Link>
-											<Link
-												id="env-settings-link"
-												activeClassName={"active"}
-												to={
-													`/project/${this.props.projectId}/environment/${this.props.environmentId}/settings`
-												}><span className={"dot purple"}/>Environment Settings</Link>
-										</Flex>
 										<div>
 											<Link
 												id="project-settings-link"
