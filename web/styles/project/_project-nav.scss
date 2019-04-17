@@ -175,6 +175,16 @@ nav.navbar {
     }
 }
 
+.aside-list{
+    & > .project-nav__item{
+        height:23px;
+
+        &--open{
+            height:auto;
+        }
+    }
+}
+
 .project-nav{
     color:#fff;
 
