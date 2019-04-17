@@ -61,7 +61,7 @@ const TheComponent = class extends Component {
 														<Input
 															ref={(e) => this.input = e}
 															value={project.name}
-															className="full-width"
+															inputClassName="input input--wide"
 															onChange={(e) => this.setState({name: Utils.safeParseEventValue(e)})}
 															isValid={name && name.length}
 															type="text" title={<h3>Project Name</h3>}
