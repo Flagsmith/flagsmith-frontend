@@ -256,6 +256,15 @@ nav.navbar {
     }
 }
 
+.link{
+    &--footer{
+        padding-left: 20px;
+        display: block;
+        height: 30px;
+        color: #949ba5;
+    }
+}
+
 .env-nav{
     margin-left:5px;
 

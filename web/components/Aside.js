@@ -77,32 +77,28 @@ const TheComponent = class extends Component {
 										</div>
                                         <div className="flex flex-1"></div>
 
-										<Flex className="links">
-											<Link
-												activeClassName={"active"}
-												to={`/project/${this.props.projectId}/environment/${this.props.environmentId}/features`
-												}><span className={"dot green"}/>Features</Link>
-											{/*<Link*/}
-												{/*activeClassName={"active"}*/}
-												{/*to={*/}
-													{/*`/project/${this.props.projectId}/environment/${this.props.environmentId}/segments`*/}
-												{/*}>*/}
-												{/*<span className={"dot orange"}/>*/}
-												{/*Segments*/}
-											{/*</Link>*/}
-											<Link
-												id="users-link"
-												activeClassName={"active"}
-												to={
-													`/project/${this.props.projectId}/environment/${this.props.environmentId}/users`
-												}><span className={"dot red"}/>Users</Link>
-											<Link
-												id="env-settings-link"
-												activeClassName={"active"}
-												to={
-													`/project/${this.props.projectId}/environment/${this.props.environmentId}/settings`
-												}><span className={"dot purple"}/>Environment Settings</Link>
-										</Flex>
+                                        <div>
+                                            <Link
+                                                id="project-settings-link"
+                                                activeClassName={"active"}
+                                                className={"link--footer"}
+                                                to={
+                                                    `/project/${this.props.projectId}/environment/${this.props.environmentId}/project-settings`
+                                                }>Project Settings</Link>
+                                            <Link
+                                                id="organisation-settings-link"
+                                                activeClassName={"active"}
+                                                className={"link--footer"}
+                                                to={`/project/${this.props.projectId}/environment/${this.props.environmentId}/organisation-settings`}>
+                                                Organisation Settings
+                                            </Link>
+                                            <a
+                                                target={"blank"}
+                                                className={"link--footer"}
+                                                href={`https://docs.bullet-train.io`}>
+                                                Documentation
+                                            </a>
+                                        </div>
 									</Flex>
 								)}
 							</Flex>
