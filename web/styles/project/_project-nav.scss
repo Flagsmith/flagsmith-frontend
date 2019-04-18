@@ -181,6 +181,14 @@ nav.navbar {
 
         &--open{
             height:auto;
+
+            & > .project-nav__button{
+                background: #2bafa5;
+                min-width: 100%;
+                padding: 5px;
+                margin-left: -10px;
+                border-radius: 0 4px 4px 0;
+            }
         }
     }
 }

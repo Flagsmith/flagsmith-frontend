@@ -1,3 +1,11 @@
+a, .btn, button{
+    outline:none;
+
+    &:hover, &:focus, &:active{
+        outline:none;
+    }
+}
+
 .btn, button.btn{
     background:linear-gradient(#2cd6ca,#48A69D);
     border-radius: 8px!important;

@@ -4,6 +4,10 @@ import EnvironmentSelect from './EnvironmentSelect';
 const TheComponent = class extends Component {
     displayName: 'ProjectSelect'
 
+    static contextTypes = {
+        router: React.PropTypes.object.isRequired
+    };
+
     constructor(props, context) {
         super(props, context);
         this.state = {};
