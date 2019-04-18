@@ -19,7 +19,7 @@ const TheComponent = class extends Component {
                                     this.props.onChange && this.props.onChange(environment.api_key);
                                 }
                             ) : (
-                                <li key={environment.id} className="project-nav__item">
+                                <li key={environment.id} className="project-nav__item project-list__item">
                                     <button className={"project-nav__button " + (this.props.value == (environment.api_key+"") ? "project-nav__item--active" : "")} onClick={() => {
                                         this.props.onChange && this.props.onChange(environment.api_key);
                                     }}>

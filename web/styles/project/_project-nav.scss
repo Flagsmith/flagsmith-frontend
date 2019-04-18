@@ -253,6 +253,12 @@ nav.navbar {
 
     .project-list{
         margin-top:5px;
+
+        &__item{
+            &--open{
+
+            }
+        }
     }
 }
 
