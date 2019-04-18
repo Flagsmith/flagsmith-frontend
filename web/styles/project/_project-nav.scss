@@ -255,8 +255,17 @@ nav.navbar {
         margin-top:5px;
 
         &__item{
-            &--open{
 
+            .env-nav{
+                display:none;
+                height:0;
+            }
+
+            &--open{
+                .env-nav{
+                    display:block;
+                    height:auto;
+                }
             }
         }
     }

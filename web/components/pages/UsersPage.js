@@ -14,6 +14,12 @@ const TheComponent = class extends Component {
         API.trackPage(Constants.pages.USERS);
     }
 
+    componentWillUpdate(nextProps, nextState, nextContext) {
+        if (nextProps.params.environmentId !== this.props.params.environmentId) {
+            AppActions.getIdentities(nextProps.params.environmentId);
+        }
+    }
+
     onSave = () => {
         toast('Environment Saved');
     };

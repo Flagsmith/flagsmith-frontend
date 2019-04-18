@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 
 const TheComponent = class extends Component {
-    displayName: 'TheComponent'
+    displayName: 'EnvironmentSelect'
 
     constructor(props, context) {
         super(props, context);
@@ -19,8 +19,8 @@ const TheComponent = class extends Component {
                                     this.props.onChange && this.props.onChange(environment.api_key);
                                 }
                             ) : (
-                                <li key={environment.id} className="project-nav__item project-list__item">
-                                    <button className={"project-nav__button " + (this.props.value == (environment.api_key+"") ? "project-nav__item--active" : "")} onClick={() => {
+                                <li key={environment.id} className={"project-nav__item project-list__item" + (this.props.environmentId == (environment.api_key+"") ? "project-list__item--open" : "")}>
+                                    <button className={"project-nav__button"} onClick={() => {
                                         this.props.onChange && this.props.onChange(environment.api_key);
                                     }}>
                                         <Row>

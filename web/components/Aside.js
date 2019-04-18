@@ -64,6 +64,8 @@ const TheComponent = class extends Component {
                                                 </Link>
 											</Row>
 											<ProjectSelect
+												projectId={this.props.projectId}
+												environmentId={this.props.environmentId}
 												clearableValue={false}
 												onChange={(project) => {
 													AppActions.getProject(project.id);
