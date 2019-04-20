@@ -38,12 +38,9 @@ const TheComponent = class extends Component {
 								<div className="brand-container text-center">
 									<Link to="/projects">
 										<div>
-											{isDark ? (<img title={"Bullet Train"} height={54}
-																			src={"/images/bullet-train-1-mark.svg"}
-																			className="brand"/>) :
-											(<img title={"Bullet Train"} height={24}
-														src={"/images/bullet-train-black.svg"}
-														className="brand"/>)}
+                                            <img title={"Bullet Train"} height={54}
+                                                 src={"/images/bullet-train-1-mark.svg"}
+                                                 className="brand"/>
 										</div>
 									</Link>
 								</div>

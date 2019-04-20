@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import EnvironmentSelect from './EnvironmentSelect';
 
-const TheComponent = class extends Component {
+const ProjectSelect = class extends Component {
     displayName: 'ProjectSelect'
 
     static contextTypes = {
@@ -71,6 +71,6 @@ const TheComponent = class extends Component {
     }
 };
 
-TheComponent.propTypes = {};
+ProjectSelect.propTypes = {};
 
-module.exports = TheComponent;
+module.exports = ProjectSelect;

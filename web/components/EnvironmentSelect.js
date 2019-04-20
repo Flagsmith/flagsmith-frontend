@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 
-const TheComponent = class extends Component {
+const EnvironmentSelect = class extends Component {
     displayName: 'EnvironmentSelect'
 
     constructor(props, context) {
@@ -39,6 +39,12 @@ const TheComponent = class extends Component {
                                         </li>
                                         <li className="env-nav__item flex-row">
                                             <Link
+                                                activeClassName={"active"}
+                                                to={`/project/${project.id}/environment/${environment.api_key}/segments`
+                                                }>Segments</Link>
+                                        </li>
+                                        <li className="env-nav__item flex-row">
+                                            <Link
                                                 id="users-link"
                                                 activeClassName={"active"}
                                                 to={`/project/${project.id}/environment/${environment.api_key}/users`
@@ -61,6 +67,6 @@ const TheComponent = class extends Component {
     }
 };
 
-TheComponent.propTypes = {};
+EnvironmentSelect.propTypes = {};
 
-module.exports = TheComponent;
+module.exports = ConfigProvider(EnvironmentSelect);
