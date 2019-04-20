@@ -9,13 +9,24 @@ process.env.PORT = 8081;
 const SLACK_TOKEN = process.env.SLACK_TOKEN;
 const E2E_SLACK_CHANNEL = process.env.E2E_SLACK_CHANNEL;
 const E2E_SLACK_CHANNEL_NAME = process.env.E2E_SLACK_CHANNEL_NAME;
-const CI_COMMIT_MESSAGE = process.env.CI_COMMIT_MESSAGE;
+const CI_COMMIT_MESSAGE = process.env.CI_COMMIT_MESSAGE && process.env.CI_COMMIT_MESSAGE.replace(/\n/g, "");
 const CI_COMMIT_REF_NAME = process.env.CI_COMMIT_REF_NAME;
 var server;
 
 const Project = require('../common/project');
 const fetch = require('node-fetch');
-global.testHelpers = require('./helpers');
+global.testHelpers = require('./helpers')
+const formatCommit = function () {
+    if (CI_COMMIT_MESSAGE) {
+        return "\nBranch:" + CI_COMMIT_REF_NAME + "\nCommit: '"+ CI_COMMIT_MESSAGE + "'"
+    }
+    return "\nBranch: Local" + "\nCommit: '...'"
+}
+const sendSuccess = function () {
+    if(SLACK_TOKEN) {
+        slackMessage("Tests Passed!" + formatCommit(), E2E_SLACK_CHANNEL_NAME);
+    }
+}
 const clearDown = function(browser,done) {
     var token;
     if (process.env['E2E_TEST_TOKEN_' + Project.env.toUpperCase()]) {
@@ -58,11 +69,7 @@ module.exports = Object.assign(
         // },
         before: (browser, done) => {
             if(SLACK_TOKEN) {
-                if (CI_COMMIT_MESSAGE) {
-                    slackMessage("Running tests, " + CI_COMMIT_REF_NAME + " branch: '"+ CI_COMMIT_MESSAGE + "'", E2E_SLACK_CHANNEL_NAME);
-                } else {
-                    slackMessage("Running tests from local machine", E2E_SLACK_CHANNEL_NAME);
-                }
+                slackMessage("Running tests." + formatCommit(), E2E_SLACK_CHANNEL_NAME);
             }
             server = fork('./server');
             server.on('message', () => {
@@ -84,7 +91,7 @@ module.exports = Object.assign(
                                         console.log("Last error:", lastError);
                                         const uri = path.join(__dirname, 'screenshot.png');
                                         browser.saveScreenshot(uri, () => {
-                                            slackUpload(uri,'E2E for Bullet Train Failed \n```' +JSON.stringify({
+                                            slackUpload(uri,'E2E for Bullet Train Failed. ' + formatCommit() + '\n```' +JSON.stringify({
                                                 request: lastRequest,
                                                 error: lastError,
                                             }, null,2).replace(/\\/g,'')+'```', E2E_SLACK_CHANNEL, 'Screenshot')
@@ -98,11 +105,7 @@ module.exports = Object.assign(
                                 });
                             });
                         } else {
-                            if (CI_COMMIT_MESSAGE) {
-                                slackMessage("Tests Passed! " + CI_COMMIT_REF_NAME + " branch: '"+ CI_COMMIT_MESSAGE + "'", E2E_SLACK_CHANNEL_NAME);
-                            } else {
-                                slackMessage("Tests Passed!", E2E_SLACK_CHANNEL_NAME);
-                            }
+                            sendSuccess();
                             server.kill('SIGINT');
                             browser.end();
                             done();
@@ -110,14 +113,16 @@ module.exports = Object.assign(
                     })
                 });
             } else {
+                sendSuccess();
                 server.kill('SIGINT');
                 browser.end();
                 done();
             }
         }
     },
-    require('./main.test'), // Main flow tests
-    require('./invite.test'), // Invite user tests
-    require('./register-fail.test'), // Registration failure tests
+    // require('./main.test'), // Main flow tests
+    // require('./invite.test'), // Invite user tests
+    // require('./register-fail.test'), // Registration failure tests
     require('./login-fail.test'), // Login failure tests
 );
+
