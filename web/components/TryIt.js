@@ -57,8 +57,8 @@ const TheComponent = class extends Component {
                             {this.props.title}
                         </p>
                         <div>
-                            <Button id="try-it-btn" disabled={this.state.isLoading} onClick={this.request}>
-                                {this.state.data ? "Test again" : "Run test"}
+                            <Button id="try-it-btn" disabled={this.state.isLoading} onClick={this.request} className="btn btn--with-icon">
+                                {this.state.data ? "Test again" : "Run test"} <img className="btn__icon btn__icon--small" src="/images/icon-play.svg" alt="Run"/>
                             </Button>
                         </div>
                     </div>
