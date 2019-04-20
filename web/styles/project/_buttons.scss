@@ -41,9 +41,9 @@ a, .btn, button{
         padding: 5px 10px;
         height: 34px;
         &:hover {
-            background: #f9f9f9;
             box-shadow: none;
-            color: darken($brand-primary, 0.5);
+            background: white;
+            color: darken($brand-primary, 10);
         }
         color: $brand-primary;
     }
