@@ -120,13 +120,12 @@ const TheComponent = class extends Component {
 
 
                                 <div className={"form-group "}>
-                                    <strong className="cols-sm-2 control-label faint">Include users that meet
-                                        the following rules</strong>
+                                    <strong className="cols-sm-2 control-label faint">Include users that meet the following rules</strong>
                                     {rules[0].all.rules.map((rule, i) => (
                                             <Rule rule={rule} onChange={(v) => this.updateRule(rules[0].all.rules, i, v)}/>
                                     ))}
                                     <FormGroup>
-                                        <Button className="btn btn-anchor">
+                                        <Button className="btn btn--anchor">
                                             AND
                                         </Button>
                                     </FormGroup>
@@ -137,7 +136,7 @@ const TheComponent = class extends Component {
                                         </div>
                                     ))}
                                     <FormGroup>
-                                        <Button className="btn btn-anchor">
+                                        <Button className="btn btn--anchor">
                                             AND
                                         </Button>
                                     </FormGroup>

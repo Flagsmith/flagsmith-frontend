@@ -1,6 +1,14 @@
+a, .btn, button{
+    outline:none;
+
+    &:hover, &:focus, &:active{
+        outline:none;
+    }
+}
+
 .btn, button.btn{
-    background:#2cd6ca;
-    border-radius: 25px!important;
+    background:linear-gradient(#2cd6ca,#48A69D);
+    border-radius: 8px!important;
     color:#fff;
     text-align: center;
     padding: 10px 20px;
@@ -9,8 +17,8 @@
     height:50px;
 
     &:hover{
-        color:#fff;
-        background:darken(#2cd6ca,5);
+        background:linear-gradient(#2cd6ca,#48A69D);
+        box-shadow:0 0 10px rgba(0,0,0,0.5);
     }
 
     &.white{
@@ -20,6 +28,47 @@
 
     &.btn-danger{
         background:#d9534f;
+    }
+
+    &--secondary{
+        background:#22354a;
+    }
+
+
+    &--anchor {
+        box-shadow: none;
+        background: white;
+        padding: 5px 10px;
+        height: 34px;
+        &:hover {
+            background: #f9f9f9;
+            box-shadow: none;
+            color: darken($brand-primary, 0.5);
+        }
+        color: $brand-primary;
+    }
+
+
+    &--with-icon{
+        background:none;
+        color:#2cd6ca;
+        box-shadow: none;
+        height:auto;
+
+        &:hover{
+            background:none;
+            color:darken(#2cd6ca,5);
+            box-shadow: none;
+        }
+    }
+
+    &__icon{
+        height:25px;
+        margin-left:5px;
+
+        &--small{
+            height:20px;
+        }
     }
 }
 

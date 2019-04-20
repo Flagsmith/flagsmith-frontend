@@ -16,17 +16,19 @@ export default class TheComponent extends PureComponent {
                         <div></div>
                         <div></div>
                         <Row>
-                            <Button className="btn btn-anchor">
+                            <Button className="btn btn--anchor">
                                 OR
                             </Button>
-                            <button
-                                id="remove-feature"
-                                onClick={() => {
-
-                                }}
-                                className={"btn btn-link btn-remove"}>
-                                <span className="ion ion-md-close"/>
-                            </button>
+                            <Column>
+                                <button
+                                    id="remove-feature"
+                                    onClick={() => this.confirmRemove(projectFlags[i], () => {
+                                        removeFlag(this.props.params.projectId, projectFlags[i])
+                                    })}
+                                    className={"btn btn--with-icon"}>
+                                    <img className="btn__icon" src="/images/icons/bin.svg" alt="Delete"/>
+                                </button>
+                            </Column>
                         </Row>
                     </Row>
 

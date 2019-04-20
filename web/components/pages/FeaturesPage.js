@@ -149,8 +149,8 @@ const TheComponent = class extends Component {
                                                                         onClick={() => this.confirmRemove(projectFlags[i], () => {
                                                                             removeFlag(this.props.params.projectId, projectFlags[i])
                                                                         })}
-                                                                        className={"btn btn-link btn-remove"}>
-                                                                        <span className="ion ion-md-close"/>
+                                                                        className={"btn btn--with-icon"}>
+                                                                        <img className="btn__icon" src="/images/icons/bin.svg" alt="Delete"/>
                                                                     </button>
                                                                 </Column>
                                                             </Row>

@@ -39,15 +39,6 @@ $add-btn-size: 34px;
 	}
 }
 
-.btn-anchor {
-	box-shadow: none !important;
-	background-color: transparent !important;
-	&:hover {
-		background-color: #f1f1f1 !important;
-	}
-	color: $brand-primary !important;
-}
-
 .btn.btn-add {
 	line-height: $add-btn-size;
 	height: $add-btn-size;
