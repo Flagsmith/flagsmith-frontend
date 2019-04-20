@@ -147,7 +147,17 @@ hr {
     top: 0;
     left: 0;
     right: 0;
+    z-index: 2;
     color: #fff;
+    height:60px;
+    padding: 15px;
+    font-size: 1.2em;
+    background-color: #384f68;
+    text-align: center;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+
     a {
         color: white;
         &.close-btn {
@@ -155,13 +165,11 @@ hr {
             line-height: 30px;
         }
     }
-    padding: 15px;
-    font-size: 1.2em;
-    background-color: #f94f73;
-    text-align: center;
-    -webkit-transition: all 0.3s ease;
-    -moz-transition: all 0.3s ease;
-    transition: all 0.3s ease;
+
+    &__text{
+        font-size:14px;
+    }
+
     &.pulse {
         background-color: purple;
     }
