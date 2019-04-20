@@ -34,6 +34,21 @@ a, .btn, button{
         background:#22354a;
     }
 
+
+    &--anchor {
+        box-shadow: none;
+        background: white;
+        padding: 5px 10px;
+        height: 34px;
+        &:hover {
+            box-shadow: none;
+            background: white;
+            color: darken($brand-primary, 10);
+        }
+        color: $brand-primary;
+    }
+
+
     &--with-icon{
         background:none;
         color:#2cd6ca;

@@ -287,7 +287,7 @@ const TheComponent = class extends Component {
                                                                                 <button
                                                                                     id="resend-invite"
                                                                                     onClick={() => AppActions.resendInvite(id)}
-                                                                                    className={"btn btn-primary"}>
+                                                                                    className={"btn btn--anchor"}>
                                                                                     Resend
                                                                                 </button>
                                                                             </Column>
@@ -295,8 +295,9 @@ const TheComponent = class extends Component {
                                                                                 <button
                                                                                     id="delete-invite"
                                                                                     onClick={() => this.deleteInvite(id)}
-                                                                                    className={"btn btn-danger"}>
-                                                                                    Delete
+                                                                                    className={"btn btn--with-icon ml-auto"}
+                                                                                >
+                                                                                    <img className="btn__icon" src="/images/icons/bin.svg" alt="Delete"/>
                                                                                 </button>
                                                                             </Column>
                                                                         </Row>
