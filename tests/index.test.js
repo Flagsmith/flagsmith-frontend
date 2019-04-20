@@ -97,6 +97,7 @@ module.exports = Object.assign(
                                             }, null,2).replace(/\\/g,'')+'```', E2E_SLACK_CHANNEL, 'Screenshot')
                                                 .then((res)=>{
                                                     server.kill('SIGINT');
+                                                    process.exit(0);
                                                     browser.end();
                                                     done();
                                                 });
@@ -106,23 +107,25 @@ module.exports = Object.assign(
                             });
                         } else {
                             sendSuccess();
-                            server.kill('SIGINT');
                             browser.end();
                             done();
+                            server.kill('SIGINT');
+                            process.exit(0);
                         }
                     })
                 });
             } else {
                 sendSuccess();
-                server.kill('SIGINT');
                 browser.end();
                 done();
+                server.kill('SIGINT');
+                process.exit(0);
             }
         }
     },
-    // require('./main.test'), // Main flow tests
-    // require('./invite.test'), // Invite user tests
-    // require('./register-fail.test'), // Registration failure tests
+    require('./main.test'), // Main flow tests
+    require('./invite.test'), // Invite user tests
+    require('./register-fail.test'), // Registration failure tests
     require('./login-fail.test'), // Login failure tests
 );
 
