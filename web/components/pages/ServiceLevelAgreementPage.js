@@ -1,4 +1,4 @@
-export default (props) => (
+const ServiceLevelAgreement =  (props) => (
   <div className="legal-container">
     <div className="container">
         <h2>Service Level Agreement</h2>
@@ -61,4 +61,7 @@ export default (props) => (
 
     </div>
   </div>
-)
+);
+
+ServiceLevelAgreement.displayName = "ServiceLevelAgreement";
+export default ServiceLevelAgreement;

@@ -3,7 +3,7 @@ import ConfirmRemoveEnvironment from '../modals/ConfirmRemoveEnvironment';
 import ProjectStore from '../../../common/stores/project-store';
 
 const TheComponent = class extends Component {
-    displayName: 'TheComponent'
+    displayName: 'EnvironmentSettingsPage'
     static contextTypes = {
         router: React.PropTypes.object.isRequired
     };

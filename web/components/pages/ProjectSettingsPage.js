@@ -2,7 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import ConfirmRemoveProject from '../modals/ConfirmRemoveProject';
 
 const TheComponent = class extends Component {
-	displayName: 'TheComponent'
+	displayName: 'ProjectSettingsPage'
 	static contextTypes = {
 		router: React.PropTypes.object.isRequired
 	};

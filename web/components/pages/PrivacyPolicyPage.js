@@ -1,4 +1,4 @@
-export default (props) => (
+const PrivacyPolicyPage = (props) => (
   <div className="legal-container">
     <div className="container">
         <h2>Privacy Policy</h2>
@@ -90,4 +90,7 @@ export default (props) => (
         <p>Bullet Train has taken steps to elect a Data Privacy Officer, to ensure that we have adequate data protection policies, procedures, and practices. We believe that we are fully in compliance with the provisions and principles of GDPR.</p>
     </div>
   </div>
-)
+);
+
+PrivacyPolicyPage.displayName = "PrivacyPolicyPage";
+export default PrivacyPolicyPage;

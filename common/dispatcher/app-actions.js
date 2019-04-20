@@ -1,204 +1,208 @@
 module.exports = Object.assign({}, require('./base/_app-actions'), {
-	getOrganisation: function (organisationId) { //refresh the entire app
+	getOrganisation: function (organisationId) {
 		Dispatcher.handleViewAction({
 			actionType: Actions.GET_ORGANISATION,
 			id: organisationId
 		});
 	},
-	getFeatures: function (projectId, environmentId) { //refresh the entire app
+	getFeatures: function (projectId, environmentId) {
 		Dispatcher.handleViewAction({
-			actionType: Actions.GET_FEATURES,
+			actionType: Actions.GET_FLAGS,
 			projectId,
 			environmentId
 		});
 	},
-	createProject: function (name) { //refresh the entire app
+	getSegments: function (projectId, environmentId) {
+		Dispatcher.handleViewAction({
+			actionType: Actions.GET_SEGMENTS,
+			projectId,
+			environmentId
+		});
+	},
+	createProject: function (name) {
 		Dispatcher.handleViewAction({
 			actionType: Actions.CREATE_PROJECT,
 			name
 		});
 	},
-	getProject: function (projectId) { //refresh the entire app
+	getProject: function (projectId) {
 		Dispatcher.handleViewAction({
 			actionType: Actions.GET_PROJECT,
 			projectId
 		});
 	},
-    getConfig: function (projectId) { //refresh the entire app
+    getConfig: function (projectId) {
 		Dispatcher.handleViewAction({
 			actionType: Actions.GET_CONFIG,
 			projectId
 		});
 	},
-	resetPassword: function (data) { //refresh the entire app
+	resetPassword: function (data) {
 		Dispatcher.handleViewAction({
 			actionType: Actions.RESET_PASSWORD,
 			...data
 		});
 	},
-	createEnv: function (name, projectId) { //refresh the entire app
+	createEnv: function (name, projectId) {
 		Dispatcher.handleViewAction({
 			actionType: Actions.CREATE_ENV,
 			name,
 			projectId
 		});
 	},
-	editEnv: function (env) { //refresh the entire app
+	editEnv: function (env) {
 		Dispatcher.handleViewAction({
 			actionType: Actions.EDIT_ENVIRONMENT,
 			env
 		});
 	},
-	deleteEnv: function (env) { //refresh the entire app
+	deleteEnv: function (env) {
 		Dispatcher.handleViewAction({
 			actionType: Actions.DELETE_ENVIRONMENT,
 			env
 		});
 	},
-	refreshOrganisation: function () { //refresh the entire app
+	refreshOrganisation: function () {
 		Dispatcher.handleViewAction({
 			actionType: Actions.GET_ORGANISATION,
 			force: true
 		});
 	},
-	createFlag: function (projectId, environmentId, flag) { //refresh the entire app
+	createFlag: function (projectId, environmentId, flag) {
 		Dispatcher.handleViewAction({
 			actionType: Actions.CREATE_FLAG,
 			projectId, environmentId, flag
 		});
 	},
-	editEnvironmentFlag: function (projectId, environmentId, flag, projectFlag, environmentFlag) { //refresh the entire app
+	createSegment: function (projectId, environmentId, segment) {
+		Dispatcher.handleViewAction({
+			actionType: Actions.CREATE_SEGMENT,
+			projectId, environmentId, segment
+		});
+	},
+	editEnvironmentFlag: function (projectId, environmentId, flag, projectFlag, environmentFlag) {
 		Dispatcher.handleViewAction({
 			actionType: Actions.EDIT_ENVIRONMENT_FLAG,
 			projectId, environmentId, flag, projectFlag, environmentFlag
 		});
 	},
-	editFlag: function (projectId, flag) { //refresh the entire app
+	editEnvironmentSegment: function (projectId, environmentId, segment, projectSegment, environmentSegment) {
+		Dispatcher.handleViewAction({
+			actionType: Actions.EDIT_ENVIRONMENT_SEGMENT,
+			projectId, environmentId, segment, projectSegment, environmentSegment
+		});
+	},
+	editFlag: function (projectId, flag) {
 		Dispatcher.handleViewAction({
 			actionType: Actions.EDIT_FLAG,
 			projectId, flag
 		});
 	},
-	editProject: function (id, project) { //refresh the entire app
+	editSegment: function (projectId, segment) {
+		Dispatcher.handleViewAction({
+			actionType: Actions.EDIT_SEGMENT,
+			projectId, segment
+		});
+	},
+	editProject: function (id, project) {
 		Dispatcher.handleViewAction({
 			actionType: Actions.EDIT_PROJECT,
 			id,
 			project,
 		});
 	},
-
 	removeUserFlag: function ({environmentId, identity, identityFlag}) {
 		Dispatcher.handleViewAction({
 			actionType: Actions.REMOVE_USER_FLAG,
 			environmentId, identity, identityFlag
 		});
 	},
-
 	acceptInvite: function (id) {
 		Dispatcher.handleViewAction({
 			actionType: Actions.ACCEPT_INVITE,
 			id
 		});
 	},
-	setUserFlag: function (envId, userId, flag, environmentFlag) {
-		Dispatcher.handleViewAction({
-			actionType: Actions.REMOVE_USER_FLAG,
-			envId, userId, flag, environmentFlag
-		});
-	},
-
-	deleteFlag: function (id) { //refresh the entire app
-		Dispatcher.handleViewAction({
-			actionType: Actions.DELETE_FLAG,
-			id
-		});
-	},
-	deleteProject: function (id) { //refresh the entire app
+	deleteProject: function (id) {
 		Dispatcher.handleViewAction({
 			actionType: Actions.DELETE_PROJECT,
 			id
 		});
 	},
-	saveEnv: function (name) { //refresh the entire app
+	saveEnv: function (name) {
 		Dispatcher.handleViewAction({
 			actionType: Actions.EDIT_ENVIRONMENT,
 			name
 		});
 	},
-	getEnv: function (id) { //refresh the entire app
-		Dispatcher.handleViewAction({
-			actionType: Actions.GET_ENVIRONMENT,
-			id
-		});
-	},
-	toggleFlag: function (index, environments, comment) { //refresh the entire app
+	toggleFlag: function (index, environments, comment) {
 		Dispatcher.handleViewAction({
 			actionType: Actions.TOGGLE_FLAG,
 			index, environments, comment
 		});
 	},
-	editUserFlag: function (params) { //refresh the entire app
+	editUserFlag: function (params) {
 		Dispatcher.handleViewAction({
 			actionType: Actions.EDIT_USER_FLAG,
 			...params
 		});
 	},
-	editTrait: function (params) { //refresh the entire app
+	editTrait: function (params) {
 		Dispatcher.handleViewAction({
 			actionType: Actions.EDIT_TRAIT,
 			...params
 		});
 	},
-	toggleUserFlag: function (params) { //refresh the entire app
+	toggleUserFlag: function (params) {
 		Dispatcher.handleViewAction({
 			actionType: Actions.TOGGLE_USER_FLAG,
 			...params
 		});
 	},
-	selectOrganisation: function (id) { //refresh the entire app
+	selectOrganisation: function (id) {
 		Dispatcher.handleViewAction({
 			actionType: Actions.SELECT_ORGANISATION,
 			id
 		});
 	},
-	getIdentities: function (envId) { //refresh the entire app
+	getIdentities: function (envId) {
 		Dispatcher.handleViewAction({
 			actionType: Actions.GET_IDENTITIES,
 			envId
 		});
 	},
-	getIdentity: function (envId, id) { //refresh the entire app
+	getIdentity: function (envId, id) {
 		Dispatcher.handleViewAction({
 			actionType: Actions.GET_IDENTITY,
 			envId, id
 		});
 	},
-	saveIdentity: function (id, identity) { //refresh the entire app
+	saveIdentity: function (id, identity) {
 		Dispatcher.handleViewAction({
 			actionType: Actions.SAVE_IDENTITY,
 			id,
 			identity
 		});
 	},
-	createOrganisation: function (name) { //refresh the entire app
+	createOrganisation: function (name) {
 		Dispatcher.handleViewAction({
 			actionType: Actions.CREATE_ORGANISATION,
 			name
 		});
 	},
-	editOrganisation: function (org) { //refresh the entire app
+	editOrganisation: function (org) {
 		Dispatcher.handleViewAction({
 			actionType: Actions.EDIT_ORGANISATION,
 			org
 		});
 	},
-	removeFlag: function (projectId, flag) { //refresh the entire app
+	removeFlag: function (projectId, flag) {
 		Dispatcher.handleViewAction({
 			actionType: Actions.REMOVE_FLAG,
 			projectId, flag
 		});
 	},
-	inviteUsers: function (emailAddresses) { //refresh the entire app
+	inviteUsers: function (emailAddresses) {
 		Dispatcher.handleViewAction({
 			actionType: Actions.INVITE_USERS,
 			emailAddresses
