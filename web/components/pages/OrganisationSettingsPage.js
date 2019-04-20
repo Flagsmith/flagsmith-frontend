@@ -104,17 +104,18 @@ const TheComponent = class extends Component {
         const freeTrialDaysRemaining = Utils.freeTrialDaysRemaining(AccountStore.getOrganisation().subscription_date);
 
         return (
-            <div className="app-container container">
-                <AccountProvider onSave={this.onSave} onRemove={this.onRemove}>
-                    {({
-                          isLoading,
-                          isSaving,
-                          user,
-                          organisation
-                      }, { createOrganisation, selectOrganisation, editOrganisation, deleteOrganisation }) => (
-                        <div>
-                            <FormGroup>
-                                <div className="margin-bottom">
+
+            <AccountProvider onSave={this.onSave} onRemove={this.onRemove}>
+                {({
+                      isLoading,
+                      isSaving,
+                      user,
+                      organisation
+                  }, { createOrganisation, selectOrganisation, editOrganisation, deleteOrganisation }) => (
+                    <div className="app-container container">
+                        <FormGroup>
+                            <div className="margin-bottom">
+                                <div className="hidden">
                                     {AccountStore.isDemo ? null : organisation.paid_subscription ? (
                                         <div>
                                             <h2 className="text-center margin-bottom">Your organisation is on
@@ -129,7 +130,7 @@ const TheComponent = class extends Component {
                                             {/* TODO upgrades? */}
                                         </div>
                                     ) : organisation.free_to_use_subscription ? (
-                                        <div>
+                                        <div className="text-center">
                                             <h2 className="text-center margin-bottom">Your organisation is using Bullet
                                                 Train for free.</h2>
                                             {hasFeature('free_tier') ?
@@ -140,11 +141,13 @@ const TheComponent = class extends Component {
                                                     DD/MM/YYYY. You will then need to choose a payment plan to continue
                                                     using Bullet Train.</div>
                                             }
-                                            <div className="text-center margin-bottom">Click <a
-                                                onClick={() => openModal(null, <PaymentModal
-                                                    viewOnly={!hasFeature('free_tier')}
-                                                />, null, { large: true })}
-                                            >here</a> to view payment plans
+                                            <div>
+                                                <button type="button" className="btn btn-primary text-center mx-auto"
+                                                        onClick={() => openModal(null, <PaymentModal
+                                                            viewOnly={!hasFeature('free_tier')}
+                                                        />, null, { large: true })}
+                                                >View payment plans
+                                                </button>
                                             </div>
                                         </div>
                                     ) : freeTrialDaysRemaining > 0 ? (
@@ -155,32 +158,37 @@ const TheComponent = class extends Component {
                                                 have {freeTrialDaysRemaining} days remaining until you need to choose a
                                                 payment plan.
                                             </div>
-                                            <div className="text-center margin-bottom">Click <a
-                                                onClick={() => openModal(null, <PaymentModal viewOnly={true}
+                                            <div className="text-center margin-bottom">
+                                                <button type="button" onClick={() => openModal(null, <PaymentModal
+                                                    viewOnly={true}
                                                 />, null, { large: true })}
-                                            >here</a> to view payment plans
+                                                >View payment plans
+                                                </button>
                                             </div>
                                         </div>
                                     ) : (
                                         <div>
                                             <h2 className="text-center margin-bottom">Your trial period of Bullet Train
                                                 is over.</h2>
-                                            <div className="text-center margin-bottom">Click <a
-                                                onClick={() => openModal(null, <PaymentModal/>, null, { large: true })}
-                                            >here</a> to view payment plans to continue using Bullet Train
+                                            <div className="text-center margin-bottom">
+                                                <button type="button" onClick={() => openModal(null,
+                                                    <PaymentModal/>, null, { large: true })}
+                                                >here
+                                                </button>
+                                                View payment plans
                                             </div>
                                         </div>
                                     )}
+                                </div>
+
+                                <div className="panel--grey">
                                     <form key={organisation.id} onSubmit={this.save}>
-                                        <h3>Organisation name</h3>
+                                        <h5>Organisation</h5>
                                         <Row>
-                                            <Column>
+                                            <Column className="m-l-0">
                                                 <Input
                                                     ref={(e) => this.input = e}
-                                                    inputProps={{
-                                                        defaultValue: organisation.name,
-                                                        className: "full-width"
-                                                    }}
+                                                    value={organisation.name}
                                                     onChange={(e) => this.setState({ name: Utils.safeParseEventValue(e) })}
                                                     isValid={name && name.length}
                                                     type="text"
@@ -189,32 +197,51 @@ const TheComponent = class extends Component {
                                                 />
                                             </Column>
                                             {/* <InputGroup
-										inputProps={{defaultValue: organisation.webhook_notification_email, className: "full-width"}}
-										onChange={(e) => this.setState({webhook_notification_email: Utils.safeParseEventValue(e)})}
-										isValid={webhook_notification_email && webhook_notification_email.length && Utils.isValidEmail(webhook_notification_email)}
-										type="text" title={<h3>Webhook Notification Email</h3>}
-										placeholder="Email address"/> */}
+                                             inputProps={{defaultValue: organisation.webhook_notification_email, className: "full-width"}}
+                                             onChange={(e) => this.setState({webhook_notification_email: Utils.safeParseEventValue(e)})}
+                                             isValid={webhook_notification_email && webhook_notification_email.length && Utils.isValidEmail(webhook_notification_email)}
+                                             type="text" title={<h3>Webhook Notification Email</h3>}
+                                             placeholder="Email address"/> */}
                                             <Button disabled={this.saveDisabled()} className="">
                                                 {isSaving ? 'Saving' : 'Save'}
                                             </Button>
                                         </Row>
                                     </form>
+
+                                    <div className="plan plan--current flex-row m-t-2">
+                                        <div className="plan__prefix">
+                                            <img src="/images/bullet-train-1-mark.png" className="plan__prefix__image"
+                                                 alt="BT"
+                                            />
+                                        </div>
+                                        <div className="plan__details">
+                                            <p className="text-small m-b-0">Your plan</p>
+                                            <h3 className="m-b-0">{Utils.getPlanName(organisation.plan) ? Utils.getPlanName(organisation.plan) : "Free"}</h3>
+                                        </div>
+                                        <button type="button" className="btn btn-primary text-center ml-auto"
+                                                onClick={() => openModal(null, <PaymentModal
+                                                    viewOnly={!hasFeature('free_tier')}
+                                                />, null, { large: true })}
+                                        >View payment plans
+                                        </button>
+                                    </div>
                                 </div>
-                            </FormGroup>
-                            <FormGroup className="m-y-3">
+                            </div>
+                        </FormGroup>
+                        <FormGroup className="m-y-3">
+                            <div className="panel--grey">
                                 <OrganisationProvider>
                                     {({ isLoading, name, projects, users, invites }) => (
                                         <div>
-                                            <div className="margin-top clearfix">
-                                                <div className="float-left">
-                                                    <h3>Team members</h3>
-                                                    <p>Invite email addresses, comma separated</p>
-                                                </div>
-                                                <Button id={"btn-invite"} onClick={() => openModal(<InviteUsersModal/>)}
-                                                        className={'float-right btn-primary'}
+                                            <div className="flex-row header--icon">
+                                                <h5>Team members</h5>
+                                                <button id={"btn-invite"} onClick={() => openModal(<InviteUsersModal/>)}
+                                                        className={'btn btn--with-icon p-x-0 p-y-0'}
                                                 >
-                                                    Invite Users
-                                                </Button>
+                                                    <img className="btn__icon" src="/images/icons/plus-button.svg"
+                                                         alt="Invite"
+                                                    />
+                                                </button>
                                             </div>
 
                                             {isLoading && <div className="centered-container"><Loader/></div>}
@@ -223,7 +250,7 @@ const TheComponent = class extends Component {
                                                     <FormGroup>
                                                         <PanelSearch
                                                             id="org-members-list"
-                                                            title="Users"
+                                                            title="Members"
                                                             className={"no-pad"}
                                                             items={users}
                                                             renderRow={({ id, first_name, last_name, email }) =>
@@ -300,29 +327,29 @@ const TheComponent = class extends Component {
                                         </div>
                                     )}
                                 </OrganisationProvider>
-                            </FormGroup>
-                            <FormGroup className="m-y-3">
-                                <Row>
-                                    <Column className="d-flex">
-                                        <h5>Delete Organisation</h5>
-                                        <p>This organisation will be deleted permanently along with all projects &
-                                            features.</p>
-                                    </Column>
-                                    <Button
-                                        id="delete-org-btn"
-                                        onClick={() => this.confirmRemove(organisation, () => {
-                                            deleteOrganisation();
-                                        })}
-                                        className={"btn btn-danger ml-auto"}
-                                    >
-                                        Delete
-                                    </Button>
-                                </Row>
-                            </FormGroup>
-                        </div>
-                    )}
-                </AccountProvider>
-            </div>
+                            </div>
+                        </FormGroup>
+                        <FormGroup className="m-y-3">
+                            <Row>
+                                <Column className="d-flex">
+                                    <h6>Delete Organisation</h6>
+                                    <p>This organisation will be deleted permanently along with all projects &
+                                        features.</p>
+                                </Column>
+                                <Button
+                                    id="delete-org-btn"
+                                    onClick={() => this.confirmRemove(organisation, () => {
+                                        deleteOrganisation();
+                                    })}
+                                    className={"btn btn--with-icon ml-auto"}
+                                >
+                                    <img className="btn__icon" src="/images/icons/bin.svg" alt="Delete"/>
+                                </Button>
+                            </Row>
+                        </FormGroup>
+                    </div>
+                )}
+            </AccountProvider>
         );
     }
 };

@@ -91,6 +91,7 @@ const Input = class extends React.Component {
 							{...rest} onFocus={this.onFocus}
 							onKeyDown={this.onKeyDown}
 							onBlur={this.onBlur}
+							value={this.props.value}
 							className={inputClassName}/>
 					)}
 			</div>

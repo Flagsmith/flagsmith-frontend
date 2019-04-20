@@ -1,5 +1,55 @@
 .panel{
+    border-radius:4px;
+    overflow:hidden;
+
     a{
         color:#373a3c;
+    }
+
+    input[type="text"] {
+        background:#fff;
+        opacity:1;
+        border:1px solid #d6dbe0!important;
+        border-radius: 8px;
+    }
+
+    &--grey{
+        background:#f7f7f7;
+        border-radius: 4px;
+        padding:20px;
+    }
+}
+
+.header{
+    &--icon{
+        .btn--with-icon{
+            position: relative;
+            top: -4px;
+            margin-left:5px;
+        }
+    }
+}
+
+.plan{
+    background:#fff;
+    border-radius: 4px;
+    box-shadow:rgba(75, 75, 75, 0.11) 0 1px 6px, rgba(75, 75, 75, 0.11) 0 1px 4px;
+    padding:10px;
+    color:#5a5e63;
+
+    &__prefix{
+
+    }
+
+    &__prefix__image{
+        height:50px;
+    }
+
+    &__details{
+        padding-left:20px;
+        color: #5a5e63;
+    }
+
+    &--current{
     }
 }
