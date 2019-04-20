@@ -5,8 +5,8 @@ import CreateFlagModal from '../modals/CreateFlag';
 import CreateTraitModal from '../modals/CreateTrait';
 import TryIt from '../TryIt';
 
-const TheComponent = class extends Component {
-    displayName: 'TheComponent'
+const UserPage = class extends Component {
+    displayName: 'UserPage'
 
     constructor(props, context) {
         super(props, context);
@@ -265,6 +265,6 @@ const TheComponent = class extends Component {
     }
 };
 
-TheComponent.propTypes = {};
+UserPage.propTypes = {};
 
-module.exports = TheComponent;
+module.exports = UserPage;

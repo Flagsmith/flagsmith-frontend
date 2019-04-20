@@ -1,4 +1,4 @@
-import React, {Component, PropTypes} from 'react';
+import React, { Component, PropTypes } from 'react';
 import CreateProjectModal from '../modals/CreateProject'
 import EditOrganisationModal from '../modals/EditOrganisation'
 import InviteUsersModal from '../modals/InviteUsers'
@@ -7,98 +7,101 @@ import PaymentModal from '../modals/Payment';
 import CancelPaymentPlanModal from '../modals/CancelPaymentPlan';
 
 const TheComponent = class extends Component {
-	static displayName = 'OrganisationSettingsPage';
+    static displayName = 'OrganisationSettingsPage';
 
-	constructor(props, context) {
-		super(props, context);
-		this.state = {};
-		AppActions.getOrganisation(AccountStore.getOrganisation().id);
-	}
+    constructor(props, context) {
+        super(props, context);
+        this.state = {};
+        AppActions.getOrganisation(AccountStore.getOrganisation().id);
+    }
 
     componentWillMount = () => {
         API.trackPage(Constants.pages.ORGANISATION_SETTINGS);
     };
 
-	static contextTypes = {
-		router: React.PropTypes.object.isRequired
-	};
-	editOrganisation = () => {
-		openModal('Edit Organisation', <EditOrganisationModal/>)
-	};
+    static contextTypes = {
+        router: React.PropTypes.object.isRequired
+    };
+    editOrganisation = () => {
+        openModal('Edit Organisation', <EditOrganisationModal/>)
+    };
 
-	newProject = () => {
-		openModal('Create  Project', <CreateProjectModal onSave={(projectId) => {
-			this.context.router.push(`/project/${projectId}/environment/create`)
-		}}/>)
-	};
+    newProject = () => {
+        openModal('Create  Project', <CreateProjectModal onSave={(projectId) => {
+            this.context.router.push(`/project/${projectId}/environment/create`)
+        }}
+        />)
+    };
 
-	onSave = () => {
-		toast("Saved organisation")
-	}
+    onSave = () => {
+        toast("Saved organisation")
+    }
 
-	confirmRemove = (organisation, cb) => {
-		openModal("Remove Organisation", <ConfirmRemoveOrganisation
-			organisation={organisation}
-			cb={cb}/>)
-	};
+    confirmRemove = (organisation, cb) => {
+        openModal("Remove Organisation", <ConfirmRemoveOrganisation
+            organisation={organisation}
+            cb={cb}
+        />)
+    };
 
-	onRemove = () => {
-		toast("Your organisation has been removed");
-		if (AccountStore.getOrganisation()) {
-			this.context.router.replace("/projects");
-		} else {
-			this.context.router.replace("/create");
-		}
-	};
+    onRemove = () => {
+        toast("Your organisation has been removed");
+        if (AccountStore.getOrganisation()) {
+            this.context.router.replace("/projects");
+        } else {
+            this.context.router.replace("/create");
+        }
+    };
 
-	deleteInvite = (id) => {
-		openConfirm(<h3>Delete Invite</h3>, <p>Are you sure you want to delete this invite?</p>, () => AppActions.deleteInvite(id));
-	}
+    deleteInvite = (id) => {
+        openConfirm(<h3>Delete Invite</h3>, <p>Are you sure you want to delete this
+            invite?</p>, () => AppActions.deleteInvite(id));
+    }
 
-	save = (e) => {
-		e.preventDefault();
-		const {name, webhook_notification_email} = this.state;
-		if (AccountStore.isSaving || (!name && webhook_notification_email === undefined)) {
-			return;
-		}
+    save = (e) => {
+        e.preventDefault();
+        const { name, webhook_notification_email } = this.state;
+        if (AccountStore.isSaving || (!name && webhook_notification_email === undefined)) {
+            return;
+        }
 
-		const org = AccountStore.getOrganisation();
-		AppActions.editOrganisation({
-			name: name ? name : org.name,
-			webhook_notification_email: webhook_notification_email !== undefined ? webhook_notification_email : org.webhook_notification_email
-		});
-	}
+        const org = AccountStore.getOrganisation();
+        AppActions.editOrganisation({
+            name: name ? name : org.name,
+            webhook_notification_email: webhook_notification_email !== undefined ? webhook_notification_email : org.webhook_notification_email
+        });
+    }
 
-	saveDisabled = () => {
-		const {name, webhook_notification_email} = this.state;
-		if (AccountStore.isSaving || (!name && webhook_notification_email === undefined)) {
-			return true;
-		}
+    saveDisabled = () => {
+        const { name, webhook_notification_email } = this.state;
+        if (AccountStore.isSaving || (!name && webhook_notification_email === undefined)) {
+            return true;
+        }
 
-		// Must have name
-		if (name !== undefined && !name) {
-			return true;
-		}
+        // Must have name
+        if (name !== undefined && !name) {
+            return true;
+        }
 
-		// Must be valid email for webhook notification email
-		if (webhook_notification_email && !Utils.isValidEmail(webhook_notification_email)) {
-			return true;
-		}
+        // Must be valid email for webhook notification email
+        if (webhook_notification_email && !Utils.isValidEmail(webhook_notification_email)) {
+            return true;
+        }
 
-		return false;
-	}
+        return false;
+    }
 
-	cancelPaymentPlan = () => {
-		openModal(
-			<h2>Are you sure you want to cancel your plan?</h2>,
-			<CancelPaymentPlanModal />,
-		);
-	}
+    cancelPaymentPlan = () => {
+        openModal(
+            <h2>Are you sure you want to cancel your plan?</h2>,
+            <CancelPaymentPlanModal/>,
+        );
+    }
 
-	render() {
-		const {hasFeature, getValue} = this.props;
-		const {name, webhook_notification_email} = this.state;
-		const freeTrialDaysRemaining = Utils.freeTrialDaysRemaining(AccountStore.getOrganisation().subscription_date);
+    render() {
+        const { hasFeature, getValue } = this.props;
+        const { name, webhook_notification_email } = this.state;
+        const freeTrialDaysRemaining = Utils.freeTrialDaysRemaining(AccountStore.getOrganisation().subscription_date);
 
 		return (
 			<div className="app-container container">

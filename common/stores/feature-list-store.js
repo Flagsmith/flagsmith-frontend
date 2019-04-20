@@ -124,7 +124,7 @@ store.dispatcherIndex = Dispatcher.register(store, function (payload) {
     var action = payload.action; // this is our action from handleViewAction
 
     switch (action.actionType) {
-        case Actions.GET_FEATURES:
+        case Actions.GET_FLAGS:
             controller.getFeatures(action.projectId, action.environmentId);
             break;
         case Actions.TOGGLE_FLAG:

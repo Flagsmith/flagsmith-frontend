@@ -11,6 +11,7 @@ const HomePage = class extends React.Component {
     static contextTypes = {
         router: React.PropTypes.object.isRequired
     };
+    static displayName = 'HomePage';
 
     constructor(props, context) {
         super(props, context);

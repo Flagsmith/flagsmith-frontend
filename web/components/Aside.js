@@ -22,18 +22,14 @@ const TheComponent = class extends Component {
 		}
 	}
 
-	onEditClick = (e) => {
-		e.stopPropagation();
-		console.log("Stopped prop")
-	}
-
 	onProjectSave = () => {
 		AppActions.refreshOrganisation();
 	}
 
 	render() {
-		const isDark = /*pathname.indexOf('/blog') !== -1*/ true;
-		return (
+        const {hasFeature, getValue} = this.props;
+
+        return (
 			<OrganisationProvider>
         {({isLoading: isLoadingOrg, projects}) => (
 					<ProjectProvider id={this.props.projectId} onSave={this.onProjectSave}>
@@ -114,4 +110,4 @@ const TheComponent = class extends Component {
 
 TheComponent.propTypes = {};
 
-module.exports = TheComponent;
+module.exports = ConfigProvider(TheComponent);

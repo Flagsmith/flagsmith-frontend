@@ -2,7 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import makeAsyncScriptLoader from "react-async-script";
 
 const PaymentModal = class extends Component {
-    static displayName = 'PaymentModal'
+    static displayName = 'Payment'
 
     constructor(props, context) {
         super(props, context);

@@ -7,6 +7,7 @@ const keywords = {
     NPM_NODE_CLIENT: "bullet-train-nodejs",
     USER_ID: "user_123456",
     FEATURE_FUNCTION: "myCoolFeature",
+    SEGMENT_NAME: "superUsers",
     FEATURE_NAME: "myCoolFeature",
     USER_FEATURE_FUNCTION: "myPowerUserFeature",
     USER_FEATURE_NAME: "myPowerUserFeature",
@@ -19,6 +20,7 @@ var Constants = {
     events: {
         "CREATE_ENVIRONMENT": {"event": "Environment created", "category": "Environment"},
         "CREATE_FEATURE": {"event": "Feature created", "category": "Features"},
+        "CREATE_SEGMENT": {"event": "Segment created", "category": "Segments"},
         "CREATE_ORGANISATION": {"event": "Organisation created", "category": "Organisation"},
         "CREATE_PROJECT": {"event": "Project created", "category": "Project"},
         "CREATE_USER_FEATURE": {"event": "User feature created", "category": "User Features"},
@@ -43,7 +45,8 @@ var Constants = {
         "TOGGLE_USER_FEATURE": {"event": "User feature toggled", "category": "User Features"},
         "TRY_IT": {"event": "Try it clicked", "category": "TryIt"},
         "VIEW_USER_FEATURE": {"event": "User feature viewed", "category": "User Features"},
-        "VIEW_FEATURE": {"event": "Feature viewed", "category": "Features"}
+        "VIEW_FEATURE": {"event": "Feature viewed", "category": "Features"},
+        "VIEW_SEGMENT": {"event": "Segment viewed", "category": "Segment"}
     },
     modals: {
         "PAYMENT": "Payment Modal"
@@ -89,6 +92,16 @@ var Constants = {
                 "Node JS": require('./code-help/create-user/create-user-node')(envId, keywords,userId),
                 "Java": require('./code-help/create-user/create-user-java')(envId, keywords,userId),
                 ".NET": require('./code-help/create-user/create-user-dotnet')(envId, keywords,userId),
+            }
+        },
+
+        "SEGMENTS": (envId) => {
+            return {
+                "JavaScript": require('./code-help/segments/segments-js')(envId, keywords),
+                "React Native": require('./code-help/segments/segments-rn')(envId, keywords),
+                "Node JS": "//Coming Soon",
+                "Java":  "//Coming Soon",
+                ".NET": "//Coming Soon",
             }
         },
 
