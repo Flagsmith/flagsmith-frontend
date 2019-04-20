@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 
-const EnvironmentSelect = class extends Component {
-    displayName: 'EnvironmentSelect'
+const TheComponent = class extends Component {
+    displayName: 'TheComponent'
 
     constructor(props, context) {
         super(props, context);
@@ -12,61 +12,33 @@ const EnvironmentSelect = class extends Component {
         return (
             <ProjectProvider id={this.props.id}>
                 {({isLoading, project}) => (
-                    <ul id="env-list" className="project-list list-unstyled">
+                    <div id="env-list">
                         {project && project.environments && project.environments.map((environment) =>
                             this.props.renderRow ? this.props.renderRow(environment,
                                 () => {
                                     this.props.onChange && this.props.onChange(environment.api_key);
                                 }
                             ) : (
-                                <li key={environment.id} className={"project-nav__item project-list__item" + (this.props.environmentId == (environment.api_key+"") ? "project-list__item--open" : "")}>
-                                    <button className={"project-nav__button"} onClick={() => {
+                                <div key={environment.id}>
+                                    <div href={"#"} className={"list-item " + (this.props.value == (environment.api_key+"") ? "active" : "")} onClick={() => {
                                         this.props.onChange && this.props.onChange(environment.api_key);
                                     }}>
                                         <Row>
                                             <Flex className="text-left">
                                                 {environment.name}
                                             </Flex>
-                                            <span className=" flex-column icon ion-ios-arrow-down"/>
+                                            <span className="icon ion-ios-arrow-forward list-item"></span>
                                         </Row>
-                                    </button>
-                                    <ul className="env-nav list-unstyled">
-                                        <li className="env-nav__item flex-row">
-                                            <Link
-                                                activeClassName={"active"}
-                                                to={`/project/${project.id}/environment/${environment.api_key}/features`
-                                                }>Features</Link>
-                                        </li>
-                                        <li className="env-nav__item flex-row">
-                                            <Link
-                                                activeClassName={"active"}
-                                                to={`/project/${project.id}/environment/${environment.api_key}/segments`
-                                                }>Segments</Link>
-                                        </li>
-                                        <li className="env-nav__item flex-row">
-                                            <Link
-                                                id="users-link"
-                                                activeClassName={"active"}
-                                                to={`/project/${project.id}/environment/${environment.api_key}/users`
-                                                }>Users</Link>
-                                        </li>
-                                        <li className="env-nav__item flex-row">
-                                            <Link
-                                                id="users-link"
-                                                activeClassName={"active"}
-                                                to={`/project/${project.id}/environment/${environment.api_key}/settings`
-                                                }>Settings</Link>
-                                        </li>
-                                    </ul>
-                                </li>
+                                    </div>
+                                </div>
                             ))}
-                    </ul>
+                    </div>
                 )}
             </ProjectProvider>
         );
     }
 };
 
-EnvironmentSelect.propTypes = {};
+TheComponent.propTypes = {};
 
-module.exports = ConfigProvider(EnvironmentSelect);
+module.exports = TheComponent;
