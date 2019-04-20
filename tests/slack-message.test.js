@@ -14,8 +14,9 @@ bot = new Bot(settings);
 var toChannel = function (message, channel) {
     console.log("Posting to channel", channel, "Message is ", message);
     if (channel){
-        bot.postMessageToChannel(channel, message, params);
+        return bot.postMessageToChannel(channel, message, params);
     }
+    return Promise.resolve();
 };
 
 module.exports = toChannel;

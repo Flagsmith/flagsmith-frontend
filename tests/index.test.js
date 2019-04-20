@@ -106,26 +106,30 @@ module.exports = Object.assign(
                                 });
                             });
                         } else {
-                            sendSuccess();
-                            browser.end();
-                            done();
-                            server.kill('SIGINT');
-                            process.exit(0);
+                            sendSuccess()
+                                .then(function () {
+                                    browser.end();
+                                    done();
+                                    server.kill('SIGINT');
+                                    process.exit(0);
+                                })
                         }
                     })
                 });
             } else {
-                sendSuccess();
-                browser.end();
-                done();
-                server.kill('SIGINT');
-                process.exit(0);
+                sendSuccess()
+                    .then(()=>{
+                        browser.end();
+                        done();
+                        server.kill('SIGINT');
+                        process.exit(0);
+                    })
             }
         }
     },
-    require('./main.test'), // Main flow tests
-    require('./invite.test'), // Invite user tests
-    require('./register-fail.test'), // Registration failure tests
+    // require('./main.test'), // Main flow tests
+    // require('./invite.test'), // Invite user tests
+    // require('./register-fail.test'), // Registration failure tests
     require('./login-fail.test'), // Login failure tests
 );
 
