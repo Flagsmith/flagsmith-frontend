@@ -1,4 +1,4 @@
-export default (props) => (
+const TermsOfService = (props) => (
   <div className="legal-container">
     <div className="container">
         <h2>Terms of Service</h2>
@@ -86,4 +86,6 @@ export default (props) => (
         </ol>
     </div>
   </div>
-)
+);
+TermsOfService.displayName = "TermsOfService";
+export default TermsOfService;

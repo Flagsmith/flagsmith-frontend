@@ -4,7 +4,7 @@ import Tabs from '../base/forms/Tabs';
 import Rule from './Rule';
 
 const TheComponent = class extends Component {
-    displayName: 'TheComponent'
+    displayName: 'CreateSegment'
 
     constructor(props, context) {
         super(props, context);
@@ -130,9 +130,7 @@ const TheComponent = class extends Component {
                                             AND
                                         </Button>
                                     </FormGroup>
-
-                                    <strong className="cols-sm-2 control-label faint">Exclude users that meet
-                                        the following rules</strong>
+                                    <strong className="cols-sm-2 control-label faint">Exclude users that meet the following rules</strong>
                                     {rules[1].not.rules.map((rule, i) => (
                                         <div>
                                             <Rule rule={rule} onChange={(v) => this.updateRule(rules[1].not, i, v)}/>

@@ -1,8 +1,8 @@
 import React, {Component, PropTypes} from 'react';
 import EditIdentityModal from './UserPage';
 
-const TheComponent = class extends Component {
-    displayName: 'TheComponent'
+const UsersPage = class extends Component {
+    displayName: 'UsersPage'
 
     constructor(props, context) {
         super(props, context);
@@ -93,6 +93,6 @@ const TheComponent = class extends Component {
     }
 };
 
-TheComponent.propTypes = {};
+UsersPage.propTypes = {};
 
-module.exports = TheComponent;
+module.exports = UsersPage;

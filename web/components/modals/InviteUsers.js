@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 
 const TheComponent = class extends Component {
-    displayName: 'TheComponent'
+    displayName: 'InviteUsers'
 
     constructor(props, context) {
         super(props, context);

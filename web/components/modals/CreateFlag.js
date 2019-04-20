@@ -4,7 +4,7 @@ import Tabs from '../base/forms/Tabs';
 import TabItem from '../base/forms/TabItem';
 
 const TheComponent = class extends Component {
-    displayName: 'TheComponent'
+    displayName: 'CreateFlag'
 
     constructor(props, context) {
         super(props, context);

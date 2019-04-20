@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 
-const TheComponent = class extends Component {
-    displayName: 'TheComponent'
+const WhatAreFeatureFlagsPage = class extends Component {
+    displayName: 'WhatAreFeatureFlagsPage'
 
     constructor(props, context) {
         super(props, context);
@@ -120,6 +120,6 @@ const TheComponent = class extends Component {
     }
 };
 
-TheComponent.propTypes = {};
+WhatAreFeatureFlagsPage.propTypes = {};
 
-module.exports = TheComponent;
+module.exports = WhatAreFeatureFlagsPage;

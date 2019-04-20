@@ -2,7 +2,7 @@
 import React, { PureComponent } from 'react';
 
 export default class TheComponent extends PureComponent {
-    static displayName = 'TheComponent';
+    static displayName = 'Rule';
 
     static propTypes = {};
 

@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Link} from 'react-router';
 
 export default class NotFoundView extends Component {
+    displayName: 'NotFoundPage'
 
     componentWillMount = () => {
         API.trackPage(Constants.pages.NOT_FOUND);

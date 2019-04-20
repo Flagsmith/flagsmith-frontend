@@ -6,10 +6,12 @@ import ServiceLevelAgreement from './ServiceLevelAgreementPage';
 import Footer from '../Footer';
 import TermsOfService from './TermsOfServicePage';
 
-const HomePage = class extends React.Component {
+const TermsPoliciesPage = class extends React.Component {
     static contextTypes = {
         router: React.PropTypes.object.isRequired
     };
+
+    displayName: 'TermsPoliciesPage'
 
     constructor(props, context) {
         super(props, context);
@@ -51,4 +53,4 @@ const HomePage = class extends React.Component {
         );
     }
 };
-module.exports = ConfigProvider(HomePage);
+module.exports = ConfigProvider(TermsPoliciesPage);

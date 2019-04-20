@@ -1,12 +1,10 @@
 import React, {Component, PropTypes} from 'react';
-import EditIdentityModal from './UserPage';
 import CreateSegmentModal from '../modals/CreateSegment';
-import ConfirmToggleFeature from '../modals/ConfirmToggleFeature';
 import TryIt from '../TryIt';
 import ConfirmRemoveSegment from '../modals/ConfirmRemoveSegment';
 
 const TheComponent = class extends Component {
-    static displayName = 'FeaturesPage';
+    static displayName = 'SegmentsPage';
 
     static contextTypes = {
         router: React.PropTypes.object.isRequired

@@ -27,7 +27,9 @@ const TheComponent = class extends Component {
 	}
 
 	render() {
-		return (
+        const {hasFeature, getValue} = this.props;
+
+        return (
 			<OrganisationProvider>
         {({isLoading: isLoadingOrg, projects}) => (
 					<ProjectProvider id={this.props.projectId} onSave={this.onProjectSave}>
@@ -131,10 +133,12 @@ const TheComponent = class extends Component {
 												activeClassName={"active"}
 												to={`/project/${this.props.projectId}/environment/${this.props.environmentId}/features`
 												}><span className={"dot green"}/>Features</Link>
-											<Link
-												activeClassName={"active"}
-												to={`/project/${this.props.projectId}/environment/${this.props.environmentId}/segments`
-												}><span className={"dot orange"}/>Segments</Link>
+											{hasFeature('segments') && (
+                                                <Link
+                                                    activeClassName={"active"}
+                                                    to={`/project/${this.props.projectId}/environment/${this.props.environmentId}/segments`
+                                                    }><span className={"dot orange"}/>Segments</Link>
+											)}
 											<Link
 												id="users-link"
 												activeClassName={"active"}
@@ -180,4 +184,4 @@ const TheComponent = class extends Component {
 
 TheComponent.propTypes = {};
 
-module.exports = TheComponent;
+module.exports = ConfigProvider(TheComponent);
