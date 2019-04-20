@@ -10,9 +10,11 @@
 		box-shadow: none;
 		flex:1;
 		background-color: transparent;
+		background: transparent;
 		color: #000;
 		&:hover {
 			background-color: rgba(0,0,0,.2);
+			box-shadow: none;
 		}
 		font-weight: $input-font-weight;
 		min-height: 34px;
