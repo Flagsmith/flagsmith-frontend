@@ -3,10 +3,14 @@
 require('dotenv').config();
 const path = require('path')
 const slackUpload = require('./slack-upload.test')
+const slackMessage = require('./slack-message.test')
 const fork = require('child_process').fork;
 process.env.PORT = 8081;
 const SLACK_TOKEN = process.env.SLACK_TOKEN;
 const E2E_SLACK_CHANNEL = process.env.E2E_SLACK_CHANNEL;
+const E2E_SLACK_CHANNEL_NAME = process.env.E2E_SLACK_CHANNEL_NAME;
+const CI_COMMIT_MESSAGE = process.env.CI_COMMIT_MESSAGE;
+const CI_COMMIT_REF_NAME = process.env.CI_COMMIT_REF_NAME;
 var server;
 
 const Project = require('../common/project');
@@ -53,6 +57,13 @@ module.exports = Object.assign(
         //     setTimeout(done,4000)
         // },
         before: (browser, done) => {
+            if(SLACK_TOKEN) {
+                if (CI_COMMIT_MESSAGE) {
+                    slackMessage("Running tests, " + CI_COMMIT_REF_NAME + " branch: '"+ CI_COMMIT_MESSAGE + "'", E2E_SLACK_CHANNEL_NAME);
+                } else {
+                    slackMessage("Running tests from local machine", E2E_SLACK_CHANNEL_NAME);
+                }
+            }
             server = fork('./server');
             server.on('message', () => {
                 clearDown(browser,done);
@@ -87,6 +98,11 @@ module.exports = Object.assign(
                                 });
                             });
                         } else {
+                            if (CI_COMMIT_MESSAGE) {
+                                slackMessage("Tests Passed! " + CI_COMMIT_REF_NAME + " branch: '"+ CI_COMMIT_MESSAGE + "'", E2E_SLACK_CHANNEL_NAME);
+                            } else {
+                                slackMessage("Tests Passed!", E2E_SLACK_CHANNEL_NAME);
+                            }
                             server.kill('SIGINT');
                             browser.end();
                             done();
