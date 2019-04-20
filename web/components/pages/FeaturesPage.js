@@ -150,7 +150,7 @@ const TheComponent = class extends Component {
                                                                             removeFlag(this.props.params.projectId, projectFlags[i])
                                                                         })}
                                                                         className={"btn btn--with-icon"}>
-                                                                        <img className="btn__icon" src="/images/icons/bin.svg" alt="Delete"/>
+                                                                        <RemoveIcon />
                                                                     </button>
                                                                 </Column>
                                                             </Row>

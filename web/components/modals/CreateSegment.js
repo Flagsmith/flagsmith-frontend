@@ -43,9 +43,20 @@ const TheComponent = class extends Component {
                 all: {
                     rules: [
                         {
-                            property: 'money',
-                            operator: 'GREATER_THAN_INCLUSIVE',
-                            value: 11
+                            any: {
+                                rules: [
+                                    {
+                                        property: 'money',
+                                        operator: 'GREATER_THAN_INCLUSIVE',
+                                        value: 11
+                                    },
+                                    {
+                                        property: 'money',
+                                        operator: 'LESS_THAN_INCLUSIVE',
+                                        value: 20
+                                    }
+                                ]
+                            }
                         },
                         {
                             any: {
@@ -54,6 +65,11 @@ const TheComponent = class extends Component {
                                         property: 'money',
                                         operator: 'GREATER_THAN_INCLUSIVE',
                                         value: 11
+                                    },
+                                    {
+                                        property: 'money',
+                                        operator: 'LESS_THAN_INCLUSIVE',
+                                        value: 20
                                     }
                                 ]
                             }
@@ -65,11 +81,17 @@ const TheComponent = class extends Component {
                 not: {
                     rules: [
                         {
-                            property: 'name',
-                            operator: 'REGEX',
-                            value: "ky.*?e"
-                        },
-                    ]
+                        any: {
+                            rules: [
+                                {
+                                    property: 'name',
+                                    operator: 'REGEX',
+                                    value: "ky.*?e"
+                                }
+                            ]
+                        }
+                    }
+                    ],
                 }
             }
         ];
@@ -120,26 +142,29 @@ const TheComponent = class extends Component {
 
 
                                 <div className={"form-group "}>
-                                    <strong className="cols-sm-2 control-label faint">Include users that meet the following rules</strong>
-                                    {rules[0].all.rules.map((rule, i) => (
-                                            <Rule rule={rule} onChange={(v) => this.updateRule(rules[0].all.rules, i, v)}/>
-                                    ))}
-                                    <FormGroup>
-                                        <Button className="btn btn--anchor">
-                                            AND
-                                        </Button>
-                                    </FormGroup>
-                                    <strong className="cols-sm-2 control-label faint">Exclude users that meet the following rules</strong>
-                                    {rules[1].not.rules.map((rule, i) => (
-                                        <div>
-                                            <Rule rule={rule} onChange={(v) => this.updateRule(rules[1].not, i, v)}/>
+                                    <label className="cols-sm-2 control-label">Include users when</label>
+                                    <div className="panel--grey">
+                                        <FormGroup>
+                                        {rules[0].all.rules.map((rule, i) => (
+                                                <div>
+                                                    {i>0 && (
+                                                            <Row className="and-divider">
+                                                                <Flex className="and-divider__line"></Flex>
+                                                                    AND
+                                                                <Flex className="and-divider__line"></Flex>
+                                                            </Row>
+                                                    )}
+                                                <Rule rule={rule} onChange={(v) => this.updateRule(rules[0].all.rules, i, v)}/>
+                                                </div>
+                                            )
+                                        )}
+                                        </FormGroup>
+                                        <div style={{marginTop:20}} className={"text-center"}>
+                                            <Button className="btn btn--anchor">
+                                                ADD RULE
+                                            </Button>
                                         </div>
-                                    ))}
-                                    <FormGroup>
-                                        <Button className="btn btn--anchor">
-                                            AND
-                                        </Button>
-                                    </FormGroup>
+                                    </div>
                                 </div>
 
                                 {isEdit && (
@@ -179,4 +204,4 @@ const TheComponent = class extends Component {
 
 TheComponent.propTypes = {};
 
-module.exports = TheComponent;
+module.exports = hot(module)(TheComponent);

@@ -164,8 +164,8 @@ const TheComponent = class extends Component {
                                                     onClick={() => this.confirmRemove(_.find(project.environments, {api_key: this.props.params.environmentId}), () => {
                                                         deleteEnv(_.find(project.environments, {api_key: this.props.params.environmentId}))
                                                     })}
-                                                    className={"btn btn--with-icon ml-auto"}>
-                                                    <img className="btn__icon" src="/images/icons/bin.svg" alt="Delete" />
+                                                    className={"btn btn--with-icon ml-auto btn--remove"}>
+                                                    <RemoveIcon />
                                                 </Button>
                                             </Row>
                                         </FormGroup>

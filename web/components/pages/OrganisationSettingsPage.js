@@ -257,9 +257,9 @@ const TheComponent = class extends Component {
                                                                                 <button
                                                                                     id="delete-invite"
                                                                                     onClick={() => this.deleteInvite(id)}
-                                                                                    className={"btn btn--with-icon ml-auto"}
+                                                                                    className={"btn btn--with-icon ml-auto btn--remove"}
                                                                                 >
-                                                                                    <img className="btn__icon" src="/images/icons/bin.svg" alt="Delete"/>
+                                                                                    <RemoveIcon />
                                                                                 </button>
                                                                             </Column>
                                                                         </Row>
@@ -291,9 +291,9 @@ const TheComponent = class extends Component {
                                     onClick={() => this.confirmRemove(organisation, () => {
                                         deleteOrganisation();
                                     })}
-                                    className={"btn btn--with-icon ml-auto"}
+                                    className={"btn btn--with-icon ml-auto btn--remove"}
                                 >
-                                    <img className="btn__icon" src="/images/icons/bin.svg" alt="Delete"/>
+                                    <RemoveIcon />
                                 </Button>
                             </Row>
                         </FormGroup>

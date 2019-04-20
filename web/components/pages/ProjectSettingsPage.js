@@ -89,8 +89,8 @@ const TheComponent = class extends Component {
 										onClick={() => this.confirmRemove(project, () => {
 											deleteProject(this.props.params.projectId)
 										})}
-										className={"btn btn--with-icon ml-auto"}>
-										<img className="btn__icon" src="/images/icons/bin.svg" alt="Delete" />
+										className={"btn btn--with-icon ml-auto btn--remove"}>
+                                        <RemoveIcon />
 									</Button>
 								</Row>
 

@@ -11,7 +11,8 @@ var Row = (props) => {
       {... rest}
       className={cn({
         'flex-row': true,
-        space: props.space
+        space: props.space,
+        noWrap: props.noWrap
       }, props.className)}>
       {props.children}
     </div>

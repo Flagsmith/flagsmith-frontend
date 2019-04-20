@@ -48,7 +48,14 @@ a, .btn, button{
         color: $brand-primary;
     }
 
-
+    &--condensed {
+        padding: 0px 0px;
+    }
+    &--remove:hover {
+        svg path {
+            fill: #d93939;
+        }
+    }
     &--with-icon{
         background:none;
         color:#2cd6ca;
@@ -64,6 +71,7 @@ a, .btn, button{
 
     &__icon{
         height:25px;
+        width:auto;
         margin-left:5px;
 
         &--small{

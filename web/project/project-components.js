@@ -59,3 +59,7 @@ window.Loader = () => (
 
 
 window.Tooltip = require('../components/Toolip');
+import  {hot} from 'react-hot-loader'
+global.hot = hot;
+import RemoveIcon from '../components/RemoveIcon'
+global.RemoveIcon = RemoveIcon;

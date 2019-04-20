@@ -5,7 +5,6 @@ import Popover from '../components/base/Popover';
 import Feedback from '../components/modals/Feedback';
 import PaymentModal from '../components/modals/Payment';
 import AlertBar from '../components/AlertBar';
-
 const App = class extends Component {
 
     static propTypes = {
@@ -307,4 +306,4 @@ App.propTypes = {
     history: RequiredObject,
 };
 
-export default ConfigProvider(App);
+export default ConfigProvider(hot(module)(App));
