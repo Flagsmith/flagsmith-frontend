@@ -4,7 +4,10 @@
 @import "flexbox/index";
 @import "project/index";
 @import "project/segments";
-
+.overflow-visible {
+    overflow-x: visible !important;
+    overflow-y: visible !important;
+}
 .faint {
     color: $text-muted;
     font-size: 0.8em;

@@ -13,6 +13,7 @@ const TheComponent = class extends Component {
     constructor(props, context) {
         super(props, context);
         this.state = {};
+        AppActions.getFeatures(this.props.params.projectId, this.props.params.environmentId);
         AppActions.getSegments(this.props.params.projectId, this.props.params.environmentId);
     }
 
@@ -20,6 +21,7 @@ const TheComponent = class extends Component {
         const {params} = newProps;
         const {params: oldParams} = this.props;
         if (params.environmentId != oldParams.environmentId || params.projectId != oldParams.projectId) {
+            AppActions.getFeatures(this.props.params.projectId, this.props.params.environmentId);
             AppActions.getSegments(params.projectId, params.environmentId);
         }
     }
@@ -34,21 +36,23 @@ const TheComponent = class extends Component {
         }));
     };
 
-    newSegment = () => {
+    newSegment = (flags) => {
         openModal('New Segment', <CreateSegmentModal
+            flags={flags}
             environmentId={this.props.params.environmentId}
-            projectId={this.props.params.projectId}/>)
+            projectId={this.props.params.projectId}/>, null, {className:"create-segment-modal"})
     };
 
 
     editSegment = (segment) => {
         API.trackEvent(Constants.events.VIEW_SEGMENT);
         openModal('Edit Feature', <CreateSegmentModal
+            flags={flags}
             isEdit={true}
             environmentId={this.props.params.environmentId}
             projectId={this.props.params.projectId}
             projectFlag={segment}
-        />)
+        />, null, {className:"create-segment-modal"})
     };
 
 

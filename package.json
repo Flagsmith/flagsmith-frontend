@@ -57,6 +57,7 @@
     "react-hot-loader": "4.0.1",
     "react-maskedinput": "^4.0.1",
     "react-router": "2.6.0",
+    "react-select": "^2.4.3",
     "react-tooltip": "^3.6.0",
     "sass-loader": "6.0.7",
     "slackbots": "^1.2.0",

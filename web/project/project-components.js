@@ -63,3 +63,6 @@ import  {hot} from 'react-hot-loader'
 global.hot = hot;
 import RemoveIcon from '../components/RemoveIcon'
 global.RemoveIcon = RemoveIcon;
+
+import Select from 'react-select';
+global.Select = (props)=> <Select className="react-select" classNamePrefix="react-select" {...props}/>
