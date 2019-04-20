@@ -48,43 +48,53 @@ const TheComponent = class extends Component {
 						<div>
 							{isLoading && <div className="centered-container"><Loader/></div>}
 							{!isLoading && (
-								<div>
+								<div className="panel--grey">
 									<FormGroup>
-										<form onSubmit={(e) => {
-											e.preventDefault();
-											!isSaving && name && editProject(Object.assign({}, project, {name}));
-										}}>
-											<InputGroup
-												ref={(e) => this.input = e}
-												inputProps={{name: "proj-name", defaultValue: project.name, className: "full-width"}}
-												onChange={(e) => this.setState({name: Utils.safeParseEventValue(e)})}
-												isValid={name && name.length}
-												type="text" title={<h3>Project Name</h3>}
-												placeholder="My Product Name"/>
-											<div className="text-right">
-												<Button id="save-proj-btn" disabled={isSaving || !name}>
-													{isSaving ? 'Saving' : 'Save'}
-												</Button>
-											</div>
-										</form>
+
+											<form onSubmit={(e) => {
+												e.preventDefault();
+												!isSaving && name && editProject(Object.assign({}, project, {name}));
+											}}>
+												<h5>Project</h5>
+												<Row>
+													<Column className="m-l-0">
+														<Input
+															ref={(e) => this.input = e}
+															value={project.name}
+															inputClassName="input input--wide"
+															onChange={(e) => this.setState({name: Utils.safeParseEventValue(e)})}
+															isValid={name && name.length}
+															type="text" title={<h3>Project Name</h3>}
+															placeholder="My Product Name"/>
+													</Column>
+													<Button id="save-proj-btn" disabled={isSaving || !name}>
+														{isSaving ? 'Saving' : 'Save'}
+													</Button>
+												</Row>
+											</form>
 									</FormGroup>
-									<FormGroup>
+								</div>
+							)}
+							<FormGroup className="m-y-3">
+								<Row>
+									<Column className="d-flex">
 										<strong>
 											Delete Project
 										</strong>
 										<p>
 											This project will be deleted permanently
 										</p>
-										<Button
-											onClick={() => this.confirmRemove(project, () => {
-												deleteProject(this.props.params.projectId)
-											})}
-											className={"btn btn-danger"}>
-											Delete
-										</Button>
-									</FormGroup>
-								</div>
-							)}
+									</Column>
+									<Button
+										onClick={() => this.confirmRemove(project, () => {
+											deleteProject(this.props.params.projectId)
+										})}
+										className={"btn btn--with-icon ml-auto"}>
+										<img className="btn__icon" src="/images/icons/bin.svg" alt="Delete" />
+									</Button>
+								</Row>
+
+							</FormGroup>
 						</div>
 					)}
 				</ProjectProvider>

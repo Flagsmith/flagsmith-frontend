@@ -118,68 +118,35 @@ const TheComponent = class extends Component {
                                 <div className="hidden">
                                     {AccountStore.isDemo ? null : organisation.paid_subscription ? (
                                         <div>
-                                            <h2 className="text-center margin-bottom">Your organisation is on
-                                                the {Utils.getPlanName(organisation.plan)} plan</h2>
+                                            <h2 className="text-center margin-bottom">Your organisation is on the {Utils.getPlanName(organisation.plan)} plan</h2>
                                             {!organisation.pending_cancellation ?
-                                                <div className="text-center margin-bottom">Click <a
-                                                    onClick={this.cancelPaymentPlan}
-                                                >here</a> to cancel your automatic renewal of your plan</div> :
-                                                <div>This plan has been cancelled and will not automatically be
-                                                    renewed</div>
+                                                <div className="text-center margin-bottom">Click <a onClick={this.cancelPaymentPlan}>here</a> to cancel your automatic renewal of your plan</div> :
+                                                <div>This plan has been cancelled and will not automatically be renewed</div>
                                             }
                                             {/* TODO upgrades? */}
                                         </div>
                                     ) : organisation.free_to_use_subscription ? (
                                         <div className="text-center">
-                                            <h2 className="text-center margin-bottom">Your organisation is using Bullet
-                                                Train for free.</h2>
+                                            <h2 className="text-center margin-bottom">Your organisation is using Bullet Train for free.</h2>
                                             {hasFeature('free_tier') ?
-                                                <div className="text-center margin-bottom">You may want to consider
-                                                    upgrading to a paid plan that includes more usage.</div> :
-                                                <div className="text-center margin-bottom">As an early adopter of Bullet
-                                                    Train you will be able to use this service for free until
-                                                    DD/MM/YYYY. You will then need to choose a payment plan to continue
-                                                    using Bullet Train.</div>
+                                                <div className="text-center margin-bottom">You may want to consider upgrading to a paid plan that includes more usage.</div> :
+                                                <div className="text-center margin-bottom">As an early adopter of Bullet Train you will be able to use this service for free until DD/MM/YYYY. You will then need to choose a payment plan to continue using Bullet Train.</div>
                                             }
-                                            <div>
-                                                <button type="button" className="btn btn-primary text-center mx-auto"
-                                                        onClick={() => openModal(null, <PaymentModal
-                                                            viewOnly={!hasFeature('free_tier')}
-                                                        />, null, { large: true })}
-                                                >View payment plans
-                                                </button>
-                                            </div>
+                                            <div><button type="button" className="btn btn-primary text-center mx-auto" onClick={() => openModal(null, <PaymentModal viewOnly={!hasFeature('free_tier')} />, null, {large: true})}>View payment plans</button></div>
                                         </div>
                                     ) : freeTrialDaysRemaining > 0 ? (
                                         <div>
-                                            <h2 className="text-center margin-bottom">Your organisation is within the
-                                                free trial period</h2>
-                                            <div className="text-center margin-bottom">You
-                                                have {freeTrialDaysRemaining} days remaining until you need to choose a
-                                                payment plan.
-                                            </div>
-                                            <div className="text-center margin-bottom">
-                                                <button type="button" onClick={() => openModal(null, <PaymentModal
-                                                    viewOnly={true}
-                                                />, null, { large: true })}
-                                                >View payment plans
-                                                </button>
-                                            </div>
+                                            <h2 className="text-center margin-bottom">Your organisation is within the free trial period</h2>
+                                            <div className="text-center margin-bottom">You have {freeTrialDaysRemaining} days remaining until you need to choose a payment plan.</div>
+                                            <div className="text-center margin-bottom"><button type="button" onClick={() => openModal(null, <PaymentModal viewOnly={true} />, null, {large: true})}>View payment plans</button></div>
                                         </div>
                                     ) : (
                                         <div>
-                                            <h2 className="text-center margin-bottom">Your trial period of Bullet Train
-                                                is over.</h2>
-                                            <div className="text-center margin-bottom">
-                                                <button type="button" onClick={() => openModal(null,
-                                                    <PaymentModal/>, null, { large: true })}
-                                                >here
-                                                </button>
-                                                View payment plans
-                                            </div>
+                                            <h2 className="text-center margin-bottom">Your trial period of Bullet Train is over.</h2>
+                                            <div className="text-center margin-bottom"><button type="button" onClick={() => openModal(null, <PaymentModal />, null, {large: true})}>here</button>View payment plans</div>
                                         </div>
                                     )}
-                                </div>
+								</div>
 
                                 <div className="panel--grey">
                                     <form key={organisation.id} onSubmit={this.save}>
@@ -189,12 +156,11 @@ const TheComponent = class extends Component {
                                                 <Input
                                                     ref={(e) => this.input = e}
                                                     value={organisation.name}
-                                                    onChange={(e) => this.setState({ name: Utils.safeParseEventValue(e) })}
+                                                    onChange={(e) => this.setState({name: Utils.safeParseEventValue(e)})}
                                                     isValid={name && name.length}
                                                     type="text"
                                                     inputClassName="input--wide"
-                                                    placeholder="My Organisation"
-                                                />
+                                                    placeholder="My Organisation"/>
                                             </Column>
                                             {/* <InputGroup
                                              inputProps={{defaultValue: organisation.webhook_notification_email, className: "full-width"}}
@@ -210,20 +176,13 @@ const TheComponent = class extends Component {
 
                                     <div className="plan plan--current flex-row m-t-2">
                                         <div className="plan__prefix">
-                                            <img src="/images/bullet-train-1-mark.png" className="plan__prefix__image"
-                                                 alt="BT"
-                                            />
+                                            <img src="/images/bullet-train-1-mark.png" className="plan__prefix__image" alt="BT"/>
                                         </div>
                                         <div className="plan__details">
                                             <p className="text-small m-b-0">Your plan</p>
                                             <h3 className="m-b-0">{Utils.getPlanName(organisation.plan) ? Utils.getPlanName(organisation.plan) : "Free"}</h3>
                                         </div>
-                                        <button type="button" className="btn btn-primary text-center ml-auto"
-                                                onClick={() => openModal(null, <PaymentModal
-                                                    viewOnly={!hasFeature('free_tier')}
-                                                />, null, { large: true })}
-                                        >View payment plans
-                                        </button>
+                                        <button type="button" className="btn btn-primary text-center ml-auto" onClick={() => openModal(null, <PaymentModal viewOnly={!hasFeature('free_tier')} />, null, {large: true})}>View payment plans</button>
                                     </div>
                                 </div>
                             </div>
@@ -235,40 +194,35 @@ const TheComponent = class extends Component {
                                         <div>
                                             <div className="flex-row header--icon">
                                                 <h5>Team members</h5>
-                                                <button id={"btn-invite"} onClick={() => openModal(<InviteUsersModal/>)}
-                                                        className={'btn btn--with-icon p-x-0 p-y-0'}
-                                                >
-                                                    <img className="btn__icon" src="/images/icons/plus-button.svg"
-                                                         alt="Invite"
-                                                    />
+                                                <button id={"btn-invite"} onClick={() => openModal(<InviteUsersModal/>)} className={'btn btn--with-icon p-x-0 p-y-0'}>
+                                                    <img className="btn__icon" src="/images/icons/plus-button.svg" alt="Invite"/>
                                                 </button>
                                             </div>
 
-                                            {isLoading && <div className="centered-container"><Loader/></div>}
-                                            {!isLoading && (
-                                                <div>
-                                                    <FormGroup>
-                                                        <PanelSearch
-                                                            id="org-members-list"
-                                                            title="Members"
-                                                            className={"no-pad"}
-                                                            items={users}
-                                                            renderRow={({ id, first_name, last_name, email }) =>
-                                                                <div className={"list-item"} key={id}>
-                                                                    {first_name + " " + last_name} {id == AccountStore.getUserId() && "(You)"}
-                                                                    <div className={"list-item-footer faint"}>
-                                                                        {email}
-                                                                    </div>
-                                                                </div>
-                                                            }
-                                                            renderNoResults={<div>You have no users in this
-                                                                organisation.</div>}
-                                                            filterRow={(item, search) => {
-                                                                const strToSearch = `${item.first_name} ${item.last_name} ${item.email}`;
-                                                                return strToSearch.toLowerCase().indexOf(search.toLowerCase()) !== -1;
-                                                            }}
-                                                        />
-                                                    </FormGroup>
+                                    {isLoading && <div className="centered-container"><Loader/></div>}
+                                    {!isLoading && (
+                                        <div>
+                                            <FormGroup>
+                                                <PanelSearch
+                                                    id="org-members-list"
+                                                    title="Members"
+                                                    className={"no-pad"}
+                                                    items={users}
+                                                    renderRow={({id, first_name,last_name,email}) =>
+                                                        <div className={"list-item"} key={id}>
+                                                            {first_name + " " + last_name} {id == AccountStore.getUserId() && "(You)"}
+                                                            <div className={"list-item-footer faint"}>
+                                                                {email}
+                                                            </div>
+                                                        </div>
+                                                    }
+                                                    renderNoResults={<div>You have no users in this organisation.</div>}
+                                                    filterRow={(item, search) => {
+                                                        const strToSearch = `${item.first_name} ${item.last_name} ${item.email}`;
+                                                        return strToSearch.toLowerCase().indexOf(search.toLowerCase()) !== -1;
+                                                    }}
+                                                />
+                                            </FormGroup>
 
                                                     {invites && invites.length ? (
                                                         <FormGroup className={"margin-top"}>
@@ -277,7 +231,7 @@ const TheComponent = class extends Component {
                                                                 title="Invites Pending"
                                                                 className={"no-pad"}
                                                                 items={invites}
-                                                                renderRow={({ id, email, date_created, invited_by }) =>
+                                                                renderRow={({id, email, date_created, invited_by}) =>
                                                                     <Row className={"list-item"} key={id}>
                                                                         <div className={"flex flex-1"}>
                                                                             {email}
@@ -285,11 +239,8 @@ const TheComponent = class extends Component {
                                                                                 Created {moment(date_created).format("DD/MMM/YYYY")}
                                                                             </div>
                                                                             {invited_by ? (
-                                                                                <div
-                                                                                    className={"list-item-footer faint"}
-                                                                                >
-                                                                                    Invited
-                                                                                    by {invited_by.first_name ? invited_by.first_name + ' ' + invited_by.last_name : invited_by.email}
+                                                                                <div className={"list-item-footer faint"}>
+                                                                                    Invited by {invited_by.first_name ? invited_by.first_name + ' ' + invited_by.last_name : invited_by.email}
                                                                                 </div>
                                                                             ) : null}
                                                                         </div>
@@ -298,8 +249,7 @@ const TheComponent = class extends Component {
                                                                                 <button
                                                                                     id="resend-invite"
                                                                                     onClick={() => AppActions.resendInvite(id)}
-                                                                                    className={"btn btn-primary"}
-                                                                                >
+                                                                                    className={"btn btn-primary"}>
                                                                                     Resend
                                                                                 </button>
                                                                             </Column>
@@ -307,8 +257,7 @@ const TheComponent = class extends Component {
                                                                                 <button
                                                                                     id="delete-invite"
                                                                                     onClick={() => this.deleteInvite(id)}
-                                                                                    className={"btn btn-danger"}
-                                                                                >
+                                                                                    className={"btn btn-danger"}>
                                                                                     Delete
                                                                                 </button>
                                                                             </Column>

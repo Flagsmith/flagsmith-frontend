@@ -37,7 +37,9 @@ const TheComponent = class extends Component {
                 <div id={this.props.id} className="search-list">
                     {filteredItems && filteredItems.length ?
                         filteredItems.map(renderRow) : (renderNoResults && !search) ? renderNoResults : (
-                            <div>No results {search && <span>for <strong>{search}</strong></span>}</div>
+                            <Column>
+                                <div>No results {search && <span>for <strong>"{search}"</strong></span>}</div>
+                            </Column>
                         )}
                 </div>
             </Panel>

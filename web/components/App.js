@@ -294,7 +294,7 @@ const App = class extends Component {
                 </AccountProvider>
                 {navigator.webdriver ? null : (
                     <div className="feedback-btn">
-                        <Button onClick={this.feedback} className="btn btn-primary">Have any feedback?</Button>
+                        <Button onClick={this.feedback} className="btn btn--secondary">Have any feedback?</Button>
                     </div>
                 )}
             </div>
