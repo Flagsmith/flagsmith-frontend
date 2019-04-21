@@ -10,7 +10,7 @@ const TheComponent = class extends Component {
             super(props, context);
             const { description, name, rules = [] } = this.props.segment ? _.cloneDeep(this.props.segment.rules) :
                 {
-                    rules: [{ all: { rules: [{ any: { rules: [Constants.defaultRule] } }] }, }]
+                    rules: [{ all: { rules: [{ any: { rules: [{...Constants.defaultRule}] } }] }, }]
                 }
 
             this.state = {
