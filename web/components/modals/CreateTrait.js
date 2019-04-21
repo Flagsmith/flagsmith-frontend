@@ -88,7 +88,7 @@ const TheComponent = class extends Component {
                                     </Highlight>
                                 </FormGroup>
 
-                                <div className="pull-right">
+                                <div className="text-right">
                                     {isEdit ? (
                                         <Button id="update-trait-btn" disabled={isSaving || !trait_key || !trait_value}>
                                             {isSaving ? 'Creating' : 'Update Trait'}

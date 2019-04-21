@@ -53,7 +53,7 @@ const TheComponent = class extends Component {
 								placeholder="Name"/>
 							{error && <Error error={error}/>}
 						</form>
-						<div className="pull-right">
+						<div className="text-right">
 							<Button disabled={isSaving || !this.state.name || this.state.name == this.props.name} onClick={() => editFlag(this.props.id, this.state.name)}>
 								{isSaving && this.state.name !== this.props.name ? 'Saving' : 'Save Changes'}
 							</Button>

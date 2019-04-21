@@ -110,7 +110,7 @@ const TheComponent = class extends Component {
                         </textarea>
                     </FormGroup>
                 </form>
-                <div className="pull-right">
+                <div className="text-right">
                     <Button
                         disabled={isSending || !this.isValid()} onClick={this.sendFeedback}>
                         {isSending ? 'Sending' : 'Send'}

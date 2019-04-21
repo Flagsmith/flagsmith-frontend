@@ -43,7 +43,7 @@ const TheComponent = class extends Component {
 							type="text" title="Project Name*"
 							placeholder="My Product Name"/>
 						{error && <Error error={error}/>}
-						<div className="pull-right">
+						<div className="text-right">
 							<Button id="create-project-btn" disabled={isSaving || !name}>
 								{isSaving ? 'Creating' : 'Create Project'}
 							</Button>

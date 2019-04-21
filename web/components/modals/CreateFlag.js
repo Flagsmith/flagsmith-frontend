@@ -169,7 +169,7 @@ const TheComponent = class extends Component {
                                     </Highlight>
                                 </FormGroup>
 
-                                <div className="pull-right">
+                                <div className="text-right">
                                     {isEdit ? (
                                         <Button id="update-feature-btn" disabled={isSaving || !name}>
                                             {isSaving ? 'Creating' : 'Update Feature'}

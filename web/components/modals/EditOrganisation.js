@@ -46,7 +46,7 @@ const TheComponent = class extends Component {
 							isValid={name && name.length}
 							type="text" title="Organisation Name*"
 							placeholder="My Product Name"/>
-						<div className="pull-right">
+						<div className="text-right">
 							<Button disabled={isSaving || !name}>
 								{isSaving ? 'Saving' : 'Save'}
 							</Button>

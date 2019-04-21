@@ -17,6 +17,11 @@ const keywords = {
 
 
 var Constants = {
+    defaultRule: {
+        property: '',
+        operator: 'EQUAL',
+        value: ""
+    },
     events: {
         "CREATE_ENVIRONMENT": {"event": "Environment created", "category": "Environment"},
         "CREATE_FEATURE": {"event": "Feature created", "category": "Features"},

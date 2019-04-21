@@ -42,7 +42,7 @@ const TheComponent = class extends Component {
 							type="text" title="Name*"
 							placeholder="A environment name e.g. Develop"/>
 						{error && <Error error={error}/>}
-						<div className="pull-right">
+						<div className="text-right">
 							<Button disabled={isSaving || !name}>
 								{isSaving ? 'Creating' : 'Create Environment'}
 							</Button>

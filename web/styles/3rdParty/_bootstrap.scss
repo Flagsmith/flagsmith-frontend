@@ -47,3 +47,7 @@ $enable-flex: true;
 
 // Utility classes
 @import "~bootstrap/scss/utilities";
+
+.modal-footer {
+  padding: 0;
+}

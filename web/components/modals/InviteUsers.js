@@ -62,7 +62,7 @@ const TheComponent = class extends Component {
                                 placeholder="E-mail address(es) comma separated"/>
                             {error && <Error error={error}/>}
                         </form>
-                        <div className="pull-right">
+                        <div className="text-right">
                             <Button
                                 id={"btn-send-invite"}
                                 disabled={isSaving || !this.isValid()} onClick={() => AppActions.inviteUsers(emailAddresses)}>

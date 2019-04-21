@@ -97,18 +97,7 @@ a, .btn, button{
 
 .tabs-nav{
     .btn{
-        border-radius: 0!important;
+        borderradius:15px!important
     }
-    .btn:first-child{
-        border-bottom-left-radius:0!important;
-        border-top-left-radius:15px!important;
-        border-bottom-right-radius:0!important;
-        border-top-right-radius:0!important;
-    }
-    .btn:last-child{
-        border-bottom-right-radius:0!important;
-        border-top-right-radius:15px!important;
-        border-bottom-left-radius:0!important;
-        border-top-left-radius:0!important;
-    }
+
 }

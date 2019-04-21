@@ -1,5 +1,6 @@
 // import propTypes from 'prop-types';
 import React, { PureComponent } from 'react';
+import CreatableSelect from 'react-select/lib/Creatable';
 
 const operators = [
     {
@@ -64,7 +65,8 @@ export default class TheComponent extends PureComponent {
                     <Flex>
                         <Row>
                             <Column style={{ width: 200 }}>
-                                <Select
+                                <CreatableSelect
+                                    placeholder="User property"
                                     value={rule.property && { value: rule.property, label: rule.property }}
                                     onChange={(value) => this.setRuleProperty(i, "property", value)}
                                     options={options}
@@ -82,7 +84,7 @@ export default class TheComponent extends PureComponent {
                                     className="input-container--flat"
                                     value={rule.value+""}
                                     placeholder="Value"
-                                    onChange={(e) => this.setRuleProperty(i, "value", Utils.getTypedValue(Utils.safeParseEventValue(e)))}
+                                    onChange={(e) => this.setRuleProperty(i, "value", {value:Utils.getTypedValue(Utils.safeParseEventValue(e))})}
                                 />
                             </Column>
                         </Row>
@@ -133,11 +135,7 @@ export default class TheComponent extends PureComponent {
 
         this.props.onChange({
             any: {
-                rules: rules.concat([{
-                        property: '',
-                        operator: 'EQUALS',
-                        value: ""
-                    }]
+                rules: rules.concat([{...Constants.defaultRule}]
                 )
             }
         });
