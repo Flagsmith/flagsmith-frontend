@@ -25,13 +25,39 @@ const TermsScreen = class extends Component {
 
     render() {
         return (
-            <ScrollView space style={[Styles.body, Styles.container]}>
-                <View style={{marginTop:50}}>
-                    <Button onPress={()=>routes.logout(this.props.componentId)}>
-                        Logout
-                    </Button>
-                </View>
-            </ScrollView>
+            <Flex space>
+                    <ScrollView>
+                        <ListItem index={1} onPress={() => Linking.openURL("https://docs.bullet-train.io/")}>
+                            <Text>Build Number</Text>
+                            <Text style={Styles.listItemText}>
+                                {DeviceInfo.getVersion()}.{DeviceInfo.getBuildNumber()}
+                            </Text>
+                        </ListItem>
+                        <ListItem index={1} onPress={() => Linking.openURL("https://docs.bullet-train.io/")}>
+                            <Text>Documentation</Text>
+                            <ION name="ios-arrow-forward" style={[Styles.listIconNav]}/>
+                        </ListItem>
+                        <ListItem index={1} onPress={() => Linking.openURL("https://github.com/orgs/SolidStateGroup/dashboard?q=bullet-train/")}>
+                            <Text>GitHub</Text>
+                            <ION name="ios-arrow-forward" style={[Styles.listIconNav]}/>
+                        </ListItem>
+                        <ListItem index={1} onPress={() => Linking.openURL("https://bullet-train.io/legal/sla/")}>
+                            <Text>Service Level Agreement</Text>
+                            <ION name="ios-arrow-forward" style={[Styles.listIconNav]}/>
+                        </ListItem>
+                        <ListItem index={1} onPress={() => Linking.openURL("https://bullet-train.io/legal/tos/")}>
+                            <Text>Terms of Service</Text>
+                            <ION name="ios-arrow-forward" style={[Styles.listIconNav]}/>
+                        </ListItem>
+                    </ScrollView>
+                <Container>
+                    <FormGroup style={{ marginTop: 50 }}>
+                        <Button onPress={() => routes.logout(this.props.componentId)}>
+                            Logout
+                        </Button>
+                    </FormGroup>
+                </Container>
+            </Flex>
         );
     }
 };

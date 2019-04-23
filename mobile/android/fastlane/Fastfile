@@ -22,10 +22,17 @@ platform :android do
 
   lane :icon do
    android_appicon(
-        appicon_image_file: 'AppIcon.png',
-        appicon_icon_types: [:launcher],
-        appicon_path: './app/src/main/res/mipmap'
-      )
+              appicon_devices: [:phone, :tablet],
+                appicon_image_file: 'AppIcon.png',
+                appicon_icon_types: [:launcher],
+                appicon_path: './app/src/main/res/mipmap'
+              )
+              android_appicon(
+                appicon_image_file: 'AppIcon.png',
+                appicon_icon_types: [:notification],
+                appicon_path: './app/src/main/res/drawable',
+                appicon_filename: 'ic_notification'
+              )
        end
 
   after_all do |lane|

@@ -30,7 +30,6 @@ const TermsScreen = class extends Component {
         return (
             <ListItem index={1}>
                 <Text style={Styles.listItemTitle}>{identifier}</Text>
-                <ION name="ios-arrow-forward" style={[Styles.listIconNav]}/>
             </ListItem>
         )
     }

@@ -18,7 +18,7 @@ const Fade = class extends Component {
                 this.props.animation( // Base: spring, decay, timing
                     this.state[`animated_${key}`], // Animate `bounceValue`
                     {
-                        toValue: isNaN(this.props[key]) ? this.props[key] ? 1 : 0 : this.props[key], // Animate to smaller size
+                        toValue: isNaN(this.props[key]) ? this.props[key] ? 1 : 0.00001 : this.props[key], // Animate to smaller size
                         duration: this.props.duration,
                         friction: this.props.friction,
                         tension: this.props.tension,

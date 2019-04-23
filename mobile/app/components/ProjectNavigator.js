@@ -64,9 +64,12 @@ const ProjectNavigation = class extends PureComponent {
             }
         } = this;
         const maxWidth = (DeviceWidth-50)/2;
+        console.log(selectedProject && selectedProject.name)
+        console.log(selectedEnvironment && selectedEnvironment.name)
+        console.log(selectionLoaded)
         return selectionLoaded ? (
             <Fade autostart value={1}>
-                <Row>
+                <Row style={{flexWrap:'nowrap'}}>
                     <TouchableOpacity onPress={this.selectProject} style={styles.navContainer}>
                         <Text
                             allowFontScaling={true}

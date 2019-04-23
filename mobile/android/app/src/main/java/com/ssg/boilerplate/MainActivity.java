@@ -1,4 +1,4 @@
-package com.ssg.boilerplate;
+package com.solidstategroup.bullettrain;
 
 import com.reactnativenavigation.NavigationActivity;
 import io.branch.rnbranch.*; // <-- add this

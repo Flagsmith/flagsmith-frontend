@@ -25,10 +25,7 @@ const TermsScreen = class extends Component {
 
     constructor(props, context) {
         super(props, context);
-        this.state = {
-            email: "kyle@solidstategroup.com",
-            password: "100389Kj",
-        };
+        this.state = {};
     }
 
     componentWillMount() {
@@ -59,7 +56,7 @@ const TermsScreen = class extends Component {
                                 <View style={{ position: 'absolute',paddingTop: DeviceHeight * .25, top: DeviceHeight / 2.5, left: -200 }}>
                                     <Background/>
                                 </View>
-                                <ScrollView
+                                <View
                                     bounces={false}
                                     keyboardShouldPersistTaps="handled"
                                     style={{ paddingTop:DeviceHeight*.1, width: DeviceWidth / 1.5 }}>
@@ -101,7 +98,6 @@ const TermsScreen = class extends Component {
                                     <View style={Styles.centeredContainer}>
                                         <TouchableOpacity onPress={loginDemo}>
                                             <Text style={{
-                                                height:50,
                                                 textShadowColor: 'rgba(0, 0, 0, 0.75)',
                                                 textShadowOffset: {width: -2, height: 1},
                                                 textShadowRadius: 20,
@@ -111,7 +107,7 @@ const TermsScreen = class extends Component {
                                             </Text>
                                         </TouchableOpacity>
                                     </View>
-                                </ScrollView>
+                                </View>
                             </View>
                         )}
                     </AccountProvider>

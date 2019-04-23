@@ -51,11 +51,11 @@ android {
     compileSdkVersion rootProject.ext.compileSdkVersion
 
     defaultConfig {
-        applicationId "com.ssg.boilerplate"
+        applicationId "com.solidstategroup.bullettrain"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         missingDimensionStrategy "RNN.reactNativeVersion", "reactNative57_5"
-        versionCode 1
+        versionCode 3
         versionName "1.0"
         multiDexEnabled true
     }

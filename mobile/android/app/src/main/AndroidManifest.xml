@@ -1,6 +1,6 @@
 <manifest
         xmlns:android="http://schemas.android.com/apk/res/android"
-        package="com.ssg.boilerplate"
+        package="com.solidstategroup.bullettrain"
         android:versionCode="1"
         xmlns:tools="http://schemas.android.com/tools"
         android:versionName="1.0"
@@ -15,7 +15,7 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
-            android:name="com.ssg.boilerplate.MainApplication"
+            android:name="com.solidstategroup.bullettrain.MainApplication"
             android:label="@string/app_name"
             android:icon="@mipmap/ic_launcher"
             android:allowBackup="true"
@@ -24,7 +24,7 @@
     >
         <activity
                 android:launchMode="singleTask"
-                android:name="com.ssg.boilerplate.MainActivity"
+                android:name="com.solidstategroup.bullettrain.MainActivity"
                 android:label="@string/app_name"
                 android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
                 android:windowSoftInputMode="adjustPan">

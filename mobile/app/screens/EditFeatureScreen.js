@@ -69,7 +69,7 @@ const TermsScreen = class extends Component {
         const valueString = isEdit ? "Value" : "Initial value";
         const enabledString = isEdit ? "Enabled by default" : "Enabled";
         return (
-            <Flex>
+            <Flex style={{backgroundColor:'white'}}>
                     <ProjectProvider
                         id={this.props.projectId}
                     >

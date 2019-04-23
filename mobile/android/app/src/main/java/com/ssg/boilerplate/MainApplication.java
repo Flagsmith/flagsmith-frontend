@@ -1,6 +1,6 @@
 
 //STANDARD REACT_NATIVE STUFF
-package com.ssg.boilerplate;
+package com.solidstategroup.bullettrain;
 
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;

@@ -71,6 +71,7 @@ const initialiseApp = (user,environment) => {
     if (Platform.OS === 'android') {
         defaultOptions.animations = {
             push: {
+                enabled:true,
                 content: {
                     x: {
                         from: fromX,
@@ -115,7 +116,7 @@ const initialiseApp = (user,environment) => {
             }
         }
     }
-    // Navigation.setDefaultOptions(defaultOptions);
+    Navigation.setDefaultOptions(defaultOptions);
 
     Navigation.setRoot({
         root: {
