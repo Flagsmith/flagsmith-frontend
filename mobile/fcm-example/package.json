@@ -1,0 +1,22 @@
+{
+  "name": "fcm-example",
+  "version": "0.1.1",
+  "description": "FCM example",
+  "main": "index.js",
+  "scripts": {
+    "server": "node ./server",
+    "dev": "nodemon --exec npm run server",
+    "start": "npm run server"
+  },
+  "author": "Solid State Group",
+  "license": "MIT",
+  "engines": {
+    "node": "7.1.x",
+    "npm": "3.10.x"
+  },
+  "dependencies": {
+    "fcm-push": "^1.1.2",
+    "firebase-admin": "^4.0.1"
+  },
+  "keywords": []
+}

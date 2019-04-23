@@ -111,11 +111,7 @@ const TheComponent = class extends Component {
 														onChange={(environment) => {
 															toggle();
 															this.context.router.push(`/project/${this.props.projectId}/environment/${environment}/features`);
-															AsyncStorage.setItem('lastEnv', JSON.stringify({
-																	orgId: AccountStore.getOrganisation().id,
-																	projectId: this.props.projectId,
-																	environmentId: environment
-															}));
+															§
 														}}/>
 													<div className="btn-container">
 														<Link

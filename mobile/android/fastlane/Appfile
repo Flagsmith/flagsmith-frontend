@@ -1,0 +1,7 @@
+app_identifier "com.ssg.boilerplate" # The bundle identifier of your app
+apple_id "kyle@solidstategroup.com" # Your Apple email address
+
+team_id "RS9E45N5W4"  # Developer Portal Team ID
+
+# you can even provide different app identifiers, Apple IDs and team names per lane:
+# More information: https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Appfile.md

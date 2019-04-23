@@ -1,4 +1,4 @@
-module.exports = {
+module.exports = window.Project = {
     debug: false,
     env: 'dev',
     bulletTrain:'8KzETdDeMY7xkqkSkY3Gsg',

@@ -27,16 +27,16 @@ const TheComponent = class extends Component {
 							{" "}for <strong>{_.find(project.environments, {api_key: this.props.environmentId}).name}</strong>
 							{identity && <span> user <strong>{this.props.identity}</strong></span>}
 						</h3>
-						<FormGroup>
-							<div>
-								<strong>
-									Comments (Optional)
-								</strong>
-							</div>
-							<textarea rows={5} onChange={(e) => this.setState({comment: Utils.safeParseEventValue(e)})}>
+						{/*<FormGroup>*/}
+							{/*<div>*/}
+								{/*<strong>*/}
+									{/*Comments (Optional)*/}
+								{/*</strong>*/}
+							{/*</div>*/}
+							{/*<textarea rows={5} onChange={(e) => this.setState({comment: Utils.safeParseEventValue(e)})}>*/}
 
-							</textarea>
-						</FormGroup>
+							{/*</textarea>*/}
+						{/*</FormGroup>*/}
 						{/*<Row>*/}
 						{/*Do the same for all environments <Switch*/}
 						{/*checked={this.state.allEnvironments}*/}
