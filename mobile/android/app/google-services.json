@@ -1,62 +1,44 @@
 {
   "project_info": {
-    "project_number": "603463597415",
-    "firebase_url": "https://project-4251246165915577329.firebaseio.com",
-    "project_id": "project-4251246165915577329",
-    "storage_bucket": "project-4251246165915577329.appspot.com"
+    "project_number": "747702233946",
+    "firebase_url": "https://bullet-train-b0b22.firebaseio.com",
+    "project_id": "bullet-train-b0b22",
+    "storage_bucket": "bullet-train-b0b22.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:603463597415:android:83c3f364e8fb63b4",
+        "mobilesdk_app_id": "1:747702233946:android:0275d2f02639a959",
         "android_client_info": {
-          "package_name": "com.ssg.boilerplate"
+          "package_name": "com.solidstategroup.bullettrain"
         }
       },
       "oauth_client": [
         {
-          "client_id": "603463597415-qjm2g7uj6ag6jqcoppdnm4te4e8vgr1i.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.ssg.boilerplate",
-            "certificate_hash": "c70cf32d49efc75641ed3097da75e9dc8d9862b2"
-          }
-        },
-        {
-          "client_id": "603463597415-q6nnmv7tihkm52m5eg0hetakktppcmdf.apps.googleusercontent.com",
+          "client_id": "747702233946-4rqq6a8qol4ljl6gu3n2tiuumptdl02s.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBNdxjpx5b5O0cXIBeXVQaK4Dn0bDekUwQ"
-        },
-        {
-          "current_key": "AIzaSyCC-BTYL-DuOMt7hrK18Q-PhOM0FVpgpd8"
+          "current_key": "AIzaSyBSrB9torRdLmL_39sn3o4Tv1QLG3bXR40"
         }
       ],
       "services": {
-        "analytics_service": {
-          "status": 1
-        },
         "appinvite_service": {
-          "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "603463597415-q6nnmv7tihkm52m5eg0hetakktppcmdf.apps.googleusercontent.com",
+              "client_id": "747702233946-4rqq6a8qol4ljl6gu3n2tiuumptdl02s.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "603463597415-em1lk1r3fe779jnsetq85ouapdfma0c3.apps.googleusercontent.com",
+              "client_id": "747702233946-pk7f1im8i7hc4bc9fj6ac2c0pf05eoa3.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
                 "bundle_id": "com.solidstategroup.bullettrain"
               }
             }
           ]
-        },
-        "ads_service": {
-          "status": 2
         }
       }
     }
