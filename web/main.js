@@ -46,6 +46,7 @@ AsyncStorage.getItem("t", (err, res) => {
             document.location.pathname.indexOf('/legal') == -1 &&
             document.location.pathname.indexOf("password-reset") == -1 &&
             document.location.pathname.indexOf("/blog") == -1 &&
+            document.location.pathname.indexOf("/markup") == -1 &&
             document.location.pathname != '/' && document.location.pathname != '/login' && document.location.pathname != '/demo' && document.location.pathname != '/signup' && !AccountStore.getUser()) {
             browserHistory.push('/?redirect=' + encodeURIComponent(document.location.pathname));
         }
