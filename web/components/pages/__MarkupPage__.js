@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router';
 import {ButtonSecondary, ButtonWhite} from "../base/forms/Button";
+import PricingPanel from "../PricingPanel";
 
 export default class ExampleOne extends Component {
     displayName: 'CreateOrganisastionPage'
@@ -26,10 +27,21 @@ export default class ExampleOne extends Component {
 						<p className="text-small no-mb">This is some small paragraph text.</p>
 					</section>
 
-					{/*<section className="pt-5 pb-3">*/}
-						{/*<h2>Colour</h2>*/}
-						{/*<div className="colour-block colour-block--brand-primary"/>*/}
-					{/*</section>*/}
+					<section className="pt-5 pb-3">
+						<h2 className="mb-3">Colour</h2>
+
+						<h4>Brand</h4>
+						<div className="colour-block colour-block--brand-primary"/>
+						<div className="colour-block colour-block--brand-dark-green"/>
+						<div className="colour-block colour-block--brand-secondary"/>
+
+						<h4>Utility</h4>
+
+						<div className="colour-block colour-block--brand-orange"/>
+						<div className="colour-block colour-block--brand-purple"/>
+						<div className="colour-block colour-block--brand-red"/>
+
+					</section>
 
 					<section className="pt-5 pb-3">
 						<h2>Buttons</h2>
@@ -66,14 +78,10 @@ export default class ExampleOne extends Component {
 							value={null}
 							type="text" title="ID"
 							placeholder="E.g. header_size"/>
-							<InputGroup
-								inputProps={{
-									className: "full-width",
-									name: "featureID"
-								}}
-								value={null}
-								type="text" title="ID"
-								placeholder="E.g. header_size"/>
+						</FormGroup>
+
+						<FormGroup className="mt-5 mb-3">
+							<PricingPanel />
 						</FormGroup>
 
 
