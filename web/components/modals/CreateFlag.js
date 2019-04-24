@@ -73,7 +73,7 @@ const CreateFlag = class extends Component {
                                     this.save(func, isSaving);
                                 }}>
                                 {!isEdit && !identity && (
-                                    <FormGroup>
+                                    <FormGroup className="mb-4">
                                         <label>Feature type</label>
                                         <Tabs className={"pill"} value={this.state.tab}
                                               onChange={this.setTab}>
@@ -91,29 +91,33 @@ const CreateFlag = class extends Component {
                                     </FormGroup>
                                 )}
 
-                                <InputGroup
-                                    ref={(e) => this.input = e}
-                                    inputProps={{
-                                        readOnly: isEdit,
-                                        className: "full-width",
-                                        name: "featureID"
-                                    }}
-                                    value={name}
-                                    onChange={(e) => this.setState({name: Format.enumeration.set(Utils.safeParseEventValue(e)).toLowerCase()})}
-                                    isValid={name && name.length}
-                                    type="text" title={isEdit ? "ID" : "ID*"}
-                                    placeholder="E.g. header_size"/>
-                                {type == "CONFIG" ? (
+                                <FormGroup className="mb-4">
                                     <InputGroup
-                                        textarea={true}
-                                        value={initial_value}
-                                        inputProps={{name: "featureValue", className: "full-width"}}
-                                        onChange={(e) => this.setState({initial_value: Utils.getTypedValue(Utils.safeParseEventValue(e))})}
-                                        type="text"
-                                        title={valueString + " (optional)" + (!isEdit ? " - these can be set later per environment" : "")}
-                                        placeholder="e.g. 'big' "/>
+                                        ref={(e) => this.input = e}
+                                        inputProps={{
+                                            readOnly: isEdit,
+                                            className: "full-width",
+                                            name: "featureID"
+                                        }}
+                                        value={name}
+                                        onChange={(e) => this.setState({name: Format.enumeration.set(Utils.safeParseEventValue(e)).toLowerCase()})}
+                                        isValid={name && name.length}
+                                        type="text" title={isEdit ? "ID" : "ID*"}
+                                        placeholder="E.g. header_size"/>
+                                </FormGroup>
+                                {type == "CONFIG" ? (
+                                    <FormGroup className="mb-4">
+                                        <InputGroup
+                                            textarea={true}
+                                            value={initial_value}
+                                            inputProps={{name: "featureValue", className: "full-width"}}
+                                            onChange={(e) => this.setState({initial_value: Utils.getTypedValue(Utils.safeParseEventValue(e))})}
+                                            type="text"
+                                            title={valueString + " (optional)" + (!isEdit ? " - these can be set later per environment" : "")}
+                                            placeholder="e.g. 'big' "/>
+                                    </FormGroup>
                                 ) : (
-                                    <FormGroup>
+                                    <FormGroup className="mb-4">
                                         <div>
                                             <label>{enabledString}</label>
                                         </div>
@@ -125,21 +129,23 @@ const CreateFlag = class extends Component {
                                     </FormGroup>
                                 )}
 
-                                <InputGroup
-                                    value={description}
-                                    inputProps={{
-                                        className: "full-width",
-                                        readOnly: identity ? true : false,
-                                        name: "featureDesc"
-                                    }}
-                                    onChange={(e) => this.setState({description: Utils.safeParseEventValue(e)})}
-                                    isValid={name && name.length}
-                                    type="text" title="Description (optional)"
-                                    placeholder="e.g. 'This determines what size the header is' "/>
+                                <FormGroup>
+                                    <InputGroup
+                                        value={description}
+                                        inputProps={{
+                                            className: "full-width",
+                                            readOnly: identity ? true : false,
+                                            name: "featureDesc"
+                                        }}
+                                        onChange={(e) => this.setState({description: Utils.safeParseEventValue(e)})}
+                                        isValid={name && name.length}
+                                        type="text" title="Description (optional)"
+                                        placeholder="e.g. 'This determines what size the header is' "/>
+                                </FormGroup>
 
                                 {error && <Error error={error}/>}
                                 {isEdit && (
-                                    <div>
+                                    <div className="mb-3">
                                         {identity ? (
                                             <p className={"text-right"}>
                                                 This will update the feature value for the
@@ -158,7 +164,7 @@ const CreateFlag = class extends Component {
                                     </div>
                                 )}
 
-                                <FormGroup className={"flag-example"}>
+                                <FormGroup className={"mb-4 flag-example"}>
                                     <strong>Example SDK response:</strong>
                                     <Highlight className={"json no-pad"}>
                                         {type == "CONFIG" ?

@@ -32,7 +32,9 @@ const Hero = class extends React.Component {
                                 infrastructure.
                             </p>
                             <div className="hero-cta mt-1">
-                                <Link to={`/${this.props.redirect}#sign-up`} className="btn" onClick={Utils.scrollToSignUp}>{hasFeature('free_tier') ? 'Sign up now' : 'Start free trial'}</Link>
+
+                                <Button onClick={Utils.scrollToSignUp}><Link to={`/${this.props.redirect}#sign-up`}>{hasFeature('free_tier') ? 'Sign up now' : 'Start free trial'}</Link></Button>
+
                                 <p className="text-small">No payment card required</p>
                             </div>
 

@@ -40,7 +40,7 @@ const ProjectSelectPage = class extends Component {
                         <div>
                             {projects && projects.length ? (
                                 <div>
-                                    <Button onClick={this.newProject} className={"float-right btn btn-primary"}>
+                                    <Button onClick={this.newProject} className={"float-right"}>
                                         Create Project
                                     </Button>
                                     <h3>Your projects</h3>

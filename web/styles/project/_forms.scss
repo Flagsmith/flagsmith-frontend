@@ -58,7 +58,7 @@
 
         input.input{
             height:50px;
-            border-radius: 25px;
+            //border-radius: 25px;
             background-color:transparent!important;
             border:1px solid rgba(255,255,255,0.5)!important;
             text-indent: 15px;
@@ -89,9 +89,16 @@ a.dark{
     color:#373a3c;
 }
 
-.hljs {
+.hljs, .hljs-header {
     border-radius: $default-border-radius;
 }
 
+.btn-primary {
+    a {
+        &:hover {
+            text-decoration: none !important;
+        }
+    }
+}
 
 
