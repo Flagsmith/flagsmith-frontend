@@ -155,7 +155,7 @@ const TheComponent = class extends Component {
                                             <Column className="m-l-0">
                                                 <Input
                                                     ref={(e) => this.input = e}
-                                                    value={organisation.name}
+                                                    value={this.state.name||organisation.name}
                                                     onChange={(e) => this.setState({name: Utils.safeParseEventValue(e)})}
                                                     isValid={name && name.length}
                                                     type="text"
