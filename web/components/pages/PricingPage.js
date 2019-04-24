@@ -1,7 +1,7 @@
 import React from "react";
 import Footer from '../Footer';
 import PricingPanel from '../PricingPanel';
-
+import Feedback from '../../components/modals/Feedback';
 const PricingPage = class extends React.Component {
     static contextTypes = {
         router: React.PropTypes.object.isRequired
@@ -16,6 +16,10 @@ const PricingPage = class extends React.Component {
 
     componentWillMount() {
         API.trackPage(Constants.pages.PRICING);
+    }
+
+    feedback = () => {
+        openModal('Feedback', <Feedback />)
     }
 
     render = () => {
@@ -47,6 +51,12 @@ const PricingPage = class extends React.Component {
                             <p className="answer">
                                 This is simply the total number of API requests you make for each calendar month, across all the projects in your organisation.
                             </p>
+                            <p className="answer">
+                                Each time you instantiate one of our client SDKs and get the flags for a user or application, you make 1 request.
+                                For example, if you have a single page React web application, you would generally make 1 API request when the user loads your app, and then
+                                maintain that data for the duration of the user session. If your web pages were generated server-side, you would generally make 1 API request
+                                for each page view.
+                            </p>
                         </div>
                         <div className="panel panel-default panel-grey">
                             <p className="question">What happens if I go over my plan limit?</p>
@@ -69,7 +79,7 @@ const PricingPage = class extends React.Component {
                         </div>
                         <div className="text-center cta-container">
                             <h5>Didn't find an answer to your question?</h5>
-                            <a href="mailto:enterprise@bullet-train.io" className="pricing-cta blue">Get in touch</a>
+                            <a onClick={this.feedback} className="pricing-cta blue">Get in touch</a>
                         </div>
                     </div>
                 </div>

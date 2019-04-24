@@ -141,14 +141,14 @@ const TheComponent = class extends Component {
                                 {isEdit && (
                                     <div>
                                         {identity ? (
-                                            <p className={"text-right faint-lg"}>
+                                            <p className={"text-right"}>
                                                 This will update the feature value for the
                                                 user <strong>{identity}</strong> in<strong> {
                                                 _.find(project.environments, {api_key: this.props.environmentId}).name
                                             }</strong>
                                             </p>
                                         ) : (
-                                            <p className={"text-right faint-lg"}>
+                                            <p className={"text-right"}>
                                                 This will update the feature value for the environment <strong>{
                                                 _.find(project.environments, {api_key: this.props.environmentId}).name
                                             }</strong>
