@@ -132,25 +132,25 @@ const OrganisationSettingsPage = class extends Component {
                                                 <div className="text-center margin-bottom">You may want to consider upgrading to a paid plan that includes more usage.</div> :
                                                 <div className="text-center margin-bottom">As an early adopter of Bullet Train you will be able to use this service for free until DD/MM/YYYY. You will then need to choose a payment plan to continue using Bullet Train.</div>
                                             }
-                                            <div><button type="button" className="btn btn-primary text-center mx-auto" onClick={() => openModal(null, <PaymentModal viewOnly={!hasFeature('free_tier')} />, null, {large: true})}>View payment plans</button></div>
+                                            <div><button type="button" className="btn btn-primary text-center mx-auto" onClick={() => openModal(null, <PaymentModal viewOnly={!hasFeature('free_tier')} />, null, {large: true})}>View Payment Plans</button></div>
                                         </div>
                                     ) : freeTrialDaysRemaining > 0 ? (
                                         <div>
                                             <h2 className="text-center margin-bottom">Your organisation is within the free trial period</h2>
                                             <div className="text-center margin-bottom">You have {freeTrialDaysRemaining} days remaining until you need to choose a payment plan.</div>
-                                            <div className="text-center margin-bottom"><button type="button" onClick={() => openModal(null, <PaymentModal viewOnly={true} />, null, {large: true})}>View payment plans</button></div>
+                                            <div className="text-center margin-bottom"><button type="button" onClick={() => openModal(null, <PaymentModal viewOnly={true} />, null, {large: true})}>View Payment Plans</button></div>
                                         </div>
                                     ) : (
                                         <div>
                                             <h2 className="text-center margin-bottom">Your trial period of Bullet Train is over.</h2>
-                                            <div className="text-center margin-bottom"><button type="button" onClick={() => openModal(null, <PaymentModal />, null, {large: true})}>here</button>View payment plans</div>
+                                            <div className="text-center margin-bottom"><button type="button" onClick={() => openModal(null, <PaymentModal />, null, {large: true})}>here</button>View Payment Plans</div>
                                         </div>
                                     )}
 								</div>
 
                                 <div className="panel--grey">
                                     <form key={organisation.id} onSubmit={this.save}>
-                                        <h5>Organisation</h5>
+                                        <h5>Organisation Name</h5>
                                         <Row>
                                             <Column className="m-l-0">
                                                 <Input
@@ -193,7 +193,7 @@ const OrganisationSettingsPage = class extends Component {
                                     {({ isLoading, name, projects, users, invites }) => (
                                         <div>
                                             <div className="flex-row header--icon">
-                                                <h5>Team members</h5>
+                                                <h5>Team Members</h5>
                                                 <button id={"btn-invite"} onClick={() => openModal(<InviteUsersModal/>)} className={'btn btn--with-icon p-x-0 p-y-0'}>
                                                     <img className="btn__icon" src="/images/icons/plus-button.svg" alt="Invite"/>
                                                 </button>

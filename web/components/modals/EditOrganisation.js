@@ -45,10 +45,10 @@ const EditOrganisation = class extends Component {
 							onChange={(e) => this.setState({name: Utils.safeParseEventValue(e)})}
 							isValid={name && name.length}
 							type="text" title="Organisation Name*"
-							placeholder="My Product Name"/>
+							placeholder="My Organisation Name"/>
 						<div className="text-right">
 							<Button disabled={isSaving || !name}>
-								{isSaving ? 'Saving' : 'Save'}
+								{isSaving ? 'Updating' : 'Update Name'}
 							</Button>
 						</div>
 					</form>

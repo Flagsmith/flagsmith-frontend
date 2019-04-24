@@ -55,7 +55,7 @@ const ProjectSettingsPage = class extends Component {
 												e.preventDefault();
 												!isSaving && name && editProject(Object.assign({}, project, {name}));
 											}}>
-												<h5>Project</h5>
+												<h5>Project Name</h5>
 												<Row>
 													<Column className="m-l-0">
 														<Input
@@ -65,10 +65,10 @@ const ProjectSettingsPage = class extends Component {
 															onChange={(e) => this.setState({name: Utils.safeParseEventValue(e)})}
 															isValid={name && name.length}
 															type="text" title={<h3>Project Name</h3>}
-															placeholder="My Product Name"/>
+															placeholder="My Project Name"/>
 													</Column>
 													<Button id="save-proj-btn" disabled={isSaving || !name}>
-														{isSaving ? 'Saving' : 'Save'}
+														{isSaving ? 'Updating' : 'Update Name'}
 													</Button>
 												</Row>
 											</form>
