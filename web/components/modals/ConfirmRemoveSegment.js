@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 
-const TheComponent = class extends Component {
+const ConfirmRemoveSegment = class extends Component {
     displayName: 'ConfirmRemoveSegment'
 
     constructor(props, context) {
@@ -56,6 +56,6 @@ const TheComponent = class extends Component {
     }
 };
 
-TheComponent.propTypes = {};
+ConfirmRemoveSegment.propTypes = {};
 
-module.exports = TheComponent;
+module.exports = ConfirmRemoveSegment;

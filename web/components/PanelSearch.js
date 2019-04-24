@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 
-const TheComponent = class extends Component {
-    displayName: 'TheComponent'
+const PanelSearch = class extends Component {
+    displayName: 'PanelSearch'
 
     constructor(props, context) {
         super(props, context);
@@ -47,7 +47,7 @@ const TheComponent = class extends Component {
     }
 };
 
-TheComponent.propTypes = {
+PanelSearch.propTypes = {
     title: React.PropTypes.string,
     items: React.PropTypes.any,
     search: OptionalString,
@@ -56,4 +56,4 @@ TheComponent.propTypes = {
     filterRow: OptionalFunc,
 };
 
-module.exports = TheComponent;
+module.exports = PanelSearch;

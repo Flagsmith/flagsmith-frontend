@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 
-const TheComponent = class extends Component {
-    displayName: 'TheComponent'
+const Gif = class extends Component {
+    displayName: 'Gif'
 
     constructor(props, context) {
         super(props, context);
@@ -22,6 +22,6 @@ const TheComponent = class extends Component {
     }
 };
 
-TheComponent.propTypes = {};
+Gif.propTypes = {};
 
-module.exports = TheComponent;
+module.exports = Gif;

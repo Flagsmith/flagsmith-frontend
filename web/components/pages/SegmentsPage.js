@@ -3,7 +3,7 @@ import CreateSegmentModal from '../modals/CreateSegment';
 import TryIt from '../TryIt';
 import ConfirmRemoveSegment from '../modals/ConfirmRemoveSegment';
 
-const TheComponent = class extends Component {
+const SegmentsPage = class extends Component {
     static displayName = 'SegmentsPage';
 
     static contextTypes = {
@@ -174,6 +174,6 @@ const TheComponent = class extends Component {
     }
 };
 
-TheComponent.propTypes = {};
+SegmentsPage.propTypes = {};
 
-module.exports = TheComponent;
+module.exports = SegmentsPage;

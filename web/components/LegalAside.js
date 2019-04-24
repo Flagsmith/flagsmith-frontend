@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 
-const TheComponent = class extends Component {
-	displayName: 'TheComponent'
+const LegalAside = class extends Component {
+	displayName: 'LegalAside'
 
 	static contextTypes = {
 		router: React.PropTypes.object.isRequired
@@ -46,6 +46,6 @@ const TheComponent = class extends Component {
 	}
 };
 
-TheComponent.propTypes = {};
+LegalAside.propTypes = {};
 
-module.exports = TheComponent;
+module.exports = LegalAside;

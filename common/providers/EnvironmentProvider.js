@@ -2,8 +2,8 @@ import React, {Component, PropTypes} from 'react';
 import AccountStore from '../stores/account-store';
 import EnvironmentStore from '../stores/environment-store';
 
-const TheComponent = class extends Component {
-	displayName: 'TheComponent'
+const EnvironmentProvider = class extends Component {
+	displayName: 'EnvironmentProvider'
 
 	constructor(props, context) {
 		super(props, context);
@@ -75,6 +75,6 @@ const TheComponent = class extends Component {
 	}
 };
 
-TheComponent.propTypes = {};
+EnvironmentProvider.propTypes = {};
 
-module.exports = TheComponent;
+module.exports = EnvironmentProvider;

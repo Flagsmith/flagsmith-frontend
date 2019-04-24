@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 
 
-const TheComponent = class extends Component {
+const InvitePage = class extends Component {
 	static contextTypes = {
 		router: React.PropTypes.object.isRequired
 	};
@@ -53,6 +53,6 @@ const TheComponent = class extends Component {
 	}
 };
 
-TheComponent.propTypes = {};
+InvitePage.propTypes = {};
 
-module.exports = TheComponent;
+module.exports = InvitePage;

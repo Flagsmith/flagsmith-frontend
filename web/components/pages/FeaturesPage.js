@@ -5,7 +5,7 @@ import ConfirmToggleFeature from '../modals/ConfirmToggleFeature';
 import TryIt from '../TryIt';
 import ConfirmRemoveFeature from '../modals/ConfirmRemoveFeature';
 
-const TheComponent = class extends Component {
+const FeaturesPage = class extends Component {
     static displayName = 'FeaturesPage';
 
     static contextTypes = {
@@ -292,6 +292,6 @@ const TheComponent = class extends Component {
     }
 };
 
-TheComponent.propTypes = {};
+FeaturesPage.propTypes = {};
 
-module.exports = TheComponent;
+module.exports = FeaturesPage;

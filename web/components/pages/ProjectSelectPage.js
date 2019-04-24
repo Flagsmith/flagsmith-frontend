@@ -2,7 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import CreateProjectModal from '../modals/CreateProject'
 import EditOrganisationModal from '../modals/EditOrganisation'
 
-const TheComponent = class extends Component {
+const ProjectSelectPage = class extends Component {
     static displayName = 'ProjectSelectPage';
 
     constructor(props, context) {
@@ -113,6 +113,6 @@ const TheComponent = class extends Component {
     }
 };
 
-TheComponent.propTypes = {};
+ProjectSelectPage.propTypes = {};
 
-module.exports = TheComponent;
+module.exports = ProjectSelectPage;

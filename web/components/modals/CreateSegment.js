@@ -1,9 +1,7 @@
 import React, { Component, PropTypes } from 'react';
-import Highlight from '../Highlight';
-import Tabs from '../base/forms/Tabs';
 import Rule from './Rule';
 
-const TheComponent = class extends Component {
+const CreateSegment = class extends Component {
         displayName: 'CreateSegment'
 
         constructor(props, context) {
@@ -179,6 +177,6 @@ const TheComponent = class extends Component {
     }
 ;
 
-TheComponent.propTypes = {};
+CreateSegment.propTypes = {};
 
-module.exports = hot(module)(TheComponent);
+module.exports = hot(module)(CreateSegment);

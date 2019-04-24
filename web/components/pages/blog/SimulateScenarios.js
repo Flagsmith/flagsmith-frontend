@@ -4,8 +4,8 @@ import md from './markdown/using-feature-flags-for-client-demos-and-simulating-c
 import lazyframe from 'lazyframe';
 import 'lazyframe/dist/lazyframe.css';
 
-const TheComponent = class extends Component {
-    displayName: 'TheComponent'
+const SimulateScenarios = class extends Component {
+    displayName: 'SimulateScenarios'
 
     constructor(props, context) {
         super(props, context);
@@ -27,6 +27,6 @@ const TheComponent = class extends Component {
     }
 };
 
-TheComponent.propTypes = {};
+SimulateScenarios.propTypes = {};
 
-module.exports = TheComponent;
+module.exports = SimulateScenarios;

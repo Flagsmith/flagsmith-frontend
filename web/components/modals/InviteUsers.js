@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 
-const TheComponent = class extends Component {
+const InviteUsers = class extends Component {
     displayName: 'InviteUsers'
 
     constructor(props, context) {
@@ -77,6 +77,6 @@ const TheComponent = class extends Component {
     }
 };
 
-TheComponent.propTypes = {};
+InviteUsers.propTypes = {};
 
-module.exports = TheComponent;
+module.exports = InviteUsers;

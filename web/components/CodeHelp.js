@@ -3,8 +3,8 @@ import Tabs from './base/forms/Tabs';
 import TabItem from './base/forms/TabItem';
 import Highlight from './Highlight'
 
-const TheComponent = class extends Component {
-    displayName: 'TheComponent'
+const CodeHelp = class extends Component {
+    displayName: 'CodeHelp'
 
     constructor(props, context) {
         super(props, context);
@@ -64,6 +64,6 @@ const TheComponent = class extends Component {
     }
 };
 
-TheComponent.propTypes = {};
+CodeHelp.propTypes = {};
 
-module.exports = TheComponent;
+module.exports = CodeHelp;

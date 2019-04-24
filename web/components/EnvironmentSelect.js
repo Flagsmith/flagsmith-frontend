@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 
-const TheComponent = class extends Component {
-    displayName: 'TheComponent'
+const EnvironmentSelect = class extends Component {
+    displayName: 'EnvironmentSelect'
 
     constructor(props, context) {
         super(props, context);
@@ -39,6 +39,6 @@ const TheComponent = class extends Component {
     }
 };
 
-TheComponent.propTypes = {};
+EnvironmentSelect.propTypes = {};
 
-module.exports = TheComponent;
+module.exports = EnvironmentSelect;

@@ -7,8 +7,8 @@ import md from './markdown/7-reasons-for-devs-to-use-feature-flags-as-a-growth-h
 import lazyframe from 'lazyframe';
 import 'lazyframe/dist/lazyframe.css';
 
-const TheComponent = class extends Component {
-    displayName: 'TheComponent'
+const SevenReasons = class extends Component {
+    displayName: 'SevenReasons'
 
     constructor(props, context) {
         super(props, context);
@@ -30,6 +30,6 @@ const TheComponent = class extends Component {
     }
 };
 
-TheComponent.propTypes = {};
+SevenReasons.propTypes = {};
 
-module.exports = TheComponent;
+module.exports = SevenReasons;
