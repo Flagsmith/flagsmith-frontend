@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router';
+import {ButtonSecondary, ButtonWhite} from "../base/forms/Button";
 
 export default class ExampleOne extends Component {
     displayName: 'CreateOrganisastionPage'
@@ -33,7 +34,12 @@ export default class ExampleOne extends Component {
 					<section className="pt-5 pb-3">
 						<h2>Buttons</h2>
 						<FormGroup>
-							<Button>Primary</Button>
+							<Button className="mr-3">Primary</Button>
+
+                            <ButtonSecondary className="mr-3">Secondary</ButtonSecondary>
+
+							<ButtonWhite>White</ButtonWhite>
+
 						</FormGroup>
 
 					</section>
@@ -49,6 +55,7 @@ export default class ExampleOne extends Component {
 							   placeholder="First name"
 							   type="text"
 							   name="firstName" id="firstName"/>
+
 
 					</section>
 

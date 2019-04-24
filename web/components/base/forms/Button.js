@@ -13,7 +13,7 @@ const Button = class extends React.Component {
   render () {
     return (
       <button ref="button" {... this.props} onMouseUp={this.onMouseUp}
-              className={"btn  " + (this.props.className || "btn-primary")}>
+              className={`btn ${this.props.className||''}`}>
         {this.props.children}
       </button>
     );
@@ -25,4 +25,15 @@ Button.propTypes = {
   children: OptionalNode
 };
 
-module.exports = Button;
+export default (props)=> (
+    <Button {...props} className={`btn-primary ${props.className||''}`}/>
+);
+
+
+export const ButtonSecondary = (props)=> (
+    <Button {...props} className={`btn--secondary ${props.className||''}`}/>
+)
+
+export const ButtonWhite = (props)=> (
+    <Button {...props} className={`white ${props.className||''}`}/>
+)

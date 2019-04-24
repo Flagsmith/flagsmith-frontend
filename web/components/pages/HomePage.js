@@ -6,6 +6,7 @@ import Popover from '../../components/base/Popover';
 import lazyframe from 'lazyframe';
 import 'lazyframe/dist/lazyframe.css';
 import PricingPanel from "../PricingPanel";
+import {ButtonWhite} from "../base/forms/Button";
 
 const HomePage = class extends React.Component {
     static contextTypes = {
@@ -340,12 +341,16 @@ const HomePage = class extends React.Component {
                                                         id="password"
                                                     />
                                                 <div className="form-cta margin-top">
-                                                    <button
+
+                                                    <ButtonWhite
                                                         name="signup-btn"
                                                         disabled={isLoading || isSaving}
-                                                        className="btn white full-width" type="submit">
+                                                        className="full-width"
+                                                        type="submit"
+                                                    >
                                                         Sign Up
-                                                    </button>
+                                                    </ButtonWhite>
+
                                                     <Link id="existing-member-btn" to={`/login${redirect}`}>
                                                         Already a member?
                                                     </Link>
