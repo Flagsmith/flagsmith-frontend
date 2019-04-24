@@ -65,7 +65,7 @@ const TheComponent = class extends Component {
 															onChange={(e) => this.setState({name: Utils.safeParseEventValue(e)})}
 															isValid={name && name.length}
 															type="text" title={<h3>Project Name</h3>}
-															placeholder="My Product Name"/>
+															placeholder="My Project Name"/>
 													</Column>
 													<Button id="save-proj-btn" disabled={isSaving || !name}>
 														{isSaving ? 'Updating' : 'Update Name'}
