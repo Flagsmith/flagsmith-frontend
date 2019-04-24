@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 
-const TheComponent = class extends Component {
+const CreateEnv = class extends Component {
 	displayName: 'CreateEnv'
 
 	constructor(props, context) {
@@ -55,6 +55,6 @@ const TheComponent = class extends Component {
 	}
 };
 
-TheComponent.propTypes = {};
+CreateEnv.propTypes = {};
 
-module.exports = TheComponent;
+module.exports = CreateEnv;

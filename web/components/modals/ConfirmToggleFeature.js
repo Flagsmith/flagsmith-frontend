@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 
-const TheComponent = class extends Component {
+const ConfirmToggleFeature = class extends Component {
 	displayName: 'ConfirmToggleFeature'
 
 	constructor(props, context) {
@@ -59,6 +59,6 @@ const TheComponent = class extends Component {
 	}
 };
 
-TheComponent.propTypes = {};
+ConfirmToggleFeature.propTypes = {};
 
-module.exports = TheComponent;
+module.exports = ConfirmToggleFeature;

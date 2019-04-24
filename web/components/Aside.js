@@ -3,7 +3,7 @@ import EnvironmentSelect from './EnvironmentSelect';
 import ProjectSelect from './ProjectSelect';
 import Popover from './base/Popover';
 
-const TheComponent = class extends Component {
+const Aside = class extends Component {
 	static displayName = 'Aside';
 
 	static contextTypes = {
@@ -182,6 +182,6 @@ const TheComponent = class extends Component {
 	}
 };
 
-TheComponent.propTypes = {};
+Aside.propTypes = {};
 
-module.exports = ConfigProvider(TheComponent);
+module.exports = ConfigProvider(Aside);

@@ -1,8 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import OrganisationStore from '../stores/organisation-store';
-import AccountStore from '../stores/account-store';
 
-const TheComponent = class extends Component {
+const SelectedProjectProvider = class extends Component {
 	static displayName = 'SelectedProjectProvider';
 
 	constructor(props, context) {
@@ -30,6 +29,6 @@ const TheComponent = class extends Component {
 	}
 };
 
-TheComponent.propTypes = {};
+SelectedProjectProvider.propTypes = {};
 
-module.exports = TheComponent;
+module.exports = SelectedProjectProvider;

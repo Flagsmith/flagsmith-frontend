@@ -1,5 +1,5 @@
-const TheComponent = class extends React.Component {
-    displayName: 'TheComponent'
+const Hero = class extends React.Component {
+    displayName: 'Hero'
 
     constructor(props, context) {
         super(props, context);
@@ -47,11 +47,11 @@ const TheComponent = class extends React.Component {
     }
 };
 
-TheComponent.propTypes = {
+Hero.propTypes = {
     children: RequiredElement,
     toggleComponent: OptionalFunc,
     title: RequiredString,
     defaultValue: OptionalBool,
 };
 
-module.exports = ConfigProvider(TheComponent);
+module.exports = ConfigProvider(Hero);

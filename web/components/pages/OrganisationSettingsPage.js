@@ -6,7 +6,7 @@ import ConfirmRemoveOrganisation from '../modals/ConfirmRemoveOrganisation'
 import PaymentModal from '../modals/Payment';
 import CancelPaymentPlanModal from '../modals/CancelPaymentPlan';
 
-const TheComponent = class extends Component {
+const OrganisationSettingsPage = class extends Component {
     static displayName = 'OrganisationSettingsPage';
 
     constructor(props, context) {
@@ -304,6 +304,6 @@ const TheComponent = class extends Component {
     }
 };
 
-TheComponent.propTypes = {};
+OrganisationSettingsPage.propTypes = {};
 
-module.exports = ConfigProvider(TheComponent);
+module.exports = ConfigProvider(OrganisationSettingsPage);

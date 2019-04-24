@@ -4,8 +4,8 @@ import md from './markdown/how-to-use-feature-flags-in-continuous-integration.md
 import lazyframe from 'lazyframe';
 import 'lazyframe/dist/lazyframe.css';
 
-const TheComponent = class extends Component {
-    displayName: 'TheComponent'
+const HowToUseFeatureFlags = class extends Component {
+    displayName: 'HowToUseFeatureFlags'
 
     constructor(props, context) {
         super(props, context);
@@ -27,6 +27,6 @@ const TheComponent = class extends Component {
     }
 };
 
-TheComponent.propTypes = {};
+HowToUseFeatureFlags.propTypes = {};
 
-module.exports = TheComponent;
+module.exports = HowToUseFeatureFlags;

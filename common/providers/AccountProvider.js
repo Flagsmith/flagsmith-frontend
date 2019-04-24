@@ -1,8 +1,8 @@
 import React, {Component, PropTypes} from 'react';
 import AccountStore from '../stores/account-store';
 
-const TheComponent = class extends Component {
-	displayName: 'TheComponent'
+const AccountProvider = class extends Component {
+	displayName: 'AccountProvider'
 
 	constructor(props, context) {
 		super(props, context);
@@ -107,6 +107,6 @@ const TheComponent = class extends Component {
 	}
 };
 
-TheComponent.propTypes = {};
+AccountProvider.propTypes = {};
 
-module.exports = TheComponent;
+module.exports = AccountProvider;

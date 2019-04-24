@@ -40,7 +40,7 @@ const operators = [
         'label': 'Matches regex'
     },
 ]
-export default class TheComponent extends PureComponent {
+export default class Rule extends PureComponent {
     static displayName = 'Rule';
 
     static propTypes = {};

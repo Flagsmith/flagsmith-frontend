@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 
-const TheComponent = class extends Component {
+const ComingSoon = class extends Component {
 	displayName: 'ComingSoon'
 	componentWillMount() {
 		API.trackPage(Constants.pages.COMING_SOON)
@@ -14,6 +14,6 @@ const TheComponent = class extends Component {
 	}
 };
 
-TheComponent.propTypes = {};
+ComingSoon.propTypes = {};
 
-module.exports = TheComponent;
+module.exports = ComingSoon;

@@ -1,8 +1,8 @@
 import React, {Component, PropTypes} from 'react';
 import IdentityStore from '../stores/identity-list-store';
 
-const TheComponent = class extends Component {
-	displayName: 'TheComponent'
+const IdentityListProvider = class extends Component {
+	displayName: 'IdentityListProvider'
 
 	constructor(props, context) {
 		super(props, context);
@@ -34,6 +34,6 @@ const TheComponent = class extends Component {
 	}
 };
 
-TheComponent.propTypes = {};
+IdentityListProvider.propTypes = {};
 
-module.exports = TheComponent;
+module.exports = IdentityListProvider;

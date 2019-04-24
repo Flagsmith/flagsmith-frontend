@@ -8,8 +8,8 @@ import md from './markdown/hacking-our-e2e-tests-to-make-them-more-useful.md';
 import lazyframe from 'lazyframe';
 import 'lazyframe/dist/lazyframe.css';
 
-const TheComponent = class extends Component {
-    displayName: 'TheComponent'
+const HackingOurE2E = class extends Component {
+    displayName: 'HackingOurE2E'
 
     constructor(props, context) {
         super(props, context);
@@ -31,6 +31,6 @@ const TheComponent = class extends Component {
     }
 };
 
-TheComponent.propTypes = {};
+HackingOurE2E.propTypes = {};
 
-module.exports = TheComponent;
+module.exports = HackingOurE2E;

@@ -3,8 +3,8 @@ import OrganisationStore from '../stores/organisation-store';
 import AccountStore from '../stores/account-store';
 import data from '../data/base/_data';
 
-const TheComponent = class extends Component {
-	displayName: 'TheComponent'
+const OrganisationProvider = class extends Component {
+	displayName: 'OrganisationProvider'
 
 	constructor(props, context) {
 		super(props, context);
@@ -46,6 +46,6 @@ const TheComponent = class extends Component {
 	}
 };
 
-TheComponent.propTypes = {};
+OrganisationProvider.propTypes = {};
 
-module.exports = TheComponent;
+module.exports = OrganisationProvider;

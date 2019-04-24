@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 
-const TheComponent = class extends Component {
+const EditFlag = class extends Component {
     displayName: 'EditFlag'
 
 	constructor(props, context) {
@@ -69,6 +69,6 @@ const TheComponent = class extends Component {
 	}
 };
 
-TheComponent.propTypes = {};
+EditFlag.propTypes = {};
 
-module.exports = TheComponent;
+module.exports = EditFlag;

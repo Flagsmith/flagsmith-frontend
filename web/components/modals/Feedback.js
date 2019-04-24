@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 
-const TheComponent = class extends Component {
+const Feedback = class extends Component {
     displayName: 'Feedback'
 
     constructor(props, context) {
@@ -121,6 +121,6 @@ const TheComponent = class extends Component {
     }
 };
 
-TheComponent.propTypes = {};
+Feedback.propTypes = {};
 
-module.exports = TheComponent;
+module.exports = Feedback;

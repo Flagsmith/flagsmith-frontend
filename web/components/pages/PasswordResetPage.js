@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 
 
-const TheComponent = class extends Component {
+const PasswordResetPage = class extends Component {
     static contextTypes = {
         router: React.PropTypes.object.isRequired
     };
@@ -108,6 +108,6 @@ const TheComponent = class extends Component {
     }
 };
 
-TheComponent.propTypes = {};
+PasswordResetPage.propTypes = {};
 
-module.exports = TheComponent;
+module.exports = PasswordResetPage;

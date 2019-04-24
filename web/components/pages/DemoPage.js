@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 
 
-const TheComponent = class extends Component {
+const DemoPage = class extends Component {
     static contextTypes = {
         router: React.PropTypes.object.isRequired
     };
@@ -54,6 +54,6 @@ const TheComponent = class extends Component {
     }
 };
 
-TheComponent.propTypes = {};
+DemoPage.propTypes = {};
 
-module.exports = TheComponent;
+module.exports = DemoPage;

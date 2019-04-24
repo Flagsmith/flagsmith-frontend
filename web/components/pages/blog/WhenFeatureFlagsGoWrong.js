@@ -5,8 +5,8 @@ import React, {Component, PropTypes} from 'react';
 import lazyframe from 'lazyframe';
 import 'lazyframe/dist/lazyframe.css';
 
-const TheComponent = class extends Component {
-    displayName: 'TheComponent'
+const WhenFeatureFlagsGoWrong = class extends Component {
+    displayName: 'WhenFeatureFlagsGoWrong'
 
     constructor(props, context) {
         super(props, context);
@@ -93,6 +93,6 @@ const TheComponent = class extends Component {
     }
 };
 
-TheComponent.propTypes = {};
+WhenFeatureFlagsGoWrong.propTypes = {};
 
-module.exports = TheComponent;
+module.exports = WhenFeatureFlagsGoWrong;

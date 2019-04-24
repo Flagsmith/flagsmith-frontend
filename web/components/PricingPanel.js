@@ -1,7 +1,7 @@
 import React from "react";
 
-const TheComponent = class extends React.Component {
-    displayName: 'TheComponent'
+const PricingPanel = class extends React.Component {
+    displayName: 'PricingPanel'
 
     constructor(props, context) {
         super(props, context);
@@ -142,11 +142,11 @@ const TheComponent = class extends React.Component {
     }
 };
 
-TheComponent.propTypes = {
+PricingPanel.propTypes = {
     children: RequiredElement,
     toggleComponent: OptionalFunc,
     title: RequiredString,
     defaultValue: OptionalBool,
 };
 
-module.exports = ConfigProvider(TheComponent);
+module.exports = ConfigProvider(PricingPanel);

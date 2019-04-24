@@ -3,7 +3,7 @@ import Highlight from '../Highlight';
 import Tabs from '../base/forms/Tabs';
 import TabItem from '../base/forms/TabItem';
 
-const TheComponent = class extends Component {
+const CreateFlag = class extends Component {
     displayName: 'CreateFlag'
 
     constructor(props, context) {
@@ -216,6 +216,6 @@ const TheComponent = class extends Component {
     }
 };
 
-TheComponent.propTypes = {};
+CreateFlag.propTypes = {};
 
-module.exports = TheComponent;
+module.exports = CreateFlag;

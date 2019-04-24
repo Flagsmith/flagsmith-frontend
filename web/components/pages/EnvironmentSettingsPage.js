@@ -2,7 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import ConfirmRemoveEnvironment from '../modals/ConfirmRemoveEnvironment';
 import ProjectStore from '../../../common/stores/project-store';
 
-const TheComponent = class extends Component {
+const EnvironmentSettingsPage = class extends Component {
     displayName: 'EnvironmentSettingsPage'
     static contextTypes = {
         router: React.PropTypes.object.isRequired
@@ -181,6 +181,6 @@ const TheComponent = class extends Component {
     }
 };
 
-TheComponent.propTypes = {};
+EnvironmentSettingsPage.propTypes = {};
 
-module.exports = TheComponent;
+module.exports = EnvironmentSettingsPage;

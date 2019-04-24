@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import Highlight from '../Highlight';
 
-const TheComponent = class extends Component {
+const CreateTrait = class extends Component {
     displayName: 'CreateTrait'
 
     constructor(props, context) {
@@ -117,6 +117,6 @@ const TheComponent = class extends Component {
     }
 };
 
-TheComponent.propTypes = {};
+CreateTrait.propTypes = {};
 
-module.exports = TheComponent;
+module.exports = CreateTrait;
