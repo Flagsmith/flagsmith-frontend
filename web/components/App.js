@@ -265,8 +265,9 @@ const App = class extends Component {
                                                 </div>
                                             ) : (
                                                 <div>
-                                                    <Link to={`/login${redirect}#sign-up`} className="btn float-right"
-                                                          onClick={Utils.scrollToSignUp}>Login</Link>
+                                                    <Button className="btn-primary float-right" onClick={Utils.scrollToSignUp}>
+                                                        <Link to={`/login${redirect}#sign-up`}>Login</Link>
+                                                    </Button>
                                                     <ul className="nav-list list-unstyled float-right">
                                                         <li><Link to={"/demo"}>Demo</Link></li>
                                                         <li><a target={"_blank"}
