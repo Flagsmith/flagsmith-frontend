@@ -3,7 +3,7 @@ import ConfirmRemoveEnvironment from '../modals/ConfirmRemoveEnvironment';
 import ProjectStore from '../../../common/stores/project-store';
 
 const EnvironmentSettingsPage = class extends Component {
-    displayName: 'EnvironmentSettingsPage'
+    static displayName = 'EnvironmentSettingsPage'
     static contextTypes = {
         router: React.PropTypes.object.isRequired
     };
@@ -109,26 +109,6 @@ const EnvironmentSettingsPage = class extends Component {
                                                             type="text" title={<h3>Environment Name</h3>}
                                                             placeholder="Environment Name"/>
                                                         </Column>
-                                                    {/* <FormGroup>
-                                                        <div>
-                                                            <h3>Webhooks Enabled?</h3>
-                                                        </div>
-                                                        <Switch
-                                                            checked={webhooks_enabled === undefined ? env.webhooks_enabled : webhooks_enabled}
-                                                            onChange={(webhooks_enabled) => this.setState({webhooks_enabled})}
-                                                        />
-                                                    </FormGroup>
-                                                    <InputGroup
-                                                        inputProps={{
-                                                            defaultValue: env.webhook_url,
-                                                            className: "full-width",
-                                                            name: 'env-webhook-url'
-                                                        }}
-                                                        onChange={(e) => this.setState({webhook_url: Utils.safeParseEventValue(e)})}
-                                                        isValid={webhook_url && webhook_url.length && Utils.isValidURL(webhook_url)}
-                                                        type="text" title={<h3>Webhook URL</h3>}
-                                                        placeholder="https://webhook.url"
-                                                        disabled={webhooks_enabled === undefined ? !env.webhooks_enabled : !webhooks_enabled}/> */}
                                                         <Button id="save-env-btn" className="float-right" disabled={this.saveDisabled()}>
                                                             {isSaving ? 'Updating' : 'Update Name'}
                                                         </Button>

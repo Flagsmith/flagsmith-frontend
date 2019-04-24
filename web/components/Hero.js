@@ -1,5 +1,5 @@
 const Hero = class extends React.Component {
-    displayName: 'Hero'
+    static displayName = 'Hero'
 
     constructor(props, context) {
         super(props, context);

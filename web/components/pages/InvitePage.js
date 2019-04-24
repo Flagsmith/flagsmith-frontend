@@ -6,7 +6,7 @@ const InvitePage = class extends Component {
 		router: React.PropTypes.object.isRequired
 	};
 
-	displayName: 'InvitePage'
+	static displayName = 'InvitePage'
 
 	constructor(props, context) {
 		super(props, context);

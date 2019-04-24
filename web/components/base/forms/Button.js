@@ -1,5 +1,5 @@
 const Button = class extends React.Component {
-  displayName:'Button'
+  static displayName ='Button'
 
   constructor (props, context) {
     super(props, context);

@@ -2,7 +2,7 @@
  * Created by kylejohnson on 30/07/2016.
  */
 const Tabs = class extends React.Component {
-    displayName: 'Tabs'
+    static displayName = 'Tabs'
 
     render() {
         return (

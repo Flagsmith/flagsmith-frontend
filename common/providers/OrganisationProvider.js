@@ -4,7 +4,7 @@ import AccountStore from '../stores/account-store';
 import data from '../data/base/_data';
 
 const OrganisationProvider = class extends Component {
-	displayName: 'OrganisationProvider'
+	static displayName = 'OrganisationProvider'
 
 	constructor(props, context) {
 		super(props, context);

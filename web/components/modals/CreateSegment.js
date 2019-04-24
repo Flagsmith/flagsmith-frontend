@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import Rule from './Rule';
 
 const CreateSegment = class extends Component {
-        displayName: 'CreateSegment'
+        static displayName = 'CreateSegment'
 
         constructor(props, context) {
             super(props, context);

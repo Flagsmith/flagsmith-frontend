@@ -1,6 +1,6 @@
 //Attaches an input to a component and exposes current select position with keyboard support
 const InputStepper = class extends React.Component {
-  displayName:'InputStepper'
+  static displayName ='InputStepper'
 
   blur = () => {
     this.refs.input.blur();

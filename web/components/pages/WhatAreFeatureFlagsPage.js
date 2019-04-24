@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 
 const WhatAreFeatureFlagsPage = class extends Component {
-    displayName: 'WhatAreFeatureFlagsPage'
+    static displayName = 'WhatAreFeatureFlagsPage'
 
     constructor(props, context) {
         super(props, context);

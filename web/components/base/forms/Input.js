@@ -19,7 +19,7 @@ const maskedCharacters = {
 	}
 };
 const Input = class extends React.Component {
-	displayName: 'Input'
+	static displayName = 'Input'
 
 	constructor(props, context) {
 		super(props, context);

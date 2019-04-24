@@ -6,7 +6,7 @@ import CreateTraitModal from '../modals/CreateTrait';
 import TryIt from '../TryIt';
 
 const UserPage = class extends Component {
-    displayName: 'UserPage'
+    static displayName = 'UserPage'
 
     constructor(props, context) {
         super(props, context);

@@ -1,44 +1,51 @@
-require('dotenv').config();
-
 const bodyParser = require('body-parser');
 const api = require('./api');
-const exphbs = require('express-handlebars');
 const express = require('express');
 const spm = require('./middleware/single-page-middleware');
 const webpackMiddleware = require('./middleware/webpack-middleware');
 const isDev = process.env.NODE_ENV !== 'production';
 const app = express();
 const port = process.env.PORT || 8080;
+const path = require('path');
 
-if (isDev) { //Serve files from src directory and use webpack-dev-server
+
+var devMiddleware;
+if (isDev) { // Serve files from web directory and use webpack-dev-server
     console.log('Enabled Webpack Hot Reloading');
-    webpackMiddleware(app);
-    app.set('views', 'web/');
-    app.use(express.static('web'));
-} else { //Serve files from build directory
+    devMiddleware = webpackMiddleware(app);
+} else {
     console.log('Running production mode');
-    app.use(express.static('build'));
-    app.set('views', 'build/');
 }
 
-app.engine('handlebars', exphbs());
-app.set('view engine', 'handlebars');
-
-// parse various different custom JSON types as JSON
-app.use(bodyParser.json())
-
+// Intercept all API requests
 app.use('/api', api());
-app.use(spm);
-app.get('/', function (req, res) {
-    console.log("Returning index");
-    if (isDev) {
-        return res.render('index', {
-            isDev
-        });
+
+
+// Serve up the build folder as a static view (server running in production mode)
+app.use(express.static('build'));
+app.set('views', 'build/');
+
+// Rewrite request URL if necessary
+// app.use(spm);
+
+// Parse various different custom JSON types as JSON
+app.use(bodyParser.json());
+
+// Fallback for non-root routes i.e. /page
+app.get('/', function (req, res, next) {
+    if (!isDev) {
+        res.sendFile(path.resolve('build/index.html'));
     } else {
-        return res.render('static/index', {
-            isDev
-        });
+        const compiler = devMiddleware.context.compiler;
+        const filename = path.join(compiler.outputPath, 'index.html');
+        compiler.outputFileSystem.readFile(filename, (err, result) => {
+            if (err) {
+                return next(err);
+            }
+            res.set('content-type','text/html');
+            res.send(result);
+            res.end();
+        })
     }
 });
 

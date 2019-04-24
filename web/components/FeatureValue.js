@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 
 const FeatureValue = class extends Component {
-    displayName: 'FeatureValue'
+    static displayName = 'FeatureValue'
 
     constructor(props, context) {
         super(props, context);

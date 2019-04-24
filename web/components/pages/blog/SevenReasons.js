@@ -8,7 +8,7 @@ import lazyframe from 'lazyframe';
 import 'lazyframe/dist/lazyframe.css';
 
 const SevenReasons = class extends Component {
-    displayName: 'SevenReasons'
+    static displayName = 'SevenReasons'
 
     constructor(props, context) {
         super(props, context);

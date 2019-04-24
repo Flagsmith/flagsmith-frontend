@@ -1,5 +1,5 @@
 const Panel = class extends React.Component {
-    displayName: 'Panel'
+    static displayName = 'Panel'
 
     constructor(props, context) {
         super(props, context);

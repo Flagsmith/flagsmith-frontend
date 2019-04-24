@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 
 const CreateEnv = class extends Component {
-	displayName: 'CreateEnv'
+	static displayName = 'CreateEnv'
 
 	constructor(props, context) {
 		super(props, context);

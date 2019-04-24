@@ -3,7 +3,7 @@ import FeatureListStore from '../stores/feature-list-store';
 import IdentityStore from "../stores/identity-store";
 
 const IdentityProvider = class extends Component {
-    displayName: 'IdentityProvider'
+    static displayName = 'IdentityProvider'
 
     constructor(props, context) {
         super(props, context);

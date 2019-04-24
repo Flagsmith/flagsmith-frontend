@@ -2,7 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import EditIdentityModal from './UserPage';
 
 const UsersPage = class extends Component {
-    displayName: 'UsersPage'
+    static displayName = 'UsersPage'
 
     constructor(props, context) {
         super(props, context);

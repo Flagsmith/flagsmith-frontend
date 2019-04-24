@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 
 const EnvironmentSelect = class extends Component {
-    displayName: 'EnvironmentSelect'
+    static displayName = 'EnvironmentSelect'
 
     constructor(props, context) {
         super(props, context);

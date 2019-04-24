@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 
 const Gif = class extends Component {
-    displayName: 'Gif'
+    static displayName = 'Gif'
 
     constructor(props, context) {
         super(props, context);

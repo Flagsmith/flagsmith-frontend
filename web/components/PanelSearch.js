@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 
 const PanelSearch = class extends Component {
-    displayName: 'PanelSearch'
+    static displayName = 'PanelSearch'
 
     constructor(props, context) {
         super(props, context);

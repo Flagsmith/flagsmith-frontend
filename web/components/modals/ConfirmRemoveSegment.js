@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 
 const ConfirmRemoveSegment = class extends Component {
-    displayName: 'ConfirmRemoveSegment'
+    static displayName = 'ConfirmRemoveSegment'
 
     constructor(props, context) {
         super(props, context);

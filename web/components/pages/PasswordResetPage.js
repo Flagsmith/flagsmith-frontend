@@ -6,7 +6,7 @@ const PasswordResetPage = class extends Component {
         router: React.PropTypes.object.isRequired
     };
 
-    displayName: 'PasswordResetPage'
+    static displayName = 'PasswordResetPage'
 
     constructor(props, context) {
         super(props, context);

@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import Highlight from '../Highlight';
 
 const CreateTrait = class extends Component {
-    displayName: 'CreateTrait'
+    static displayName = 'CreateTrait'
 
     constructor(props, context) {
         super(props, context);

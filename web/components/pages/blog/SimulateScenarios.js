@@ -5,7 +5,7 @@ import lazyframe from 'lazyframe';
 import 'lazyframe/dist/lazyframe.css';
 
 const SimulateScenarios = class extends Component {
-    displayName: 'SimulateScenarios'
+    static displayName = 'SimulateScenarios'
 
     constructor(props, context) {
         super(props, context);

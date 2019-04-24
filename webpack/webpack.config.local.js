@@ -1,49 +1,81 @@
-// webpack.config.local.js
-var webpack = require('webpack');
+// webpack.config.dev.js
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
 
+const whitelabel = typeof process.env.WHITELABEL === 'undefined' ? false : process.env.WHITELABEL;
+const styles = whitelabel ? path.join(__dirname, `../web/styles/whitelabel/${process.env.WHITELABEL}`) : path.join(__dirname, '../web/styles');
 module.exports = {
-    devtool: 'source-map',
-    mode: "development",
+    devtool: 'cheap-module-eval-source-map',
+    mode: 'development',
+    stats: 'errors-only',
     entry: [
-        'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=false',
-        'react-hot-loader/patch',
+        'webpack-hot-middleware/client?reload=false',
         './web/main.js',
     ],
     devServer: {
-        outputPath: __dirname
+        outputPath: __dirname,
     },
     output: {
-        path: '/',
-        publicPath: 'http://localhost:8080/build/',
-        filename: '[name].js'
+        path: path.join(__dirname, '../build'),
+        filename: '[name].js',
+        publicPath: '/',
+        devtoolModuleFilenameTemplate: 'file://[absolute-resource-path]',
+    },
+    externals: {
+        // require('jquery') is external and available
+        //  on the global var jQuery
+        'jquery': 'jQuery',
+    },
+    resolve: {
+        alias: {
+            styles,
+        },
     },
     plugins: require('./plugins').concat([
         new webpack.HotModuleReplacementPlugin(),
+        new webpack.DefinePlugin({
+            __DEV__: true,
+            whitelabel: JSON.stringify(process.env.WHITELABEL),
+        }),
         new webpack.NoEmitOnErrorsPlugin(),
-        //If you happen to use jQuery
-        // new webpack.ProvidePlugin({
-        // 	$: "jquery",
-        // 	jQuery: "jquery"
-        // })
-    ]),
+        new webpack.ProvidePlugin({
+            $: 'jquery',
+            jQuery: 'jquery',
+            jquery: 'jquery',
+        }),
+    ]).concat(require('./pages').map((page) => {
+        console.log(page);
+        return new HtmlWebpackPlugin({
+            filename: `${page}.html`, // output
+            template: `./web/${page}.html`, // template to use
+        });
+    })),
     module: {
         rules: require('./loaders')
             .concat([
                 {
-                    test: /\.js?/,
-                    exclude: /node_modules/,
-                    use: ['babel-loader']
-                },
-                {
                     test: /\.scss$/,
                     use: [{
-                        loader: "style-loader" // creates style nodes from JS strings
-                    }, {
-                        loader: "css-loader" // translates CSS into CommonJS
-                    }, {
-                        loader: "sass-loader" // compiles Sass to CSS
-                    }]
-                }
-            ])
+                        loader: 'style-loader',
+                        options: {
+                            sourceMap: true,
+                            convertToAbsoluteUrls: false,
+                        },
+                    },
+                        {
+                            loader: 'css-loader',
+                            options: {
+                                importLoaders: 1,
+                                sourceMap: true,
+                            },
+                        }, {
+                            loader: 'sass-loader',
+                            options: {
+                                sourceMap: true,
+                            },
+                        }],
+                },
+            ]),
     },
 };

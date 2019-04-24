@@ -11,7 +11,7 @@ const TermsPoliciesPage = class extends React.Component {
         router: React.PropTypes.object.isRequired
     };
 
-    displayName: 'TermsPoliciesPage'
+    static displayName = 'TermsPoliciesPage'
 
     constructor(props, context) {
         super(props, context);

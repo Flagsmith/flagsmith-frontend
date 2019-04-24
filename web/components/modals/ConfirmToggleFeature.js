@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 
 const ConfirmToggleFeature = class extends Component {
-	displayName: 'ConfirmToggleFeature'
+	static displayName = 'ConfirmToggleFeature'
 
 	constructor(props, context) {
 		super(props, context);

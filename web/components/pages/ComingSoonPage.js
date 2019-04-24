@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 
 const ComingSoon = class extends Component {
-	displayName: 'ComingSoon'
+	static displayName = 'ComingSoon'
 	componentWillMount() {
 		API.trackPage(Constants.pages.COMING_SOON)
 	}

@@ -6,7 +6,7 @@ const DemoPage = class extends Component {
         router: React.PropTypes.object.isRequired
     };
 
-    displayName: 'DemoPage'
+    static displayName = 'DemoPage'
 
     constructor(props, context) {
         super(props, context);

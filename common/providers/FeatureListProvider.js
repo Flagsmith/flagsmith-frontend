@@ -2,7 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import FeatureListStore from '../stores/feature-list-store';
 
 const FeatureListProvider = class extends Component {
-    displayName: 'FeatureListProvider'
+    static displayName = 'FeatureListProvider'
 
     constructor(props, context) {
         super(props, context);

@@ -2,7 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import IdentityStore from '../stores/identity-list-store';
 
 const IdentityListProvider = class extends Component {
-	displayName: 'IdentityListProvider'
+	static displayName = 'IdentityListProvider'
 
 	constructor(props, context) {
 		super(props, context);

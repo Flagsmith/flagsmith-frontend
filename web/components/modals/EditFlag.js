@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 
 const EditFlag = class extends Component {
-    displayName: 'EditFlag'
+    static displayName = 'EditFlag'
 
 	constructor(props, context) {
 		super(props, context);

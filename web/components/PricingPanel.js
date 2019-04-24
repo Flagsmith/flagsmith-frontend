@@ -1,7 +1,7 @@
 import React from "react";
 
 const PricingPanel = class extends React.Component {
-    displayName: 'PricingPanel'
+    static displayName = 'PricingPanel'
 
     constructor(props, context) {
         super(props, context);

@@ -4,7 +4,7 @@
 import React, {Component, PropTypes} from 'react';
 
 const FormGroup = class extends Component {
-	displayName: 'FormGroup'
+	static displayName = 'FormGroup'
 
 	constructor(props, context) {
 		super(props, context);

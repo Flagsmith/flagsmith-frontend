@@ -3,7 +3,7 @@ import ProjectStore from '../stores/project-store';
 import OrganisationStore from '../stores/organisation-store';
 
 const ProjectProvider = class extends Component {
-	displayName: 'ProjectProvider'
+	static displayName = 'ProjectProvider'
 
 	constructor(props, context) {
 		super(props, context);

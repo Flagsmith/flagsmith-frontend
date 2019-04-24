@@ -6,7 +6,7 @@ import lazyframe from 'lazyframe';
 import 'lazyframe/dist/lazyframe.css';
 
 const WhenFeatureFlagsGoWrong = class extends Component {
-    displayName: 'WhenFeatureFlagsGoWrong'
+    static displayName = 'WhenFeatureFlagsGoWrong'
 
     constructor(props, context) {
         super(props, context);

@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 
 const LegalAside = class extends Component {
-	displayName: 'LegalAside'
+	static displayName = 'LegalAside'
 
 	static contextTypes = {
 		router: React.PropTypes.object.isRequired

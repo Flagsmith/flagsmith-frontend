@@ -9,7 +9,7 @@ import lazyframe from 'lazyframe';
 import 'lazyframe/dist/lazyframe.css';
 
 const HackingOurE2E = class extends Component {
-    displayName: 'HackingOurE2E'
+    static displayName = 'HackingOurE2E'
 
     constructor(props, context) {
         super(props, context);

@@ -1,6 +1,6 @@
 import cn from 'classnames';
 const Message = class extends React.Component {
-  displayName: 'Message'
+  static displayName = 'Message'
 
   componentDidMount () {
     setTimeout(this.props.remove, this.props.expiry);
@@ -40,7 +40,7 @@ Message.propTypes = {
 module.exports = Message;
 
 const Toast = class extends React.Component {
-  displayName: 'ToastMessages'
+  static displayName = 'ToastMessages'
 
   constructor (props, context) {
     super(props, context);

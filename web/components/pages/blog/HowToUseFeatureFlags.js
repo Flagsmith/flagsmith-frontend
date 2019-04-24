@@ -5,7 +5,7 @@ import lazyframe from 'lazyframe';
 import 'lazyframe/dist/lazyframe.css';
 
 const HowToUseFeatureFlags = class extends Component {
-    displayName: 'HowToUseFeatureFlags'
+    static displayName = 'HowToUseFeatureFlags'
 
     constructor(props, context) {
         super(props, context);

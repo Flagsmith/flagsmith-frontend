@@ -7,7 +7,7 @@ const PricingPage = class extends React.Component {
         router: React.PropTypes.object.isRequired
     };
 
-    displayName: 'PricingPage'
+    static displayName = 'PricingPage'
 
     constructor(props, context) {
         super(props, context);

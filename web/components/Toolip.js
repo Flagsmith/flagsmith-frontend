@@ -1,6 +1,6 @@
 const ReactTooltip = require('react-tooltip');
 const Tooltip = class extends React.Component {
-	displayName: 'Tooltip'
+	static displayName = 'Tooltip'
 
 	id = Utils.GUID()
 

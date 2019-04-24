@@ -4,7 +4,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 const FocusMonitor = class extends React.Component {
-	displayName: 'FocusMonitor'
+	static displayName = 'FocusMonitor'
 
 	constructor(props, context) {
 		super(props, context);

@@ -1,24 +1,25 @@
-const path = require('path')
+const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const webpack = require('webpack');
 
 module.exports = [
 
     new webpack.ProvidePlugin({
-        $: "jquery",
-        jQuery: "jquery"
+        $: 'jquery',
+        jQuery: 'jquery',
     }),
 
     new webpack.DefinePlugin({
-        'E2E': process.env.E2E
+        'E2E': process.env.E2E,
     }),
 
     // Fixes warning in moment-with-locales.min.js
     // Module not found: Error: Can't resolve './locale' in ...
-    new webpack.IgnorePlugin(/\.\/locale$/),
-    //Copy static content
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+
+    // Copy static content
     new CopyWebpackPlugin([
-        {from: path.join(__dirname, '../web/images'), to: path.join(__dirname, '../build/images')},
-        {from: path.join(__dirname, '../web/fonts'), to: path.join(__dirname, '../build/fonts')}
-    ])
+        { from: path.join(__dirname, '../web/images'), to: path.join(__dirname, '../build/images') },
+        { from: path.join(__dirname, '../web/fonts'), to: path.join(__dirname, '../build/fonts') },
+    ]),
 ];

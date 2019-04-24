@@ -2,7 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import FeatureListStore from '../stores/segment-list-store';
 
 const TheComponent = class extends Component {
-    displayName: 'TheComponent'
+    static displayName = 'TheComponent'
 
     constructor(props, context) {
         super(props, context);

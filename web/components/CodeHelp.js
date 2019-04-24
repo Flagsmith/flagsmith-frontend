@@ -4,7 +4,7 @@ import TabItem from './base/forms/TabItem';
 import Highlight from './Highlight'
 
 const CodeHelp = class extends Component {
-    displayName: 'CodeHelp'
+    static displayName = 'CodeHelp'
 
     constructor(props, context) {
         super(props, context);

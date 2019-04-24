@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 
 const ProjectSelect = class extends Component {
-    displayName: 'ProjectSelect'
+    static displayName = 'ProjectSelect'
 
     constructor(props, context) {
         super(props, context);

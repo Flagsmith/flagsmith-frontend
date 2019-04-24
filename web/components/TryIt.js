@@ -2,7 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import Highlight from './Highlight';
 
 const TryIt = class extends Component {
-    displayName: 'TryIt'
+    static displayName = 'TryIt'
 
     constructor(props, context) {
         super(props, context);

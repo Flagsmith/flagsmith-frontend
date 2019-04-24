@@ -3,7 +3,7 @@ import AccountStore from '../stores/account-store';
 import EnvironmentStore from '../stores/environment-store';
 
 const EnvironmentProvider = class extends Component {
-	displayName: 'EnvironmentProvider'
+	static displayName = 'EnvironmentProvider'
 
 	constructor(props, context) {
 		super(props, context);

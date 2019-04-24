@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 
 const Feedback = class extends Component {
-    displayName: 'Feedback'
+    static displayName = 'Feedback'
 
     constructor(props, context) {
         super(props, context);

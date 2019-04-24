@@ -2,7 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import AccountStore from '../stores/account-store';
 
 const AccountProvider = class extends Component {
-	displayName: 'AccountProvider'
+	static displayName = 'AccountProvider'
 
 	constructor(props, context) {
 		super(props, context);
