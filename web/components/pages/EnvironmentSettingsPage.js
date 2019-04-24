@@ -94,7 +94,7 @@ const EnvironmentSettingsPage = class extends Component {
                                     <div>
                                         <div className="panel--grey">
                                             <FormGroup>
-                                                <h5>Environment</h5>
+                                                <h5>Environment Name</h5>
                                                 <form onSubmit={this.saveEnv}>
                                                     <Row>
                                                         <Column className="m-l-0">
@@ -130,7 +130,7 @@ const EnvironmentSettingsPage = class extends Component {
                                                         placeholder="https://webhook.url"
                                                         disabled={webhooks_enabled === undefined ? !env.webhooks_enabled : !webhooks_enabled}/> */}
                                                         <Button id="save-env-btn" className="float-right" disabled={this.saveDisabled()}>
-                                                            {isSaving ? 'Saving' : 'Save'}
+                                                            {isSaving ? 'Updating' : 'Update Name'}
                                                         </Button>
                                                     </Row>
                                                 </form>
