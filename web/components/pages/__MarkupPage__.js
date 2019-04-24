@@ -57,6 +57,26 @@ export default class ExampleOne extends Component {
 							   name="firstName" id="firstName"/>
 
 
+						<FormGroup className="mt-3">
+						<InputGroup
+							inputProps={{
+								className: "full-width",
+								name: "featureID"
+							}}
+							value={null}
+							type="text" title="ID"
+							placeholder="E.g. header_size"/>
+							<InputGroup
+								inputProps={{
+									className: "full-width",
+									name: "featureID"
+								}}
+								value={null}
+								type="text" title="ID"
+								placeholder="E.g. header_size"/>
+						</FormGroup>
+
+
 					</section>
 
 				</div>
