@@ -149,7 +149,7 @@ const SegmentsPage = class extends Component {
                                             <FormGroup>
                                                 <Panel icon={"ion-ios-globe"} title={"1. creating a segment"}>
                                                     <p>
-                                                        You can create a segment that targets <Link to={`project/${projectId}/environment/${environmentId}/users`}>user traits</Link>.
+                                                        You can create a segment that targets <a href={`https://docs.bullet-train.io/managing-identities/#identity-traits`} target="new">User Traits</a>.
                                                         As user's traits are updated they will automatically be added to the segments based on the rules you create.
                                                     </p>
                                                 </Panel>
