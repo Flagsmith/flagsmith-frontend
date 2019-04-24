@@ -20,7 +20,7 @@ const FormGroup = class extends Component {
 		const id = Utils.GUID();
 		const {inputProps} = this.props;
 		return (
-			<div className={"form-group "}>
+			<div className={"form-group"}>
 				<label htmlFor={id} className="cols-sm-2 control-label">{props.title}</label>
 				{inputProps && inputProps.error && (
 					<span>

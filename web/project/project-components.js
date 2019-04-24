@@ -20,6 +20,7 @@ window.ConfigProvider = require('../../common/providers/ConfigProvider');
 window.OrganisationSelect = require('../components/OrganisationSelect');
 
 
+import Button, {ButtonSecondary, ButtonWhite} from "../components/base/forms/Button";
 
 //Useful components
 window.Gif = require('../components/base/Gif');
@@ -27,7 +28,9 @@ window.Row = require('../components/base/grid/Row');
 window.Flex = require('../components/base/grid/Flex');
 window.Column = require('../components/base/grid/Column');
 window.Input = require('../components/base/forms/Input');
-window.Button = require('../components/base/forms/Button');
+window.Button = Button;
+window.ButtonSecondary = ButtonSecondary;
+window.ButtonWhite = ButtonWhite;
 window.Panel = require('../components/base/grid/Panel');
 window.FormGroup = require('../components/base/grid/FormGroup');
 window.InputGroup = require('../components/base/forms/InputGroup');
