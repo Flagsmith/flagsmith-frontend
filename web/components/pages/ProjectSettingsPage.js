@@ -55,7 +55,7 @@ const TheComponent = class extends Component {
 												e.preventDefault();
 												!isSaving && name && editProject(Object.assign({}, project, {name}));
 											}}>
-												<h5>Project</h5>
+												<h5>Project Name</h5>
 												<Row>
 													<Column className="m-l-0">
 														<Input
@@ -68,7 +68,7 @@ const TheComponent = class extends Component {
 															placeholder="My Product Name"/>
 													</Column>
 													<Button id="save-proj-btn" disabled={isSaving || !name}>
-														{isSaving ? 'Saving' : 'Save'}
+														{isSaving ? 'Updating' : 'Update Name'}
 													</Button>
 												</Row>
 											</form>
