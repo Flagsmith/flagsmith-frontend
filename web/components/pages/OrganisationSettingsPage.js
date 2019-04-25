@@ -148,7 +148,7 @@ const OrganisationSettingsPage = class extends Component {
                                     )}
 								</div>
 
-                                <div className="panel--grey">
+                                <div className="panel--grey" style={{marginTop: '9em'}}>
                                     <form key={organisation.id} onSubmit={this.save}>
                                         <h5>Organisation Name</h5>
                                         <Row>
@@ -187,7 +187,7 @@ const OrganisationSettingsPage = class extends Component {
                                 </div>
                             </div>
                         </FormGroup>
-                        <FormGroup className="m-y-3">
+                        <FormGroup className="mt-5">
                             <div className="panel--grey">
                                 <OrganisationProvider>
                                     {({ isLoading, name, projects, users, invites }) => (
@@ -279,9 +279,9 @@ const OrganisationSettingsPage = class extends Component {
                                 </OrganisationProvider>
                             </div>
                         </FormGroup>
-                        <FormGroup className="m-y-3">
+                        <FormGroup className="mt-5">
                             <Row>
-                                <Column className="d-flex">
+                                <Column className="d-flex pl-3">
                                     <h6>Delete Organisation</h6>
                                     <p>This organisation will be deleted permanently along with all projects &
                                         features.</p>
