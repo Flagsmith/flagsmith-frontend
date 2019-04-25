@@ -11,6 +11,7 @@ const TheComponent = class extends Component {
             isLoading: FeatureListStore.isLoading,
             environmentFlags: FeatureListStore.getEnvironmentFlags(),
             projectFlags: FeatureListStore.getProjectFlags(),
+            lastSaved: FeatureListStore.getLastSaved(),
         };
         ES6Component(this);
         this.listenTo(FeatureListStore, 'change', () => {
@@ -18,6 +19,7 @@ const TheComponent = class extends Component {
                 isSaving: FeatureListStore.isSaving,
                 isLoading: FeatureListStore.isLoading,
                 environmentFlags: FeatureListStore.getEnvironmentFlags(),
+                lastSaved: FeatureListStore.getLastSaved(),
                 projectFlags: FeatureListStore.getProjectFlags(),
             });
         });
@@ -31,6 +33,7 @@ const TheComponent = class extends Component {
                 isSaving: FeatureListStore.isSaving,
                 isLoading: FeatureListStore.isLoading,
                 error: FeatureListStore.error,
+                lastSaved: FeatureListStore.getLastSaved(),
             });
             this.props.onError && this.props.onError(FeatureListStore.error);
         });

@@ -96,7 +96,7 @@ const ProjectNavigation = class extends PureComponent {
                     </TouchableOpacity>
                 </Row>
             </Fade>
-        ) : <View/>
+        ) : <Text style={{opacity:0}}>test</Text>
     }
 
     render() {

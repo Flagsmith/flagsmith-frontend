@@ -30,6 +30,7 @@ var controller = {
 		updateSelection: function (data) {
 			store.selection = data;
 			store.trigger('change')
+			store.trigger('selected')
 		}
 	},
 	store = Object.assign({}, BaseStore, {

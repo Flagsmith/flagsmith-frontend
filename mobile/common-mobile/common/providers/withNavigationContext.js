@@ -12,8 +12,9 @@ export default (WrappedComponent) => {
             this.state = this.getSelection();
             ES6Component(this);
             this.listenTo(ProjectStore, 'loaded', this.setNav)
-            this.listenTo(EnvironmentStore, 'loaded', this.setNav)
+            // this.listenTo(EnvironmentStore, 'loaded', this.setNav)
             this.listenTo(OrganisationStore, 'loaded', this.setNav)
+            this.listenTo(EnvironmentStore, 'selected', this.setNav)
         }
 
         setNav = ()=> {

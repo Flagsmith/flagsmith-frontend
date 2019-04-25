@@ -39,24 +39,24 @@ allprojects {
 
 subprojects {
     // @TODO this appears to no longer be necessary but leaving it here just in case
-    // afterEvaluate {subproject ->
-    //     if (subproject.hasProperty("android")) {
-    //         android {
-    //             compileSdkVersion 27
-    //             buildToolsVersion '27.0.3'
-    //         }
-    //     }
-    //             if ((subproject.plugins.hasPlugin('android') || subproject.plugins.hasPlugin('android-library'))) {
-    //                 android {
-    //                     variantFilter { variant ->
-    //                         def names = variant.flavors*.name
-    //                         if (names.contains("reactNative51") || names.contains("reactNative55")) {
-    //                             setIgnore(true)
-    //                         }
-    //                     }
-    //                 }
-    //             }
-    // }
+     afterEvaluate {subproject ->
+         if (subproject.hasProperty("android")) {
+             android {
+                 compileSdkVersion 27
+                 buildToolsVersion '27.0.3'
+             }
+         }
+                 if ((subproject.plugins.hasPlugin('android') || subproject.plugins.hasPlugin('android-library'))) {
+                     android {
+                         variantFilter { variant ->
+                             def names = variant.flavors*.name
+                             if (names.contains("reactNative51") || names.contains("reactNative55")) {
+                                 setIgnore(true)
+                             }
+                         }
+                     }
+                 }
+     }
     project.configurations.all {
          resolutionStrategy.eachDependency { details ->
             if (details.requested.group == 'com.android.support'

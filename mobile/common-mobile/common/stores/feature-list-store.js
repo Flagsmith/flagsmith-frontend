@@ -35,6 +35,7 @@ var controller = {
                             features: features.results,
                             keyedEnvironmentFeatures: environmentFeatures && _.keyBy(environmentFeatures.results, "feature"),
                         };
+                        store.model.lastSaved = new Date().valueOf();
                         store.saved();
                     });
                 })
@@ -44,6 +45,7 @@ var controller = {
                 .then((res) => {
                     const index = _.findIndex(store.model.features, {id: flag.id});
                     store.model.features[index] = flag;
+                    store.model.lastSaved = new Date().valueOf();
                     store.changed();
                 })
 
@@ -67,6 +69,7 @@ var controller = {
             }))
                 .then((res) => {
                     store.model.keyedEnvironmentFeatures[flag.id] = res[0];
+                    store.model.lastSaved = new Date().valueOf();
                     store.saved();
                 })
 
@@ -90,6 +93,7 @@ var controller = {
 
             prom.then((res) => {
                 store.model.keyedEnvironmentFeatures[projectFlag.id] = res;
+                store.model.lastSaved = new Date().valueOf();
                 store.saved();
             })
 
@@ -100,6 +104,7 @@ var controller = {
             return data.delete(`${Project.api}projects/${projectId}/features/${flag.id}/`)
                 .then(() => {
                     store.model.features = _.filter(store.model.features, (f) => f.id != flag.id);
+                    store.model.lastSaved = new Date().valueOf();
                     store.saved();
                 })
 
@@ -116,6 +121,9 @@ var controller = {
         },
         hasFlagInEnvironment: function (id) {
             return store.model && store.model.keyedEnvironmentFeatures && store.model.keyedEnvironmentFeatures.hasOwnProperty(id)
+        },
+        getLastSaved: function () {
+            return store.model && store.model.lastSaved
         },
     });
 
