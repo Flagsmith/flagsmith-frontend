@@ -62,7 +62,7 @@
     "json-loader": "0.5.4",
     "lazyframe": "^1.1.6",
     "lodash": "^4.17.10",
-    "moment": "^2.22.1",
+    "moment": "2.22.2",
     "node-fetch": "^2.1.2",
     "node-sass": "4.11.0",
     "polyfill-react-native": "^1.0.5",
