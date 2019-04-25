@@ -35,6 +35,10 @@ export default class ExampleOne extends Component {
 						<div className="colour-block colour-block--brand-dark-green"/>
 						<div className="colour-block colour-block--brand-secondary"/>
 
+						<h4>Gradients</h4>
+
+						<div className="colour-block colour-block--brand-primary-gradient"/>
+
 						<h4>Utility</h4>
 
 						<div className="colour-block colour-block--brand-orange"/>
@@ -80,11 +84,12 @@ export default class ExampleOne extends Component {
 							placeholder="E.g. header_size"/>
 						</FormGroup>
 
-						<FormGroup className="mt-5 mb-3">
-							<PricingPanel />
-						</FormGroup>
 
+					</section>
 
+					<section className="pt-5 pb-3">
+						<h2>Components</h2>
+						<PricingPanel />
 					</section>
 
 				</div>
