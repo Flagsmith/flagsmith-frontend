@@ -194,7 +194,7 @@ const TheComponent = class extends Component {
                                         <div>
                                             <div className="flex-row header--icon">
                                                 <h5>Team members</h5>
-                                                <button id={"btn-invite"} onClick={() => openModal(<InviteUsersModal/>)} className={'btn btn--with-icon p-x-0 p-y-0'}>
+                                                <button id={"btn-invite"} onClick={() => openModal("Invite Users", <InviteUsersModal/>)} className={'btn btn--with-icon p-x-0 p-y-0'}>
                                                     <img className="btn__icon" src="/images/icons/plus-button.svg" alt="Invite"/>
                                                 </button>
                                             </div>
