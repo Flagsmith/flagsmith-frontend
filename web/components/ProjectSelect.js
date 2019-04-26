@@ -28,7 +28,7 @@ const ProjectSelect = class extends Component {
                                     this.props.onChange && this.props.onChange(project);
                                 }
                             ) : (
-                                <li key={project.id} className={"project-nav__item m-t-1 " + (this.props.projectId === (project.id+"") ? "project-nav__item--open" : "")}>
+                                <li key={project.id} className={"project-nav__item  " + (this.props.projectId === (project.id+"") ? "project-nav__item--open" : "")}>
                                     <button className={"project-nav__button project-nav__button--title"} onClick={(event) => {
                                         this.props.onChange && this.props.onChange(project); this.toggleNav(event);
                                     }}>
