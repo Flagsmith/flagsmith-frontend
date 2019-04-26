@@ -143,7 +143,7 @@ const OrganisationSettingsPage = class extends Component {
                                     ) : (
                                         <div>
                                             <h2 className="text-center margin-bottom">Your trial period of Bullet Train is over.</h2>
-                                            <div className="text-center margin-bottom"><button type="button" onClick={() => openModal(null, <PaymentModal />, null, {large: true})}>here</button>View payment plans</div>
+                                            <div className="text-center margin-bottom"><button type="button" onClick={() => openModal(null, <PaymentModal />, null, {large: true})}>here</button>View Payment Plans</div>
                                         </div>
                                     )}
 								</div>

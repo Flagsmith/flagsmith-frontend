@@ -39,7 +39,7 @@ module.exports = {
             .click('#create-feature-btn')
             .waitForElementVisible('#features-list div.list-item')
             .waitForElementNotPresent('#create-feature-modal')
-            .click('#features-list div.list-item')
+            .click('#features-list div.list-item div')
             .waitForElementVisible('#update-feature-btn')
             .getValue('[name="featureID"]', res => {
                 browser.assert.equal(res.value, 'header_size');
@@ -68,12 +68,13 @@ module.exports = {
     '[Main Tests] - Create feature 3': function (browser) {
         browser
             .waitForElementNotPresent('#create-feature-modal')
+            .waitForElementVisible('#show-create-feature-btn')
             .click('#show-create-feature-btn')
             .waitForElementVisible('[name="featureID"]')
             .setValue('[name="featureID"]', 'short_life_feature')
             .setValue('[name="featureDesc"]', 'This feature is pointless')
             .click('#create-feature-btn')
-            .waitForElementVisible('#features-list div.list-item:nth-child(3)');
+            .waitForElementVisible('#features-list div.list-item:nth-child(3) div'); //todo change
     },
     '[Main Tests] - Delete feature 3': function (browser) {
         browser
@@ -195,9 +196,9 @@ module.exports = {
         browser
             .click('#env-menu')
             .useXpath()
-            .waitForElementVisible("//div[@id='env-list']//div[text()='Production']")
+            .waitForElementVisible(".project-nav__button div[text()='Production']")
             .pause(200) // Wait for environment select popover to appear
-            .click("//div[@id='env-list']//div[text()='Production']")
+            .click(".project-nav__button div[text()='Production']")
             .useCss();
 
         browser.expect.element('#selected-env').text.to.equal('Production');
