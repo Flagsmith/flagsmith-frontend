@@ -245,7 +245,6 @@ nav.navbar {
         background:none;
         border:none;
         color:rgba(#fff,0.75);
-        //font-size: 0.85rem;
         padding-left:10px;
 
         &__dot{
@@ -260,6 +259,7 @@ nav.navbar {
             font-size:1rem;
             color: rgba(255,255,255,1);
             padding-top: 6px;
+            width: 100%;
         }
 
         &--active{
@@ -269,8 +269,8 @@ nav.navbar {
     }
 
     .project-list{
-        margin-top:5px;
-
+        padding: 10px 0 10px 0;
+        background-color: #37485B;
         &__item{
 
             .env-nav{
