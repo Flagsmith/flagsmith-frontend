@@ -43,6 +43,7 @@ const EnvironmentSelect = class extends Component {
                                                 to={`/project/${project.id}/environment/${environment.api_key}/segments`
                                                 }>Segments</Link>
                                         </li>
+
                                         <li className="env-nav__item flex-row">
                                             <Link
                                                 id="users-link"
