@@ -11,6 +11,7 @@ const OrganisationProvider = class extends Component {
 		this.state = {
 			isLoading: !OrganisationStore.getProjects(),
 			projects: OrganisationStore.getProjects(),
+			project: OrganisationStore.getProject(),
 			users: OrganisationStore.getUsers(),
 			invites: OrganisationStore.getInvites(),
 			name: AccountStore.getOrganisation() && AccountStore.getOrganisation().name,
@@ -20,7 +21,8 @@ const OrganisationProvider = class extends Component {
 			this.setState({
 				isSaving: OrganisationStore.isSaving,
 				isLoading: OrganisationStore.isLoading,
-				projects: OrganisationStore.getProjects(),
+				projects: OrganisationStore.getProjects(this.props.id),
+				project: OrganisationStore.getProject(),
 				users: OrganisationStore.getUsers(),
 				invites: OrganisationStore.getInvites(),
 			});
@@ -34,12 +36,17 @@ const OrganisationProvider = class extends Component {
 		AppActions.createProject(name)
 	};
 
+	selectProject = (id) => {
+		AppActions.getProject(id);
+	};
+
 	render() {
 		return (
 			this.props.children(
 				{
 					...this.state,
 					createProject: this.createProject,
+					selectProject: this.selectProject,
 				},
 			)
 		);

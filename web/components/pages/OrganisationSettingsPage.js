@@ -143,7 +143,7 @@ const OrganisationSettingsPage = class extends Component {
                                     ) : (
                                         <div>
                                             <h2 className="text-center margin-bottom">Your trial period of Bullet Train is over.</h2>
-                                            <div className="text-center margin-bottom"><button type="button" onClick={() => openModal(null, <PaymentModal />, null, {large: true})}>here</button>View Payment Plans</div>
+                                            <div className="text-center margin-bottom"><button type="button" onClick={() => openModal(null, <PaymentModal />, null, {large: true})}>here</button>View payment plans</div>
                                         </div>
                                     )}
 								</div>
@@ -193,8 +193,8 @@ const OrganisationSettingsPage = class extends Component {
                                     {({ isLoading, name, projects, users, invites }) => (
                                         <div>
                                             <div className="flex-row header--icon">
-                                                <h5>Team Members</h5>
-                                                <button id={"btn-invite"} onClick={() => openModal(<InviteUsersModal/>)} className={'btn btn--with-icon p-x-0 p-y-0'}>
+                                                <h5>Team members</h5>
+                                                <button id={"btn-invite"} onClick={() => openModal("Invite Users", <InviteUsersModal/>)} className={'btn btn--with-icon p-x-0 p-y-0'}>
                                                     <img className="btn__icon" src="/images/icons/plus-button.svg" alt="Invite"/>
                                                 </button>
                                             </div>
