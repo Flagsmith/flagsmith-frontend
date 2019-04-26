@@ -19,7 +19,7 @@ const EnvironmentSelect = class extends Component {
                                     this.props.onChange && this.props.onChange(environment.api_key);
                                 }
                             ) : (
-                                <li key={environment.id} className={"project-nav__item project-list__item" + (this.props.environmentId == (environment.api_key+"") ? "project-list__item--open" : "")}>
+                                <li key={environment.id} className={"project-nav__item project-list__item " + (this.props.environmentId == (environment.api_key+"") ? "project-list__item--open" : "")}>
                                     <button className={"project-nav__button"} style={{width: '100%'}} onClick={() => {
                                         this.props.onChange && this.props.onChange(environment.api_key);
                                     }}>
@@ -27,7 +27,7 @@ const EnvironmentSelect = class extends Component {
                                             <Flex className="text-left">
                                                 {environment.name}
                                             </Flex>
-                                            <span className=" flex-column icon ion-ios-arrow-down"/>
+                                            <span className=" flex-column icon ion-ios-arrow-forward"/>
                                         </Row>
                                     </button>
                                     <ul className="env-nav list-unstyled">

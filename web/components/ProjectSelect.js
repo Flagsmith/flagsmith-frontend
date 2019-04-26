@@ -36,7 +36,7 @@ const ProjectSelect = class extends Component {
                                             <Flex className="text-left">
                                                 {project.name}
                                             </Flex>
-                                            <span className=" flex-column icon ion-ios-arrow-down pull-right"/>
+                                            <span className=" flex-column icon ion-ios-arrow-forward pull-right"/>
                                         </Row>
                                     </button>
                                     <div className="env-list">
