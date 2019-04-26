@@ -36,7 +36,7 @@ const ProjectSelect = class extends Component {
                                             <Flex className="text-left">
                                                 {project.name}
                                             </Flex>
-                                            <span className=" flex-column icon ion-ios-arrow-down"/>
+                                            <span className=" flex-column icon ion-ios-arrow-down pull-right"/>
                                         </Row>
                                     </button>
                                     <div className="env-list">
@@ -51,7 +51,7 @@ const ProjectSelect = class extends Component {
                                                     environmentId: environment
                                                 }));
                                             }}/>
-                                        <ul className="project-list list-unstyled">
+                                        <ul className="project-list list-unstyled pt-0">
                                             <li className="project-nav__item flex-row">
                                                 <Link
                                                     id="create-env-link"
