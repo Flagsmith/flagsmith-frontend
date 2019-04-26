@@ -130,7 +130,7 @@ module.exports = Object.assign(
     },
     // require('./main.test'), // Main flow tests
     // require('./invite.test'), // Invite user tests
-    require('./register-fail.test'), // Registration failure tests
+    // require('./register-fail.test'), // Registration failure tests
     require('./login-fail.test'), // Login failure tests
 );
 
