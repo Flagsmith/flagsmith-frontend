@@ -268,7 +268,9 @@ const HomePage = class extends React.Component {
                                             }
                                             {isInvite && <p>Sign up to accept your invite</p>}
                                             <fieldset id="details" className="col-lg-6 offset-lg-3">
-                                                <Input inputProps={{
+                                                <Input
+                                                    data-test="firstName"
+                                                    inputProps={{
                                                         name: "firstName",
                                                         className: "full-width",
                                                         error: error && error.first_name
@@ -281,6 +283,7 @@ const HomePage = class extends React.Component {
                                                     type="text"
                                                     name="firstName" id="firstName"/>
                                                 <Input
+                                                    data-test="lastName"
                                                     inputProps={{
                                                         name: "lastName",
                                                         className: "full-width",
@@ -295,6 +298,7 @@ const HomePage = class extends React.Component {
                                                     name="lastName" id="lastName"/>
                                                 {!isInvite && (
                                                     <Input
+                                                        data-test="companyName"
                                                         inputProps={{
                                                             name: "companyName",
                                                             className: "full-width"
@@ -311,7 +315,8 @@ const HomePage = class extends React.Component {
 
                                                 {error && error.email ? (<span id="email-error" className="text-danger">{error.email}</span>) : null}
                                                 <Input
-                                                        inputProps={{
+                                                    data-test="email"
+                                                    inputProps={{
                                                             name: "email",
                                                             className: "full-width",
                                                             error: error && error.email
@@ -326,7 +331,8 @@ const HomePage = class extends React.Component {
 
                                                 {error && error.password1 ? (<span id="password-error" className="text-danger">{error.password1}</span>) : null}
                                                 <Input
-                                                        inputProps={{
+                                                    data-test="password"
+                                                    inputProps={{
                                                             name: "password",
                                                             className: "full-width",
                                                             error: error && error.password1
@@ -343,6 +349,7 @@ const HomePage = class extends React.Component {
                                                 <div className="form-cta margin-top">
 
                                                     <ButtonWhite
+                                                        data-test="signup-btn"
                                                         name="signup-btn"
                                                         disabled={isLoading || isSaving}
                                                         className="full-width"

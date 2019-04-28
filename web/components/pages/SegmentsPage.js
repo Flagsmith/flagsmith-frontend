@@ -76,7 +76,7 @@ const SegmentsPage = class extends Component {
     render() {
         const {projectId, environmentId} = this.props.params;
         return (
-            <div id="features-page" className="app-container container">
+            <div data-test="segments-page" id="segments-page" className="app-container container">
                 <SegmentListProvider onSave={this.onSave} onError={this.onError}>
                     {({isLoading, segments}, { removeSegment}) => (
                         <div className="segments-page">

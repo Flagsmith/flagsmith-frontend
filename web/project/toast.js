@@ -83,5 +83,4 @@ const Toast = class extends React.Component {
     );
   }
 };
-
 module.exports = Toast;

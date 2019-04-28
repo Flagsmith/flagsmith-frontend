@@ -19,8 +19,10 @@ const EnvironmentSelect = class extends Component {
                                     this.props.onChange && this.props.onChange(environment.api_key);
                                 }
                             ) : (
-                                <li key={environment.id} className={"project-nav__item project-list__item " + (this.props.environmentId == (environment.api_key+"") ? "project-list__item--open" : "")}>
-                                    <button className={"project-nav__button"} style={{width: '100%'}} onClick={() => {
+                                <li key={environment.id} className={"project-nav__item project-list__item " + (this.props.environmentId === (environment.api_key+"") ? "project-list__item--open" : "")}>
+                                    <button
+                                        data-test={`switch-environment-${environment.name.toLowerCase()}${this.props.environmentId === (environment.api_key+"")?'-active':""}`}
+                                        className={"project-nav__button"} style={{width: '100%'}} onClick={() => {
                                         this.props.onChange && this.props.onChange(environment.api_key);
                                     }}>
                                         <Row>
@@ -30,35 +32,37 @@ const EnvironmentSelect = class extends Component {
                                             <span className=" flex-column icon ion-ios-arrow-forward"/>
                                         </Row>
                                     </button>
-                                    <ul className="env-nav list-unstyled">
-                                        <li className="env-nav__item flex-row">
-                                            <Link
-                                                activeClassName={"active"}
-                                                to={`/project/${project.id}/environment/${environment.api_key}/features`
-                                                }>Features</Link>
-                                        </li>
-                                        <li className="env-nav__item flex-row">
-                                            <Link
-                                                activeClassName={"active"}
-                                                to={`/project/${project.id}/environment/${environment.api_key}/segments`
-                                                }>Segments</Link>
-                                        </li>
+                                    {this.props.environmentId === (environment.api_key+"") && (
+                                        <ul className="env-nav list-unstyled">
+                                            <li className="env-nav__item flex-row">
+                                                <Link
+                                                    activeClassName={"active"}
+                                                    to={`/project/${project.id}/environment/${environment.api_key}/features`
+                                                    }>Features</Link>
+                                            </li>
+                                            <li className="env-nav__item flex-row">
+                                                <Link
+                                                    activeClassName={"active"}
+                                                    to={`/project/${project.id}/environment/${environment.api_key}/segments`
+                                                    }>Segments</Link>
+                                            </li>
 
-                                        <li className="env-nav__item flex-row">
-                                            <Link
-                                                id="users-link"
-                                                activeClassName={"active"}
-                                                to={`/project/${project.id}/environment/${environment.api_key}/users`
-                                                }>Users</Link>
-                                        </li>
-                                        <li className="env-nav__item flex-row">
-                                            <Link
-                                                id="users-link"
-                                                activeClassName={"active"}
-                                                to={`/project/${project.id}/environment/${environment.api_key}/settings`
-                                                }>Settings</Link>
-                                        </li>
-                                    </ul>
+                                            <li className="env-nav__item flex-row">
+                                                <Link
+                                                    id="users-link"
+                                                    activeClassName={"active"}
+                                                    to={`/project/${project.id}/environment/${environment.api_key}/users`
+                                                    }>Users</Link>
+                                            </li>
+                                            <li className="env-nav__item flex-row">
+                                                <Link
+                                                    id="env-settings-link"
+                                                    activeClassName={"active"}
+                                                    to={`/project/${project.id}/environment/${environment.api_key}/settings`
+                                                    }>Settings</Link>
+                                            </li>
+                                        </ul>
+                                    )}
                                 </li>
                             ))}
                     </ul>

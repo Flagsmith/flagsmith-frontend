@@ -1,7 +1,5 @@
 import React, {Component, PropTypes} from 'react';
-import EnvironmentSelect from './EnvironmentSelect';
 import ProjectSelect from './ProjectSelect';
-import Popover from './base/Popover';
 
 const Aside = class extends Component {
 	static displayName = 'Aside';

@@ -88,7 +88,7 @@ const FeaturesPage = class extends Component {
     render() {
         const {projectId, environmentId} = this.props.params;
         return (
-            <div id="features-page" className="app-container container">
+            <div data-test="features-page" id="features-page" className="app-container container">
                 <FeatureListProvider onSave={this.onSave} onError={this.onError}>
                     {({isLoading, projectFlags, environmentFlags}, {environmentHasFlag, toggleFlag, editFlag, removeFlag}) => (
                         <div className="features-page">

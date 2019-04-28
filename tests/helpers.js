@@ -9,6 +9,7 @@ module.exports = {
 
     browser.expect.element('#existing-member-btn').to.be.visible;
   },
+  byTestID: id => `[data-test="${id}"]`,
   login: (browser, url, email, password) => {
     browser
       .url(url)
@@ -18,4 +19,12 @@ module.exports = {
       .setValue('[name="password"]', password)
       .click('#login-btn');
   },
+  waitAndSet: function(id,val) {
+    return this.waitForElementVisible(id)
+        .setValue(id, val)
+  },
+  waitAndClick: function(id) {
+    return this.waitForElementVisible(id)
+        .click(id)
+  }
 }

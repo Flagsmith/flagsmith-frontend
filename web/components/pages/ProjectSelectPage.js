@@ -34,7 +34,7 @@ const ProjectSelectPage = class extends Component {
 
     render() {
         return (
-            <div id="project-select-page" className="app-container container">
+            <div data-test="project-select-page" id="project-select-page" className="app-container container">
                 <OrganisationProvider>
                     {({isLoading, name, projects, users}) => (
                         <div>
@@ -90,7 +90,9 @@ const ProjectSelectPage = class extends Component {
                                                     <div>
                                                         <button onClick={this.newProject}
                                                                 className={"btn btn-primary btn-lg"}
-                                                                id="create-first-project-btn">
+                                                                data-test="create-first-project-btn"
+                                                                id="create-first-project-btn"
+                                                        >
                                                             <ion className="icon ion-ios-rocket"/>
                                                             {" "}Create a project
                                                         </button>
