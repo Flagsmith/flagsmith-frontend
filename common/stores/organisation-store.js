@@ -23,6 +23,11 @@ var controller = {
                             })
                     }))
                         .then(() => {
+                            projects.sort(function(a, b){
+                                const textA = a.name.toLowerCase();
+                                const textB = b.name.toLowerCase();
+                                return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+                            });
                             store.model.projects = projects;
                             store.model.keyedProjects = _.keyBy(store.model.projects, "id");
                             store.loaded()
