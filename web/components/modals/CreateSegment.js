@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, {Component, PropTypes} from 'react';
 import Rule from './Rule';
 
 const CreateSegment = class extends Component {
@@ -6,9 +6,9 @@ const CreateSegment = class extends Component {
 
         constructor(props, context) {
             super(props, context);
-            const { description, name, rules = [] } = this.props.segment ? _.cloneDeep(this.props.segment.rules) :
+            const {description, name, rules = []} = this.props.segment ? _.cloneDeep(this.props.segment.rules) :
                 {
-                    rules: [{ all: { rules: [{ any: { rules: [{...Constants.defaultRule}] } }] }, }]
+                    rules: [{all: {rules: [{any: {rules: [{...Constants.defaultRule}]}}]},}]
                 }
 
             this.state = {
@@ -22,11 +22,11 @@ const CreateSegment = class extends Component {
             rules[0].all.rules = rules[0].all.rules.concat([{
                 any: {
                     rules: [
-                        { ...Constants.defaultRule }
+                        {...Constants.defaultRule}
                     ]
                 }
             }]);
-            this.setState({ rules })
+            this.setState({rules})
         }
 
         close() {
@@ -48,131 +48,124 @@ const CreateSegment = class extends Component {
         }
 
         updateRule = (rulesIndex, elementNumber, newValue) => {
-            const { rules } = this.state;
+            const {rules} = this.state;
             rules[rulesIndex].all.rules[elementNumber] = newValue;
-            this.setState({ rules });
+            this.setState({rules});
         }
 
         removeRule = (rulesIndex, elementNumber) => {
-            const { rules } = this.state;
+            const {rules} = this.state;
             rules[rulesIndex].all.rules.splice(elementNumber, 1);
-            this.setState({ rules });
+            this.setState({rules});
         }
 
+        save = (e) => {
+            Utils.preventDefault(e);
+            const {state: {description, name, rules}} = this;
+            console.log({
+                description,
+                name,
+                rules
+            });
+            if (description && name) {
+
+            }
+        }
 
         render() {
-            const { name, description, rules, isSaving, createSegment, editSegment } = this.state;
-            const { isEdit, segment, identity } = this.props;
-            const Provider = identity ? IdentityProvider : FeatureListProvider;
+            const {name, description, rules, isSaving, createSegment, editSegment} = this.state;
+            const {isEdit, segment, identity} = this.props;
 
             return (
-                <FeatureListProvider onSave={this.onSave} onError={this.onError}>
-                    {({ isLoading, projectFlags, environmentFlags }) => {
-                        const flags = projectFlags.map(({ name }) => ({ value: name, label: name }))
-                        return (
-                            <form
-                                id="create-feature-modal"
-                                onSubmit={(e) => {
-                                    e.preventDefault();
-                                    const func = isEdit ? editSegment : createSegment;
-                                    this.save(func, isSaving);
-                                }}
-                            >
-                                <InputGroup
-                                    ref={(e) => this.input = e}
-                                    inputProps={{
-                                        readOnly: isEdit,
-                                        className: "full-width",
-                                        name: "featureID"
-                                    }}
-                                    value={name}
-                                    onChange={(e) => this.setState({ name: Format.enumeration.set(Utils.safeParseEventValue(e)).toLowerCase() })}
-                                    isValid={name && name.length}
-                                    type="text" title={isEdit ? "ID" : "ID*"}
-                                    placeholder="E.g. power_users"
-                                />
+                <form
+                    id="create-feature-modal"
+                    onSubmit={this.save}
+                >
+                    <InputGroup
+                        ref={(e) => this.input = e}
+                        inputProps={{
+                            readOnly: isEdit,
+                            className: "full-width",
+                            name: "featureID"
+                        }}
+                        value={name}
+                        onChange={(e) => this.setState({name: Format.enumeration.set(Utils.safeParseEventValue(e)).toLowerCase()})}
+                        isValid={name && name.length}
+                        type="text" title={isEdit ? "ID" : "ID*"}
+                        placeholder="E.g. power_users"
+                    />
 
+                    <FormGroup>
+                        <InputGroup
+                            value={description}
+                            inputProps={{
+                                className: "full-width",
+                                readOnly: identity ? true : false,
+                                name: "featureDesc"
+                            }}
+                            onChange={(e) => this.setState({description: Utils.safeParseEventValue(e)})}
+                            isValid={name && name.length}
+                            type="text" title="Description (optional)"
+                            placeholder="e.g. 'People who have spent over $100' "
+                        />
+                    </FormGroup>
+
+                    <div className={"form-group "}>
+                        <label className="cols-sm-2 control-label">Include users when</label>
+                        <div className="panel--grey overflow-visible">
+                            <div>
                                 <FormGroup>
-                                    <InputGroup
-                                        value={description}
-                                        inputProps={{
-                                            className: "full-width",
-                                            readOnly: identity ? true : false,
-                                            name: "featureDesc"
-                                        }}
-                                        onChange={(e) => this.setState({ description: Utils.safeParseEventValue(e) })}
-                                        isValid={name && name.length}
-                                        type="text" title="Description (optional)"
-                                        placeholder="e.g. 'People who have spent over $100' "
-                                    />
-                                </FormGroup>
-
-                                <div className={"form-group "}>
-                                    <label className="cols-sm-2 control-label">Include users when</label>
-                                    <div className="panel--grey overflow-visible">
-                                        {projectFlags && (
+                                    {rules[0].all.rules.map((rule, i) => (
                                             <div>
-                                                <FormGroup>
-                                                    {rules[0].all.rules.map((rule, i) => (
-                                                            <div>
-                                                                {i > 0 && (
-                                                                    <Row className="and-divider">
-                                                                        <Flex className="and-divider__line"></Flex>
-                                                                        AND
-                                                                        <Flex className="and-divider__line"></Flex>
-                                                                    </Row>
-                                                                )}
-                                                                <Rule rule={rule}
-                                                                      options={flags}
-                                                                      onRemove={(v) => this.removeRule(0, i, v)}
-                                                                      onChange={(v) => this.updateRule(0, i, v)}
-                                                                />
-                                                            </div>
-                                                        )
-                                                    )}
-                                                </FormGroup>
-                                                <div onClick={this.addRule} style={{ marginTop: 20 }}
-                                                     className={"text-center"}
-                                                >
-                                                    <Button className="btn btn--anchor">
-                                                        ADD RULE
-                                                    </Button>
-                                                </div>
+                                                {i > 0 && (
+                                                    <Row className="and-divider">
+                                                        <Flex className="and-divider__line"></Flex>
+                                                        AND
+                                                        <Flex className="and-divider__line"></Flex>
+                                                    </Row>
+                                                )}
+                                                <Rule rule={rule}
+                                                      onRemove={(v) => this.removeRule(0, i, v)}
+                                                      onChange={(v) => this.updateRule(0, i, v)}
+                                                />
                                             </div>
-                                        )}
-                                    </div>
-                                </div>
-
-                                {isEdit && (
-                                    <div>
-                                        <p className={"text-right faint-lg"}>
-                                            This will update the feature value for the project <strong>{
-                                            project.name
-                                        }</strong>
-                                        </p>
-                                    </div>
-                                )}
-
-                                <div className="text-right">
-                                    {isEdit ? (
-                                        <Button id="update-feature-btn" disabled={isSaving || !name}>
-                                            {isSaving ? 'Creating' : 'Update Segment'}
-                                        </Button>
-                                    ) : (
-                                        <Button id="create-feature-btn" disabled={isSaving || !name}>
-                                            {isSaving ? 'Creating' : 'Create Segment'}
-                                        </Button>
+                                        )
                                     )}
+                                </FormGroup>
+                                <div onClick={this.addRule} style={{marginTop: 20}}
+                                     className={"text-center"}
+                                >
+                                    <Button type="button"  className="btn btn--anchor">
+                                        ADD RULE
+                                    </Button>
                                 </div>
-                            </form>
-                        )
-                    }}
-                </FeatureListProvider>
-            );
-        }
+                            </div>
+                        </div>
+                    </div>
 
-        save = (func, isSaving) => {
+                    {isEdit && (
+                        <div>
+                            <p className={"text-right faint-lg"}>
+                                This will update the feature value for the project <strong>{
+                                project.name
+                            }</strong>
+                            </p>
+                        </div>
+                    )}
 
+                    <div className="text-right">
+                        {isEdit ? (
+                            <Button type="submit" id="update-feature-btn" disabled={isSaving || !name}>
+                                {isSaving ? 'Creating' : 'Update Segment'}
+                            </Button>
+                        ) : (
+                            <Button type="submit" id="create-feature-btn" disabled={isSaving || !name}>
+                                {isSaving ? 'Creating' : 'Create Segment'}
+                            </Button>
+                        )}
+                    </div>
+                </form>
+            )
         }
     }
 ;

@@ -22,22 +22,27 @@ var controller = {
                 }).catch((e) => API.ajaxHandler(store, e));
             }
         },
-        createSegment(projectId, environmentId, flag) {
+        createSegment(projectId, environmentId, segment) {
             store.saving();
-            API.trackEvent(Constants.events.CREATE_FEATURE);
-            data.post(`${Project.api}projects/${projectId}/segments/?format=json`, Object.assign({}, flag, {project: projectId}))
-                .then((res) => {
-                    return Promise.all([
-                        data.get(`${Project.api}projects/${projectId}/segments/?format=json`),
-                        data.get(`${Project.api}environments/${environmentId}/segmentstates/?format=json`),
-                    ]).then(([segments, environmentSegments]) => {
-                        store.model = {
-                            segments: segments.results,
-                            keyedEnvironmentSegments: environmentSegments && _.keyBy(environmentSegments.results, "segment"),
-                        };
-                        store.saved();
-                    });
-                })
+            API.trackEvent(Constants.events.CREATE_SEGMENT);
+            store.model.segments = store.model.segments.concat([
+                {...segment, id:store.model.segments.length}
+            ]);
+            store.saved();
+            // data.post(`${Project.api}projects/${projectId}/segments/?format=json`, Object.assign({}, flag, {project: projectId}))
+            //     .then((res) => {
+            //
+            //         // return Promise.all([
+            //         //     data.get(`${Project.api}projects/${projectId}/segments/?format=json`),
+            //         //     data.get(`${Project.api}environments/${environmentId}/segmentstates/?format=json`),
+            //         // ]).then(([segments, environmentSegments]) => {
+            //         //     store.model = {
+            //         //         segments: segments.results,
+            //         //         keyedEnvironmentSegments: environmentSegments && _.keyBy(environmentSegments.results, "segment"),
+            //         //     };
+            //         //     store.saved();
+            //         // });
+            //     })
         },
         editSegment(projectId, flag) {
             data.put(`${Project.api}projects/${projectId}/segments/${flag.id}/`, flag)
@@ -48,33 +53,10 @@ var controller = {
                 })
 
         },
-        toggleSegment: (index, environments, comment) => {
-            const flag = store.model.segments[index];
-            store.saving();
-
-            API.trackEvent(Constants.events.TOGGLE_FEATURE);
-            return Promise.all(environments.map((e) => {
-                if (store.hasSegmentInEnvironment(flag.id)) {
-                    const environmentSegment = store.model.keyedEnvironmentSegments[flag.id];
-                    return data.put(`${Project.api}environments/${e.api_key}/segmentstates/${environmentSegment.id}/`, Object.assign({}, environmentSegment, {enabled: !environmentSegment.enabled}))
-                } else {
-                    return data.post(`${Project.api}environments/${e.api_key}/segmentstates/`, Object.assign({}, {
-                        segment: flag.id,
-                        enabled: true,
-                        comment
-                    }))
-                }
-            }))
-                .then((res) => {
-                    store.model.keyedEnvironmentSegments[flag.id] = res[0];
-                    store.saved();
-                })
-
-        },
         editSegmentState: (projectId, environmentId, flag, projectSegment, environmentSegment) => {
             let prom;
             store.saving();
-            API.trackEvent(Constants.events.EDIT_FEATURE);
+            API.trackEvent(Constants.events.EDIT_SEGMENT);
             if (environmentSegment) {
                 prom = data.put(`${Project.api}environments/${environmentId}/segmentstates/${environmentSegment.id}/`, Object.assign({}, environmentSegment, {
                     segment_state_value: flag.initial_value,
@@ -96,7 +78,7 @@ var controller = {
         },
         removeSegment: (projectId, flag) => {
             store.saving();
-            API.trackEvent(Constants.events.REMOVE_FEATURE);
+            API.trackEvent(Constants.events.REMOVE_SEGMENT);
             return data.delete(`${Project.api}projects/${projectId}/segments/${flag.id}/`)
                 .then(() => {
                     store.model.segments = _.filter(store.model.segments, (f) => f.id != flag.id);
@@ -109,13 +91,11 @@ var controller = {
     store = Object.assign({}, BaseStore, {
         id: 'segments',
         getEnvironmentSegments: function () {
-            return store.model && store.model.keyedEnvironmentSegments
+            //todo: discuss with backend
+            return store.model && store.model.segments
         },
         getProjectSegments: function () {
             return store.model && store.model.segments
-        },
-        hasSegmentInEnvironment: function (id) {
-            return store.model && store.model.keyedEnvironmentSegments && store.model.keyedEnvironmentSegments.hasOwnProperty(id)
         },
     });
 

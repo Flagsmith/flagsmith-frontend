@@ -10,16 +10,40 @@ var controller = {
                 store.envId = environmentId;
 
                 //todo: cache project flags
-                return Promise.all([
-                    data.get(`${Project.api}projects/${projectId}/segments/?format=json`),
-                    data.get(`${Project.api}environments/${environmentId}/segmentstates/?format=json`),
-                ]).then(([segments, environmentSegments]) => {
-                    store.model = {
-                        segments: segments.results,
-                        keyedEnvironmentSegments: environmentSegments.results && _.keyBy(environmentSegments.results, "segment"),
-                    };
-                    store.loaded();
-                }).catch((e) => API.ajaxHandler(store, e));
+                // return Promise.all([
+                //     data.get(`${Project.api}projects/${projectId}/segments/?format=json`),
+                //     data.get(`${Project.api}environments/${environmentId}/segmentstates/?format=json`),
+                // ]).then(([segments, environmentSegments]) => {
+                //     store.model = {
+                //         segments: segments.results,
+                //         keyedEnvironmentSegments: environmentSegments.results && _.keyBy(environmentSegments.results, "segment"),
+                //     };
+                //     store.loaded();
+                // }).catch((e) => API.ajaxHandler(store, e));
+
+                store.model = {
+                    segments: [
+                        {
+                            "id": 1,
+                            "description": "test",
+                            "name": "test",
+                            "rules": [{
+                                "all": {
+                                    "rules": [{
+                                        "any": {
+                                            "rules": [{
+                                                "property": "",
+                                                "operator": "EQUAL",
+                                                "value": ""
+                                            }]
+                                        }
+                                    }]
+                                }
+                            }]
+                        }
+                    ]
+                }
+                store.loaded();
             }
         },
         createSegment(projectId, environmentId, flag) {
