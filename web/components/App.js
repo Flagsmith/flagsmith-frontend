@@ -205,7 +205,7 @@ const App = class extends Component {
 
 
                                     <nav
-                                        className={"animated navbar navbar-fixed-top " + (pageHasAside ? " navbar-aside" : '') + (isHomepage ? " navbar-homepage " : '') + (isLegal ? "navbar-aside dark-header " : '') + (isDark ? " dark-header " : '') + (this.state.myClassName ? this.state.myClassName : '')}>
+                                        className={"navbar navbar-fixed-top " + (pageHasAside ? " navbar-aside" : '') + (isHomepage ? " navbar-homepage " : '') + (isLegal ? "navbar-aside dark-header " : '') + (isDark ? " dark-header " : '') + (this.state.myClassName ? this.state.myClassName : '')}>
 
                                         <div className="navbar-left">
                                             <div className="navbar-nav">
