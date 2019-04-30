@@ -101,4 +101,7 @@ a.dark{
     }
 }
 
-
+.__react_component_tooltip {
+    z-index: 99999999 !important;
+    position: fixed;
+}

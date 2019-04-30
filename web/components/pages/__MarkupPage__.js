@@ -25,6 +25,13 @@ export default class ExampleOne extends Component {
 						<h6>Heading H6</h6>
 						<p className="no-mb">This is a paragraph.</p>
 						<p className="text-small no-mb">This is some small paragraph text.</p>
+						<p>
+							View and manage <Tooltip title={<a className="dark" href={"#"}>feature flags</a>}
+													 place="right">{Constants.strings.FEATURE_FLAG_DESCRIPTION}</Tooltip> and {" "}
+							<Tooltip title={<a className="dark" href={"#"}>remote config</a>}
+									 place="right">{Constants.strings.REMOTE_CONFIG_DESCRIPTION}</Tooltip> for
+							your selected environment.
+						</p>
 					</section>
 
 					<section className="pt-5 pb-3">
