@@ -114,7 +114,7 @@ const FeaturesPage = class extends Component {
                                                             <p>
 
                                                             </p>
-                                                            <Button style={{position: 'relative', zIndex: -1}} onClick={this.newFlag}>
+                                                            <Button id="show-create-feature-btn" onClick={this.newFlag}>
                                                                 Create Feature
                                                             </Button>
                                                         </div>

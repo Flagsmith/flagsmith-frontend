@@ -1,5 +1,9 @@
 import React, {Component, PropTypes} from 'react';
 import Rule from './Rule';
+import engine from 'bullet-train-rules-engine';
+import Tabs from "../base/forms/Tabs";
+import TabItem from "../base/forms/TabItem";
+import Highlight from "../Highlight";
 
 const CreateSegment = class extends Component {
         displayName: 'CreateSegment'
@@ -12,7 +16,8 @@ const CreateSegment = class extends Component {
                 }
 
             this.state = {
-                description, name, rules
+                tab: 0, description, name, rules,
+                data: `{\n}`
             };
 
         }
@@ -70,101 +75,143 @@ const CreateSegment = class extends Component {
             if (description && name) {
 
             }
+        };
+
+        setData = (data) => {
+            console.log(data)
+            // this.codeEditor.highlightCode();
+            // this.setState({data})
         }
 
         render() {
             const {name, description, rules, isSaving, createSegment, editSegment} = this.state;
             const {isEdit, segment, identity} = this.props;
 
-            return (
-                <form
-                    id="create-feature-modal"
-                    onSubmit={this.save}
-                >
-                    <InputGroup
-                        ref={(e) => this.input = e}
-                        inputProps={{
-                            readOnly: isEdit,
-                            className: "full-width",
-                            name: "featureID"
-                        }}
-                        value={name}
-                        onChange={(e) => this.setState({name: Format.enumeration.set(Utils.safeParseEventValue(e)).toLowerCase()})}
-                        isValid={name && name.length}
-                        type="text" title={isEdit ? "ID" : "ID*"}
-                        placeholder="E.g. power_users"
-                    />
-
+            const rulesEl = <div className="panel--grey overflow-visible">
+                <div>
                     <FormGroup>
-                        <InputGroup
-                            value={description}
-                            inputProps={{
-                                className: "full-width",
-                                readOnly: identity ? true : false,
-                                name: "featureDesc"
-                            }}
-                            onChange={(e) => this.setState({description: Utils.safeParseEventValue(e)})}
-                            isValid={name && name.length}
-                            type="text" title="Description (optional)"
-                            placeholder="e.g. 'People who have spent over $100' "
-                        />
+                        {rules[0].all.rules.map((rule, i) => (
+                                <div>
+                                    {i > 0 && (
+                                        <Row className="and-divider">
+                                            <Flex className="and-divider__line"></Flex>
+                                            AND
+                                            <Flex className="and-divider__line"></Flex>
+                                        </Row>
+                                    )}
+                                    <Rule rule={rule}
+                                          onRemove={(v) => this.removeRule(0, i, v)}
+                                          onChange={(v) => this.updateRule(0, i, v)}
+                                    />
+                                </div>
+                            )
+                        )}
+                    </FormGroup>
+                    <div onClick={this.addRule} style={{marginTop: 20}}
+                         className={"text-center"}
+                    >
+                        <Button type="button" className="btn btn--anchor">
+                            ADD RULE
+                        </Button>
+                    </div>
+                </div>
+            </div>;
+
+            return (
+                <div>
+                    <FormGroup className="mb-4">
+                        <Tabs className={"pill"} value={this.state.tab}
+                              onChange={(tab) => this.setState({tab})}>
+                            <TabItem id={"btn-select-flags"}
+                                     value={"CREATE"}
+                                     tabLabel={<Row className={"row-center"}>
+                                         <ion className="tab-icon ion-ios-switch"/>
+                                         Create</Row>}/>
+                            <TabItem
+                                value={"CONFIG"}
+                                id={"btn-select-remote-config"} tabLabel={<Row className={"row-center"}>
+                                <ion className="tab-icon ion-ios-settings"/>
+                                Preview</Row>}/>
+                        </Tabs>
                     </FormGroup>
 
-                    <div className={"form-group "}>
-                        <label className="cols-sm-2 control-label">Include users when</label>
-                        <div className="panel--grey overflow-visible">
-                            <div>
-                                <FormGroup>
-                                    {rules[0].all.rules.map((rule, i) => (
-                                            <div>
-                                                {i > 0 && (
-                                                    <Row className="and-divider">
-                                                        <Flex className="and-divider__line"></Flex>
-                                                        AND
-                                                        <Flex className="and-divider__line"></Flex>
-                                                    </Row>
-                                                )}
-                                                <Rule rule={rule}
-                                                      onRemove={(v) => this.removeRule(0, i, v)}
-                                                      onChange={(v) => this.updateRule(0, i, v)}
-                                                />
-                                            </div>
-                                        )
-                                    )}
-                                </FormGroup>
-                                <div onClick={this.addRule} style={{marginTop: 20}}
-                                     className={"text-center"}
-                                >
-                                    <Button type="button"  className="btn btn--anchor">
-                                        ADD RULE
-                                    </Button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    {this.state.tab === 0 ? (
+                        <form
+                            id="create-feature-modal"
+                            onSubmit={this.save}
+                        >
+                            <InputGroup
+                                ref={(e) => this.input = e}
+                                inputProps={{
+                                    readOnly: isEdit,
+                                    className: "full-width",
+                                    name: "featureID"
+                                }}
+                                value={name}
+                                onChange={(e) => this.setState({name: Format.enumeration.set(Utils.safeParseEventValue(e)).toLowerCase()})}
+                                isValid={name && name.length}
+                                type="text" title={isEdit ? "ID" : "ID*"}
+                                placeholder="E.g. power_users"
+                            />
 
-                    {isEdit && (
+                            <FormGroup>
+                                <InputGroup
+                                    value={description}
+                                    inputProps={{
+                                        className: "full-width",
+                                        readOnly: identity ? true : false,
+                                        name: "featureDesc"
+                                    }}
+                                    onChange={(e) => this.setState({description: Utils.safeParseEventValue(e)})}
+                                    isValid={name && name.length}
+                                    type="text" title="Description (optional)"
+                                    placeholder="e.g. 'People who have spent over $100' "
+                                />
+                            </FormGroup>
+
+                            <div className={"form-group "}>
+                                <label className="cols-sm-2 control-label">Include users when</label>
+                                {
+                                    rulesEl
+                                }
+                            </div>
+
+                            {isEdit && (
+                                <div>
+                                    <p className={"text-right faint-lg"}>
+                                        This will update the feature value for the project <strong>{
+                                        project.name
+                                    }</strong>
+                                    </p>
+                                </div>
+                            )}
+
+                            <div className="text-right">
+                                {isEdit ? (
+                                    <Button type="submit" id="update-feature-btn" disabled={isSaving || !name}>
+                                        {isSaving ? 'Creating' : 'Update Segment'}
+                                    </Button>
+                                ) : (
+                                    <Button type="submit" id="create-feature-btn" disabled={isSaving || !name}>
+                                        {isSaving ? 'Creating' : 'Create Segment'}
+                                    </Button>
+                                )}
+                            </div>
+                        </form>
+                    ) : (
                         <div>
-                            <p className={"text-right faint-lg"}>
-                                This will update the feature value for the project <strong>{
-                                project.name
-                            }</strong>
-                            </p>
+                            <div className={"hljs-container"}>
+                                <Highlight ref={(e)=>this.codeEditor = e} onChange={(e) => {
+                                    this.setData(e.currentTarget.innerText);
+                                }} className={"json"}>
+                                    {this.state.data}
+                                </Highlight>
+                            </div>
+                            <div className="text-center">Paste in your user JSON to see if they belong to your segment</div>
+                            {rulesEl}
                         </div>
                     )}
-
-                    <div className="text-right">
-                        {isEdit ? (
-                            <Button type="submit" id="update-feature-btn" disabled={isSaving || !name}>
-                                {isSaving ? 'Creating' : 'Update Segment'}
-                            </Button>
-                        ) : (
-                            <Button type="submit" id="create-feature-btn" disabled={isSaving || !name}>
-                                {isSaving ? 'Creating' : 'Create Segment'}
-                            </Button>
-                        )}
-                    </div>
-                </form>
+                </div>
             )
         }
     }
