@@ -32,7 +32,7 @@ const Aside = class extends Component {
 				{({isLoading: isLoadingOrg, projects}) => (
 					<ProjectProvider id={this.props.projectId} onSave={this.onProjectSave}>
 						{({isLoading, project}) => (
-							<Flex className={"animated aside " + (this.props.className||"")}>
+							<Flex className={"aside " + (this.props.className||"")}>
 								<div className="brand-container text-center">
 									<Link to="/projects">
 										<div>

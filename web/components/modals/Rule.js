@@ -1,54 +1,16 @@
 // import propTypes from 'prop-types';
 import React, { PureComponent } from 'react';
-import CreatableSelect from 'react-select/lib/Creatable';
 
-const operators = [
-    {
-    'value': 'EQUAL',
-    'label': 'Exactly Matches (=)'
-    },
-    {
-        'value': 'NOT_EQUAL',
-        'label': 'Does not match (!=)',
-    },
-    {
-        'value': 'GREATER_THAN',
-        'label': '>',
-    },
-    {
-        'value': 'GREATER_THAN_INCLUSIVE',
-        'label': '>=',
-    },
-    {
-        'value': 'LESS_THAN',
-        'label': '<',
-    },
-    {
-        'value': 'LESS_THAN_INCLUSIVE',
-        'label': '<=',
-    },
-    {
-        'value': 'CONTAINS',
-        'label': 'Contains'
-    },
-    {
-        'value': 'NOT_CONTAINS',
-        'label': 'Does not contain'
-    },
-    {
-        'value': 'REGEX',
-        'label': 'Matches regex'
-    },
-]
 export default class Rule extends PureComponent {
     static displayName = 'Rule';
 
     static propTypes = {};
 
     renderRule = (rule, i) => {
-        const { props: { options, rule: { any: { rules } } } } = this;
+        const { props: { rule: { any: { rules } } } } = this;
         const isLastRule = i === (rules.length - 1);
         const hasOr = i > 0;
+        const operators = Constants.operators;
         return (
             <div className="rule__row reveal">
                 {hasOr && (
@@ -65,12 +27,14 @@ export default class Rule extends PureComponent {
                     <Flex>
                         <Row>
                             <Column style={{ width: 200 }}>
-                                <CreatableSelect
-                                    placeholder="User property"
-                                    value={rule.property && { value: rule.property, label: rule.property }}
-                                    onChange={(value) => this.setRuleProperty(i, "property", value)}
-                                    options={options}
-                                />
+                                <Tooltip title={(
+                                    <Input
+                                        placeholder="User property"
+                                        onChange={(value) => this.setRuleProperty(i, "property", value)}
+                                    />
+                                )}
+                                         place="top">{Constants.strings.USER_PROPERTY_DESCRIPTION}</Tooltip>
+
                             </Column>
                             <Column style={{ width: 200 }}>
                                 <Select
@@ -92,13 +56,14 @@ export default class Rule extends PureComponent {
                     <div>
                         <Row noWrap>
                             {isLastRule && (
-                                <Button onClick={this.addRule} className="btn btn--anchor">
+                                <Button type="button" onClick={this.addRule} className="btn btn--anchor">
                                     OR
                                 </Button>
                             )}
 
                             <div>
                                 <button
+                                    type="button"
                                     id="remove-feature"
                                     onClick={() => this.removeRule(i)}
                                     className={"btn btn--with-icon btn--condensed reveal--child btn--remove"}

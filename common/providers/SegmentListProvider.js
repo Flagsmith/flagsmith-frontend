@@ -1,5 +1,5 @@
 import React, {Component, PropTypes} from 'react';
-import FeatureListStore from '../stores/segment-list-store';
+import SegmentListStore from '../stores/segment-list-store';
 
 const TheComponent = class extends Component {
     displayName: 'TheComponent'
@@ -7,56 +7,52 @@ const TheComponent = class extends Component {
     constructor(props, context) {
         super(props, context);
         this.state = {
-            isSaving: FeatureListStore.isSaving,
-            isLoading: FeatureListStore.isLoading,
-            environmentSegments: FeatureListStore.getEnvironmentSegments(),
-            projectSegments: FeatureListStore.getProjectSegments(),
+            isSaving: SegmentListStore.isSaving,
+            isLoading: SegmentListStore.isLoading,
+            environmentSegments: SegmentListStore.getEnvironmentSegments(),
+            projectSegments: SegmentListStore.getProjectSegments(),
         };
         ES6Component(this);
-        this.listenTo(FeatureListStore, 'change', () => {
+        this.listenTo(SegmentListStore, 'change', () => {
             this.setState({
-                isSaving: FeatureListStore.isSaving,
-                isLoading: FeatureListStore.isLoading,
-                environmentSegments: FeatureListStore.getEnvironmentSegments(),
-                projectSegments: FeatureListStore.getProjectSegments(),
+                isSaving: SegmentListStore.isSaving,
+                isLoading: SegmentListStore.isLoading,
+                environmentSegments: SegmentListStore.getEnvironmentSegments(),
+                projectSegments: SegmentListStore.getProjectSegments(),
             });
         });
 
-        this.listenTo(FeatureListStore, 'saved', () => {
+        this.listenTo(SegmentListStore, 'saved', () => {
             this.props.onSave && this.props.onSave();
         });
 
-        this.listenTo(FeatureListStore, 'problem', () => {
+        this.listenTo(SegmentListStore, 'problem', () => {
             this.setState({
-                isSaving: FeatureListStore.isSaving,
-                isLoading: FeatureListStore.isLoading,
-                error: FeatureListStore.error,
+                isSaving: SegmentListStore.isSaving,
+                isLoading: SegmentListStore.isLoading,
+                error: SegmentListStore.error,
             });
-            this.props.onError && this.props.onError(FeatureListStore.error);
+            this.props.onError && this.props.onError(SegmentListStore.error);
         });
     }
 
-    toggleSegment = (i, environments) => {
-        AppActions.toggleSegment(i, environments);
+    setSegment = (i, segment, environments) => {
+        AppActions.setSegment(i, segment, environments);
     };
 
-    setSegment = (i, flag, environments) => {
-        AppActions.setSegment(i, flag, environments);
+    createSegment = (projectId, environmentId, segment) => {
+        AppActions.createSegment(projectId, environmentId, segment);
     };
 
-    createSegment = (projectId, environmentId, flag) => {
-        AppActions.createSegment(projectId, environmentId, flag);
-    };
-
-    editSegment = (projectId, environmentId, flag, projectSegment, environmentSegment) => {
-        AppActions.editEnvironmentSegment(projectId, environmentId, flag, projectSegment, environmentSegment);
-        if (flag.description != projectSegment.description) {
-            AppActions.editSegment(projectId, Object.assign({}, projectSegment, flag))
+    editSegment = (projectId, environmentId, segment, projectSegment, environmentSegment) => {
+        AppActions.editEnvironmentSegment(projectId, environmentId, segment, projectSegment, environmentSegment);
+        if (segment.description != projectSegment.description) {
+            AppActions.editSegment(projectId, Object.assign({}, projectSegment, segment))
         }
     };
 
-    removeSegment = (projectId, flag) => {
-        AppActions.removeSegment(projectId, flag);
+    removeSegment = (projectId, segment) => {
+        AppActions.removeSegment(projectId, segment);
     };
 
 
@@ -67,8 +63,6 @@ const TheComponent = class extends Component {
                     ...this.state,
                 },
                 {
-                    environmentHasSegment: FeatureListStore.hasSegmentInEnvironment,
-                    toggleSegment: this.toggleSegment,
                     setSegment: this.setSegment,
                     createSegment: this.createSegment,
                     editSegment: this.editSegment,

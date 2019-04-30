@@ -13,7 +13,7 @@ class Highlight extends React.Component {
 		this.highlightCode();
 	}
 
-	highlightCode() {
+	highlightCode = () => {
 		const nodes = this.el.querySelectorAll('pre code');
 
 		for (let i = 0; i < nodes.length; i++) {
@@ -40,7 +40,7 @@ class Highlight extends React.Component {
 		if (Element) {
 			return <Element {...props}>{children}</Element>;
 		}
-		return <pre ref={this.setEl}><code className={className}>{children}</code></pre>;
+		return <pre ref={this.setEl}><code contentEditable={!!this.props.onChange} onBlur={this.highlightCode} onKeyPress={this.props.onChange} className={className}>{children}</code></pre>;
 	}
 }
 
