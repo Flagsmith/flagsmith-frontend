@@ -1,6 +1,5 @@
 import React, {Component, PropTypes} from 'react';
 import Rule from './Rule';
-import engine from 'bullet-train-rules-engine';
 import Tabs from "../base/forms/Tabs";
 import TabItem from "../base/forms/TabItem";
 import Highlight from "../Highlight";
