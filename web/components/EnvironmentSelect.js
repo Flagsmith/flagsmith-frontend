@@ -9,6 +9,8 @@ const EnvironmentSelect = class extends Component {
     }
 
     render() {
+        const { hasFeature, } = this.props;
+
         return (
             <ProjectProvider id={this.props.id}>
                 {({isLoading, project}) => (
@@ -40,13 +42,14 @@ const EnvironmentSelect = class extends Component {
                                                     to={`/project/${project.id}/environment/${environment.api_key}/features`
                                                     }>Features</Link>
                                             </li>
-                                            <li className="env-nav__item flex-row">
-                                                <Link
-                                                    activeClassName={"active"}
-                                                    to={`/project/${project.id}/environment/${environment.api_key}/segments`
-                                                    }>Segments</Link>
-                                            </li>
-
+                                            {hasFeature('segments') && (
+                                                <li className="env-nav__item flex-row">
+                                                    <Link
+                                                        activeClassName={"active"}
+                                                        to={`/project/${project.id}/environment/${environment.api_key}/segments`
+                                                        }>Segments</Link>
+                                                </li>
+                                            )}
                                             <li className="env-nav__item flex-row">
                                                 <Link
                                                     id="users-link"
