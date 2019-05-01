@@ -18,3 +18,12 @@ p{
 .bold-link{
     font-weight:bold!important;
 }
+
+.feature {
+    &--off {
+        color: $bt-brand-red;
+    }
+    &--on {
+        color: $bt-brand-primary;
+    }
+}
