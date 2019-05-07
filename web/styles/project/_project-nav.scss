@@ -134,7 +134,8 @@ nav.navbar {
 .nav-list {
     margin: 0 20px 0;
     list-style: none;
-
+    position: relative;
+    bottom: 3px;
     li {
         display: inline-block;
         padding: 0 15px;
@@ -149,6 +150,12 @@ nav.navbar {
                 opacity: 1;
                 text-decoration: none;
             }
+        }
+        .icon {
+            position: relative;
+            font-size: 25px;
+            top: 3px;
+            margin-right: 6px;
         }
     }
 
