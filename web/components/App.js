@@ -269,7 +269,7 @@ const App = class extends Component {
                                                         <Link to={`/login${redirect}#sign-up`}>Login</Link>
                                                     </Button>
                                                     <ul className="nav-list list-unstyled float-right">
-                                                        <li><a href="https://github.com/SolidStateGroup/bullet-train-api" target="_blank"><ion className="icon ion-logo-github"/> Github</a></li>
+                                                        <li><a href="https://github.com/SolidStateGroup?utf8=%E2%9C%93&q=bullet+train" target="_blank"><ion className="icon ion-logo-github"/> Github</a></li>
                                                         <li><Link to={"/demo"}>Demo</Link></li>
                                                         <li><a target={"_blank"}
                                                                href="https://docs.bullet-train.io/">Docs</a></li>
