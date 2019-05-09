@@ -38,7 +38,7 @@ const Footer = class extends React.Component {
               )}
             </ul>
             <ul className=" float-left nav-list">
-              <li><a href="https://github.com/SolidStateGroup?utf8=%E2%9C%93&q=bullet+train" target="_blank">Github</a></li>
+              <li><a href="https://github.com/SolidStateGroup?utf8=%E2%9C%93&q=bullet+train" target="_blank">GitHub</a></li>
               <li><a href="mailto:support@bullet-train.io">Support</a></li>
               <li><Link to={"/legal/tos"}  target="_blank">Terms of Service</Link></li>
               <li><Link to={"/legal/privacy-policy"} target="_blank">Privacy Policy</Link></li>
