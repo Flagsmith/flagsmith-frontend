@@ -199,7 +199,7 @@ const OrganisationSettingsPage = class extends Component {
                                             </div>
                                             {!isLoading && (
                                                 <div>
-                                                    <p>You have made <strong>{`${usage}`}</strong> requests over the past 30 days.</p>
+                                                    <p>You have made <strong>{`${Utils.numberWithCommas(usage)}`}</strong> requests over the past 30 days.</p>
                                                 </div>
                                             )}
 
