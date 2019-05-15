@@ -15,7 +15,7 @@ var controller = {
                     data.get(`${Project.api}organisations/${id}/invites/?format=json`),
                     data.get(`${Project.api}organisations/${id}/usage/?format=json`)
                 ]).then((res) => {
-                    if (id!==store.id) {
+                    if (id===store.id) {
                         const [projects, users, invites, usage] = res;
                         store.model = {users, invites: invites && invites.results};
                         return Promise.all(projects.map((project, i) => {
