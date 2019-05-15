@@ -188,18 +188,31 @@ const OrganisationSettingsPage = class extends Component {
                             </div>
                         </FormGroup>
                         <FormGroup className="mt-5">
-                            <div className="panel--grey">
+                            <div>
                                 <OrganisationProvider>
-                                    {({ isLoading, name, projects, users, invites }) => (
+                                    {({ isLoading, name, projects, usage, users, invites }) => (
                                         <div>
+
+                                            <div className="col-md-12">
                                             <div className="flex-row header--icon">
+                                                <h5>Your usage</h5>
+                                            </div>
+                                            {!isLoading && (
+                                                <div>
+                                                    <p>You have made <strong>{`${usage}`}</strong> requests over the past 30 days.</p>
+                                                </div>
+                                            )}
+
+                                            <div className="flex-row header--icon mt-5">
                                                 <h5>Team members</h5>
                                                 <button id={"btn-invite"} onClick={() => openModal("Invite Users", <InviteUsersModal/>)} className={'btn btn--with-icon p-x-0 p-y-0'}>
                                                     <img className="btn__icon" src="/images/icons/plus-button.svg" alt="Invite"/>
                                                 </button>
                                             </div>
 
-                                    {isLoading && <div className="centered-container"><Loader/></div>}
+                                            </div>
+                                            <div className="panel--grey">
+                                            {isLoading && <div className="centered-container"><Loader/></div>}
                                     {!isLoading && (
                                         <div>
                                             <FormGroup>
@@ -274,6 +287,7 @@ const OrganisationSettingsPage = class extends Component {
 
                                                 </div>
                                             )}
+                                        </div>
                                         </div>
                                     )}
                                 </OrganisationProvider>
