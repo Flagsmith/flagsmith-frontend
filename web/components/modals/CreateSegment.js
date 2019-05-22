@@ -71,14 +71,8 @@ const CreateSegment = class extends Component {
 
         save = (e) => {
             Utils.preventDefault(e);
-            const {state: {description,id, name, rules}} = this;
-            console.log({
-                description,
-                name,
-                rules,
-                id
-            });
-            if (description && name) {
+            const {state: {description="",id, name, rules}} = this;
+            if (name) {
                 if(this.props.segment) {
                     AppActions.editSegment(this.props.projectId,{description,name,rules,id});
                 } else {
