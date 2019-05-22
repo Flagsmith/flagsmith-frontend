@@ -9,8 +9,8 @@ const keywords = {
     FEATURE_FUNCTION: "myCoolFeature",
     SEGMENT_NAME: "superUsers",
     FEATURE_NAME: "myCoolFeature",
-    USER_FEATURE_FUNCTION: "myPowerUserFeature",
-    USER_FEATURE_NAME: "myPowerUserFeature",
+    USER_FEATURE_FUNCTION: "myEvenCoolerFeature",
+    USER_FEATURE_NAME: "myEvenCoolerFeature",
     FEATURE_NAME_ALT: "bannerSize",
     FEATURE_NAME_ALT_VALUE: "big",
 };
