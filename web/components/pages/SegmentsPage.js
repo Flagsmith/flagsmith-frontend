@@ -142,12 +142,6 @@ const SegmentsPage = class extends Component {
                                                     title={"Using segments"}
                                                     snippets={Constants.codeHelp.SEGMENTS(environmentId)}/>
                                             </FormGroup>
-                                            <FormGroup>
-                                                <TryIt
-                                                    title={"Test what values are being returned from the API on this environment"}
-                                                    environmentId={this.props.params.environmentId}
-                                                />
-                                            </FormGroup>
                                         </div>
                                     ) : (
                                         <div>

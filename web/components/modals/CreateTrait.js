@@ -90,11 +90,11 @@ const CreateTrait = class extends Component {
 
                                 <div className="text-right">
                                     {isEdit ? (
-                                        <Button id="update-trait-btn" disabled={isSaving || !trait_key || !trait_value}>
+                                        <Button id="update-trait-btn" disabled={isSaving || !trait_key}>
                                             {isSaving ? 'Creating' : 'Update Trait'}
                                         </Button>
                                     ) : (
-                                        <Button id="create-trait-btn" disabled={isSaving || !trait_key || !trait_value}>
+                                        <Button id="create-trait-btn" disabled={isSaving || !trait_key}>
                                             {isSaving ? 'Creating' : 'Create Trait'}
                                         </Button>
                                     )}

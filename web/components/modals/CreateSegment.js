@@ -137,21 +137,21 @@ const CreateSegment = class extends Component {
 
             return (
                 <div>
-                    <FormGroup className="mb-4">
-                        <Tabs className={"pill"} value={this.state.tab}
-                              onChange={(tab) => this.setState({tab})}>
-                            <TabItem id={"btn-select-flags"}
-                                     value={"CREATE"}
-                                     tabLabel={<Row className={"row-center"}>
-                                         <ion className="tab-icon ion-ios-switch"/>
-                                         Create</Row>}/>
-                            <TabItem
-                                value={"CONFIG"}
-                                id={"btn-select-remote-config"} tabLabel={<Row className={"row-center"}>
-                                <ion className="tab-icon ion-ios-settings"/>
-                                Preview</Row>}/>
-                        </Tabs>
-                    </FormGroup>
+                    {/*<FormGroup className="mb-4">*/}
+                    {/*    <Tabs className={"pill"} value={this.state.tab}*/}
+                    {/*          onChange={(tab) => this.setState({tab})}>*/}
+                    {/*        <TabItem id={"btn-select-flags"}*/}
+                    {/*                 value={"CREATE"}*/}
+                    {/*                 tabLabel={<Row className={"row-center"}>*/}
+                    {/*                     <ion className="tab-icon ion-ios-switch"/>*/}
+                    {/*                     Create</Row>}/>*/}
+                    {/*        <TabItem*/}
+                    {/*            value={"CONFIG"}*/}
+                    {/*            id={"btn-select-remote-config"} tabLabel={<Row className={"row-center"}>*/}
+                    {/*            <ion className="tab-icon ion-ios-settings"/>*/}
+                    {/*            Preview</Row>}/>*/}
+                    {/*    </Tabs>*/}
+                    {/*</FormGroup>*/}
 
                     {this.state.tab === 0 ? (
                         <form
