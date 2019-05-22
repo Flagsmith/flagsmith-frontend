@@ -152,20 +152,22 @@ const CreateSegment = class extends Component {
                             id="create-segment-modal"
                             onSubmit={this.save}
                         >
-                            <InputGroup
-                                ref={(e) => this.input = e}
-                                inputProps={{
-                                    className: "full-width",
-                                    name: "featureID"
-                                }}
-                                value={name}
-                                onChange={(e) => this.setState({name: Format.enumeration.set(Utils.safeParseEventValue(e)).toLowerCase()})}
-                                isValid={name && name.length}
-                                type="text" title={isEdit ? "ID" : "ID*"}
-                                placeholder="E.g. power_users"
-                            />
+                            <FormGroup className="mb-4">
+                                <InputGroup
+                                    ref={(e) => this.input = e}
+                                    inputProps={{
+                                        className: "full-width",
+                                        name: "featureID"
+                                    }}
+                                    value={name}
+                                    onChange={(e) => this.setState({name: Format.enumeration.set(Utils.safeParseEventValue(e)).toLowerCase()})}
+                                    isValid={name && name.length}
+                                    type="text" title={isEdit ? "ID" : "ID*"}
+                                    placeholder="E.g. power_users"
+                                />
+                            </FormGroup>
 
-                            <FormGroup>
+                            <FormGroup className="mb-4">
                                 <InputGroup
                                     value={description}
                                     inputProps={{
