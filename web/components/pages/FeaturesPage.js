@@ -111,9 +111,6 @@ const FeaturesPage = class extends Component {
                                                 <FormGroup className={'float-right'}>
                                                     {projectFlags && projectFlags.length ? (
                                                         <div className="text-right">
-                                                            <p>
-
-                                                            </p>
                                                             <Button id="show-create-feature-btn" onClick={this.newFlag}>
                                                                 Create Feature
                                                             </Button>

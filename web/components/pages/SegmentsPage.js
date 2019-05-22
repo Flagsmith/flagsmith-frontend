@@ -85,16 +85,23 @@ const SegmentsPage = class extends Component {
                                 <div>
                                     {segments && segments.length ? (
                                         <div>
-                                            <h3>Segments</h3>
-                                            <Row space>
-                                            <p>
-                                                Create and manage groups of users with similar traits.
-                                            </p>
-                                                <Button className={"btn-lg btn-primary"} id="show-create-feature-btn"
-                                                        onClick={this.newSegment}>
-                                                   Create Segment
-                                                </Button>
+                                            <Row>
+                                                <Flex>
+                                                    <h3>Segments</h3>
+                                                    <p>
+                                                        Create and manage groups of users with similar traits.
+                                                    </p>
+                                                </Flex>
+                                                <FormGroup className={'float-right'}>
+                                                    <div className="text-right">
+                                                        <Button className={"btn-lg btn-primary"} id="show-create-feature-btn"
+                                                                onClick={this.newSegment}>
+                                                            Create Segment
+                                                        </Button>
+                                                    </div>
+                                                </FormGroup>
                                             </Row>
+
                                             <FormGroup>
                                                 <PanelSearch
                                                     className={"no-pad"}
