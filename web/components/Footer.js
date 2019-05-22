@@ -10,12 +10,12 @@ const Footer = class extends React.Component {
     const { hasFeature, className } = this.props;
     return (
       <footer className={className + " clearfix"}>
-        <div className="service-status text-center">
+        <a href="https://status.bullet-train.io/" target="_blank" className="service-status text-center">
           {this.state.operational ?
             <div><span className={"dot green"} />Bullet Train services are operational</div> :
             <div><span className={"dot orange"} />Bullet Train services are experiencing problems. Click <a href="https://cachet.dokku1.solidstategroup.com/">here</a> for more info</div>
           }
-        </div>
+        </a>
         <div className="clearfix">
           <div className="float-left">
             <div className="brand-footer float-left">

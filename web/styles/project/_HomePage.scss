@@ -203,6 +203,9 @@ footer {
     }
     .service-status {
         margin-bottom: 20px;
+        &:hover, :focus {
+            text-decoration: none;
+        }
     }
     .dot {
         width: 8px;
