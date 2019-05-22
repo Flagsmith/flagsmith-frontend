@@ -46,8 +46,8 @@ const SegmentsPage = class extends Component {
 
     editSegment = (segment) => {
         API.trackEvent(Constants.events.VIEW_SEGMENT);
-        openModal('Edit Feature', <CreateSegmentModal
-            flags={flags}
+        openModal('Edit Segment', <CreateSegmentModal
+            segment={segment}
             isEdit={true}
             environmentId={this.props.params.environmentId}
             projectId={this.props.params.projectId}
@@ -62,9 +62,9 @@ const SegmentsPage = class extends Component {
         }
     }
 
-    confirmRemove = (projectFlag, cb) => {
+    confirmRemove = (segment, cb) => {
         openModal("Remove Segment", <ConfirmRemoveSegment environmentId={this.props.params.environmentId}
-                                                          projectFlag={projectFlag}
+                                                          segment={segment}
                                                           cb={cb}/>)
     }
 
@@ -86,9 +86,15 @@ const SegmentsPage = class extends Component {
                                     {segments && segments.length ? (
                                         <div>
                                             <h3>Segments</h3>
+                                            <Row space>
                                             <p>
                                                 Create and manage groups of users with similar traits.
                                             </p>
+                                                <Button className={"btn-lg btn-primary"} id="show-create-feature-btn"
+                                                        onClick={this.newSegment}>
+                                                   Create Segment
+                                                </Button>
+                                            </Row>
                                             <FormGroup>
                                                 <PanelSearch
                                                     className={"no-pad"}
@@ -113,11 +119,11 @@ const SegmentsPage = class extends Component {
                                                                 <Column>
                                                                     <button
                                                                         id="remove-feature"
-                                                                        onClick={() => this.confirmRemove(projectFlags[i], () => {
-                                                                            removeSegment(this.props.params.projectId, projectFlags[i])
+                                                                        onClick={() => this.confirmRemove(segments[i], () => {
+                                                                            removeSegment(this.props.params.projectId, segments[i].id)
                                                                         })}
-                                                                        className={"btn btn-primary"}>
-                                                                        Remove
+                                                                        className={"btn btn--with-icon"}>
+                                                                        <RemoveIcon />
                                                                     </button>
                                                                 </Column>
                                                             </Row>

@@ -42,6 +42,7 @@
     "react-native-fabric-crashlytics": "^0.1.8",
     "react-native-facebook-login": "^1.6.1",
     "react-native-firebase": "5.2.1",
+    "react-native-fs": "^2.13.3",
     "react-native-globals": "^0.50.0",
     "react-native-google-signin": "^1.2.1",
     "react-native-interactable": "git+https://github.com/SolidStateGroup/react-native-interactable#master",

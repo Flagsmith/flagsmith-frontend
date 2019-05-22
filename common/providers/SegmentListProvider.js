@@ -1,24 +1,22 @@
 import React, {Component, PropTypes} from 'react';
 import SegmentListStore from '../stores/segment-list-store';
 
-const TheComponent = class extends Component {
-    displayName: 'TheComponent'
+const SegmentListProvider = class extends Component {
+    displayName: 'SegmentListProvider'
 
     constructor(props, context) {
         super(props, context);
         this.state = {
             isSaving: SegmentListStore.isSaving,
             isLoading: SegmentListStore.isLoading,
-            environmentSegments: SegmentListStore.getEnvironmentSegments(),
-            projectSegments: SegmentListStore.getProjectSegments(),
+            segments: SegmentListStore.getSegments(),
         };
         ES6Component(this);
         this.listenTo(SegmentListStore, 'change', () => {
             this.setState({
                 isSaving: SegmentListStore.isSaving,
                 isLoading: SegmentListStore.isLoading,
-                environmentSegments: SegmentListStore.getEnvironmentSegments(),
-                projectSegments: SegmentListStore.getProjectSegments(),
+                segments: SegmentListStore.getSegments(),
             });
         });
 
@@ -73,6 +71,6 @@ const TheComponent = class extends Component {
     }
 };
 
-TheComponent.propTypes = {};
+SegmentListProvider.propTypes = {};
 
-module.exports = TheComponent;
+module.exports = SegmentListProvider;

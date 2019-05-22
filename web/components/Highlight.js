@@ -40,7 +40,10 @@ class Highlight extends React.Component {
 		if (Element) {
 			return <Element {...props}>{children}</Element>;
 		}
-		return <pre ref={this.setEl}><code contentEditable={!!this.props.onChange} onBlur={this.highlightCode} onKeyPress={this.props.onChange} className={className}>{children}</code></pre>;
+		return <pre ref={this.setEl}><code contentEditable={!!this.props.onChange} onBlur={this.highlightCode}
+		onKeyPress={(e)=>{
+			setTimeout(()=>this.props.onChange(this.el.innerText), 100)
+		}} className={className}>{children}</code></pre>;
 	}
 }
 

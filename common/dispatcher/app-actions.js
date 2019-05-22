@@ -222,16 +222,25 @@ const AppActions = Object.assign({}, require('./base/_app-actions'), {
 			environmentId
 		});
 	},
-	createSegment: function (projectId, environmentId, segment) {
+	createSegment: function (projectId, segment) {
 		Dispatcher.handleViewAction({
 			actionType: Actions.CREATE_SEGMENT,
-			projectId, environmentId, segment
+			projectId,
+			data:segment
 		});
 	},
 	editSegment: function (projectId, segment) {
 		Dispatcher.handleViewAction({
 			actionType: Actions.EDIT_SEGMENT,
-			projectId, segment
+			projectId,
+			data:segment
+		});
+	},
+	removeSegment: function (projectId, id) {
+		Dispatcher.handleViewAction({
+			actionType: Actions.REMOVE_SEGMENT,
+			projectId,
+			id
 		});
 	},
 });

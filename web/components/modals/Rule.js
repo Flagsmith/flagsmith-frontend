@@ -29,8 +29,10 @@ export default class Rule extends PureComponent {
                             <Column style={{ width: 200 }}>
                                 <Tooltip title={(
                                     <Input
-                                        placeholder="User property"
-                                        onChange={(value) => this.setRuleProperty(i, "property", value)}
+                                        className="input-container--flat"
+                                        value={rule.property+""}
+                                        placeholder="Value"
+                                        onChange={(e) => this.setRuleProperty(i, "property", {value:Utils.safeParseEventValue(e)})}
                                     />
                                 )}
                                          place="top">{Constants.strings.USER_PROPERTY_DESCRIPTION}</Tooltip>

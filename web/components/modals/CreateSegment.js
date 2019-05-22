@@ -3,22 +3,26 @@ import Rule from './Rule';
 import Tabs from "../base/forms/Tabs";
 import TabItem from "../base/forms/TabItem";
 import Highlight from "../Highlight";
-
+import engine from 'bullet-train-rules-engine';
+import SegmentStore from '../../../common/stores/segment-list-store';
 const CreateSegment = class extends Component {
         displayName: 'CreateSegment'
 
         constructor(props, context) {
             super(props, context);
-            const {description, name, rules = []} = this.props.segment ? _.cloneDeep(this.props.segment.rules) :
+            ES6Component(this);
+            const {description, name, id, rules = []} = this.props.segment ? _.cloneDeep(this.props.segment) :
                 {
                     rules: [{all: {rules: [{any: {rules: [{...Constants.defaultRule}]}}]},}]
                 }
 
             this.state = {
-                tab: 0, description, name, rules,
+                tab: 0, description, name, rules, id,
                 data: `{\n}`
             };
-
+            this.listenTo(SegmentStore, 'saved', ()=>{
+                this.close()
+            })
         }
 
         addRule = () => {
@@ -54,30 +58,45 @@ const CreateSegment = class extends Component {
         updateRule = (rulesIndex, elementNumber, newValue) => {
             const {rules} = this.state;
             rules[rulesIndex].all.rules[elementNumber] = newValue;
+            this.setData(this.state.exampleData);
             this.setState({rules});
         }
 
         removeRule = (rulesIndex, elementNumber) => {
             const {rules} = this.state;
             rules[rulesIndex].all.rules.splice(elementNumber, 1);
+            this.setData(this.state.exampleData);
             this.setState({rules});
         }
 
         save = (e) => {
             Utils.preventDefault(e);
-            const {state: {description, name, rules}} = this;
+            const {state: {description,id, name, rules}} = this;
             console.log({
                 description,
                 name,
-                rules
+                rules,
+                id
             });
             if (description && name) {
-
+                if(this.props.segment) {
+                    AppActions.editSegment(this.props.projectId,{description,name,rules,id});
+                } else {
+                    AppActions.createSegment(this.props.projectId,{description,name,rules});
+                }
             }
         };
 
         setData = (data) => {
             console.log(data)
+            try {
+                data = JSON.parse(data)
+                engine(data, this.state.rules)
+                    .then((ruleEval)=>{
+                        this.setState({exampleData:data, ruleEval})
+                    })
+            } catch(e){}
+
             // this.codeEditor.highlightCode();
             // this.setState({data})
         }
@@ -136,13 +155,12 @@ const CreateSegment = class extends Component {
 
                     {this.state.tab === 0 ? (
                         <form
-                            id="create-feature-modal"
+                            id="create-segment-modal"
                             onSubmit={this.save}
                         >
                             <InputGroup
                                 ref={(e) => this.input = e}
                                 inputProps={{
-                                    readOnly: isEdit,
                                     className: "full-width",
                                     name: "featureID"
                                 }}
@@ -175,16 +193,6 @@ const CreateSegment = class extends Component {
                                 }
                             </div>
 
-                            {isEdit && (
-                                <div>
-                                    <p className={"text-right faint-lg"}>
-                                        This will update the feature value for the project <strong>{
-                                        project.name
-                                    }</strong>
-                                    </p>
-                                </div>
-                            )}
-
                             <div className="text-right">
                                 {isEdit ? (
                                     <Button type="submit" id="update-feature-btn" disabled={isSaving || !name}>
@@ -200,8 +208,8 @@ const CreateSegment = class extends Component {
                     ) : (
                         <div>
                             <div className={"hljs-container"}>
-                                <Highlight ref={(e)=>this.codeEditor = e} onChange={(e) => {
-                                    this.setData(e.currentTarget.innerText);
+                                <Highlight ref={(e)=>this.codeEditor = e} onChange={(text) => {
+                                    this.setData(text);
                                 }} className={"json"}>
                                     {this.state.data}
                                 </Highlight>
