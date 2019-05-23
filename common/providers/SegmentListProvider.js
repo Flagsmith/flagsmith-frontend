@@ -2,7 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import SegmentListStore from '../stores/segment-list-store';
 
 const SegmentListProvider = class extends Component {
-    static displayName = 'TheComponent'
+    static displayName = 'SegmentListProvider'
 
     constructor(props, context) {
         super(props, context);
