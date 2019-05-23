@@ -86,11 +86,11 @@ const byId= helpers.byTestID;
         browser
             .waitForElementNotPresent('#confirm-remove-feature-modal')
             .pause(200) // Additional wait here as it seems rc-switch can be unresponsive for a while
-            .waitForElementVisible('#features-list span.rc-switch')
-            .click('#features-list span.rc-switch')
+            .waitForElementVisible('#features-list .rc-switch')
+            .click('#features-list .rc-switch')
             .waitForElementVisible('#confirm-toggle-feature-btn')
             .click('#confirm-toggle-feature-btn')
-            .waitForElementVisible('#features-list span.rc-switch.rc-switch-checked');
+            .waitForElementVisible('#features-list .rc-switch.rc-switch-checked');
     },
     '[Main Tests] - Try feature out': function (browser) {
         browser
@@ -194,7 +194,7 @@ const byId= helpers.byTestID;
         browser.waitForElementVisible(byId('switch-environment-production-active'))
     },
     '[Main Tests] - Feature should be off under different environment': function (browser) {
-        browser.expect.element('#features-list span[class="rc-switch"]').to.be.visible;
+        browser.expect.element('#features-list .rc-switch').to.be.visible;
     },
     '[Main Tests] - Create environment': function (browser) {
         browser
@@ -225,11 +225,11 @@ const byId= helpers.byTestID;
         browser
             .waitForElementNotPresent('#create-feature-modal')
             .pause(200) // Additional wait here as it seems rc-switch can be unresponsive for a while
-            .click('#user-features-list span.rc-switch')
+            .click('#user-features-list .rc-switch')
             .waitForElementVisible('#confirm-toggle-feature-btn')
             .click('#confirm-toggle-feature-btn')
             .waitForElementNotPresent('#confirm-toggle-feature-btn')
-            .waitForElementVisible('#user-features-list span.rc-switch.rc-switch-checked');
+            .waitForElementVisible('#user-features-list .rc-switch.rc-switch-checked');
     },
     '[Main Tests] - Add trait for user': function (browser) {
         browser

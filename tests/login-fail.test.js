@@ -2,7 +2,7 @@ var conf = require('../nightwatch.conf.js');
 
 const email = 'nightwatch@solidstategroup.com';
 const password = 'nightwatch';
-const url = 'http://localhost:' + (process.env.PORT || 8080);
+const url = 'http://localhost:' +§ (process.env.PORT || 8080);
 
 module.exports = {
     'Login should fail due to invalid email address': function (browser) {
@@ -10,7 +10,7 @@ module.exports = {
             .url(url)
             .waitForElementVisible('#existing-member-btn')
             .click('#existing-member-btn')
-            .waitForElementVisible('[name="email"]')
+            .waitForElementVisible('#login-btn')
             .setValue('[name="email"]', "bad-email")
             .setValue('[name="password"]', password)
             .click('#login-btn');
