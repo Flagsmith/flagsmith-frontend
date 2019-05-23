@@ -78,22 +78,22 @@ const CreateTrait = class extends Component {
                                     {' '}
                                     {isEdit ? 'update' : 'create'}
                                     {' '}
-a user
+                                    a user
                                     trait
                                     {' '}
                                     <strong>{trait_key || ''}</strong>
                                     {' '}
-for the
+                                    for the
                                     user
                                     {' '}
                                     <strong>{identity}</strong>
                                     {' '}
-in
+                                    in
                                     <strong>
                                         {' '}
                                         {
-                                    _.find(project.environments, { api_key: this.props.environmentId }).name
-                                }
+                                            _.find(project.environments, { api_key: this.props.environmentId }).name
+                                        }
                                     </strong>
                                 </p>
 

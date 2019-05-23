@@ -17,7 +17,7 @@ const PasswordResetPage = class extends Component {
         API.trackPage(Constants.pages.RESET_PASSWORD);
     };
 
-    onSave =() => {
+    onSave = () => {
         this.context.router.replace('/login');
         toast('Your password has been reset');
     }
@@ -94,7 +94,8 @@ const PasswordResetPage = class extends Component {
                                             Oops
                                         </h3>
                                         <p className="alert alert-danger">
-                                            We could not reset your password with the details provided, please try again.
+                                            We could not reset your password with the details provided, please try
+                                            again.
                                         </p>
                                     </div>
                                 ) : (

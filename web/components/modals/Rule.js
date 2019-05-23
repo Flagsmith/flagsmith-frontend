@@ -20,7 +20,7 @@ export default class Rule extends PureComponent {
                             Or
                             <div className="or-divider__down"/>
                         </Row>
-                        <Flex className="or-divider__line" />
+                        <Flex className="or-divider__line"/>
                     </Row>
                 )}
                 <Row noWrap className="rule">
@@ -35,7 +35,7 @@ export default class Rule extends PureComponent {
                                         placeholder="Value"
                                         onChange={e => this.setRuleProperty(i, 'property', { value: Utils.safeParseEventValue(e) })}
                                       />
-                                )}
+                                    )}
                                   place="top"
                                 >
                                     {Constants.strings.USER_PROPERTY_DESCRIPTION}

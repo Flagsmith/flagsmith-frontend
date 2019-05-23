@@ -34,13 +34,13 @@ const ConfirmRemoveSegment = class extends Component {
                             {' '}
                             <strong>{segment.name}</strong>
                             {' '}
-for
+                            for
                             {' '}
                             <strong>
-all
-                            environments
+                                all
+                                environments
                             </strong>
-. You should ensure that you do not contain any references to this
+                            . You should ensure that you do not contain any references to this
                             segment in your applications before proceeding.
                         </p>
 

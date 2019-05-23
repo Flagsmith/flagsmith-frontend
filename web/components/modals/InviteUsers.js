@@ -68,7 +68,8 @@ const InviteUsers = class extends Component {
                         <div className="text-right">
                             <Button
                               id="btn-send-invite"
-                              disabled={isSaving || !this.isValid()} onClick={() => AppActions.inviteUsers(emailAddresses)}
+                              disabled={isSaving || !this.isValid()}
+                              onClick={() => AppActions.inviteUsers(emailAddresses)}
                             >
                                 {isSaving ? 'Sending' : 'Send Invites'}
                             </Button>

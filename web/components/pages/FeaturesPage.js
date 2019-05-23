@@ -116,7 +116,7 @@ const FeaturesPage = class extends Component {
                                                             {Constants.strings.FEATURE_FLAG_DESCRIPTION}
                                                         </Tooltip>
                                                         {' '}
-and
+                                                        and
                                                         {' '}
                                                         {' '}
                                                         <Tooltip
@@ -126,7 +126,7 @@ and
                                                             {Constants.strings.REMOTE_CONFIG_DESCRIPTION}
                                                         </Tooltip>
                                                         {' '}
-for
+                                                        for
                                                         your selected environment.
                                                     </p>
                                                 </Flex>
@@ -157,7 +157,7 @@ for
                                                                   <a href="#">
                                                                       {name}
                                                                   </a>
-                                                                  <Column />
+                                                                  <Column/>
                                                               </Row>
                                                               <div className="list-item-footer faint">
                                                                     Created
@@ -190,7 +190,7 @@ for
                                                                     })}
                                                                     className="btn btn--with-icon"
                                                                   >
-                                                                      <RemoveIcon />
+                                                                      <RemoveIcon/>
                                                                   </button>
                                                               </Column>
                                                           </Row>
@@ -207,7 +207,7 @@ for
                                                           {/* </button> */}
                                                           {/* </FormGroup> */}
                                                       </div>
-)}
+                                                    )}
                                                   filterRow={({ name }, search) => name.toLowerCase().indexOf(search) > -1}
                                                 />
                                             </FormGroup>
@@ -240,7 +240,7 @@ for
                                                         <ul>
                                                             <li>
                                                                 <strong>Feature Flags</strong>
-: These allows you to
+                                                                : These allows you to
                                                                 toggle
                                                                 features on and off:
                                                                 <p className="faint">
@@ -251,7 +251,7 @@ for
                                                             </li>
                                                             <li>
                                                                 <strong>Remote configuration</strong>
-: configuration for
+                                                                : configuration for
                                                                 a
                                                                 particular feature
                                                                 <p className="faint">
@@ -276,10 +276,10 @@ for
                                                         {' '}
                                                         <strong>Development</strong>
                                                         {' '}
-and
+                                                        and
                                                         {' '}
                                                         <strong>Production</strong>
-.
+                                                        .
                                                         When
                                                         you create a feature it makes copies of them for each
                                                         environment,
@@ -300,7 +300,7 @@ and
                                                         {' '}
                                                         <strong>identify</strong>
                                                         {' '}
-them using one of our SDKs, this
+                                                        them using one of our SDKs, this
                                                         will add
                                                         them to the users page.
                                                         From there you can configure their features. We've created an
@@ -309,7 +309,7 @@ them using one of our SDKs, this
                                                         <Link
                                                           to={`/project/${projectId}/environment/${environmentId}/users`}
                                                         >
-Users
+                                                            Users
                                                             page
                                                         </Link>
                                                         <p className="faint">
@@ -328,7 +328,7 @@ Users
                                                 >
                                                     <ion className="icon ion-ios-rocket"/>
                                                     {' '}
-Create your first Feature
+                                                    Create your first Feature
                                                 </Button>
                                             </FormGroup>
                                         </div>

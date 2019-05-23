@@ -11,7 +11,8 @@ module.exports = Object.assign({}, require('./base/_utils'), {
                 enabled: false,
                 description: projectFlag.description,
             };
-        } if (identityFlag) {
+        }
+        if (identityFlag) {
             return {
                 type: projectFlag.type,
                 name: projectFlag.name,
@@ -38,7 +39,8 @@ module.exports = Object.assign({}, require('./base/_utils'), {
 
         if (str == 'true') {
             return true;
-        } if (str == 'false') {
+        }
+        if (str == 'false') {
             return false;
         }
 

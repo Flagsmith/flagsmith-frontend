@@ -56,19 +56,19 @@ const ProjectSelectPage = class extends Component {
                                 <div className="text-center">
                                     <h3>Great! Now you can create your first project.</h3>
                                     <p>
-                                    When you create a project we'll also generate a
+                                        When you create a project we'll also generate a
                                         {' '}
                                         <strong>development</strong>
                                         {' '}
-and
+                                        and
                                         {' '}
                                         <strong>production</strong>
                                         {' '}
-environment for you.
+                                        environment for you.
                                     </p>
                                     <p>
-                                    You can create features for your project, then enable and configure them per
-                                    environment.
+                                        You can create features for your project, then enable and configure them per
+                                        environment.
                                     </p>
                                 </div>
                             )
@@ -94,7 +94,7 @@ environment for you.
                                                       <Flex>
                                                           {name}
                                                       </Flex>
-                                                      <span className="icon ion-ios-arrow-forward list-item" />
+                                                      <span className="icon ion-ios-arrow-forward list-item"/>
                                                   </Row>
                                               </Link>
                                           )}
@@ -110,12 +110,12 @@ environment for you.
                                                           >
                                                               <ion className="icon ion-ios-rocket"/>
                                                               {' '}
-Create a project
+                                                                Create a project
                                                           </button>
                                                       </div>
                                                   </div>
                                               </div>
-)}
+                                            )}
                                           filterRow={(item, search) => item.name.toLowerCase().indexOf(search) > -1}
                                         />
                                     </FormGroup>

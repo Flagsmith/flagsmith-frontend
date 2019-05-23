@@ -36,7 +36,7 @@ var controller = {
         });
     },
     editTrait({ identity, environmentId, trait: { trait_key, trait_value } }) {
-		    store.saving();
+        store.saving();
         data.post(`${Project.api}identities/${identity}/traits/${trait_key}`, { trait_value }, { 'x-environment-key': environmentId })
             .then(() => controller.getIdentity(environmentId, identity)
                 .then(() => store.saved()))

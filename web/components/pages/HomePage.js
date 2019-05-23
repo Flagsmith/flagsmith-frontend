@@ -58,7 +58,7 @@ const HomePage = class extends React.Component {
                 {({ isLoading, isSaving, error }, { register }) => (
                     <div className="homepage">
 
-                        <Hero redirect={redirect} />
+                        <Hero redirect={redirect}/>
                         <div className="tech">
                             <div className="container">
                                 <div className="text-center col-md-12 col-lg-8 push-lg-2">
@@ -86,7 +86,10 @@ const HomePage = class extends React.Component {
                                         </div>
                                         <div className="col-md-1 col-xs-6">
                                             <a href="https://github.com/SolidStateGroup/bullet-train-python-client">
-                                                <img src="./images/tech-logos/python.png" className="img-fluid" alt="Python"/>
+                                                <img
+                                                  src="./images/tech-logos/python.png" className="img-fluid"
+                                                  alt="Python"
+                                                />
                                             </a>
                                         </div>
                                         <div className="col-md-1 col-xs-6">
@@ -101,12 +104,12 @@ const HomePage = class extends React.Component {
                                         </div>
                                     </div>
                                     <p className="text-small margin-top no-mb">
-Don't worry if you don't see your
+                                        Don't worry if you don't see your
                                         preferred tech, we'll be adding support for more clients as we grow but
                                         please
                                         <a href="mailto:support@bullet-train.io">get in touch</a>
                                         {' '}
-and let
+                                        and let
                                         us know what you'd like to see.
                                     </p>
                                 </div>
@@ -116,7 +119,8 @@ and let
                         <div className="container text-center">
                             <div className="video embed-responsive embed-responsive-16by9">
                                 <div
-                                  className="lazyframe embed-responsive-item" data-src="https://www.youtube.com/embed/GPkCLO0F-5g" data-vendor="youtube"
+                                  className="lazyframe embed-responsive-item"
+                                  data-src="https://www.youtube.com/embed/GPkCLO0F-5g" data-vendor="youtube"
                                   data-apikey={Project.youtubeApi}
                                 />
                             </div>
@@ -126,7 +130,7 @@ and let
                             <div className="text-center col-md-12 col-lg-6 push-lg-3">
                                 <h2>Release configurable features to segmented user groups</h2>
                                 <p>
-With Bullet Train you can configure attributes of your features as well as turning
+                                    With Bullet Train you can configure attributes of your features as well as turning
                                     them on or off for specific user groups.
                                 </p>
                             </div>
@@ -140,7 +144,7 @@ With Bullet Train you can configure attributes of your features as well as turni
                                     <ion className="homepage-icon icon ion-ios-color-palette"/>
                                     <h5>Remote Config</h5>
                                     <p>
-Change the behaviour, appearance and config of your app here without needing to
+                                        Change the behaviour, appearance and config of your app here without needing to
                                         build.
                                     </p>
                                 </div>
@@ -194,22 +198,36 @@ Change the behaviour, appearance and config of your app here without needing to
                             <div className="container text-center">
                                 <div className="col-md-6 offset-md-3 pb-3">
                                     <h2>Feature Flags on the go</h2>
-                                    <p>Now you can manage feature flags and remote config across web, mobile and server side applications with our Android and IOS apps.</p>
+                                    <p>
+Now you can manage feature flags and remote config across web, mobile and server
+                                        side applications with our Android and IOS apps.
+                                    </p>
                                 </div>
-                                <a href="https://itunes.apple.com/us/app/bullet-train-feature-manager/id1460735497?ls=1&mt=8" target="__blank">
+                                <a
+                                  href="https://itunes.apple.com/us/app/bullet-train-feature-manager/id1460735497?ls=1&mt=8"
+                                  target="__blank"
+                                >
                                     <img
-                                      width={160} className="img-fluid mr-5 app-store-badge" src="./images/app-store-icons/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg"
+                                      width={160} className="img-fluid mr-5 app-store-badge"
+                                      src="./images/app-store-icons/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg"
                                       alt="download on the app store"
                                     />
                                 </a>
-                                <a href="https://play.google.com/store/apps/details?id=com.solidstategroup.bullettrain" target="__blank">
+                                <a
+                                  href="https://play.google.com/store/apps/details?id=com.solidstategroup.bullettrain"
+                                  target="__blank"
+                                >
                                     <img
-                                      width={180} className="img-fluid ml-5 play-badge" src="./images/app-store-icons/google-play-badge2x.png"
+                                      width={180} className="img-fluid ml-5 play-badge"
+                                      src="./images/app-store-icons/google-play-badge2x.png"
                                       alt="get it on google play"
                                     />
                                 </a>
                                 <div className="col-md-12">
-                                    <img className="img-fluid pt-5" src="./images/mobile_1.png" alt="bullet train mobile"/>
+                                    <img
+                                      className="img-fluid pt-5" src="./images/mobile_1.png"
+                                      alt="bullet train mobile"
+                                    />
                                 </div>
                             </div>
                         </div>
@@ -228,7 +246,14 @@ Change the behaviour, appearance and config of your app here without needing to
                                                 <h3 className="margin-bottom">User login</h3>
                                                 {isInvite && <p>Login to accept your invite</p>}
                                                 <fieldset id="details" className="col-lg-6 offset-lg-3">
-                                                    {error && error.email ? (<span id="email-error" className="text-danger">{error.email}</span>) : null}
+                                                    {error && error.email ? (
+                                                        <span
+                                                          id="email-error"
+                                                          className="text-danger"
+                                                        >
+                                                            {error.email}
+                                                        </span>
+                                                    ) : null}
                                                     <Input
                                                       inputProps={{
                                                           name: 'email',
@@ -243,7 +268,14 @@ Change the behaviour, appearance and config of your app here without needing to
                                                       type="text"
                                                       name="email" id="email"
                                                     />
-                                                    {error && error.password1 ? (<span id="password-error" className="text-danger">{error.password1}</span>) : null}
+                                                    {error && error.password1 ? (
+                                                        <span
+                                                          id="password-error"
+                                                          className="text-danger"
+                                                        >
+                                                            {error.password1}
+                                                        </span>
+                                                    ) : null}
                                                     <Input
                                                       inputProps={{
                                                           name: 'password',
@@ -265,26 +297,30 @@ Change the behaviour, appearance and config of your app here without needing to
                                                           disabled={isLoading || isSaving}
                                                           className="btn white full-width" type="submit"
                                                         >
-                                                                Login
+                                                            Login
                                                         </button>
                                                         {hasFeature('forgot_password') && (
-                                                        <div>
-                                                            <Link to={`/${redirect}`} className="float-left">Not got an account?</Link>
-                                                            <Link
-                                                              className="float-right" to={`/password-recovery${redirect}`}
-                                                              onClick={this.showForgotPassword}
-                                                            >
-Forgot
-                                                                        password?
-                                                            </Link>
-                                                        </div>
+                                                            <div>
+                                                                <Link to={`/${redirect}`} className="float-left">
+Not got
+                                                                    an account?
+                                                                </Link>
+                                                                <Link
+                                                                  className="float-right"
+                                                                  to={`/password-recovery${redirect}`}
+                                                                  onClick={this.showForgotPassword}
+                                                                >
+                                                                    Forgot
+                                                                    password?
+                                                                </Link>
+                                                            </div>
                                                         )}
                                                     </div>
                                                 </fieldset>
                                                 {error && (
-                                                <div id="error-alert" className="alert alert-danger">
-                                                    Please check your details and try again
-                                                </div>
+                                                    <div id="error-alert" className="alert alert-danger">
+                                                        Please check your details and try again
+                                                    </div>
                                                 )}
 
                                             </form>
@@ -309,11 +345,11 @@ Forgot
                                             </div>
                                             {error
                                             && (
-                                            <FormGroup className="col-lg-6 offset-lg-3">
-                                                <div id="error-alert" className="alert alert-danger">
-                                                    Please check your details and try again
-                                                </div>
-                                            </FormGroup>
+                                                <FormGroup className="col-lg-6 offset-lg-3">
+                                                    <div id="error-alert" className="alert alert-danger">
+                                                        Please check your details and try again
+                                                    </div>
+                                                </FormGroup>
                                             )
                                             }
                                             {isInvite && <p>Sign up to accept your invite</p>}
@@ -366,7 +402,14 @@ Forgot
                                                     />
                                                 )}
 
-                                                {error && error.email ? (<span id="email-error" className="text-danger">{error.email}</span>) : null}
+                                                {error && error.email ? (
+                                                    <span
+                                                      id="email-error"
+                                                      className="text-danger"
+                                                    >
+                                                        {error.email}
+                                                    </span>
+                                                ) : null}
                                                 <Input
                                                   data-test="email"
                                                   inputProps={{
@@ -383,7 +426,14 @@ Forgot
                                                   name="email" id="email"
                                                 />
 
-                                                {error && error.password1 ? (<span id="password-error" className="text-danger">{error.password1}</span>) : null}
+                                                {error && error.password1 ? (
+                                                    <span
+                                                      id="password-error"
+                                                      className="text-danger"
+                                                    >
+                                                        {error.password1}
+                                                    </span>
+                                                ) : null}
                                                 <Input
                                                   data-test="password"
                                                   inputProps={{
@@ -423,7 +473,7 @@ Forgot
                             )}
                         </div>
 
-                        <Footer className="homepage" />
+                        <Footer className="homepage"/>
                     </div>
                 )}
             </AccountProvider>

@@ -18,7 +18,11 @@ const controller = {
     createSegment(projectId, _data) {
         store.saving();
         API.trackEvent(Constants.events.CREATE_SEGMENT);
-        data.post(`${Project.api}projects/${projectId}/segments/?format=json`, { ..._data, rules: JSON.stringify(_data.rules), project: parseInt(projectId) })
+        data.post(`${Project.api}projects/${projectId}/segments/?format=json`, {
+            ..._data,
+            rules: JSON.stringify(_data.rules),
+            project: parseInt(projectId),
+        })
             .then((res) => {
                 data.get(`${Project.api}projects/${projectId}/segments/?format=json`)
                     .then((res) => {
@@ -29,7 +33,11 @@ const controller = {
             });
     },
     editSegment(projectId, _data) {
-        data.put(`${Project.api}projects/${projectId}/segments/${_data.id}/?format=json`, { ..._data, rules: JSON.stringify(_data.rules), project: parseInt(projectId) })
+        data.put(`${Project.api}projects/${projectId}/segments/${_data.id}/?format=json`, {
+            ..._data,
+            rules: JSON.stringify(_data.rules),
+            project: parseInt(projectId),
+        })
             .then((res) => {
                 data.get(`${Project.api}projects/${projectId}/segments/?format=json`)
                     .then((res) => {

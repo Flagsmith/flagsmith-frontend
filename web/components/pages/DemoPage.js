@@ -38,7 +38,7 @@ const DemoPage = class extends Component {
                                             <a
                                               href="support@bullet-train.io"
                                             >
-Support
+                                                Support
                                             </a>
                                         </p>
                                     </div>

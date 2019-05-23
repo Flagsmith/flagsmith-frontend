@@ -4,7 +4,7 @@ const cn = require('classnames');
 const Flex = class extends React.Component {
     render() {
         return (
-            <div {... this.props} className={`${this.props.className || ''} flex flex-1`}>
+            <div {...this.props} className={`${this.props.className || ''} flex flex-1`}>
                 {this.props.children}
             </div>
         );

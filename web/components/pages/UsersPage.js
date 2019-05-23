@@ -37,7 +37,8 @@ const UsersPage = class extends Component {
                     <div>
                         <h3>Users</h3>
                         <p>
-                            View and manage features states for individual users. This will override individual default feature
+                            View and manage features states for individual users. This will override individual default
+                            feature
                             settings for your selected environment.
                         </p>
                         <FormGroup>
@@ -67,26 +68,27 @@ const UsersPage = class extends Component {
                                                   )}
                                                   renderNoResults={(
                                                       <FormGroup className="text-center">
-You have no
-                                                        users
-                                                        in your
-                                                        project.
+                                                            You have no
+                                                            users
+                                                            in your
+                                                            project.
                                                       </FormGroup>
-)}
+                                                    )}
                                                   filterRow={(flag, search) => flag.identifier.indexOf(search) != -1}
                                                 />
                                             </FormGroup>
                                         )}
                                         <FormGroup>
                                             <p className="faint">
-                                                Users are created for your environment automatically when calling identify/get flags
+                                                Users are created for your environment automatically when calling
+                                                identify/get flags
                                                 from any of the SDKs.
                                                 <br/>
                                                 We've created
                                                 {' '}
                                                 <strong>user_123456</strong>
                                                 {' '}
-for you so you always have an example user to
+                                                for you so you always have an example user to
                                                 test with on your environments.
                                             </p>
                                             <CodeHelp

@@ -4,15 +4,14 @@ const cn = require('classnames');
 const Column = class extends React.Component {
     render() {
         return (
-            <div {... this.props} className={`${this.props.className || ''} flex-column`}>
+            <div {...this.props} className={`${this.props.className || ''} flex-column`}>
                 {this.props.children}
             </div>
         );
     }
 };
 
-Column.defaultProps = {
-};
+Column.defaultProps = {};
 
 Column.propTypes = {
     className: OptionalString,

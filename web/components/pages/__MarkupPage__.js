@@ -26,7 +26,7 @@ export default class ExampleOne extends Component {
                         <p className="no-mb">This is a paragraph.</p>
                         <p className="text-small no-mb">This is some small paragraph text.</p>
                         <p>
-							View and manage
+                            View and manage
                             {' '}
                             <Tooltip
                               title={<a className="dark" href="#">feature flags</a>}
@@ -35,7 +35,7 @@ export default class ExampleOne extends Component {
                                 {Constants.strings.FEATURE_FLAG_DESCRIPTION}
                             </Tooltip>
                             {' '}
-and
+                            and
                             {' '}
                             {' '}
                             <Tooltip
@@ -45,8 +45,8 @@ and
                                 {Constants.strings.REMOTE_CONFIG_DESCRIPTION}
                             </Tooltip>
                             {' '}
-for
-							your selected environment.
+                            for
+                            your selected environment.
 
                         </p>
                     </section>
@@ -89,8 +89,8 @@ for
 
                         <Input
                           inputProps={{
-						    name: 'firstName',
-						    className: 'full-width',
+                              name: 'firstName',
+                              className: 'full-width',
                           }}
                           className="input-default full-width"
                           placeholder="First name"
@@ -102,8 +102,8 @@ for
                         <FormGroup className="mt-3">
                             <InputGroup
                               inputProps={{
-							    className: 'full-width',
-							    name: 'featureID',
+                                  className: 'full-width',
+                                  name: 'featureID',
                               }}
                               value={null}
                               type="text" title="ID"
@@ -116,7 +116,7 @@ for
 
                     <section className="pt-5 pb-3">
                         <h2>Components</h2>
-                        <PricingPanel />
+                        <PricingPanel/>
                     </section>
 
                 </div>

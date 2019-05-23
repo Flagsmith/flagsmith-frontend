@@ -108,7 +108,10 @@ const Feedback = class extends Component {
                                 Comments
                             </strong>
                         </div>
-                        <textarea name="comments" rows={5} onChange={e => this.setState({ comments: Utils.safeParseEventValue(e) })} />
+                        <textarea
+                          name="comments" rows={5}
+                          onChange={e => this.setState({ comments: Utils.safeParseEventValue(e) })}
+                        />
                     </FormGroup>
                 </form>
                 <div className="text-right">

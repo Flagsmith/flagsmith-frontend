@@ -87,18 +87,18 @@ const CreateFlag = class extends Component {
                                               tabLabel={(
                                                   <Row className="row-center">
                                                       <ion className="tab-icon ion-ios-switch"/>
-                                                         Feature Flag
+                                                        Feature Flag
                                                   </Row>
-)}
+                                                )}
                                             />
                                             <TabItem
                                               value="CONFIG"
                                               id="btn-select-remote-config" tabLabel={(
                                                   <Row className="row-center">
                                                       <ion className="tab-icon ion-ios-settings"/>
-                                                Remote config
+                                                    Remote config
                                                   </Row>
-)}
+                                            )}
                                             />
                                         </Tabs>
                                     </FormGroup>
@@ -169,12 +169,12 @@ const CreateFlag = class extends Component {
                                                 {' '}
                                                 <strong>{identity}</strong>
                                                 {' '}
-in
+                                                in
                                                 <strong>
                                                     {' '}
                                                     {
-                                                _.find(project.environments, { api_key: this.props.environmentId }).name
-                                            }
+                                                        _.find(project.environments, { api_key: this.props.environmentId }).name
+                                                    }
                                                 </strong>
                                             </p>
                                         ) : (
@@ -183,8 +183,8 @@ in
                                                 {' '}
                                                 <strong>
                                                     {
-                                                _.find(project.environments, { api_key: this.props.environmentId }).name
-                                            }
+                                                        _.find(project.environments, { api_key: this.props.environmentId }).name
+                                                    }
                                                 </strong>
                                             </p>
                                         )}

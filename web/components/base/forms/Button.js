@@ -1,25 +1,25 @@
 const Button = class extends React.Component {
-  static displayName ='Button'
+    static displayName = 'Button'
 
-  constructor(props, context) {
-      super(props, context);
-      this.state = {};
-  }
+    constructor(props, context) {
+        super(props, context);
+        this.state = {};
+    }
 
-  onMouseUp = () => {
-      this.refs.button.blur();
-  }
+    onMouseUp = () => {
+        this.refs.button.blur();
+    }
 
-  render() {
-      return (
-          <button
-            ref="button" {... this.props} onMouseUp={this.onMouseUp}
-            className={`btn ${this.props.className || ''}`}
-          >
-              {this.props.children}
-          </button>
-      );
-  }
+    render() {
+        return (
+            <button
+              ref="button" {...this.props} onMouseUp={this.onMouseUp}
+              className={`btn ${this.props.className || ''}`}
+            >
+                {this.props.children}
+            </button>
+        );
+    }
 };
 
 Button.propTypes = {

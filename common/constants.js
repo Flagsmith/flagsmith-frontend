@@ -161,8 +161,7 @@ const Constants = {
             '.NET': require('./code-help/install/install-dotnet')(keywords),
         },
     },
-    simulate: {
-    },
+    simulate: {},
 };
 
 module.exports = Constants;

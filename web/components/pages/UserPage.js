@@ -85,7 +85,8 @@ const UserPage = class extends Component {
                                             {this.props.params.id}
                                         </h3>
                                         <p>
-                                            View and manage feature states and traits for this user. This will override any feature
+                                            View and manage feature states and traits for this user. This will override
+                                            any feature
                                             states you have for your current environment for this user only. Any
                                             features that are not overriden for this user will fallback to the
                                             environment defaults.
@@ -180,21 +181,21 @@ const UserPage = class extends Component {
                                                         title="Features"
                                                         className="text-center"
                                                       >
-                                                        This user has no features yet.
+                                                            This user has no features yet.
                                                           {' '}
                                                           <br/>
-                                                        When you start
+                                                            When you start
                                                           {' '}
                                                           <Link
                                                             className="dark"
                                                             to={`project/${this.props.params.projectId}/environment/${this.props.params.environmentId}/features`}
                                                           >
-                                                            creating features
+                                                                creating features
                                                           </Link>
                                                           {' '}
-                                                        for your project you will set them per user here.
+                                                            for your project you will set them per user here.
                                                       </Panel>
-)}
+                                                    )}
                                                   filterRow={({ name }, search) => name.toLowerCase().indexOf(search) > -1}
                                                 />
                                             </FormGroup>
@@ -240,9 +241,9 @@ const UserPage = class extends Component {
                                                         title="Traits"
                                                         className="text-center"
                                                       >
-                                                        This user has no traits.
+                                                            This user has no traits.
                                                       </Panel>
-)}
+                                                    )}
                                                   filterRow={({ trait_key }, search) => trait_key.toLowerCase().indexOf(search) > -1}
                                                 />
                                             </FormGroup>

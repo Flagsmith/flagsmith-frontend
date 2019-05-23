@@ -140,15 +140,15 @@ const SegmentsPage = class extends Component {
                                                                     })}
                                                                     className="btn btn--with-icon"
                                                                   >
-                                                                      <RemoveIcon />
+                                                                      <RemoveIcon/>
                                                                   </button>
                                                               </Column>
                                                           </Row>
                                                       </Row>
                                                   )}
                                                   renderNoResults={(
-                                                      <div className="text-center" />
-)}
+                                                      <div className="text-center"/>
+                                                    )}
                                                   filterRow={({ name }, search) => name.toLowerCase().indexOf(search) > -1}
                                                 />
                                             </FormGroup>
@@ -168,9 +168,15 @@ const SegmentsPage = class extends Component {
                                                     <p>
                                                         You can create a segment that targets
                                                         {' '}
-                                                        <a href="https://docs.bullet-train.io/managing-identities/#identity-traits" target="new">User Traits</a>
-.
-                                                        As user's traits are updated they will automatically be added to the segments based on the rules you create.
+                                                        <a
+                                                          href="https://docs.bullet-train.io/managing-identities/#identity-traits"
+                                                          target="new"
+                                                        >
+User Traits
+                                                        </a>
+                                                        .
+                                                        As user's traits are updated they will automatically be added to
+                                                        the segments based on the rules you create.
                                                     </p>
                                                 </Panel>
                                             </FormGroup>
@@ -181,7 +187,7 @@ const SegmentsPage = class extends Component {
                                                 >
                                                     <ion className="icon ion-ios-globe"/>
                                                     {' '}
-Create your first Segment
+                                                    Create your first Segment
                                                 </Button>
                                             </FormGroup>
                                         </div>

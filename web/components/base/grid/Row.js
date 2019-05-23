@@ -8,7 +8,7 @@ const Row = (props) => {
 
     return (
         <div
-          {... rest}
+          {...rest}
           className={cn({
               'flex-row': true,
               space: props.space,

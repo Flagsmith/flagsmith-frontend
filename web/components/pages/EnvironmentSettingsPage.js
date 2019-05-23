@@ -113,7 +113,10 @@ const EnvironmentSettingsPage = class extends Component {
                                                               placeholder="Environment Name"
                                                             />
                                                         </Column>
-                                                        <Button id="save-env-btn" className="float-right" disabled={this.saveDisabled()}>
+                                                        <Button
+                                                          id="save-env-btn" className="float-right"
+                                                          disabled={this.saveDisabled()}
+                                                        >
                                                             {isSaving ? 'Updating' : 'Update Name'}
                                                         </Button>
                                                     </Row>
@@ -151,7 +154,7 @@ const EnvironmentSettingsPage = class extends Component {
                                                   })}
                                                   className="btn btn--with-icon ml-auto btn--remove"
                                                 >
-                                                    <RemoveIcon />
+                                                    <RemoveIcon/>
                                                 </Button>
                                             </Row>
                                         </FormGroup>

@@ -44,7 +44,7 @@ const PaymentModal = class extends Component {
                                             <div className="col-md-3 pricing-panel">
                                                 <div className="panel panel-default">
                                                     <div className="panel-content">
-                                                        <p className="featured" />
+                                                        <p className="featured"/>
                                                         <p className="pricing-price">Side Project</p>
                                                         <img
                                                             src="/images/growth.svg" alt="free icon"
@@ -59,22 +59,22 @@ const PaymentModal = class extends Component {
                                                                   data-cb-plan-id="side-project"
                                                                   className="pricing-cta blue"
                                                                 >
-Buy
+                                                                    Buy
                                                                 </a>
                                                               ) : null}
                                                     </div>
                                                     <div className="panel-footer">
                                                         <p className="text-small text-center link-style">
-What's
+                                                            What's
                                                             included
                                                           </p>
                                                         <ul className="pricing-features">
                                                               <li>
                                                                 <p>
-Up to
+                                                                    Up to
                                                                     <strong>20,000</strong>
                                                                     {' '}
-requests per month
+                                                                    requests per month
                                                                 </p>
                                                             </li>
                                                               <li><p>Unlimited Administrator Accounts</p></li>
@@ -90,7 +90,7 @@ requests per month
                                         <div className="col-md-3 pricing-panel">
                                             <div className="panel panel-default">
                                                 <div className="panel-content">
-                                                    <p className="featured" />
+                                                    <p className="featured"/>
                                                     <p className="pricing-price">Start-Up</p>
                                                     <img
                                                       src="/images/startup.svg" alt="Startup icon"
@@ -104,7 +104,7 @@ requests per month
                                                             data-cb-plan-id="startup"
                                                             className="pricing-cta blue"
                                                           >
-Buy
+                                                            Buy
                                                           </a>
                                                     ) : null}
                                                 </div>
@@ -113,10 +113,10 @@ Buy
                                                     <ul className="pricing-features">
                                                         <li>
                                                               <p>
-Up to
+                                                                Up to
                                                                 <strong>250,000</strong>
                                                                 {' '}
-requests per month
+                                                                requests per month
                                                             </p>
                                                           </li>
                                                         <li><p>Unlimited Administrator Accounts</p></li>
@@ -145,7 +145,7 @@ requests per month
                                                             data-cb-plan-id="scale-up"
                                                             className="pricing-cta"
                                                           >
-Buy
+                                                            Buy
                                                           </a>
                                                     ) : null}
                                                 </div>
@@ -154,10 +154,10 @@ Buy
                                                     <ul className="pricing-features">
                                                         <li>
                                                               <p>
-Up to
+                                                                Up to
                                                                 <strong>2 million</strong>
                                                                 {' '}
-requests per month
+                                                                requests per month
                                                             </p>
                                                           </li>
                                                         <li><p>Private Discord Technical Support</p></li>
@@ -170,7 +170,7 @@ requests per month
                                         <div className="col-md-3 pricing-panel">
                                             <div className="panel panel-default">
                                                 <div className="panel-content">
-                                                    <p className="featured" />
+                                                    <p className="featured"/>
                                                     <p className="pricing-price">Enterprise</p>
                                                     <img
                                                       src="/images/cubes.svg" alt="Enterprise icon"
@@ -183,7 +183,7 @@ requests per month
                                                             href="mailto:enterprise@bullet-train.io"
                                                             className="pricing-cta blue"
                                                           >
-Contact Us
+                                                            Contact Us
                                                           </a>
                                                     ) : null}
                                                 </div>
@@ -194,10 +194,10 @@ Contact Us
                                                         <li><p>Optional On Premise Installation</p></li>
                                                         <li>
                                                               <p>
-Over
+                                                                Over
                                                                 <strong>2 million</strong>
                                                                 {' '}
-requests per month
+                                                                requests per month
                                                             </p>
                                                           </li>
                                                         <li><p>Private Discord Support</p></li>
