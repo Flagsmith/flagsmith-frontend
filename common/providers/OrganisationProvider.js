@@ -9,20 +9,24 @@ const OrganisationProvider = class extends Component {
 	constructor(props, context) {
 		super(props, context);
 		this.state = {
-			isLoading: !OrganisationStore.getProjects(),
+			isLoading: !OrganisationStore.getProjects() || OrganisationStore.isLoading,
 			projects: OrganisationStore.getProjects(),
+			project: OrganisationStore.getProject(),
 			users: OrganisationStore.getUsers(),
 			invites: OrganisationStore.getInvites(),
 			name: AccountStore.getOrganisation() && AccountStore.getOrganisation().name,
+			usage: OrganisationStore.getUsage(),
 		};
 		ES6Component(this);
 		this.listenTo(OrganisationStore, 'change', () => {
 			this.setState({
 				isSaving: OrganisationStore.isSaving,
 				isLoading: OrganisationStore.isLoading,
-				projects: OrganisationStore.getProjects(),
+				projects: OrganisationStore.getProjects(this.props.id),
+				project: OrganisationStore.getProject(),
 				users: OrganisationStore.getUsers(),
 				invites: OrganisationStore.getInvites(),
+				usage: OrganisationStore.getUsage(),
 			});
 		})
 		this.listenTo(OrganisationStore, 'saved', () => {
@@ -34,12 +38,17 @@ const OrganisationProvider = class extends Component {
 		AppActions.createProject(name)
 	};
 
+	selectProject = (id) => {
+		AppActions.getProject(id);
+	};
+
 	render() {
 		return (
 			this.props.children(
 				{
 					...this.state,
 					createProject: this.createProject,
+					selectProject: this.selectProject,
 				},
 			)
 		);

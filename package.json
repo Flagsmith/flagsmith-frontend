@@ -4,7 +4,8 @@
   "description": "The frontend application for Bullet Train",
   "main": "index.js",
   "scripts": {
-    "test": "cross-env E2E=true nightwatch ./tests/index.test.js",
+    "kill": "kill -9 $(lsof -ti tcp:4444)",
+    "test": "npm run kill & cross-env E2E=true nightwatch ./tests/index.test.js",
     "env": "node ./bin/env.js",
     "start": "cross-env NODE_ENV=production node ./server",
     "dev": "cross-env npm run env && node_modules/.bin/nodemon --watch server --ignore server/config/config.json --watch webpack --exec node ./server",
@@ -53,7 +54,6 @@
     "eslint-plugin-react": "7.11.1",
     "eslint-watch": "4.0.2",
     "extract-text-webpack-plugin": "4.0.0-beta.0",
-    "file-loader": "2.0.0",
     "flux-react-dispatcher": "1.2.5",
     "html-loader": "0.5.5",
     "html-webpack-plugin": "3.2.0",

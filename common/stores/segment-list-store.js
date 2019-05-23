@@ -8,43 +8,36 @@ var controller = {
             if (!store.model || store.envId != environmentId) { //todo: change logic a bit
                 store.loading()
                 store.envId = environmentId;
+                data.get(`${Project.api}projects/${projectId}/segments/?format=json`)
+                    .then((res)=>{
+                        store.model = res.results.map((segment)=>({...segment,rules:JSON.parse(segment.rules)}));
+                        store.loaded();
+                    })
 
-                //todo: cache project flags
-                return Promise.all([
-                    data.get(`${Project.api}projects/${projectId}/segments/?format=json`),
-                    data.get(`${Project.api}environments/${environmentId}/segmentstates/?format=json`),
-                ]).then(([segments, environmentSegments]) => {
-                    store.model = {
-                        segments: segments.results,
-                        keyedEnvironmentSegments: environmentSegments.results && _.keyBy(environmentSegments.results, "segment"),
-                    };
-                    store.loaded();
-                }).catch((e) => API.ajaxHandler(store, e));
             }
         },
-        createSegment(projectId, environmentId, flag) {
+        createSegment(projectId, _data) {
             store.saving();
-            API.trackEvent(Constants.events.CREATE_FEATURE);
-            data.post(`${Project.api}projects/${projectId}/segments/?format=json`, Object.assign({}, flag, {project: projectId}))
+            API.trackEvent(Constants.events.CREATE_SEGMENT);
+            data.post(`${Project.api}projects/${projectId}/segments/?format=json`, {..._data, rules:JSON.stringify(_data.rules), project:parseInt(projectId)})
                 .then((res) => {
-                    return Promise.all([
-                        data.get(`${Project.api}projects/${projectId}/segments/?format=json`),
-                        data.get(`${Project.api}environments/${environmentId}/segmentstates/?format=json`),
-                    ]).then(([segments, environmentSegments]) => {
-                        store.model = {
-                            segments: segments.results,
-                            keyedEnvironmentSegments: environmentSegments && _.keyBy(environmentSegments.results, "segment"),
-                        };
-                        store.saved();
-                    });
+                    data.get(`${Project.api}projects/${projectId}/segments/?format=json`)
+                        .then((res)=>{
+                            store.model = res.results.map((segment)=>({...segment,rules:JSON.parse(segment.rules)}));
+                            store.loaded();
+                            store.saved();
+                        })
                 })
         },
-        editSegment(projectId, flag) {
-            data.put(`${Project.api}projects/${projectId}/segments/${flag.id}/`, flag)
+        editSegment(projectId, _data) {
+            data.put(`${Project.api}projects/${projectId}/segments/${_data.id}/?format=json`, {..._data, rules:JSON.stringify(_data.rules), project:parseInt(projectId)})
                 .then((res) => {
-                    const index = _.findIndex(store.model.segments, {id: flag.id});
-                    store.model.segments[index] = flag;
-                    store.changed();
+                    data.get(`${Project.api}projects/${projectId}/segments/?format=json`)
+                        .then((res)=>{
+                            store.model = res.results.map((segment)=>({...segment,rules:JSON.parse(segment.rules)}));
+                            store.loaded();
+                            store.saved();
+                        })
                 })
 
         },
@@ -94,13 +87,17 @@ var controller = {
             })
 
         },
-        removeSegment: (projectId, flag) => {
+        removeSegment: (projectId, id) => {
             store.saving();
             API.trackEvent(Constants.events.REMOVE_FEATURE);
-            return data.delete(`${Project.api}projects/${projectId}/segments/${flag.id}/`)
+            return data.delete(`${Project.api}projects/${projectId}/segments/${id}/`)
                 .then(() => {
-                    store.model.segments = _.filter(store.model.segments, (f) => f.id != flag.id);
-                    store.saved();
+                    data.get(`${Project.api}projects/${projectId}/segments/?format=json`)
+                        .then((res)=>{
+                            store.model = res.results.map((segment)=>({...segment,rules:JSON.parse(segment.rules)}));
+                            store.loaded();
+                            store.saved();
+                        })
                 })
 
         }
@@ -108,14 +105,8 @@ var controller = {
     },
     store = Object.assign({}, BaseStore, {
         id: 'segments',
-        getEnvironmentSegments: function () {
-            return store.model && store.model.keyedEnvironmentSegments
-        },
-        getProjectSegments: function () {
-            return store.model && store.model.segments
-        },
-        hasSegmentInEnvironment: function (id) {
-            return store.model && store.model.keyedEnvironmentSegments && store.model.keyedEnvironmentSegments.hasOwnProperty(id)
+        getSegments: function () {
+            return store.model
         },
     });
 
@@ -127,20 +118,17 @@ store.dispatcherIndex = Dispatcher.register(store, function (payload) {
         case Actions.GET_SEGMENTS:
             controller.getSegments(action.projectId, action.environmentId);
             break;
-        case Actions.TOGGLE_SEGMENT:
-            controller.toggleSegment(action.index, action.environments, action.comment);
-            break;
         case Actions.CREATE_SEGMENT:
-            controller.createSegment(action.projectId, action.environmentId, action.flag);
+            controller.createSegment(action.projectId, action.data);
             break;
         case Actions.EDIT_ENVIRONMENT_SEGMENT:
             controller.editSegmentState(action.projectId, action.environmentId, action.flag, action.projectSegment, action.environmentSegment);
             break;
         case Actions.EDIT_SEGMENT:
-            controller.editSegment(action.projectId, action.flag);
+            controller.editSegment(action.projectId, action.data);
             break;
         case Actions.REMOVE_SEGMENT:
-            controller.removeSegment(action.projectId, action.flag);
+            controller.removeSegment(action.projectId, action.id);
             break;
         default:
             return;

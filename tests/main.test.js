@@ -1,45 +1,41 @@
 const expect = require('chai').expect;
-
 const inviteEmail = 'bullet-train@mailinator.com';
 const email = 'nightwatch@solidstategroup.com';
 const password = 'nightwatch';
 const url = 'http://localhost:' + (process.env.PORT || 8080);
-
-module.exports = {
+const helpers = require('./helpers');
+const byId= helpers.byTestID;
+    module.exports = {
     '[Main Tests] - Register': function (browser) {
         browser
             .url(url)   // visit the url
-            .waitForElementVisible('[name="firstName"]') // wait for the sign up fields to show
-            .setValue('[name="firstName"]', 'Night')
-            .setValue('[name="lastName"]', 'Watch')
-            .setValue('[name="companyName"]', 'Nightwatch Ltd')
-            .setValue('[name="email"]', email)
-            .setValue('[name="password"]', password)
-            .click('button[name="signup-btn"]')
-            .waitForElementVisible('#project-select-page');
+            .waitAndSet(byId('firstName'), 'Night')
+            .setValue(byId('lastName'), 'Watch')
+            .setValue(byId('companyName'), 'Nightwatch Ltd')
+            .setValue(byId('email'), email)
+            .setValue(byId('password'), password)
+            .click(byId('signup-btn'))
+            .waitForElementVisible(byId('project-select-page'));
     },
     '[Main Tests] - Create project': function (browser) {
         browser
-            .waitForElementVisible('#create-first-project-btn')
-            .click('#create-first-project-btn')
-            .waitForElementVisible('[name="projectName"]')
-            .setValue('[name="projectName"]', 'My Test Project')
-            .click('#create-project-btn')
-            .waitForElementVisible('#features-page');
+            .waitAndClick(byId('create-first-project-btn'))
+            .waitAndSet(byId('projectName'), 'My Test Project')
+            .click(byId('create-project-btn'))
+            .waitForElementVisible(byId('features-page'));
     },
     '[Main Tests] - Create feature': function (browser) {
         browser
             .waitForElementNotPresent('#create-project-modal')
             .click('#show-create-feature-btn')
-            .waitForElementVisible('#btn-select-remote-config')
-            .click('#btn-select-remote-config')
+            .waitAndClick('#btn-select-remote-config')
             .setValue('[name="featureID"]', 'header_size')
             .setValue('[name="featureValue"]', 'big')
             .setValue('[name="featureDesc"]', 'This determines what size the header is')
             .click('#create-feature-btn')
             .waitForElementVisible('#features-list div.list-item')
             .waitForElementNotPresent('#create-feature-modal')
-            .click('#features-list div.list-item')
+            .click('#features-list div.list-item div')
             .waitForElementVisible('#update-feature-btn')
             .getValue('[name="featureID"]', res => {
                 browser.assert.equal(res.value, 'header_size');
@@ -68,12 +64,13 @@ module.exports = {
     '[Main Tests] - Create feature 3': function (browser) {
         browser
             .waitForElementNotPresent('#create-feature-modal')
+            .waitForElementVisible('#show-create-feature-btn')
             .click('#show-create-feature-btn')
             .waitForElementVisible('[name="featureID"]')
             .setValue('[name="featureID"]', 'short_life_feature')
             .setValue('[name="featureDesc"]', 'This feature is pointless')
             .click('#create-feature-btn')
-            .waitForElementVisible('#features-list div.list-item:nth-child(3)');
+            .waitForElementVisible('#features-list div.list-item:nth-child(3) div'); //todo change
     },
     '[Main Tests] - Delete feature 3': function (browser) {
         browser
@@ -193,33 +190,24 @@ module.exports = {
     },
     '[Main Tests] - Switch environment': function (browser) {
         browser
-            .click('#env-menu')
-            .useXpath()
-            .waitForElementVisible("//div[@id='env-list']//div[text()='Production']")
-            .pause(200) // Wait for environment select popover to appear
-            .click("//div[@id='env-list']//div[text()='Production']")
-            .useCss();
-
-        browser.expect.element('#selected-env').text.to.equal('Production');
+            .waitAndClick(byId('switch-environment-production'))
+        browser.waitForElementVisible(byId('switch-environment-production-active'))
     },
     '[Main Tests] - Feature should be off under different environment': function (browser) {
         browser.expect.element('#features-list span[class="rc-switch"]').to.be.visible;
     },
     '[Main Tests] - Create environment': function (browser) {
         browser
-            .click('#env-menu')
-            .waitForElementVisible("#create-env-link")
-            .pause(200) // Wait for environment select popover to appear
-            .click("#create-env-link")
+            .waitAndClick("#create-env-link")
             .waitForElementVisible('[name="envName"]')
             .setValue('[name="envName"]', 'Staging')
             .click('#create-env-btn');
 
-        browser.expect.element('#selected-env').text.to.equal('Staging');
+        browser.waitForElementVisible(byId('switch-environment-staging-active'))
     },
     '[Main Tests] - Edit flag for user': function (browser) {
         browser
-            .click('#users-link')
+            .waitAndClick('#users-link')
             .waitForElementVisible('#users-list div.list-item')
             .click('#users-list div.list-item')
             .useXpath()
@@ -273,7 +261,7 @@ module.exports = {
             .setValue("[name='env-name']", 'Internal')
             .click("#save-env-btn");
 
-        browser.expect.element('#selected-env').text.to.equal('Internal');
+        browser.waitForElementVisible(byId('switch-environment-internal-active'))
     },
     '[Main Tests] - Delete environment': function (browser) {
         browser
@@ -299,7 +287,7 @@ module.exports = {
             .setValue("[name='proj-name']", 'Test Project')
             .click("#save-proj-btn");
 
-        browser.expect.element('#selected-proj').text.to.equal('Test Project');
+        browser.waitForElementVisible(byId('switch-project-test project-active'))
     },
     '[Main Tests] - Delete Nightwatch Ltd organisation': function (browser) {
         browser

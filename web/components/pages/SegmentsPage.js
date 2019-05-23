@@ -46,8 +46,8 @@ const SegmentsPage = class extends Component {
 
     editSegment = (segment) => {
         API.trackEvent(Constants.events.VIEW_SEGMENT);
-        openModal('Edit Feature', <CreateSegmentModal
-            flags={flags}
+        openModal('Edit Segment', <CreateSegmentModal
+            segment={segment}
             isEdit={true}
             environmentId={this.props.params.environmentId}
             projectId={this.props.params.projectId}
@@ -62,9 +62,9 @@ const SegmentsPage = class extends Component {
         }
     }
 
-    confirmRemove = (projectFlag, cb) => {
+    confirmRemove = (segment, cb) => {
         openModal("Remove Segment", <ConfirmRemoveSegment environmentId={this.props.params.environmentId}
-                                                          projectFlag={projectFlag}
+                                                          segment={segment}
                                                           cb={cb}/>)
     }
 
@@ -76,7 +76,7 @@ const SegmentsPage = class extends Component {
     render() {
         const {projectId, environmentId} = this.props.params;
         return (
-            <div id="features-page" className="app-container container">
+            <div data-test="segments-page" id="segments-page" className="app-container container">
                 <SegmentListProvider onSave={this.onSave} onError={this.onError}>
                     {({isLoading, segments}, { removeSegment}) => (
                         <div className="segments-page">
@@ -85,10 +85,23 @@ const SegmentsPage = class extends Component {
                                 <div>
                                     {segments && segments.length ? (
                                         <div>
-                                            <h3>Segments</h3>
-                                            <p>
-                                                Create and manage groups of users with similar traits.
-                                            </p>
+                                            <Row>
+                                                <Flex>
+                                                    <h3>Segments</h3>
+                                                    <p>
+                                                        Create and manage groups of users with similar traits.
+                                                    </p>
+                                                </Flex>
+                                                <FormGroup className={'float-right'}>
+                                                    <div className="text-right">
+                                                        <Button className={"btn-lg btn-primary"} id="show-create-feature-btn"
+                                                                onClick={this.newSegment}>
+                                                            Create Segment
+                                                        </Button>
+                                                    </div>
+                                                </FormGroup>
+                                            </Row>
+
                                             <FormGroup>
                                                 <PanelSearch
                                                     className={"no-pad"}
@@ -113,11 +126,11 @@ const SegmentsPage = class extends Component {
                                                                 <Column>
                                                                     <button
                                                                         id="remove-feature"
-                                                                        onClick={() => this.confirmRemove(projectFlags[i], () => {
-                                                                            removeSegment(this.props.params.projectId, projectFlags[i])
+                                                                        onClick={() => this.confirmRemove(segments[i], () => {
+                                                                            removeSegment(this.props.params.projectId, segments[i].id)
                                                                         })}
-                                                                        className={"btn btn-primary"}>
-                                                                        Remove
+                                                                        className={"btn btn--with-icon"}>
+                                                                        <RemoveIcon />
                                                                     </button>
                                                                 </Column>
                                                             </Row>
@@ -135,12 +148,6 @@ const SegmentsPage = class extends Component {
                                                 <CodeHelp
                                                     title={"Using segments"}
                                                     snippets={Constants.codeHelp.SEGMENTS(environmentId)}/>
-                                            </FormGroup>
-                                            <FormGroup>
-                                                <TryIt
-                                                    title={"Test what values are being returned from the API on this environment"}
-                                                    environmentId={this.props.params.environmentId}
-                                                />
                                             </FormGroup>
                                         </div>
                                     ) : (

@@ -22,6 +22,7 @@ const formatCommit = function () {
     }
     return "\nBranch: Local" + "\nCommit: '...'"
 }
+
 const sendSuccess = function () {
     if(SLACK_TOKEN) {
        return slackMessage("Tests Passed!" + formatCommit(), E2E_SLACK_CHANNEL_NAME);
@@ -64,10 +65,11 @@ const clearDown = function(browser,done) {
 
 module.exports = Object.assign(
     {
-        // afterEach(browser, done) {
-        //     browser.pause(1000)
-        //     setTimeout(done,4000)
-        // },
+        beforeEach(browser, done) {
+            browser.waitAndSet = testHelpers.waitAndSet.bind(browser);
+            browser.waitAndClick = testHelpers.waitAndClick.bind(browser);
+            done();
+        },
         before: (browser, done) => {
             if(SLACK_TOKEN) {
                 slackMessage("Running tests." + formatCommit(), E2E_SLACK_CHANNEL_NAME);
@@ -128,9 +130,9 @@ module.exports = Object.assign(
             }
         }
     },
-    // require('./main.test'), // Main flow tests
-    // require('./invite.test'), // Invite user tests
-    // require('./register-fail.test'), // Registration failure tests
+    require('./main.test'), // Main flow tests
+    require('./invite.test'), // Invite user tests
+    require('./register-fail.test'), // Registration failure tests
     require('./login-fail.test'), // Login failure tests
 );
 

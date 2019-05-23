@@ -148,7 +148,7 @@ const OrganisationSettingsPage = class extends Component {
                                     )}
 								</div>
 
-                                <div className="panel--grey">
+                                <div className="panel--grey" style={{marginTop: '9em'}}>
                                     <form key={organisation.id} onSubmit={this.save}>
                                         <h5>Organisation Name</h5>
                                         <Row>
@@ -187,19 +187,32 @@ const OrganisationSettingsPage = class extends Component {
                                 </div>
                             </div>
                         </FormGroup>
-                        <FormGroup className="m-y-3">
-                            <div className="panel--grey">
+                        <FormGroup className="mt-5">
+                            <div>
                                 <OrganisationProvider>
-                                    {({ isLoading, name, projects, users, invites }) => (
+                                    {({ isLoading, name, projects, usage, users, invites }) => (
                                         <div>
+
+                                            <div className="col-md-12">
                                             <div className="flex-row header--icon">
-                                                <h5>Team Members</h5>
-                                                <button id={"btn-invite"} onClick={() => openModal(<InviteUsersModal/>)} className={'btn btn--with-icon p-x-0 p-y-0'}>
+                                                <h5>Your usage</h5>
+                                            </div>
+                                            {!isLoading && (
+                                                <div>
+                                                    <p>You have made <strong>{`${Utils.numberWithCommas(usage)}`}</strong> requests over the past 30 days.</p>
+                                                </div>
+                                            )}
+
+                                            <div className="flex-row header--icon mt-5">
+                                                <h5>Team members</h5>
+                                                <button id={"btn-invite"} onClick={() => openModal("Invite Users", <InviteUsersModal/>)} className={'btn btn--with-icon p-x-0 p-y-0'}>
                                                     <img className="btn__icon" src="/images/icons/plus-button.svg" alt="Invite"/>
                                                 </button>
                                             </div>
 
-                                    {isLoading && <div className="centered-container"><Loader/></div>}
+                                            </div>
+                                            <div className="panel--grey">
+                                            {isLoading && <div className="centered-container"><Loader/></div>}
                                     {!isLoading && (
                                         <div>
                                             <FormGroup>
@@ -275,13 +288,14 @@ const OrganisationSettingsPage = class extends Component {
                                                 </div>
                                             )}
                                         </div>
+                                        </div>
                                     )}
                                 </OrganisationProvider>
                             </div>
                         </FormGroup>
-                        <FormGroup className="m-y-3">
+                        <FormGroup className="mt-5">
                             <Row>
-                                <Column className="d-flex">
+                                <Column className="d-flex pl-3">
                                     <h6>Delete Organisation</h6>
                                     <p>This organisation will be deleted permanently along with all projects &
                                         features.</p>

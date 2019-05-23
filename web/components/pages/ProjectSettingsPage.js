@@ -62,6 +62,7 @@ const ProjectSettingsPage = class extends Component {
 															ref={(e) => this.input = e}
 															value={this.state.name||project.name}
 															inputClassName="input input--wide"
+															name="proj-name"
 															onChange={(e) => this.setState({name: Utils.safeParseEventValue(e)})}
 															isValid={name && name.length}
 															type="text" title={<h3>Project Name</h3>}

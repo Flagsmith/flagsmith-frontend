@@ -1,4 +1,4 @@
-module.exports = {
+module.exports = global.Project = {
     debug: false,
     env: 'staging',
     bulletTrain:'8KzETdDeMY7xkqkSkY3Gsg',

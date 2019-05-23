@@ -1,4 +1,4 @@
-module.exports = {
+module.exports = global.Project = {
     debug: false,
     env: 'prod',
     bulletTrain:'4vfqhypYjcPoGGu8ByrBaj',

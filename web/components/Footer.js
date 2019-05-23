@@ -10,12 +10,12 @@ const Footer = class extends React.Component {
     const { hasFeature, className } = this.props;
     return (
       <footer className={className + " clearfix"}>
-        <div className="service-status text-center">
+        <a href="https://status.bullet-train.io/" target="_blank" className="service-status text-center">
           {this.state.operational ?
             <div><span className={"dot green"} />Bullet Train services are operational</div> :
             <div><span className={"dot orange"} />Bullet Train services are experiencing problems. Click <a href="https://cachet.dokku1.solidstategroup.com/">here</a> for more info</div>
           }
-        </div>
+        </a>
         <div className="clearfix">
           <div className="float-left">
             <div className="brand-footer float-left">
@@ -38,6 +38,7 @@ const Footer = class extends React.Component {
               )}
             </ul>
             <ul className=" float-left nav-list">
+              <li><a href="https://github.com/SolidStateGroup?utf8=%E2%9C%93&q=bullet+train" target="_blank">GitHub</a></li>
               <li><a href="mailto:support@bullet-train.io">Support</a></li>
               <li><Link to={"/legal/tos"}  target="_blank">Terms of Service</Link></li>
               <li><Link to={"/legal/privacy-policy"} target="_blank">Privacy Policy</Link></li>

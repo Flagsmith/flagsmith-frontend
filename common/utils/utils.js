@@ -1,4 +1,7 @@
 module.exports = Object.assign({}, require('./base/_utils'), {
+    numberWithCommas(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    },
     getFlagValue: function (projectFlag, environmentFlag, identityFlag) {
         if (!environmentFlag) {
             return {

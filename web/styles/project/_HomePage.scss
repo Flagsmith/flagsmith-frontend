@@ -203,6 +203,9 @@ footer {
     }
     .service-status {
         margin-bottom: 20px;
+        &:hover, :focus {
+            text-decoration: none;
+        }
     }
     .dot {
         width: 8px;
@@ -249,6 +252,12 @@ footer {
     }
 }
 
+.img-fluid {
+    max-width: 100%;
+}
+
+
+
 
 @media screen and (min-width: 1070px) and (max-width: 1270px) {
     .hero {
@@ -276,6 +285,17 @@ footer {
 }
 
 @media (max-width: 576px) {
+    .app-store-badge {
+        margin-right: 0 !important;
+    }
+    .play-badge {
+        margin-left: 0 !important;
+    }
+}
+
+
+@media (max-width: 576px) {
+
     .hero {
         display: block;
         margin-left: 0;

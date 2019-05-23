@@ -12,23 +12,31 @@ var controller = {
                 Promise.all([
                     data.get(`${Project.api}organisations/${id}/projects/?format=json`),
                     data.get(`${Project.api}organisations/${id}/users/?format=json`),
-                    data.get(`${Project.api}organisations/${id}/invites/?format=json`)
+                    data.get(`${Project.api}organisations/${id}/invites/?format=json`),
+                    data.get(`${Project.api}organisations/${id}/usage/?format=json`)
                 ]).then((res) => {
-                    const [projects, users, invites] = res;
-                    store.model = {users, invites: invites && invites.results};
-                    return Promise.all(projects.map((project, i) => {
-                        return data.get(`${Project.api}projects/${project.id}/environments/?format=json`)
-                            .then((res) => {
-                                projects[i].environments = res;
+                    if (id===store.id) {
+                        const [projects, users, invites, usage] = res;
+                        store.model = {users, invites: invites && invites.results};
+                        return Promise.all(projects.map((project, i) => {
+                            return data.get(`${Project.api}projects/${project.id}/environments/?format=json`)
+                                .then((res) => {
+                                    projects[i].environments = res;
+                                })
+                        }))
+                            .then(() => {
+                                projects.sort(function(a, b){
+                                    const textA = a.name.toLowerCase();
+                                    const textB = b.name.toLowerCase();
+                                    return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+                                });
+                                store.model.projects = projects;
+                                store.model.usage = usage && usage.events;
+                                store.model.keyedProjects = _.keyBy(store.model.projects, "id");
+                                store.loaded()
                             })
-                    }))
-                        .then(() => {
-                            store.model.projects = projects;
-                            store.model.keyedProjects = _.keyBy(store.model.projects, "id");
-                            store.loaded()
-                        })
 
-
+                    }
                 });
             }
         },
@@ -134,6 +142,9 @@ var controller = {
         id: 'account',
         getProject: function (id) {
             return store.model && store.model.keyedProjects && store.model.keyedProjects[id];
+        },
+        getUsage: function () {
+            return store.model && store.model.usage;
         },
         getProjects: function () {
             return store.model && store.model.projects;

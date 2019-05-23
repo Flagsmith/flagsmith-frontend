@@ -9,6 +9,7 @@ const AccountProvider = class extends Component {
 		this.state = {
 			isLoading: AccountStore.isLoading,
 			organisation: AccountStore.getOrganisation(),
+			organisations: AccountStore.getOrganisations(),
 			user: AccountStore.getUser()
 		};
 	}
@@ -20,6 +21,7 @@ const AccountProvider = class extends Component {
 				isLoading: AccountStore.isLoading,
 				isSaving: AccountStore.isSaving,
 				organisation: AccountStore.getOrganisation(),
+				organisations: AccountStore.getOrganisations(),
 				user: AccountStore.getUser(),
 				error: AccountStore.error,
 			});
@@ -85,13 +87,14 @@ const AccountProvider = class extends Component {
 	};
 
 	render() {
-		var {isLoading, isSaving, user, organisation, error} = this.state
+		var {isLoading, isSaving, user, organisation,organisations, error} = this.state
 		return (
 			this.props.children({
 				isLoading,
 				isSaving,
 				user,
 				organisation,
+				organisations,
 				error
 			}, {
 				loginDemo: this.loginDemo,

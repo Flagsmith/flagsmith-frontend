@@ -88,7 +88,7 @@ const FeaturesPage = class extends Component {
     render() {
         const {projectId, environmentId} = this.props.params;
         return (
-            <div id="features-page" className="app-container container">
+            <div data-test="features-page" id="features-page" className="app-container container">
                 <FeatureListProvider onSave={this.onSave} onError={this.onError}>
                     {({isLoading, projectFlags, environmentFlags}, {environmentHasFlag, toggleFlag, editFlag, removeFlag}) => (
                         <div className="features-page">
@@ -97,14 +97,27 @@ const FeaturesPage = class extends Component {
                                 <div>
                                     {projectFlags && projectFlags.length ? (
                                         <div>
-                                            <h3>Features</h3>
-                                            <p>
-                                                View and manage <Tooltip title={<a className="dark" href={"#"}>feature flags</a>}
-                                                                         place="right">{Constants.strings.FEATURE_FLAG_DESCRIPTION}</Tooltip> and {" "}
-                                                <Tooltip title={<a className="dark" href={"#"}>remote config</a>}
-                                                         place="right">{Constants.strings.REMOTE_CONFIG_DESCRIPTION}</Tooltip> for
-                                                your selected environment.
-                                            </p>
+                                            <Row>
+                                                <Flex>
+                                                    <h3>Features</h3>
+                                                    <p>
+                                                        View and manage <Tooltip title={<a className="dark" href={"#"}>feature flags</a>}
+                                                                                 place="right">{Constants.strings.FEATURE_FLAG_DESCRIPTION}</Tooltip> and {" "}
+                                                        <Tooltip title={<a className="dark" href={"#"}>remote config</a>}
+                                                                 place="right">{Constants.strings.REMOTE_CONFIG_DESCRIPTION}</Tooltip> for
+                                                        your selected environment.
+                                                    </p>
+                                                </Flex>
+                                                <FormGroup className={'float-right'}>
+                                                    {projectFlags && projectFlags.length ? (
+                                                        <div className="text-right">
+                                                            <Button id="show-create-feature-btn" onClick={this.newFlag}>
+                                                                Create Feature
+                                                            </Button>
+                                                        </div>
+                                                    ) : null}
+                                                </FormGroup>
+                                            </Row>
                                             <FormGroup>
                                                 <PanelSearch
                                                     className={"no-pad"}
@@ -170,19 +183,6 @@ const FeaturesPage = class extends Component {
                                                         return name.toLowerCase().indexOf(search) > -1;
                                                     }}
                                                 />
-                                            </FormGroup>
-
-                                            <FormGroup>
-                                                {projectFlags && projectFlags.length ? (
-                                                    <div className="text-right">
-                                                        <p>
-
-                                                        </p>
-                                                        <Button id="show-create-feature-btn" onClick={this.newFlag}>
-                                                            Create Feature
-                                                        </Button>
-                                                    </div>
-                                                ) : null}
                                             </FormGroup>
 
                                             <FormGroup>

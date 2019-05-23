@@ -1,7 +1,9 @@
+import bulletTrain from "bullet-train-client"; //Add this line if you're using bulletTrain via npm
+
 import Project from '../../common/project';
 import Bootstrap from '../../node_modules/bootstrap/dist/js/bootstrap';
 import "ionicons/dist/css/ionicons.min.css";
-
+window.bulletTrain = bulletTrain;
 window.moment = require('moment/min/moment.min');
 
 //Optimise lodash
@@ -67,7 +69,7 @@ if (Project.mixpanel) {
 }
 
 if (Project.sentry && typeof Sentry !== 'undefined') {
-    Sentry.init({ 
+    Sentry.init({
         dsn: Project.sentry,
         environment: Project.env
     });

@@ -8,6 +8,7 @@
     .aside {
         margin-top: 3.6em;
         height: calc(100% - 3.6em);
+        overflow-y: auto;
     }
     @media screen and (max-width: 932px) {
         .navbar {

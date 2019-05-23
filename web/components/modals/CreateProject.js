@@ -37,6 +37,7 @@ const CreateProject = class extends Component {
 					}}>
 						<InputGroup
 							ref={(e) => this.input = e}
+							data-test="projectName"
 							inputProps={{name: 'projectName', className: "full-width"}}
 							onChange={(e) => this.setState({name: Utils.safeParseEventValue(e)})}
 							isValid={name && name.length}
@@ -44,7 +45,7 @@ const CreateProject = class extends Component {
 							placeholder="My Product Name"/>
 						{error && <Error error={error}/>}
 						<div className="text-right">
-							<Button id="create-project-btn" disabled={isSaving || !name}>
+							<Button data-test="create-project-btn" id="create-project-btn" disabled={isSaving || !name}>
 								{isSaving ? 'Creating' : 'Create Project'}
 							</Button>
 						</div>

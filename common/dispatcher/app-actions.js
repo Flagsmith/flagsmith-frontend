@@ -1,4 +1,4 @@
-module.exports = Object.assign({}, require('./base/_app-actions'), {
+const AppActions = Object.assign({}, require('./base/_app-actions'), {
 	getOrganisation: function (organisationId) {
 		Dispatcher.handleViewAction({
 			actionType: Actions.GET_ORGANISATION,
@@ -8,13 +8,6 @@ module.exports = Object.assign({}, require('./base/_app-actions'), {
 	getFeatures: function (projectId, environmentId) {
 		Dispatcher.handleViewAction({
 			actionType: Actions.GET_FLAGS,
-			projectId,
-			environmentId
-		});
-	},
-	getSegments: function (projectId, environmentId) {
-		Dispatcher.handleViewAction({
-			actionType: Actions.GET_SEGMENTS,
 			projectId,
 			environmentId
 		});
@@ -74,34 +67,17 @@ module.exports = Object.assign({}, require('./base/_app-actions'), {
 			projectId, environmentId, flag
 		});
 	},
-	createSegment: function (projectId, environmentId, segment) {
-		Dispatcher.handleViewAction({
-			actionType: Actions.CREATE_SEGMENT,
-			projectId, environmentId, segment
-		});
-	},
 	editEnvironmentFlag: function (projectId, environmentId, flag, projectFlag, environmentFlag) {
 		Dispatcher.handleViewAction({
 			actionType: Actions.EDIT_ENVIRONMENT_FLAG,
 			projectId, environmentId, flag, projectFlag, environmentFlag
 		});
 	},
-	editEnvironmentSegment: function (projectId, environmentId, segment, projectSegment, environmentSegment) {
-		Dispatcher.handleViewAction({
-			actionType: Actions.EDIT_ENVIRONMENT_SEGMENT,
-			projectId, environmentId, segment, projectSegment, environmentSegment
-		});
-	},
+
 	editFlag: function (projectId, flag) {
 		Dispatcher.handleViewAction({
 			actionType: Actions.EDIT_FLAG,
 			projectId, flag
-		});
-	},
-	editSegment: function (projectId, segment) {
-		Dispatcher.handleViewAction({
-			actionType: Actions.EDIT_SEGMENT,
-			projectId, segment
 		});
 	},
 	editProject: function (id, project) {
@@ -202,15 +178,16 @@ module.exports = Object.assign({}, require('./base/_app-actions'), {
 			projectId, flag
 		});
 	},
+	deleteOrganisation: function () {
+		Dispatcher.handleViewAction({
+			actionType: Actions.DELETE_ORGANISATION
+		});
+	},
+	// Invites todo: organise actions
 	inviteUsers: function (emailAddresses) {
 		Dispatcher.handleViewAction({
 			actionType: Actions.INVITE_USERS,
 			emailAddresses
-		});
-	},
-	deleteOrganisation: function () {
-		Dispatcher.handleViewAction({
-			actionType: Actions.DELETE_ORGANISATION
 		});
 	},
 	deleteInvite: function (id) {
@@ -224,5 +201,49 @@ module.exports = Object.assign({}, require('./base/_app-actions'), {
 			actionType: Actions.RESEND_INVITE,
 			id
 		});
-	}
+	},
+	// Segments
+	selectEnvironment: function (data) {
+		Dispatcher.handleViewAction({
+			actionType: Actions.SELECT_ENVIRONMENT,
+			data
+		});
+	},
+	editEnvironmentSegment: function (projectId, environmentId, segment, projectSegment, environmentSegment) {
+		Dispatcher.handleViewAction({
+			actionType: Actions.EDIT_ENVIRONMENT_SEGMENT,
+			projectId, environmentId, segment, projectSegment, environmentSegment
+		});
+	},
+	getSegments: function (projectId, environmentId) {
+		Dispatcher.handleViewAction({
+			actionType: Actions.GET_SEGMENTS,
+			projectId,
+			environmentId
+		});
+	},
+	createSegment: function (projectId, segment) {
+		Dispatcher.handleViewAction({
+			actionType: Actions.CREATE_SEGMENT,
+			projectId,
+			data:segment
+		});
+	},
+	editSegment: function (projectId, segment) {
+		Dispatcher.handleViewAction({
+			actionType: Actions.EDIT_SEGMENT,
+			projectId,
+			data:segment
+		});
+	},
+	removeSegment: function (projectId, id) {
+		Dispatcher.handleViewAction({
+			actionType: Actions.REMOVE_SEGMENT,
+			projectId,
+			id
+		});
+	},
 });
+
+module.exports= AppActions;
+window.AppActions = AppActions;

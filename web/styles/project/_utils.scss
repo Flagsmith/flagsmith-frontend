@@ -64,8 +64,30 @@
 .colour-block {
     width: 30px;
     height: 30px;
+    border-radius: 15px;
+    margin-right: 1em;
+    display: inline-block;
+    margin-bottom: 1em;
     &--brand-primary {
-        background-color: $brand-primary;
+        background-color: $bt-brand-primary;
+    }
+    &--brand-primary-gradient {
+        background: $bt-primary-gradient;
+    }
+    &--brand-secondary {
+        background-color: $bt-brand-secondary;
+    }
+    &--brand-dark-green {
+        background-color: $bt-dark-green;
+    }
+    &--brand-orange {
+        background-color: $bt-brand-orange;
+    }
+    &--brand-purple {
+        background-color: $bt-brand-purple;
+    }
+    &--brand-red {
+        background-color: $bt-brand-red;
     }
 }
 

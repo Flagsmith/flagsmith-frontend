@@ -3,6 +3,8 @@ const email = 'nightwatch@solidstategroup.com';
 const password = 'nightwatch';
 const url = 'http://localhost:' + (process.env.PORT || 8080);
 const append = new Date().valueOf()+""
+const helpers = require('./helpers');
+const byId= helpers.byTestID;
 
 module.exports = {
   '[Invite Tests] - Login': function (browser) {
@@ -24,19 +26,16 @@ module.exports = {
       .click('#create-first-project-btn')
       .waitForElementVisible('[name="projectName"]')
       .setValue('[name="projectName"]', 'My Test Project')
-      .click('#create-project-btn');
+      .click(byId('create-project-btn'));
 
-    browser.expect.element('#features-page').to.be.visible;
+    browser.expect.element(byId('features-page')).to.be.visible;
   },
   '[Invite Tests] - Invite user': function (browser) {
     browser
       .pause(200) // Slide in transition
       .click('#organisation-settings-link')
-      .waitForElementVisible('#btn-invite')
-
-      .click('#btn-invite')
-      .waitForElementVisible('[name="inviteEmails"]')
-      .setValue('[name="inviteEmails"]', inviteEmail)
+      .waitAndClick('#btn-invite')
+      .waitAndSet('[name="inviteEmails"]', inviteEmail)
       .click('#btn-send-invite')
       .waitForElementNotPresent('#btn-send-invite')
       .waitForElementVisible('#org-invites-list div.list-item');

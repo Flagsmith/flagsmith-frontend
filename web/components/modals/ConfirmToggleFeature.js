@@ -21,22 +21,22 @@ const ConfirmToggleFeature = class extends Component {
 			<ProjectProvider>
 				{({project}) => (
 					<div id="confirm-toggle-feature-modal">
-						<h3>
+						<p>
 							This will
-							turn <strong>{Format.enumeration.get(projectFlag.name)}</strong> {isEnabled ? "Off" : "On"}
+							turn <strong>{Format.enumeration.get(projectFlag.name)}</strong> {isEnabled ? <span className="feature--off"><strong>"Off"</strong></span> : <span className="feature--on"><strong>"On"</strong></span>}
 							{" "}for <strong>{_.find(project.environments, {api_key: this.props.environmentId}).name}</strong>
 							{identity && <span> user <strong>{this.props.identity}</strong></span>}
-						</h3>
-						<FormGroup>
-							<div>
-								<strong>
-									Comments (Optional)
-								</strong>
-							</div>
-							<textarea rows={5} onChange={(e) => this.setState({comment: Utils.safeParseEventValue(e)})}>
+						</p>
+						{/*<FormGroup>*/}
+							{/*<div>*/}
+								{/*<strong>*/}
+									{/*Comments (Optional)*/}
+								{/*</strong>*/}
+							{/*</div>*/}
+							{/*<textarea rows={5} onChange={(e) => this.setState({comment: Utils.safeParseEventValue(e)})}>*/}
 
-							</textarea>
-						</FormGroup>
+							{/*</textarea>*/}
+						{/*</FormGroup>*/}
 						{/*<Row>*/}
 						{/*Do the same for all environments <Switch*/}
 						{/*checked={this.state.allEnvironments}*/}

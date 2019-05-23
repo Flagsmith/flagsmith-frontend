@@ -9,8 +9,8 @@ const keywords = {
     FEATURE_FUNCTION: "myCoolFeature",
     SEGMENT_NAME: "superUsers",
     FEATURE_NAME: "myCoolFeature",
-    USER_FEATURE_FUNCTION: "myPowerUserFeature",
-    USER_FEATURE_NAME: "myPowerUserFeature",
+    USER_FEATURE_FUNCTION: "myEvenCoolerFeature",
+    USER_FEATURE_NAME: "myEvenCoolerFeature",
     FEATURE_NAME_ALT: "bannerSize",
     FEATURE_NAME_ALT_VALUE: "big",
 };
@@ -56,6 +56,44 @@ var Constants = {
     modals: {
         "PAYMENT": "Payment Modal"
     },
+    operators: [
+        {
+            'value': 'EQUAL',
+            'label': 'Exactly Matches (=)'
+        },
+        {
+            'value': 'NOT_EQUAL',
+            'label': 'Does not match (!=)',
+        },
+        {
+            'value': 'GREATER_THAN',
+            'label': '>',
+        },
+        {
+            'value': 'GREATER_THAN_INCLUSIVE',
+            'label': '>=',
+        },
+        {
+            'value': 'LESS_THAN',
+            'label': '<',
+        },
+        {
+            'value': 'LESS_THAN_INCLUSIVE',
+            'label': '<=',
+        },
+        {
+            'value': 'CONTAINS',
+            'label': 'Contains'
+        },
+        {
+            'value': 'NOT_CONTAINS',
+            'label': 'Does not contain'
+        },
+        {
+            'value': 'REGEX',
+            'label': 'Matches regex'
+        },
+    ],
     pages: {
         "ACCOUNT": "Account Page",
         "WHAT_ARE_FEATURE_FLAGS": "What are feature flags Page",
@@ -79,6 +117,7 @@ var Constants = {
     strings: {
         REMOTE_CONFIG_DESCRIPTION: "A feature that you can turn configure per environment or user. E.g. a font size for a banner or an environment variable for a server.",
         FEATURE_FLAG_DESCRIPTION: "A feature that you can turn on or off per environment or user. E.g. instant messaging for a mobile app or an endpoint for an API.",
+        USER_PROPERTY_DESCRIPTION: "The name of the user trait or custom property belonging to the user. E.g. firstName",
         ORGANISATION_DESCRIPTION: "This is used to create a default organisation for team members to create and manage projects.",
         ENVIRONMENT_DESCRIPTION: "Environments are versions of your projects, environments within a project all share the same features but can be individually turned on/off or have different values."
     },

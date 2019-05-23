@@ -4,7 +4,7 @@
 import cn from 'classnames';
 
 var Row = (props) => {
-  const { space, ...rest } = props;
+  const { space,noWrap, ...rest } = props;
 
   return (
     <div
