@@ -1,16 +1,15 @@
-import React, {Component, PropTypes} from 'react';
-import ConfigStore from "../stores/config-store";
+import React, { Component, PropTypes } from 'react';
 import bulletTrain from 'bullet-train-client';
+import ConfigStore from '../stores/config-store';
+
 module.exports = (WrappedComponent) => {
     class HOC extends React.Component {
-
         constructor(props) {
             super(props);
             this.state = {
                 isLoading: ConfigStore.isLoading,
             };
             ES6Component(this);
-
         }
 
         componentWillMount() {
@@ -22,16 +21,16 @@ module.exports = (WrappedComponent) => {
         }
 
         render() {
-            const {isLoading} = this.state;
-            const {getValue,hasFeature} = bulletTrain;
+            const { isLoading } = this.state;
+            const { getValue, hasFeature } = bulletTrain;
 
             return (
                 <WrappedComponent
-                    ref="wrappedComponent"
-                    isLoading={isLoading}
-					getValue={getValue}
-                    hasFeature={hasFeature}
-					{...this.props}
+                  ref="wrappedComponent"
+                  isLoading={isLoading}
+                  getValue={getValue}
+                  hasFeature={hasFeature}
+                  {...this.props}
                 />
             );
         }
@@ -39,4 +38,3 @@ module.exports = (WrappedComponent) => {
 
     return HOC;
 };
-

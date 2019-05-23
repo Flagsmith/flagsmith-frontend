@@ -1,4 +1,4 @@
-import React, {Component, PropTypes} from 'react';
+import React, { Component, PropTypes } from 'react';
 import FeatureListStore from '../stores/feature-list-store';
 
 const FeatureListProvider = class extends Component {
@@ -54,7 +54,7 @@ const FeatureListProvider = class extends Component {
     editFlag = (projectId, environmentId, flag, projectFlag, environmentFlag) => {
         AppActions.editEnvironmentFlag(projectId, environmentId, flag, projectFlag, environmentFlag);
         if (flag.description != projectFlag.description) {
-            AppActions.editFlag(projectId, Object.assign({}, projectFlag, flag))
+            AppActions.editFlag(projectId, Object.assign({}, projectFlag, flag));
         }
     };
 
@@ -76,7 +76,7 @@ const FeatureListProvider = class extends Component {
                     createFlag: this.createFlag,
                     editFlag: this.editFlag,
                     removeFlag: this.removeFlag,
-                }
+                },
             )
         );
     }

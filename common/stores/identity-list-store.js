@@ -1,38 +1,40 @@
-var BaseStore = require('./base/_store');
-var data = require('../data/base/_data');
+const BaseStore = require('./base/_store');
+const data = require('../data/base/_data');
 
-var controller = {
-        getIdentities: (envId) => {
-            if (envId !== store.enviId) {
-                store.loading();
-                store.envId = envId;
-                data.get(`${Project.api}environments/${envId}/identities/?format=json`)
-                    .then((res) => {
-                        store.model = res && res.results;
-                        store.loaded()
-                    })
-            }
-        },
-        saveIdentity: (id, identity) => {
-            store.saving()
-            setTimeout(() => {
-                const index = _.findIndex(store.model, {id});
-                store.model[index] = identity;
-                store.saved();
-            }, 2000);
-        },
-
-    },
-    store = Object.assign({}, BaseStore, {
-        id: 'identitylist',
-        getIdentityForEditing: function (id) {
-            return store.model && _.cloneDeep(_.find(store.model, {id})); // immutable
+const controller = {
+    getIdentities: (envId) => {
+        if (envId !== store.enviId) {
+            store.loading();
+            store.envId = envId;
+            data.get(`${Project.api}environments/${envId}/identities/?format=json`)
+                .then((res) => {
+                    store.model = res && res.results;
+                    store.loaded();
+                });
         }
-    });
+    },
+    saveIdentity: (id, identity) => {
+        store.saving();
+        setTimeout(() => {
+            const index = _.findIndex(store.model, { id });
+            store.model[index] = identity;
+            store.saved();
+        }, 2000);
+    },
+
+};
 
 
-store.dispatcherIndex = Dispatcher.register(store, function (payload) {
-    var action = payload.action; // this is our action from handleViewAction
+var store = Object.assign({}, BaseStore, {
+    id: 'identitylist',
+    getIdentityForEditing(id) {
+        return store.model && _.cloneDeep(_.find(store.model, { id })); // immutable
+    },
+});
+
+
+store.dispatcherIndex = Dispatcher.register(store, (payload) => {
+    const action = payload.action; // this is our action from handleViewAction
 
     switch (action.actionType) {
         case Actions.GET_IDENTITIES:
@@ -42,8 +44,7 @@ store.dispatcherIndex = Dispatcher.register(store, function (payload) {
             controller.saveIdentity(action.id, action.identity);
             break;
         default:
-            return;
     }
-})
+});
 controller.store = store;
 module.exports = controller.store;

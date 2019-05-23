@@ -8,12 +8,12 @@ const Panel = class extends React.Component {
 
     render() {
         return (
-            <div className={"panel panel-default " + (this.props.className || "")}>
+            <div className={`panel panel-default ${this.props.className || ''}`}>
                 <div className="panel-heading">
-                    <Row space={true}>
-                        <Row className={"flex-1"}>
+                    <Row space>
+                        <Row className="flex-1">
                             {this.props.icon && (
-                                <span className={"panel-icon"}><ion className={`icon ${this.props.icon}`}/></span>
+                                <span className="panel-icon"><ion className={`icon ${this.props.icon}`}/></span>
                             )}
                             <h6 className="m-b-0">{this.props.title}</h6>
                         </Row>
@@ -28,12 +28,12 @@ const Panel = class extends React.Component {
     }
 };
 
-Panel.displayName = "Panel";
+Panel.displayName = 'Panel';
 
 Panel.propTypes = {
     title: oneOfType([OptionalObject, OptionalString]),
     icon: OptionalObject,
-    children: OptionalNode
+    children: OptionalNode,
 };
 
 module.exports = Panel;

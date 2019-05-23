@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import FeatureListStore from '../stores/feature-list-store';
-import IdentityStore from "../stores/identity-store";
+import IdentityStore from '../stores/identity-store';
 
 const IdentityProvider = class extends Component {
     static displayName = 'IdentityProvider'
@@ -24,7 +24,7 @@ const IdentityProvider = class extends Component {
                 isLoading: IdentityStore.isLoading || FeatureListStore.isLoading,
                 identity: IdentityStore.model,
                 identityFlags: IdentityStore.getIdentityFlags(),
-                traits: IdentityStore.getTraits()
+                traits: IdentityStore.getTraits(),
             });
         });
         this.listenTo(FeatureListStore, 'change', () => {
@@ -37,7 +37,7 @@ const IdentityProvider = class extends Component {
 
         this.listenTo(IdentityStore, 'saved', () => {
             this.props.onSave && this.props.onSave();
-        })
+        });
     }
 
     toggleFlag = ({ identity, projectFlag, environmentFlag, identityFlag, environmentId }) => {

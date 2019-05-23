@@ -1,6 +1,5 @@
-module.exports = (envId, {LIB_NAME, USER_ID, LIB_NAME_JAVA, FEATURE_NAME, FEATURE_FUNCTION, FEATURE_NAME_ALT, FEATURE_NAME_ALT_VALUE, NPM_CLIENT}, userId) => {
-    return `User user = new User();
-user.setIdentifier("${userId||USER_ID}");
+module.exports = (envId, { LIB_NAME, USER_ID, LIB_NAME_JAVA, FEATURE_NAME, FEATURE_FUNCTION, FEATURE_NAME_ALT, FEATURE_NAME_ALT_VALUE, NPM_CLIENT }, userId) => `User user = new User();
+user.setIdentifier("${userId || USER_ID}");
 
 ${LIB_NAME_JAVA} ${LIB_NAME} = ${LIB_NAME_JAVA}.newBuilder()
     .setApiKey("${envId}")
@@ -19,5 +18,4 @@ if (myRemoteConfig != null) {
 } else {
     // Run the code without remote config
 }
-`
-}
+`;

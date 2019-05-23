@@ -1,4 +1,4 @@
-import React, {Component, PropTypes} from 'react';
+import React, { Component, PropTypes } from 'react';
 import EditIdentityModal from './UserPage';
 
 const UsersPage = class extends Component {
@@ -29,7 +29,7 @@ const UsersPage = class extends Component {
     };
 
     render() {
-        const {projectId, environmentId} = this.props.params
+        const { projectId, environmentId } = this.props.params;
         return (
             <div className="app-container container">
 
@@ -42,49 +42,58 @@ const UsersPage = class extends Component {
                         </p>
                         <FormGroup>
                             <IdentityListProvider>
-                                {({isLoading, identities}) => (
+                                {({ isLoading, identities }) => (
                                     <div>
                                         {isLoading && <div className="centered-container"><Loader/></div>}
                                         {!isLoading && (
                                             <FormGroup>
                                                 <PanelSearch
-                                                    id="users-list"
-                                                    title="Users"
-                                                    className={"no-pad"}
-                                                    icon={"ion-md-person"}
-                                                    items={identities}
-                                                    renderRow={({identifier}) =>
-                                                        <Row space className={"list-item"} key={identifier}>
-                                                            <Flex>
-                                                                <Link
-                                                                    to={`/project/${this.props.params.projectId}/environment/${this.props.params.environmentId}/users/${identifier}`}
-                                                                >{identifier}</Link>
-                                                            </Flex>
-                                                            <ion className="ion-ios-arrow-forward"/>
-                                                        </Row>
-                                                    }
-                                                    renderNoResults={<FormGroup className={"text-center"}>You have no
+                                                  id="users-list"
+                                                  title="Users"
+                                                  className="no-pad"
+                                                  icon="ion-md-person"
+                                                  items={identities}
+                                                  renderRow={({ identifier }) => (
+                                                      <Row space className="list-item" key={identifier}>
+                                                          <Flex>
+                                                              <Link
+                                                                to={`/project/${this.props.params.projectId}/environment/${this.props.params.environmentId}/users/${identifier}`}
+                                                              >
+                                                                  {identifier}
+                                                              </Link>
+                                                          </Flex>
+                                                          <ion className="ion-ios-arrow-forward"/>
+                                                      </Row>
+                                                  )}
+                                                  renderNoResults={(
+                                                      <FormGroup className="text-center">
+You have no
                                                         users
                                                         in your
-                                                        project.</FormGroup>}
-                                                    filterRow={(flag, search) => {
-                                                        return flag.identifier.indexOf(search) != -1
-                                                    }}
+                                                        project.
+                                                      </FormGroup>
+)}
+                                                  filterRow={(flag, search) => flag.identifier.indexOf(search) != -1}
                                                 />
                                             </FormGroup>
                                         )}
                                         <FormGroup>
-                                            <p className={"faint"}>
+                                            <p className="faint">
                                                 Users are created for your environment automatically when calling identify/get flags
                                                 from any of the SDKs.
                                                 <br/>
-                                                We've created <strong>user_123456</strong> for you so you always have an example user to
+                                                We've created
+                                                {' '}
+                                                <strong>user_123456</strong>
+                                                {' '}
+for you so you always have an example user to
                                                 test with on your environments.
                                             </p>
                                             <CodeHelp
-                                                showInitially={true}
-                                                title={"Creating users and getting their feature settings"}
-                                                snippets={Constants.codeHelp.CREATE_USER(this.props.params.environmentId, identities && identities[0].identifier)}/>
+                                              showInitially
+                                              title="Creating users and getting their feature settings"
+                                              snippets={Constants.codeHelp.CREATE_USER(this.props.params.environmentId, identities && identities[0].identifier)}
+                                            />
                                         </FormGroup>
                                     </div>
                                 )}

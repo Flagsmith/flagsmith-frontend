@@ -1,11 +1,12 @@
-import React, {Component, PropTypes} from 'react';
+import React, { Component, PropTypes } from 'react';
 import ConfirmRemoveEnvironment from '../modals/ConfirmRemoveEnvironment';
 import ProjectStore from '../../../common/stores/project-store';
 
 const EnvironmentSettingsPage = class extends Component {
     static displayName = 'EnvironmentSettingsPage'
+
     static contextTypes = {
-        router: React.PropTypes.object.isRequired
+        router: React.PropTypes.object.isRequired,
     };
 
     constructor(props, context) {
@@ -29,41 +30,42 @@ const EnvironmentSettingsPage = class extends Component {
     }
 
     onRemove = () => {
-        toast("Your project has been removed");
-        this.context.router.replace("/projects");
+        toast('Your project has been removed');
+        this.context.router.replace('/projects');
     };
 
     confirmRemove = (environment, cb) => {
-        openModal("Remove Environment", <ConfirmRemoveEnvironment
-            environment={environment}
-            cb={cb}/>)
+        openModal('Remove Environment', <ConfirmRemoveEnvironment
+          environment={environment}
+          cb={cb}
+        />);
     };
 
     onRemoveEnvironment = () => {
-        this.context.router.replace("/projects");
+        this.context.router.replace('/projects');
     };
 
     saveEnv = (e) => {
         e.preventDefault();
-        const {name, webhooks_enabled, webhook_url} = this.state;
+        const { name, webhooks_enabled, webhook_url } = this.state;
         if (ProjectStore.isSaving || (!name && webhooks_enabled === undefined && webhook_url === undefined)) {
             return;
         }
-        const env = _.find(ProjectStore.getEnvs(), {api_key: this.props.params.environmentId});
+        const env = _.find(ProjectStore.getEnvs(), { api_key: this.props.params.environmentId });
         AppActions.editEnv(Object.assign({}, env, {
-            name: name ? name : env.name,
+            name: name || env.name,
             webhook_url: webhook_url !== undefined ? webhook_url : env.webhook_url,
-            webhooks_enabled: webhooks_enabled !== undefined ? webhooks_enabled : env.webhooks_enabled
+            webhooks_enabled: webhooks_enabled !== undefined ? webhooks_enabled : env.webhooks_enabled,
         }));
     }
 
     saveDisabled = () => {
-        const {name, webhooks_enabled, webhook_url} = this.state;
+        const { name, webhooks_enabled, webhook_url } = this.state;
         if (ProjectStore.isSaving || (!name && webhooks_enabled === undefined && webhook_url === undefined)) {
             return true;
         }
 
-        const env = _.find(ProjectStore.getEnvs(), {api_key: this.props.params.environmentId});
+        const env = _.find(ProjectStore.getEnvs(), { api_key: this.props.params.environmentId });
 
         // Must have name
         if (name !== undefined && !name) {
@@ -79,14 +81,15 @@ const EnvironmentSettingsPage = class extends Component {
     }
 
     render() {
-        const {name, webhook_url, webhooks_enabled} = this.state;
+        const { name, webhook_url, webhooks_enabled } = this.state;
         return (
             <div className="app-container container">
                 <ProjectProvider
-                    onRemoveEnvironment={this.onRemoveEnvironment}
-                    id={this.props.params.projectId} onRemove={this.onRemove} onSave={this.onSave}>
-                    {({isLoading, isSaving, editProject, editEnv, deleteProject, deleteEnv, project}) => {
-                        const env = _.find(project.environments, {api_key: this.props.params.environmentId});
+                  onRemoveEnvironment={this.onRemoveEnvironment}
+                  id={this.props.params.projectId} onRemove={this.onRemove} onSave={this.onSave}
+                >
+                    {({ isLoading, isSaving, editProject, editEnv, deleteProject, deleteEnv, project }) => {
+                        const env = _.find(project.environments, { api_key: this.props.params.environmentId });
                         return (
                             <div>
                                 {isLoading && <div className="centered-container"><Loader/></div>}
@@ -98,16 +101,17 @@ const EnvironmentSettingsPage = class extends Component {
                                                 <form onSubmit={this.saveEnv}>
                                                     <Row>
                                                         <Column className="m-l-0">
-                                                        <Input
-                                                            ref={(e) => this.input = e}
-                                                                value={this.state.name||env.name}
-                                                                inputClassName="input input--wide"
-                                                                name="env-name"
+                                                            <Input
+                                                              ref={e => this.input = e}
+                                                              value={this.state.name || env.name}
+                                                              inputClassName="input input--wide"
+                                                              name="env-name"
 
-                                                            onChange={(e) => this.setState({name: Utils.safeParseEventValue(e)})}
-                                                            isValid={name && name.length}
-                                                            type="text" title={<h3>Environment Name</h3>}
-                                                            placeholder="Environment Name"/>
+                                                              onChange={e => this.setState({ name: Utils.safeParseEventValue(e) })}
+                                                              isValid={name && name.length}
+                                                              type="text" title={<h3>Environment Name</h3>}
+                                                              placeholder="Environment Name"
+                                                            />
                                                         </Column>
                                                         <Button id="save-env-btn" className="float-right" disabled={this.saveDisabled()}>
                                                             {isSaving ? 'Updating' : 'Update Name'}
@@ -116,16 +120,17 @@ const EnvironmentSettingsPage = class extends Component {
                                                 </form>
                                             </FormGroup>
                                             <FormGroup className="m-t-1">
-                                                    <label className="m-b-0">API Key</label>
+                                                <label className="m-b-0">API Key</label>
                                                 <Row>
                                                     <Input
-                                                        ref={(e) => this.input = e}
-                                                        value={this.props.params.environmentId}
-                                                        inputClassName="input input--wide"
-                                                        onChange={(e) => this.setState({name: Utils.safeParseEventValue(e)})}
-                                                        isValid={name && name.length}
-                                                        type="text" title={<h3>API Key</h3>}
-                                                        placeholder="API Key"/>
+                                                      ref={e => this.input = e}
+                                                      value={this.props.params.environmentId}
+                                                      inputClassName="input input--wide"
+                                                      onChange={e => this.setState({ name: Utils.safeParseEventValue(e) })}
+                                                      isValid={name && name.length}
+                                                      type="text" title={<h3>API Key</h3>}
+                                                      placeholder="API Key"
+                                                    />
                                                 </Row>
                                             </FormGroup>
                                         </div>
@@ -140,11 +145,12 @@ const EnvironmentSettingsPage = class extends Component {
                                                     </p>
                                                 </Column>
                                                 <Button
-                                                    id="delete-env-btn"
-                                                    onClick={() => this.confirmRemove(_.find(project.environments, {api_key: this.props.params.environmentId}), () => {
-                                                        deleteEnv(_.find(project.environments, {api_key: this.props.params.environmentId}))
-                                                    })}
-                                                    className={"btn btn--with-icon ml-auto btn--remove"}>
+                                                  id="delete-env-btn"
+                                                  onClick={() => this.confirmRemove(_.find(project.environments, { api_key: this.props.params.environmentId }), () => {
+                                                      deleteEnv(_.find(project.environments, { api_key: this.props.params.environmentId }));
+                                                  })}
+                                                  className="btn btn--with-icon ml-auto btn--remove"
+                                                >
                                                     <RemoveIcon />
                                                 </Button>
                                             </Row>
@@ -153,7 +159,7 @@ const EnvironmentSettingsPage = class extends Component {
 
                                 )}
                             </div>
-                        )
+                        );
                     }}
                 </ProjectProvider>
             </div>

@@ -1,10 +1,11 @@
-import React from "react";
+import React from 'react';
 import Footer from '../Footer';
 import PricingPanel from '../PricingPanel';
-import Feedback from '../../components/modals/Feedback';
+import Feedback from '../modals/Feedback';
+
 const PricingPage = class extends React.Component {
     static contextTypes = {
-        router: React.PropTypes.object.isRequired
+        router: React.PropTypes.object.isRequired,
     };
 
     static displayName = 'PricingPage'
@@ -19,12 +20,12 @@ const PricingPage = class extends React.Component {
     }
 
     feedback = () => {
-        openModal('Feedback', <Feedback />)
+        openModal('Feedback', <Feedback />);
     }
 
     render = () => {
         const { hasFeature, getValue } = this.props;
-        const redirect = this.props.location.query.redirect ? `?redirect=${this.props.location.query.redirect}` : "";
+        const redirect = this.props.location.query.redirect ? `?redirect=${this.props.location.query.redirect}` : '';
 
         return (
             <div>
@@ -68,7 +69,11 @@ const PricingPage = class extends React.Component {
                         <div className="panel panel-default panel-grey">
                             <p className="question">What about an annual discount?</p>
                             <p className="answer">
-                                We're working on this - please <a href="mailto:support@bullettrain.io">get in touch</a> if this is important to you right now.
+                                We're working on this - please
+                                {' '}
+                                <a href="mailto:support@bullettrain.io">get in touch</a>
+                                {' '}
+if this is important to you right now.
                             </p>
                         </div>
                         <div className="panel panel-default panel-grey">

@@ -1,7 +1,7 @@
 import React from 'react';
-import {Route, IndexRoute, Redirect} from 'react-router';
+import { Route, IndexRoute, Redirect } from 'react-router';
 
-import App from './components/App'; //App Wrapper
+import App from './components/App'; // App Wrapper
 import HomePage from './components/pages/HomePage';
 import MarkupPage from './components/pages/__MarkupPage__';
 import DemoPage from './components/pages/DemoPage';
@@ -55,10 +55,10 @@ export default (
         <Route path="project/:projectId/environment/:environmentId/settings" component={EnvironmentSettingsPage}/>
         <Route path="project/:projectId/environment/:environmentId/users" component={UsersPage}/>
         <Route path="project/:projectId/environment/:environmentId/users/:id" component={UserPage}/>
-        <Route path="project/:projectId/environment/create"  exact={true} component={CreateEnvironmentPage}/>
-        <Route path="project/:projectId/environment/:environmentId/project-settings"  exact={true} component={ProjectSettingsPage}/>
-        <Route path="project/:projectId/environment/:environmentId/segments"  exact={true} component={SegmentsPage}/>
-        <Route path="project/:projectId/environment/:environmentId/organisation-settings"  exact={true} component={OrganisationSettingsPage}/>
+        <Route path="project/:projectId/environment/create" exact component={CreateEnvironmentPage}/>
+        <Route path="project/:projectId/environment/:environmentId/project-settings" exact component={ProjectSettingsPage}/>
+        <Route path="project/:projectId/environment/:environmentId/segments" exact component={SegmentsPage}/>
+        <Route path="project/:projectId/environment/:environmentId/organisation-settings" exact component={OrganisationSettingsPage}/>
         <Route path="create" component={CreateOrganisationPage}/>
         <Route path="404" component={NotFoundPage}/>
         <Redirect from="*" to="404"/>

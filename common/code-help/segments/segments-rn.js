@@ -1,5 +1,4 @@
-module.exports = (envId, {LIB_NAME, SEGMENT_NAME, FEATURE_NAME, FEATURE_FUNCTION, FEATURE_NAME_ALT, FEATURE_NAME_ALT_VALUE, NPM_RN_CLIENT}, customFeature) => {
-    return `import ${LIB_NAME} from ${NPM_RN_CLIENT}; //Add this line if you're using ${LIB_NAME} via npm
+module.exports = (envId, { LIB_NAME, SEGMENT_NAME, FEATURE_NAME, FEATURE_FUNCTION, FEATURE_NAME_ALT, FEATURE_NAME_ALT_VALUE, NPM_RN_CLIENT }, customFeature) => `import ${LIB_NAME} from ${NPM_RN_CLIENT}; //Add this line if you're using ${LIB_NAME} via npm
 
 ${LIB_NAME}.init({
     environmentID:"${envId}",
@@ -12,5 +11,4 @@ ${LIB_NAME}.init({
         
     }
 });
-`
-}
+`;

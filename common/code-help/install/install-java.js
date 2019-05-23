@@ -1,5 +1,4 @@
-module.exports = ({NPM_NODE_CLIENT,URL_CLIENT}) => {
-    return `// Maven
+module.exports = ({ NPM_NODE_CLIENT, URL_CLIENT }) => `// Maven
 <dependency>
 <groupId>com.solidstategroup</groupId>
 <artifactId>bullet-train-client</artifactId>
@@ -8,5 +7,4 @@ module.exports = ({NPM_NODE_CLIENT,URL_CLIENT}) => {
 
 // Gradle
 implementation 'com.solidstategroup:bullet-train-client:1.2'
-`
-}
+`;

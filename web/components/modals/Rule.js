@@ -20,37 +20,41 @@ export default class Rule extends PureComponent {
                             Or
                             <div className="or-divider__down"/>
                         </Row>
-                        <Flex className="or-divider__line"></Flex>
+                        <Flex className="or-divider__line" />
                     </Row>
                 )}
                 <Row noWrap className="rule">
                     <Flex>
                         <Row>
                             <Column style={{ width: 200 }}>
-                                <Tooltip title={(
-                                    <Input
+                                <Tooltip
+                                  title={(
+                                      <Input
                                         className="input-container--flat"
-                                        value={rule.property+""}
+                                        value={`${rule.property}`}
                                         placeholder="Value"
-                                        onChange={(e) => this.setRuleProperty(i, "property", {value:Utils.safeParseEventValue(e)})}
-                                    />
+                                        onChange={e => this.setRuleProperty(i, 'property', { value: Utils.safeParseEventValue(e) })}
+                                      />
                                 )}
-                                         place="top">{Constants.strings.USER_PROPERTY_DESCRIPTION}</Tooltip>
+                                  place="top"
+                                >
+                                    {Constants.strings.USER_PROPERTY_DESCRIPTION}
+                                </Tooltip>
 
                             </Column>
                             <Column style={{ width: 200 }}>
                                 <Select
-                                    value={rule.operator && _.find(operators, {value:rule.operator})}
-                                    onChange={(value) => this.setRuleProperty(i, "operator", value)}
-                                    options={operators}
+                                  value={rule.operator && _.find(operators, { value: rule.operator })}
+                                  onChange={value => this.setRuleProperty(i, 'operator', value)}
+                                  options={operators}
                                 />
                             </Column>
                             <Column style={{ width: 150 }}>
                                 <Input
-                                    className="input-container--flat"
-                                    value={rule.value+""}
-                                    placeholder="Value"
-                                    onChange={(e) => this.setRuleProperty(i, "value", {value:Utils.getTypedValue(Utils.safeParseEventValue(e))})}
+                                  className="input-container--flat"
+                                  value={`${rule.value}`}
+                                  placeholder="Value"
+                                  onChange={e => this.setRuleProperty(i, 'value', { value: Utils.getTypedValue(Utils.safeParseEventValue(e)) })}
                                 />
                             </Column>
                         </Row>
@@ -65,10 +69,10 @@ export default class Rule extends PureComponent {
 
                             <div>
                                 <button
-                                    type="button"
-                                    id="remove-feature"
-                                    onClick={() => this.removeRule(i)}
-                                    className={"btn btn--with-icon btn--condensed reveal--child btn--remove"}
+                                  type="button"
+                                  id="remove-feature"
+                                  onClick={() => this.removeRule(i)}
+                                  className="btn btn--with-icon btn--condensed reveal--child btn--remove"
                                 >
                                     <RemoveIcon/>
                                 </button>
@@ -77,16 +81,16 @@ export default class Rule extends PureComponent {
                     </div>
                 </Row>
             </div>
-        )
+        );
     }
 
     removeRule = (i) => {
         const { props: { rule: { any: { rules } } } } = this;
 
         if (rules.length === 1) {
-            this.props.onRemove()
+            this.props.onRemove();
         } else {
-            rules.splice(i, 1)
+            rules.splice(i, 1);
             this.props.onChange({ any: { rules } });
         }
     }
@@ -94,7 +98,7 @@ export default class Rule extends PureComponent {
     setRuleProperty = (i, prop, { value }) => {
         const { props: { rule: { any: { rules } } } } = this;
         rules[i][prop] = value;
-        this.props.onChange(this.props.rule)
+        this.props.onChange(this.props.rule);
     }
 
     addRule = () => {
@@ -102,9 +106,8 @@ export default class Rule extends PureComponent {
 
         this.props.onChange({
             any: {
-                rules: rules.concat([{...Constants.defaultRule}]
-                )
-            }
+                rules: rules.concat([{ ...Constants.defaultRule }]),
+            },
         });
     }
 

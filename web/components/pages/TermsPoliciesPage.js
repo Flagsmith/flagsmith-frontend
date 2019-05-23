@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 import LegalAside from '../LegalAside';
 import PrivacyPolicy from './PrivacyPolicyPage';
@@ -8,7 +8,7 @@ import TermsOfService from './TermsOfServicePage';
 
 const TermsPoliciesPage = class extends React.Component {
     static contextTypes = {
-        router: React.PropTypes.object.isRequired
+        router: React.PropTypes.object.isRequired,
     };
 
     static displayName = 'TermsPoliciesPage'
@@ -29,7 +29,7 @@ const TermsPoliciesPage = class extends React.Component {
     }
 
     render = () => {
-        const { hasFeature, getValue, params: {section} } = this.props;
+        const { hasFeature, getValue, params: { section } } = this.props;
         return (
             <div>
                 <LegalAside />

@@ -1,4 +1,4 @@
-import React, {Component, PropTypes} from 'react';
+import React, { Component, PropTypes } from 'react';
 
 const WhatAreFeatureFlagsPage = class extends Component {
     static displayName = 'WhatAreFeatureFlagsPage'
@@ -14,12 +14,12 @@ const WhatAreFeatureFlagsPage = class extends Component {
 
     render() {
         return (
-            <div className={"app-container"}>
-                <FormGroup className={"striped-section"}>
-                    <div className={"container"}>
+            <div className="app-container">
+                <FormGroup className="striped-section">
+                    <div className="container">
                         <h3>What are feature flags?</h3>
-                        <div className={"row"}>
-                            <div className={"col-xl-6"}>
+                        <div className="row">
+                            <div className="col-xl-6">
                                 <p>
                                     A Feature Flag is a technique to turn some functionality of your application off,
                                     via configuration, without deploying new code. If you’re employing CI/CD and
@@ -32,24 +32,26 @@ const WhatAreFeatureFlagsPage = class extends Component {
                                     features to your internal team in production or for beta testers.
                                 </p>
                             </div>
-                            <div className={"col-xl-6"}>
-                                <p className={"faint text-center"}>
+                            <div className="col-xl-6">
+                                <p className="faint text-center">
                                     EXAMPLE: our interactive try it panels throughout the site are controlled by feature
                                     flags.
                                 </p>
-                                <div className={"text-center"}>
-                                    <Gif width={"100%"} pausedSrc={"/images/feature-flag.png"}
-                                         src={"/images/feature-flag.gif"}/>
+                                <div className="text-center">
+                                    <Gif
+                                      width="100%" pausedSrc="/images/feature-flag.png"
+                                      src="/images/feature-flag.gif"
+                                    />
                                 </div>
                             </div>
                         </div>
                     </div>
                 </FormGroup>
-                <FormGroup className={"striped-section"}>
-                    <div className={"container"}>
+                <FormGroup className="striped-section">
+                    <div className="container">
                         <h3>What is remote config?</h3>
-                        <div className={"row"}>
-                            <div className={"col-xl-6"}>
+                        <div className="row">
+                            <div className="col-xl-6">
                                 <p>
                                     It's great being able to turn features on and off without doing a build, but with
                                     some
@@ -68,20 +70,22 @@ const WhatAreFeatureFlagsPage = class extends Component {
                                     much more.
                                 </p>
                             </div>
-                            <div className={"col-xl-6"}>
-                                <p className={"faint text-center"}>
+                            <div className="col-xl-6">
+                                <p className="faint text-center">
                                     EXAMPLE: our homepage sections are controlled with remote config
                                 </p>
-                                <div className={"text-center"}>
-                                    <Gif width={"100%"} pausedSrc={"/images/remote-config.png"}
-                                         src={"/images/remote-config.gif"}/>
+                                <div className="text-center">
+                                    <Gif
+                                      width="100%" pausedSrc="/images/remote-config.png"
+                                      src="/images/remote-config.gif"
+                                    />
                                 </div>
                             </div>
                         </div>
                     </div>
                 </FormGroup>
-                <FormGroup className={"striped-section"}>
-                    <div className={"container"}>
+                <FormGroup className="striped-section">
+                    <div className="container">
                         <h3>What benefits does this bring?</h3>
 
                         <p>
