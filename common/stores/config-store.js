@@ -1,37 +1,39 @@
-var BaseStore = require('./base/_store')
+const BaseStore = require('./base/_store');
 
 var controller = {
 
-        get() {
-            store.loading();
-            bulletTrain.init({
-                environmentID: Project.bulletTrain,
-                onChange: controller.loaded
-            });
-        },
-        loaded(oldFlags) { //Occurs whenever flags are changed
-            if (!oldFlags) {
-                store.loaded();
-            } else {
-                store.changed();
-            }
-            store.model = bulletTrain.getAllFlags();
-        }
+    get() {
+        store.loading();
+        bulletTrain.init({
+            environmentID: Project.bulletTrain,
+            onChange: controller.loaded,
+        });
     },
-    store = Object.assign({}, BaseStore, {
-        id: 'config',
-    });
+    loaded(oldFlags) { // Occurs whenever flags are changed
+        if (!oldFlags) {
+            store.loaded();
+        } else {
+            store.changed();
+        }
+        store.model = bulletTrain.getAllFlags();
+    },
+};
 
 
-store.dispatcherIndex = Dispatcher.register(store, function (payload) {
-    var action = payload.action; // this is our action from	handleViewAction
+var store = Object.assign({}, BaseStore, {
+    id: 'config',
+});
+
+
+store.dispatcherIndex = Dispatcher.register(store, (payload) => {
+    const action = payload.action; // this is our action from	handleViewAction
 
     switch (action.actionType) {
         case Actions.GET_CONFIG:
             controller.get();
             break;
     }
-})
+});
 
 controller.store = store;
 module.exports = controller.store;

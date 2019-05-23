@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 import LegalAside from '../LegalAside';
 import PrivacyPolicy from './PrivacyPolicyPage';
@@ -8,7 +8,7 @@ import TermsOfService from './TermsOfServicePage';
 
 const TermsPoliciesPage = class extends React.Component {
     static contextTypes = {
-        router: React.PropTypes.object.isRequired
+        router: React.PropTypes.object.isRequired,
     };
 
     static displayName = 'TermsPoliciesPage'
@@ -29,26 +29,26 @@ const TermsPoliciesPage = class extends React.Component {
     }
 
     render = () => {
-        const { hasFeature, getValue, params: {section} } = this.props;
+        const { hasFeature, getValue, params: { section } } = this.props;
         return (
             <div>
-                <LegalAside />
+                <LegalAside/>
                 <div className="aside-body">
                     {(() => {
                         switch (section) {
                             case 'privacy-policy':
-                                return <PrivacyPolicy />;
+                                return <PrivacyPolicy/>;
 
                             case 'sla':
-                                return <ServiceLevelAgreement />;
+                                return <ServiceLevelAgreement/>;
 
                             case 'tos':
                             default:
-                                return <TermsOfService />;
+                                return <TermsOfService/>;
                         }
                     })()}
                 </div>
-                <Footer className="legalpage" />
+                <Footer className="legalpage"/>
             </div>
         );
     }

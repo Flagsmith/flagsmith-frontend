@@ -1,51 +1,51 @@
 module.exports = function (options) {
-  return React.createClass(Object.assign({}, options, {
-    _listeners: [],
-    setTheme: function (theme) {
-      window.theme = theme;
+    return React.createClass(Object.assign({}, options, {
+        _listeners: [],
+        setTheme(theme) {
+            window.theme = theme;
 
-      this.forceUpdate();
-    },
-    listenTo: function (store, event, callback) {
-      this._listeners.push({
-        store: store,
-        event: event,
-        callback: callback
-      });
-      store.on(event, callback);
-      return this._listeners.length;
-    },
+            this.forceUpdate();
+        },
+        listenTo(store, event, callback) {
+            this._listeners.push({
+                store,
+                event,
+                callback,
+            });
+            store.on(event, callback);
+            return this._listeners.length;
+        },
 
-    stopListening: function (index) {
-      var listener = this._listeners[index];
-      listener.store.off(listener.event, listener.callback);
-    },
+        stopListening(index) {
+            const listener = this._listeners[index];
+            listener.store.off(listener.event, listener.callback);
+        },
 
-    req: function (val) {
-      return val ? 'validate valid' : 'validate invalid';
-    },
+        req(val) {
+            return val ? 'validate valid' : 'validate invalid';
+        },
 
-    setPathState: function (path, e) {
-      return _.partial(function () {
-        var newState = {};
-        newState[path] = Utils.safeParseEventValue(e);
-        this.setState(newState);
-      }.bind(this));
-    },
+        setPathState(path, e) {
+            return _.partial(() => {
+                const newState = {};
+                newState[path] = Utils.safeParseEventValue(e);
+                this.setState(newState);
+            });
+        },
 
-    toggleState: function (path) {
-      return _.partial(function () {
-        var newState = {};
-        newState[path] = !this.state[path];
-        this.setState(newState);
-      }.bind(this));
-    },
+        toggleState(path) {
+            return _.partial(() => {
+                const newState = {};
+                newState[path] = !this.state[path];
+                this.setState(newState);
+            });
+        },
 
-    componentWillUnmount: function () {
-      _.each(this._listeners, function (listener, index) {
-        listener && this.stopListening(index);
-      }.bind(this));
-      return options.componentWillUnmount ? options.componentWillUnmount() : true;
-    }
-  }));
+        componentWillUnmount() {
+            _.each(this._listeners, (listener, index) => {
+                listener && this.stopListening(index);
+            });
+            return options.componentWillUnmount ? options.componentWillUnmount() : true;
+        },
+    }));
 };

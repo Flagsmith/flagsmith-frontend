@@ -1,4 +1,4 @@
-import React, {Component, PropTypes} from 'react';
+import React, { Component, PropTypes } from 'react';
 import SegmentListStore from '../stores/segment-list-store';
 
 const SegmentListProvider = class extends Component {
@@ -45,7 +45,7 @@ const SegmentListProvider = class extends Component {
     editSegment = (projectId, environmentId, segment, projectSegment, environmentSegment) => {
         AppActions.editEnvironmentSegment(projectId, environmentId, segment, projectSegment, environmentSegment);
         if (segment.description != projectSegment.description) {
-            AppActions.editSegment(projectId, Object.assign({}, projectSegment, segment))
+            AppActions.editSegment(projectId, Object.assign({}, projectSegment, segment));
         }
     };
 
@@ -65,7 +65,7 @@ const SegmentListProvider = class extends Component {
                     createSegment: this.createSegment,
                     editSegment: this.editSegment,
                     removeSegment: this.removeSegment,
-                }
+                },
             )
         );
     }

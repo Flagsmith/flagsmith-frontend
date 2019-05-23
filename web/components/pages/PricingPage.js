@@ -1,10 +1,11 @@
-import React from "react";
+import React from 'react';
 import Footer from '../Footer';
 import PricingPanel from '../PricingPanel';
-import Feedback from '../../components/modals/Feedback';
+import Feedback from '../modals/Feedback';
+
 const PricingPage = class extends React.Component {
     static contextTypes = {
-        router: React.PropTypes.object.isRequired
+        router: React.PropTypes.object.isRequired,
     };
 
     static displayName = 'PricingPage'
@@ -19,12 +20,12 @@ const PricingPage = class extends React.Component {
     }
 
     feedback = () => {
-        openModal('Feedback', <Feedback />)
+        openModal('Feedback', <Feedback/>);
     }
 
     render = () => {
         const { hasFeature, getValue } = this.props;
-        const redirect = this.props.location.query.redirect ? `?redirect=${this.props.location.query.redirect}` : "";
+        const redirect = this.props.location.query.redirect ? `?redirect=${this.props.location.query.redirect}` : '';
 
         return (
             <div>
@@ -36,39 +37,52 @@ const PricingPage = class extends React.Component {
                         <div className="panel panel-default panel-grey">
                             <p className="question">So how does this all work?</p>
                             <p className="answer">
-                                First off, you're free to host Bullet Train yourself, free of charge. We're open source, and totally fine with you doing that.
+                                First off, you're free to host Bullet Train yourself, free of charge. We're open source,
+                                and totally fine with you doing that.
                             </p>
                             <p className="answer">
-                                If you want to support the project, or you don't fancy going through the hassle of managing that infrastructure, we'd love you to sign up.
+                                If you want to support the project, or you don't fancy going through the hassle of
+                                managing that infrastructure, we'd love you to sign up.
                             </p>
                             <p className="answer">
-                                The only metric you need to count when deciding on your plan is the number of Monthly Active Users you need to serve flags for (see below).
-                                You can create as many projects, flags, admin users as you like. We feel that this is the fairest measure of usage.
+                                The only metric you need to count when deciding on your plan is the number of Monthly
+                                Active Users you need to serve flags for (see below).
+                                You can create as many projects, flags, admin users as you like. We feel that this is
+                                the fairest measure of usage.
                             </p>
                         </div>
                         <div className="panel panel-default panel-grey">
                             <p className="question">How do you calculate requests per month</p>
                             <p className="answer">
-                                This is simply the total number of API requests you make for each calendar month, across all the projects in your organisation.
+                                This is simply the total number of API requests you make for each calendar month, across
+                                all the projects in your organisation.
                             </p>
                             <p className="answer">
-                                Each time you instantiate one of our client SDKs and get the flags for a user or application, you make 1 request.
-                                For example, if you have a single page React web application, you would generally make 1 API request when the user loads your app, and then
-                                maintain that data for the duration of the user session. If your web pages were generated server-side, you would generally make 1 API request
+                                Each time you instantiate one of our client SDKs and get the flags for a user or
+                                application, you make 1 request.
+                                For example, if you have a single page React web application, you would generally make 1
+                                API request when the user loads your app, and then
+                                maintain that data for the duration of the user session. If your web pages were
+                                generated server-side, you would generally make 1 API request
                                 for each page view.
                             </p>
                         </div>
                         <div className="panel panel-default panel-grey">
                             <p className="question">What happens if I go over my plan limit?</p>
                             <p className="answer">
-                                Don't worry - we'll carry on serving your flags to your users. We realise that this is important to your application.
+                                Don't worry - we'll carry on serving your flags to your users. We realise that this is
+                                important to your application.
                                 If this does happen, we'll be in touch to discuss moving you to a new plan.
                             </p>
                         </div>
                         <div className="panel panel-default panel-grey">
                             <p className="question">What about an annual discount?</p>
                             <p className="answer">
-                                We're working on this - please <a href="mailto:support@bullettrain.io">get in touch</a> if this is important to you right now.
+                                We're working on this - please
+                                {' '}
+                                <a href="mailto:support@bullettrain.io">get in touch</a>
+                                {' '}
+                                if this is important to you right now.
                             </p>
                         </div>
                         <div className="panel panel-default panel-grey">
@@ -83,7 +97,7 @@ const PricingPage = class extends React.Component {
                         </div>
                     </div>
                 </div>
-                <Footer className="homepage" />
+                <Footer className="homepage"/>
             </div>
         );
     }

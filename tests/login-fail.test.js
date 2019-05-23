@@ -10,7 +10,7 @@ module.exports = {
             .url(url)
             .waitForElementVisible('#existing-member-btn')
             .click('#existing-member-btn')
-            .waitForElementVisible('[name="email"]')
+            .waitForElementVisible('#login-btn')
             .setValue('[name="email"]', "bad-email")
             .setValue('[name="password"]', password)
             .click('#login-btn');

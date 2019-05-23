@@ -1,3 +1,9 @@
+import { hot } from 'react-hot-loader';
+import Select from 'react-select';
+import Button, { ButtonSecondary, ButtonWhite } from '../components/base/forms/Button';
+import RemoveIcon from '../components/RemoveIcon';
+
+
 window.Project = require('../../common/project');
 window.Dispatcher = require('../../common/dispatcher/dispatcher');
 window.AppActions = require('../../common/dispatcher/app-actions');
@@ -19,15 +25,13 @@ window.IdentityListProvider = require('../../common/providers/IdentityListProvid
 window.ConfigProvider = require('../../common/providers/ConfigProvider');
 window.OrganisationSelect = require('../components/OrganisationSelect');
 
-
-import Button, {ButtonSecondary, ButtonWhite} from "../components/base/forms/Button";
-
-//Useful components
+// Useful components
 window.Gif = require('../components/base/Gif');
 window.Row = require('../components/base/grid/Row');
 window.Flex = require('../components/base/grid/Flex');
 window.Column = require('../components/base/grid/Column');
 window.Input = require('../components/base/forms/Input');
+
 window.Button = Button;
 window.ButtonSecondary = ButtonSecondary;
 window.ButtonWhite = ButtonWhite;
@@ -43,29 +47,34 @@ window.PanelSearch = require('../components/PanelSearch');
 window.FeatureValue = require('../components/FeatureValue');
 window.CodeHelp = require('../components/CodeHelp');
 
-//Useful for components used all the time within a project
+// Useful for components used all the time within a project
 window.Loader = () => (
-    <svg version="1.1" id="loader-1" x="0px" y="0px"
-         width="40px" height="40px" viewBox="0 0 50 50" style={{enableBackground: '0 0 50 50'}}>
-        <path fill="#4f98a3"
-              d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z">
-            <animateTransform attributeType="xml"
-                              attributeName="transform"
-                              type="rotate"
-                              from="0 25 25"
-                              to="360 25 25"
-                              dur="0.6s"
-                              repeatCount="indefinite"/>
+    <svg
+      version="1.1" id="loader-1" x="0px"
+      y="0px"
+      width="40px" height="40px" viewBox="0 0 50 50"
+      style={{ enableBackground: '0 0 50 50' }}
+    >
+        <path
+          fill="#4f98a3"
+          d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z"
+        >
+            <animateTransform
+              attributeType="xml"
+              attributeName="transform"
+              type="rotate"
+              from="0 25 25"
+              to="360 25 25"
+              dur="0.6s"
+              repeatCount="indefinite"
+            />
         </path>
     </svg>
 );
 
 
 window.Tooltip = require('../components/Toolip');
-import  {hot} from 'react-hot-loader'
-global.hot = hot;
-import RemoveIcon from '../components/RemoveIcon'
-global.RemoveIcon = RemoveIcon;
 
-import Select from 'react-select';
-global.Select = (props)=> <Select className="react-select" classNamePrefix="react-select" {...props}/>
+global.hot = hot;
+global.RemoveIcon = RemoveIcon;
+global.Select = props => <Select className="react-select" classNamePrefix="react-select" {...props}/>;

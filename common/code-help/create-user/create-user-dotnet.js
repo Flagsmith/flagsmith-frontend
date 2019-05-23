@@ -1,5 +1,4 @@
-module.exports = (envId, {LIB_NAME, USER_ID, LIB_NAME_JAVA, FEATURE_NAME, FEATURE_FUNCTION, FEATURE_NAME_ALT, FEATURE_NAME_ALT_VALUE, NPM_CLIENT}, userId) => {
-    return `${LIB_NAME_JAVA} ${LIB_NAME} = new ${LIB_NAME_JAVA}() {
+module.exports = (envId, { LIB_NAME, USER_ID, LIB_NAME_JAVA, FEATURE_NAME, FEATURE_FUNCTION, FEATURE_NAME_ALT, FEATURE_NAME_ALT_VALUE, NPM_CLIENT }, userId) => `${LIB_NAME_JAVA} ${LIB_NAME} = new ${LIB_NAME_JAVA}() {
     environmentKey = "${envId}"
 };
 
@@ -16,5 +15,4 @@ if (myRemoteConfig != null) {
 } else {
     // Run the code without remote config
 }
-`
-}
+`;

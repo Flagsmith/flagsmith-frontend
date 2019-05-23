@@ -1,4 +1,4 @@
-import React, {Component, PropTypes} from 'react';
+import React, { Component, PropTypes } from 'react';
 import CreateSegmentModal from '../modals/CreateSegment';
 import TryIt from '../TryIt';
 import ConfirmRemoveSegment from '../modals/ConfirmRemoveSegment';
@@ -7,7 +7,7 @@ const SegmentsPage = class extends Component {
     static displayName = 'SegmentsPage';
 
     static contextTypes = {
-        router: React.PropTypes.object.isRequired
+        router: React.PropTypes.object.isRequired,
     };
 
     constructor(props, context) {
@@ -18,8 +18,8 @@ const SegmentsPage = class extends Component {
     }
 
     componentWillUpdate(newProps) {
-        const {params} = newProps;
-        const {params: oldParams} = this.props;
+        const { params } = newProps;
+        const { params: oldParams } = this.props;
         if (params.environmentId != oldParams.environmentId || params.projectId != oldParams.projectId) {
             AppActions.getFeatures(this.props.params.projectId, this.props.params.environmentId);
             AppActions.getSegments(params.projectId, params.environmentId);
@@ -32,27 +32,28 @@ const SegmentsPage = class extends Component {
         AsyncStorage.setItem('lastEnv', JSON.stringify({
             orgId: AccountStore.getOrganisation().id,
             projectId: params.projectId,
-            environmentId: params.environmentId
+            environmentId: params.environmentId,
         }));
     };
 
     newSegment = (flags) => {
         openModal('New Segment', <CreateSegmentModal
-            flags={flags}
-            environmentId={this.props.params.environmentId}
-            projectId={this.props.params.projectId}/>, null, {className:"create-segment-modal"})
+          flags={flags}
+          environmentId={this.props.params.environmentId}
+          projectId={this.props.params.projectId}
+        />, null, { className: 'create-segment-modal' });
     };
 
 
     editSegment = (segment) => {
         API.trackEvent(Constants.events.VIEW_SEGMENT);
         openModal('Edit Segment', <CreateSegmentModal
-            segment={segment}
-            isEdit={true}
-            environmentId={this.props.params.environmentId}
-            projectId={this.props.params.projectId}
-            projectFlag={segment}
-        />, null, {className:"create-segment-modal"})
+          segment={segment}
+          isEdit
+          environmentId={this.props.params.environmentId}
+          projectId={this.props.params.projectId}
+          projectFlag={segment}
+        />, null, { className: 'create-segment-modal' });
     };
 
 
@@ -63,9 +64,11 @@ const SegmentsPage = class extends Component {
     }
 
     confirmRemove = (segment, cb) => {
-        openModal("Remove Segment", <ConfirmRemoveSegment environmentId={this.props.params.environmentId}
-                                                          segment={segment}
-                                                          cb={cb}/>)
+        openModal('Remove Segment', <ConfirmRemoveSegment
+          environmentId={this.props.params.environmentId}
+          segment={segment}
+          cb={cb}
+        />);
     }
 
     onError = (error) => {
@@ -74,11 +77,11 @@ const SegmentsPage = class extends Component {
     }
 
     render() {
-        const {projectId, environmentId} = this.props.params;
+        const { projectId, environmentId } = this.props.params;
         return (
             <div data-test="segments-page" id="segments-page" className="app-container container">
                 <SegmentListProvider onSave={this.onSave} onError={this.onError}>
-                    {({isLoading, segments}, { removeSegment}) => (
+                    {({ isLoading, segments }, { removeSegment }) => (
                         <div className="segments-page">
                             {isLoading && <div className="centered-container"><Loader/></div>}
                             {!isLoading && (
@@ -92,10 +95,12 @@ const SegmentsPage = class extends Component {
                                                         Create and manage groups of users with similar traits.
                                                     </p>
                                                 </Flex>
-                                                <FormGroup className={'float-right'}>
+                                                <FormGroup className="float-right">
                                                     <div className="text-right">
-                                                        <Button className={"btn-lg btn-primary"} id="show-create-feature-btn"
-                                                                onClick={this.newSegment}>
+                                                        <Button
+                                                          className="btn-lg btn-primary" id="show-create-feature-btn"
+                                                          onClick={this.newSegment}
+                                                        >
                                                             Create Segment
                                                         </Button>
                                                     </div>
@@ -104,68 +109,85 @@ const SegmentsPage = class extends Component {
 
                                             <FormGroup>
                                                 <PanelSearch
-                                                    className={"no-pad"}
-                                                    id="features-list"
-                                                    icon={"ion-ios-globe"}
-                                                    title={"Segments"}
-                                                    items={segments}
-                                                    renderRow={({name, id, enabled, created_date, type}, i) =>
-                                                        <Row className={"list-item clickable"} key={id} space>
-                                                            <div className={"flex flex-1"}
-                                                                 onClick={() => this.editSegment(segments[i])}>
-                                                                <Row>
-                                                                    <a href={"#"}>
-                                                                        {name}
-                                                                    </a>
-                                                                </Row>
-                                                                <div className={"list-item-footer faint"}>
-                                                                    Created {moment(created_date).format("DD/MMM/YYYY")}
-                                                                </div>
-                                                            </div>
-                                                            <Row>
-                                                                <Column>
-                                                                    <button
-                                                                        id="remove-feature"
-                                                                        onClick={() => this.confirmRemove(segments[i], () => {
-                                                                            removeSegment(this.props.params.projectId, segments[i].id)
-                                                                        })}
-                                                                        className={"btn btn--with-icon"}>
-                                                                        <RemoveIcon />
-                                                                    </button>
-                                                                </Column>
-                                                            </Row>
-                                                        </Row>
-                                                    }
-                                                    renderNoResults={<div className={"text-center"}>
-                                                    </div>}
-                                                    filterRow={({name}, search) => {
-                                                        return name.toLowerCase().indexOf(search) > -1;
-                                                    }}
+                                                  className="no-pad"
+                                                  id="features-list"
+                                                  icon="ion-ios-globe"
+                                                  title="Segments"
+                                                  items={segments}
+                                                  renderRow={({ name, id, enabled, created_date, type }, i) => (
+                                                      <Row className="list-item clickable" key={id} space>
+                                                          <div
+                                                            className="flex flex-1"
+                                                            onClick={() => this.editSegment(segments[i])}
+                                                          >
+                                                              <Row>
+                                                                  <a href="#">
+                                                                      {name}
+                                                                  </a>
+                                                              </Row>
+                                                              <div className="list-item-footer faint">
+                                                                    Created
+                                                                  {' '}
+                                                                  {moment(created_date).format('DD/MMM/YYYY')}
+                                                              </div>
+                                                          </div>
+                                                          <Row>
+                                                              <Column>
+                                                                  <button
+                                                                    id="remove-feature"
+                                                                    onClick={() => this.confirmRemove(segments[i], () => {
+                                                                        removeSegment(this.props.params.projectId, segments[i].id);
+                                                                    })}
+                                                                    className="btn btn--with-icon"
+                                                                  >
+                                                                      <RemoveIcon/>
+                                                                  </button>
+                                                              </Column>
+                                                          </Row>
+                                                      </Row>
+                                                  )}
+                                                  renderNoResults={(
+                                                      <div className="text-center"/>
+                                                    )}
+                                                  filterRow={({ name }, search) => name.toLowerCase().indexOf(search) > -1}
                                                 />
                                             </FormGroup>
 
                                             <FormGroup>
                                                 <CodeHelp
-                                                    title={"Using segments"}
-                                                    snippets={Constants.codeHelp.SEGMENTS(environmentId)}/>
+                                                  title="Using segments"
+                                                  snippets={Constants.codeHelp.SEGMENTS(environmentId)}
+                                                />
                                             </FormGroup>
                                         </div>
                                     ) : (
                                         <div>
                                             <h3>Target groups of users with segments.</h3>
                                             <FormGroup>
-                                                <Panel icon={"ion-ios-globe"} title={"1. creating a segment"}>
+                                                <Panel icon="ion-ios-globe" title="1. creating a segment">
                                                     <p>
-                                                        You can create a segment that targets <a href={`https://docs.bullet-train.io/managing-identities/#identity-traits`} target="new">User Traits</a>.
-                                                        As user's traits are updated they will automatically be added to the segments based on the rules you create.
+                                                        You can create a segment that targets
+                                                        {' '}
+                                                        <a
+                                                          href="https://docs.bullet-train.io/managing-identities/#identity-traits"
+                                                          target="new"
+                                                        >
+User Traits
+                                                        </a>
+                                                        .
+                                                        As user's traits are updated they will automatically be added to
+                                                        the segments based on the rules you create.
                                                     </p>
                                                 </Panel>
                                             </FormGroup>
-                                            <FormGroup className={"text-center"}>
-                                                <Button className={"btn-lg btn-primary"} id="show-create-feature-btn"
-                                                        onClick={this.newSegment}>
+                                            <FormGroup className="text-center">
+                                                <Button
+                                                  className="btn-lg btn-primary" id="show-create-feature-btn"
+                                                  onClick={this.newSegment}
+                                                >
                                                     <ion className="icon ion-ios-globe"/>
-                                                    {" "}Create your first Segment
+                                                    {' '}
+                                                    Create your first Segment
                                                 </Button>
                                             </FormGroup>
                                         </div>

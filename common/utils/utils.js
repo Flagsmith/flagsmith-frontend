@@ -1,8 +1,8 @@
 module.exports = Object.assign({}, require('./base/_utils'), {
     numberWithCommas(x) {
-        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     },
-    getFlagValue: function (projectFlag, environmentFlag, identityFlag) {
+    getFlagValue(projectFlag, environmentFlag, identityFlag) {
         if (!environmentFlag) {
             return {
                 name: projectFlag.name,
@@ -10,58 +10,56 @@ module.exports = Object.assign({}, require('./base/_utils'), {
                 feature_state_value: projectFlag.initial_value,
                 enabled: false,
                 description: projectFlag.description,
-            }
-        } else if (identityFlag) {
+            };
+        }
+        if (identityFlag) {
             return {
                 type: projectFlag.type,
                 name: projectFlag.name,
                 feature_state_value: identityFlag.feature_state_value,
                 enabled: identityFlag.enabled,
                 description: projectFlag.description,
-            }
+            };
         }
-        else {
-            return {
-                type: projectFlag.type,
-                name: projectFlag.name,
-                feature_state_value: environmentFlag.feature_state_value,
-                enabled: environmentFlag.enabled,
-                description: projectFlag.description,
-            }
-        }
+        return {
+            type: projectFlag.type,
+            name: projectFlag.name,
+            feature_state_value: environmentFlag.feature_state_value,
+            enabled: environmentFlag.enabled,
+            description: projectFlag.description,
+        };
     },
 
-    getTypedValue: function (str) {
-
-        if (typeof str != "string") {
-            return str
+    getTypedValue(str) {
+        if (typeof str !== 'string') {
+            return str;
         }
 
         const isNum = /^\d+$/.test(str);
 
-        if (str == "true") {
+        if (str == 'true') {
             return true;
-        } else if (str == "false") {
+        }
+        if (str == 'false') {
             return false;
         }
 
         if (isNum) {
-            if (str.indexOf(".") != -1) {
+            if (str.indexOf('.') != -1) {
                 return parseFloat(str);
-            } else {
-                return parseInt(str);
             }
+            return parseInt(str);
         }
 
         return str;
     },
 
     scrollToTop: (timeout = 500) => {
-        $('html,body').animate({scrollTop: 0}, timeout);
+        $('html,body').animate({ scrollTop: 0 }, timeout);
     },
 
     scrollToElement: (selector, timeout = 500) => {
-        $('html,body').animate({scrollTop: $(selector).offset().top}, timeout);
+        $('html,body').animate({ scrollTop: $(selector).offset().top }, timeout);
     },
 
     scrollToSignUp: () => {

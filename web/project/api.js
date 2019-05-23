@@ -1,5 +1,5 @@
 global.API = {
-    ajaxHandler: function (store, res) {
+    ajaxHandler(store, res) {
         switch (res.status) {
             case 404:
                 // ErrorModal(null, 'API Not found: ');
@@ -17,7 +17,7 @@ global.API = {
             return;
         }
 
-        res.json().then(error => {
+        res.json().then((error) => {
             if (store) {
                 store.error = error;
                 store.goneABitWest();
@@ -28,80 +28,79 @@ global.API = {
             }
         });
     },
-    trackEvent: function(data) {
+    trackEvent(data) {
         if (Project.ga) {
-            if (!data)  {
-                console.error("Passed null event data")
+            if (!data) {
+                console.error('Passed null event data');
             }
-            console.info("track", data);
+            console.info('track', data);
             if (!data || !data.category || !data.event) {
-                console.error("Invalid event provided", data);
+                console.error('Invalid event provided', data);
             }
             ga('send', {
                 hitType: 'event',
                 eventCategory: data.category,
                 eventAction: data.event,
-                eventLabel: data.label
+                eventLabel: data.label,
             });
         }
 
         if (Project.mixpanel) {
-            if (!data)  {
-                console.error("Passed null event data")
+            if (!data) {
+                console.error('Passed null event data');
             }
-            console.info("track", data);
+            console.info('track', data);
             if (!data || !data.category || !data.event) {
-                console.error("Invalid event provided", data);
+                console.error('Invalid event provided', data);
             }
             mixpanel.track(data.event, {
-                category: data.category
+                category: data.category,
             });
         }
-
     },
-    trackPage: function(title) {
+    trackPage(title) {
         if (Project.ga) {
             ga('send', {
                 hitType: 'pageview',
                 title,
                 location: document.location.href,
-                page: document.location.pathname
+                page: document.location.pathname,
             });
         }
 
         if (Project.mixpanel) {
-            mixpanel.track("Page View", {
+            mixpanel.track('Page View', {
                 title,
                 location: document.location.href,
-                page: document.location.pathname
-            })
+                page: document.location.pathname,
+            });
         }
     },
-    alias: function(id) {
+    alias(id) {
         if (Project.mixpanel) {
             mixpanel.alias(id);
         }
     },
-    identify: function (id) {
+    identify(id) {
         if (Project.mixpanel) {
             mixpanel.identify(id);
         }
     },
-    register: function (email, firstName, lastName) {
+    register(email, firstName, lastName) {
         if (Project.mixpanel) {
             mixpanel.register({
                 'Email': email,
                 'First Name': firstName,
-                'Last Name': lastName
+                'Last Name': lastName,
             });
         }
     },
-    reset: function () {
+    reset() {
         if (Project.mixpanel) {
             mixpanel.reset();
         }
     },
     log() {
-        console.log.apply(this,arguments)
-    }
+        console.log.apply(this, arguments);
+    },
 };

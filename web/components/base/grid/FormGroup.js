@@ -1,13 +1,13 @@
 const cn = require('classnames');
 
-const FormGroup = (props)=>(
-  <div className={"form-group " + (props.className || "")}>
-    {props.children}
-  </div>
+const FormGroup = props => (
+    <div className={`form-group ${props.className || ''}`}>
+        {props.children}
+    </div>
 );
 
-FormGroup.displayName = "FormGroup";
+FormGroup.displayName = 'FormGroup';
 FormGroup.propTypes = {
-  children: OptionalNode
+    children: OptionalNode,
 };
 module.exports = FormGroup;
