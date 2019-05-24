@@ -222,16 +222,6 @@ const AppActions = Object.assign({}, require('./base/_app-actions'), {
             data,
         });
     },
-    editEnvironmentSegment(projectId, environmentId, segment, projectSegment, environmentSegment) {
-        Dispatcher.handleViewAction({
-            actionType: Actions.EDIT_ENVIRONMENT_SEGMENT,
-            projectId,
-            environmentId,
-            segment,
-            projectSegment,
-            environmentSegment,
-        });
-    },
     getSegments(projectId, environmentId) {
         Dispatcher.handleViewAction({
             actionType: Actions.GET_SEGMENTS,
