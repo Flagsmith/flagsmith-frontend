@@ -9,6 +9,7 @@ const keywords = {
     FEATURE_FUNCTION: 'myCoolFeature',
     SEGMENT_NAME: 'superUsers',
     FEATURE_NAME: 'myCoolFeature',
+    TRAIT_NAME: 'age',
     USER_FEATURE_FUNCTION: 'myEvenCoolerFeature',
     USER_FEATURE_NAME: 'myEvenCoolerFeature',
     FEATURE_NAME_ALT: 'bannerSize',
@@ -140,6 +141,14 @@ const Constants = {
         'SEGMENTS': envId => ({
             'JavaScript': require('./code-help/segments/segments-js')(envId, keywords),
             'React Native': require('./code-help/segments/segments-rn')(envId, keywords),
+            'Node JS': '//Coming Soon',
+            'Java': '//Coming Soon',
+            '.NET': '//Coming Soon',
+        }),
+
+        'USER_TRAITS': (envId, userId) => ({
+            'JavaScript': require('./code-help/traits/traits-js')(envId, keywords),
+            'React Native': require('./code-help/traits/traits-rn')(envId, keywords),
             'Node JS': '//Coming Soon',
             'Java': '//Coming Soon',
             '.NET': '//Coming Soon',

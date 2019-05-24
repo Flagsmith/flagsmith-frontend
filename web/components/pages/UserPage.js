@@ -254,6 +254,12 @@ const UserPage = class extends Component {
                                     </div>
                                     <div className="col-md-12">
                                         <FormGroup>
+                                            <CodeHelp
+                                                title="Managing user traits and segments"
+                                                snippets={Constants.codeHelp.USER_TRAITS(this.props.params.id)}
+                                            />
+                                        </FormGroup>
+                                        <FormGroup>
                                             <TryIt
                                               title="Check to see what features and traits are coming back for this user"
                                               environmentId={this.props.params.environmentId}
