@@ -68,6 +68,12 @@
     margin-right: 1em;
     display: inline-block;
     margin-bottom: 1em;
+    &--small {
+        width: 10px;
+        height: 10px;
+        border-radius: 5px;
+        margin-bottom: 0;
+    }
     &--brand-primary {
         background-color: $bt-brand-primary;
     }
@@ -88,6 +94,9 @@
     }
     &--brand-red {
         background-color: $bt-brand-red;
+    }
+    &--python {
+        background-color: #3572A5;
     }
 }
 

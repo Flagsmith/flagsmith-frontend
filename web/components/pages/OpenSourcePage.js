@@ -22,11 +22,11 @@ export default class OpenSourcePage extends Component {
 
     render() {
         return (
-            <div className="app-container container-fluid">
-                <div className="hero__open-source text-center">
-                <h1>Open Source</h1>
+            <div className="">
+                <div className="hero__open-source pt-3 text-center">
+                <h1 className="display pt-5">Open Source</h1>
+                    <p className="pb-3">All of our open source repositiories are listed here</p>
                 </div>
-
 
                 <div className="container">
 
@@ -39,24 +39,28 @@ export default class OpenSourcePage extends Component {
                             value="Platform"
                             tabLabel={(
                                 <Row className="row-center">
-                                    <ion className="tab-icon ion-ios-switch"/>
                                     Platform
                                 </Row>
                             )}
                         >
                             <div>
-                                <div className="panel panel-default mt-5">
-                                    <div className="panel-content">
-                                        <h2>Bullet Train API</h2>
+                                <a className="open-source-card" href="https://github.com/SolidStateGroup/bullet-train-api" target="_blank">
+                                    <div className="panel panel-default panel--open-source mt-5">
+                                        <div className="panel-content">
+                                            <h2>bullet-train-api</h2>
+                                            <p className="m-0">Python REST API for Bullet-Train. Ship features with confidence using feature flags and remote config. Host yourself or use our hosted version at <a href="https://bullet-train.io/" rel="nofollow">https://bullet-train.io/</a>
+                                            </p>
+                                            <div className="colour-block colour-block--small colour-block--python"/>
+                                            <small className="technology-name">Python</small>
+                                        </div>
                                     </div>
-                                </div>
+                                </a>
                             </div>
                         </TabItem>
                         <TabItem
                             value="Client"
                             id="btn-select-remote-config" tabLabel={(
                             <Row className="row-center">
-                                <ion className="tab-icon ion-ios-settings"/>
                                 Client libraries
                             </Row>
                         )}

@@ -40,6 +40,12 @@
         right: -15em;
         z-index: 0;
     }
+    &__open-source {
+        //background-color: $bt-brand-secondary;
+        h1 {
+            color: $bt-brand-secondary;
+        }
+    }
 }
 
 h2 {
