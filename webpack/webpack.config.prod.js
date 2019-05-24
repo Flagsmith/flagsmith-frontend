@@ -31,19 +31,19 @@ module.exports = {
         ],
     },
     externals: {
-    // require('jquery') is external and available
-    //  on the global var jQuery
+        // require('jquery') is external and available
+        //  on the global var jQuery
         'jquery': 'jQuery',
     },
     output: {
-        path: path.join(__dirname, '../build'),
+        path: path.join(__dirname, '../build/static'),
         filename: '[name].[hash].js',
-        publicPath: 'https://cdn.bullet-train.io/',
+        publicPath: 'https://cdn.bullet-train.io/static/'
     },
 
     plugins: require('./plugins')
         .concat([
-        // Clear out build folder
+            // Clear out build folder
             new CleanWebpackPlugin(['build'], { root: path.join(__dirname, '../') }),
 
             new webpack.DefinePlugin({
@@ -59,13 +59,14 @@ module.exports = {
         ]).concat(require('./pages').map((page) => {
             console.log(page);
             return new HtmlWebpackPlugin({
-                filename: `${page}.html`, // output
-                template: `./web/${page}.html`, // template to use
-                'assets': { // add these script/link tags
-                    'client': '/[hash].js',
-                    'style': 'style.[hash].css',
-                },
-            });
+                    filename: page + '.handlebars', //output
+                    template: './web/' + page + '.handlebars', //template to use
+                    "assets": { //add these script/link tags
+                        "client": "/[hash].js",
+                        "style": "style.[hash].css"
+                    }
+                }
+            )
         })),
 
     module: {

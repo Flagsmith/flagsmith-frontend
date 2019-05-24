@@ -1,51 +1,45 @@
 const bodyParser = require('body-parser');
-const express = require('express');
 const api = require('./api');
+const exphbs = require('express-handlebars');
+const express = require('express');
 const spm = require('./middleware/single-page-middleware');
 const webpackMiddleware = require('./middleware/webpack-middleware');
-
 const isDev = process.env.NODE_ENV !== 'production';
 const app = express();
 const port = process.env.PORT || 8080;
-const path = require('path');
 
-app.use('/api', api());
-
-let devMiddleware;
-if (isDev) { // Serve files from src directory and use webpack-dev-server
+if (isDev) { //Serve files from src directory and use webpack-dev-server
     console.log('Enabled Webpack Hot Reloading');
-    devMiddleware = webpackMiddleware(app);
-} else {
+    webpackMiddleware(app);
+    app.set('views', 'web/');
+    app.use(express.static('web'));
+} else { //Serve files from build directory
     console.log('Running production mode');
+    app.use(express.static('build'));
+    app.set('views', 'build/');
 }
 
-
-app.use(express.static('build'));
-app.set('views', 'build/');
-
-// Rewrite request URL if necessary
-app.use(spm);
+app.engine('handlebars', exphbs());
+app.set('view engine', 'handlebars');
 
 // parse various different custom JSON types as JSON
-app.use(bodyParser.json());
+app.use(bodyParser.json())
 
-app.get('/', (req, res, next) => {
-    if (!isDev) {
-        res.sendFile(path.resolve('build/index.html'));
+app.use('/api', api());
+app.use(spm);
+app.get('/', function (req, res) {
+    console.log("Returning index");
+    if (isDev) {
+        return res.render('index', {
+            isDev
+        });
     } else {
-        const compiler = devMiddleware.context.compiler;
-        const filename = path.join(compiler.outputPath, 'index.html');
-        compiler.outputFileSystem.readFile(filename, (err, result) => {
-            if (err) {
-                return next(err);
-            }
-            res.set('content-type', 'text/html');
-            res.send(result);
-            res.end();
+        return res.render('static/index', {
+            isDev
         });
     }
 });
 
-app.listen(port, () => {
-    console.log(`Server listening on: ${port}`);
+app.listen(port, function () {
+    console.log('Server listening on: ' + port);
 });
