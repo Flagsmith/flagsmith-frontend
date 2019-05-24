@@ -7,18 +7,22 @@
 	}
 }
 
-
 .panel {
 	width: 100%;
 	&--open-source {
+		transition: .2s;
 		.panel-content {
 			h2 {
 				color: $bt-brand-secondary;
-				text-decoration: none;
+				//text-decoration: none;
 			}
 			.technology-name {
-				color: $panel-heading-color;;
+				color: $panel-heading-color;
 			}
+		}
+		&:hover {
+			transform: translate(0,-.5rem);
+			cursor: pointer;
 		}
 	}
 	.panel-heading {

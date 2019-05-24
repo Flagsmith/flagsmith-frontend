@@ -43,20 +43,68 @@ export default class OpenSourcePage extends Component {
                                 </Row>
                             )}
                         >
-                            <div>
+                            <div className="mb-5">
                                 <a className="open-source-card" href="https://github.com/SolidStateGroup/bullet-train-api" target="_blank">
-                                    <div className="panel panel-default panel--open-source mt-5">
+                                    <div className="panel panel-default panel--open-source mt-4">
                                         <div className="panel-content">
                                             <h2>bullet-train-api</h2>
-                                            <p className="m-0">Python REST API for Bullet-Train. Ship features with confidence using feature flags and remote config. Host yourself or use our hosted version at <a href="https://bullet-train.io/" rel="nofollow">https://bullet-train.io/</a>
+                                            <p className="m-0">Python REST API for Bullet-Train.
                                             </p>
                                             <div className="colour-block colour-block--small colour-block--python"/>
                                             <small className="technology-name">Python</small>
                                         </div>
                                     </div>
                                 </a>
+
+                                <a className="open-source-card" href="https://github.com/SolidStateGroup/bullet-train-frontend" target="_blank">
+                                    <div className="panel panel-default panel--open-source mt-4">
+                                        <div className="panel-content">
+                                            <h2>bullet-train-frontend</h2>
+                                            <p className="m-0">Website and mobile app for Bullet Train.
+                                            </p>
+                                            <div className="colour-block colour-block--small colour-block--javascript"/>
+                                            <small className="technology-name">JavaScript</small>
+                                        </div>
+                                    </div>
+                                </a>
+
+                                <a className="open-source-card" href="https://github.com/SolidStateGroup/bullet-train-docs" target="_blank">
+                                    <div className="panel panel-default panel--open-source mt-4">
+                                        <div className="panel-content">
+                                            <h2>bullet-train-docs</h2>
+                                            <p className="m-0">This is the documentation repository for the Docs of Bullet Train.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </a>
+
+                                <a className="open-source-card" href="https://github.com/SolidStateGroup/bullet-train-examples" target="_blank">
+                                    <div className="panel panel-default panel--open-source mt-4">
+                                        <div className="panel-content">
+                                            <h2>bullet-train-examples</h2>
+                                            <p className="m-0">A collection of integrations to Bullet Train in a number of different frameworks.
+                                            </p>
+                                            <div className="colour-block colour-block--small colour-block--typescript"/>
+                                            <small className="technology-name">TypeScript</small>
+                                        </div>
+                                    </div>
+                                </a>
+
+                                <a className="open-source-card" href="https://github.com/SolidStateGroup/bullet-train-rules-engine" target="_blank">
+                                    <div className="panel panel-default panel--open-source mt-4">
+                                        <div className="panel-content">
+                                            <h2>bullet-train-rules-engine</h2>
+                                            <p className="m-0">Evaluate objects against a set of JSON rules supporting nested ALL, NONE and ANY predicates with standard operators.
+                                            </p>
+                                            <div className="colour-block colour-block--small colour-block--javascript"/>
+                                            <small className="technology-name">JavaScript</small>
+                                        </div>
+                                    </div>
+                                </a>
+
                             </div>
                         </TabItem>
+
                         <TabItem
                             value="Client"
                             id="btn-select-remote-config" tabLabel={(
@@ -65,8 +113,78 @@ export default class OpenSourcePage extends Component {
                             </Row>
                         )}
                         >
-                            <div>
-                                Tab 2
+                            <div className="mb-5">
+                                <a className="open-source-card" href="https://github.com/SolidStateGroup/bullet-train-js-client" target="_blank">
+                                    <div className="panel panel-default panel--open-source mt-4">
+                                        <div className="panel-content">
+                                            <h2>bullet-train-js-client</h2>
+                                            <p className="m-0">Javascript Client for Bullet-Train.
+                                            </p>
+                                            <div className="colour-block colour-block--small colour-block--javascript"/>
+                                            <small className="technology-name">JavaScript</small>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a className="open-source-card" href="https://github.com/SolidStateGroup/bullet-train-nodejs-client" target="_blank">
+                                    <div className="panel panel-default panel--open-source mt-4">
+                                        <div className="panel-content">
+                                            <h2>bullet-train-nodejs-client</h2>
+                                            <p className="m-0">Bullet Train Node JS Client.
+                                            </p>
+                                            <div className="colour-block colour-block--small colour-block--javascript"/>
+                                            <small className="technology-name">JavaScript</small>
+                                        </div>
+                                    </div>
+                                </a>
+
+                                <a className="open-source-card" href="https://github.com/SolidStateGroup/bullet-train-dotnet-client" target="_blank">
+                                    <div className="panel panel-default panel--open-source mt-4">
+                                        <div className="panel-content">
+                                            <h2>bullet-train-dotnet-client</h2>
+                                            <p className="m-0">.NET Standard Client for Bullet-Train.
+                                            </p>
+                                            <div className="colour-block colour-block--small colour-block--c"/>
+                                            <small className="technology-name">C#</small>
+                                        </div>
+                                    </div>
+                                </a>
+
+                                <a className="open-source-card" href="https://github.com/SolidStateGroup/bullet-train-ruby-client" target="_blank">
+                                    <div className="panel panel-default panel--open-source mt-4">
+                                        <div className="panel-content">
+                                            <h2>bullet-train-ruby-client</h2>
+                                            <p className="m-0">Ruby Client for Bullet-Train.
+                                            </p>
+                                            <div className="colour-block colour-block--small colour-block--ruby"/>
+                                            <small className="technology-name">Ruby</small>
+                                        </div>
+                                    </div>
+                                </a>
+
+                                <a className="open-source-card" href="https://github.com/SolidStateGroup/bullet-train-python-client" target="_blank">
+                                    <div className="panel panel-default panel--open-source mt-4">
+                                        <div className="panel-content">
+                                            <h2>bullet-train-python-client</h2>
+                                            <p className="m-0">Bullet Train Python Client.
+                                            </p>
+                                            <div className="colour-block colour-block--small colour-block--python"/>
+                                            <small className="technology-name">Python</small>
+                                        </div>
+                                    </div>
+                                </a>
+
+                                <a className="open-source-card" href="https://github.com/SolidStateGroup/bullet-train-java-client" target="_blank">
+                                    <div className="panel panel-default panel--open-source mt-4">
+                                        <div className="panel-content">
+                                            <h2>bullet-train-java-client</h2>
+                                            <p className="m-0">Java Client for Bullet-Train.
+                                            </p>
+                                            <div className="colour-block colour-block--small colour-block--java"/>
+                                            <small className="technology-name">Java</small>
+                                        </div>
+                                    </div>
+                                </a>
+
                             </div>
                         </TabItem>
                     </Tabs>
