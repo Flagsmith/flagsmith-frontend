@@ -38,7 +38,7 @@ module.exports = {
     output: {
         path: path.join(__dirname, '../build/static'),
         filename: '[name].[hash].js',
-        publicPath: 'https://cdn.bullet-train.io/static/',
+        publicPath: 'https://cdn.bullet-train.io/static/'
     },
 
     plugins: require('./plugins')
@@ -56,7 +56,18 @@ module.exports = {
             // pull inline styles into cachebusted file
             new ExtractTextPlugin({ filename: 'style.[hash].css', allChunks: true }),
 
-        ]),
+        ]).concat(require('./pages').map((page) => {
+            console.log(page);
+            return new HtmlWebpackPlugin({
+                    filename: page + '.html', //output
+                    template: './web/' + page + '.html', //template to use
+                    "assets": { //add these script/link tags
+                        "client": "/[hash].js",
+                        "style": "style.[hash].css"
+                    }
+                }
+            )
+        })),
 
     module: {
         rules: require('./loaders').concat([
