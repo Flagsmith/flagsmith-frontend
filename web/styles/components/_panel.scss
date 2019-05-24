@@ -1,8 +1,30 @@
 @import "../variables";
 @import "../flexbox/mixins";
 
+.open-source-card {
+	&:hover, :focus {
+		text-decoration: none !important;
+	}
+}
+
 .panel {
 	width: 100%;
+	&--open-source {
+		transition: .2s;
+		.panel-content {
+			h2 {
+				color: $bt-brand-secondary;
+				//text-decoration: none;
+			}
+			.technology-name {
+				color: $panel-heading-color;
+			}
+		}
+		&:hover {
+			transform: translate(0,-.5rem);
+			cursor: pointer;
+		}
+	}
 	.panel-heading {
 		h1, h2, h3 {
 			color: $panel-heading-color;
