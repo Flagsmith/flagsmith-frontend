@@ -93,7 +93,9 @@ const CreateFlag = class extends Component {
                                             />
                                             <TabItem
                                               value="CONFIG"
-                                              id="btn-select-remote-config" tabLabel={(
+                                              data-test="btn-select-remote-config"
+                                              id="btn-select-remote-config"
+                                              tabLabel={(
                                                   <Row className="row-center">
                                                       <ion className="tab-icon ion-ios-settings"/>
                                                     Remote config
@@ -107,6 +109,7 @@ const CreateFlag = class extends Component {
                                 <FormGroup className="mb-4">
                                     <InputGroup
                                       ref={e => this.input = e}
+                                      data-test="featureID"
                                       inputProps={{
                                           readOnly: isEdit,
                                           className: 'full-width',
@@ -124,6 +127,7 @@ const CreateFlag = class extends Component {
                                         <InputGroup
                                           textarea
                                           value={initial_value}
+                                          data-test="featureValue"
                                           inputProps={{ name: 'featureValue', className: 'full-width' }}
                                           onChange={e => this.setState({ initial_value: Utils.getTypedValue(Utils.safeParseEventValue(e)) })}
                                           type="text"
@@ -147,6 +151,7 @@ const CreateFlag = class extends Component {
                                 <FormGroup>
                                     <InputGroup
                                       value={description}
+                                      data-test="featureDesc"
                                       inputProps={{
                                           className: 'full-width',
                                           readOnly: !!identity,
@@ -205,11 +210,11 @@ const CreateFlag = class extends Component {
 
                                 <div className="text-right">
                                     {isEdit ? (
-                                        <Button id="update-feature-btn" disabled={isSaving || !name}>
+                                        <Button data-test="update-feature-btn" id="update-feature-btn" disabled={isSaving || !name}>
                                             {isSaving ? 'Creating' : 'Update Feature'}
                                         </Button>
                                     ) : (
-                                        <Button id="create-feature-btn" disabled={isSaving || !name}>
+                                        <Button data-test="create-feature-btn" id="create-feature-btn" disabled={isSaving || !name}>
                                             {isSaving ? 'Creating' : 'Create Feature'}
                                         </Button>
                                     )}

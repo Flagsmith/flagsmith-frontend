@@ -4,6 +4,7 @@
   "description": "The frontend application for Bullet Train",
   "main": "index.js",
   "scripts": {
+    "kill": "kill -9 $(lsof -ti tcp:4444)",
     "test": "cross-env E2E=true nightwatch ./tests/index.test.js",
     "env": "node ./bin/env.js",
     "start": "cross-env NODE_ENV=production node ./server",

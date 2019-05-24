@@ -1,5 +1,4 @@
 const expect = require('chai').expect;
-const inviteEmail = 'bullet-train@mailinator.com';
 const email = 'nightwatch@solidstategroup.com';
 const password = 'nightwatch';
 const url = 'http://localhost:' + (process.env.PORT || 8080);
@@ -26,13 +25,13 @@ const byId= helpers.byTestID;
     },
     '[Main Tests] - Create feature': function (browser) {
         browser
-            .waitForElementNotPresent('#create-project-modal')
-            .click('#show-create-feature-btn')
-            .waitAndClick('#btn-select-remote-config')
-            .setValue('[name="featureID"]', 'header_size')
-            .setValue('[name="featureValue"]', 'big')
-            .setValue('[name="featureDesc"]', 'This determines what size the header is')
-            .click('#create-feature-btn')
+            .waitForElementNotPresent(byId('create-project-modal'))
+            .click(byId('show-create-feature-btn'))
+            .waitAndClick(byId('btn-select-remote-config'))
+            .setValue(byId('featureID'), 'header_size')
+            .setValue(byId('featureValue'), 'big')
+            .setValue(byId('featureDesc'), 'This determines what size the header is')
+            .click(byId('create-feature-btn'))
             .waitForElementVisible('#features-list div.list-item')
             .waitForElementNotPresent('#create-feature-modal')
             .click('#features-list div.list-item div')

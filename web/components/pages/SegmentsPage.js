@@ -98,7 +98,9 @@ const SegmentsPage = class extends Component {
                                                 <FormGroup className="float-right">
                                                     <div className="text-right">
                                                         <Button
-                                                          className="btn-lg btn-primary" id="show-create-feature-btn"
+                                                          className="btn-lg btn-primary"
+                                                          id="show-create-segment-btn"
+                                                          data-test="show-create-segment-btn"
                                                           onClick={this.newSegment}
                                                         >
                                                             Create Segment
@@ -182,7 +184,7 @@ User Traits
                                             </FormGroup>
                                             <FormGroup className="text-center">
                                                 <Button
-                                                  className="btn-lg btn-primary" id="show-create-feature-btn"
+                                                  className="btn-lg btn-primary" id="show-create-segment-btn" data-test="show-create-segment-btn"
                                                   onClick={this.newSegment}
                                                 >
                                                     <ion className="icon ion-ios-globe"/>

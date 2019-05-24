@@ -140,22 +140,6 @@ const CreateSegment = class extends Component {
 
         return (
             <div>
-                {/* <FormGroup className="mb-4"> */}
-                {/*    <Tabs className={"pill"} value={this.state.tab} */}
-                {/*          onChange={(tab) => this.setState({tab})}> */}
-                {/*        <TabItem id={"btn-select-flags"} */}
-                {/*                 value={"CREATE"} */}
-                {/*                 tabLabel={<Row className={"row-center"}> */}
-                {/*                     <ion className="tab-icon ion-ios-switch"/> */}
-                {/*                     Create</Row>}/> */}
-                {/*        <TabItem */}
-                {/*            value={"CONFIG"} */}
-                {/*            id={"btn-select-remote-config"} tabLabel={<Row className={"row-center"}> */}
-                {/*            <ion className="tab-icon ion-ios-settings"/> */}
-                {/*            Preview</Row>}/> */}
-                {/*    </Tabs> */}
-                {/* </FormGroup> */}
-
                 {this.state.tab === 0 ? (
                     <form
                       id="create-segment-modal"
@@ -164,9 +148,10 @@ const CreateSegment = class extends Component {
                         <FormGroup className="mb-4">
                             <InputGroup
                               ref={e => this.input = e}
+                              data-test="segmentID"
                               inputProps={{
                                   className: 'full-width',
-                                  name: 'featureID',
+                                  name: 'segmentID',
                               }}
                               value={name}
                               onChange={e => this.setState({ name: Format.enumeration.set(Utils.safeParseEventValue(e)).toLowerCase() })}
@@ -200,11 +185,11 @@ const CreateSegment = class extends Component {
 
                         <div className="text-right">
                             {isEdit ? (
-                                <Button type="submit" id="update-feature-btn" disabled={isSaving || !name}>
+                                <Button type="submit" data-test="update-feature-btn" id="update-feature-btn" disabled={isSaving || !name}>
                                     {isSaving ? 'Creating' : 'Update Segment'}
                                 </Button>
                             ) : (
-                                <Button type="submit" id="create-feature-btn" disabled={isSaving || !name}>
+                                <Button type="submit" data-test="create-feature-btn" disabled id="create-feature-btn" disabled={isSaving || !name}>
                                     {isSaving ? 'Creating' : 'Create Segment'}
                                 </Button>
                             )}

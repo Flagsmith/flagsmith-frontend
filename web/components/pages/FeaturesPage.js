@@ -133,7 +133,7 @@ const FeaturesPage = class extends Component {
                                                 <FormGroup className="float-right">
                                                     {projectFlags && projectFlags.length ? (
                                                         <div className="text-right">
-                                                            <Button id="show-create-feature-btn" onClick={this.newFlag}>
+                                                            <Button data-test="show-create-feature-btn" id="show-create-feature-btn" onClick={this.newFlag}>
                                                                 Create Feature
                                                             </Button>
                                                         </div>
@@ -323,7 +323,7 @@ const FeaturesPage = class extends Component {
                                             <FormGroup className="text-center">
 
                                                 <Button
-                                                  className="btn-lg btn-primary" id="show-create-feature-btn"
+                                                  className="btn-lg btn-primary" id="show-create-feature-btn" data-test="show-create-feature-btn"
                                                   onClick={this.newFlag}
                                                 >
                                                     <ion className="icon ion-ios-rocket"/>
