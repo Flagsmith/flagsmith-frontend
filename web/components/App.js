@@ -332,6 +332,7 @@ Docs
                                                         </li>
                                                         <li><Link to="/pricing">Pricing</Link></li>
                                                         <li><Link to="/open-source">Open Source</Link></li>
+                                                        <li><Link to="/segments-example">Segments</Link></li>
                                                     </ul>
                                                 </div>
                                             )}
