@@ -15,82 +15,88 @@ export default class SegmentsExampleView extends Component {
                 <div className="hero hero--features-page ">
                     <div className="container-fluid">
                         <div className="row" style={{width: '100%'}}>
-                            <div className="col-md-4 offset-md-1 mt-5 features-cta">
+                            <div className="col-sm-4 offset-sm-1 col-xs-8 mt-5 features-cta">
                                 <h1 className="mt-5">Bullet Train features</h1>
                                 <p className="">
                                     Bullet Train lets you manage feature flags and remote config across web, mobile and server side applications. Learn how to use each feature to make your life easier.
                                 </p>
                             </div>
-                            <div className="col-md-6 offset-md-1">
+                            <div className="col-sm-6 offset-sm-1 col-xs-4">
 
-                                <svg width={648} height={495} className="hero-illustration">
-                                    <title>{'train-track-feature-flags copy'}</title>
-                                    <defs>
-                                        <radialGradient
-                                            cx="50%"
-                                            cy="53.845%"
-                                            fx="50%"
-                                            fy="53.845%"
-                                            r="63.769%"
-                                            gradientTransform="matrix(-.76376 0 0 -1 .882 1.077)"
-                                            id="prefix__a"
-                                        >
-                                            <stop stopColor="#476581" offset="0%" />
-                                            <stop stopColor="#22354A" offset="100%" />
-                                        </radialGradient>
-                                    </defs>
-                                    <g fill="none" fillRule="evenodd">
-                                        <path fill="url(#prefix__a)" d="M0 0h648.15v495.03H0z" />
-                                        <g
-                                            stroke="#314C6A"
-                                            strokeLinecap="square"
-                                            strokeLinejoin="round"
-                                            strokeWidth={7.047}
-                                        >
-                                            <path d="M192.03 493.29v-80.16h133.894V266.905h280.118V38.76h-443.08l-96.016 96.015v296.855l61.662 61.661z" />
-                                            <path d="M365.563 493.29l55.055-55.055v-271.31h109.228v103.063l75.756 75.755V493.29" />
-                                            <path d="M142.261 493.29V364.682l149.75-149.749h29.949l61.661-61.22h262.5" />
-                                            <path d="M646.122 431.629h-80.16l-200.399-200.4V66.948H292.01l-75.755 75.755H142.26L66.506 66.947V0" />
-                                        </g>
-                                        <path
-                                            d="M626.4 78.3H347.045a25 25 0 0 0-17.677 7.322l-74.093 74.093a25 25 0 0 0-7.322 17.684l.01 43.039a25 25 0 0 0 7.323 17.67l69.922 69.923a25 25 0 0 0 17.678 7.322h44.033a25 25 0 0 1 17.678 7.323l34.684 34.684a25 25 0 0 1 7.323 17.678V493.29"
-                                            stroke="#22354A"
-                                            strokeWidth={7.928}
-                                            strokeLinecap="square"
-                                            strokeLinejoin="round"
-                                        />
-                                        <path
-                                            d="M0 285.404l72.397-72.397a25 25 0 0 1 17.678-7.323h83.673a25 25 0 0 1 17.677 7.323l10.46 10.46a25 25 0 0 0 17.678 7.322h18.08a25 25 0 0 0 17.64-7.284l88.43-88.053a25 25 0 0 1 17.64-7.285h89.222a24.98 24.98 0 0 0 17.39-7.047 24.98 24.98 0 0 1 17.39-7.047h76.858a25 25 0 0 0 17.678-7.322L686.642 0"
-                                            stroke="#22354A"
-                                            strokeWidth={7.928}
-                                            strokeLinecap="square"
-                                            strokeLinejoin="round"
-                                        />
-                                    </g>
-                                </svg>
+                                {/*<svg width={648} height={495} className="hero-illustration">*/}
+                                    {/*<title>{'train-track-feature-flags copy'}</title>*/}
+                                    {/*<defs>*/}
+                                        {/*<radialGradient*/}
+                                            {/*cx="50%"*/}
+                                            {/*cy="53.845%"*/}
+                                            {/*fx="50%"*/}
+                                            {/*fy="53.845%"*/}
+                                            {/*r="63.769%"*/}
+                                            {/*gradientTransform="matrix(-.76376 0 0 -1 .882 1.077)"*/}
+                                            {/*id="prefix__a"*/}
+                                        {/*>*/}
+                                            {/*<stop stopColor="#476581" offset="0%" />*/}
+                                            {/*<stop stopColor="#22354A" offset="100%" />*/}
+                                        {/*</radialGradient>*/}
+                                    {/*</defs>*/}
+                                    {/*<g fill="none" fillRule="evenodd">*/}
+                                        {/*<path fill="url(#prefix__a)" d="M0 0h648.15v495.03H0z" />*/}
+                                        {/*<g*/}
+                                            {/*stroke="#314C6A"*/}
+                                            {/*strokeLinecap="square"*/}
+                                            {/*strokeLinejoin="round"*/}
+                                            {/*strokeWidth={7.047}*/}
+                                        {/*>*/}
+                                            {/*<path d="M192.03 493.29v-80.16h133.894V266.905h280.118V38.76h-443.08l-96.016 96.015v296.855l61.662 61.661z" />*/}
+                                            {/*<path d="M365.563 493.29l55.055-55.055v-271.31h109.228v103.063l75.756 75.755V493.29" />*/}
+                                            {/*<path d="M142.261 493.29V364.682l149.75-149.749h29.949l61.661-61.22h262.5" />*/}
+                                            {/*<path d="M646.122 431.629h-80.16l-200.399-200.4V66.948H292.01l-75.755 75.755H142.26L66.506 66.947V0" />*/}
+                                        {/*</g>*/}
+                                        {/*<path*/}
+                                            {/*d="M626.4 78.3H347.045a25 25 0 0 0-17.677 7.322l-74.093 74.093a25 25 0 0 0-7.322 17.684l.01 43.039a25 25 0 0 0 7.323 17.67l69.922 69.923a25 25 0 0 0 17.678 7.322h44.033a25 25 0 0 1 17.678 7.323l34.684 34.684a25 25 0 0 1 7.323 17.678V493.29"*/}
+                                            {/*stroke="#22354A"*/}
+                                            {/*strokeWidth={7.928}*/}
+                                            {/*strokeLinecap="square"*/}
+                                            {/*strokeLinejoin="round"*/}
+                                        {/*/>*/}
+                                        {/*<path*/}
+                                            {/*d="M0 285.404l72.397-72.397a25 25 0 0 1 17.678-7.323h83.673a25 25 0 0 1 17.677 7.323l10.46 10.46a25 25 0 0 0 17.678 7.322h18.08a25 25 0 0 0 17.64-7.284l88.43-88.053a25 25 0 0 1 17.64-7.285h89.222a24.98 24.98 0 0 0 17.39-7.047 24.98 24.98 0 0 1 17.39-7.047h76.858a25 25 0 0 0 17.678-7.322L686.642 0"*/}
+                                            {/*stroke="#22354A"*/}
+                                            {/*strokeWidth={7.928}*/}
+                                            {/*strokeLinecap="square"*/}
+                                            {/*strokeLinejoin="round"*/}
+                                        {/*/>*/}
+                                    {/*</g>*/}
+                                {/*</svg>*/}
 
-                                <div className="square blue"></div>
-                                <div className="square red"></div>
+                                {/*<div className="square blue"></div>*/}
+                                {/*<div className="square red"></div>*/}
+
+                                <img src="/images/train-track-feature-flags.svg" />
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div className="container app-container text-center mb-4">
-                    <div className="col-lg-8 offset-lg-2 col-xl-6 offset-xl-3">
-                        <h1>Feature Flags</h1>
-                        <p>Ship features remotely across multiple environments.</p>
+                <section>
+                    <div className="container app-container text-center mb-4">
+                        <div className="col-lg-8 offset-lg-2 col-xl-6 offset-xl-3">
+                            <h1>Feature Flags</h1>
+                            <p>Ship features remotely across multiple environments.</p>
+                        </div>
+                        <img src="/images/features-example.svg" className="img-fluid" />
                     </div>
-                    <img src="/images/features-example.svg" className="img-fluid" />
-                </div>
+                </section>
 
-                <div className="container app-container text-center mb-4">
-                    <div className="col-lg-8 offset-lg-2 col-xl-6 offset-xl-3">
-                        <h1>User Traits</h1>
-                        <p>Store traits against your users without modifying your back-end.</p>
+                <section className="section--grey pt-3 pb-3">
+                    <div className="container app-container text-center mb-4">
+                        <div className="col-lg-8 offset-lg-2 col-xl-6 offset-xl-3">
+                            <h1>User Traits</h1>
+                            <p>Store traits against your users without modifying your back-end.</p>
+                        </div>
+                        <img src="/images/user-traits-example.svg" className="img-fluid" />
                     </div>
-                    <img src="/images/user-traits-example.svg" className="img-fluid" />
-                </div>
+                </section>
 
                 <div className="container app-container text-center mb-4">
                     <div className="col-lg-8 offset-lg-2 col-xl-6 offset-xl-3">
@@ -104,7 +110,7 @@ export default class SegmentsExampleView extends Component {
                 <div className="container app-container text-center mb-4">
                     <div className="col-lg-8 offset-lg-2 col-xl-6 offset-xl-3">
                         <h1>Segments</h1>
-                        <p>Create detailed user segments for feature targeting. Try the example form below to see how your user traits affect the segments you belong to!</p>
+                        <p>Create detailed user segments for feature targeting.</p>
                     </div>
                 </div>
 
