@@ -97,7 +97,6 @@ $animation-timing-function: ease-in-out;
 		margin-left: $input-padding-x/2;
 	}
 	.links {
-
 		line-height: 44px;
 		.active {
 			color:$aside-link-active;
@@ -105,6 +104,7 @@ $animation-timing-function: ease-in-out;
 		}
 		a {
 			background-color: $aside-link-bg;
+			padding-left: 1em;
 		}
 		a:hover, a:focus{
 			background-color: $aside-link-bg-hover;

@@ -192,6 +192,23 @@ footer.homepage {
 
     .brand-footer {
     }
+    &__content {
+        background-color: red;
+    }
+}
+
+.footer {
+    &__homepage-content {
+        .icon {
+            font-size: 2em;
+        }
+        .nav-list {
+            padding-left: 0;
+            li {
+                padding-left: 0;
+            }
+        }
+    }
 }
 
 .brand-ssg {
@@ -208,7 +225,8 @@ footer {
         }
     }
     .service-status {
-        margin-bottom: 20px;
+        padding-top: 1em;
+        padding-bottom: 1em;
         &:hover, :focus {
             text-decoration: none;
         }
