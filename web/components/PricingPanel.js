@@ -14,7 +14,7 @@ const PricingPanel = class extends React.Component {
         const explain = hasFeature('explain');
 
         return (
-            <div className="pricing">
+            <div className="pricing" id="pricing">
                 <div className="container">
                     <h2 className="text-center margin-bottom margin-top">Start using Bullet Train for free</h2>
                     <p className="text-center">Then increase your plan as your business grows.</p>
