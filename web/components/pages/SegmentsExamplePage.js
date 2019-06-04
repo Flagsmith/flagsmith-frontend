@@ -181,7 +181,7 @@ export default class SegmentsExampleView extends Component {
                             <Button className="btn-block">Submit</Button>
 
                         </div>
-                        <div className="col-md-6">
+                        <div className="col-md-6 pl-0">
                             <div className="panel panel__segments-achievements segment-achievements">
                                 <div className="panel-heading">
                                     <Row space>
@@ -194,24 +194,34 @@ export default class SegmentsExampleView extends Component {
                                 <div className="panel-content">
 
                                     <Row>
-                                        <span className="panel-icon panel-icon--success"><ion className="icon ion-ios-rocket"/></span>
+                                        <span className="panel-icon panel-icon--success">
+                                            <ion className="icon ion-ios-checkmark"/>
+                                        </span>
                                         <h6 className="segment-achievements__text">Viewed page 4 times</h6>
                                     </Row>
 
                                     <Row className="mt-3">
-                                        <span className="panel-icon panel-icon--disabled"><ion className="icon ion-ios-rocket"/></span>
+                                        <span className="panel-icon panel-icon--disabled">
+                                            <ion className="icon ion-ios-checkmark"/>
+                                        </span>
                                         <h6 className="segment-achievements__text">Spent 30 seconds on page</h6>
                                     </Row>
                                     <Row className="mt-3">
-                                        <span className="panel-icon panel-icon--disabled"><ion className="icon ion-ios-rocket"/></span>
+                                        <span className="panel-icon panel-icon--disabled">
+                                            <ion className="icon ion-ios-checkmark"/>
+                                        </span>
                                         <h6 className="segment-achievements__text">Is over 30 years old</h6>
                                     </Row>
                                     <Row className="mt-3">
-                                        <span className="panel-icon panel-icon--disabled"><ion className="icon ion-ios-rocket"/></span>
+                                      <span className="panel-icon panel-icon--disabled">
+                                            <ion className="icon ion-ios-checkmark"/>
+                                        </span>
                                         <h6 className="segment-achievements__text">Logged in 5 times</h6>
                                     </Row>
                                     <Row className="mt-3">
-                                        <span className="panel-icon panel-icon--disabled"><ion className="icon ion-ios-rocket"/></span>
+                                        <span className="panel-icon panel-icon--disabled">
+                                            <ion className="icon ion-ios-checkmark"/>
+                                        </span>
                                         <h6 className="segment-achievements__text">Submitted form</h6>
                                     </Row>
                                 </div>

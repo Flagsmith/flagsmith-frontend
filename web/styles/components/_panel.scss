@@ -100,12 +100,14 @@
 		&--disabled {
 			.icon {
 				color: lightgray;
+				font-size: 2em;
 			}
 		}
 		&--success {
 			border: 1px solid $bt-brand-primary;
 			.icon {
 				color: $bt-brand-primary;
+				font-size: 2em;
 			}
 		}
 	}
