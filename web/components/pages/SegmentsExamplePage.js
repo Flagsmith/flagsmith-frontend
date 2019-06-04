@@ -11,7 +11,7 @@ export default class SegmentsExampleView extends Component {
     render() {
         const redirect = this.props.location.query.redirect ? `?redirect=${this.props.location.query.redirect}` : '';
         return (
-            <div>
+            <div className="features-page">
                 <div className="hero hero--features-page ">
                     <div className="container-fluid">
                         <div className="row" style={{width: '100%'}}>
@@ -72,7 +72,7 @@ export default class SegmentsExampleView extends Component {
                                 {/*<div className="square blue"></div>*/}
                                 {/*<div className="square red"></div>*/}
 
-                                <img src="/images/train-track-feature-flags.svg" />
+                                <img src="/images/train-track-feature-flags-sideview.svg" className="hero-illustration hidden-sm-down" />
                             </div>
                         </div>
                     </div>
@@ -81,35 +81,41 @@ export default class SegmentsExampleView extends Component {
                 <section>
                     <div className="container app-container text-center mb-4">
                         <div className="col-lg-8 offset-lg-2 col-xl-6 offset-xl-3">
-                            <h1>Feature Flags</h1>
+                            <h2>Feature Flags</h2>
                             <p>Ship features remotely across multiple environments.</p>
                         </div>
                         <img src="/images/features-example.svg" className="img-fluid" />
                     </div>
                 </section>
 
-                <section className="section--grey pt-3 pb-3">
-                    <div className="container app-container text-center mb-4">
-                        <div className="col-lg-8 offset-lg-2 col-xl-6 offset-xl-3">
-                            <h1>User Traits</h1>
-                            <p>Store traits against your users without modifying your back-end.</p>
+                <section className="section--blue pt-5 pb-5">
+                    <div className="container">
+                        <div className="row d-flex">
+                            <div className="col-md-6 align-self-center">
+                                <h2>User Traits</h2>
+                                <p>Store traits against your users without modifying your back-end.</p>
+                            </div>
+                            <div className="col-md-6">
+                                <img src="/images/user-traits-screenshot.png" className="img-fluid" />
+                            </div>
                         </div>
-                        <img src="/images/user-traits-example.svg" className="img-fluid" />
+                    </div>
+                    <div className="container">
+                        <div className="row d-flex">
+                            <div className="col-md-6">
+                                <img src="/images/remote-config-screenshot.png" className="img-fluid" />
+                            </div>
+                            <div className="col-md-6 align-self-center">
+                                <h2>Remote Config</h2>
+                                <p>Change the behaviour, appearance and config of your app here without needing to build.</p>
+                            </div>
+                        </div>
                     </div>
                 </section>
 
                 <div className="container app-container text-center mb-4">
                     <div className="col-lg-8 offset-lg-2 col-xl-6 offset-xl-3">
-                        <h1>Remote Config</h1>
-                        <p>Change the behaviour, appearance and config of your app here without needing to build.</p>
-                    </div>
-                    <img src="/images/features-example.svg" className="img-fluid" />
-                </div>
-
-
-                <div className="container app-container text-center mb-4">
-                    <div className="col-lg-8 offset-lg-2 col-xl-6 offset-xl-3">
-                        <h1>Segments</h1>
+                        <h2>Segments</h2>
                         <p>Create detailed user segments for feature targeting.</p>
                     </div>
                 </div>

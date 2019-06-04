@@ -106,8 +106,7 @@ const HomePage = class extends React.Component {
                                     <p className="text-small margin-top no-mb">
                                         Don't worry if you don't see your
                                         preferred tech, we'll be adding support for more clients as we grow but
-                                        please
-                                        <a href="mailto:support@bullet-train.io">get in touch</a>
+                                        please <a href="mailto:support@bullet-train.io">get in touch</a>
                                         {' '}
                                         and let
                                         us know what you'd like to see.
