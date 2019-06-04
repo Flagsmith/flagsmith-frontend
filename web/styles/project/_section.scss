@@ -1,4 +1,8 @@
 .section {
+    &--white {
+        background-color: white;
+        z-index: 999999999;
+    }
     &--grey {
         background-color: #f9f9f9;
     }
