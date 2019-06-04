@@ -34,15 +34,15 @@ export default class SegmentsExampleView extends Component {
         return (
             <div className="features-page">
                 <div className="hero hero--features-page ">
-                    <div className="container-fluid">
-                        <div className="row" style={{width: '100%'}}>
+                    <div>
+                        <div className="row" style={{width: '100%', margin: 0, marginRight: 0}}>
                             <div className="col-md-4 offset-md-1 col-sm-12 mt-5 features-cta">
                                 <h1 className="mt-5">Bullet Train features</h1>
                                 <p className="">
                                     Bullet Train lets you manage feature flags and remote config across web, mobile and server side applications. Learn how to use each feature to make your life easier.
                                 </p>
                             </div>
-                            <div className="col-sm-6 offset-sm-1 col-xs-4 animation-container">
+                            <div className="col-sm-6 offset-sm-1 col-xs-4 animation-container pr-0">
 
                                 <div id="anime-demo">
                                     <svg width={898} height={495} className="hidden-sm-down">
@@ -279,10 +279,8 @@ export default class SegmentsExampleView extends Component {
                                             </g>
                                         </g>
                                     </svg>
+                                    <div className="square blue"></div>
                                 </div>
-
-                                <div className="square blue"></div>
-
                                 {/*<img src="/images/train-track-feature-flags-sideview.svg" className="hero-illustration hidden-sm-down" />*/}
                             </div>
                         </div>

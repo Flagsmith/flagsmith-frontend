@@ -45,7 +45,7 @@ export default (
         <Route path="legal/:section" component={TermsPoliciesPage}/>
         <Route path="legal" component={TermsPoliciesPage}/>
         <Route path="open-source" component={OpenSourcePage}/>
-        <Route path="segments-example" component={SegmentsExamplePage}/>
+        <Route path="features" component={SegmentsExamplePage}/>
         <Route path="projects" component={ProjectSelectPage}/>
         <Route path="/blog/remote-config-and-feature-flags" component={WhatAreFeatureFlagsPage}/>
         <Route path="/blog/01" component={WhenFeatureFlagsGoWrong}/>
