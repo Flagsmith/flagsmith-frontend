@@ -21,7 +21,7 @@ export default class SegmentsExampleView extends Component {
             //   easing: function (el, i) {
             //   return easings[i];
             // },
-            easing: 'easeInCubic',
+            easing: 'easeInOutCubic',
             duration: 4500,
             loop: true,
             // direction: 'reverse',
