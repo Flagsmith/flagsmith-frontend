@@ -50,15 +50,14 @@
   }
 }
 
-@media screen and (min-width: 768px) and (max-width: 1070px) {
-  .hero {
-    &--homepage {
+@media screen and (min-width: 768px) and (max-width: 1400px) {
       #anime-demo {
-        left: -9em;
-        background-color: red;
+        //left: -9em;
+        //background-color: red;
+        position: relative;
+        right: 10em;
+        top: 2em;
       }
-    }
-  }
 }
 
 @media (max-width: 768px) {
