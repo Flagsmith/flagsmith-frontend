@@ -4,6 +4,8 @@
   transition: all 0.3s ease;
 }
 
+// feature flags hero anim
+
 #anime-demo {
   position: relative;
   right: 0;
@@ -39,6 +41,24 @@
 .animation-container {
   overflow: hidden;
 }
+
+// feature flags anim
+
+#coupon-button {
+  opacity: 0;
+  position: relative;
+}
+
+#feature-toggle g {
+  stroke: #F94F73;
+}
+
+#feature-toggle rect {
+  stroke: #F94F73;
+}
+
+
+
 
 @media screen and (min-width: 1070px) and (max-width: 1270px) {
   .hero {
