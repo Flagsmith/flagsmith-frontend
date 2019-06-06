@@ -5,6 +5,7 @@
 import React, { Component } from 'react';
 import FeatureFlagsHero from '../animations/FeatureFlagsHero';
 import FeatureFlagsAnimation from '../animations/FeatureFlagsAnimation';
+import RemoteConfigAnimation from '../animations/RemoteConfigAnimation';
 
 export default class SegmentsExampleView extends Component {
     static displayName = 'SegmentsExamplePage'
@@ -42,6 +43,22 @@ export default class SegmentsExampleView extends Component {
 
                     </div>
                 </section>
+
+                <section className="section--white mt-5 mb-5">
+                    <div className="container text-center mb-4">
+                        <div className="col-lg-8 offset-lg-2 col-xl-6 offset-xl-3">
+                            <h2>Remote Config</h2>
+                            <p>Ship features remotely across multiple environments.</p>
+                        </div>
+
+                        <RemoteConfigAnimation />
+
+                    </div>
+                </section>
+
+
+
+
 
                 <section className="section--blue pt-5 pb-5">
                     <div className="container">

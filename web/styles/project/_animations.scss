@@ -57,7 +57,31 @@
   stroke: #F94F73;
 }
 
+// remote config anim
 
+.valueIncrement {
+  position: absolute;
+  left: 32em;
+  bottom: 56.8em;
+  font-size: 14px;
+  color: #465B65;
+  line-height: 18px;
+}
+
+
+.code-stuff {
+  .classname {
+    color: #2BE3D6;
+  }
+  .battery-log {
+    color: #F94F73;
+    padding-left: 1em;
+  }
+  position: absolute;
+  top: 7em;
+  left: 2em;
+  color: white;
+}
 
 
 @media screen and (min-width: 1070px) and (max-width: 1270px) {
