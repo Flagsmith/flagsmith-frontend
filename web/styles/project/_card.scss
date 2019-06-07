@@ -1,0 +1,16 @@
+.card {
+    .card-body {
+        padding: 2em;
+    }
+    &--navy {
+        background: #22354A;
+        box-shadow: 0 5px 25px 0 rgba(0,0,0,0.28);
+        border-radius: 4px;
+        pre {
+            color: white;
+        }
+    }
+    &--code {
+        align-self: center;
+    }
+}
