@@ -32,20 +32,21 @@ export default class NotFoundView extends Component {
 
         anime({
             duration: duration,
-            targets: '#feature-toggle #Oval',
+            targets: '#feature-toggle .feature-toggle-circle',
             direction: 'alternate',
             loop: true,
             delay: 1000,
             easing: 'linear',
-            strokeWidth: '25',
             stroke: '#2BE3D6',
+            fill: '#2BE3D6'
         });
 
         anime({
             duration: duration,
-            targets: '#feature-toggle rect',
+            targets: '#feature-toggle .feature-toggle-rectangle',
             direction: 'alternate',
             loop: true,
+            fill: 'red',
             delay: 1000,
             easing: 'linear',
             stroke: '#2BE3D6',
@@ -636,8 +637,6 @@ export default class NotFoundView extends Component {
                     {/*</g>*/}
                 {/*</svg>*/}
                 <svg width="100%" height="577px" viewBox="0 0 1094 577">
-                    <title>{'feature-flags'}</title>
-                    <desc>{'Created with Sketch.'}</desc>
                     <defs>
                         <filter
                             x="-6.4%"
@@ -1043,24 +1042,23 @@ export default class NotFoundView extends Component {
                                             line-spacing={24}
                                         >
                                             <tspan x={0.316} y={97} fill="#A1AEB7">
-                                                {'Turn Feature '}
-                                            </tspan>
-                                            <tspan x={97.356} y={97} fill="#F94F73">
-                                                {'Off'}
+                                                {'Toggle Feature '}
                                             </tspan>
                                         </text>
                                         <rect
                                             id="Rectangle"
                                             stroke="url(#linearGradient-7)"
+                                            className="feature-toggle-rectangle"
                                             strokeWidth={5.4}
                                             fill="#22354A"
                                             x={10.7}
                                             y={2.7}
                                             width={89.6}
                                             height={45.6}
+                                            stroke="#F94F73"
                                             rx={22.8}
                                         />
-                                        <g id="Oval">
+                                        <g id="Oval" className="circle">
                                             <use
                                                 fill="black"
                                                 fillOpacity={1}
@@ -1073,6 +1071,7 @@ export default class NotFoundView extends Component {
                                                 fill="#22354A"
                                                 fillRule="evenodd"
                                                 xlinkHref="#path-8"
+                                                className="feature-toggle-circle"
                                             />
                                         </g>
                                     </g>
