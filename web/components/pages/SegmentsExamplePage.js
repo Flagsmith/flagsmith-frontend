@@ -43,10 +43,10 @@ export default class SegmentsExampleView extends Component {
                             <div className="col-md-3 offset-md-1 align-self-center">
                                 <div className="card card--navy card--code">
                                     <div className="card-body">
-                                        <pre>// Toggle a feature</pre>
-                                        <pre>if (bulletTrain.hasFeature(“coupon”)) {'{'}</pre>
-                                        <pre>myCoolFeature();</pre>
-                                        <pre> {'}'}</pre>
+                                        <p className="code">// Toggle a feature</p>
+                                        <p className="code"><span className="code code--green">if </span>(bulletTrain.hasFeature(<span className="code code--red">“coupon”</span>)) {'{'}</p>
+                                        <p className="code">myCoolFeature();</p>
+                                        <p className="code"> {'}'}</p>
                                     </div>
                                 </div>
                             </div>

@@ -34,7 +34,7 @@ export default class NotFoundView extends Component {
         return (
             <div>
                 <div id="anime-demo">
-                    <svg width={898} height={495} className="hidden-sm-down">
+                    <svg width={898} height={495}>
                         <title>{'train-track-feature-flags-sideview copy'}</title>
                         <defs>
                             <radialGradient
@@ -42,8 +42,8 @@ export default class NotFoundView extends Component {
                                 cy="53.845%"
                                 fx="50%"
                                 fy="53.845%"
-                                r="63.769%"
-                                gradientTransform="matrix(-.76376 0 0 -1 .882 1.077)"
+                                r="44.935%"
+                                gradientTransform="matrix(-.76213 .06535 -.04991 -.99786 .908 1.043)"
                                 id="prefix__a"
                             >
                                 <stop stopColor="#476581" offset="0%" />
