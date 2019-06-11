@@ -66,6 +66,26 @@ const clearDown = function (browser, done) {
     }
 };
 
+const sendFailure = (request, error) => {
+    const lastRequest = request && request.value ? JSON.parse(request.value) : 'No last request';
+    const lastError = error && error.value ? JSON.parse(error.value) : 'No last error';
+    console.log('Last request:', lastRequest);
+    console.log('Last error:', lastError);
+    const uri = path.join(__dirname, 'screenshot.png');
+    browser.saveScreenshot(uri, () => {
+        slackUpload(uri, `E2E for Bullet Train Failed. ${formatCommit()}\n\`\`\`${JSON.stringify({
+            request: lastRequest,
+            error: lastError,
+        }, null, 2).replace(/\\/g, '')}\`\`\``, E2E_SLACK_CHANNEL, 'Screenshot')
+            .then((res) => {
+                browser.end();
+                done();
+                server.kill('SIGINT');
+                process.exit(0);
+            });
+    });
+};
+
 module.exports = Object.assign(
     {
         beforeEach(browser, done) {
@@ -90,28 +110,14 @@ module.exports = Object.assign(
                         if (result.value) {
                             browser.getText('#e2e-error', (error) => {
                                 browser.getText('#e2e-request', (request) => {
-                                    if (error) {
-                                        const lastRequest = request.value ? JSON.parse(request.value) : {};
-                                        const lastError = error.value ? JSON.parse(error.value) : {};
-                                        console.log('Last request:', lastRequest);
-                                        console.log('Last error:', lastError);
-                                        const uri = path.join(__dirname, 'screenshot.png');
-                                        browser.saveScreenshot(uri, () => {
-                                            slackUpload(uri, `E2E for Bullet Train Failed. ${formatCommit()}\n\`\`\`${JSON.stringify({
-                                                request: lastRequest,
-                                                error: lastError,
-                                            }, null, 2).replace(/\\/g, '')}\`\`\``, E2E_SLACK_CHANNEL, 'Screenshot')
-                                                .then((res) => {
-                                                    server.kill('SIGINT');
-                                                    process.exit(0);
-                                                    browser.end();
-                                                    done();
-                                                });
-                                        });
-                                    }
+                                    sendFailure(request, error);
                                 });
                             });
                         } else {
+                            if (browser.currentTest.results.failed) {
+                                sendFailure();
+                                return;
+                            }
                             sendSuccess()
                                 .then(() => {
                                     browser.end();
