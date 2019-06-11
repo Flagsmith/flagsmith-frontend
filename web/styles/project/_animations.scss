@@ -4,6 +4,10 @@
   transition: all 0.3s ease;
 }
 
+.battery-log {
+  color: $bt-brand-red !important;
+}
+
 .code {
     font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !important;
     color: white;
@@ -20,7 +24,7 @@
 #anime-demo {
   position: relative;
   right: 0;
-  //top: 2em;
+  top: 2em;
 }
 
 .box, .square {
