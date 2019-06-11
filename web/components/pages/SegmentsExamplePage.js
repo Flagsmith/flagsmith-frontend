@@ -105,7 +105,7 @@ export default class SegmentsExampleView extends Component {
                             </div>
                         </div>
                         <div className="row d-flex">
-                            <div className="col-md-3 offset-md-1 align-self-center">
+                            <div className="col-md-3 offset-md-2 align-self-center">
                                 <div className="card card--navy card--code">
                                     <div className="card-body">
                                         <p className="code">// Toggle a feature</p>
@@ -115,7 +115,7 @@ export default class SegmentsExampleView extends Component {
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-md-8">
+                            <div className="col-md-7">
                                 <FeatureFlagsAnimation/>
                             </div>
                         </div>
