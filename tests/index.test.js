@@ -66,7 +66,7 @@ const clearDown = function (browser, done) {
     }
 };
 
-const sendFailure = (request, error) => {
+const sendFailure = (browser, done, request, error) => {
     const lastRequest = request && request.value ? JSON.parse(request.value) : 'No last request';
     const lastError = error && error.value ? JSON.parse(error.value) : 'No last error';
     console.log('Last request:', lastRequest);
@@ -77,7 +77,7 @@ const sendFailure = (request, error) => {
             request: lastRequest,
             error: lastError,
         }, null, 2).replace(/\\/g, '')}\`\`\``, E2E_SLACK_CHANNEL, 'Screenshot')
-            .then((res) => {
+            .then(() => {
                 browser.end();
                 done();
                 server.kill('SIGINT');
@@ -110,12 +110,12 @@ module.exports = Object.assign(
                         if (result.value) {
                             browser.getText('#e2e-error', (error) => {
                                 browser.getText('#e2e-request', (request) => {
-                                    sendFailure(request, error);
+                                    sendFailure(browser, done, request, error);
                                 });
                             });
                         } else {
                             if (browser.currentTest.results.failed) {
-                                sendFailure();
+                                sendFailure(browser, done);
                                 return;
                             }
                             sendSuccess()
