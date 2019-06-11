@@ -13,6 +13,7 @@ module.exports = {
     login: (browser, url, email, password) => {
         browser
             .url(url)
+            .waitForElementVisible('#existing-member-btn')
             .click('#existing-member-btn')
             .waitForElementVisible('[name="email"]')
             .setValue('[name="email"]', email)
