@@ -2,18 +2,20 @@ const BaseStore = require('./base/_store');
 const data = require('../data/base/_data');
 
 
-var controller = {
+const controller = {
 
     getIdentity: (envId, id) => {
         store.loading();
-        return data.get(`${Project.api}identities/${id}/`, null, { 'x-environment-key': envId })
-            .then((res) => {
+        return data.get(`${Project.api}environments/${envId}/identities/${id}/`)
+            .then(identity => Promise.all([data.get(`${Project.api}identities/?identifier=${identity.identifier}`, null, { 'x-environment-key': envId }), Promise.resolve(identity)]))
+            .then(([res, identity]) => {
                 const features = res.flags;
                 const traits = res.traits;
-                store.model = { features, traits };
+                store.model = { features, traits, identity };
                 store.model.features = features && _.keyBy(features, f => f.feature.id);
                 store.loaded();
-            });
+            })
+            .catch(e => API.ajaxHandler(store, e));
     },
     toggleUserFlag({ identity, projectFlag, environmentFlag, identityFlag, environmentId }) {
         store.saving();

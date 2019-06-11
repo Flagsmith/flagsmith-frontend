@@ -55,7 +55,7 @@ const UsersPage = class extends Component {
                                                   icon="ion-md-person"
                                                   items={identities}
                                                   renderRow={({ id, identifier }) => (
-                                                      <Row space className="list-item" key={identifier}>
+                                                      <Row space className="list-item" key={id}>
                                                           <Flex>
                                                               <Link
                                                                 to={`/project/${this.props.params.projectId}/environment/${this.props.params.environmentId}/users/${id}`}
