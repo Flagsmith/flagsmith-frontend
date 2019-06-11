@@ -6,9 +6,73 @@ import React, {Component} from 'react';
 import FeatureFlagsHero from '../animations/FeatureFlagsHero';
 import FeatureFlagsAnimation from '../animations/FeatureFlagsAnimation';
 import RemoteConfigAnimation from '../animations/RemoteConfigAnimation';
+import anime from "animejs";
 
 export default class SegmentsExampleView extends Component {
     static displayName = 'SegmentsExamplePage'
+
+    componentDidMount() {
+
+        var logEl = document.querySelector('#increment-shit');
+
+        var battery = {
+            height: '2em',
+        }
+
+        // var logEl2 = document.querySelector('.valueIncrement');
+        //
+        // var valueIncrement = {
+        //     value: '1',
+        // }
+        //
+        // anime({
+        //     targets: valueIncrement,
+        //     value: '20',
+        //     round: 1,
+        //     easing: 'easeInOutCubic',
+        //     loop: true,
+        //     direction: 'alternate',
+        //     duration: 4000,
+        //     update: function() {
+        //         logEl2.innerHTML = JSON.stringify(valueIncrement);
+        //     }
+        // });
+
+
+
+        anime({
+            targets: battery,
+            height: '20em',
+            round: 1,
+            easing: 'easeInOutCubic',
+            loop: true,
+            direction: 'alternate',
+            duration: 4000,
+            update: function() {
+                logEl.innerHTML = JSON.stringify(battery);
+            }
+        });
+        //
+        // anime({
+        //     targets: '#header-bg',
+        //     direction: 'alternate',
+        //     easing: 'easeInOutCubic',
+        //     duration: 4000,
+        //     loop: true,
+        //     height: 230,
+        //     fill: '#F94F73'
+        // });
+        //
+        // anime({
+        //     targets: '#plus',
+        //     direction: 'alternate',
+        //     easing: 'easeInOutCubic',
+        //     duration: 4000,
+        //     loop: true,
+        //     fill: '#2BE3D6',
+        // });
+
+    }
 
     render() {
         const redirect = this.props.location.query.redirect ? `?redirect=${this.props.location.query.redirect}` : '';
@@ -68,10 +132,8 @@ export default class SegmentsExampleView extends Component {
                             <div className="col-md-3 offset-md-2 align-self-center">
                                 <div className="card card--navy card--code">
                                     <div className="card-body">
-                                        <pre>// Toggle a feature</pre>
-                                        <pre>if (bulletTrain.hasFeature(“coupon”)) {'{'}</pre>
-                                        <pre>myCoolFeature();</pre>
-                                        <pre> {'}'}</pre>
+                                        <p className="code">// Increase header size</p>
+                                        <pre className="battery-log" id="increment-shit">height:2em</pre>
                                     </div>
                                 </div>
                             </div>
