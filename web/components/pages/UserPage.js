@@ -76,13 +76,13 @@ const UserPage = class extends Component {
         return (
             <div className="app-container">
                 <IdentityProvider onSave={this.onSave}>
-                    {({ isSaving, isLoading, error, environmentFlags, projectFlags, traits, identityFlags }, { toggleFlag, removeFlag, editFlag }) => (isLoading
+                    {({ isSaving, isLoading, error, environmentFlags, projectFlags, traits, identityFlags, identity }, { toggleFlag, removeFlag, editFlag }) => (isLoading
                         ? <div className="text-center"><Loader/></div> : (
                             <div className="container">
                                 <div className="row">
                                     <div className="col-md-12">
                                         <h3>
-                                            {this.props.params.id}
+                                            {(identity && identity.identity.identifier) || this.props.params.id}
                                         </h3>
                                         <p>
                                             View and manage feature states and traits for this user. This will override
@@ -255,8 +255,8 @@ const UserPage = class extends Component {
                                     <div className="col-md-12">
                                         <FormGroup>
                                             <CodeHelp
-                                                title="Managing user traits and segments"
-                                                snippets={Constants.codeHelp.USER_TRAITS(this.props.params.id)}
+                                              title="Managing user traits and segments"
+                                              snippets={Constants.codeHelp.USER_TRAITS(this.props.params.id)}
                                             />
                                         </FormGroup>
                                         <FormGroup>

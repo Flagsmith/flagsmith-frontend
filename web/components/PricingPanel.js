@@ -14,7 +14,7 @@ const PricingPanel = class extends React.Component {
         const explain = hasFeature('explain');
 
         return (
-            <div className="pricing">
+            <div className="pricing" id="pricing">
                 <div className="container">
                     <h2 className="text-center margin-bottom margin-top">Start using Bullet Train for free</h2>
                     <p className="text-center">Then increase your plan as your business grows.</p>
@@ -35,12 +35,7 @@ const PricingPanel = class extends React.Component {
                                             <p className="text-small text-center link-style">What's included</p>
                                             <ul className="pricing-features">
                                                 <li>
-                                                    <p>
-Up to
-                                                        <strong>20,000</strong>
-                                                        {' '}
-requests per month
-                                                    </p>
+                                                    <p>Up to <strong>20,000</strong> {' '} requests per month</p>
                                                 </li>
                                                 <li><p>Unlimited Administrator Accounts</p></li>
                                                 <li><p>Unlimited Projects</p></li>
@@ -66,12 +61,7 @@ requests per month
                                             <p className="text-small text-center link-style">What's included</p>
                                             <ul className="pricing-features">
                                                 <li>
-                                                    <p>
-Up to
-                                                        <strong>20,000</strong>
-                                                        {' '}
-requests per month
-                                                    </p>
+                                                    <p>Up to <strong>20,000</strong>{' '} requests per month</p>
                                                 </li>
                                                 <li><p>Unlimited Administrator Accounts</p></li>
                                                 <li><p>Unlimited Projects</p></li>
@@ -96,11 +86,7 @@ requests per month
                                         <p className="text-small text-center link-style">What's included</p>
                                         <ul className="pricing-features">
                                             <li>
-                                                <p>
-Up to
-                                                    <strong>250,000</strong>
-                                                    {' '}
-requests per month
+                                                <p>Up to <strong>250,000</strong>{' '} requests per month
                                                 </p>
                                             </li>
                                             <li><p>Unlimited Administrator Accounts</p></li>
@@ -126,12 +112,7 @@ requests per month
                                         <p className="text-small text-center link-style">What's included</p>
                                         <ul className="pricing-features">
                                             <li>
-                                                <p>
-Up to
-                                                    <strong>2 million</strong>
-                                                    {' '}
-requests per month
-                                                </p>
+                                                <p>Up to <strong>2 million</strong>{' '} requests per month</p>
                                             </li>
                                             <li><p>All Startup Features</p></li>
                                             <li><p>Private Discord Technical Support</p></li>
@@ -155,12 +136,7 @@ requests per month
                                         <p className="text-small text-center link-style">What's included</p>
                                         <ul className="pricing-features">
                                             <li>
-                                                <p>
-Over
-                                                    <strong>2 million</strong>
-                                                    {' '}
-requests per month
-                                                </p>
+                                                <p>Over <strong>2 million</strong>{' '} requests per month</p>
                                             </li>
                                             <li><p>All Startup Features</p></li>
                                             <li><p>Telephone and Discord Technical Support</p></li>

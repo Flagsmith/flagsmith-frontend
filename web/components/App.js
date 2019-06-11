@@ -317,9 +317,10 @@ Logout
                                                 </div>
                                             ) : (
                                                 <div>
-                                                    <Button className="btn-primary float-right" onClick={Utils.scrollToSignUp}>
-                                                        <Link to={`/login${redirect}#sign-up`}>Login</Link>
-                                                    </Button>
+
+                                                        <Link className="float-right" to={`/login${redirect}`} onClick={Utils.scrollToSignUp}>
+                                                            <Button className="btn-primary">Login</Button>
+                                                        </Link>
                                                     <ul className="nav-list list-unstyled float-right">
                                                         <li><Link to="/demo">Demo</Link></li>
                                                         <li>
@@ -331,6 +332,7 @@ Docs
                                                             </a>
                                                         </li>
                                                         <li><Link to="/pricing">Pricing</Link></li>
+                                                        <li><Link to="/open-source">Open Source</Link></li>
                                                     </ul>
                                                 </div>
                                             )}

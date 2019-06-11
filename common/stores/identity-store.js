@@ -2,18 +2,20 @@ const BaseStore = require('./base/_store');
 const data = require('../data/base/_data');
 
 
-var controller = {
+const controller = {
 
     getIdentity: (envId, id) => {
         store.loading();
-        return data.get(`${Project.api}identities/${id}/`, null, { 'x-environment-key': envId })
-            .then((res) => {
+        return data.get(`${Project.api}environments/${envId}/identities/${id}/`)
+            .then(identity => Promise.all([data.get(`${Project.api}identities/?identifier=${identity.identifier}`, null, { 'x-environment-key': envId }), Promise.resolve(identity)]))
+            .then(([res, identity]) => {
                 const features = res.flags;
                 const traits = res.traits;
-                store.model = { features, traits };
+                store.model = { features, traits, identity };
                 store.model.features = features && _.keyBy(features, f => f.feature.id);
                 store.loaded();
-            });
+            })
+            .catch(e => API.ajaxHandler(store, e));
     },
     toggleUserFlag({ identity, projectFlag, environmentFlag, identityFlag, environmentId }) {
         store.saving();
@@ -37,7 +39,7 @@ var controller = {
     },
     editTrait({ identity, environmentId, trait: { trait_key, trait_value } }) {
         store.saving();
-        data.post(`${Project.api}identities/${identity}/traits/${trait_key}`, { trait_value }, { 'x-environment-key': environmentId })
+        data.post(`${Project.api}traits/`, { identity: { identifier: store.model && store.model.identity.identifier }, trait_key, trait_value }, { 'x-environment-key': environmentId })
             .then(() => controller.getIdentity(environmentId, identity)
                 .then(() => store.saved()))
             .catch(e => API.ajaxHandler(store, e));
