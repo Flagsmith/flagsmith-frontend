@@ -66,40 +66,45 @@ const HomePage = class extends React.Component {
                                     <div className="row">
                                         <div className="col-md-1 col-xs-6">
                                             <a href="https://github.com/SolidStateGroup/bullet-train-java-client">
-                                                <img src="./images/tech-logos/java.png" alt="Java"/>
+                                                <img src="./images/tech-logos/java.png" alt="Java" title="Java"/>
                                             </a>
                                         </div>
                                         <div className="col-md-1 col-xs-6">
                                             <a href="https://github.com/SolidStateGroup/bullet-train-js-client">
-                                                <img src="./images/tech-logos/javascript.png" alt="Javascript"/>
+                                                <img src="./images/tech-logos/javascript.png" alt="JavaScript" title="JavaScript"/>
                                             </a>
                                         </div>
                                         <div className="col-md-1 col-xs-6">
                                             <a href="https://github.com/SolidStateGroup/bullet-train-js-client">
-                                                <img src="./images/tech-logos/react.png" alt="React JS"/>
+                                                <img src="./images/tech-logos/react.png" alt="React JS" title="React JS"/>
                                             </a>
                                         </div>
                                         <div className="col-md-1 col-xs-6">
                                             <a href="https://github.com/SolidStateGroup/bullet-train-nodejs-client">
-                                                <img src="./images/tech-logos/node.png" alt="Node.js"/>
+                                                <img src="./images/tech-logos/node.png" alt="Node.js" title="Node.js"/>
                                             </a>
                                         </div>
                                         <div className="col-md-1 col-xs-6">
                                             <a href="https://github.com/SolidStateGroup/bullet-train-python-client">
                                                 <img
                                                   src="./images/tech-logos/python.png" className="img-fluid"
-                                                  alt="Python"
+                                                  alt="Python" title="Python"
                                                 />
                                             </a>
                                         </div>
                                         <div className="col-md-1 col-xs-6">
                                             <a href="https://github.com/SolidStateGroup/bullet-train-ruby-client">
-                                                <img src="./images/tech-logos/ruby.png" alt="Ruby"/>
+                                                <img src="./images/tech-logos/ruby.png" alt="Ruby" title="Ruby"/>
                                             </a>
                                         </div>
                                         <div className="col-md-1 col-xs-6">
                                             <a href="https://github.com/SolidStateGroup/bullet-train-dotnet-client">
-                                                <img src="./images/tech-logos/dotnet.png" alt=".NET"/>
+                                                <img src="./images/tech-logos/dotnet.png" alt=".NET" title=".NET"/>
+                                            </a>
+                                        </div>
+                                        <div className="col-md-1 col-xs-6">
+                                            <a href="https://github.com/SolidStateGroup/bullet-train-java-client">
+                                                <img src="./images/tech-logos/android2x.png" alt=".NET" title="android" />
                                             </a>
                                         </div>
                                     </div>
