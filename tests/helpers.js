@@ -13,12 +13,10 @@ module.exports = {
     login: (browser, url, email, password) => {
         browser
             .url(url)
-            .click('#existing-member-btn')
-            .waitForElementVisible('[name="email"]')
-            .setValue('[name="email"]', email)
+            .waitAndClick('#existing-member-btn')
+            .waitAndSet('[name="email"]', email)
             .setValue('[name="password"]', password)
-            .waitForElementVisible('#login-btn')
-            .click('#login-btn');
+            .waitAndClick('#login-btn');
     },
     waitAndSet(id, val) {
         return this.waitForElementVisible(id)
