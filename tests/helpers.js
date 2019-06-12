@@ -2,6 +2,7 @@ module.exports = {
     logout: (browser) => {
         browser
             .waitForElementNotPresent('.toast-message', 10000)
+            .waitForElementVisible('#org-menu')
             .click('#org-menu')
             .waitForElementVisible('#logout-link')
             .pause(200) // Allows the dropdown to fade in
