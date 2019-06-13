@@ -20,27 +20,6 @@ export default class SegmentsExampleView extends Component {
             height: '2em',
         }
 
-        // var logEl2 = document.querySelector('.valueIncrement');
-        //
-        // var valueIncrement = {
-        //     value: '1',
-        // }
-        //
-        // anime({
-        //     targets: valueIncrement,
-        //     value: '20',
-        //     round: 1,
-        //     easing: 'easeInOutCubic',
-        //     loop: true,
-        //     direction: 'alternate',
-        //     duration: 4000,
-        //     update: function() {
-        //         logEl2.innerHTML = JSON.stringify(valueIncrement);
-        //     }
-        // });
-
-
-
         anime({
             targets: battery,
             height: '20em',
@@ -53,25 +32,6 @@ export default class SegmentsExampleView extends Component {
                 logEl.innerHTML = JSON.stringify(battery);
             }
         });
-        //
-        // anime({
-        //     targets: '#header-bg',
-        //     direction: 'alternate',
-        //     easing: 'easeInOutCubic',
-        //     duration: 4000,
-        //     loop: true,
-        //     height: 230,
-        //     fill: '#F94F73'
-        // });
-        //
-        // anime({
-        //     targets: '#plus',
-        //     direction: 'alternate',
-        //     easing: 'easeInOutCubic',
-        //     duration: 4000,
-        //     loop: true,
-        //     fill: '#2BE3D6',
-        // });
 
     }
 
@@ -142,21 +102,37 @@ export default class SegmentsExampleView extends Component {
                                 <RemoteConfigAnimation/>
                             </div>
                         </div>
-
                     </div>
                 </section>
 
 
-                <section className="section--blue mt-5 mb-5">
-                    <div className="container mb-4">
+                <section className="section--blue mt-5">
+                    <div className="container">
 
                         <div className="row pt-5 pb-5">
                             <div className="col-md-4">
                                 <h2>User Traits</h2>
                                 <p>Store traits against your users without modifying your back-end.</p>
                             </div>
-                            <div className="col-md-6 offset-md-2">
-                                <img src="/images/features-page/user-traits-placeholder.svg" className="img-fluid"/>
+                            <div className="col-md-1 offset-md-2">
+                                <img src="/images/features-page/user-traits-steps.svg" className="img-fluid"/>
+
+                            </div>
+                            <div className="col-md-5">
+                                <div className="card card--navy card--code">
+                                    <div className="card-body">
+                                        <p className="code">// Increase header size</p>
+                                        <pre className="battery-log" id="increment-shit"><span className="code code--green">height:2em</span></pre>
+                                    </div>
+                                </div>
+                                {/*<img src="/images/features-page/user-traits-illustration-cookies.svg" className="img-fluid"/>*/}
+                                <UserTraitsAnimation/>
+                                <div className="card card--navy card--code">
+                                    <div className="card-body">
+                                        <p className="code">// Increase header size</p>
+                                        <pre className="battery-log" id="increment-shit"><span className="code code--green">height:2em</span></pre>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

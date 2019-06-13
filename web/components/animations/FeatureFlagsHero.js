@@ -25,7 +25,7 @@ export default class NotFoundView extends Component {
             easing: 'spring(1, 5, 10, 0)',
             duration: 4500,
             loop: true,
-            // direction: 'reverse',
+            direction: 'forward',
             delay: 1500
         });
     }

@@ -8,6 +8,11 @@
   color: $bt-brand-red !important;
 }
 
+#coupon-button {
+  opacity: 0;
+  position: relative;
+}
+
 .code {
     font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !important;
     color: white;
@@ -58,9 +63,9 @@
 
 // feature flags anim
 
-#coupon-button {
+.coupon-button {
   opacity: 0;
-  position: relative;
+  //position: relative;
 }
 
 #feature-toggle g {

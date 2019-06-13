@@ -245,10 +245,9 @@ export default class RemoteConfigAnimation extends Component {
                                     <g id="id">
                                         <text
                                             id="Content"
-                                            font-family="Raleway-Bold, Raleway"
+                                            fontFamily="Raleway-Bold, Raleway"
                                             fontSize={14}
                                             fontWeight="bold"
-                                            line-spacing={18}
                                             fill="#424B5A"
                                         >
                                             <tspan x={1} y={16}>
@@ -308,10 +307,9 @@ export default class RemoteConfigAnimation extends Component {
                                             <text
                                                 id="Placeholder"
                                                 mask="url(#mask-8)"
-                                                font-family="Raleway"
+                                                fontFamily="Raleway"
                                                 fontSize={16}
                                                 fontWeight="normal"
-                                                line-spacing={18}
                                                 fill="#5A5E63"
                                             >
                                                 <tspan x={9} y={24}>
@@ -326,7 +324,6 @@ export default class RemoteConfigAnimation extends Component {
                                             fontFamily="Raleway-Bold, Raleway"
                                             fontSize={14}
                                             fontWeight="bold"
-                                            line-spacing={18}
                                             fill="#22354A"
                                         >
                                             <tspan x={1} y={13}>
@@ -389,7 +386,6 @@ export default class RemoteConfigAnimation extends Component {
                                                 mask="url(#mask-12)"
                                                 fontFamily="Raleway-Bold"
                                                 fontSize={16}
-                                                line-spacing={24}
                                                 fill="#505D68"
                                             >
                                                 <tspan className="valueIncrement" x={64.2566845} y={23}>
