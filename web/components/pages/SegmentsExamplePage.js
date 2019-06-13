@@ -96,7 +96,7 @@ export default class SegmentsExampleView extends Component {
                     </div>
                 </div>
 
-                <section className="section--blue pt-5 pb-5">
+                <section className="section--blue pb-5">
                     <div className="container-fluid">
                         <div className="container text-center mb-4">
                             <div className="col-lg-8 offset-lg-2 col-xl-6 offset-xl-3">
@@ -146,29 +146,51 @@ export default class SegmentsExampleView extends Component {
                     </div>
                 </section>
 
-                <section className="section--white mt-5 mb-5">
-                    <div className="container-fluid mb-4">
-                        <div className="col-lg-8 offset-lg-2 col-xl-6 offset-xl-3 text-center">
-                            <h2>User Traits</h2>
-                            <p>Store traits against your users without modifying your back-end.</p>
-                        </div>
 
-                        <div className="row">
-                            <div className="col-md-3 offset-md-2 align-self-center">
-                                <div className="card card--navy card--code">
-                                    <div className="card-body">
-                                        <p className="code">// Increase header size</p>
-                                        <pre className="battery-log" id="increment-shit"><span className="code code--green">height:2em</span></pre>
-                                    </div>
-                                </div>
+                <section className="section--blue mt-5 mb-5">
+                    <div className="container mb-4">
+
+                        <div className="row pt-5 pb-5">
+                            <div className="col-md-4">
+                                <h2>User Traits</h2>
+                                <p>Store traits against your users without modifying your back-end.</p>
                             </div>
-                            <div className="col-md-6">
-                                <UserTraitsAnimation/>
+                            <div className="col-md-6 offset-md-2">
+                                <img src="/images/features-page/user-traits-placeholder.svg" className="img-fluid"/>
                             </div>
                         </div>
-
                     </div>
+
                 </section>
+
+
+
+                {/*centred version*/}
+                {/*<section className="section--white mt-5 mb-5">*/}
+                    {/*<div className="container-fluid mb-4">*/}
+                        {/*<div className="col-lg-8 offset-lg-2 col-xl-6 offset-xl-3 text-center">*/}
+                            {/*<h2>User Traits</h2>*/}
+                            {/*<p>Store traits against your users without modifying your back-end.</p>*/}
+                        {/*</div>*/}
+
+                        {/*<div className="row">*/}
+                            {/*<div className="col-md-3 offset-md-2 align-self-center">*/}
+                                {/*<div className="card card--navy card--code">*/}
+                                    {/*<div className="card-body">*/}
+                                        {/*<p className="code">// Increase header size</p>*/}
+                                        {/*<pre className="battery-log" id="increment-shit"><span className="code code--green">height:2em</span></pre>*/}
+                                    {/*</div>*/}
+                                {/*</div>*/}
+                            {/*</div>*/}
+                            {/*<div className="col-md-6">*/}
+                                {/*<UserTraitsAnimation/>*/}
+                            {/*</div>*/}
+                        {/*</div>*/}
+
+                    {/*</div>*/}
+                {/*</section>*/}
+
+
 
 
                 {/*<section className="section--blue pt-5 pb-5">*/}

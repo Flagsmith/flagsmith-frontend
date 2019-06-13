@@ -23,8 +23,7 @@
 
 #anime-demo {
   position: relative;
-  right: 0;
-  top: 2em;
+  right:3em;
 }
 
 .box, .square {
@@ -98,7 +97,6 @@
   color: white;
 }
 
-
 @media screen and (min-width: 1070px) and (max-width: 1270px) {
   .hero {
     &--homepage {
@@ -115,7 +113,7 @@
         //background-color: red;
         position: relative;
         right: 10em;
-        top: 2em;
+        top: 0em;
       }
 }
 
@@ -128,7 +126,7 @@
       }
     }
     &--features-page {
-      height: 520px;
+      //height: 520px;
       background-color: $hero-bg;
       
       .hero-illustration {

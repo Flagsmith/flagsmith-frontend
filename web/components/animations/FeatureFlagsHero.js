@@ -22,11 +22,11 @@ export default class NotFoundView extends Component {
             //   easing: function (el, i) {
             //   return easings[i];
             // },
-            easing: 'easeInOutCubic',
+            easing: 'spring(1, 5, 10, 0)',
             duration: 4500,
             loop: true,
             // direction: 'reverse',
-            delay: 3000
+            delay: 1500
         });
     }
 

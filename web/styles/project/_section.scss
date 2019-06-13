@@ -9,8 +9,8 @@
     }
     &--blue {
         background-color: $bt-brand-secondary;
-        -webkit-clip-path: polygon(0 0, 100% 0, 100% 88%, 0% 100%);
-        clip-path: polygon(0 0, 100% 0, 100% 88%, 0% 100%);
+        //-webkit-clip-path: polygon(0 0, 100% 0, 100% 88%, 0% 100%);
+        //clip-path: polygon(0 0, 100% 0, 100% 88%, 0% 100%);
         h2 {
             color: white;
         }
