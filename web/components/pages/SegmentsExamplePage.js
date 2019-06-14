@@ -49,7 +49,7 @@ export default class SegmentsExampleView extends Component {
                                     server side applications. Learn how to use each feature to make your life easier.
                                 </p>
                             </div>
-                            <div className="col-sm-6 offset-sm-1 col-xs-4 animation-container pr-0">
+                            <div className="col-sm-6 offset-sm-1 col-xs-4 animation-container pr-0 hidden-sm-down">
                                 <FeatureFlagsHero/>
                             </div>
                         </div>
@@ -114,7 +114,7 @@ export default class SegmentsExampleView extends Component {
                                 <h2>User Traits</h2>
                                 <p>Store traits against your users without modifying your back-end.</p>
                             </div>
-                            <div className="col-md-1 offset-md-2">
+                            <div className="col-md-1 offset-md-2 hidden-sm-down">
                                 <img src="/images/features-page/user-traits-steps.svg" className="img-fluid"/>
 
                             </div>
