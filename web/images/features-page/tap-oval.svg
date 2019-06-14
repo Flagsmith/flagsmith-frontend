@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="74px" height="74px" viewBox="0 0 74 74" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.1 (78136) - https://sketchapp.com -->
+    <title>tap-oval</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M17.0822235,2.97422775 C20.8591517,6.7398655 20.8591517,12.8408761 17.0844232,16.6065138 C13.307495,20.3699696 7.18602165,20.3699696 3.41129319,16.6065138 C-0.363435269,12.8408761 -0.363435269,6.7398655 3.41129319,2.97422775 C7.18602165,-0.789228043 13.307495,-0.789228043 17.0822235,2.97422775 Z" id="path-1"></path>
+        <filter x="-243.1%" y="-207.5%" width="586.2%" height="587.6%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="7" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="14.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.976470588   0 0 0 0 0.309803922   0 0 0 0 0.450980392  0 0 0 1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="features-page" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.75">
+        <g id="Artboard" transform="translate(-861.000000, -388.000000)">
+            <g id="2" transform="translate(739.000000, 199.000000)">
+                <g id="user-traits-cookie-illus" transform="translate(76.000000, 177.000000)">
+                    <g id="pointer-screen-pointer" transform="translate(72.395500, 32.555073)">
+                        <g id="tap-oval">
+                            <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                            <use fill="#F94F73" fill-rule="evenodd" xlink:href="#path-1"></use>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

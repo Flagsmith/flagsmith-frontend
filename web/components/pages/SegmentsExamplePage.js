@@ -121,16 +121,31 @@ export default class SegmentsExampleView extends Component {
                             <div className="col-md-5">
                                 <div className="card card--navy card--code">
                                     <div className="card-body">
-                                        <p className="code">// Increase header size</p>
-                                        <pre className="battery-log" id="increment-shit"><span className="code code--green">height:2em</span></pre>
+                                        <p className="code">// User traits</p>
+                                        <pre><span className="code code--green">
+                                        If bulletTrain.identify("user_123456");
+                                        </span></pre>
+                                        <pre><span className="code code--green">
+                                            if !has accepted cookies</span>
+                                        </pre>
+                                        <pre>
+                                            <span className="code code--green">
+                                                else show cookie
+                                            </span>
+                                        </pre>
                                     </div>
                                 </div>
                                 {/*<img src="/images/features-page/user-traits-illustration-cookies.svg" className="img-fluid"/>*/}
                                 <UserTraitsAnimation/>
-                                <div className="card card--navy card--code">
+                                <div className="card card--navy card--code mt-5">
                                     <div className="card-body">
-                                        <p className="code">// Increase header size</p>
-                                        <pre className="battery-log" id="increment-shit"><span className="code code--green">height:2em</span></pre>
+                                        <p className="code">// Example SDK output</p>
+                                        <pre className="battery-log" id="increment-shit">
+                                  {'{'}
+                                                "trait_key":"cookie",<br/>
+                                                "trait_value":<span className="code code--green">"accepted”</span>
+                                            {'}'}
+                                        </pre>
                                     </div>
                                 </div>
                             </div>

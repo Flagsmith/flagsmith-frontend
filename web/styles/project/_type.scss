@@ -1,5 +1,8 @@
 h1,h2,h3,h4,h5,h6{
     font-weight:bold!important;
+    //font-family: 'Raleway', sans-serif;
+    //font-family: 'Roboto', sans-serif !important;
+    font-family: 'Raleway', sans-serif;
 }
 
 .text-small{
@@ -9,6 +12,7 @@ h1,h2,h3,h4,h5,h6{
 p{
     color: #22354a;
     opacity: 0.85;
+    //font-family: 'Roboto', sans-serif !important;
 }
 
 .large-para{
@@ -25,5 +29,19 @@ p{
     }
     &--on {
         color: $bt-brand-primary;
+    }
+}
+
+
+.features-page {
+    h1,h2,h3,h4,h5,h6{
+        font-weight:bold!important;
+        //font-family: 'Raleway', sans-serif;
+        //font-family: 'Roboto', sans-serif !important;
+        font-family: 'Raleway', sans-serif;
+    }
+    p {
+        font-family: 'Raleway', sans-serif;
+        font-weight: 400;
     }
 }

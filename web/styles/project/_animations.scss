@@ -1,3 +1,86 @@
+//
+//.timeline {
+//  .demo-content {
+//    position: relative;
+//    display: flex;
+//    flex-direction: column;
+//    justify-content: center;
+//    text-align: center;
+//    width: 290px;
+//    height: 100%;
+//  }
+//
+//  .line {
+//    width: 100%;
+//    padding: 1px 0px;
+//  }
+//
+//  .square,
+//  .circle {
+//    pointer-events: none;
+//    position: relative;
+//    width: 28px;
+//    height: 28px;
+//    margin: 1px;
+//    background-color: currentColor;
+//    font-size: 14px;
+//  }
+//
+//  .circle {
+//    border-radius: 50%;
+//  }
+//
+//  .square.outline,
+//  .circle.outline {
+//    background-color: transparent;
+//    border: 1px solid currentColor;
+//  }
+//
+//}
+
+.cookie-container {
+  background-color: #132333;
+  border: 1px dashed #2BE3D6;
+  border-radius: 6.63px;
+  .placeholder {
+    border: 4px solid #C2D1D9;
+    border-radius: 4px;
+  }
+  .dummy-button {
+    height: 40px;
+  }
+}
+
+.mouse {
+  position: absolute;
+  left: 4em;
+  z-index: 99999;
+  bottom: 15em;
+  .cookie-tap {
+    background: #F94F73;
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    box-shadow: 0 7px 29px 0 #F94F73;
+    position: absolute;
+    z-index: 1;
+    left: -0.5em;
+    bottom: -1.3em;
+    //left: 3em;
+    //right: 1em;
+    //bottom: -.4em;
+    opacity: 0;
+  }
+  
+  .cookie-pointer {
+    position: absolute;
+    z-index: 2;
+    //left: 4em;
+    //bottom: -1em;
+  }
+}
+
+
 .animated {
   -webkit-transition: all 0.3s ease;
   -moz-transition: all 0.3s ease;
