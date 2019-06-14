@@ -14,7 +14,7 @@ const Hero = class extends React.Component {
         const { hasFeature } = this.props;
         const explain = hasFeature('explain');
         return (
-            <div className="hero">
+            <div className="hero hero--homepage">
                 <div className="container-fluid">
                     <div className="row">
                         <div className="col-md-4 offset-md-1 features-cta">

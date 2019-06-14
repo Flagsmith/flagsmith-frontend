@@ -1,0 +1,24 @@
+.card {
+    .card-body {
+        padding: 2em;
+        p {
+            color: white;
+            word-break: break-word;
+            margin-bottom: 0;
+        }
+    }
+    &--navy {
+        background: #252F35;
+        box-shadow: 0 5px 25px 0 rgba(0,0,0,0.28);
+        border-radius: 4px;
+        pre {
+            color: white;
+        }
+    }
+    &--code {
+        align-self: center;
+    }
+    pre {
+        word-wrap: break-word;
+    }
+}

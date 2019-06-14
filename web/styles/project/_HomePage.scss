@@ -1,53 +1,3 @@
-.hero {
-	min-height: 768px;
-	margin-top: -30px;
-	padding-top: 170px;
-	padding-bottom:40px;
-    overflow: hidden;
-	background: linear-gradient($hero-bg, $hero-bg-dark);
-	color: white;
-    .features-cta {
-        position: relative;
-        z-index: 2;
-        h1 {
-            font-weight: 200;
-            font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif;
-            font-size: 3rem;
-        }
-        p {
-            font-weight: 200;
-            font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif;
-            font-size: 1em;
-            color: rgba(255,255,255,.8);
-            opacity:1;
-        }
-        .btn {
-            font-size: 1.2em;
-            //font-weight: 200;
-            padding:13px 20px;
-        }
-    
-        a {
-            color: #fff;
-        }
-        .link {
-            font-weight: bold;
-        }
-    }
-    .hero-illustration {
-        position: absolute;
-        top: -5em;
-        right: -15em;
-        z-index: 0;
-    }
-    &__open-source {
-        //background-color: $bt-brand-secondary;
-        h1 {
-            color: $bt-brand-secondary;
-        }
-    }
-}
-
 h2 {
     margin-bottom: 10px;
 }
@@ -62,7 +12,6 @@ h2 {
     margin-top: 50px;
 
     > div {
-        //height:150px;
         text-align: center;
         margin: 0 auto;
 
@@ -75,6 +24,7 @@ h2 {
             color: #22354a;
             opacity: 0.85;
             font-size: 15px;
+            font-family: 'Roboto', sans-serif;
         }
     }
 
@@ -278,34 +228,6 @@ footer {
 
 .img-fluid {
     max-width: 100%;
-}
-
-
-
-
-@media screen and (min-width: 1070px) and (max-width: 1270px) {
-    .hero {
-        .hero-illustration {
-            right: -25em;
-        }
-    }
-}
-
-@media screen and (min-width: 768px) and (max-width: 1070px) {
-    .hero {
-        .hero-illustration {
-            right: -35em;
-        }
-    }
-}
-
-@media (max-width: 768px) {
-    .hero {
-        .hero-illustration {
-            right: -3em;
-            width: 100%;
-        }
-    }
 }
 
 @media (max-width: 576px) {

@@ -48,28 +48,32 @@ const CreateTrait = class extends Component {
                                   this.save(editTrait, isSaving);
                               }}
                             >
-                                <InputGroup
-                                  ref={e => this.input = e}
-                                  inputProps={{
-                                      readOnly: isEdit,
-                                      className: 'full-width',
-                                      name: 'traitID',
-                                  }}
-                                  value={trait_key}
-                                  onChange={e => this.setState({ trait_key: Format.enumeration.set(Utils.safeParseEventValue(e)).toLowerCase() })}
-                                  isValid={trait_key && trait_key.length}
-                                  type="text" title={isEdit ? 'Trait ID' : 'Trait ID*'}
-                                  placeholder="E.g. favourite_colour"
-                                />
-                                <InputGroup
-                                  textarea
-                                  inputProps={{ name: 'traitValue', className: 'full-width' }}
-                                  value={trait_value}
-                                  title="Value"
-                                  onChange={e => this.setState({ trait_value: Utils.getTypedValue(Utils.safeParseEventValue(e)) })}
-                                  type="text"
-                                  placeholder="e.g. 'big', true, 1 "
-                                />
+                                <FormGroup className="mb-3">
+                                    <InputGroup
+                                      ref={e => this.input = e}
+                                      inputProps={{
+                                          readOnly: isEdit,
+                                          className: 'full-width',
+                                          name: 'traitID',
+                                      }}
+                                      value={trait_key}
+                                      onChange={e => this.setState({ trait_key: Format.enumeration.set(Utils.safeParseEventValue(e)).toLowerCase() })}
+                                      isValid={trait_key && trait_key.length}
+                                      type="text" title={isEdit ? 'Trait ID' : 'Trait ID*'}
+                                      placeholder="E.g. favourite_colour"
+                                    />
+                                </FormGroup>
+                                <FormGroup className="mb-3">
+                                    <InputGroup
+                                      textarea
+                                      inputProps={{ name: 'traitValue', className: 'full-width' }}
+                                      value={trait_value}
+                                      title="Value"
+                                      onChange={e => this.setState({ trait_value: Utils.getTypedValue(Utils.safeParseEventValue(e)) })}
+                                      type="text"
+                                      placeholder="e.g. 'big', true, 1 "
+                                    />
+                                </FormGroup>
 
                                 {error && <Error error={error}/>}
 

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="505px" height="471px" viewBox="0 0 505 471" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.1 (78136) - https://sketchapp.com -->
+    <title>user-traits-cookie-illus</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="380" height="120" rx="2.88000011"></rect>
+        <filter x="-8.0%" y="-22.1%" width="116.1%" height="150.8%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="4" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="9.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.28 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <rect id="path-3" x="0" y="0" width="362" height="140" rx="2.88000011"></rect>
+        <filter x="-8.4%" y="-18.9%" width="116.9%" height="143.6%" filterUnits="objectBoundingBox" id="filter-4">
+            <feOffset dx="0" dy="4" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="9.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.28 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <rect id="path-5" x="0" y="0.289091091" width="490.516165" height="58.5" rx="6.6338997"></rect>
+        <mask id="mask-6" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="490.516165" height="58.5" fill="white">
+            <use xlink:href="#path-5"></use>
+        </mask>
+        <mask id="mask-8" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="490.516165" height="58.5" fill="white">
+            <use xlink:href="#path-5"></use>
+        </mask>
+        <linearGradient x1="0%" y1="50%" x2="100%" y2="50%" id="linearGradient-9">
+            <stop stop-color="#2CA69D" offset="0%"></stop>
+            <stop stop-color="#2BE3D6" offset="100%"></stop>
+        </linearGradient>
+        <path d="M17.0822235,2.97422775 C20.8591517,6.7398655 20.8591517,12.8408761 17.0844232,16.6065138 C13.307495,20.3699696 7.18602165,20.3699696 3.41129319,16.6065138 C-0.363435269,12.8408761 -0.363435269,6.7398655 3.41129319,2.97422775 C7.18602165,-0.789228043 13.307495,-0.789228043 17.0822235,2.97422775 Z" id="path-10"></path>
+        <filter x="-243.1%" y="-207.5%" width="586.2%" height="587.6%" filterUnits="objectBoundingBox" id="filter-11">
+            <feOffset dx="0" dy="7" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="14.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.976470588   0 0 0 0 0.309803922   0 0 0 0 0.450980392  0 0 0 1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="features-page" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-801.000000, -178.000000)">
+            <g id="2" transform="translate(739.000000, 193.000000)">
+                <g id="user-traits-cookie-illus" transform="translate(76.000000, 0.000000)">
+                    <g id="code-block-2" transform="translate(5.000000, 313.000000)">
+                        <g id="Group-3">
+                            <g id="code-bg">
+                                <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                                <use fill="#252F35" fill-rule="evenodd" xlink:href="#path-1"></use>
+                            </g>
+                            <text id="code-text-2" font-family="Courier" font-size="13.64" font-weight="normal" fill="#F7F7F7">
+                                <tspan x="15" y="27">{</tspan>
+                                <tspan x="15" y="45.8080001">"trait_key":"cookie",</tspan>
+                                <tspan x="15" y="64.6160002">"trait_value":"accepted</tspan>
+                                <tspan x="15" y="80.6160002">”</tspan>
+                                <tspan x="15" y="99.4240003">}</tspan>
+                            </text>
+                        </g>
+                    </g>
+                    <g id="code-block-user-traits" transform="translate(9.000000, 0.000000)">
+                        <g id="code-bg">
+                            <use fill="black" fill-opacity="1" filter="url(#filter-4)" xlink:href="#path-3"></use>
+                            <use fill="#252F35" fill-rule="evenodd" xlink:href="#path-3"></use>
+                        </g>
+                        <text id="code-text-2" font-family="Courier" font-size="13.64" font-weight="normal">
+                            <tspan x="23.9312695" y="27" fill="#F7F7F7"></tspan>
+                            <tspan x="23.9312695" y="45.8080001" fill="#F7F7F7"></tspan>
+                            <tspan x="15" y="58.5571921" line-spacing="10.8000004" fill="#2BE3D6">If bulletTrain.identify("user_123456");</tspan>
+                            <tspan x="23.9312695" y="78.2240008" line-spacing="10.8000004" fill="#2BE3D6"></tspan>
+                            <tspan x="15" y="85.7731931" line-spacing="10.8000004" fill="#2BE3D6">f !has accepted cookies </tspan>
+                            <tspan x="23.9312695" y="105.440002" line-spacing="10.8000004" fill="#2BE3D6"></tspan>
+                            <tspan x="15" y="112.989194" line-spacing="10.8000004" fill="#2BE3D6">else show cookie </tspan>
+                        </text>
+                        <text id="code-text-1" font-family="Courier" font-size="13.64" font-weight="normal" fill="#F7F7F7">
+                            <tspan x="15" y="28">// User Traits</tspan>
+                        </text>
+                    </g>
+                    <g id="user-traits-illustration" transform="translate(0.000000, 183.000000)">
+                        <g id="screen">
+                            <mask id="mask-7" fill="white">
+                                <use xlink:href="#path-5"></use>
+                            </mask>
+                            <g id="bg" stroke="#2BE3D6" mask="url(#mask-6)" stroke-width="2.6" stroke-dasharray="6.5">
+                                <use mask="url(#mask-8)" xlink:href="#path-5"></use>
+                            </g>
+                            <g id="cookie" mask="url(#mask-7)">
+                                <g transform="translate(0.000000, -0.326463)">
+                                    <rect id="cookie-bg" fill="#132333" x="0" y="0" width="490.516165" height="59.6680364"></rect>
+                                    <g id="button" stroke-width="1" fill="none" transform="translate(18.781024, 13.812045)">
+                                        <rect id="button-bg" fill="url(#linearGradient-9)" x="0" y="0" width="120.945999" height="30.8154059" rx="2.67623434"></rect>
+                                        <text id="Accept-Cookies" font-family="Raleway-Bold, Raleway" font-size="12.0430545" font-weight="bold" letter-spacing="-0.185277893" fill="#FFFFFF">
+                                            <tspan x="17.210185" y="19.4155942">Accept Cookies</tspan>
+                                        </text>
+                                    </g>
+                                    <g id="placeholders" stroke-width="1" fill="none" transform="translate(167.924453, 20.441827)" stroke-linecap="round">
+                                        <path d="M0,0.552481818 L300.496389,0.552481818" id="Path-5" stroke="#C2D1D9" stroke-width="6.6338997"></path>
+                                        <path d="M0,16.0219727 L145.604724,16.0219727" id="Path-5-Copy" stroke="#C2D1D9" stroke-width="6.6338997"></path>
+                                        <path d="M159.848008,16.0219727 L300.496389,16.0219727" id="Path-5-Copy-2" stroke="#C2D1D9" stroke-width="6.6338997"></path>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                        <g id="pointer-screen-pointer" transform="translate(72.395500, 32.555073)">
+                            <g id="tap-oval" opacity="0.75">
+                                <use fill="black" fill-opacity="1" filter="url(#filter-11)" xlink:href="#path-10"></use>
+                                <use fill="#F94F73" fill-rule="evenodd" xlink:href="#path-10"></use>
+                            </g>
+                            <polygon id="pointer-inner" fill="#FFFFFF" fill-rule="nonzero" points="17.068913 28.2037198 9.05453121 9.02442677 28.2890273 17.0148636 19.9868424 19.9263281"></polygon>
+                            <path d="M17.1585625,31.3567769 L6.94907001,6.92529798 L31.4505411,17.10316 L20.8757056,20.8114292 L17.1585625,31.3567769 L17.1585625,31.3567769 Z M11.1600036,11.122459 L16.9792635,25.0494542 L19.0979903,19.038922 L25.1275023,16.9243853 L11.1600036,11.122459 L11.1600036,11.122459 Z" id="pointer-outer" stroke="#FFFFFF" fill="#373A3C" fill-rule="nonzero"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

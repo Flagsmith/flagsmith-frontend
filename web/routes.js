@@ -28,6 +28,7 @@ import NotFoundPage from './components/pages/NotFoundPage';
 import PricingPage from './components/pages/PricingPage';
 import TermsPoliciesPage from './components/pages/TermsPoliciesPage';
 import OpenSourcePage from "./components/pages/OpenSourcePage";
+import FeaturesExamplePage from "./components/pages/FeaturesExamplePage";
 
 window.Link = Link;
 
@@ -44,6 +45,7 @@ export default (
         <Route path="legal/:section" component={TermsPoliciesPage}/>
         <Route path="legal" component={TermsPoliciesPage}/>
         <Route path="open-source" component={OpenSourcePage}/>
+        <Route path="features" component={FeaturesExamplePage}/>
         <Route path="projects" component={ProjectSelectPage}/>
         <Route path="/blog/remote-config-and-feature-flags" component={WhatAreFeatureFlagsPage}/>
         <Route path="/blog/01" component={WhenFeatureFlagsGoWrong}/>
