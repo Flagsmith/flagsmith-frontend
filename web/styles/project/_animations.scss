@@ -1,43 +1,3 @@
-//
-//.timeline {
-//  .demo-content {
-//    position: relative;
-//    display: flex;
-//    flex-direction: column;
-//    justify-content: center;
-//    text-align: center;
-//    width: 290px;
-//    height: 100%;
-//  }
-//
-//  .line {
-//    width: 100%;
-//    padding: 1px 0px;
-//  }
-//
-//  .square,
-//  .circle {
-//    pointer-events: none;
-//    position: relative;
-//    width: 28px;
-//    height: 28px;
-//    margin: 1px;
-//    background-color: currentColor;
-//    font-size: 14px;
-//  }
-//
-//  .circle {
-//    border-radius: 50%;
-//  }
-//
-//  .square.outline,
-//  .circle.outline {
-//    background-color: transparent;
-//    border: 1px solid currentColor;
-//  }
-//
-//}
-
 .cookie-container {
   background-color: #132333;
   border: 1px dashed #2BE3D6;
@@ -66,17 +26,12 @@
     z-index: 1;
     left: -0.5em;
     bottom: -1.3em;
-    //left: 3em;
-    //right: 1em;
-    //bottom: -.4em;
     opacity: 0;
   }
   
   .cookie-pointer {
     position: absolute;
     z-index: 2;
-    //left: 4em;
-    //bottom: -1em;
   }
 }
 
@@ -154,10 +109,7 @@
 #feature-toggle g {
   stroke: #F94F73;
 }
-//
-//#feature-toggle .feature-toggle-rectangle {
-//  stroke: #F94F73;
-//}
+
 
 // remote config anim
 
@@ -197,8 +149,6 @@
 
 @media screen and (min-width: 768px) and (max-width: 1400px) {
       #anime-demo {
-        //left: -9em;
-        //background-color: red;
         position: relative;
         right: 10em;
         top: 0em;
@@ -214,9 +164,7 @@
       }
     }
     &--features-page {
-      //height: 520px;
       background-color: $hero-bg;
-      
       .hero-illustration {
         position: absolute;
         top: 0em;
