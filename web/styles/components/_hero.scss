@@ -1,0 +1,107 @@
+.hero {
+  .features-cta {
+    position: relative;
+    z-index: 2;
+    h1 {
+      font-weight: 200;
+      //font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif;
+      font-size: 3rem;
+      color: white;
+    }
+    p {
+      font-weight: 200;
+      //font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif;
+      font-size: 1em;
+      color: rgba(255,255,255,.8);
+      opacity:1;
+    }
+    .btn {
+      font-size: 1.2em;
+      //font-weight: 200;
+      padding:13px 20px;
+    }
+
+    a {
+      color: #fff;
+    }
+    .link {
+      font-weight: bold;
+    }
+  }
+
+  &--homepage {
+    min-height: 768px;
+    margin-top: -30px;
+    padding-top: 170px;
+    padding-bottom:40px;
+    overflow: hidden;
+    background: linear-gradient($hero-bg, $hero-bg-dark);
+    color: white;
+    width: 100%;
+
+    .hero-illustration {
+      position: absolute;
+      top: -5em;
+      right: -15em;
+      z-index: 0;
+    }
+  }
+
+  &--features-page {
+    height: 500px;
+    background-color: $hero-bg;
+
+    .hero-illustration {
+    }
+  }
+
+
+  &__open-source {
+    //background-color: $bt-brand-secondary;
+    h1 {
+      color: $bt-brand-secondary;
+    }
+  }
+}
+
+
+@media screen and (min-width: 1070px) and (max-width: 1270px) {
+  .hero {
+    &--homepage {
+      .hero-illustration {
+        right: -25em;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1070px) {
+  .hero {
+    &--homepage {
+      .hero-illustration {
+        right: -35em;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    &--homepage {
+      .hero-illustration {
+        right: -3em;
+        width: 100%;
+      }
+    }
+    &--features-page {
+      height: 520px;
+      background-color: $hero-bg;
+    
+      .hero-illustration {
+        position: absolute;
+        top: 0em;
+        right: -28em;
+      }
+    }
+  }
+}

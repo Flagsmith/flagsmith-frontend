@@ -1,5 +1,6 @@
 h1,h2,h3,h4,h5,h6{
     font-weight:bold!important;
+    font-family: 'Raleway', sans-serif;
 }
 
 .text-small{
@@ -25,5 +26,16 @@ p{
     }
     &--on {
         color: $bt-brand-primary;
+    }
+}
+
+
+.features-page {
+    h1,h2,h3,h4,h5,h6{
+        font-weight:bold!important;
+        font-family: 'Raleway', sans-serif;
+    }
+    p {
+        font-weight: 400;
     }
 }

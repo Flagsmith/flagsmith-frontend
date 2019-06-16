@@ -1,0 +1,30 @@
+.section {
+    &--white {
+        background-color: white;
+        z-index: 999999999;
+        padding-bottom: 3em;
+    }
+    &--grey {
+        background-color: #f9f9f9;
+    }
+    &--blue {
+        background-color: $bt-brand-secondary;
+        //-webkit-clip-path: polygon(0 0, 100% 0, 100% 88%, 0% 100%);
+        //clip-path: polygon(0 0, 100% 0, 100% 88%, 0% 100%);
+        h2 {
+            color: white;
+        }
+        p {
+            color: #A1AEB7;
+        }
+    }
+}
+
+.features-page {
+    h1 {
+        font-size: 4em !important;
+    }
+    h2 {
+        font-size: 3em;
+    }
+}

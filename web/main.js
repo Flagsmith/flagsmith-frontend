@@ -42,13 +42,11 @@ AsyncStorage.getItem('t', (err, res) => {
         // redirect before login
         // todo: move to util to decide if url is public
         if (
-            document.location.pathname.indexOf('/pricing') == -1
-            && document.location.pathname.indexOf('/legal') == -1
-            && document.location.pathname.indexOf('password-reset') == -1
-            && document.location.pathname.indexOf('open-source') == -1
-            && document.location.pathname.indexOf('/blog') == -1
-            && document.location.pathname.indexOf('/markup') == -1
-            && document.location.pathname != '/' && document.location.pathname != '/login' && document.location.pathname != '/demo' && document.location.pathname != '/signup' && !AccountStore.getUser()) {
+            (document.location.pathname.indexOf('/project/') !== -1 ||
+                document.location.pathname.indexOf('/create') !== -1 ||
+                document.location.pathname.indexOf('/invite') !== -1 ||
+                document.location.pathname.indexOf('/projects') !== -1)
+            && !AccountStore.getUser()) {
             browserHistory.push(`/?redirect=${encodeURIComponent(document.location.pathname)}`);
         }
 

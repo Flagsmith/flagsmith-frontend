@@ -79,9 +79,10 @@ module.exports = {
           .back();
 
         testHelpers.logout(browser)
-        testHelpers.login(browser, inviteUrl, 'nightwatch-invitee@solidstategroup.com', 'nightwatch')
+        testHelpers.login(browser, url, 'nightwatch-invitee@solidstategroup.com', 'nightwatch')
 
         browser.expect.element('#project-select-page').to.be.visible;
+        browser.url(inviteUrl)
         browser
           .useXpath()
           .waitForElementPresent(`//div[contains(@class, "org-nav")]//a[contains(text(),"${'Nightwatch Org' + append}")]`)

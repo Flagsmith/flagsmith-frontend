@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="491px" height="86px" viewBox="0 0 491 86" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.1 (78136) - https://sketchapp.com -->
+    <title>user-traits-cookie-illus</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0.289091091" width="490.516165" height="58.5" rx="6.6338997"></rect>
+        <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="490.516165" height="58.5" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <mask id="mask-4" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="490.516165" height="58.5" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <linearGradient x1="0%" y1="50%" x2="100%" y2="50%" id="linearGradient-5">
+            <stop stop-color="#2CA69D" offset="0%"></stop>
+            <stop stop-color="#2BE3D6" offset="100%"></stop>
+        </linearGradient>
+        <path d="M17.0822235,2.97422775 C20.8591517,6.7398655 20.8591517,12.8408761 17.0844232,16.6065138 C13.307495,20.3699696 7.18602165,20.3699696 3.41129319,16.6065138 C-0.363435269,12.8408761 -0.363435269,6.7398655 3.41129319,2.97422775 C7.18602165,-0.789228043 13.307495,-0.789228043 17.0822235,2.97422775 Z" id="path-6"></path>
+        <filter x="-243.1%" y="-207.5%" width="586.2%" height="587.6%" filterUnits="objectBoundingBox" id="filter-7">
+            <feOffset dx="0" dy="7" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="14.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.976470588   0 0 0 0 0.309803922   0 0 0 0 0.450980392  0 0 0 1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="features-page" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-815.000000, -376.000000)">
+            <g id="2" transform="translate(739.000000, 199.000000)">
+                <g id="user-traits-cookie-illus" transform="translate(76.000000, 177.000000)">
+                    <g id="user-traits-illustration-cookies">
+                        <mask id="mask-3" fill="white">
+                            <use xlink:href="#path-1"></use>
+                        </mask>
+                        <g id="cookie-solid-bg" stroke="#2BE3D6" mask="url(#mask-2)" stroke-width="2.6" stroke-dasharray="6.5">
+                            <use mask="url(#mask-4)" xlink:href="#path-1"></use>
+                        </g>
+                        <g id="cookie" mask="url(#mask-3)">
+                            <g transform="translate(0.000000, -0.326463)">
+                                <rect id="cookie-bg" fill="#132333" x="0" y="0" width="490.516165" height="59.6680364"></rect>
+                                <g id="cookie-button" stroke-width="1" fill="none" transform="translate(18.781024, 13.812045)">
+                                    <rect id="cookie-button-bg" fill="url(#linearGradient-5)" x="0" y="0" width="120.945999" height="30.8154059" rx="2.67623434"></rect>
+                                    <text id="Accept-Cookies" font-family="Raleway-Bold, Raleway" font-size="12.0430545" font-weight="bold" letter-spacing="-0.185277893" fill="#FFFFFF">
+                                        <tspan x="17.210185" y="19.4155942">Accept Cookies</tspan>
+                                    </text>
+                                </g>
+                                <g id="placeholders" stroke-width="1" fill="none" transform="translate(167.924453, 20.441827)" stroke-linecap="round">
+                                    <path d="M159.848008,16.0219727 L300.496389,16.0219727" id="line-3" stroke="#C2D1D9" stroke-width="6.6338997"></path>
+                                    <path d="M0,16.0219727 L145.604724,16.0219727" id="line-2" stroke="#C2D1D9" stroke-width="6.6338997"></path>
+                                    <path d="M0,0.552481818 L300.496389,0.552481818" id="line-1" stroke="#C2D1D9" stroke-width="6.6338997"></path>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                    <g id="pointer-screen-pointer" transform="translate(72.395500, 32.555073)">
+                        <g id="tap-oval" opacity="0.75">
+                            <use fill="black" fill-opacity="1" filter="url(#filter-7)" xlink:href="#path-6"></use>
+                            <use fill="#F94F73" fill-rule="evenodd" xlink:href="#path-6"></use>
+                        </g>
+                        <polygon id="pointer-inner" fill="#FFFFFF" fill-rule="nonzero" points="17.068913 28.2037198 9.05453121 9.02442677 28.2890273 17.0148636 19.9868424 19.9263281"></polygon>
+                        <path d="M17.1585625,31.3567769 L6.94907001,6.92529798 L31.4505411,17.10316 L20.8757056,20.8114292 L17.1585625,31.3567769 L17.1585625,31.3567769 Z M11.1600036,11.122459 L16.9792635,25.0494542 L19.0979903,19.038922 L25.1275023,16.9243853 L11.1600036,11.122459 L11.1600036,11.122459 Z" id="pointer-outer" stroke="#FFFFFF" fill="#373A3C" fill-rule="nonzero"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -2,7 +2,7 @@ const seleniumServer = require("selenium-server");
 const chromedriver = require("chromedriver");
 const SCREENSHOT_PATH = "./screenshots/";
 const os = require('os');
-const browserSize = "window-size=1024x1536"
+const browserSize = "window-size=1920,1536"
 
 // we use a nightwatch.conf.js file so we can include comments and helper functions
 module.exports = {
