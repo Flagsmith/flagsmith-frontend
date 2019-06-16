@@ -333,7 +333,7 @@ Docs
                                                         </li>
                                                         <li><Link to="/pricing">Pricing</Link></li>
                                                         <li><Link to="/open-source">Open Source</Link></li>
-                                                        {hasFeature("features-page") && (
+                                                        {hasFeature("features_page") && (
                                                             <li><Link to="/features">Features</Link></li>
                                                         )}
                                                     </ul>
