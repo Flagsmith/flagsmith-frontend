@@ -44,6 +44,7 @@ AsyncStorage.getItem('t', (err, res) => {
         if (
             (document.location.pathname.indexOf('/project/') !== -1 ||
                 document.location.pathname.indexOf('/create') !== -1 ||
+                document.location.pathname.indexOf('/invite') !== -1 ||
                 document.location.pathname.indexOf('/projects') !== -1)
             && !AccountStore.getUser()) {
             browserHistory.push(`/?redirect=${encodeURIComponent(document.location.pathname)}`);
