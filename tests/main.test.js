@@ -230,14 +230,14 @@ const byId= helpers.byTestID;
             .waitForElementNotPresent('#confirm-toggle-feature-btn')
             .waitForElementVisible('#user-features-list .rc-switch[aria-checked="true"]');
     },
-    // '[Main Tests] - Toggle flag for user again': function (browser) { todo: enable next build
-    //     browser
-    //         .click('#user-features-list .rc-switch')
-    //         .waitForElementVisible('#confirm-toggle-feature-btn')
-    //         .click('#confirm-toggle-feature-btn')
-    //         .waitForElementNotPresent('#confirm-toggle-feature-btn')
-    //         .waitForElementVisible('#user-features-list .rc-switch[aria-checked="false"]');
-    // },
+    '[Main Tests] - Toggle flag for user again': function (browser) {
+        browser
+            .click('#user-features-list .rc-switch')
+            .waitForElementVisible('#confirm-toggle-feature-btn')
+            .click('#confirm-toggle-feature-btn')
+            .waitForElementNotPresent('#confirm-toggle-feature-btn')
+            .waitForElementVisible('#user-features-list .rc-switch[aria-checked="false"]');
+    },
     '[Main Tests] - Add trait for user': function (browser) {
         browser
             .click('#add-trait')
