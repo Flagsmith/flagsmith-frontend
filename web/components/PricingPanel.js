@@ -89,7 +89,7 @@ const PricingPanel = class extends React.Component {
                                                 <p>Up to <strong>250,000</strong>{' '} requests per month
                                                 </p>
                                             </li>
-                                            <li><p><strong>3</strong> Team Members</p></li>
+                                            <li><p>Up to <strong>3</strong> Team Members</p></li>
                                             <li><p>Unlimited Projects</p></li>
                                             <li><p>Unlimited Environments</p></li>
                                             <li><p>Unlimited Feature Flags</p></li>
