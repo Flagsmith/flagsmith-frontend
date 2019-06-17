@@ -317,25 +317,17 @@ Logout
                                                 </div>
                                             ) : (
                                                 <div>
-
-                                                        <Link className="float-right" to={`/login${redirect}`} onClick={Utils.scrollToSignUp}>
-                                                            <Button className="btn-primary">Login</Button>
-                                                        </Link>
+                                                    <Link className="float-right" to={`/login${redirect}`} onClick={Utils.scrollToSignUp}>
+                                                        <Button className="btn-primary">Login</Button>
+                                                    </Link>
                                                     <ul className="nav-list list-unstyled float-right">
-                                                        <li><Link to="/demo">Demo</Link></li>
-                                                        <li>
-                                                            <a
-                                                              target="_blank"
-                                                              href="https://docs.bullet-train.io/"
-                                                            >
-Docs
-                                                            </a>
-                                                        </li>
-                                                        <li><Link to="/pricing">Pricing</Link></li>
-                                                        <li><Link to="/open-source">Open Source</Link></li>
                                                         {hasFeature("features_page") && (
                                                             <li><Link to="/features">Features</Link></li>
                                                         )}
+                                                        <li><Link to="/pricing">Pricing</Link></li>
+                                                        <li><a target="_blank" href="https://docs.bullet-train.io/">Docs</a></li>
+                                                        <li><Link to="/open-source">Open Source</Link></li>
+                                                        <li><Link to="/demo">Demo</Link></li>
                                                     </ul>
                                                 </div>
                                             )}
