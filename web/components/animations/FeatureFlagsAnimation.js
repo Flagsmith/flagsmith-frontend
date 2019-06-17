@@ -457,7 +457,7 @@ export default class FeatureFlagsAnimation extends Component {
                                             fontWeight="normal"
                                         >
                                             <tspan x={0.316} y={97} fill="#A1AEB7">
-                                                {'Toggle Feature '}
+                                                {'show_coupons'}
                                             </tspan>
                                         </text>
                                         <rect

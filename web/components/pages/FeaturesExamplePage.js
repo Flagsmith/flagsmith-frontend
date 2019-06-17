@@ -61,16 +61,17 @@ export default class FeaturessExampleView extends Component {
                         <div className="container text-center mb-4">
                             <div className="col-lg-8 offset-lg-2 col-xl-6 offset-xl-3">
                                 <h2>Feature Flags</h2>
-                                <p>Ship features remotely across multiple environments.</p>
+                                <p>Hide new features behind Feature Flags that are managed within Bullet Train.</p>
+                                <p>Continuously deploy new code. Separate code deployments from feature releases.</p>
+                                <p>Roll new features out to a subset of your users before enabling it for everyone.</p>
                             </div>
                         </div>
                         <div className="row d-flex">
                             <div className="col-md-3 offset-md-2 align-self-center">
                                 <div className="card card--navy card--code">
                                     <div className="card-body">
-                                        <p className="code">// Toggle a feature</p>
-                                        <p className="code"><span className="code code--green">if </span>(bulletTrain.hasFeature(<span className="code code--red">“coupon”</span>)) {'{'}</p>
-                                        <p className="code">myCoolFeature();</p>
+                                        <p className="code"><span className="code code--green">if </span>(bulletTrain.hasFeature(<span className="code code--red">“show_coupons”</span>)) {'{'}</p>
+                                        <p className="code">showCoupons();</p>
                                         <p className="code"> {'}'}</p>
                                     </div>
                                 </div>
@@ -86,9 +87,9 @@ export default class FeaturessExampleView extends Component {
                     <div className="container-fluid mb-4">
                         <div className="col-lg-8 offset-lg-2 col-xl-6 offset-xl-3 text-center">
                             <h2>Remote Config</h2>
-                            <p>Ship features remotely across multiple environments.</p>
+                            <p>Features dont have to be Yes/No boolean values. You can specify String or Int values and overide them whenever you like.</p>
+                            <p></p>
                         </div>
-
                         <div className="row">
                             <div className="col-md-3 offset-md-2 align-self-center">
                                 <div className="card card--navy card--code">
@@ -105,10 +106,8 @@ export default class FeaturessExampleView extends Component {
                     </div>
                 </section>
 
-
                 <section className="section--blue mt-5">
                     <div className="container">
-
                         <div className="row pt-5 pb-5">
                             <div className="col-md-4">
                                 <h2>User Traits</h2>
@@ -116,23 +115,18 @@ export default class FeaturessExampleView extends Component {
                             </div>
                             <div className="col-md-1 offset-md-2 hidden-sm-down">
                                 <img src="/images/features-page/user-traits-steps.svg" className="img-fluid"/>
-
                             </div>
                             <div className="col-md-5">
                                 <div className="card card--navy card--code">
                                     <div className="card-body">
                                         <p className="code">// User traits</p>
                                         <pre><span className="code code--green">
-                                        If bulletTrain.identify("user_123456");
+                                        bulletTrain.identify("user_12601"});
                                         </span></pre>
                                         <pre><span className="code code--green">
-                                            if !has accepted cookies</span>
-                                        </pre>
-                                        <pre>
-                                            <span className="code code--green">
-                                                else show cookie
-                                            </span>
-                                        </pre>
+                                            if (!bulletTrain.getTrait("accepted_cookies")) 
+                                            <br/>&nbsp;&nbsp;&nbsp; showCookieBanner()
+                                        </span></pre>
                                     </div>
                                 </div>
                                 <UserTraitsAnimation/>
@@ -141,8 +135,8 @@ export default class FeaturessExampleView extends Component {
                                         <p className="code">// Example SDK output</p>
                                         <pre className="battery-log" id="increment-numbers">
                                   {'{'}
-                                                "trait_key":"cookie",<br/>
-                                                "trait_value":<span className="code code--green">"accepted”</span>
+                                                "trait_key":"accepted_cookies",<br/>
+                                                "trait_value":<span className="code code--green">True</span>
                                             {'}'}
                                         </pre>
                                     </div>
