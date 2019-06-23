@@ -129,6 +129,7 @@ const CreateSegment = class extends Component {
                                     </Row>
                                 )}
                                 <Rule
+                                  data-test={`rule-${i}`}
                                   rule={rule}
                                   onRemove={v => this.removeRule(0, i, v)}
                                   onChange={v => this.updateRule(0, i, v)}
@@ -140,7 +141,7 @@ const CreateSegment = class extends Component {
                       onClick={this.addRule} style={{ marginTop: 20 }}
                       className="text-center"
                     >
-                        <Button type="button" className="btn btn--anchor">
+                        <Button data-test="add-rule" type="button" className="btn btn--anchor">
                             ADD RULE
                         </Button>
                     </div>
@@ -196,14 +197,14 @@ const CreateSegment = class extends Component {
                         <div className="text-right">
                             {isEdit ? (
                                 <Button
-                                  type="submit" data-test="update-feature-btn" id="update-feature-btn"
+                                  type="submit" data-test="update-segment" id="update-feature-btn"
                                   disabled={isSaving || !name}
                                 >
                                     {isSaving ? 'Creating' : 'Update Segment'}
                                 </Button>
                             ) : (
                                 <Button
-                                  type="submit" data-test="create-feature-btn" disabled
+                                  type="submit" data-test="create-segment" disabled
                                   id="create-feature-btn"
                                   disabled={isSaving || !name}
                                 >

@@ -47,7 +47,8 @@ Features
                                             {hasFeature('segments') && (
                                                 <li className="env-nav__item flex-row">
                                                     <Link
-                                                      activeClassName="active"
+                                                        id="segments-link"
+                                                        activeClassName="active"
                                                       to={`/project/${project.id}/environment/${environment.api_key}/segments`
                                                         }
                                                     >

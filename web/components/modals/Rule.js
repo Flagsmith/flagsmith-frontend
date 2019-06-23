@@ -30,6 +30,7 @@ export default class Rule extends PureComponent {
                                 <Tooltip
                                   title={(
                                       <Input
+                                        data-test={this.props['data-test']+'-property'}
                                         className="input-container--flat"
                                         value={`${rule.property}`}
                                         placeholder="Value"
@@ -44,6 +45,7 @@ export default class Rule extends PureComponent {
                             </Column>
                             <Column style={{ width: 200 }}>
                                 <Select
+                                  data-test={this.props['data-test']+'-operator'}
                                   value={rule.operator && _.find(operators, { value: rule.operator })}
                                   onChange={value => this.setRuleProperty(i, 'operator', value)}
                                   options={operators}
@@ -51,6 +53,7 @@ export default class Rule extends PureComponent {
                             </Column>
                             <Column style={{ width: 150 }}>
                                 <Input
+                                  data-test={this.props['data-test']+'-value'}
                                   className="input-container--flat"
                                   value={`${rule.value}`}
                                   placeholder="Value"
@@ -69,6 +72,7 @@ export default class Rule extends PureComponent {
 
                             <div>
                                 <button
+                                  data-test={this.props['data-test']+'-remove'}
                                   type="button"
                                   id="remove-feature"
                                   onClick={() => this.removeRule(i)}
