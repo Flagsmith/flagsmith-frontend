@@ -1,4 +1,4 @@
-module.exports = {
+const testHelpers = {
     logout: (browser) => {
         browser
             .waitForElementNotPresent('.toast-message', 10000)
@@ -14,7 +14,7 @@ module.exports = {
     login: (browser, url, email, password) => {
         browser
             .url(url)
-            .waitAndClick('[href="/login"]')
+            .pause(200) // Allows the dropdown to fade in
             .waitAndClick('#existing-member-btn')
             .waitForElementVisible('#login-btn')
             .setValue('[name="email"]', email)
@@ -31,3 +31,4 @@ module.exports = {
             .click(id);
     },
 };
+module.exports = testHelpers;
