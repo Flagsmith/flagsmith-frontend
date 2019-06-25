@@ -104,7 +104,12 @@ const HomePage = class extends React.Component {
                                         </div>
                                         <div className="col-md-1 col-xs-6">
                                             <a href="https://github.com/SolidStateGroup/bullet-train-java-client">
-                                                <img src="./images/tech-logos/android2x.png" alt=".NET" title="android" />
+                                                <img src="./images/tech-logos/android2x.png" alt="android" title="android" />
+                                            </a>
+                                        </div>
+                                        <div className="col-md-1 col-xs-6">
+                                            <a href="https://github.com/SolidStateGroup/bullet-train-ios-client">
+                                                <img src="./images/tech-logos/bt-IOS.png" alt="IOS" title="IOS" />
                                             </a>
                                         </div>
                                     </div>
