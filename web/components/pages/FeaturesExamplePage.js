@@ -58,12 +58,23 @@ export default class FeaturessExampleView extends Component {
 
                 <section className="section--blue pb-5">
                     <div className="container-fluid">
-                        <div className="container text-center mb-4">
-                            <div className="col-lg-8 offset-lg-2 col-xl-6 offset-xl-3">
-                                <h2>Feature Flags</h2>
-                                <p>Hide new features behind Feature Flags that are managed within Bullet Train.</p>
-                                <p>Continuously deploy new code. Separate code deployments from feature releases.</p>
-                                <p>Roll new features out to a subset of your users before enabling it for everyone.</p>
+                        <div className="container mb-4">
+                            <div className="col-lg-10 offset-lg-1">
+                                <h2 className="text-center mb-4">Feature Flags</h2>
+                                <div className="row">
+                                    <div className="col-sm-4">
+                                        <ion className="homepage-icon icon--green ion-md-done-all text-center"/>
+                                        <p>Hide new features behind Feature Flags that are managed within Bullet Train.</p>
+                                    </div>
+                                    <div className="col-sm-4">
+                                        <ion className="homepage-icon icon--green ion-md-done-all text-center"/>
+                                        <p>Continuously deploy new code. Separate code deployments from feature releases.</p>
+                                    </div>
+                                    <div className="col-sm-4">
+                                        <ion className="homepage-icon icon--green ion-md-done-all text-center"/>
+                                        <p>Roll new features out to a subset of your users before enabling it for everyone.</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div className="row d-flex">
@@ -85,10 +96,11 @@ export default class FeaturessExampleView extends Component {
 
                 <section className="section--white mt-5 mb-5">
                     <div className="container-fluid mb-4">
-                        <div className="col-lg-8 offset-lg-2 col-xl-6 offset-xl-3 text-center">
-                            <h2>Remote Config</h2>
-                            <p>Features dont have to be Yes/No boolean values. You can specify String or Int values and overide them whenever you like.</p>
-                            <p></p>
+                        <div className="col-lg-8 offset-lg-2 col-xl-6 offset-xl-3 text-center mb-5">
+                            <h2 className="mb-4">Remote Config</h2>
+                            <div className="col-lg-8 offset-lg-2">
+                                <p>Features dont have to be Yes/No boolean values. You can specify String or Int values and overide them whenever you like.</p>
+                            </div>
                         </div>
                         <div className="row">
                             <div className="col-md-3 offset-md-2 align-self-center">
@@ -110,7 +122,7 @@ export default class FeaturessExampleView extends Component {
                     <div className="container">
                         <div className="row pt-5 pb-5">
                             <div className="col-md-4">
-                                <h2>User Traits</h2>
+                                <h2 className="mb-4">User Traits</h2>
                                 <p>Store traits against your users without modifying your back-end.</p>
                             </div>
                             <div className="col-md-1 offset-md-2 hidden-sm-down">
@@ -124,7 +136,7 @@ export default class FeaturessExampleView extends Component {
                                         bulletTrain.identify("user_12601"});
                                         </span></pre>
                                         <pre><span className="code code--green">
-                                            if (!bulletTrain.getTrait("accepted_cookies")) 
+                                            if (!bulletTrain.getTrait("accepted_cookies"))
                                             <br/>&nbsp;&nbsp;&nbsp; showCookieBanner()
                                         </span></pre>
                                     </div>
