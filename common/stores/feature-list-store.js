@@ -27,12 +27,12 @@ const controller = {
         API.trackEvent(Constants.events.CREATE_FEATURE);
         data.post(`${Project.api}projects/${projectId}/features/?format=json`, Object.assign({}, flag, { project: projectId }))
             .then(res => Promise.all([
-                segmentOverrides?
-                data.post(`${Project.api}projects/${projectId}/features/${res.id}/segments/`, {
-                    ...res,
-                    feature_segments: segmentOverrides,
-                    project: parseInt(projectId)
-                }) : Promise.resolve(),
+                // segmentOverrides?
+                // data.post(`${Project.api}projects/${projectId}/features/${res.id}/segments/`, {
+                //     ...res,
+                //     feature_segments: segmentOverrides,
+                //     project: parseInt(projectId)
+                // }) : Promise.resolve(),
                 data.get(`${Project.api}projects/${projectId}/features/?format=json`),
                 data.get(`${Project.api}environments/${environmentId}/featurestates/?format=json`),
             ]).then(([features, environmentFeatures]) => {

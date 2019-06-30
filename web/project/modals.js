@@ -115,7 +115,8 @@ const Confirm = class extends React.Component {
                   <Column>
                       <a
                           href="#"
-                          className="btn-link btn-link-secondary" id="confirm-btn-no"
+                          className="btn-link btn-link-secondary"
+                          id="confirm-btn-no"
                         onClick={this.onNo}
                       >
                           {this.props.noText || 'No'}

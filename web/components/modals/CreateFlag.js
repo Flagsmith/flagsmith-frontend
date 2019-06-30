@@ -10,7 +10,11 @@ const CreateFlag = class extends Component {
 
     constructor(props, context) {
         super(props, context);
-        const { name, feature_state_value, description, enabled, type } = this.props.isEdit ? Utils.getFlagValue(this.props.projectFlag, this.props.environmentFlag, this.props.identityFlag) : {};
+        const { name, feature_state_value, description, enabled, type } =
+            this.props.isEdit ? Utils.getFlagValue(this.props.projectFlag, this.props.environmentFlag, this.props.identityFlag)
+                : {
+                    type:"FLAG"
+                };
         const { allowEditDescription } = this.props;
         AppActions.getSegments(this.props.projectId, this.props.environmentId);
         this.state = {
@@ -58,12 +62,11 @@ const CreateFlag = class extends Component {
 
     render() {
         const { name, initial_value, default_enabled, featureType, type, description } = this.state;
-        const { isEdit, projectFlag, environmentFlag, identity } = this.props;
+        const { isEdit, hasFeature, projectFlag, environmentFlag, identity } = this.props;
         const Provider = identity ? IdentityProvider : FeatureListProvider;
         const valueString = isEdit ? 'Value' : 'Initial value';
         const enabledString = isEdit ? 'Enabled by default' : 'Enabled';
 
-        console.log(this.props)
         return (
             <ProjectProvider
               id={this.props.projectId}
@@ -153,7 +156,7 @@ const CreateFlag = class extends Component {
                                     </FormGroup>
                                 )}
 
-                                <FormGroup>
+                                <FormGroup className="mb-4">
                                     <InputGroup
                                       value={description}
                                       data-test="featureDesc"
@@ -168,7 +171,21 @@ const CreateFlag = class extends Component {
                                       placeholder="e.g. 'This determines what size the header is' "
                                     />
                                 </FormGroup>
-
+                                {this.props.segments && hasFeature("segment_overrides") && (
+                                    <FormGroup className={"mb-4"}>
+                                        <Tooltip
+                                            title={<label className="cols-sm-2 control-label">Segment Overrides (Optional)</label>}
+                                            place="right"
+                                        >
+                                            {Constants.strings.SEGMENT_OVERRIDES_DESCRIPTION}
+                                        </Tooltip>
+                                        <SegmentOverrides
+                                            type={type}
+                                            value={this.props.segmentOverrides}
+                                            segments={this.props.segments}
+                                            onChange={this.props.updateSegments}/>
+                                    </FormGroup>
+                                )}
                                 {error && <Error error={error}/>}
                                 {isEdit && (
                                     <div className="mb-3">
@@ -201,26 +218,6 @@ const CreateFlag = class extends Component {
 
                                     </div>
                                 )}
-                                <FormGroup>
-                                    <label className="cols-sm-2 control-label">Segment Overrides</label>
-                                    <i>Drag to order priority</i>
-                                    <SegmentOverrides
-                                        type={type}
-                                        value={this.props.segmentOverrides}
-                                        segments={this.props.segments}
-                                        onChange={this.props.updateSegments}/>
-                                </FormGroup>
-                                <FormGroup className="mb-4 flag-example">
-                                    <strong>Example SDK response:</strong>
-                                    <Highlight className="json no-pad">
-                                        {type == 'CONFIG'
-                                            ? JSON.stringify({ value: initial_value, name }, null, 2)
-                                            : JSON.stringify({ name, enabled: default_enabled }, null, 2)
-
-                                        }
-                                    </Highlight>
-                                </FormGroup>
-
                                 <div className="text-right">
                                     {isEdit ? (
                                         <Button data-test="update-feature-btn" id="update-feature-btn" disabled={isSaving || !name}>
@@ -269,4 +266,4 @@ const CreateFlag = class extends Component {
 
 CreateFlag.propTypes = {};
 
-module.exports = withSegmentOverrides(CreateFlag);
+module.exports = ConfigProvider(withSegmentOverrides(CreateFlag));

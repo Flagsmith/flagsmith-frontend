@@ -1,5 +1,62 @@
 // import propTypes from 'prop-types';
 import React, { Component } from 'react';
+import { SortableContainer, SortableElement } from 'react-sortable-hoc';
+import arrayMove from 'array-move';
+
+const SortableItem = SortableElement(({ value: v, type, confirmRemove, toggle }) => (
+    <div style={{zIndex:9999999999}} className="panel mb-2">
+        <Row className="panel-content" space>
+            <div
+                className="flex flex-1 text-left"
+            >
+                <strong>
+                    {v.segment.name}
+                </strong>
+            </div>
+            <Row>
+                <Column>
+                    {type === 'FLAG' ? (
+                        <Switch
+                            checked={v.enabled}
+                            onChange={toggle}
+                        />
+                    ) : (
+                        <textarea
+                            value={v.value}
+                            data-test="featureValue"
+                            onChange={e => this.setValue(i, Utils.getTypedValue(Utils.safeParseEventValue(e)))}
+                            placeholder="Value e.g. 'big' "
+                        />
+                    )}
+                </Column>
+                <button
+                    id="remove-feature"
+                    onClick={confirmRemove}
+                    className="btn btn--with-icon"
+                >
+                    <RemoveIcon/>
+                </button>
+            </Row>
+        </Row>
+    </div>
+));
+
+const SortableList = SortableContainer(({ items, type, confirmRemove, toggle }) => {
+    return (
+        <div>
+            {items.map((value, index) => (
+                <SortableItem
+                    key={value.segment.name}
+                    index={index}
+                    value={value}
+                    type={type}
+                    confirmRemove={() => confirmRemove(index)}
+                    toggle={() => toggle(index)}
+                />
+            ))}
+        </div>
+    );
+});
 
 class TheComponent extends Component {
     static displayName = 'TheComponent';
@@ -24,12 +81,10 @@ class TheComponent extends Component {
     }
 
     confirmRemove = (i) => {
-        openConfirm(<h3>Remove segment override</h3>, <p>Are you sure you want to remove this item?</p>, () => {
-            this.props.onChange(_.filter(this.props.value, (v, index) => index !== i).map((v, i) => ({
-                ...v,
-                priority: i + 1
-            })))
-        });
+        this.props.onChange(_.filter(this.props.value, (v, index) => index !== i).map((v, i) => ({
+            ...v,
+            priority: i + 1
+        })))
     }
 
     setValue = (i, value) => {
@@ -42,6 +97,15 @@ class TheComponent extends Component {
         this.props.value[i].enabled = !this.props.value[i].enabled
         this.props.onChange(this.props.value);
     }
+
+    onSortEnd = ({ oldIndex, newIndex }) => {
+        this.props.onChange(arrayMove(this.props.value, oldIndex, newIndex)
+            .map((v, i) => ({
+                ...v,
+                priority: i + 1
+            }))
+        );
+    };
 
     render() {
         const { props: { value, segments } } = this;
@@ -56,71 +120,49 @@ class TheComponent extends Component {
                 <div className="text-center mt-2 mb-2">
 
                     {segments && (
-                        <Row>
-                            <Flex>
-                                <Select
-                                    data-test="select-segment"
-                                    placeholder="Select a segment"
-                                    value={this.state.selectedSegment}
-                                    onChange={selectedSegment => this.setState({ selectedSegment })}
-                                    options={
-                                        segmentOptions
-                                    }
-                                />
-                            </Flex>
-                            <Column>
-                                <button
-                                    disabled={!this.state.selectedSegment}
-                                    onClick={this.addItem} data-test="add-rule" type="button"
-                                    className="btn btn-primary btn"
-                                >
-                                    Add Segment override
-                                </button>
-                            </Column>
-                        </Row>
+                        <Flex className="text-left">
+                            <Select
+                                data-test="select-segment"
+                                placeholder="Select a segment"
+                                value={this.state.selectedSegment}
+                                onChange={selectedSegment => this.setState({ selectedSegment }, this.addItem)}
+                                options={
+                                    segmentOptions
+                                }
+                            />
+                        </Flex>
                     )}
-
-                    <div className="panel--grey mt-4 overflow-visible">
-                        {value && value.map((v, i) => (
-                            <div className="panel mb-2">
-                                <Row className="panel-content" key={i} space>
-                                    <div
-                                        className="flex flex-1 text-left"
-                                    >
-                                        <strong>
-                                            {v.segment.name}
-                                        </strong>
-                                    </div>
-                                    <Row>
-                                        <Column>
-                                            {this.props.type == 'FLAG' ? (
-                                                <Switch
-                                                    checked={v.enabled}
-                                                    onChange={() => this.toggle(i)}
-                                                />
-                                            ) : (
-                                                <textarea
-                                                    value={v.value}
-                                                    data-test="featureValue"
-                                                    onChange={e => this.setValue(i, Utils.getTypedValue(Utils.safeParseEventValue(e)))}
-                                                    placeholder="Value e.g. 'big' "
-                                                />
-                                            )}
-                                        </Column>
-                                        <Column>
-                                            <button
-                                                id="remove-feature"
-                                                onClick={() => this.confirmRemove(i)}
-                                                className="btn btn--with-icon"
-                                            >
-                                                <RemoveIcon/>
-                                            </button>
-                                        </Column>
-                                    </Row>
-                                </Row>
-                            </div>
-                        ))}
-                    </div>
+                    {value && !!value.length && (
+                        <div className="panel--grey mt-4 overflow-visible">
+                            <Row className="mb-2">
+                                <div
+                                    className="flex flex-1 text-left"
+                                >
+                                    <label>Segment</label>
+                                </div>
+                                {this.props.type === 'FLAG' ? (
+                                    <Column className="text-left" style={{ width: 120 }}>
+                                        <label>
+                                            Enabled
+                                        </label>
+                                    </Column>
+                                ) : (
+                                    <Column className="text-left" style={{ width: 260 }}>
+                                        <label>
+                                            Value
+                                        </label>
+                                    </Column>
+                                )}
+                            </Row>
+                            {value && <SortableList
+                                type={this.props.type}
+                                confirmRemove={this.confirmRemove}
+                                toggle={this.toggle}
+                                items={value}
+                                onSortEnd={this.onSortEnd}
+                            />}
+                        </div>
+                    )}
                 </div>
             </div>
         );
