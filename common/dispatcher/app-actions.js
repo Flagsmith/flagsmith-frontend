@@ -61,12 +61,13 @@ const AppActions = Object.assign({}, require('./base/_app-actions'), {
             force: true,
         });
     },
-    createFlag(projectId, environmentId, flag) {
+    createFlag(projectId, environmentId, flag, segmentOverrides) {
         Dispatcher.handleViewAction({
             actionType: Actions.CREATE_FLAG,
             projectId,
             environmentId,
             flag,
+            segmentOverrides,
         });
     },
     editEnvironmentFlag(projectId, environmentId, flag, projectFlag, environmentFlag) {
@@ -80,11 +81,12 @@ const AppActions = Object.assign({}, require('./base/_app-actions'), {
         });
     },
 
-    editFlag(projectId, flag) {
+    editFlag(projectId, flag, segmentOverrides) {
         Dispatcher.handleViewAction({
             actionType: Actions.EDIT_FLAG,
             projectId,
             flag,
+            segmentOverrides
         });
     },
     editProject(id, project) {

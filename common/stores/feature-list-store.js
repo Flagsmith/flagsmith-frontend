@@ -22,11 +22,17 @@ const controller = {
             }).catch(e => API.ajaxHandler(store, e));
         }
     },
-    createFlag(projectId, environmentId, flag) {
+    createFlag(projectId, environmentId, flag, segmentOverrides) {
         store.saving();
         API.trackEvent(Constants.events.CREATE_FEATURE);
         data.post(`${Project.api}projects/${projectId}/features/?format=json`, Object.assign({}, flag, { project: projectId }))
             .then(res => Promise.all([
+                segmentOverrides?
+                data.post(`${Project.api}projects/${projectId}/features/${res.id}/segments/`, {
+                    ...res,
+                    feature_segments: segmentOverrides,
+                    project: parseInt(projectId)
+                }) : Promise.resolve(),
                 data.get(`${Project.api}projects/${projectId}/features/?format=json`),
                 data.get(`${Project.api}environments/${environmentId}/featurestates/?format=json`),
             ]).then(([features, environmentFeatures]) => {
@@ -36,7 +42,9 @@ const controller = {
                 };
                 store.model.lastSaved = new Date().valueOf();
                 store.saved();
-            }));
+            }))
+            .catch(e => API.ajaxHandler(store, e));
+
     },
     editFlag(projectId, flag) {
         data.put(`${Project.api}projects/${projectId}/features/${flag.id}/`, flag)
@@ -45,7 +53,9 @@ const controller = {
                 store.model.features[index] = flag;
                 store.model.lastSaved = new Date().valueOf();
                 store.changed();
-            });
+            })
+            .catch(e => API.ajaxHandler(store, e));
+
     },
     toggleFlag: (index, environments, comment) => {
         const flag = store.model.features[index];
@@ -134,13 +144,13 @@ store.dispatcherIndex = Dispatcher.register(store, (payload) => {
             controller.toggleFlag(action.index, action.environments, action.comment);
             break;
         case Actions.CREATE_FLAG:
-            controller.createFlag(action.projectId, action.environmentId, action.flag);
+            controller.createFlag(action.projectId, action.environmentId, action.flag, action.segmentOverrides);
             break;
         case Actions.EDIT_ENVIRONMENT_FLAG:
             controller.editFeatureState(action.projectId, action.environmentId, action.flag, action.projectFlag, action.environmentFlag);
             break;
         case Actions.EDIT_FLAG:
-            controller.editFlag(action.projectId, action.flag);
+            controller.editFlag(action.projectId, action.flag, action.segmentOverrides);
             break;
         case Actions.REMOVE_FLAG:
             controller.removeFlag(action.projectId, action.flag);

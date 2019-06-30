@@ -2,6 +2,8 @@ import React, { Component, PropTypes } from 'react';
 import Highlight from '../Highlight';
 import Tabs from '../base/forms/Tabs';
 import TabItem from '../base/forms/TabItem';
+import withSegmentOverrides from "../../../common/providers/withSegmentOverrides";
+import SegmentOverrides from "../SegmentOverrides";
 
 const CreateFlag = class extends Component {
     static displayName = 'CreateFlag'
@@ -10,6 +12,7 @@ const CreateFlag = class extends Component {
         super(props, context);
         const { name, feature_state_value, description, enabled, type } = this.props.isEdit ? Utils.getFlagValue(this.props.projectFlag, this.props.environmentFlag, this.props.identityFlag) : {};
         const { allowEditDescription } = this.props;
+        AppActions.getSegments(this.props.projectId, this.props.environmentId);
         this.state = {
             type,
             tab: !type || type == 'FLAG' ? 0 : 1,
@@ -59,6 +62,8 @@ const CreateFlag = class extends Component {
         const Provider = identity ? IdentityProvider : FeatureListProvider;
         const valueString = isEdit ? 'Value' : 'Initial value';
         const enabledString = isEdit ? 'Enabled by default' : 'Enabled';
+
+        console.log(this.props)
         return (
             <ProjectProvider
               id={this.props.projectId}
@@ -196,7 +201,15 @@ const CreateFlag = class extends Component {
 
                                     </div>
                                 )}
-
+                                <FormGroup>
+                                    <label className="cols-sm-2 control-label">Segment Overrides</label>
+                                    <i>Drag to order priority</i>
+                                    <SegmentOverrides
+                                        type={type}
+                                        value={this.props.segmentOverrides}
+                                        segments={this.props.segments}
+                                        onChange={this.props.updateSegments}/>
+                                </FormGroup>
                                 <FormGroup className="mb-4 flag-example">
                                     <strong>Example SDK response:</strong>
                                     <Highlight className="json no-pad">
@@ -229,7 +242,7 @@ const CreateFlag = class extends Component {
     }
 
     save = (func, isSaving) => {
-        const { projectFlag, environmentFlag, identity, identityFlag, environmentId } = this.props;
+        const { projectFlag,segmentOverrides, environmentFlag, identity, identityFlag, environmentId } = this.props;
         const { name, initial_value, description, type, default_enabled } = this.state;
         if (identity) {
             !isSaving && name && func({
@@ -249,11 +262,11 @@ const CreateFlag = class extends Component {
                 initial_value,
                 default_enabled,
                 description,
-            }, projectFlag, environmentFlag);
+            }, projectFlag, environmentFlag, segmentOverrides);
         }
     }
 };
 
 CreateFlag.propTypes = {};
 
-module.exports = CreateFlag;
+module.exports = withSegmentOverrides(CreateFlag);
