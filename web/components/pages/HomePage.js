@@ -308,8 +308,7 @@ Now you can manage feature flags and remote config across web, mobile and server
                                                         >
                                                             Login
                                                         </button>
-                                                        {hasFeature('forgot_password') && (
-                                                            <div>
+                                                        <div>
                                                                 <Link to={`/${redirect}`} className="float-left">
 Not got
                                                                     an account?
@@ -323,7 +322,6 @@ Not got
                                                                     password?
                                                                 </Link>
                                                             </div>
-                                                        )}
                                                     </div>
                                                 </fieldset>
                                                 {error && (

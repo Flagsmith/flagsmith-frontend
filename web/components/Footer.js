@@ -65,12 +65,8 @@ const Footer = class extends React.Component {
                           <ul className=" float-left nav-list">
                               <li><a href="mailto:support@bullet-train.io">Contact Us</a></li>
                               <li><a href="https://status.bullet-train.io/" target="_blank">Status</a></li>
-                              {hasFeature('explain') && (
-                                  <li><Link to="/blog/remote-config-and-feature-flags">What are feature flags?</Link></li>
-                              )}
-                              {hasFeature('explain') && (
-                                  <li><Link to="/blog/remote-config-and-feature-flags">What is remote config?</Link></li>
-                              )}
+                              <li><Link to="/blog/remote-config-and-feature-flags">What are feature flags?</Link></li>
+                              <li><Link to="/blog/remote-config-and-feature-flags">What is remote config?</Link></li>
                           </ul>
                       </div>
                       <div className="col-md-2">

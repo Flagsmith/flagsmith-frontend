@@ -321,9 +321,7 @@ Logout
                                                         <Button className="btn-primary">Login</Button>
                                                     </Link>
                                                     <ul className="nav-list list-unstyled float-right">
-                                                        {hasFeature("features_page") && (
-                                                            <li><Link to="/features">Features</Link></li>
-                                                        )}
+                                                        <li><Link to="/features">Features</Link></li>
                                                         <li><Link to="/pricing">Pricing</Link></li>
                                                         <li><a target="_blank" href="https://docs.bullet-train.io/">Docs</a></li>
                                                         <li><Link to="/open-source">Open Source</Link></li>
