@@ -52,6 +52,7 @@ const FeaturesPage = class extends Component {
           projectId={this.props.params.projectId}
           projectFlag={projectFlag}
           environmentFlag={environmentFlag}
+          flagId={environmentFlag.id}
         />);
     };
 
@@ -346,4 +347,4 @@ const FeaturesPage = class extends Component {
 
 FeaturesPage.propTypes = {};
 
-module.exports = FeaturesPage;
+module.exports = hot(module)(FeaturesPage);

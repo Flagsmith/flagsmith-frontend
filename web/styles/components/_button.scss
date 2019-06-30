@@ -59,9 +59,13 @@ $add-btn-size: 34px;
 
 .btn-link {
   box-shadow: none !important;
+	line-height: 44px;
+	padding-left: 10px;
+	padding-right: 10px;
 }
 
 .btn-link:hover {
+  color: $btn-primary-bg;
   background-color: transparent !important;
   text-decoration: none;
 }

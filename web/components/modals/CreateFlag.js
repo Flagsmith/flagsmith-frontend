@@ -2,14 +2,21 @@ import React, { Component, PropTypes } from 'react';
 import Highlight from '../Highlight';
 import Tabs from '../base/forms/Tabs';
 import TabItem from '../base/forms/TabItem';
+import withSegmentOverrides from "../../../common/providers/withSegmentOverrides";
+import SegmentOverrides from "../SegmentOverrides";
 
 const CreateFlag = class extends Component {
     static displayName = 'CreateFlag'
 
     constructor(props, context) {
         super(props, context);
-        const { name, feature_state_value, description, enabled, type } = this.props.isEdit ? Utils.getFlagValue(this.props.projectFlag, this.props.environmentFlag, this.props.identityFlag) : {};
+        const { name, feature_state_value, description, enabled, type } =
+            this.props.isEdit ? Utils.getFlagValue(this.props.projectFlag, this.props.environmentFlag, this.props.identityFlag)
+                : {
+                    type:"FLAG"
+                };
         const { allowEditDescription } = this.props;
+        AppActions.getSegments(this.props.projectId, this.props.environmentId);
         this.state = {
             type,
             tab: !type || type == 'FLAG' ? 0 : 1,
@@ -55,10 +62,11 @@ const CreateFlag = class extends Component {
 
     render() {
         const { name, initial_value, default_enabled, featureType, type, description } = this.state;
-        const { isEdit, projectFlag, environmentFlag, identity } = this.props;
+        const { isEdit, hasFeature, projectFlag, environmentFlag, identity } = this.props;
         const Provider = identity ? IdentityProvider : FeatureListProvider;
         const valueString = isEdit ? 'Value' : 'Initial value';
         const enabledString = isEdit ? 'Enabled by default' : 'Enabled';
+
         return (
             <ProjectProvider
               id={this.props.projectId}
@@ -148,7 +156,7 @@ const CreateFlag = class extends Component {
                                     </FormGroup>
                                 )}
 
-                                <FormGroup>
+                                <FormGroup className="mb-4">
                                     <InputGroup
                                       value={description}
                                       data-test="featureDesc"
@@ -163,7 +171,21 @@ const CreateFlag = class extends Component {
                                       placeholder="e.g. 'This determines what size the header is' "
                                     />
                                 </FormGroup>
-
+                                {this.props.segments && hasFeature("segment_overrides") && (
+                                    <FormGroup className={"mb-4"}>
+                                        <Tooltip
+                                            title={<label className="cols-sm-2 control-label">Segment Overrides (Optional)</label>}
+                                            place="right"
+                                        >
+                                            {Constants.strings.SEGMENT_OVERRIDES_DESCRIPTION}
+                                        </Tooltip>
+                                        <SegmentOverrides
+                                            type={type}
+                                            value={this.props.segmentOverrides}
+                                            segments={this.props.segments}
+                                            onChange={this.props.updateSegments}/>
+                                    </FormGroup>
+                                )}
                                 {error && <Error error={error}/>}
                                 {isEdit && (
                                     <div className="mb-3">
@@ -196,18 +218,6 @@ const CreateFlag = class extends Component {
 
                                     </div>
                                 )}
-
-                                <FormGroup className="mb-4 flag-example">
-                                    <strong>Example SDK response:</strong>
-                                    <Highlight className="json no-pad">
-                                        {type == 'CONFIG'
-                                            ? JSON.stringify({ value: initial_value, name }, null, 2)
-                                            : JSON.stringify({ name, enabled: default_enabled }, null, 2)
-
-                                        }
-                                    </Highlight>
-                                </FormGroup>
-
                                 <div className="text-right">
                                     {isEdit ? (
                                         <Button data-test="update-feature-btn" id="update-feature-btn" disabled={isSaving || !name}>
@@ -229,7 +239,7 @@ const CreateFlag = class extends Component {
     }
 
     save = (func, isSaving) => {
-        const { projectFlag, environmentFlag, identity, identityFlag, environmentId } = this.props;
+        const { projectFlag,segmentOverrides, environmentFlag, identity, identityFlag, environmentId } = this.props;
         const { name, initial_value, description, type, default_enabled } = this.state;
         if (identity) {
             !isSaving && name && func({
@@ -249,11 +259,11 @@ const CreateFlag = class extends Component {
                 initial_value,
                 default_enabled,
                 description,
-            }, projectFlag, environmentFlag);
+            }, projectFlag, environmentFlag, segmentOverrides);
         }
     }
 };
 
 CreateFlag.propTypes = {};
 
-module.exports = CreateFlag;
+module.exports = ConfigProvider(withSegmentOverrides(CreateFlag));

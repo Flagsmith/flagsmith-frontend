@@ -13,7 +13,7 @@ const TryIt = class extends Component {
         const { environmentId, userId } = this.props;
         this.setState({ isLoading: true });
         API.trackEvent(Constants.events.TRY_IT);
-        fetch(userId ? `${Project.api}identities/${userId}/` : `${Project.api}flags/`, {
+        fetch(userId ? `${Project.api}identities/?identifier=${userId}/` : `${Project.api}flags/`, {
             headers: { 'X-Environment-Key': environmentId },
         })
             .then(res => res.json())
