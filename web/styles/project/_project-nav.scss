@@ -123,6 +123,9 @@ nav.navbar {
                 }
             }
         }
+        .brand {
+            width: 225px;
+        }
     }
 }
 
@@ -173,6 +176,27 @@ nav.navbar {
             position: relative;
             top: 2px;
         }
+    }
+}
+
+.mobile-navigation {
+    &__button {
+     cursor: pointer;
+    }
+    ul li:last-child {
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        a {
+            border-bottom: none;
+            &:hover {
+                border-bottom-left-radius: 10px !important;
+                border-bottom-right-radius: 10px !important;
+                background-color: transparent !important;
+            }
+        }
+    }
+    .icon {
+        font-size: 2em;
     }
 }
 
@@ -336,12 +360,19 @@ margin-left:22px;
 }
 
 @media (max-width: 576px) {
-    .navbar .nav-list {
-        display: none;
-    }
+    //.navbar .nav-list {
+    //    display: none;
+    //}
     .dark-header {
         .brand {
             width: 150px;
+        }
+    }
+    nav.navbar {
+        &__master-brand {
+            .brand {
+                width: 175px;
+            }
         }
     }
 }

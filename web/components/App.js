@@ -178,8 +178,8 @@ Click here to Sign
                                                 >
                                                     <div className="nav-item-brand">
                                                         <img
-                                                          style={{ width: 250 }}
-                                                          src="/images/products-nav/labs-logo-dark.svg" alt="Javascript feature flags"
+                                                          src="/images/products-nav/labs-logo-dark.svg" alt="ssg-labs-logo"
+                                                          className="brand"
                                                         />
                                                     </div>
                                                 </a>
@@ -317,16 +317,51 @@ Logout
                                                 </div>
                                             ) : (
                                                 <div>
-                                                    <Link className="float-right" to={`/login${redirect}`} onClick={Utils.scrollToSignUp}>
-                                                        <Button className="btn-primary">Login</Button>
-                                                    </Link>
-                                                    <ul className="nav-list list-unstyled float-right">
-                                                        <li><Link to="/features">Features</Link></li>
-                                                        <li><Link to="/pricing">Pricing</Link></li>
-                                                        <li><a target="_blank" href="https://docs.bullet-train.io/">Docs</a></li>
-                                                        <li><Link to="/open-source">Open Source</Link></li>
-                                                        <li><Link to="/demo">Demo</Link></li>
-                                                    </ul>
+
+                                                    <div className="hidden-sm-down">
+                                                        <Link className="float-right" to={`/login${redirect}`} onClick={Utils.scrollToSignUp}>
+                                                            <Button className="btn-primary">Login</Button>
+                                                        </Link>
+                                                        <ul className="nav-list list-unstyled float-right">
+                                                            <li><Link to="/features">Features</Link></li>
+                                                            <li><Link to="/pricing">Pricing</Link></li>
+                                                            <li><a target="_blank" href="https://docs.bullet-train.io/">Docs</a></li>
+                                                            <li><Link to="/open-source">Open Source</Link></li>
+                                                            <li><Link to="/demo">Demo</Link></li>
+                                                        </ul>
+                                                    </div>
+
+
+                                                    <div className="hidden-md-up">
+                                                        <Popover className="popover-right mobile-navigation"
+                                                            renderTitle={(toggle, isActive) => (
+                                                                <div className="mobile-navigation__button" onClick={toggle}>
+                                                                    <ion
+                                                                        className={isActive ? 'icon ion-ios-close' : 'icon ion-md-menu'}
+                                                                    />
+                                                                </div>
+                                                            )}
+                                                        >
+                                                            {toggle => (
+                                                                <div className="mobile-navigation__bg">
+                                                                    <ul className="list-unstyled mb-0">
+                                                                        <li><Link to="/features">Features</Link></li>
+                                                                        <li><Link to="/pricing">Pricing</Link></li>
+                                                                        <li><a target="_blank" href="https://docs.bullet-train.io/">Docs</a></li>
+                                                                        <li><Link to="/open-source">Open Source</Link></li>
+                                                                        <li><Link to="/demo">Demo</Link></li>
+                                                                        <li>
+                                                                            <Link to={`/login${redirect}`} onClick={Utils.scrollToSignUp}>
+                                                                                <Button className="btn-block">Login</Button>
+                                                                            </Link>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            )}
+                                                        </Popover>
+                                                    </div>
+
+
                                                 </div>
                                             )}
 
@@ -345,6 +380,7 @@ Logout
                         );
                     }}
                 </AccountProvider>
+
             </div>
         );
     }
