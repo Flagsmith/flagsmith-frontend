@@ -336,7 +336,12 @@ margin-left:22px;
 }
 
 @media (max-width: 576px) {
-.navbar .nav-list {
-    display: none;
-}
+    .navbar .nav-list {
+        display: none;
+    }
+    .dark-header {
+        .brand {
+            width: 150px;
+        }
+    }
 }
