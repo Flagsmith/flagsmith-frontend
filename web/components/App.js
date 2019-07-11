@@ -168,6 +168,7 @@ Click here to Sign
                                 )}
                                 <div className={pageHasAside && 'aside-body'}>
 
+                                    {isHomepage && (
                                     <nav className={isHomepage && 'show navbar navbar__master-brand'}>
                                         <div className="navbar-left">
                                             <div className="navbar-nav">
@@ -186,54 +187,56 @@ Click here to Sign
 
                                             </div>
                                         </div>
-                                        <div className="navbar-right">
-                                            <Popover
-                                              style={{ padding: 10 }} className="popover-right"
-                                              renderTitle={(toggle, isActive) => (
-                                                  <div className="products-button" onClick={toggle}>
-Products
-                                                      <ion
-                                                        className={isActive ? 'ion-ios-arrow-dropup' : 'ion-ios-arrow-dropdown'}
-                                                      />
-                                                  </div>
-                                              )}
-                                            >
-                                                {toggle => (
-                                                    <div>
-                                                        <a
-                                                          href="https://bullet-train.io/" target="__blank"
-                                                          className="product-item"
-                                                        >
-                                                            <img src="/images/products-nav/bullet-train-logo-mark.svg" alt="Javascript feature flags"/>
-                                                            <h5>Bullet Train</h5>
-                                                            <small>Release features with confidence</small>
-                                                        </a>
-                                                        <a
-                                                          href="https://formlyapp.com/" target="__blank"
-                                                          className="product-item"
-                                                        >
-                                                            <img
-                                                              src="/images/products-nav/formly-logo-mark-colour.svg" alt="Javascript feature flags"
+
+                                            <div className="navbar-right">
+                                                <Popover
+                                                    style={{ padding: 10 }} className="popover-right"
+                                                    renderTitle={(toggle, isActive) => (
+                                                        <div className="products-button" onClick={toggle}>
+                                                            Products
+                                                            <ion
+                                                                className={isActive ? 'ion-ios-arrow-dropup' : 'ion-ios-arrow-dropdown'}
                                                             />
-                                                            <h5>Formly</h5>
-                                                            <small>Contact Forms, Simplified</small>
-                                                        </a>
-                                                        <a
-                                                          href="https://uptimely.app/" target="__blank"
-                                                          className="product-item"
-                                                        >
-                                                            <img
-                                                              src="/images/products-nav/uptimely-logo-mark-colour-filled.svg" alt="Javascript feature flags"
-                                                            />
-                                                            <h5>Uptimely</h5>
-                                                            <small>Website Monitoring. Sorted.</small>
-                                                        </a>
-                                                    </div>
-                                                )}
-                                            </Popover>
-                                        </div>
+                                                        </div>
+                                                    )}
+                                                >
+                                                    {toggle => (
+                                                        <div>
+                                                            <a
+                                                                href="https://bullet-train.io/" target="__blank"
+                                                                className="product-item"
+                                                            >
+                                                                <img src="/images/products-nav/bullet-train-logo-mark.svg" alt="Javascript feature flags"/>
+                                                                <h5>Bullet Train</h5>
+                                                                <small>Release features with confidence</small>
+                                                            </a>
+                                                            <a
+                                                                href="https://formlyapp.com/" target="__blank"
+                                                                className="product-item"
+                                                            >
+                                                                <img
+                                                                    src="/images/products-nav/formly-logo-mark-colour.svg" alt="Javascript feature flags"
+                                                                />
+                                                                <h5>Formly</h5>
+                                                                <small>Contact Forms, Simplified</small>
+                                                            </a>
+                                                            <a
+                                                                href="https://uptimely.app/" target="__blank"
+                                                                className="product-item"
+                                                            >
+                                                                <img
+                                                                    src="/images/products-nav/uptimely-logo-mark-colour-filled.svg" alt="Javascript feature flags"
+                                                                />
+                                                                <h5>Uptimely</h5>
+                                                                <small>Website Monitoring. Sorted.</small>
+                                                            </a>
+                                                        </div>
+                                                    )}
+                                                </Popover>
+                                            </div>
                                     </nav>
 
+                                    )}
 
                                     <nav
                                       className={`navbar navbar-fixed-top ${pageHasAside ? ' navbar-aside' : ''}${isHomepage ? ' navbar-homepage ' : ''}${isLegal ? 'navbar-aside dark-header ' : ''}${isDark ? ' dark-header ' : ''}${this.state.myClassName ? this.state.myClassName : ''}`}
