@@ -76,7 +76,7 @@ const UserPage = class extends Component {
         return (
             <div className="app-container">
                 <IdentityProvider onSave={this.onSave}>
-                    {({ isSaving, isLoading, error, environmentFlags, projectFlags, traits, identityFlags, identity }, { toggleFlag, removeFlag, editFlag }) => (isLoading
+                    {({ isSaving, isLoading, error, environmentFlags, projectFlags, traits, identityFlags, identity }, { toggleFlag, removeFlag, editFlag }) => (isLoading||!identityFlags
                         ? <div className="text-center"><Loader/></div> : (
                             <div className="container">
                                 <div className="row">

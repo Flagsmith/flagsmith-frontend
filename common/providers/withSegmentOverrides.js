@@ -8,7 +8,7 @@ export default (WrappedComponent) => {
             super(props);
             ES6Component(this);
             this.state = {
-                segmentOverrides: [],
+                segmentOverrides: this.props.projectFlag && this.props.projectFlag.feature_segments,
                 segments: SegmentListStore.getSegments(),
             };
 
@@ -17,14 +17,6 @@ export default (WrappedComponent) => {
                     segments: SegmentListStore.getSegments(),
                 });
             });
-
-            const {props:{flagId, projectId}} = this;
-            if (flagId) {
-                data.get(`${Project.api}projects/${projectId}/features/${flagId}/segments/`)
-                    .then((segmentOverrides)=>{
-                        this.setState({segmentOverrides})
-                    })
-            }
         }
 
         updateSegments = (segmentOverrides) => this.setState({segmentOverrides})
