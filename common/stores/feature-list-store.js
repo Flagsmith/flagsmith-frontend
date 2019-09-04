@@ -29,8 +29,8 @@ const controller = {
             .then(res => Promise.all([
                 data.get(`${Project.api}projects/${projectId}/features/?format=json`),
                 data.get(`${Project.api}environments/${environmentId}/featurestates/?format=json`),
-                segmentOverrides ?
-                    data.post(`${Project.api}projects/${projectId}/features/${res.id}/segments/`, segmentOverrides) : Promise.resolve(),
+                segmentOverrides
+                    ? data.post(`${Project.api}projects/${projectId}/features/${res.id}/segments/`, segmentOverrides) : Promise.resolve(),
             ]).then(([features, environmentFeatures]) => {
                 store.model = {
                     features: features.results,
@@ -40,16 +40,15 @@ const controller = {
                 store.saved();
             }))
             .catch(e => API.ajaxHandler(store, e));
-
     },
     parseFlag(flag) {
         return {
             ...flag,
-            feature_segments: flag.feature_segments && flag.feature_segments.map((fs) => ({
+            feature_segments: flag.feature_segments && flag.feature_segments.map(fs => ({
                 ...fs,
-                segment: fs.segment.id
-            }))
-        }
+                segment: fs.segment.id,
+            })),
+        };
     },
     editFlag(projectId, flag) {
         data.put(`${Project.api}projects/${projectId}/features/${flag.id}/`, flag)
@@ -60,7 +59,6 @@ const controller = {
                 store.changed();
             })
             .catch(e => API.ajaxHandler(store, e));
-
     },
     toggleFlag: (index, environments, comment) => {
         const flag = store.model.features[index];
@@ -101,12 +99,16 @@ const controller = {
             }));
         }
 
-        const segmentOverridesRequest = segmentOverrides ?
-            data.post(`${Project.api}projects/${projectId}/features/${projectFlag.id}/segments/`, segmentOverrides) : Promise.resolve();
+        const segmentOverridesRequest = segmentOverrides
+            ? data.post(`${Project.api}projects/${projectId}/features/${projectFlag.id}/segments/`, segmentOverrides) : Promise.resolve();
 
 
-        Promise.all([prom, segmentOverridesRequest]).then(([res]) => {
+        Promise.all([prom, segmentOverridesRequest]).then(([res, segmentRes]) => {
             store.model.keyedEnvironmentFeatures[projectFlag.id] = res;
+            if (segmentRes) {
+                const feature = _.find(store.model.features, f => f.id === projectFlag.id);
+                if (feature) feature.feature_segments = _.map(segmentRes.feature_segments, segment => ({ ...segment, segment: segment.segment.id }));
+            }
             store.model.lastSaved = new Date().valueOf();
             store.saved();
         });
@@ -125,7 +127,7 @@ const controller = {
 };
 
 
-var store = Object.assign({}, BaseStore, {
+const store = Object.assign({}, BaseStore, {
     id: 'features',
     getEnvironmentFlags() {
         return store.model && store.model.keyedEnvironmentFeatures;

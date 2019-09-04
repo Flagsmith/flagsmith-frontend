@@ -135,7 +135,7 @@ days remaining on it's free
                                             {' '}
                                             {pathname.indexOf('organisation-settings') === -1 && this.props.params.projectId && this.props.params.environmentId ? (
                                                 <span>
-Click
+                                                    {'Click '}
                                                     <Link
                                                       id="organisation-settings-link"
                                                       className="bold"
@@ -146,7 +146,7 @@ Click
                                                     </Link>
                                                     {' '}
 for further information on
-                                                    {hasFeature('free_tier') ? 'upgrading ' : 'migrating '}
+                                                    {hasFeature('free_tier') ? ' upgrading ' : ' migrating '}
                                                 to a paid plan.
                                                 </span>
                                             ) : null}
@@ -188,52 +188,52 @@ Click here to Sign
                                             </div>
                                         </div>
 
-                                            <div className="navbar-right">
-                                                <Popover
-                                                    style={{ padding: 10 }} className="popover-right"
-                                                    renderTitle={(toggle, isActive) => (
-                                                        <div className="products-button" onClick={toggle}>
+                                        <div className="navbar-right">
+                                            <Popover
+                                              style={{ padding: 10 }} className="popover-right"
+                                              renderTitle={(toggle, isActive) => (
+                                                  <div className="products-button" onClick={toggle}>
                                                             Products
-                                                            <ion
-                                                                className={isActive ? 'ion-ios-arrow-dropup' : 'ion-ios-arrow-dropdown'}
-                                                            />
-                                                        </div>
-                                                    )}
-                                                >
-                                                    {toggle => (
-                                                        <div>
+                                                          <ion
+                                                            className={isActive ? 'ion-ios-arrow-dropup' : 'ion-ios-arrow-dropdown'}
+                                                          />
+                                                      </div>
+                                              )}
+                                            >
+                                                {toggle => (
+                                                    <div>
                                                             <a
-                                                                href="https://bullet-train.io/" target="__blank"
-                                                                className="product-item"
+                                                              href="https://bullet-train.io/" target="__blank"
+                                                              className="product-item"
                                                             >
                                                                 <img src="/images/products-nav/bullet-train-logo-mark.svg" alt="Javascript feature flags"/>
                                                                 <h5>Bullet Train</h5>
                                                                 <small>Release features with confidence</small>
                                                             </a>
                                                             <a
-                                                                href="https://formlyapp.com/" target="__blank"
-                                                                className="product-item"
+                                                              href="https://formlyapp.com/" target="__blank"
+                                                              className="product-item"
                                                             >
                                                                 <img
-                                                                    src="/images/products-nav/formly-logo-mark-colour.svg" alt="Javascript feature flags"
+                                                                  src="/images/products-nav/formly-logo-mark-colour.svg" alt="Javascript feature flags"
                                                                 />
                                                                 <h5>Formly</h5>
                                                                 <small>Contact Forms, Simplified</small>
                                                             </a>
                                                             <a
-                                                                href="https://uptimely.app/" target="__blank"
-                                                                className="product-item"
+                                                              href="https://uptimely.app/" target="__blank"
+                                                              className="product-item"
                                                             >
                                                                 <img
-                                                                    src="/images/products-nav/uptimely-logo-mark-colour-filled.svg" alt="Javascript feature flags"
+                                                                  src="/images/products-nav/uptimely-logo-mark-colour-filled.svg" alt="Javascript feature flags"
                                                                 />
                                                                 <h5>Uptimely</h5>
                                                                 <small>Website Monitoring. Sorted.</small>
                                                             </a>
                                                         </div>
-                                                    )}
-                                                </Popover>
-                                            </div>
+                                                )}
+                                            </Popover>
+                                        </div>
                                     </nav>
 
                                     )}
@@ -336,14 +336,15 @@ Logout
 
 
                                                     <div className="hidden-md-up">
-                                                        <Popover className="popover-right mobile-navigation"
-                                                            renderTitle={(toggle, isActive) => (
-                                                                <div className="mobile-navigation__button" onClick={toggle}>
-                                                                    <ion
-                                                                        className={isActive ? 'icon ion-ios-close' : 'icon ion-md-menu'}
-                                                                    />
-                                                                </div>
-                                                            )}
+                                                        <Popover
+                                                          className="popover-right mobile-navigation"
+                                                          renderTitle={(toggle, isActive) => (
+                                                              <div className="mobile-navigation__button" onClick={toggle}>
+                                                                  <ion
+                                                                    className={isActive ? 'icon ion-ios-close' : 'icon ion-md-menu'}
+                                                                  />
+                                                              </div>
+                                                          )}
                                                         >
                                                             {toggle => (
                                                                 <div className="mobile-navigation__bg">
