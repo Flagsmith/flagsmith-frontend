@@ -19,7 +19,6 @@ const App = class extends Component {
 
     constructor(props, context) {
         super(props, context);
-        AppActions.getConfig();
     }
 
     componentDidMount = () => {
