@@ -80,11 +80,15 @@ global.API = {
         if (Project.mixpanel) {
             mixpanel.alias(id);
         }
+        bulletTrain.identify(id);
+        bulletTrain.setTrait("email", id);
     },
     identify(id) {
         if (Project.mixpanel) {
             mixpanel.identify(id);
         }
+        bulletTrain.identify(id);
+        bulletTrain.setTrait("email", id);
     },
     register(email, firstName, lastName) {
         if (Project.mixpanel) {
@@ -99,6 +103,7 @@ global.API = {
         if (Project.mixpanel) {
             mixpanel.reset();
         }
+        bulletTrain.logout();
     },
     log() {
         console.log.apply(this, arguments);
