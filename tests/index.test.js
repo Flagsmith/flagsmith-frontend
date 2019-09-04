@@ -107,7 +107,7 @@ module.exports = Object.assign(
                 browser.pause(5000) // Workaround since waitForElementIsVisible with abortOnFailure set to false doesnt actually work https://github.com/nightwatchjs/nightwatch/issues/1493
                     .isVisible('#e2e-request', (result) => {
                         // There is a chance e2e request will not be present if tests failed on another website i.e. mailinator
-                        if (result.value) {
+                        if (result.status !== -1) {
                             browser.getText('#e2e-error', (error) => {
                                 browser.getText('#e2e-request', (request) => {
                                     sendFailure(browser, done, request, error);
