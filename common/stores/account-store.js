@@ -94,13 +94,16 @@ var controller = {
             })
             .catch(e => API.ajaxHandler(store, e));
     },
-    getOrganisations: () => data.get(`${Project.api}organisations/?format=json`)
-        .then((res) => {
-            controller.setUser({
-                organisations: res.results,
-            });
-        })
-        .catch(e => API.ajaxHandler(store, e)),
+    getOrganisations: () => {
+        return Promise.all([data.get(`${Project.api}organisations/?format=json`), data.get(`${Project.api}auth/user/`)])
+            .then(([res, userRes]) => {
+                controller.setUser({
+                    organisations: res.results,
+                    ...userRes,
+                });
+            })
+            .catch((e) => API.ajaxHandler(store, e))
+    },
 
     selectOrganisation: (id) => {
         store.organisation = _.find(store.model.organisations, { id });
@@ -143,6 +146,7 @@ var controller = {
             store.model = user;
             store.organisation = user && user.organisations && user.organisations[0];
             AsyncStorage.setItem('user', JSON.stringify(store.model));
+            API.identify(user && user.email);
             store.loaded();
         } else if (!user) {
             AsyncStorage.clear();

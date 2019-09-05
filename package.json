@@ -14,8 +14,8 @@
     "bundledev": "node node_modules/.bin/webpack -p --progress --config ./webpack/webpack.config.dev.js"
   },
   "engines": {
-    "node": "8.x",
-    "npm": "5.6.0"
+    "node": "10.x",
+    "npm": "6.4.1"
   },
   "dependencies": {
     "@babel/core": "7.1.2",
@@ -34,7 +34,7 @@
     "babel-plugin-transform-object-rest-spread": "7.0.0-beta.3",
     "babel-plugin-transform-react-remove-prop-types": "0.4.18",
     "bootstrap": "4.0.0-alpha.3",
-    "bullet-train-client": "0.0.33",
+    "bullet-train-client": "0.0.52",
     "bullet-train-rules-engine": "0.0.7",
     "chai": "4.2.0",
     "chromedriver": "2.42.0",
