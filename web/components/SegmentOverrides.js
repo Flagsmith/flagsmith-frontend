@@ -71,9 +71,8 @@ class TheComponent extends Component {
     addItem = () => {
         const value = (this.props.value || []).map((val) => ({ ...val, priority: val.priority + 1 }));
         this.props.onChange([{
-            segment: { name: this.state.selectedSegment.label, id: this.state.selectedSegment.value },
+            segment: this.state.selectedSegment.value,
             enabled: true,
-            value: ""
         }].concat(value).map((v, i) => ({ ...v, priority: i + 1 })));
         this.setState({
             selectedSegment: null
@@ -90,7 +89,6 @@ class TheComponent extends Component {
     setValue = (i, value) => {
         this.props.value[i].value = value
         this.props.onChange(this.props.value);
-
     }
 
     toggle = (i) => {
@@ -158,7 +156,12 @@ class TheComponent extends Component {
                                 type={this.props.type}
                                 confirmRemove={this.confirmRemove}
                                 toggle={this.toggle}
-                                items={value}
+                                items={value.map((v)=>(
+                                    {
+                                        ...v,
+                                        segment:_.find(segments,{id:v.segment})
+                                    }
+                                ))}
                                 onSortEnd={this.onSortEnd}
                             />}
                         </div>

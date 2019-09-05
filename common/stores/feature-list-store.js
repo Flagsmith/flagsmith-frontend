@@ -15,7 +15,7 @@ const controller = {
                 data.get(`${Project.api}environments/${environmentId}/featurestates/?format=json`),
             ]).then(([features, environmentFeatures]) => {
                 store.model = {
-                    features: features.results,
+                    features: features.results.map((controller.parseFlag)),
                     keyedEnvironmentFeatures: environmentFeatures.results && _.keyBy(environmentFeatures.results, 'feature'),
                 };
                 store.loaded();
@@ -27,14 +27,10 @@ const controller = {
         API.trackEvent(Constants.events.CREATE_FEATURE);
         data.post(`${Project.api}projects/${projectId}/features/?format=json`, Object.assign({}, flag, { project: projectId }))
             .then(res => Promise.all([
-                // segmentOverrides?
-                // data.post(`${Project.api}projects/${projectId}/features/${res.id}/segments/`, {
-                //     ...res,
-                //     feature_segments: segmentOverrides,
-                //     project: parseInt(projectId)
-                // }) : Promise.resolve(),
                 data.get(`${Project.api}projects/${projectId}/features/?format=json`),
                 data.get(`${Project.api}environments/${environmentId}/featurestates/?format=json`),
+                segmentOverrides
+                    ? data.post(`${Project.api}projects/${projectId}/features/${res.id}/segments/`, segmentOverrides) : Promise.resolve(),
             ]).then(([features, environmentFeatures]) => {
                 store.model = {
                     features: features.results,
@@ -44,18 +40,25 @@ const controller = {
                 store.saved();
             }))
             .catch(e => API.ajaxHandler(store, e));
-
+    },
+    parseFlag(flag) {
+        return {
+            ...flag,
+            feature_segments: flag.feature_segments && flag.feature_segments.map(fs => ({
+                ...fs,
+                segment: fs.segment.id,
+            })),
+        };
     },
     editFlag(projectId, flag) {
         data.put(`${Project.api}projects/${projectId}/features/${flag.id}/`, flag)
             .then((res) => {
                 const index = _.findIndex(store.model.features, { id: flag.id });
-                store.model.features[index] = flag;
+                store.model.features[index] = controller.parseFlag(flag);
                 store.model.lastSaved = new Date().valueOf();
                 store.changed();
             })
             .catch(e => API.ajaxHandler(store, e));
-
     },
     toggleFlag: (index, environments, comment) => {
         const flag = store.model.features[index];
@@ -79,7 +82,7 @@ const controller = {
                 store.saved();
             });
     },
-    editFeatureState: (projectId, environmentId, flag, projectFlag, environmentFlag) => {
+    editFeatureState: (projectId, environmentId, flag, projectFlag, environmentFlag, segmentOverrides) => {
         let prom;
         store.saving();
         API.trackEvent(Constants.events.EDIT_FEATURE);
@@ -96,8 +99,16 @@ const controller = {
             }));
         }
 
-        prom.then((res) => {
+        const segmentOverridesRequest = segmentOverrides
+            ? data.post(`${Project.api}projects/${projectId}/features/${projectFlag.id}/segments/`, segmentOverrides) : Promise.resolve();
+
+
+        Promise.all([prom, segmentOverridesRequest]).then(([res, segmentRes]) => {
             store.model.keyedEnvironmentFeatures[projectFlag.id] = res;
+            if (segmentRes) {
+                const feature = _.find(store.model.features, f => f.id === projectFlag.id);
+                if (feature) feature.feature_segments = _.map(segmentRes.feature_segments, segment => ({ ...segment, segment: segment.segment.id }));
+            }
             store.model.lastSaved = new Date().valueOf();
             store.saved();
         });
@@ -116,7 +127,7 @@ const controller = {
 };
 
 
-var store = Object.assign({}, BaseStore, {
+const store = Object.assign({}, BaseStore, {
     id: 'features',
     getEnvironmentFlags() {
         return store.model && store.model.keyedEnvironmentFeatures;
@@ -147,10 +158,10 @@ store.dispatcherIndex = Dispatcher.register(store, (payload) => {
             controller.createFlag(action.projectId, action.environmentId, action.flag, action.segmentOverrides);
             break;
         case Actions.EDIT_ENVIRONMENT_FLAG:
-            controller.editFeatureState(action.projectId, action.environmentId, action.flag, action.projectFlag, action.environmentFlag);
+            controller.editFeatureState(action.projectId, action.environmentId, action.flag, action.projectFlag, action.environmentFlag, action.segmentOverrides);
             break;
         case Actions.EDIT_FLAG:
-            controller.editFlag(action.projectId, action.flag, action.segmentOverrides);
+            controller.editFlag(action.projectId, action.flag);
             break;
         case Actions.REMOVE_FLAG:
             controller.removeFlag(action.projectId, action.flag);

@@ -59,6 +59,7 @@ const HomePage = class extends React.Component {
                     <div className="homepage">
 
                         <Hero redirect={redirect}/>
+
                         <div className="tech">
                             <div className="container">
                                 <div className="text-center col-md-12 col-lg-8 push-lg-2">

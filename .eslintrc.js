@@ -102,6 +102,7 @@ module.exports = {
         'Row': true,
         'routes': true,
         'pact': true,
+        'testHelpers': true,
         'toast': true,
         'Utils': true,
         'window': true
