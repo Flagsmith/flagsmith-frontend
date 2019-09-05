@@ -6,7 +6,7 @@ const controller = {
         if (envId !== store.enviId) {
             store.loading();
             store.envId = envId;
-            data.get(`${Project.api}environments/${envId}/identities/?format=json`)
+            data.get(`${Project.api}environments/${envId}/identities/`)
                 .then((res) => {
                     store.model = res && res.results;
                     store.loaded();

@@ -45,7 +45,7 @@ const clearDown = function (browser, done) {
         }
     }
     if (token) {
-        fetch(`${Project.api}e2etests/teardown/?format=json`, {
+        fetch(`${Project.api}e2etests/teardown/`, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',

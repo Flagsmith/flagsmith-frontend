@@ -8,7 +8,7 @@ const controller = {
         if (!store.model || store.envId != environmentId) { // todo: change logic a bit
             store.loading();
             store.envId = environmentId;
-            data.get(`${Project.api}projects/${projectId}/segments/?format=json`)
+            data.get(`${Project.api}projects/${projectId}/segments/`)
                 .then((res) => {
                     store.model = res.results;
                     store.loaded();
@@ -18,12 +18,12 @@ const controller = {
     createSegment(projectId, _data) {
         store.saving();
         API.trackEvent(Constants.events.CREATE_SEGMENT);
-        data.post(`${Project.api}projects/${projectId}/segments/?format=json`, {
+        data.post(`${Project.api}projects/${projectId}/segments/`, {
             ..._data,
             project: parseInt(projectId),
         })
             .then((res) => {
-                data.get(`${Project.api}projects/${projectId}/segments/?format=json`)
+                data.get(`${Project.api}projects/${projectId}/segments/`)
                     .then((res) => {
                         store.model = res.results;
                         store.loaded();
@@ -32,12 +32,12 @@ const controller = {
             });
     },
     editSegment(projectId, _data) {
-        data.put(`${Project.api}projects/${projectId}/segments/${_data.id}/?format=json`, {
+        data.put(`${Project.api}projects/${projectId}/segments/${_data.id}/`, {
             ..._data,
             project: parseInt(projectId),
         })
             .then((res) => {
-                data.get(`${Project.api}projects/${projectId}/segments/?format=json`)
+                data.get(`${Project.api}projects/${projectId}/segments/`)
                     .then((res) => {
                         store.model = res.results;
                         store.loaded();
@@ -50,7 +50,7 @@ const controller = {
         API.trackEvent(Constants.events.REMOVE_FEATURE);
         return data.delete(`${Project.api}projects/${projectId}/segments/${id}/`)
             .then(() => {
-                data.get(`${Project.api}projects/${projectId}/segments/?format=json`)
+                data.get(`${Project.api}projects/${projectId}/segments/`)
                     .then((res) => {
                         store.model = res.results.map(segment => ({ ...segment, rules: JSON.parse(segment.rules) }));
                         store.loaded();

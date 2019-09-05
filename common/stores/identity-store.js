@@ -21,12 +21,12 @@ const controller = {
         store.saving();
         API.trackEvent(Constants.events.TOGGLE_USER_FEATURE);
         const prom = identityFlag.identity
-            ? data.put(`${Project.api}environments/${environmentId}/identities/${identity}/featurestates/${identityFlag.id}/?format=json`, Object.assign({}, {
+            ? data.put(`${Project.api}environments/${environmentId}/identities/${identity}/featurestates/${identityFlag.id}/`, Object.assign({}, {
                 id: identityFlag.id,
                 enabled: !identityFlag.enabled,
                 value: identityFlag.value,
             }))
-            : data.post(`${Project.api}environments/${environmentId}/identities/${identity}/featurestates/?format=json`, {
+            : data.post(`${Project.api}environments/${environmentId}/identities/${identity}/featurestates/`, {
                 feature: projectFlag.id,
                 enabled: !environmentFlag.enabled,
                 value: environmentFlag.value,
@@ -48,12 +48,12 @@ const controller = {
         store.saving();
         API.trackEvent(Constants.events.EDIT_USER_FEATURE);
         const prom = identityFlag.identity
-            ? data.put(`${Project.api}environments/${environmentId}/identities/${identity}/featurestates/${identityFlag.id}/?format=json`, Object.assign({}, {
+            ? data.put(`${Project.api}environments/${environmentId}/identities/${identity}/featurestates/${identityFlag.id}/`, Object.assign({}, {
                 id: identityFlag.id,
                 enabled: identityFlag.enabled,
                 feature_state_value: identityFlag.feature_state_value,
             }))
-            : data.post(`${Project.api}environments/${environmentId}/identities/${identity}/featurestates/?format=json`, {
+            : data.post(`${Project.api}environments/${environmentId}/identities/${identity}/featurestates/`, {
                 feature: projectFlag.id,
                 enabled: environmentFlag.enabled,
                 feature_state_value: identityFlag.feature_state_value,
@@ -65,7 +65,7 @@ const controller = {
     removeUserFlag(identity, identityFlag, environmentId) {
         store.saving();
         API.trackEvent(Constants.events.REMOVE_USER_FEATURE);
-        data.delete(`${Project.api}environments/${environmentId}/identities/${identity}/featurestates/${identityFlag.id}/?format=json`)
+        data.delete(`${Project.api}environments/${environmentId}/identities/${identity}/featurestates/${identityFlag.id}/`)
             .then(() => controller.getIdentity(environmentId, identity)
                 .then(() => store.saved()));
     },

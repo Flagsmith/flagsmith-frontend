@@ -10,15 +10,15 @@ const controller = {
             store.loading();
 
             Promise.all([
-                data.get(`${Project.api}organisations/${id}/projects/?format=json`),
-                data.get(`${Project.api}organisations/${id}/users/?format=json`),
-                data.get(`${Project.api}organisations/${id}/invites/?format=json`),
-                data.get(`${Project.api}organisations/${id}/usage/?format=json`),
+                data.get(`${Project.api}organisations/${id}/projects/`),
+                data.get(`${Project.api}organisations/${id}/users/`),
+                data.get(`${Project.api}organisations/${id}/invites/`),
+                data.get(`${Project.api}organisations/${id}/usage/`),
             ]).then((res) => {
                 if (id === store.id) {
                     const [projects, users, invites, usage] = res;
                     store.model = { users, invites: invites && invites.results };
-                    return Promise.all(projects.map((project, i) => data.get(`${Project.api}projects/${project.id}/environments/?format=json`)
+                    return Promise.all(projects.map((project, i) => data.get(`${Project.api}projects/${project.id}/environments/`)
                         .then((res) => {
                             projects[i].environments = res;
                         })))
@@ -44,12 +44,12 @@ const controller = {
             identifier: `${envName}_user_123456`,
         }).then(() => res);
         API.trackEvent(Constants.events.CREATE_PROJECT);
-        data.post(`${Project.api}projects/?format=json`, { name, organisation: store.id })
+        data.post(`${Project.api}projects/`, { name, organisation: store.id })
             .then((project) => {
                 Promise.all([
-                    data.post(`${Project.api}environments/?format=json`, { name: 'Development', project: project.id })
+                    data.post(`${Project.api}environments/`, { name: 'Development', project: project.id })
                         .then(res => createSampleUser(res, 'development')),
-                    data.post(`${Project.api}environments/?format=json`, { name: 'Production', project: project.id })
+                    data.post(`${Project.api}environments/`, { name: 'Production', project: project.id })
                         .then(res => createSampleUser(res, 'production')),
                 ]).then((res) => {
                     project.environments = res;
@@ -64,7 +64,7 @@ const controller = {
     },
     editOrganisation: (name) => {
         store.saving();
-        data.put(`${Project.api}organisations/${store.id}/?format=json`, { name })
+        data.put(`${Project.api}organisations/${store.id}/`, { name })
             .then((res) => {
                 const idx = _.findIndex(store.model.organisations, { id: store.organisation.id });
                 if (idx != -1) {
@@ -81,14 +81,14 @@ const controller = {
             store.model.keyedProjects = _.keyBy(store.model.projects, 'id');
         }
         API.trackEvent(Constants.events.REMOVE_PROJECT);
-        data.delete(`${Project.api}projects/${id}/?format=json`)
+        data.delete(`${Project.api}projects/${id}/`)
             .then(() => {
                 store.trigger('removed');
             });
     },
     inviteUsers: (emailAddresses) => {
         store.saving();
-        data.post(`${Project.api}organisations/${store.id}/invite/?format=json`, {
+        data.post(`${Project.api}organisations/${store.id}/invite/`, {
             emails: emailAddresses.split(',').map((e) => {
                 API.trackEvent(Constants.events.INVITE);
                 return e.trim();
@@ -107,7 +107,7 @@ const controller = {
     },
     deleteInvite: (id) => {
         store.saving();
-        data.delete(`${Project.api}organisations/${store.id}/invites/${id}/?format=json`)
+        data.delete(`${Project.api}organisations/${store.id}/invites/${id}/`)
             .then(() => {
                 API.trackEvent(Constants.events.DELETE_INVITE);
                 if (store.model) {
@@ -118,7 +118,7 @@ const controller = {
             .catch(e => API.ajaxHandler(store, e));
     },
     resendInvite: (id) => {
-        data.post(`${Project.api}organisations/${store.id}/invites/${id}/resend/?format=json`)
+        data.post(`${Project.api}organisations/${store.id}/invites/${id}/resend/`)
             .then(() => {
                 API.trackEvent(Constants.events.RESEND_INVITE);
                 toast('Invite resent successfully');

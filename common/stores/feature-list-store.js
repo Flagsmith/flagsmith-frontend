@@ -11,8 +11,8 @@ const controller = {
 
             // todo: cache project flags
             return Promise.all([
-                data.get(`${Project.api}projects/${projectId}/features/?format=json`),
-                data.get(`${Project.api}environments/${environmentId}/featurestates/?format=json`),
+                data.get(`${Project.api}projects/${projectId}/features/`),
+                data.get(`${Project.api}environments/${environmentId}/featurestates/`),
             ]).then(([features, environmentFeatures]) => {
                 store.model = {
                     features: features.results.map((controller.parseFlag)),
@@ -25,10 +25,10 @@ const controller = {
     createFlag(projectId, environmentId, flag, segmentOverrides) {
         store.saving();
         API.trackEvent(Constants.events.CREATE_FEATURE);
-        data.post(`${Project.api}projects/${projectId}/features/?format=json`, Object.assign({}, flag, { project: projectId }))
+        data.post(`${Project.api}projects/${projectId}/features/`, Object.assign({}, flag, { project: projectId }))
             .then(res => Promise.all([
-                data.get(`${Project.api}projects/${projectId}/features/?format=json`),
-                data.get(`${Project.api}environments/${environmentId}/featurestates/?format=json`),
+                data.get(`${Project.api}projects/${projectId}/features/`),
+                data.get(`${Project.api}environments/${environmentId}/featurestates/`),
                 segmentOverrides
                     ? data.post(`${Project.api}projects/${projectId}/features/${res.id}/segments/`, segmentOverrides) : Promise.resolve(),
             ]).then(([features, environmentFeatures]) => {

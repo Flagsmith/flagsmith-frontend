@@ -28,7 +28,7 @@ var controller = {
                 } else {
                     opts.subscription_date = moment();
                 }
-                return data.post(`${Project.api}organisations/?format=json`, Object.assign({}, { name: organisation_name }, opts))
+                return data.post(`${Project.api}organisations/`, Object.assign({}, { name: organisation_name }, opts))
                     .then(() => controller.onLogin());
             })
             .catch(e => API.ajaxHandler(store, e));
@@ -85,7 +85,7 @@ var controller = {
     },
     acceptInvite: (id) => {
         store.saving();
-        return data.post(`${Project.api}users/join/${id}/?format=json`)
+        return data.post(`${Project.api}users/join/${id}/`)
             .then((res) => {
                 store.savedId = res.id;
                 store.model.organisations.push(res);
@@ -95,7 +95,7 @@ var controller = {
             .catch(e => API.ajaxHandler(store, e));
     },
     getOrganisations: () => {
-        return Promise.all([data.get(`${Project.api}organisations/?format=json`), data.get(`${Project.api}auth/user/`)])
+        return Promise.all([data.get(`${Project.api}organisations/`), data.get(`${Project.api}auth/user/`)])
             .then(([res, userRes]) => {
                 controller.setUser({
                     organisations: res.results,
@@ -112,7 +112,7 @@ var controller = {
 
     editOrganisation: (org) => {
         API.trackEvent(Constants.events.EDIT_ORGANISATION);
-        data.put(`${Project.api}organisations/${store.organisation.id}/?format=json`, org)
+        data.put(`${Project.api}organisations/${store.organisation.id}/`, org)
             .then((res) => {
                 const idx = _.findIndex(store.model.organisations, { id: store.organisation.id });
                 if (idx != -1) {
@@ -132,7 +132,7 @@ var controller = {
         } else {
             opts.subscription_date = moment();
         }
-        data.post(`${Project.api}organisations/?format=json`, Object.assign({ name }, opts))
+        data.post(`${Project.api}organisations/`, Object.assign({ name }, opts))
             .then((res) => {
                 store.model.organisations = store.model.organisations.concat([res]);
                 AsyncStorage.setItem('user', JSON.stringify(store.model));
@@ -161,7 +161,7 @@ var controller = {
 
     deleteOrganisation: () => {
         API.trackEvent(Constants.events.DELETE_ORGANISATION);
-        data.delete(`${Project.api}organisations/${store.organisation.id}/?format=json`)
+        data.delete(`${Project.api}organisations/${store.organisation.id}/`)
             .then((res) => {
                 store.model.organisations = _.filter(store.model.organisations, org => org.id !== store.organisation.id);
                 store.organisation = store.model.organisations.length ? store.model.organisations[0] : null;

@@ -7,7 +7,7 @@ const controller = {
         if (!store.model) { // todo: change logic a bit
             store.loading();
 
-            fetch(`${Project.api}environments/${id}/?format=json`, {
+            fetch(`${Project.api}environments/${id}/`, {
                 headers: {
                     'FFVERSIONKEY': id,
                 },

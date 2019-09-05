@@ -10,8 +10,8 @@ const controller = {
             store.loading();
 
             Promise.all([
-                data.get(`${Project.api}projects/${id}/?format=json`),
-                data.get(`${Project.api}projects/${id}/environments/?format=json`),
+                data.get(`${Project.api}projects/${id}/`),
+                data.get(`${Project.api}projects/${id}/environments/`),
             ]).then(([project, environments]) => {
                 store.model = Object.assign(project, { environments });
                 if (project.organisation != OrganisationStore.id) {
@@ -26,7 +26,7 @@ const controller = {
 
     createEnv: (name, projectId) => {
         API.trackEvent(Constants.events.CREATE_ENVIRONMENT);
-        data.post(`${Project.api}environments/?format=json`, { name, project: projectId })
+        data.post(`${Project.api}environments/`, { name, project: projectId })
             .then((res) => {
                 data.post(`${Project.api}environments/${res.api_key}/identities/`, {
                     environment: res.api_key,
@@ -44,7 +44,7 @@ const controller = {
     },
     editEnv: (env) => {
         API.trackEvent(Constants.events.EDIT_ENVIRONMENT);
-        data.put(`${Project.api}environments/${env.api_key}/?format=json`, env)
+        data.put(`${Project.api}environments/${env.api_key}/`, env)
             .then((res) => {
                 const index = _.findIndex(store.model.environments, { id: env.id });
                 store.model.environments[index] = res;
@@ -54,7 +54,7 @@ const controller = {
     },
     deleteEnv: (env) => {
         API.trackEvent(Constants.events.REMOVE_ENVIRONMENT);
-        data.delete(`${Project.api}environments/${env.api_key}/?format=json`)
+        data.delete(`${Project.api}environments/${env.api_key}/`)
             .then((res) => {
                 store.model.environments = _.filter(store.model.environments, e => e.id != env.id);
                 store.trigger('removed');
@@ -64,7 +64,7 @@ const controller = {
     },
     editProject: (project) => {
         store.saving();
-        data.put(`${Project.api}projects/${project.id}/?format=json`, project)
+        data.put(`${Project.api}projects/${project.id}/`, project)
             .then((res) => {
                 store.model = Object.assign(store.model, res);
                 store.saved();
