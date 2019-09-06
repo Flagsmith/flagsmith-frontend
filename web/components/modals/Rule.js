@@ -12,7 +12,7 @@ export default class Rule extends PureComponent {
         const hasOr = i > 0;
         const operators = Constants.operators;
         return (
-            <div className="rule__row reveal">
+            <div className="rule__row reveal" key={i}>
                 {hasOr && (
                     <Row className="or-divider">
                         <Row>
@@ -30,11 +30,12 @@ export default class Rule extends PureComponent {
                                 <Tooltip
                                   title={(
                                       <Input
-                                        data-test={this.props['data-test']+'-property'}
+                                        data-test={`${this.props['data-test']}-property`}
                                         className="input-container--flat"
                                         value={`${rule.property}`}
-                                        placeholder="Value"
+                                        placeholder="Trait"
                                         onChange={e => this.setRuleProperty(i, 'property', { value: Utils.safeParseEventValue(e) })}
+                                        disabled={rule.operator && rule.operator === 'PERCENTAGE_SPLIT'}
                                       />
                                     )}
                                   place="top"
@@ -45,7 +46,7 @@ export default class Rule extends PureComponent {
                             </Column>
                             <Column style={{ width: 200 }}>
                                 <Select
-                                  data-test={this.props['data-test']+'-operator'}
+                                  data-test={`${this.props['data-test']}-operator`}
                                   value={rule.operator && _.find(operators, { value: rule.operator })}
                                   onChange={value => this.setRuleProperty(i, 'operator', value)}
                                   options={operators}
@@ -53,11 +54,12 @@ export default class Rule extends PureComponent {
                             </Column>
                             <Column style={{ width: 150 }}>
                                 <Input
-                                  data-test={this.props['data-test']+'-value'}
+                                  data-test={`${this.props['data-test']}-value`}
                                   className="input-container--flat"
                                   value={`${rule.value}`}
                                   placeholder="Value"
                                   onChange={e => this.setRuleProperty(i, 'value', { value: Utils.getTypedValue(Utils.safeParseEventValue(e)) })}
+                                  isValid={rule.value && this.validateRule(rule)}
                                 />
                             </Column>
                         </Row>
@@ -72,7 +74,7 @@ export default class Rule extends PureComponent {
 
                             <div>
                                 <button
-                                  data-test={this.props['data-test']+'-remove'}
+                                  data-test={`${this.props['data-test']}-remove`}
                                   type="button"
                                   id="remove-feature"
                                   onClick={() => this.removeRule(i)}
@@ -102,6 +104,9 @@ export default class Rule extends PureComponent {
     setRuleProperty = (i, prop, { value }) => {
         const { props: { rule: { conditions: rules } } } = this;
         rules[i][prop] = value;
+        if (prop === 'operator' && value === 'PERCENTAGE_SPLIT') {
+            rules[i].property = '';
+        }
         this.props.onChange(this.props.rule);
     }
 
@@ -110,6 +115,17 @@ export default class Rule extends PureComponent {
         this.props.rule.conditions = rules.concat([{ ...Constants.defaultRule }]);
         this.props.onChange(this.props.rule);
     };
+
+    validateRule = (rule) => {
+        switch (rule.operator) {
+            case 'PERCENTAGE_SPLIT': {
+                const value = parseFloat(rule.value);
+                return value && value >= 0 && value <= 100;
+            }
+            default:
+                return true;
+        }
+    }
 
     render() {
         const { props: { rule: { conditions: rules } } } = this;

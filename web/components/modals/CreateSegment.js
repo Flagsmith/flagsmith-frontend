@@ -97,7 +97,6 @@ const CreateSegment = class extends Component {
     };
 
     setData = (data) => {
-        console.log(data);
         try {
             data = JSON.parse(data);
             engine(data, this.state.rules)
@@ -120,7 +119,7 @@ const CreateSegment = class extends Component {
                 <div>
                     <FormGroup>
                         {rules[0].rules.map((rule, i) => (
-                            <div>
+                            <div key={i}>
                                 {i > 0 && (
                                     <Row className="and-divider">
                                         <Flex className="and-divider__line"/>

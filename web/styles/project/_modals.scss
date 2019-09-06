@@ -19,6 +19,9 @@
                     opacity:0.5;
                 }
             }
+            &.invalid>input {
+                border-color: $alert-danger-border!important;
+            }
         }
     }
 }

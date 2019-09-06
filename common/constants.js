@@ -67,6 +67,10 @@ const Constants = {
             'label': 'Does not match (!=)',
         },
         {
+            'value': 'PERCENTAGE_SPLIT',
+            'label': '% Split',
+        },
+        {
             'value': 'GREATER_THAN',
             'label': '>',
         },
