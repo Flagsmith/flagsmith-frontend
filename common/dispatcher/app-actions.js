@@ -87,7 +87,7 @@ const AppActions = Object.assign({}, require('./base/_app-actions'), {
             actionType: Actions.EDIT_FLAG,
             projectId,
             flag,
-            segmentOverrides
+            segmentOverrides,
         });
     },
     editProject(id, project) {
@@ -159,6 +159,13 @@ const AppActions = Object.assign({}, require('./base/_app-actions'), {
         Dispatcher.handleViewAction({
             actionType: Actions.GET_IDENTITIES,
             envId,
+        });
+    },
+    getIdentitiesPage(envId, page) {
+        Dispatcher.handleViewAction({
+            actionType: Actions.GET_IDENTITIES_PAGE,
+            envId,
+            page,
         });
     },
     getIdentity(envId, id) {

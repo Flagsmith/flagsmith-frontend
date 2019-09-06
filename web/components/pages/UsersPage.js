@@ -43,7 +43,7 @@ const UsersPage = class extends Component {
                         </p>
                         <FormGroup>
                             <IdentityListProvider>
-                                {({ isLoading, identities }) => (
+                                {({ isLoading, identities, identitiesPaging }) => (
                                     <div>
                                         {isLoading && <div className="centered-container"><Loader/></div>}
                                         {!isLoading && (
@@ -54,6 +54,10 @@ const UsersPage = class extends Component {
                                                   className="no-pad"
                                                   icon="ion-md-person"
                                                   items={identities}
+                                                  paging={identitiesPaging}
+                                                  nextPage={() => AppActions.getIdentitiesPage(environmentId, identitiesPaging.next)}
+                                                  prevPage={() => AppActions.getIdentitiesPage(environmentId, identitiesPaging.previous)}
+                                                  goToPage={page => AppActions.getIdentitiesPage(environmentId, `${Project.api}environments/${environmentId}/identities/?page=${page}`)}
                                                   renderRow={({ id, identifier }) => (
                                                       <Row space className="list-item" key={id}>
                                                           <Flex>

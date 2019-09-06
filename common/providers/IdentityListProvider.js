@@ -9,6 +9,7 @@ const IdentityListProvider = class extends Component {
         this.state = {
             isLoading: !IdentityStore.model,
             identities: IdentityStore.model,
+            identitiesPaging: IdentityStore.paging,
         };
         ES6Component(this);
     }
@@ -19,6 +20,7 @@ const IdentityListProvider = class extends Component {
                 isSaving: IdentityStore.isSaving,
                 isLoading: IdentityStore.isLoading,
                 identities: IdentityStore.model,
+                identitiesPaging: IdentityStore.paging,
             });
         });
 

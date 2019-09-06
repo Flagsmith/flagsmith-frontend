@@ -19,7 +19,7 @@ const PanelSearch = class extends Component {
 
     render() {
         const { search } = this.state;
-        const { title, items, renderRow, renderNoResults } = this.props;
+        const { title, items, renderRow, renderNoResults, paging, nextPage, prevPage, goToPage } = this.props;
         const filteredItems = this.filter(items);
         return (!search && (!filteredItems || !filteredItems.length)) ? renderNoResults : (
             <Panel
@@ -37,6 +37,25 @@ const PanelSearch = class extends Component {
                   </Row>
                 )}
             >
+                {!!paging && (
+                    <Row className="list-item">
+                        <Button
+                          disabled={!paging.previous} className="icon ion-ios-arrow-back"
+                          onClick={prevPage}
+                        />
+                        <Flex>
+                            <Row className="list-item" style={{ justifyContent: 'space-around' }}>
+                                {_.map(new Array(Math.ceil(paging.count / 999)), (item, index) => (
+                                    <div role="button" onClick={() => goToPage(index + 1)}>{index + 1}</div>
+                                ))}
+                            </Row>
+                        </Flex>
+                        <Button
+                          className="icon ion-ios-arrow-forward" disabled={!paging.next}
+                          onClick={nextPage}
+                        />
+                    </Row>
+                )}
                 <div id={this.props.id} className="search-list">
                     {filteredItems && filteredItems.length
                         ? filteredItems.map(renderRow) : (renderNoResults && !search) ? renderNoResults : (

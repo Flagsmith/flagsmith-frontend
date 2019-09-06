@@ -23,6 +23,7 @@ const Actions = Object.assign({}, require('./base/_action-constants'), {
     'GET_ENVIRONMENTS': 'GET_ENVIRONMENTS',
     'GET_FLAGS': 'GET_FLAGS',
     'GET_IDENTITIES': 'GET_IDENTITIES',
+    'GET_IDENTITIES_PAGE': 'GET_IDENTITIES_PAGE',
     'GET_IDENTITY': 'GET_IDENTITY',
     'GET_ORGANISATION': 'GET_ORGANISATION',
     'GET_PROJECT': 'GET_PROJECT',
