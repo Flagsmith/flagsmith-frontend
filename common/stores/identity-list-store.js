@@ -1,20 +1,22 @@
 const BaseStore = require('./base/_store');
 const data = require('../data/base/_data');
 
+const PAGE_SIZE = 999;
+
 const controller = {
     getIdentities: (envId, page) => {
-        if (envId !== store.enviId) {
-            store.loading();
-            store.envId = envId;
-            data.get((page && page.replace('http:', 'https:')) || `${Project.api}environments/${envId}/identities/`)
-                .then((res) => {
-                    store.model = res && res.results;
-                    store.paging.next = res.next;
-                    store.paging.count = res.count;
-                    store.paging.previous = res.previous;
-                    store.loaded();
-                });
-        }
+        store.loading();
+        store.envId = envId;
+        const endpoint = (page && page.replace('http:', 'https:')) || `${Project.api}environments/${envId}/identities/`;
+        data.get(endpoint)
+            .then((res) => {
+                store.model = res && res.results;
+                store.paging.next = res.next;
+                store.paging.count = res.count;
+                store.paging.previous = res.previous;
+                store.paging.currentPage = endpoint.indexOf('?page=') !== -1 ? parseInt(endpoint.substr(endpoint.indexOf('?page=') + 6)) : 1;
+                store.loaded();
+            });
     },
     saveIdentity: (id, identity) => {
         store.saving();
@@ -30,7 +32,9 @@ const controller = {
 
 const store = Object.assign({}, BaseStore, {
     id: 'identitylist',
-    paging: {},
+    paging: {
+        pageSize: PAGE_SIZE,
+    },
     getIdentityForEditing(id) {
         return store.model && _.cloneDeep(_.find(store.model, { id })); // immutable
     },

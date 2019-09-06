@@ -45,8 +45,8 @@ const PanelSearch = class extends Component {
                         />
                         <Flex>
                             <Row className="list-item" style={{ justifyContent: 'space-around' }}>
-                                {_.map(new Array(Math.ceil(paging.count / 999)), (item, index) => (
-                                    <div role="button" onClick={() => goToPage(index + 1)}>{index + 1}</div>
+                                {_.map(new Array(Math.ceil(paging.count / paging.pageSize)), (item, index) => (
+                                    <div role="button" style={paging.currentPage === index + 1 ? { fontWeight: 'bold', fontSize: '1.4rem' } : {}} onClick={paging.currentPage === index + 1 ? undefined : () => goToPage(index + 1)}>{index + 1}</div>
                                 ))}
                             </Row>
                         </Flex>
