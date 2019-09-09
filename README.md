@@ -41,6 +41,7 @@ You can deploy this application on [Heroku](https://www.heroku.com/) and [Dokku]
 Bundles, minifies and cache busts the project to a build folder and runs node in production. This can be used as part of your deployment script.
 
 ```
+npm run bundle
 npm start
 ```
 **E2E Testing**

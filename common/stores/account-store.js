@@ -4,7 +4,7 @@ import ConfigStore from './config-store';
 const BaseStore = require('./base/_store');
 const data = require('../data/base/_data');
 
-var controller = {
+const controller = {
     register: ({ email, password, first_name, last_name, organisation_name = 'Default Organisation' }, isInvite) => {
         store.saving();
         data.post(`${Project.api}auth/register/`, {
@@ -94,16 +94,14 @@ var controller = {
             })
             .catch(e => API.ajaxHandler(store, e));
     },
-    getOrganisations: () => {
-        return Promise.all([data.get(`${Project.api}organisations/`), data.get(`${Project.api}auth/user/`)])
-            .then(([res, userRes]) => {
-                controller.setUser({
-                    organisations: res.results,
-                    ...userRes,
-                });
-            })
-            .catch((e) => API.ajaxHandler(store, e))
-    },
+    getOrganisations: () => Promise.all([data.get(`${Project.api}organisations/`), data.get(`${Project.api}auth/user/`)])
+        .then(([res, userRes]) => {
+            controller.setUser({
+                organisations: res.results,
+                ...userRes,
+            });
+        })
+        .catch(e => API.ajaxHandler(store, e)),
 
     selectOrganisation: (id) => {
         store.organisation = _.find(store.model.organisations, { id });
@@ -172,7 +170,7 @@ var controller = {
 };
 
 
-var store = Object.assign({}, BaseStore, {
+const store = Object.assign({}, BaseStore, {
     id: 'account',
     getUser() {
         return store.model;
