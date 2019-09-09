@@ -12,9 +12,19 @@ const CreateSegment = class extends Component {
     constructor(props, context) {
         super(props, context);
         ES6Component(this);
-        const { description, name, id, rules = [] } = this.props.segment ? _.cloneDeep(this.props.segment)
+        const { description, name, id, rules = [] } = this.props.segment && this.props.segment.rules.length ? _.cloneDeep(this.props.segment)
             : {
-                rules: [{ all: { rules: [{ any: { rules: [{ ...Constants.defaultRule }] } }] } }],
+                rules: [{
+                    type: 'ALL',
+                    rules: [
+                        {
+                            type: 'ANY',
+                            conditions: [
+                                { ...Constants.defaultRule },
+                            ],
+                        },
+                    ],
+                }],
             };
 
         this.state = {
@@ -32,13 +42,26 @@ const CreateSegment = class extends Component {
 
     addRule = () => {
         const rules = this.state.rules;
-        rules[0].all.rules = rules[0].all.rules.concat([{
-            any: {
-                rules: [
-                    { ...Constants.defaultRule },
-                ],
-            },
-        }]);
+        rules[0].rules = rules[0].rules.concat({
+            type: 'ANY',
+            conditions: [
+                { ...Constants.defaultRule },
+            ],
+        });
+        this.setState({ rules });
+    }
+
+    updateRule = (rulesIndex, elementNumber, newValue) => {
+        const { rules } = this.state;
+        rules[0].rules[elementNumber] = newValue;
+        this.setData(this.state.exampleData);
+        this.setState({ rules });
+    }
+
+    removeRule = (rulesIndex, elementNumber) => {
+        const { rules } = this.state;
+        rules[0].rules.splice(elementNumber, 1);
+        this.setData(this.state.exampleData);
         this.setState({ rules });
     }
 
@@ -60,26 +83,13 @@ const CreateSegment = class extends Component {
         }
     }
 
-    updateRule = (rulesIndex, elementNumber, newValue) => {
-        const { rules } = this.state;
-        rules[rulesIndex].all.rules[elementNumber] = newValue;
-        this.setData(this.state.exampleData);
-        this.setState({ rules });
-    }
-
-    removeRule = (rulesIndex, elementNumber) => {
-        const { rules } = this.state;
-        rules[rulesIndex].all.rules.splice(elementNumber, 1);
-        this.setData(this.state.exampleData);
-        this.setState({ rules });
-    }
 
     save = (e) => {
         Utils.preventDefault(e);
         const { state: { description = '', id, name, rules } } = this;
         if (name) {
             if (this.props.segment) {
-                AppActions.editSegment(this.props.projectId, { description, name, rules, id });
+                AppActions.editSegment(this.props.projectId, { description, name, rules, id: this.props.segment.id });
             } else {
                 AppActions.createSegment(this.props.projectId, { description, name, rules });
             }
@@ -109,7 +119,7 @@ const CreateSegment = class extends Component {
             <div className="panel--grey overflow-visible">
                 <div>
                     <FormGroup>
-                        {rules[0].all.rules.map((rule, i) => (
+                        {rules[0].rules.map((rule, i) => (
                             <div>
                                 {i > 0 && (
                                     <Row className="and-divider">
@@ -119,6 +129,7 @@ const CreateSegment = class extends Component {
                                     </Row>
                                 )}
                                 <Rule
+                                  data-test={`rule-${i}`}
                                   rule={rule}
                                   onRemove={v => this.removeRule(0, i, v)}
                                   onChange={v => this.updateRule(0, i, v)}
@@ -130,7 +141,7 @@ const CreateSegment = class extends Component {
                       onClick={this.addRule} style={{ marginTop: 20 }}
                       className="text-center"
                     >
-                        <Button type="button" className="btn btn--anchor">
+                        <Button data-test="add-rule" type="button" className="btn btn--anchor">
                             ADD RULE
                         </Button>
                     </div>
@@ -185,11 +196,18 @@ const CreateSegment = class extends Component {
 
                         <div className="text-right">
                             {isEdit ? (
-                                <Button type="submit" data-test="update-feature-btn" id="update-feature-btn" disabled={isSaving || !name}>
+                                <Button
+                                  type="submit" data-test="update-segment" id="update-feature-btn"
+                                  disabled={isSaving || !name}
+                                >
                                     {isSaving ? 'Creating' : 'Update Segment'}
                                 </Button>
                             ) : (
-                                <Button type="submit" data-test="create-feature-btn" disabled id="create-feature-btn" disabled={isSaving || !name}>
+                                <Button
+                                  type="submit" data-test="create-segment" disabled
+                                  id="create-feature-btn"
+                                  disabled={isSaving || !name}
+                                >
                                     {isSaving ? 'Creating' : 'Create Segment'}
                                 </Button>
                             )}

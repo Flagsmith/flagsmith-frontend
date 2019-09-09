@@ -283,8 +283,7 @@ View
                                                 {!isLoading && (
                                                 <div>
                                                       <p>
-                                                            You have made
-                                                            <strong>{`${Utils.numberWithCommas(usage)}`}</strong>
+                                                            You have made <strong>{`${Utils.numberWithCommas(usage)}`}</strong>
                                                             {' '}
                                                             requests over the past 30 days.
                                                         </p>

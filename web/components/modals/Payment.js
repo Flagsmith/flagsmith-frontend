@@ -69,20 +69,13 @@ const PaymentModal = class extends Component {
                                                             included
                                                           </p>
                                                         <ul className="pricing-features">
-                                                              <li>
-                                                                <p>
-                                                                    Up to
-                                                                    <strong>20,000</strong>
-                                                                    {' '}
-                                                                    requests per month
-                                                                </p>
-                                                            </li>
-                                                              <li><p>Unlimited Administrator Accounts</p></li>
-                                                              <li><p>Unlimited Projects</p></li>
-                                                              <li><p>Unlimited Environments</p></li>
-                                                              <li><p>Unlimited Feature Flags</p></li>
-                                                              <li><p>Email Technical Support</p></li>
-                                                          </ul>
+                                                            <li><p>Up to <strong>20,000</strong> requests per month</p></li>
+                                                            <li><p><strong>1</strong> Team Member</p></li>
+                                                            <li><p>Unlimited Projects</p></li>
+                                                            <li><p>Unlimited Environments</p></li>
+                                                            <li><p>Unlimited Feature Flags</p></li>
+                                                            <li><p>Email Technical Support</p></li>
+                                                        </ul>   
                                                     </div>
                                                 </div>
                                             </div>
@@ -111,15 +104,8 @@ const PaymentModal = class extends Component {
                                                 <div className="panel-footer">
                                                     <p className="text-small text-center link-style">What's included</p>
                                                     <ul className="pricing-features">
-                                                        <li>
-                                                              <p>
-                                                                Up to
-                                                                <strong>250,000</strong>
-                                                                {' '}
-                                                                requests per month
-                                                            </p>
-                                                          </li>
-                                                        <li><p>Unlimited Administrator Accounts</p></li>
+                                                        <li><p>Up to <strong>250,000</strong> requests per month</p></li>
+                                                        <li><p><strong>3</strong> Team Members</p></li>
                                                         <li><p>Unlimited Projects</p></li>
                                                         <li><p>Unlimited Environments</p></li>
                                                         <li><p>Unlimited Feature Flags</p></li>
@@ -152,14 +138,8 @@ const PaymentModal = class extends Component {
                                                 <div className="panel-footer">
                                                     <p className="text-small text-center link-style">What's included</p>
                                                     <ul className="pricing-features">
-                                                        <li>
-                                                              <p>
-                                                                Up to
-                                                                <strong>2 million</strong>
-                                                                {' '}
-                                                                requests per month
-                                                            </p>
-                                                          </li>
+                                                        <li><p>Up to <strong>2 million</strong> requests per month</p></li>
+                                                        <li><p>Up to <strong>10</strong> Team Members</p></li>
                                                         <li><p>Private Discord Technical Support</p></li>
                                                         <li><p>All Startup Features</p></li>
                                                     </ul>
@@ -192,14 +172,8 @@ const PaymentModal = class extends Component {
                                                     <p className="text-small text-center link-style">What's included</p>
                                                     <ul className="pricing-features">
                                                         <li><p>Optional On Premise Installation</p></li>
-                                                        <li>
-                                                              <p>
-                                                                Over
-                                                                <strong>2 million</strong>
-                                                                {' '}
-                                                                requests per month
-                                                            </p>
-                                                          </li>
+                                                        <li><p>Over <strong>2 million</strong> requests per month</p></li>
+                                                        <li><p>Over <strong>10</strong> Team Members</p></li>
                                                         <li><p>Private Discord Support</p></li>
                                                         <li><p>All Startup Features</p></li>
                                                     </ul>

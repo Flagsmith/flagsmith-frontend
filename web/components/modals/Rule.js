@@ -7,7 +7,7 @@ export default class Rule extends PureComponent {
     static propTypes = {};
 
     renderRule = (rule, i) => {
-        const { props: { rule: { any: { rules } } } } = this;
+        const { props: { rule: { conditions: rules } } } = this;
         const isLastRule = i === (rules.length - 1);
         const hasOr = i > 0;
         const operators = Constants.operators;
@@ -30,6 +30,7 @@ export default class Rule extends PureComponent {
                                 <Tooltip
                                   title={(
                                       <Input
+                                        data-test={this.props['data-test']+'-property'}
                                         className="input-container--flat"
                                         value={`${rule.property}`}
                                         placeholder="Value"
@@ -44,6 +45,7 @@ export default class Rule extends PureComponent {
                             </Column>
                             <Column style={{ width: 200 }}>
                                 <Select
+                                  data-test={this.props['data-test']+'-operator'}
                                   value={rule.operator && _.find(operators, { value: rule.operator })}
                                   onChange={value => this.setRuleProperty(i, 'operator', value)}
                                   options={operators}
@@ -51,6 +53,7 @@ export default class Rule extends PureComponent {
                             </Column>
                             <Column style={{ width: 150 }}>
                                 <Input
+                                  data-test={this.props['data-test']+'-value'}
                                   className="input-container--flat"
                                   value={`${rule.value}`}
                                   placeholder="Value"
@@ -69,6 +72,7 @@ export default class Rule extends PureComponent {
 
                             <div>
                                 <button
+                                  data-test={this.props['data-test']+'-remove'}
                                   type="button"
                                   id="remove-feature"
                                   onClick={() => this.removeRule(i)}
@@ -85,34 +89,30 @@ export default class Rule extends PureComponent {
     }
 
     removeRule = (i) => {
-        const { props: { rule: { any: { rules } } } } = this;
+        const { props: { rule: { conditions: rules } } } = this;
 
         if (rules.length === 1) {
             this.props.onRemove();
         } else {
             rules.splice(i, 1);
-            this.props.onChange({ any: { rules } });
+            this.props.onChange(this.props.rule);
         }
     }
 
     setRuleProperty = (i, prop, { value }) => {
-        const { props: { rule: { any: { rules } } } } = this;
+        const { props: { rule: { conditions: rules } } } = this;
         rules[i][prop] = value;
         this.props.onChange(this.props.rule);
     }
 
     addRule = () => {
-        const { props: { rule: { any: { rules } } } } = this;
-
-        this.props.onChange({
-            any: {
-                rules: rules.concat([{ ...Constants.defaultRule }]),
-            },
-        });
-    }
+        const { props: { rule: { conditions: rules } } } = this;
+        this.props.rule.conditions = rules.concat([{ ...Constants.defaultRule }]);
+        this.props.onChange(this.props.rule);
+    };
 
     render() {
-        const { props: { rule: { any: { rules } } } } = this;
+        const { props: { rule: { conditions: rules } } } = this;
         return (
             <FormGroup>
                 <div className="panel overflow-visible">

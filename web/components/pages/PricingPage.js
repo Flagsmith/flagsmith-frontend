@@ -68,6 +68,13 @@ const PricingPage = class extends React.Component {
                             </p>
                         </div>
                         <div className="panel panel-default panel-grey">
+                            <p className="question">What is a Team Member?</p>
+                            <p className="answer">
+                                Each Team Member can log in with their own email address. Audit logs record activities per
+                                logged in Team Member. 
+                            </p>
+                        </div>
+                        <div className="panel panel-default panel-grey">
                             <p className="question">What happens if I go over my plan limit?</p>
                             <p className="answer">
                                 Don't worry - we'll carry on serving your flags to your users. We realise that this is

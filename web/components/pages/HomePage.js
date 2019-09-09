@@ -59,6 +59,7 @@ const HomePage = class extends React.Component {
                     <div className="homepage">
 
                         <Hero redirect={redirect}/>
+
                         <div className="tech">
                             <div className="container">
                                 <div className="text-center col-md-12 col-lg-8 push-lg-2">
@@ -104,7 +105,12 @@ const HomePage = class extends React.Component {
                                         </div>
                                         <div className="col-md-1 col-xs-6">
                                             <a href="https://github.com/SolidStateGroup/bullet-train-java-client">
-                                                <img src="./images/tech-logos/android2x.png" alt=".NET" title="android" />
+                                                <img src="./images/tech-logos/android2x.png" alt="android" title="android" />
+                                            </a>
+                                        </div>
+                                        <div className="col-md-1 col-xs-6">
+                                            <a href="https://github.com/SolidStateGroup/bullet-train-ios-client">
+                                                <img src="./images/tech-logos/bt-IOS.png" alt="IOS" title="IOS" />
                                             </a>
                                         </div>
                                     </div>
@@ -303,8 +309,7 @@ Now you can manage feature flags and remote config across web, mobile and server
                                                         >
                                                             Login
                                                         </button>
-                                                        {hasFeature('forgot_password') && (
-                                                            <div>
+                                                        <div>
                                                                 <Link to={`/${redirect}`} className="float-left">
 Not got
                                                                     an account?
@@ -318,7 +323,6 @@ Not got
                                                                     password?
                                                                 </Link>
                                                             </div>
-                                                        )}
                                                     </div>
                                                 </fieldset>
                                                 {error && (

@@ -118,7 +118,7 @@ export default class OpenSourcePage extends Component {
                                     <div className="panel panel-default panel--open-source mt-4">
                                         <div className="panel-content">
                                             <h2>bullet-train-js-client</h2>
-                                            <p className="m-0">Javascript Client for Bullet-Train.
+                                            <p className="m-0">Javascript/React/React Native client.
                                             </p>
                                             <div className="colour-block colour-block--small colour-block--javascript"/>
                                             <small className="technology-name">JavaScript</small>
@@ -129,7 +129,7 @@ export default class OpenSourcePage extends Component {
                                     <div className="panel panel-default panel--open-source mt-4">
                                         <div className="panel-content">
                                             <h2>bullet-train-nodejs-client</h2>
-                                            <p className="m-0">Bullet Train Node JS Client.
+                                            <p className="m-0">Node.js client.
                                             </p>
                                             <div className="colour-block colour-block--small colour-block--javascript"/>
                                             <small className="technology-name">JavaScript</small>
@@ -141,7 +141,7 @@ export default class OpenSourcePage extends Component {
                                     <div className="panel panel-default panel--open-source mt-4">
                                         <div className="panel-content">
                                             <h2>bullet-train-dotnet-client</h2>
-                                            <p className="m-0">.NET Standard Client for Bullet-Train.
+                                            <p className="m-0">.NET Standard client.
                                             </p>
                                             <div className="colour-block colour-block--small colour-block--c"/>
                                             <small className="technology-name">C#</small>
@@ -153,7 +153,7 @@ export default class OpenSourcePage extends Component {
                                     <div className="panel panel-default panel--open-source mt-4">
                                         <div className="panel-content">
                                             <h2>bullet-train-ruby-client</h2>
-                                            <p className="m-0">Ruby Client for Bullet-Train.
+                                            <p className="m-0">Ruby client.
                                             </p>
                                             <div className="colour-block colour-block--small colour-block--ruby"/>
                                             <small className="technology-name">Ruby</small>
@@ -165,7 +165,7 @@ export default class OpenSourcePage extends Component {
                                     <div className="panel panel-default panel--open-source mt-4">
                                         <div className="panel-content">
                                             <h2>bullet-train-python-client</h2>
-                                            <p className="m-0">Bullet Train Python Client.
+                                            <p className="m-0">Python client.
                                             </p>
                                             <div className="colour-block colour-block--small colour-block--python"/>
                                             <small className="technology-name">Python</small>
@@ -177,10 +177,22 @@ export default class OpenSourcePage extends Component {
                                     <div className="panel panel-default panel--open-source mt-4">
                                         <div className="panel-content">
                                             <h2>bullet-train-java-client</h2>
-                                            <p className="m-0">Java Client for Bullet-Train.
+                                            <p className="m-0">Java/Android client.
                                             </p>
                                             <div className="colour-block colour-block--small colour-block--java"/>
                                             <small className="technology-name">Java</small>
+                                        </div>
+                                    </div>
+                                </a>
+
+                                <a className="open-source-card" href="https://github.com/SolidStateGroup/bullet-train-ios-client" target="_blank">
+                                    <div className="panel panel-default panel--open-source mt-4">
+                                        <div className="panel-content">
+                                            <h2>bullet-train-ios-client</h2>
+                                            <p className="m-0">iOS/Swift client.
+                                            </p>
+                                            <div className="colour-block colour-block--small colour-block--java"/>
+                                            <small className="technology-name">iOS/Swift</small>
                                         </div>
                                     </div>
                                 </a>

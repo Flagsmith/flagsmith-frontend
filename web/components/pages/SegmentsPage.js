@@ -112,7 +112,7 @@ const SegmentsPage = class extends Component {
                                             <FormGroup>
                                                 <PanelSearch
                                                   className="no-pad"
-                                                  id="features-list"
+                                                  id="segment-list"
                                                   icon="ion-ios-globe"
                                                   title="Segments"
                                                   items={segments}
@@ -124,7 +124,9 @@ const SegmentsPage = class extends Component {
                                                           >
                                                               <Row>
                                                                   <a href="#">
-                                                                      {name}
+                                                                      <span data-test={"segment-" + i + "-name"}>
+                                                                          {name}
+                                                                      </span>
                                                                   </a>
                                                               </Row>
                                                               <div className="list-item-footer faint">

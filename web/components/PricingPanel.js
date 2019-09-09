@@ -11,7 +11,6 @@ const PricingPanel = class extends React.Component {
 
     render() {
         const { hasFeature, redirect } = this.props;
-        const explain = hasFeature('explain');
 
         return (
             <div className="pricing" id="pricing">
@@ -37,7 +36,7 @@ const PricingPanel = class extends React.Component {
                                                 <li>
                                                     <p>Up to <strong>20,000</strong> {' '} requests per month</p>
                                                 </li>
-                                                <li><p>Unlimited Administrator Accounts</p></li>
+                                                <li><p><strong>1</strong> Team Member</p></li>
                                                 <li><p>Unlimited Projects</p></li>
                                                 <li><p>Unlimited Environments</p></li>
                                                 <li><p>Unlimited Feature Flags</p></li>
@@ -63,7 +62,7 @@ const PricingPanel = class extends React.Component {
                                                 <li>
                                                     <p>Up to <strong>20,000</strong>{' '} requests per month</p>
                                                 </li>
-                                                <li><p>Unlimited Administrator Accounts</p></li>
+                                                <li><p><strong>1</strong> Team Member</p></li>
                                                 <li><p>Unlimited Projects</p></li>
                                                 <li><p>Unlimited Environments</p></li>
                                                 <li><p>Unlimited Feature Flags</p></li>
@@ -89,7 +88,7 @@ const PricingPanel = class extends React.Component {
                                                 <p>Up to <strong>250,000</strong>{' '} requests per month
                                                 </p>
                                             </li>
-                                            <li><p>Unlimited Administrator Accounts</p></li>
+                                            <li><p>Up to <strong>3</strong> Team Members</p></li>
                                             <li><p>Unlimited Projects</p></li>
                                             <li><p>Unlimited Environments</p></li>
                                             <li><p>Unlimited Feature Flags</p></li>
@@ -114,6 +113,7 @@ const PricingPanel = class extends React.Component {
                                             <li>
                                                 <p>Up to <strong>2 million</strong>{' '} requests per month</p>
                                             </li>
+                                            <li><p>Up to <strong>10</strong> Team Members</p></li>
                                             <li><p>All Startup Features</p></li>
                                             <li><p>Private Discord Technical Support</p></li>
                                         </ul>
@@ -138,6 +138,7 @@ const PricingPanel = class extends React.Component {
                                             <li>
                                                 <p>Over <strong>2 million</strong>{' '} requests per month</p>
                                             </li>
+                                            <li><p>Over <strong>10</strong> Team Members</p></li>
                                             <li><p>All Startup Features</p></li>
                                             <li><p>Telephone and Discord Technical Support</p></li>
                                             <li><p>Optional On Premise Installation</p></li>

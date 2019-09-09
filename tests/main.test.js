@@ -3,8 +3,8 @@ const email = 'nightwatch@solidstategroup.com';
 const password = 'nightwatch';
 const url = 'http://localhost:' + (process.env.PORT || 8080);
 const helpers = require('./helpers');
-const byId= helpers.byTestID;
-    module.exports = {
+const byId = helpers.byTestID;
+module.exports = {
     '[Main Tests] - Register': function (browser) {
         browser
             .url(url)   // visit the url
@@ -23,6 +23,7 @@ const byId= helpers.byTestID;
             .click(byId('create-project-btn'))
             .waitForElementVisible(byId('features-page'));
     },
+// FEATURES
     '[Main Tests] - Create feature': function (browser) {
         browser
             .waitForElementNotPresent(byId('create-project-modal'))
@@ -230,14 +231,14 @@ const byId= helpers.byTestID;
             .waitForElementNotPresent('#confirm-toggle-feature-btn')
             .waitForElementVisible('#user-features-list .rc-switch[aria-checked="true"]');
     },
-    // '[Main Tests] - Toggle flag for user again': function (browser) { todo: enable next build
-    //     browser
-    //         .click('#user-features-list .rc-switch')
-    //         .waitForElementVisible('#confirm-toggle-feature-btn')
-    //         .click('#confirm-toggle-feature-btn')
-    //         .waitForElementNotPresent('#confirm-toggle-feature-btn')
-    //         .waitForElementVisible('#user-features-list .rc-switch[aria-checked="false"]');
-    // },
+    '[Main Tests] - Toggle flag for user again': function (browser) {
+        browser
+            .click('#user-features-list .rc-switch')
+            .waitForElementVisible('#confirm-toggle-feature-btn')
+            .click('#confirm-toggle-feature-btn')
+            .waitForElementNotPresent('#confirm-toggle-feature-btn')
+            .waitForElementVisible('#user-features-list .rc-switch[aria-checked="false"]');
+    },
     '[Main Tests] - Add trait for user': function (browser) {
         browser
             .click('#add-trait')
@@ -260,6 +261,20 @@ const byId= helpers.byTestID;
             .waitForElementVisible('#user-traits-list .js-trait-value');
         browser.expect.element('#user-traits-list .js-trait-value').text.to.equal('1');
     },
+// END OF FEATURES
+//     '[Main Tests] - Create Segment': function (browser) {
+//         browser
+//             .pause(200)
+//             .waitAndClick('#segments-link')
+//             .waitAndClick(byId('show-create-segment-btn'))
+//             .waitAndSet(byId('segmentID'), 'my_segment')
+//             .waitAndSet(byId('rule-0-property'), 'age')
+//             .waitAndSet(byId('rule-0-value'), '18')
+//             .waitAndClick(byId('create-segment'))
+//             .waitForElementVisible(byId('segment-0-name'))
+//
+//         browser.expect.element(byId('segment-0-name')).text.to.equal('my_segment');
+//     },
     '[Main Tests] - Edit environment': function (browser) {
         browser
             .click('#env-settings-link')

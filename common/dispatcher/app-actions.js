@@ -61,15 +61,16 @@ const AppActions = Object.assign({}, require('./base/_app-actions'), {
             force: true,
         });
     },
-    createFlag(projectId, environmentId, flag) {
+    createFlag(projectId, environmentId, flag, segmentOverrides) {
         Dispatcher.handleViewAction({
             actionType: Actions.CREATE_FLAG,
             projectId,
             environmentId,
             flag,
+            segmentOverrides,
         });
     },
-    editEnvironmentFlag(projectId, environmentId, flag, projectFlag, environmentFlag) {
+    editEnvironmentFlag(projectId, environmentId, flag, projectFlag, environmentFlag, segmentOverrides) {
         Dispatcher.handleViewAction({
             actionType: Actions.EDIT_ENVIRONMENT_FLAG,
             projectId,
@@ -77,14 +78,16 @@ const AppActions = Object.assign({}, require('./base/_app-actions'), {
             flag,
             projectFlag,
             environmentFlag,
+            segmentOverrides,
         });
     },
 
-    editFlag(projectId, flag) {
+    editFlag(projectId, flag, segmentOverrides) {
         Dispatcher.handleViewAction({
             actionType: Actions.EDIT_FLAG,
             projectId,
             flag,
+            segmentOverrides
         });
     },
     editProject(id, project) {
@@ -220,16 +223,6 @@ const AppActions = Object.assign({}, require('./base/_app-actions'), {
         Dispatcher.handleViewAction({
             actionType: Actions.SELECT_ENVIRONMENT,
             data,
-        });
-    },
-    editEnvironmentSegment(projectId, environmentId, segment, projectSegment, environmentSegment) {
-        Dispatcher.handleViewAction({
-            actionType: Actions.EDIT_ENVIRONMENT_SEGMENT,
-            projectId,
-            environmentId,
-            segment,
-            projectSegment,
-            environmentSegment,
         });
     },
     getSegments(projectId, environmentId) {

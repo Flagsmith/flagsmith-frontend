@@ -1,13 +1,8 @@
 const BaseStore = require('./base/_store');
 
-var controller = {
-
+const controller = {
     get() {
         store.loading();
-        bulletTrain.init({
-            environmentID: Project.bulletTrain,
-            onChange: controller.loaded,
-        });
     },
     loaded(oldFlags) { // Occurs whenever flags are changed
         if (!oldFlags) {
@@ -20,7 +15,7 @@ var controller = {
 };
 
 
-var store = Object.assign({}, BaseStore, {
+const store = Object.assign({}, BaseStore, {
     id: 'config',
 });
 
@@ -32,7 +27,14 @@ store.dispatcherIndex = Dispatcher.register(store, (payload) => {
         case Actions.GET_CONFIG:
             controller.get();
             break;
+        default:
+            break;
     }
+});
+
+bulletTrain.init({
+    environmentID: Project.bulletTrain,
+    onChange: controller.loaded,
 });
 
 controller.store = store;

@@ -14,8 +14,8 @@
     "bundledev": "node node_modules/.bin/webpack -p --progress --config ./webpack/webpack.config.dev.js"
   },
   "engines": {
-    "node": "8.x",
-    "npm": "5.6.0"
+    "node": "10.x",
+    "npm": "6.4.1"
   },
   "dependencies": {
     "@babel/core": "7.1.2",
@@ -28,12 +28,13 @@
     "@babel/preset-react": "^7.0.0",
     "@babel/register": "^7.0.0",
     "animejs": "^3.0.1",
+    "array-move": "^2.1.0",
     "babel-eslint": "10.0.1",
     "babel-loader": "8.0.4",
     "babel-plugin-transform-object-rest-spread": "7.0.0-beta.3",
     "babel-plugin-transform-react-remove-prop-types": "0.4.18",
     "bootstrap": "4.0.0-alpha.3",
-    "bullet-train-client": "0.0.33",
+    "bullet-train-client": "0.0.52",
     "bullet-train-rules-engine": "0.0.7",
     "chai": "4.2.0",
     "chromedriver": "2.42.0",
@@ -80,6 +81,7 @@
     "react-maskedinput": "^4.0.1",
     "react-router": "2.6.0",
     "react-select": "^2.4.3",
+    "react-sortable-hoc": "^1.9.1",
     "react-tooltip": "^3.6.0",
     "sass-loader": "6.0.7",
     "slackbots": "^1.2.0",

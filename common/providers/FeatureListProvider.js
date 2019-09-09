@@ -47,12 +47,12 @@ const FeatureListProvider = class extends Component {
         AppActions.setFlag(i, flag, environments);
     };
 
-    createFlag = (projectId, environmentId, flag) => {
-        AppActions.createFlag(projectId, environmentId, flag);
+    createFlag = (projectId, environmentId, flag,projectFlag, environmentFlag, segmentOverrides) => {
+        AppActions.createFlag(projectId, environmentId, flag, segmentOverrides);
     };
 
-    editFlag = (projectId, environmentId, flag, projectFlag, environmentFlag) => {
-        AppActions.editEnvironmentFlag(projectId, environmentId, flag, projectFlag, environmentFlag);
+    editFlag = (projectId, environmentId, flag, projectFlag, environmentFlag, segmentOverrides) => {
+        AppActions.editEnvironmentFlag(projectId, environmentId, flag, projectFlag, environmentFlag, segmentOverrides);
         if (flag.description != projectFlag.description) {
             AppActions.editFlag(projectId, Object.assign({}, projectFlag, flag));
         }
