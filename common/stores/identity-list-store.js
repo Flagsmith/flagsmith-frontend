@@ -7,7 +7,7 @@ const controller = {
     getIdentities: (envId, page) => {
         store.loading();
         store.envId = envId;
-        const endpoint = (page && page.replace('http:', 'https:')) || `${Project.api}environments/${envId}/identities/`;
+        const endpoint = page || `${Project.api}environments/${envId}/identities/`;
         data.get(endpoint)
             .then((res) => {
                 store.model = res && res.results;
