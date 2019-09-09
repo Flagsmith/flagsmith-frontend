@@ -1,12 +1,15 @@
 // webpack.config.prod.js
 // Watches + deploys files minified + cachebusted
 
+const url = require('url');
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+
+const project = require('../common/project');
 
 module.exports = {
     devtool: 'source-map',
@@ -38,7 +41,7 @@ module.exports = {
     output: {
         path: path.join(__dirname, '../build/static'),
         filename: '[name].[hash].js',
-        publicPath: 'https://cdn.bullet-train.io/static/'
+        publicPath: url.resolve(project.assetUrl || 'https://cdn.bullet-train.io', 'static/'),
     },
 
     plugins: require('./plugins')
