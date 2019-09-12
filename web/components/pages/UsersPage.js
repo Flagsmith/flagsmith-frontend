@@ -43,45 +43,45 @@ const UsersPage = class extends Component {
                         </p>
                         <FormGroup>
                             <IdentityListProvider>
-                                {({ isLoading, identities, identitiesPaging }) => (
+                                {({ isLoading, identities, identitiesPaging, identitySearch }) => (
                                     <div>
-                                        {isLoading && <div className="centered-container"><Loader/></div>}
-                                        {!isLoading && (
-                                            <FormGroup>
-                                                <PanelSearch
-                                                  id="users-list"
-                                                  title="Users"
-                                                  className="no-pad"
-                                                  icon="ion-md-person"
-                                                  items={identities}
-                                                  paging={identitiesPaging}
-                                                  nextPage={() => AppActions.getIdentitiesPage(environmentId, identitiesPaging.next)}
-                                                  prevPage={() => AppActions.getIdentitiesPage(environmentId, identitiesPaging.previous)}
-                                                  goToPage={page => AppActions.getIdentitiesPage(environmentId, `${Project.api}environments/${environmentId}/identities/?page=${page}`)}
-                                                  renderRow={({ id, identifier }) => (
-                                                      <Row space className="list-item" key={id}>
-                                                          <Flex>
-                                                              <Link
-                                                                to={`/project/${this.props.params.projectId}/environment/${this.props.params.environmentId}/users/${id}`}
-                                                              >
-                                                                  {identifier}
-                                                              </Link>
-                                                          </Flex>
-                                                          <ion className="ion-ios-arrow-forward"/>
-                                                      </Row>
-                                                  )}
-                                                  renderNoResults={(
-                                                      <FormGroup className="text-center">
-                                                            You have no
-                                                            users
-                                                            in your
-                                                            project.
-                                                      </FormGroup>
-                                                    )}
-                                                  filterRow={(flag, search) => flag.identifier.indexOf(search) != -1}
-                                                />
-                                            </FormGroup>
-                                        )}
+                                        <FormGroup>
+                                            <PanelSearch
+                                              id="users-list"
+                                              title="Users"
+                                              className="no-pad"
+                                              icon="ion-md-person"
+                                              items={identities}
+                                              paging={identitiesPaging}
+                                              nextPage={() => AppActions.getIdentitiesPage(environmentId, identitiesPaging.next)}
+                                              prevPage={() => AppActions.getIdentitiesPage(environmentId, identitiesPaging.previous)}
+                                              goToPage={page => AppActions.getIdentitiesPage(environmentId, `${Project.api}environments/${environmentId}/identities/?page=${page}`)}
+                                              renderRow={({ id, identifier }) => (
+                                                  <Row space className="list-item" key={id}>
+                                                      <Flex>
+                                                          <Link
+                                                            to={`/project/${this.props.params.projectId}/environment/${this.props.params.environmentId}/users/${id}`}
+                                                          >
+                                                              {identifier}
+                                                          </Link>
+                                                      </Flex>
+                                                      <ion className="ion-ios-arrow-forward"/>
+                                                  </Row>
+                                              )}
+                                              renderNoResults={(
+                                                  <FormGroup className="text-center">
+                                                        You have no
+                                                        users
+                                                        in your
+                                                        project.
+                                                  </FormGroup>
+                                                )}
+                                              filterRow={(flag, search) => flag.identifier.indexOf(search) != -1}
+                                              onChange={e => AppActions.searchIdentities(this.props.params.environmentId, Utils.safeParseEventValue(e))}
+                                              search={identitySearch}
+                                              isLoading={isLoading}
+                                            />
+                                        </FormGroup>
                                         <FormGroup>
                                             <p className="faint">
                                                 Users are created for your environment automatically when calling

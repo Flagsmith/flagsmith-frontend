@@ -74,6 +74,7 @@ module.exports = {
         'AccountStore': true,
         'em': true,
         'Actions': true,
+        'Any': true,
         'API': true,
         'AppActions': true,
         'AsyncStorage': true,

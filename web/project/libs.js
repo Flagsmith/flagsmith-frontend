@@ -12,13 +12,14 @@ import cloneDeep from 'lodash/cloneDeep';
 import findIndex from 'lodash/findIndex';
 import range from 'lodash/range';
 import keyBy from 'lodash/keyBy';
+import throttle from 'lodash/throttle';
 import Bootstrap from '../../node_modules/bootstrap/dist/js/bootstrap';
 import Project from '../../common/project';
 
 window.bulletTrain = bulletTrain;
 window.moment = require('moment/min/moment.min');
 
-window._ = { each, filter, find, partial, findIndex, range, map, cloneDeep, keyBy };
+window._ = { each, filter, find, partial, findIndex, range, map, cloneDeep, keyBy, throttle };
 
 window.React = require('react');
 window.ReactDOM = require('react-dom');

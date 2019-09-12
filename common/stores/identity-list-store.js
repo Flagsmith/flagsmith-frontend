@@ -7,7 +7,7 @@ const controller = {
     getIdentities: (envId, page) => {
         store.loading();
         store.envId = envId;
-        const endpoint = page || `${Project.api}environments/${envId}/identities/`;
+        const endpoint = (page && `${page}${store.search ? `&q=${store.search}` : ''}`) || `${Project.api}environments/${envId}/identities/${store.search ? `?q=${store.search}` : ''}`;
         data.get(endpoint)
             .then((res) => {
                 store.model = res && res.results;
@@ -26,7 +26,10 @@ const controller = {
             store.saved();
         }, 2000);
     },
-
+    searchIdentities: _.throttle((envId, search) => {
+        store.search = search;
+        controller.getIdentities(envId);
+    }, 1000),
 };
 
 
@@ -49,6 +52,7 @@ store.dispatcherIndex = Dispatcher.register(store, (payload) => {
 
     switch (action.actionType) {
         case Actions.GET_IDENTITIES:
+            store.search = '';
             controller.getIdentities(action.envId);
             break;
         case Actions.SAVE_IDENTITY:
@@ -56,6 +60,9 @@ store.dispatcherIndex = Dispatcher.register(store, (payload) => {
             break;
         case Actions.GET_IDENTITIES_PAGE:
             controller.getIdentities(action.envId, action.page);
+            break;
+        case Actions.SEARCH_IDENTITIES:
+            controller.searchIdentities(action.envId, action.search);
             break;
         default:
     }

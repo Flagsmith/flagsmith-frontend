@@ -260,6 +260,13 @@ const AppActions = Object.assign({}, require('./base/_app-actions'), {
             id,
         });
     },
+    searchIdentities(envId, search) {
+        Dispatcher.handleViewAction({
+            actionType: Actions.SEARCH_IDENTITIES,
+            envId,
+            search,
+        });
+    },
 });
 
 module.exports = AppActions;
