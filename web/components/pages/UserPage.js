@@ -76,7 +76,7 @@ const UserPage = class extends Component {
         return (
             <div className="app-container">
                 <IdentityProvider onSave={this.onSave}>
-                    {({ isSaving, isLoading, error, environmentFlags, projectFlags, traits, identityFlags, identity }, { toggleFlag, removeFlag, editFlag }) => (isLoading||!identityFlags
+                    {({ isSaving, isLoading, error, environmentFlags, projectFlags, traits, identityFlags, identity }, { toggleFlag, removeFlag, editFlag }) => (isLoading || !identityFlags
                         ? <div className="text-center"><Loader/></div> : (
                             <div className="container">
                                 <div className="row">
@@ -263,7 +263,7 @@ const UserPage = class extends Component {
                                             <TryIt
                                               title="Check to see what features and traits are coming back for this user"
                                               environmentId={this.props.params.environmentId}
-                                              userId={this.props.params.id}
+                                              userId={(identity && identity.identity.identifier) || this.props.params.id}
                                             />
                                         </FormGroup>
                                     </div>
