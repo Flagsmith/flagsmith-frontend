@@ -27,8 +27,9 @@ import InvitePage from './components/pages/InvitePage';
 import NotFoundPage from './components/pages/NotFoundPage';
 import PricingPage from './components/pages/PricingPage';
 import TermsPoliciesPage from './components/pages/TermsPoliciesPage';
-import OpenSourcePage from "./components/pages/OpenSourcePage";
-import FeaturesExamplePage from "./components/pages/FeaturesExamplePage";
+import OpenSourcePage from './components/pages/OpenSourcePage';
+import FeaturesExamplePage from './components/pages/FeaturesExamplePage';
+import AuditLogPage from './components/pages/AuditLogPage';
 
 window.Link = Link;
 
@@ -63,6 +64,7 @@ export default (
         <Route path="project/:projectId/environment/:environmentId/project-settings" exact component={ProjectSettingsPage}/>
         <Route path="project/:projectId/environment/:environmentId/segments" exact component={SegmentsPage}/>
         <Route path="project/:projectId/environment/:environmentId/organisation-settings" exact component={OrganisationSettingsPage}/>
+        <Route path="project/:projectId/environment/:environmentId/audit-log" exact component={AuditLogPage}/>
         <Route path="create" component={CreateOrganisationPage}/>
         <Route path="404" component={NotFoundPage}/>
         <Redirect from="*" to="404"/>

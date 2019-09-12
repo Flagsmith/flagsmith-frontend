@@ -267,6 +267,23 @@ const AppActions = Object.assign({}, require('./base/_app-actions'), {
             search,
         });
     },
+    getAuditLog() {
+        Dispatcher.handleViewAction({
+            actionType: Actions.GET_AUDIT_LOG,
+        });
+    },
+    getAuditLogPage(page) {
+        Dispatcher.handleViewAction({
+            actionType: Actions.GET_AUDIT_LOG_PAGE,
+            page,
+        });
+    },
+    searchAuditLog(search) {
+        Dispatcher.handleViewAction({
+            actionType: Actions.SEARCH_AUDIT_LOG,
+            search,
+        });
+    },
 });
 
 module.exports = AppActions;

@@ -43,7 +43,7 @@ const UsersPage = class extends Component {
                         </p>
                         <FormGroup>
                             <IdentityListProvider>
-                                {({ isLoading, identities, identitiesPaging, identitySearch }) => (
+                                {({ isLoading, identities, identitiesPaging }) => (
                                     <div>
                                         <FormGroup>
                                             <PanelSearch
@@ -78,7 +78,6 @@ const UsersPage = class extends Component {
                                                 )}
                                               filterRow={(flag, search) => flag.identifier.indexOf(search) != -1}
                                               onChange={e => AppActions.searchIdentities(this.props.params.environmentId, Utils.safeParseEventValue(e))}
-                                              search={identitySearch}
                                               isLoading={isLoading}
                                             />
                                         </FormGroup>

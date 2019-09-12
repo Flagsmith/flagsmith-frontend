@@ -25,7 +25,6 @@ const IdentityProvider = class extends Component {
                 identity: IdentityStore.model,
                 identityFlags: IdentityStore.getIdentityFlags(),
                 traits: IdentityStore.getTraits(),
-                identitySearch: IdentityStore.search,
             });
         });
         this.listenTo(FeatureListStore, 'change', () => {

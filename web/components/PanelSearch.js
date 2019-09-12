@@ -11,8 +11,8 @@ const PanelSearch = class extends Component {
         renderNoResults: PropTypes.any,
         filterRow: OptionalFunc,
         paging: OptionalObject,
-        nextPage: OptionalString,
-        prevPage: OptionalString,
+        nextPage: OptionalFunc,
+        prevPage: OptionalFunc,
         goToPage: OptionalFunc,
         isLoading: OptionalBool,
     }
@@ -82,14 +82,12 @@ const PanelSearch = class extends Component {
                         ? filteredItems.map(renderRow) : (renderNoResults && !search) ? renderNoResults : (
                             <Column>
                                 <div>
-No results
+                                    {'No results '}
                                     {search && (
                                     <span>
 for
                                         <strong>
-"
-                                            {search}
-"
+                                            {` "${search}"`}
                                         </strong>
                                     </span>
                                     )}

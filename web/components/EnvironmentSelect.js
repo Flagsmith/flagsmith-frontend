@@ -47,8 +47,8 @@ Features
                                             {hasFeature('segments') && (
                                                 <li className="env-nav__item flex-row">
                                                     <Link
-                                                        id="segments-link"
-                                                        activeClassName="active"
+                                                      id="segments-link"
+                                                      activeClassName="active"
                                                       to={`/project/${project.id}/environment/${environment.api_key}/segments`
                                                         }
                                                     >
@@ -64,6 +64,16 @@ Segments
                                                     }
                                                 >
 Users
+                                                </Link>
+                                            </li>
+                                            <li className="env-nav__item flex-row">
+                                                <Link
+                                                  id="audit-log-link"
+                                                  activeClassName="active"
+                                                  to={`/project/${project.id}/environment/${environment.api_key}/audit-log`
+                                                    }
+                                                >
+Audit Log
                                                 </Link>
                                             </li>
                                             <li className="env-nav__item flex-row">
