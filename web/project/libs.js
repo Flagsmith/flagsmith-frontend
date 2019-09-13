@@ -82,5 +82,6 @@ if (Project.sentry && typeof Sentry !== 'undefined') {
     Sentry.init({
         dsn: Project.sentry,
         environment: Project.env,
+        release: SENTRY_RELEASE_VERSION,
     });
 }

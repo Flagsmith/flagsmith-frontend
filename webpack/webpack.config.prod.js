@@ -8,6 +8,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const moment = require('moment');
 
 const Project = require('../common/project');
 
@@ -51,6 +52,7 @@ module.exports = {
 
             new webpack.DefinePlugin({
                 __DEV__: false,
+                SENTRY_RELEASE_VERSION: moment().valueOf().toString(),
             }),
 
             // reduce filesize

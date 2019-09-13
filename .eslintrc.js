@@ -102,6 +102,7 @@ module.exports = {
         'ReactDOM': true,
         'Row': true,
         'routes': true,
+        'SENTRY_RELEASE_VERSION': true,
         'pact': true,
         'testHelpers': true,
         'toast': true,
