@@ -306,15 +306,15 @@ View
                                                         />
                                                     </button>
                                                 </div>
-
-                                                <p>
-                                                    {'You are currently using '}
-                                                    <strong>
-                                                        {organisation.num_seats}
-                                                    </strong>
-                                                    {` seat${organisation.num_seats === 1 ? '' : 's'}.`}
-                                                </p>
-
+                                                {organisation.num_seats && (
+                                                    <p>
+                                                        {'You are currently using '}
+                                                        <strong>
+                                                            {organisation.num_seats}
+                                                        </strong>
+                                                        {` seat${organisation.num_seats === 1 ? '' : 's'}.`}
+                                                    </p>
+                                                )}
                                             </div>
                                             <div className="panel--grey">
                                                 {isLoading && <div className="centered-container"><Loader/></div>}

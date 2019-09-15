@@ -28,7 +28,7 @@ export default class Paging extends PureComponent {
         const to = Math.min(lastPage, currentIndex + spaceBetween);
         const range = _.range(from, to);
         if (range.length < 2) {
-            return <div/>
+            return <div/>;
         }
         return (
             <Row className="list-item paging" style={isLoading ? { opacity: 0.5 } : {}}>
