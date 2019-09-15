@@ -51,11 +51,11 @@ const Aside = class extends Component {
                                 <Row className="project-nav__item--header">
                                     <span className="flex-1">Projects</span>
                                     <Link
-                                  id="create-project-link"
-                                  to="/projects" className="project-nav__button project-nav__button--cta" state={{ create: true }}
-                                >
-                                    <img className="project-nav__icon" src="/images/plus-button--white.svg" alt="New" />
-                                </Link>
+                                      id="create-project-link"
+                                      to="/projects" className="project-nav__button project-nav__button--cta" state={{ create: true }}
+                                    >
+                                        <img className="project-nav__icon" src="/images/plus-button--white.svg" alt="New" />
+                                    </Link>
                                 </Row>
                                 <ProjectSelect
                                   projectId={this.props.projectId}
@@ -69,7 +69,7 @@ const Aside = class extends Component {
 												        projectId: project.id,
 												        environmentId: project.environments[0].api_key,
 												    }));
-                              }}
+                                  }}
                                 />
                             </div>
                             <div className="flex flex-1" />

@@ -1,0 +1,16 @@
+@import "../variables";
+
+.audit {
+	&__log {
+		font-weight: bold;
+	}
+	&__author {
+		color: $body-text-faint;
+	}
+	&__date {
+		font-weight: bold;
+	}
+	&__item:nth-child(even) {
+		background: $list-item-striped-background;
+	}
+}

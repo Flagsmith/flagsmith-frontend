@@ -2,6 +2,7 @@ import { hot } from 'react-hot-loader';
 import Select from 'react-select';
 import Button, { ButtonSecondary, ButtonWhite } from '../components/base/forms/Button';
 import RemoveIcon from '../components/RemoveIcon';
+import Paging from '../components/Paging';
 
 
 window.Project = require('../../common/project');
@@ -25,6 +26,7 @@ window.IdentityListProvider = require('../../common/providers/IdentityListProvid
 window.AuditLogProvider = require('../../common/providers/AuditLogProvider');
 window.ConfigProvider = require('../../common/providers/ConfigProvider');
 window.OrganisationSelect = require('../components/OrganisationSelect');
+window.Paging = Paging;
 
 // Useful components
 window.Gif = require('../components/base/Gif');

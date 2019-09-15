@@ -22,17 +22,25 @@ const AuditLogPage = class extends Component {
     }
 
     renderRow = ({ created_date, log, author }) => (
-        <Row space className="list-item" key={created_date}>
-            <Flex>
-                <div className="">{moment(created_date).format('L LTS')}</div>
-                <div>{log}</div>
-                <div>{`Performed by ${author.first_name} ${author.last_name}`}</div>
-            </Flex>
+        <Row space className="list-item audit__item" key={created_date}>
+                <Flex>
+                    <div
+                      className="audit__log"
+                    >
+                        {log}
+                    </div>
+                    <div
+                      className="audit__author"
+                    >
+                        {`${author.first_name} ${author.last_name}`}
+                    </div>
+                </Flex>
+                <div className="audit__date">{moment(created_date).format('Do MMM YYYY HH:mma')}</div>
         </Row>
     )
 
     render() {
-        const { projectId, environmentId } = this.props.params;
+        const { environmentId } = this.props.params;
         return (
             <div className="app-container container">
 
@@ -48,13 +56,13 @@ const AuditLogPage = class extends Component {
                                     <div>
                                         {isLoading && <div className="centered-container"><Loader/></div>}
                                         {!isLoading && (
-                                            <div>
+                                            <div className="audit">
                                                 <FormGroup>
                                                     <PanelSearch
                                                       id="messages-list"
-                                                      title="Log Messages"
+                                                      title="Log entries"
                                                       className="no-pad"
-                                                      icon="ion-md-person"
+                                                      icon="ion-md-browsers"
                                                       items={auditLog}
                                                       paging={auditLogPaging}
                                                       nextPage={() => AppActions.getAuditLogPage(environmentId, auditLogPaging.next)}
@@ -76,7 +84,6 @@ const AuditLogPage = class extends Component {
                                         )}
                                     </div>
                                 )}
-
                             </AuditLogProvider>
                         </FormGroup>
 

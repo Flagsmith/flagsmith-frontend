@@ -66,6 +66,8 @@ Segments
 Users
                                                 </Link>
                                             </li>
+                                            {hasFeature('audit_log') && (
+
                                             <li className="env-nav__item flex-row">
                                                 <Link
                                                   id="audit-log-link"
@@ -73,9 +75,10 @@ Users
                                                   to={`/project/${project.id}/environment/${environment.api_key}/audit-log`
                                                     }
                                                 >
-Audit Log
+                                                    Audit Log
                                                 </Link>
                                             </li>
+                                            )}
                                             <li className="env-nav__item flex-row">
                                                 <Link
                                                   id="env-settings-link"

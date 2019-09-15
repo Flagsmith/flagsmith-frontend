@@ -52,31 +52,6 @@ const PanelSearch = class extends Component {
                   </Row>
                 )}
             >
-                {!!paging && (
-                    <Row className="list-item" style={isLoading ? { opacity: 0.5 } : {}}>
-                        <Button
-                          disabled={!paging.previous} className="icon ion-ios-arrow-back"
-                          onClick={prevPage}
-                        />
-                        <Flex>
-                            <Row className="list-item" style={{ justifyContent: 'space-around' }}>
-                                {_.map(new Array(Math.ceil(paging.count / paging.pageSize)), (item, index) => (
-                                    <div
-                                      key={index} role="button" style={paging.currentPage === index + 1 ? { fontWeight: 'bold', fontSize: '1.4rem' } : {}}
-                                      onClick={paging.currentPage === index + 1 ? undefined : () => goToPage(index + 1)}
-                                    >
-                                        {index + 1}
-
-                                    </div>
-                                ))}
-                            </Row>
-                        </Flex>
-                        <Button
-                          className="icon ion-ios-arrow-forward" disabled={!paging.next}
-                          onClick={nextPage}
-                        />
-                    </Row>
-                )}
                 <div id={this.props.id} className="search-list" style={isLoading ? { opacity: 0.5 } : {}}>
                     {filteredItems && filteredItems.length
                         ? filteredItems.map(renderRow) : (renderNoResults && !search) ? renderNoResults : (
@@ -95,6 +70,15 @@ for
                             </Column>
                         )}
                 </div>
+                {!!paging && (
+                    <Paging
+                      paging={paging}
+                      onNextClick={nextPage}
+                      onPreviousClick={prevPage}
+                      isLoading={isLoading}
+                      goToPage={goToPage}
+                    />
+                )}
             </Panel>
         );
     }
