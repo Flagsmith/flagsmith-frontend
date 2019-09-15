@@ -7,10 +7,9 @@ export default class Rule extends PureComponent {
     static propTypes = {};
 
     renderRule = (rule, i) => {
-        const { props: { rule: { conditions: rules } } } = this;
+        const { props: { operators, rule: { conditions: rules } } } = this;
         const isLastRule = i === (rules.length - 1);
         const hasOr = i > 0;
-        const operators = Constants.operators;
         return (
             <div className="rule__row reveal" key={i}>
                 {hasOr && (

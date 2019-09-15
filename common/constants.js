@@ -57,48 +57,7 @@ const Constants = {
     modals: {
         'PAYMENT': 'Payment Modal',
     },
-    operators: [
-        {
-            'value': 'EQUAL',
-            'label': 'Exactly Matches (=)',
-        },
-        {
-            'value': 'NOT_EQUAL',
-            'label': 'Does not match (!=)',
-        },
-        {
-            'value': 'PERCENTAGE_SPLIT',
-            'label': '% Split',
-        },
-        {
-            'value': 'GREATER_THAN',
-            'label': '>',
-        },
-        {
-            'value': 'GREATER_THAN_INCLUSIVE',
-            'label': '>=',
-        },
-        {
-            'value': 'LESS_THAN',
-            'label': '<',
-        },
-        {
-            'value': 'LESS_THAN_INCLUSIVE',
-            'label': '<=',
-        },
-        {
-            'value': 'CONTAINS',
-            'label': 'Contains',
-        },
-        {
-            'value': 'NOT_CONTAINS',
-            'label': 'Does not contain',
-        },
-        {
-            'value': 'REGEX',
-            'label': 'Matches regex',
-        },
-    ],
+
     pages: {
         'ACCOUNT': 'Account Page',
         'AUDIT_LOG': 'Audit Log Page',
