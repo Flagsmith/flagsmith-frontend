@@ -124,7 +124,7 @@ const SegmentsPage = class extends Component {
                                                           >
                                                               <Row>
                                                                   <a href="#">
-                                                                      <span data-test={"segment-" + i + "-name"}>
+                                                                      <span data-test={`segment-${i}-name`}>
                                                                           {name}
                                                                       </span>
                                                                   </a>

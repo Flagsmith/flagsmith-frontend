@@ -81,14 +81,14 @@ global.API = {
             mixpanel.alias(id);
         }
         bulletTrain.identify(id);
-        bulletTrain.setTrait("email", id);
+        bulletTrain.setTrait('email', id);
     },
     identify(id) {
         if (Project.mixpanel) {
             mixpanel.identify(id);
         }
         bulletTrain.identify(id);
-        bulletTrain.setTrait("email", id);
+        bulletTrain.setTrait('email', id);
     },
     register(email, firstName, lastName) {
         if (Project.mixpanel) {

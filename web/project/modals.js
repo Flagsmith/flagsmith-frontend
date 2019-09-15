@@ -111,27 +111,27 @@ const Confirm = class extends React.Component {
   footer() {
       return (
           <div className="modal-button">
-              <Row style={{justifyContent:'flex-end'}}>
+              <Row style={{ justifyContent: 'flex-end' }}>
                   <Column>
                       <a
-                          href="#"
-                          className="btn-link btn-link-secondary"
-                          id="confirm-btn-no"
+                        href="#"
+                        className="btn-link btn-link-secondary"
+                        id="confirm-btn-no"
                         onClick={this.onNo}
                       >
                           {this.props.noText || 'No'}
                       </a>
                   </Column>
-              <Column>
-              <a
-                  hretf="#"
-                  className="btn-link btn-link-secondary"
-                  id="confirm-btn-yes"
-                onClick={this.onYes}
-              >
-                  {this.props.yesText || 'Yes'}
-              </a>
-              </Column>
+                  <Column>
+                      <a
+                        hretf="#"
+                        className="btn-link btn-link-secondary"
+                        id="confirm-btn-yes"
+                        onClick={this.onYes}
+                      >
+                          {this.props.yesText || 'Yes'}
+                      </a>
+                  </Column>
               </Row>
           </div>
       );

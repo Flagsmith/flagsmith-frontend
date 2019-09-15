@@ -12,7 +12,7 @@ const Tabs = class extends React.Component {
                         const isSelected = this.props.value == i;
                         return (
                             <Button
-                                data-test={child.props['data-test']}
+                              data-test={child.props['data-test']}
                               id={child.props.id}
                               key={`button${i}`}
                               onClick={(e) => {

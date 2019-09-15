@@ -1,5 +1,6 @@
-import data from '../data/base/_data'
-import SegmentListStore from "../stores/segment-list-store";
+import data from '../data/base/_data';
+import SegmentListStore from '../stores/segment-list-store';
+
 export default (WrappedComponent) => {
     class HOC extends React.Component {
         static displayName = 'withFoo';
@@ -19,15 +20,15 @@ export default (WrappedComponent) => {
             });
         }
 
-        updateSegments = (segmentOverrides) => this.setState({segmentOverrides})
+        updateSegments = segmentOverrides => this.setState({ segmentOverrides })
 
         render() {
             return (
                 <WrappedComponent
-                    ref="wrappedComponent"
-                    updateSegments={this.updateSegments}
-                    {...this.props}
-                    {...this.state}
+                  ref="wrappedComponent"
+                  updateSegments={this.updateSegments}
+                  {...this.props}
+                  {...this.state}
                 />
             );
         }

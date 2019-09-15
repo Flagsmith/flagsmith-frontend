@@ -2,23 +2,22 @@
  * Created by niallquinn on 28/05/2019.
  */
 
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+import anime from 'animejs';
 import FeatureFlagsHero from '../animations/FeatureFlagsHero';
 import FeatureFlagsAnimation from '../animations/FeatureFlagsAnimation';
 import RemoteConfigAnimation from '../animations/RemoteConfigAnimation';
 import UserTraitsAnimation from '../animations/UserTraitsAnimation';
-import anime from "animejs";
 
 export default class FeaturessExampleView extends Component {
     static displayName = 'FeaturesExamplePage'
 
     componentDidMount() {
+        const logEl = document.querySelector('#increment-numbers');
 
-        var logEl = document.querySelector('#increment-numbers');
-
-        var battery = {
+        const battery = {
             height: '2em',
-        }
+        };
 
         anime({
             targets: battery,
@@ -28,11 +27,10 @@ export default class FeaturessExampleView extends Component {
             loop: true,
             direction: 'alternate',
             duration: 4000,
-            update: function() {
+            update() {
                 logEl.innerHTML = JSON.stringify(battery);
-            }
+            },
         });
-
     }
 
     render() {
@@ -41,7 +39,7 @@ export default class FeaturessExampleView extends Component {
             <div className="features-page">
                 <div className="hero hero--features-page ">
                     <div>
-                        <div className="row" style={{width: '100%', margin: 0, marginRight: 0}}>
+                        <div className="row" style={{ width: '100%', margin: 0, marginRight: 0 }}>
                             <div className="col-md-4 offset-md-1 col-sm-12 mt-5 features-cta">
                                 <h1 className="mt-5">Bullet Train features</h1>
                                 <p className="">
@@ -81,9 +79,19 @@ export default class FeaturessExampleView extends Component {
                             <div className="col-md-3 offset-md-2 align-self-center">
                                 <div className="card card--navy card--code">
                                     <div className="card-body">
-                                        <p className="code"><span className="code code--green">if </span>(bulletTrain.hasFeature(<span className="code code--red">“show_coupons”</span>)) {'{'}</p>
+                                        <p className="code">
+                                            <span className="code code--green">if </span>
+(bulletTrain.hasFeature(
+                                            <span className="code code--red">“show_coupons”</span>
+))
+                                            {' '}
+                                            {'{'}
+                                        </p>
                                         <p className="code">showCoupons();</p>
-                                        <p className="code"> {'}'}</p>
+                                        <p className="code">
+                                            {' '}
+                                            {'}'}
+                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -132,13 +140,18 @@ export default class FeaturessExampleView extends Component {
                                 <div className="card card--navy card--code">
                                     <div className="card-body">
                                         <p className="code">// User traits</p>
-                                        <pre><span className="code code--green">
+                                        <pre>
+                                            <span className="code code--green">
                                         bulletTrain.identify("user_12601"});
-                                        </span></pre>
-                                        <pre><span className="code code--green">
+                                            </span>
+                                        </pre>
+                                        <pre>
+                                            <span className="code code--green">
                                             if (!bulletTrain.getTrait("accepted_cookies"))
-                                            <br/>&nbsp;&nbsp;&nbsp; showCookieBanner()
-                                        </span></pre>
+                                                <br/>
+&nbsp;&nbsp;&nbsp; showCookieBanner()
+                                            </span>
+                                        </pre>
                                     </div>
                                 </div>
                                 <UserTraitsAnimation/>
@@ -146,9 +159,11 @@ export default class FeaturessExampleView extends Component {
                                     <div className="card-body">
                                         <p className="code">// Example SDK output</p>
                                         <pre className="battery-log" id="increment-numbers">
-                                  {'{'}
-                                                "trait_key":"accepted_cookies",<br/>
-                                                "trait_value":<span className="code code--green">True</span>
+                                            {'{'}
+                                                "trait_key":"accepted_cookies",
+                                            <br/>
+                                                "trait_value":
+                                            <span className="code code--green">True</span>
                                             {'}'}
                                         </pre>
                                     </div>

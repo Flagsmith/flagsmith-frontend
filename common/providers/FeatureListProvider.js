@@ -47,7 +47,7 @@ const FeatureListProvider = class extends Component {
         AppActions.setFlag(i, flag, environments);
     };
 
-    createFlag = (projectId, environmentId, flag,projectFlag, environmentFlag, segmentOverrides) => {
+    createFlag = (projectId, environmentId, flag, projectFlag, environmentFlag, segmentOverrides) => {
         AppActions.createFlag(projectId, environmentId, flag, segmentOverrides);
     };
 

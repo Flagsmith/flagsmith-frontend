@@ -71,7 +71,7 @@ const PricingPage = class extends React.Component {
                             <p className="question">What is a Team Member?</p>
                             <p className="answer">
                                 Each Team Member can log in with their own email address. Audit logs record activities per
-                                logged in Team Member. 
+                                logged in Team Member.
                             </p>
                         </div>
                         <div className="panel panel-default panel-grey">

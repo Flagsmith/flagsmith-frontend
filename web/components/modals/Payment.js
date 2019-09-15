@@ -47,13 +47,13 @@ const PaymentModal = class extends Component {
                                                         <p className="featured"/>
                                                         <p className="pricing-price">Side Project</p>
                                                         <img
-                                                            src="/images/growth.svg" alt="free icon"
-                                                            className="pricing-icon"
-                                                          />
+                                                          src="/images/growth.svg" alt="free icon"
+                                                          className="pricing-icon"
+                                                        />
                                                         <p className="pricing-type">$5</p>
                                                         <p className="text-small text-center">Billed monthly</p>
                                                         {!viewOnly
-                                                              ? (
+                                                            ? (
                                                                 <a
                                                                   href="javascript:void(0)" data-cb-type="checkout"
                                                                   data-cb-plan-id="side-project"
@@ -61,21 +61,34 @@ const PaymentModal = class extends Component {
                                                                 >
                                                                     Buy
                                                                 </a>
-                                                              ) : null}
+                                                            ) : null}
                                                     </div>
                                                     <div className="panel-footer">
                                                         <p className="text-small text-center link-style">
                                                             What's
                                                             included
-                                                          </p>
+                                                        </p>
                                                         <ul className="pricing-features">
-                                                            <li><p>Up to <strong>20,000</strong> requests per month</p></li>
-                                                            <li><p><strong>1</strong> Team Member</p></li>
+                                                            <li>
+                                                                <p>
+Up to
+                                                                    <strong>20,000</strong>
+                                                                    {' '}
+requests per month
+                                                                </p>
+                                                            </li>
+                                                            <li>
+                                                                <p>
+                                                                    <strong>1</strong>
+                                                                    {' '}
+Team Member
+                                                                </p>
+                                                            </li>
                                                             <li><p>Unlimited Projects</p></li>
                                                             <li><p>Unlimited Environments</p></li>
                                                             <li><p>Unlimited Feature Flags</p></li>
                                                             <li><p>Email Technical Support</p></li>
-                                                        </ul>   
+                                                        </ul>
                                                     </div>
                                                 </div>
                                             </div>
@@ -93,19 +106,32 @@ const PaymentModal = class extends Component {
                                                     <p className="text-small text-center">billed monthly</p>
                                                     {!viewOnly ? (
                                                         <a
-                                                            href="javascript:void(0)" data-cb-type="checkout"
-                                                            data-cb-plan-id="startup"
-                                                            className="pricing-cta blue"
-                                                          >
+                                                          href="javascript:void(0)" data-cb-type="checkout"
+                                                          data-cb-plan-id="startup"
+                                                          className="pricing-cta blue"
+                                                        >
                                                             Buy
-                                                          </a>
+                                                        </a>
                                                     ) : null}
                                                 </div>
                                                 <div className="panel-footer">
                                                     <p className="text-small text-center link-style">What's included</p>
                                                     <ul className="pricing-features">
-                                                        <li><p>Up to <strong>250,000</strong> requests per month</p></li>
-                                                        <li><p><strong>3</strong> Team Members</p></li>
+                                                        <li>
+                                                            <p>
+Up to
+                                                                <strong>250,000</strong>
+                                                                {' '}
+requests per month
+                                                            </p>
+                                                        </li>
+                                                        <li>
+                                                            <p>
+                                                                <strong>3</strong>
+                                                                {' '}
+Team Members
+                                                            </p>
+                                                        </li>
                                                         <li><p>Unlimited Projects</p></li>
                                                         <li><p>Unlimited Environments</p></li>
                                                         <li><p>Unlimited Feature Flags</p></li>
@@ -127,19 +153,33 @@ const PaymentModal = class extends Component {
                                                     <p className="text-small text-center">billed monthly</p>
                                                     {!viewOnly ? (
                                                         <a
-                                                            href="javascript:void(0)" data-cb-type="checkout"
-                                                            data-cb-plan-id="scale-up"
-                                                            className="pricing-cta"
-                                                          >
+                                                          href="javascript:void(0)" data-cb-type="checkout"
+                                                          data-cb-plan-id="scale-up"
+                                                          className="pricing-cta"
+                                                        >
                                                             Buy
-                                                          </a>
+                                                        </a>
                                                     ) : null}
                                                 </div>
                                                 <div className="panel-footer">
                                                     <p className="text-small text-center link-style">What's included</p>
                                                     <ul className="pricing-features">
-                                                        <li><p>Up to <strong>2 million</strong> requests per month</p></li>
-                                                        <li><p>Up to <strong>10</strong> Team Members</p></li>
+                                                        <li>
+                                                            <p>
+Up to
+                                                                <strong>2 million</strong>
+                                                                {' '}
+requests per month
+                                                            </p>
+                                                        </li>
+                                                        <li>
+                                                            <p>
+Up to
+                                                                <strong>10</strong>
+                                                                {' '}
+Team Members
+                                                            </p>
+                                                        </li>
                                                         <li><p>Private Discord Technical Support</p></li>
                                                         <li><p>All Startup Features</p></li>
                                                     </ul>
@@ -160,11 +200,11 @@ const PaymentModal = class extends Component {
                                                     <p className="text-small text-center">for enterprise pricing</p>
                                                     {!viewOnly ? (
                                                         <a
-                                                            href="mailto:enterprise@bullet-train.io"
-                                                            className="pricing-cta blue"
-                                                          >
+                                                          href="mailto:enterprise@bullet-train.io"
+                                                          className="pricing-cta blue"
+                                                        >
                                                             Contact Us
-                                                          </a>
+                                                        </a>
                                                     ) : null}
                                                 </div>
 
@@ -172,8 +212,22 @@ const PaymentModal = class extends Component {
                                                     <p className="text-small text-center link-style">What's included</p>
                                                     <ul className="pricing-features">
                                                         <li><p>Optional On Premise Installation</p></li>
-                                                        <li><p>Over <strong>2 million</strong> requests per month</p></li>
-                                                        <li><p>Over <strong>10</strong> Team Members</p></li>
+                                                        <li>
+                                                            <p>
+Over
+                                                                <strong>2 million</strong>
+                                                                {' '}
+requests per month
+                                                            </p>
+                                                        </li>
+                                                        <li>
+                                                            <p>
+Over
+                                                                <strong>10</strong>
+                                                                {' '}
+Team Members
+                                                            </p>
+                                                        </li>
                                                         <li><p>Private Discord Support</p></li>
                                                         <li><p>All Startup Features</p></li>
                                                     </ul>

@@ -117,7 +117,9 @@ const HomePage = class extends React.Component {
                                     <p className="text-small margin-top no-mb">
                                         Don't worry if you don't see your
                                         preferred tech, we'll be adding support for more clients as we grow but
-                                        please <a href="mailto:support@bullet-train.io">get in touch</a>
+                                        please
+                                        {' '}
+                                        <a href="mailto:support@bullet-train.io">get in touch</a>
                                         {' '}
                                         and let
                                         us know what you'd like to see.
@@ -310,19 +312,19 @@ Now you can manage feature flags and remote config across web, mobile and server
                                                             Login
                                                         </button>
                                                         <div>
-                                                                <Link to={`/${redirect}`} className="float-left">
+                                                            <Link to={`/${redirect}`} className="float-left">
 Not got
                                                                     an account?
-                                                                </Link>
-                                                                <Link
-                                                                  className="float-right"
-                                                                  to={`/password-recovery${redirect}`}
-                                                                  onClick={this.showForgotPassword}
-                                                                >
+                                                            </Link>
+                                                            <Link
+                                                              className="float-right"
+                                                              to={`/password-recovery${redirect}`}
+                                                              onClick={this.showForgotPassword}
+                                                            >
                                                                     Forgot
                                                                     password?
-                                                                </Link>
-                                                            </div>
+                                                            </Link>
+                                                        </div>
                                                     </div>
                                                 </fieldset>
                                                 {error && (

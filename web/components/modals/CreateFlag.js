@@ -2,19 +2,18 @@ import React, { Component, PropTypes } from 'react';
 import Highlight from '../Highlight';
 import Tabs from '../base/forms/Tabs';
 import TabItem from '../base/forms/TabItem';
-import withSegmentOverrides from "../../../common/providers/withSegmentOverrides";
-import SegmentOverrides from "../SegmentOverrides";
+import withSegmentOverrides from '../../../common/providers/withSegmentOverrides';
+import SegmentOverrides from '../SegmentOverrides';
 
 const CreateFlag = class extends Component {
     static displayName = 'CreateFlag'
 
     constructor(props, context) {
         super(props, context);
-        const { name, feature_state_value, description, enabled, type } =
-            this.props.isEdit ? Utils.getFlagValue(this.props.projectFlag, this.props.environmentFlag, this.props.identityFlag)
-                : {
-                    type:"FLAG"
-                };
+        const { name, feature_state_value, description, enabled, type } = this.props.isEdit ? Utils.getFlagValue(this.props.projectFlag, this.props.environmentFlag, this.props.identityFlag)
+            : {
+                type: 'FLAG',
+            };
         const { allowEditDescription } = this.props;
         AppActions.getSegments(this.props.projectId, this.props.environmentId);
         this.state = {
@@ -171,19 +170,20 @@ const CreateFlag = class extends Component {
                                       placeholder="e.g. 'This determines what size the header is' "
                                     />
                                 </FormGroup>
-                                {this.props.segments && hasFeature("segment_overrides") && (
-                                    <FormGroup className={"mb-4"}>
+                                {this.props.segments && hasFeature('segment_overrides') && (
+                                    <FormGroup className="mb-4">
                                         <Tooltip
-                                            title={<label className="cols-sm-2 control-label">Segment Overrides (Optional)</label>}
-                                            place="right"
+                                          title={<label className="cols-sm-2 control-label">Segment Overrides (Optional)</label>}
+                                          place="right"
                                         >
                                             {Constants.strings.SEGMENT_OVERRIDES_DESCRIPTION}
                                         </Tooltip>
                                         <SegmentOverrides
-                                            type={type}
-                                            value={this.props.segmentOverrides}
-                                            segments={this.props.segments}
-                                            onChange={this.props.updateSegments}/>
+                                          type={type}
+                                          value={this.props.segmentOverrides}
+                                          segments={this.props.segments}
+                                          onChange={this.props.updateSegments}
+                                        />
                                     </FormGroup>
                                 )}
                                 {error && <Error error={error}/>}
@@ -239,7 +239,7 @@ const CreateFlag = class extends Component {
     }
 
     save = (func, isSaving) => {
-        const { projectFlag,segmentOverrides, environmentFlag, identity, identityFlag, environmentId } = this.props;
+        const { projectFlag, segmentOverrides, environmentFlag, identity, identityFlag, environmentId } = this.props;
         const { name, initial_value, description, type, default_enabled } = this.state;
         if (identity) {
             !isSaving && name && func({
