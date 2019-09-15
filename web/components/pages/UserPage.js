@@ -263,7 +263,7 @@ const UserPage = class extends Component {
                                             <TryIt
                                               title="Check to see what features and traits are coming back for this user"
                                               environmentId={this.props.params.environmentId}
-                                              userId={this.props.params.id}
+                                              userId={(identity && identity.identity.identifier) || this.props.params.id}
                                             />
                                         </FormGroup>
                                     </div>
