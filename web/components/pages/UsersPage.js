@@ -30,6 +30,7 @@ const UsersPage = class extends Component {
 
     render() {
         const { projectId, environmentId } = this.props.params;
+        const { hasFeature, getValue } = this.props;
         return (
             <div className="app-container container">
 
@@ -76,7 +77,7 @@ const UsersPage = class extends Component {
                                                         project.
                                                   </FormGroup>
                                                 )}
-                                              filterRow={(flag, search) => flag.identifier.indexOf(search) != -1}
+                                              filterRow={hasFeature('filter_identities') ? (flag, search) => flag.identifier.indexOf(search) != -1 : null}
                                               onChange={e => AppActions.searchIdentities(this.props.params.environmentId, Utils.safeParseEventValue(e))}
                                               isLoading={isLoading}
                                             />
@@ -115,4 +116,4 @@ const UsersPage = class extends Component {
 
 UsersPage.propTypes = {};
 
-module.exports = UsersPage;
+module.exports = ConfigProvider(UsersPage);

@@ -39,7 +39,7 @@ const PanelSearch = class extends Component {
               className={this.props.className}
               title={this.props.title}
               icon={this.props.icon}
-              action={(
+              action={this.props.filterRow ? (
                   <Row onClick={() => this.input.focus()}>
                       <input
                         ref={c => this.input = c}
@@ -49,7 +49,7 @@ const PanelSearch = class extends Component {
                       />
                       <span style={{ marginLeft: 10, position: 'absolute' }} className="icon ion-ios-search" />
                   </Row>
-                )}
+              ) : null}
             >
                 {!!paging && (
                     <Paging

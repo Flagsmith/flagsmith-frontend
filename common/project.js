@@ -1,16 +1,18 @@
 module.exports = global.Project = {
     debug: false,
-    env: 'dev',
-    bulletTrain: '8KzETdDeMY7xkqkSkY3Gsg',
-    api: 'https://bullet-train-api-dev.dokku1.solidstategroup.com/api/v1/',
-    ga: 'UA-120237963-3',
+    env: 'prod',
+    bulletTrain: '4vfqhypYjcPoGGu8ByrBaj',
+    api: 'https://api.bullet-train.io/api/v1/',
+    ga: 'UA-120237963-1',
+    sentry: 'https://11c8828dc24041b0a875e324b0380769@sentry.io/1320942',
     demoAccount: {
         email: 'kyle+bullet-train@solidstategroup.com',
         password: 'demo_account',
     },
     chargebee: {
-        site: 'bullettrain-test',
+        site: 'bullettrain',
     },
-    mixpanel: '6143f9ceefb1c67640a0771345e8c095',
+    mixpanel: '9448f5be8a5555c380e5dd4b7ac2c345',
     youtubeApi: 'AIzaSyCAjMzgz8vbxqReBxkQGcwsda6zAO0L2JE',
+    assetUrl: 'https://cdn.bullet-train.io', // Location of the static files from build/, should contain a directory called static/
 };

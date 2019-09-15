@@ -17,8 +17,6 @@ export default class Paging extends PureComponent {
     render() {
         const { props: {
             paging,
-            onNextClick,
-            onPreviousClick,
             isLoading,
             goToPage,
         } } = this;
@@ -29,6 +27,9 @@ export default class Paging extends PureComponent {
         const from = Math.max(0, currentIndex - spaceBetween);
         const to = Math.min(lastPage, currentIndex + spaceBetween);
         const range = _.range(from, to);
+        if (range.length < 2) {
+            return <div/>
+        }
         return (
             <Row className="list-item paging" style={isLoading ? { opacity: 0.5 } : {}}>
                 <Button
