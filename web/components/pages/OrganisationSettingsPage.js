@@ -118,107 +118,6 @@ const OrganisationSettingsPage = class extends Component {
                     <div className="app-container container">
                         <FormGroup>
                             <div className="margin-bottom">
-                                <div className="hidden">
-                                    {AccountStore.isDemo ? null : organisation.paid_subscription ? (
-                                        <div>
-                                            <h2 className="text-center margin-bottom">
-                                                Your organisation is on the
-                                                {Utils.getPlanName(organisation.plan)}
-                                                {' '}
-                                                plan
-                                            </h2>
-                                            {!organisation.pending_cancellation
-                                                ? (
-                                                    <div className="text-center margin-bottom">
-                                                        Click
-                                                        <a onClick={this.cancelPaymentPlan}>here</a>
-                                                        {' '}
-                                                        to cancel your automatic renewal of your plan
-                                                    </div>
-                                                )
-                                                : (
-                                                    <div>
-This plan has been cancelled and will not automatically be
-                                                    renewed
-                                                    </div>
-                                                )
-                                            }
-                                            {/* TODO upgrades? */}
-                                        </div>
-                                    ) : organisation.free_to_use_subscription ? (
-                                        <div className="text-center">
-                                            <h2 className="text-center margin-bottom">
-Your organisation is using Bullet
-                                                Train for free.
-                                            </h2>
-                                            {hasFeature('free_tier')
-                                                ? (
-                                                    <div className="text-center margin-bottom">
-You may want to consider
-                                                    upgrading to a paid plan that includes more usage.
-                                                    </div>
-                                                )
-                                                : (
-                                                    <div className="text-center margin-bottom">
-As an early adopter of Bullet
-                                                    Train you will be able to use this service for free until
-                                                    DD/MM/YYYY. You will then need to choose a payment plan to continue
-                                                    using Bullet Train.
-                                                    </div>
-                                                )}
-                                            <div>
-                                                <button
-                                                  type="button" className="btn btn-primary text-center mx-auto"
-                                                  onClick={() => openModal(null, <PaymentModal
-                                                    viewOnly={!hasFeature('free_tier')}
-                                                  />, null, { large: true })}
-                                                >
-View
-                                                    Payment Plans
-                                                </button>
-                                            </div>
-                                        </div>
-                                    ) : freeTrialDaysRemaining > 0 ? (
-                                        <div>
-                                            <h2 className="text-center margin-bottom">
-Your organisation is within the
-                                                free trial period
-                                            </h2>
-                                            <div className="text-center margin-bottom">
-                                                You have
-                                                {freeTrialDaysRemaining}
-                                                {' '}
-                                                days remaining until you need to choose a payment plan.
-                                            </div>
-                                            <div className="text-center margin-bottom">
-                                                <button
-                                                  type="button" onClick={() => openModal(null, <PaymentModal
-                                                    viewOnly
-                                                  />, null, { large: true })}
-                                                >
-View Payment Plans
-                                                </button>
-                                            </div>
-                                        </div>
-                                    ) : (
-                                        <div>
-                                            <h2 className="text-center margin-bottom">
-Your trial period of Bullet Train
-                                                is over.
-                                            </h2>
-                                            <div className="text-center margin-bottom">
-                                                <button
-                                                  type="button" onClick={() => openModal(null,
-                                                      <PaymentModal/>, null, { large: true })}
-                                                >
-here
-                                                </button>
-                                                View Payment Plans
-                                            </div>
-                                        </div>
-                                    )}
-                                </div>
-
                                 <div className="panel--grey" style={{ marginTop: '9em' }}>
                                     <form key={organisation.id} onSubmit={this.save}>
                                         <h5>Organisation Name</h5>
@@ -234,18 +133,11 @@ here
                                                   placeholder="My Organisation"
                                                 />
                                             </Column>
-                                            {/* <InputGroup
-                                             inputProps={{defaultValue: organisation.webhook_notification_email, className: "full-width"}}
-                                             onChange={(e) => this.setState({webhook_notification_email: Utils.safeParseEventValue(e)})}
-                                             isValid={webhook_notification_email && webhook_notification_email.length && Utils.isValidEmail(webhook_notification_email)}
-                                             type="text" title={<h3>Webhook Notification Email</h3>}
-                                             placeholder="Email address"/> */}
                                             <Button disabled={this.saveDisabled()} className="">
                                                 {isSaving ? 'Saving' : 'Save'}
                                             </Button>
                                         </Row>
                                     </form>
-
                                     <div className="plan plan--current flex-row m-t-2">
                                         <div className="plan__prefix">
                                             <img
@@ -253,19 +145,37 @@ here
                                               alt="BT"
                                             />
                                         </div>
-                                        <div className="plan__details">
+                                        <div className="plan__details flex flex-1">
                                             <p className="text-small m-b-0">Your plan</p>
                                             <h3 className="m-b-0">{Utils.getPlanName(organisation.plan) ? Utils.getPlanName(organisation.plan) : 'Free'}</h3>
                                         </div>
-                                        <button
-                                          type="button" className="btn btn-primary text-center ml-auto"
-                                          onClick={() => openModal(null, <PaymentModal
-                                            viewOnly={!hasFeature('free_tier')}
-                                          />, null, { large: true })}
-                                        >
-View
-                                            payment plans
-                                        </button>
+                                        <div>
+                                            <Row>
+                                                <button
+                                                  type="button" className="btn btn-primary text-center ml-auto"
+                                                  onClick={() => openModal(null, <PaymentModal
+                                                    viewOnly={false}
+                                                  />, null, { large: true })}
+                                                >
+                                            View payment plans
+                                                </button>
+                                                {organisation.paid_subscription && (
+                                                    <a
+                                                      style={{
+                                                          padding: '0px 20px',
+                                                          height: '50px',
+                                                          border: 'none',
+                                                          'line-height': '50px',
+                                                      }}
+                                                      className="btn btn-primary text-center ml-2"
+                                                      href="https://bullettrain.chargebeeportal.com"
+                                                      target="_blank"
+                                                    >
+                                                        Manage Subscription
+                                                    </a>
+                                                )}
+                                            </Row>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -283,11 +193,9 @@ View
                                                 {!isLoading && (
                                                 <div>
                                                     <p>
-                                                            You have made
-                                                        {' '}
+                                                        {'You have made '}
                                                         <strong>{`${Utils.numberWithCommas(usage)}`}</strong>
-                                                        {' '}
-                                                            requests over the past 30 days.
+                                                        {' requests over the past 30 days.'}
                                                     </p>
                                                 </div>
                                                 )}
@@ -338,8 +246,7 @@ View
                                                           )}
                                                           renderNoResults={(
                                                               <div>
-You have no users in this
-                                                                    organisation.
+                                                                  You have no users in this organisation.
                                                               </div>
 )}
                                                           filterRow={(item, search) => {
@@ -403,7 +310,6 @@ You have no users in this
                                                             />
                                                         </FormGroup>
                                                     ) : null}
-
                                                 </div>
                                                 )}
                                             </div>
@@ -417,8 +323,7 @@ You have no users in this
                                 <Column className="d-flex pl-3">
                                     <h6>Delete Organisation</h6>
                                     <p>
-                                        This organisation will be deleted permanently along with all projects &
-                                        features.
+                                        This organisation will be deleted permanently along with all projects & features.
                                     </p>
                                 </Column>
                                 <Button
