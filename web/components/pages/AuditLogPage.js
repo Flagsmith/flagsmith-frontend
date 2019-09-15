@@ -65,8 +65,6 @@ const AuditLogPage = class extends Component {
                                                       icon="ion-md-browsers"
                                                       items={auditLog}
                                                       paging={auditLogPaging}
-                                                      nextPage={() => AppActions.getAuditLogPage(environmentId, auditLogPaging.next)}
-                                                      prevPage={() => AppActions.getAuditLogPage(environmentId, auditLogPaging.previous)}
                                                       goToPage={page => AppActions.getAuditLogPage(environmentId, `${Project.api}audit/?page=${page}`)}
                                                       renderRow={this.renderRow}
                                                       renderNoResults={(

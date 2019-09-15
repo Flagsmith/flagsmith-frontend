@@ -12,7 +12,6 @@ const PanelSearch = class extends Component {
         filterRow: OptionalFunc,
         paging: OptionalObject,
         nextPage: OptionalFunc,
-        prevPage: OptionalFunc,
         goToPage: OptionalFunc,
         isLoading: OptionalBool,
     }
@@ -33,7 +32,7 @@ const PanelSearch = class extends Component {
 
     render() {
         const { search } = this.state;
-        const { title, items, renderRow, renderNoResults, paging, nextPage, prevPage, goToPage, isLoading } = this.props;
+        const { title, items, renderRow, renderNoResults, paging, goToPage, isLoading } = this.props;
         const filteredItems = this.filter(items);
         return (!search && (!filteredItems || !filteredItems.length)) ? renderNoResults : (
             <Panel
@@ -52,6 +51,13 @@ const PanelSearch = class extends Component {
                   </Row>
                 )}
             >
+                {!!paging && (
+                    <Paging
+                      paging={paging}
+                      isLoading={isLoading}
+                      goToPage={goToPage}
+                    />
+                )}
                 <div id={this.props.id} className="search-list" style={isLoading ? { opacity: 0.5 } : {}}>
                     {filteredItems && filteredItems.length
                         ? filteredItems.map(renderRow) : (renderNoResults && !search) ? renderNoResults : (
@@ -70,11 +76,9 @@ for
                             </Column>
                         )}
                 </div>
-                {!!paging && (
+                {!!paging && filteredItems && filteredItems.length > 10 && (
                     <Paging
                       paging={paging}
-                      onNextClick={nextPage}
-                      onPreviousClick={prevPage}
                       isLoading={isLoading}
                       goToPage={goToPage}
                     />

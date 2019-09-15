@@ -33,7 +33,7 @@ export default class Paging extends PureComponent {
             <Row className="list-item paging" style={isLoading ? { opacity: 0.5 } : {}}>
                 <Button
                   disabled={!paging.previous} className="icon btn-paging ion-ios-arrow-back"
-                  onClick={onPreviousClick}
+                  onClick={() => goToPage(currentIndex)}
                 />
                 <Row className="list-item">
                     {_.map(range, index => (
@@ -46,13 +46,12 @@ export default class Paging extends PureComponent {
                           onClick={paging.currentPage === index + 1 ? undefined : () => goToPage(index + 1)}
                         >
                             {index + 1}
-
                         </div>
                     ))}
                 </Row>
                 <Button
                   className="icon btn-paging ion-ios-arrow-forward" disabled={!paging.next}
-                  onClick={onNextClick}
+                  onClick={() => goToPage(currentIndex + 2)}
                 />
             </Row>
         );
