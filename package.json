@@ -35,6 +35,7 @@
     "babel-plugin-transform-react-remove-prop-types": "0.4.18",
     "bootstrap": "4.0.0-alpha.3",
     "bullet-train-client": "0.0.52",
+    "bullet-train-nodejs": "^1.0.1",
     "bullet-train-rules-engine": "0.0.7",
     "chai": "4.2.0",
     "chromedriver": "2.42.0",

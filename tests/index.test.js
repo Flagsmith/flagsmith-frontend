@@ -91,6 +91,7 @@ module.exports = Object.assign(
         beforeEach(browser, done) {
             browser.waitAndSet = testHelpers.waitAndSet.bind(browser);
             browser.waitAndClick = testHelpers.waitAndClick.bind(browser);
+            browser.assertValue = testHelpers.assertValue.bind(browser);
             done();
         },
         before: (browser, done) => {

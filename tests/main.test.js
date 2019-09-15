@@ -1,54 +1,52 @@
 const expect = require('chai').expect;
+const bulletTrain = require('bullet-train-nodejs');
+
 const email = 'nightwatch@solidstategroup.com';
 const password = 'nightwatch';
-const url = 'http://localhost:' + (process.env.PORT || 8080);
+const url = `http://localhost:${process.env.PORT || 8080}`;
 const helpers = require('./helpers');
+
 const byId = helpers.byTestID;
+
 module.exports = {
-    '[Main Tests] - Register': function (browser) {
-        browser
-            .url(url)   // visit the url
-            .waitAndSet(byId('firstName'), 'Night')
-            .setValue(byId('lastName'), 'Watch')
-            .setValue(byId('companyName'), 'Nightwatch Ltd')
-            .setValue(byId('email'), email)
-            .setValue(byId('password'), password)
-            .click(byId('signup-btn'))
-            .waitForElementVisible(byId('project-select-page'));
+    '[Main Tests] - Register': async function (browser) {
+        browser.url(url); // visit the url
+
+
+        browser.waitAndSet(byId('firstName'), 'Night');
+
+        browser.setValue(byId('lastName'), 'Watch');
+
+        browser.setValue(byId('companyName'), 'Nightwatch Ltd');
+        browser.setValue(byId('email'), email);
+        browser.setValue(byId('password'), password);
+        browser.click(byId('signup-btn'));
+        browser.waitForElementVisible(byId('project-select-page'));
     },
     '[Main Tests] - Create project': function (browser) {
-        browser
-            .waitAndClick(byId('create-first-project-btn'))
-            .waitAndSet(byId('projectName'), 'My Test Project')
-            .click(byId('create-project-btn'))
-            .waitForElementVisible(byId('features-page'));
+        browser.waitAndClick(byId('create-first-project-btn'));
+        browser.waitAndSet(byId('projectName'), 'My Test Project');
+        browser.click(byId('create-project-btn'));
+        browser.waitForElementVisible(byId('features-page'));
     },
-// FEATURES
-    '[Main Tests] - Create feature': function (browser) {
-        browser
-            .waitForElementNotPresent(byId('create-project-modal'))
-            .click(byId('show-create-feature-btn'))
-            .waitAndClick(byId('btn-select-remote-config'))
-            .setValue(byId('featureID'), 'header_size')
-            .setValue(byId('featureValue'), 'big')
-            .setValue(byId('featureDesc'), 'This determines what size the header is')
-            .click(byId('create-feature-btn'))
-            .waitForElementVisible('#features-list div.list-item')
-            .waitForElementNotPresent('#create-feature-modal')
-            .click('#features-list div.list-item div')
-            .waitForElementVisible('#update-feature-btn')
-            .getValue('[name="featureID"]', res => {
-                browser.assert.equal(res.value, 'header_size');
-            })
-            .getValue('[name="featureValue"]', res => {
-                browser.assert.equal(res.value, 'big');
-            })
-            .getValue('[name="featureDesc"]', res => {
-                browser.assert.equal(res.value, 'This determines what size the header is');
-            })
-            .click('#update-feature-btn')
-            .waitForElementVisible('#features-list div.list-item');
-
+    // FEATURES
+    '[Main Tests] - Create feature': async function (browser) {
+        browser.waitForElementNotPresent(byId('create-project-modal'));
+        browser.click(byId('show-create-feature-btn'));
+        browser.waitAndClick(byId('btn-select-remote-config'));
+        browser.setValue(byId('featureID'), 'header_size');
+        browser.setValue(byId('featureValue'), 'big');
+        browser.setValue(byId('featureDesc'), 'This determines what size the header is');
+        browser.click(byId('create-feature-btn'));
+        browser.waitForElementVisible('#features-list div.list-item');
+        browser.waitForElementNotPresent('#create-feature-modal');
+        browser.click('#features-list div.list-item div');
+        browser.waitForElementVisible('#update-feature-btn');
+        browser.assertValue('[name="featureID"]', 'header_size');
+        browser.assertValue('[name="featureValue"]', 'big');
+        browser.assertValue('[name="featureDesc"]', 'This determines what size the header is');
+        browser.click('#update-feature-btn');
+        browser.waitForElementVisible('#features-list div.list-item');
         browser.expect.element('#features-list .feature-value').text.to.equal('big');
     },
     '[Main Tests] - Create feature 2': function (browser) {
@@ -70,7 +68,7 @@ module.exports = {
             .setValue('[name="featureID"]', 'short_life_feature')
             .setValue('[name="featureDesc"]', 'This feature is pointless')
             .click('#create-feature-btn')
-            .waitForElementVisible('#features-list div.list-item:nth-child(3) div'); //todo change
+            .waitForElementVisible('#features-list div.list-item:nth-child(3) div'); // todo change
     },
     '[Main Tests] - Delete feature 3': function (browser) {
         browser
@@ -97,10 +95,10 @@ module.exports = {
             .waitForElementNotPresent('#confirm-toggle-feature-modal')
             .click('#try-it-btn')
             .waitForElementVisible('#try-it-results')
-            .getText('#try-it-results', res => {
-                browser.assert.equal(typeof res, "object");
+            .getText('#try-it-results', (res) => {
+                browser.assert.equal(typeof res, 'object');
                 browser.assert.equal(res.status, 0);
-                var json;
+                let json;
                 try {
                     json = JSON.parse(res.value);
                 } catch (e) {
@@ -133,10 +131,10 @@ module.exports = {
             .waitForElementVisible('#try-it-btn')
             .click('#try-it-btn')
             .waitForElementVisible('#try-it-results')
-            .getText('#try-it-results', res => {
-                browser.assert.equal(typeof res, "object");
+            .getText('#try-it-results', (res) => {
+                browser.assert.equal(typeof res, 'object');
                 browser.assert.equal(res.status, 0);
-                var json;
+                let json;
                 try {
                     json = JSON.parse(res.value);
                 } catch (e) {
@@ -159,7 +157,7 @@ module.exports = {
             .waitForElementVisible('[name="featureValue"]')
             .clearValue('[name="featureValue"]')
             .setValue('[name="featureValue"]', 'false')
-            .click('#update-feature-btn')
+            .click('#update-feature-btn');
 
         browser.expect.element('#features-list .feature-value').text.to.equal('false');
     },
@@ -170,10 +168,10 @@ module.exports = {
             .waitForElementVisible('#try-it-btn')
             .click('#try-it-btn')
             .waitForElementVisible('#try-it-results')
-            .getText('#try-it-results', res => {
-                browser.assert.equal(typeof res, "object");
+            .getText('#try-it-results', (res) => {
+                browser.assert.equal(typeof res, 'object');
                 browser.assert.equal(res.status, 0);
-                var json;
+                let json;
                 try {
                     json = JSON.parse(res.value);
                 } catch (e) {
@@ -190,35 +188,32 @@ module.exports = {
     },
     '[Main Tests] - Switch environment': function (browser) {
         browser
-            .waitAndClick(byId('switch-environment-production'))
-        browser.waitForElementVisible(byId('switch-environment-production-active'))
+            .waitAndClick(byId('switch-environment-production'));
+        browser.waitForElementVisible(byId('switch-environment-production-active'));
     },
     '[Main Tests] - Feature should be off under different environment': function (browser) {
         browser.expect.element('#features-list .rc-switch').to.be.visible;
     },
-    '[Main Tests] - Create environment': function (browser) {
-        browser
-            .waitAndClick("#create-env-link")
-            .waitForElementVisible('[name="envName"]')
-            .setValue('[name="envName"]', 'Staging')
-            .click('#create-env-btn');
+    '[Main Tests] - Create environment': async function (browser) {
+        browser.waitAndClick('#create-env-link');
+        browser.waitForElementVisible('[name="envName"]');
+        browser.setValue('[name="envName"]', 'Staging');
+        browser.click('#create-env-btn');
 
-        browser.waitForElementVisible(byId('switch-environment-staging-active'))
+        browser.waitForElementVisible(byId('switch-environment-staging-active'));
     },
-    '[Main Tests] - Edit flag for user': function (browser) {
-        browser
-            .waitAndClick('#users-link')
-            .waitForElementVisible('#users-list div.list-item')
-            .click('#users-list div.list-item')
-            .useXpath()
-            .waitForElementVisible('//div[@id="user-features-list"]//a[text()="header_size"]')
-            .click('//div[@id="user-features-list"]//a[text()="header_size"]')
-            .useCss()
-            .waitForElementVisible('[name="featureValue"]')
-            .clearValue('[name="featureValue"]')
-            .setValue('[name="featureValue"]', 'small')
-            .click('#update-feature-btn')
-
+    '[Main Tests] - Edit flag for user': async function (browser) {
+        browser.waitAndClick('#users-link');
+        browser.waitForElementVisible('#users-list div.list-item');
+        browser.click('#users-list div.list-item');
+        browser.useXpath();
+        browser.waitForElementVisible('//div[@id="user-features-list"]//a[text()="header_size"]');
+        browser.click('//div[@id="user-features-list"]//a[text()="header_size"]');
+        browser.useCss();
+        browser.waitForElementVisible('[name="featureValue"]');
+        browser.clearValue('[name="featureValue"]');
+        browser.setValue('[name="featureValue"]', 'small');
+        browser.click('#update-feature-btn');
         browser.expect.element('#user-features-list .feature-value').text.to.equal('small');
     },
     '[Main Tests] - Toggle flag for user': function (browser) {
@@ -255,26 +250,24 @@ module.exports = {
             .click('#user-traits-list .list-item')
             .waitForElementVisible('[name="traitID"]')
             .clearValue("[name='traitValue']")
-            .setValue('[name="traitValue"]', "1")
+            .setValue('[name="traitValue"]', '1')
             .click('#update-trait-btn')
             .waitForElementNotPresent('#update-trait-btn')
             .waitForElementVisible('#user-traits-list .js-trait-value');
         browser.expect.element('#user-traits-list .js-trait-value').text.to.equal('1');
     },
-// END OF FEATURES
-//     '[Main Tests] - Create Segment': function (browser) {
-//         browser
-//             .pause(200)
-//             .waitAndClick('#segments-link')
-//             .waitAndClick(byId('show-create-segment-btn'))
-//             .waitAndSet(byId('segmentID'), 'my_segment')
-//             .waitAndSet(byId('rule-0-property'), 'age')
-//             .waitAndSet(byId('rule-0-value'), '18')
-//             .waitAndClick(byId('create-segment'))
-//             .waitForElementVisible(byId('segment-0-name'))
-//
-//         browser.expect.element(byId('segment-0-name')).text.to.equal('my_segment');
-//     },
+    // END OF FEATURES
+    '[Main Tests] - Create Segment': async function (browser) {
+        browser.pause(200);
+        browser.waitAndClick('#segments-link');
+        browser.waitAndClick(byId('show-create-segment-btn'));
+        browser.waitAndSet(byId('segmentID'), 'my_segment');
+        browser.waitAndSet(byId('rule-0-property'), 'age');
+        browser.waitAndSet(byId('rule-0-value'), '18');
+        browser.waitAndClick(byId('create-segment'));
+        browser.waitForElementVisible(byId('segment-0-name'));
+        browser.expect.element(byId('segment-0-name')).text.to.equal('my_segment');
+    },
     '[Main Tests] - Edit environment': function (browser) {
         browser
             .click('#env-settings-link')

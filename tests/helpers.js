@@ -11,24 +11,27 @@ const testHelpers = {
         browser.expect.element('#existing-member-btn').to.be.visible;
     },
     byTestID: id => `[data-test="${id}"]`,
-    login: (browser, url, email, password) => {
-        browser
-            .url(url)
-            .pause(200) // Allows the dropdown to fade in
-            .waitAndClick('#existing-member-btn')
-            .waitForElementVisible('#login-btn')
-            .setValue('[name="email"]', email)
-            .setValue('[name="password"]', password)
-            .waitForElementVisible('#login-btn')
-            .click('#login-btn');
+    login: async (browser, url, email, password) => {
+        browser.url(url);
+        browser.pause(200); // Allows the dropdown to fade in
+        browser.waitAndClick('#existing-member-btn');
+        browser.waitForElementVisible('#login-btn');
+        browser.setValue('[name="email"]', email);
+        browser.setValue('[name="password"]', password);
+        browser.waitForElementVisible('#login-btn');
+        browser.click('#login-btn');
     },
-    waitAndSet(id, val) {
-        return this.waitForElementVisible(id)
-            .setValue(id, val);
+    async waitAndSet(id, val) {
+        this.waitForElementVisible(id);
+        this.setValue(id, val);
     },
-    waitAndClick(id) {
-        return this.waitForElementVisible(id)
-            .click(id);
+    async waitAndClick(id) {
+        this.waitForElementVisible(id);
+        this.click(id);
+    },
+    async assertValue(id, value) {
+        const res = await this.getValue(id);
+        this.assert.equal(res.value, value);
     },
 };
 module.exports = testHelpers;
