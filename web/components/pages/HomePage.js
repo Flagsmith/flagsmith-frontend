@@ -140,13 +140,8 @@ const HomePage = class extends React.Component {
 
                         <div className="feature-container">
                             <div className="text-center text-center col-lg-4 offset-lg-4">
-                                <h2>Release configurable features to segmented user groups</h2>
-                                <p>
-                                    With Bullet Train you can configure attributes of your features as well as turning
-                                    them on or off for specific user groups.
-                                </p>
+                                <h2>Fully Featured Platform</h2>
                             </div>
-
                             <div className="container">
                                 <div className="mt-5">
                                     <div className="mb-3 flex-row">
@@ -155,7 +150,7 @@ const HomePage = class extends React.Component {
                                                 <ion className="card__icon ion-ios-switch mb-3"/>
                                                 <h5 className="card__title">Feature Flags</h5>
                                                 <p className="card__paragraph-text mb-5">Ship features remotely across
-                                                    multiple environments.</p>
+                                                    multiple environments. Deliver true Continuous Integration.</p>
                                                 <a className="card__link"
                                                    href="https://docs.bullet-train.io/managing-features/"
                                                    target="_blank">Learn more <ion
@@ -167,10 +162,10 @@ const HomePage = class extends React.Component {
                                                 <ion className="card__icon ion-ios-options mb-3"/>
                                                 <h5 className="card__title">Remote Config</h5>
                                                 <p className="card__paragraph-text mb-5"> Change the behaviour,
-                                                    appearance and config of your app here without needing to
-                                                    build.</p>
+                                                    appearance and configuration of your app without needing to
+                                                    deploy.</p>
                                                 <a className="card__link"
-                                                   href="https://docs.bullet-train.io/managing-segments/#feature-flag-and-remote-config-precedence"
+                                                   href="https://docs.bullet-train.io/managing-features/"
                                                    target="_blank">Learn more <ion
                                                     className="pl-2 ion-md-arrow-dropright"/></a>
                                             </div>
@@ -182,34 +177,21 @@ const HomePage = class extends React.Component {
                                                 <p className="card__paragraph-text mb-5">Store traits against your users
                                                     without modifying your back-end.</p>
                                                 <a className="card__link"
-                                                   href="https://docs.bullet-train.io/managing-features/"
+                                                   href="https://docs.bullet-train.io/managing-identities/#identity-traits"
                                                    target="_blank">Learn more <ion
                                                     className="pl-2 ion-md-arrow-dropright"/></a>
                                             </div>
                                         </div>
                                     </div>
-
                                     <div className="flex-row">
                                         <div className="col-md-4">
                                             <div className="card card--feature">
-                                                <ion className="card__icon ion-md-done-all mb-3"/>
-                                                <h5 className="card__title">Track changes</h5>
-                                                <p className="card__paragraph-text mb-5">Audit feature changes &
-                                                    rollback any mistakes or issues</p>
-                                                <a className="card__link"
-                                                   href="https://docs.bullet-train.io/managing-features/"
-                                                   target="_blank">Learn more <ion
-                                                    className="pl-2 ion-md-arrow-dropright"/></a>
-                                            </div>
-                                        </div>
-                                        <div className="col-md-4">
-                                            <div className="card card--feature">
                                                 <ion className="card__icon ion-md-contacts mb-3"/>
-                                                <h5 className="card__title">Segment users</h5>
+                                                <h5 className="card__title">Segment Users</h5>
                                                 <p className="card__paragraph-text mb-5">Create detailed user segments
-                                                    for feature targeting</p>
+                                                    based on their traits, then target features based on the segment.</p>
                                                 <a className="card__link"
-                                                   href="https://docs.bullet-train.io/managing-features/"
+                                                   href="https://docs.bullet-train.io/managing-segments/"
                                                    target="_blank">Learn more <ion
                                                     className="pl-2 ion-md-arrow-dropright"/></a>
                                             </div>
@@ -217,11 +199,23 @@ const HomePage = class extends React.Component {
                                         <div className="col-md-4">
                                             <div className="card card--feature">
                                                 <ion className="card__icon ion-ios-browsers mb-3"/>
-                                                <h5 className="card__title">A/B Testing</h5>
-                                                <p className="card__paragraph-text mb-5">A/B test feature sets or
-                                                    individual features</p>
+                                                <h5 className="card__title">Staged Feature Rollouts</h5>
+                                                <p className="card__paragraph-text mb-5">Deploy features to 1% of your user base. 
+                                                All good? Roll out everybody.</p>
                                                 <a className="card__link"
-                                                   href="https://docs.bullet-train.io/managing-features/"
+                                                   href="https://docs.bullet-train.io/staged-feature-rollouts/"
+                                                   target="_blank">Learn more <ion
+                                                    className="pl-2 ion-md-arrow-dropright"/></a>
+                                            </div>
+                                        </div>
+                                        <div className="col-md-4">
+                                            <div className="card card--feature">
+                                                <ion className="card__icon ion-md-done-all mb-3"/>
+                                                <h5 className="card__title">Track Changes</h5>
+                                                <p className="card__paragraph-text mb-5">Audit changes &amp;
+                                                    rollback any mistakes or issues.</p>
+                                                <a className="card__link"
+                                                   href="https://docs.bullet-train.io/audit-logs/"
                                                    target="_blank">Learn more <ion
                                                     className="pl-2 ion-md-arrow-dropright"/></a>
                                             </div>
