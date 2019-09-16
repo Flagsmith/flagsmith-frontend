@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import propTypes from 'prop-types';
 import ProjectSelect from './ProjectSelect';
 
 const Aside = class extends Component {
@@ -8,31 +9,45 @@ const Aside = class extends Component {
 	    router: React.PropTypes.object.isRequired,
 	};
 
-	constructor(props, context) {
+    static propTypes = {
+        className: propTypes.string,
+        toggleAside: propTypes.func,
+        asideIsVisible: propTypes.bool,
+    }
+
+    constructor(props, context) {
 	    super(props, context);
 	    this.state = {};
 	    AppActions.getProject(this.props.projectId);
-	}
+    }
 
-	componentWillReceiveProps(newProps) {
+    componentWillReceiveProps(newProps) {
 	    if (newProps.projectId !== this.props.projectId) {
 	        AppActions.getProject(this.props.projectId);
 	    }
-	}
+    }
 
 	onProjectSave = () => {
 	    AppActions.refreshOrganisation();
 	}
 
-	render() {
-	    const { hasFeature, getValue } = this.props;
+    toggleNav = () => {
+        this.setState({ visible: !this.state.visible });
+    }
 
+    render() {
+        const { hasFeature, getValue, toggleAside, asideIsVisible } = this.props;
 	    return (
     <OrganisationProvider>
         {({ isLoading: isLoadingOrg, projects }) => (
             <ProjectProvider id={this.props.projectId} onSave={this.onProjectSave}>
                 {({ isLoading, project }) => (
-                    <Flex className={`aside ${this.props.className || ''}`}>
+                    <Flex className={`aside ${this.props.className || ''}`} style={!asideIsVisible ? { width: 0, overflow: 'hidden' } : isMobile ? { width: '100vw' } : {}}>
+                        {isMobile && (
+                            <div role="button" className="clickable toggle" onClick={toggleAside}>
+                                <ion className="icon ion-md-menu"/>
+                            </div>
+                        )}
                         <div className="brand-container text-center">
                             <Link to="/projects">
                                 <div>
@@ -110,9 +125,7 @@ Project Settings
         )}
     </OrganisationProvider>
 	    );
-	}
+    }
 };
-
-Aside.propTypes = {};
 
 module.exports = ConfigProvider(Aside);

@@ -7,7 +7,7 @@ const Tabs = class extends React.Component {
     render() {
         return (
             <div className={`tabs ${this.props.className || ''}`}>
-                <div className="tabs-nav">
+                <div className="tabs-nav" style={isMobile ? { flexWrap: 'wrap' } : {}}>
                     {this.props.children.map((child, i) => {
                         const isSelected = this.props.value == i;
                         return (

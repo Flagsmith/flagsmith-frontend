@@ -15,7 +15,9 @@ const App = class extends Component {
         router: React.PropTypes.object.isRequired,
     };
 
-    state = {}
+    state = {
+        asideIsVisible: !isMobile,
+    }
 
     constructor(props, context) {
         super(props, context);
@@ -24,6 +26,18 @@ const App = class extends Component {
     componentDidMount = () => {
         window.addEventListener('scroll', this.handleScroll);
     };
+
+    componentWillReceiveProps(nextProps) {
+        if (this.props.location.pathname !== nextProps.location.pathname) {
+            if (isMobile) {
+                this.setState({ asideIsVisible: false });
+            }
+        }
+    }
+
+    toggleAside = () => {
+        this.setState({ asideIsVisible: !this.state.asideIsVisible });
+    }
 
     onLogin = () => {
         const { redirect } = this.props.location.query;
@@ -84,6 +98,7 @@ const App = class extends Component {
 
     render() {
         const { hasFeature, getValue, params, location } = this.props;
+        const { asideIsVisible } = this.state;
         const { projectId, environmentId } = params;
         const pageHasAside = environmentId;
         const pathname = location.pathname;
@@ -165,7 +180,7 @@ Click here to Sign
                                         </div>
                                     </AlertBar>
                                 )}
-                                <div className={pageHasAside && 'aside-body'}>
+                                <div className={pageHasAside ? `aside-body${isMobile && !asideIsVisible ? '-full-width' : ''}` : ''}>
 
                                     {isHomepage && (
                                     <nav className={isHomepage && 'show navbar navbar__master-brand'}>
@@ -238,12 +253,17 @@ Click here to Sign
                                     )}
 
                                     <nav
-                                      className={`navbar navbar-fixed-top ${pageHasAside ? ' navbar-aside' : ''}${isHomepage ? ' navbar-homepage ' : ''}${isLegal ? 'navbar-aside dark-header ' : ''}${isDark ? ' dark-header ' : ''}${this.state.myClassName ? this.state.myClassName : ''}`}
+                                      className={`navbar navbar-fixed-top ${pageHasAside && asideIsVisible ? ' navbar-aside' : ''}${isHomepage ? ' navbar-homepage ' : ''}${isLegal ? 'navbar-aside dark-header ' : ''}${isDark ? ' dark-header ' : ''}${this.state.myClassName ? this.state.myClassName : ''}`}
                                     >
-
-                                        <div className="navbar-left">
-                                            <div className="navbar-nav">
-                                                {!projectId && (
+                                        <Row space>
+                                            <div className="navbar-left">
+                                                <div className="navbar-nav">
+                                                    {pageHasAside && !asideIsVisible && (
+                                                    <div role="button" className="clickable toggle" onClick={this.toggleAside}>
+                                                        <ion className="icon ion-md-menu"/>
+                                                    </div>
+                                                    )}
+                                                    {!projectId && (
                                                     <Link
                                                       to={user ? '/projects' : '/'}
                                                       className="nav-item nav-item-brand nav-link"
@@ -266,27 +286,28 @@ Click here to Sign
                                                             </Row>
                                                         )}
                                                     </Link>
-                                                )}
+                                                    )}
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div className="navbar-right">
-                                            {user ? (
-                                                <div className="flex-column org-nav">
-                                                    <Popover
-                                                      className="popover-right"
-                                                      renderTitle={toggle => (
-                                                          <a id="org-menu" onClick={toggle}>
-                                                              {organisation ? organisation.name : ''}
-                                                              <div
-                                                                className="flex-column ion ion-ios-arrow-down"
-                                                              />
-                                                          </a>
-                                                      )}
-                                                    >
-                                                        {toggle => (
-                                                            <div>
+                                            {(!pageHasAside || !asideIsVisible || !isMobile) && (
+                                            <div className="navbar-right">
+                                                {user ? (
+                                                    <div className="flex-column org-nav">
+                                                        <Popover
+                                                          className="popover-right"
+                                                          renderTitle={toggle => (
+                                                              <a id="org-menu" onClick={toggle}>
+                                                                  {organisation ? organisation.name : ''}
+                                                                  <div
+                                                                    className="flex-column ion ion-ios-arrow-down"
+                                                                  />
+                                                              </a>
+                                                          )}
+                                                        >
+                                                            {toggle => (
+                                                                <div>
 
-                                                                {organisation && (
+                                                                    {organisation && (
                                                                     <OrganisationSelect
                                                                       clearableValue={false}
                                                                       onChange={(organisation) => {
@@ -296,88 +317,92 @@ Click here to Sign
                                                                           this.context.router.push('/projects');
                                                                       }}
                                                                     />
-                                                                )}
-                                                                <div>
-                                                                    <Link
-                                                                      id="create-org-link" onClick={toggle}
-                                                                      to="/create"
-                                                                    >
+                                                                    )}
+                                                                    <div>
+                                                                        <Link
+                                                                          id="create-org-link" onClick={toggle}
+                                                                          to="/create"
+                                                                        >
                                                                         Create Organisation
-                                                                    </Link>
-                                                                </div>
+                                                                        </Link>
+                                                                    </div>
 
-                                                                <a
-                                                                  id="logout-link" href="#"
-                                                                  onClick={() => AppActions.setUser(null)}
-                                                                  to="exampleone"
-                                                                >
+                                                                    <a
+                                                                      id="logout-link" href="#"
+                                                                      onClick={() => AppActions.setUser(null)}
+                                                                      to="exampleone"
+                                                                    >
 Logout
-                                                                </a>
-                                                            </div>
-                                                        )}
-                                                    </Popover>
-                                                </div>
-                                            ) : (
-                                                <div>
-
-                                                    <div className="hidden-sm-down">
-                                                        <Link className="float-right" to={`/login${redirect}`} onClick={Utils.scrollToSignUp}>
-                                                            <Button className="btn-primary">Login</Button>
-                                                        </Link>
-                                                        <ul className="nav-list list-unstyled float-right">
-                                                            <li><Link to="/features">Features</Link></li>
-                                                            <li><Link to="/pricing">Pricing</Link></li>
-                                                            <li><a target="_blank" href="https://docs.bullet-train.io/">Docs</a></li>
-                                                            <li><Link to="/open-source">Open Source</Link></li>
-                                                            <li><Link to="/demo">Demo</Link></li>
-                                                        </ul>
-                                                    </div>
-
-
-                                                    <div className="hidden-md-up">
-                                                        <Popover
-                                                          className="popover-right mobile-navigation"
-                                                          renderTitle={(toggle, isActive) => (
-                                                              <div className="mobile-navigation__button" onClick={toggle}>
-                                                                  <ion
-                                                                    className={isActive ? 'icon ion-ios-close' : 'icon ion-md-menu'}
-                                                                  />
-                                                              </div>
-                                                          )}
-                                                        >
-                                                            {toggle => (
-                                                                <div className="mobile-navigation__bg">
-                                                                    <ul className="list-unstyled mb-0">
-                                                                        <li><Link to="/features">Features</Link></li>
-                                                                        <li><Link to="/pricing">Pricing</Link></li>
-                                                                        <li><a target="_blank" href="https://docs.bullet-train.io/">Docs</a></li>
-                                                                        <li><Link to="/open-source">Open Source</Link></li>
-                                                                        <li><Link to="/demo">Demo</Link></li>
-                                                                        <li>
-                                                                            <Link to={`/login${redirect}`} onClick={Utils.scrollToSignUp}>
-                                                                                <Button className="btn-block">Login</Button>
-                                                                            </Link>
-                                                                        </li>
-                                                                    </ul>
+                                                                    </a>
                                                                 </div>
                                                             )}
                                                         </Popover>
                                                     </div>
+                                                ) : (
+                                                    <div>
+
+                                                        <div className="hidden-sm-down">
+                                                            <Link className="float-right" to={`/login${redirect}`} onClick={Utils.scrollToSignUp}>
+                                                                <Button className="btn-primary">Login</Button>
+                                                            </Link>
+                                                            <ul className="nav-list list-unstyled float-right">
+                                                                <li><Link to="/features">Features</Link></li>
+                                                                <li><Link to="/pricing">Pricing</Link></li>
+                                                                <li><a target="_blank" href="https://docs.bullet-train.io/">Docs</a></li>
+                                                                <li><Link to="/open-source">Open Source</Link></li>
+                                                                <li><Link to="/demo">Demo</Link></li>
+                                                            </ul>
+                                                        </div>
 
 
-                                                </div>
+                                                        <div className="hidden-md-up">
+                                                            <Popover
+                                                              className="popover-right mobile-navigation"
+                                                              renderTitle={(toggle, isActive) => (
+                                                                  <div className="mobile-navigation__button" onClick={toggle}>
+                                                                      <ion
+                                                                        className={isActive ? 'icon ion-ios-close' : 'icon ion-md-menu'}
+                                                                      />
+                                                                  </div>
+                                                              )}
+                                                            >
+                                                                {toggle => (
+                                                                    <div className="mobile-navigation__bg">
+                                                                        <ul className="list-unstyled mb-0">
+                                                                            <li><Link to="/features">Features</Link></li>
+                                                                            <li><Link to="/pricing">Pricing</Link></li>
+                                                                            <li><a target="_blank" href="https://docs.bullet-train.io/">Docs</a></li>
+                                                                            <li><Link to="/open-source">Open Source</Link></li>
+                                                                            <li><Link to="/demo">Demo</Link></li>
+                                                                            <li>
+                                                                                <Link to={`/login${redirect}`} onClick={Utils.scrollToSignUp}>
+                                                                                    <Button className="btn-block">Login</Button>
+                                                                                </Link>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                )}
+                                                            </Popover>
+                                                        </div>
+
+
+                                                    </div>
+                                                )}
+
+                                            </div>
                                             )}
-
-                                        </div>
+                                        </Row>
                                     </nav>
                                     {pageHasAside && (
                                         <Aside
                                           className={`${AccountStore.isDemo ? 'demo' : ''} ${AccountStore.isDemo || (hasFreeTrial && !hasPaid) || (hasFreeUse && !hasPaid) || !hasPaid ? 'footer' : ''}`}
                                           projectId={this.props.params.projectId}
                                           environmentId={this.props.params.environmentId}
+                                          toggleAside={this.toggleAside}
+                                          asideIsVisible={asideIsVisible}
                                         />
                                     )}
-                                    {this.props.children}
+                                    {isMobile && pageHasAside && asideIsVisible ? null : this.props.children}
                                 </div>
                             </div>
                         );
