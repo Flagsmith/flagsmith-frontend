@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { SortableContainer, SortableElement } from 'react-sortable-hoc';
 import arrayMove from 'array-move';
 
-const SortableItem = SortableElement(({ value: v, type, confirmRemove, toggle }) => (
+const SortableItem = SortableElement(({ value: v, type, confirmRemove, toggle, setValue }) => (
     <div style={{ zIndex: 9999999999 }} className="panel mb-2">
         <Row className="panel-content" space>
             <div
@@ -24,7 +24,7 @@ const SortableItem = SortableElement(({ value: v, type, confirmRemove, toggle })
                         <textarea
                           value={v.value}
                           data-test="featureValue"
-                          onChange={e => this.setValue(i, Utils.getTypedValue(Utils.safeParseEventValue(e)))}
+                          onChange={e => setValue(Utils.getTypedValue(Utils.safeParseEventValue(e)))}
                           placeholder="Value e.g. 'big' "
                         />
                     )}
@@ -41,7 +41,7 @@ const SortableItem = SortableElement(({ value: v, type, confirmRemove, toggle })
     </div>
 ));
 
-const SortableList = SortableContainer(({ items, type, confirmRemove, toggle }) => (
+const SortableList = SortableContainer(({ items, type, confirmRemove, toggle, setValue }) => (
     <div>
         {items.map((value, index) => (
             <SortableItem
@@ -51,6 +51,7 @@ const SortableList = SortableContainer(({ items, type, confirmRemove, toggle }) 
               type={type}
               confirmRemove={() => confirmRemove(index)}
               toggle={() => toggle(index)}
+              setValue={value => setValue(index, value)}
             />
         ))}
     </div>
@@ -153,6 +154,7 @@ class TheComponent extends Component {
                               type={this.props.type}
                               confirmRemove={this.confirmRemove}
                               toggle={this.toggle}
+                              setValue={this.setValue}
                               items={value.map(v => (
                                   {
                                       ...v,
