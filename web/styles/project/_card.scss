@@ -39,7 +39,7 @@
         }
         &:hover {
             transform: scale(1.1);
-            background-image: linear-gradient(270deg, #2CA69D 0%, #2BE3D6 100%);
+            background-color: $bt-brand-primary;
             .card__title, .card__paragraph-text, .card__link, .card__icon {
                 color: $bt-brand-secondary;
             }
