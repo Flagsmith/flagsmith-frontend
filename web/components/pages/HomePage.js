@@ -382,8 +382,7 @@ Not got
 
                                             <div className="form-intro text-center">
                                                 <h3>It's free to get started.</h3>
-                                                {!isInvite &&  <p className="">We have a 100% free for life plan for smaller projects.
-                                                    <a href="/pricing">Check out our Pricing</a></p>}
+                                                {!isInvite &&  <p className="text-white">We have a 100% free for life plan for smaller projects. <a href="/pricing">Check out our Pricing</a></p>}
                                             </div>
                                             {error
                                             && (
