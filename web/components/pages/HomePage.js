@@ -139,70 +139,95 @@ const HomePage = class extends React.Component {
                         </div>
 
                         <div className="feature-container">
-                            <div className="text-center col-md-12 col-lg-6 push-lg-3">
+                            <div className="text-center text-center col-lg-4 offset-lg-4">
                                 <h2>Release configurable features to segmented user groups</h2>
                                 <p>
                                     With Bullet Train you can configure attributes of your features as well as turning
                                     them on or off for specific user groups.
                                 </p>
                             </div>
-                            <div className="homepage-features col-md-8 push-md-2 row mt-5">
-                                <div className="col-md-3">
-                                    <ion className="homepage-icon icon ion-ios-rocket"/>
-                                    <h5>Feature Flags</h5>
-                                    <p>Ship features remotely across multiple environments.</p>
-                                </div>
-                                <div className="col-md-3">
-                                    <ion className="homepage-icon icon ion-ios-color-palette"/>
-                                    <h5>Remote Config</h5>
-                                    <p>
-                                        Change the behaviour, appearance and config of your app here without needing to
-                                        build.
-                                    </p>
-                                </div>
-                                <div className="col-md-3">
-                                    <ion className="homepage-icon icon ion-ios-laptop"/>
-                                    <h5>Use anywhere</h5>
-                                    <p>Integrate Bullet Train with your website, mobile apps or server</p>
-                                </div>
-                                <div className="col-md-3">
-                                    <ion className="homepage-icon icon ion-ios-person"/>
-                                    <h5>User Traits</h5>
-                                    <p>Store traits against your users without modifying your back-end.</p>
-                                </div>
-                            </div>
-                            <div className="home-sections">
-                                <div className="homepage-features col-md-6 push-md-3 row mt-5 upcoming">
-                                    <p className="large-para">Coming soon</p>
-                                    <div className="col-md-4">
-                                        <ion className="homepage-icon icon ion-md-done-all"/>
-                                        <h5>Track changes</h5>
-                                        <p>Audit feature changes & rollback any mistakes or issues</p>
+
+                            <div className="container">
+                                <div className="mt-5">
+                                    <div className="mb-3 flex-row">
+                                        <div className="col-md-4">
+                                            <div className="card card--feature">
+                                                <ion className="card__icon ion-ios-switch mb-3"/>
+                                                <h5 className="card__title">Feature Flags</h5>
+                                                <p className="card__paragraph-text mb-5">Ship features remotely across
+                                                    multiple environments.</p>
+                                                <a className="card__link"
+                                                   href="https://docs.bullet-train.io/managing-features/"
+                                                   target="_blank">Learn more <ion
+                                                    className="pl-2 ion-md-arrow-dropright"/></a>
+                                            </div>
+                                        </div>
+                                        <div className="col-md-4">
+                                            <div className="card card--feature">
+                                                <ion className="card__icon ion-ios-options mb-3"/>
+                                                <h5 className="card__title">Remote Config</h5>
+                                                <p className="card__paragraph-text mb-5"> Change the behaviour,
+                                                    appearance and config of your app here without needing to
+                                                    build.</p>
+                                                <a className="card__link"
+                                                   href="https://docs.bullet-train.io/managing-segments/#feature-flag-and-remote-config-precedence"
+                                                   target="_blank">Learn more <ion
+                                                    className="pl-2 ion-md-arrow-dropright"/></a>
+                                            </div>
+                                        </div>
+                                        <div className="col-md-4">
+                                            <div className="card card--feature">
+                                                <ion className="card__icon ion-ios-person mb-3"/>
+                                                <h5 className="card__title">User Traits</h5>
+                                                <p className="card__paragraph-text mb-5">Store traits against your users
+                                                    without modifying your back-end.</p>
+                                                <a className="card__link"
+                                                   href="https://docs.bullet-train.io/managing-features/"
+                                                   target="_blank">Learn more <ion
+                                                    className="pl-2 ion-md-arrow-dropright"/></a>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div className="col-md-4">
-                                        <ion className="homepage-icon icon ion-md-contacts"/>
-                                        <h5>Segment users</h5>
-                                        <p>Create detailed user segments for feature targeting</p>
-                                    </div>
-                                    <div className="col-md-4">
-                                        <ion className="homepage-icon icon ion-ios-flask"/>
-                                        <h5>A/B Testing</h5>
-                                        <p> A/B test feature sets or individual features</p>
+
+                                    <div className="flex-row">
+                                        <div className="col-md-4">
+                                            <div className="card card--feature">
+                                                <ion className="card__icon ion-md-done-all mb-3"/>
+                                                <h5 className="card__title">Track changes</h5>
+                                                <p className="card__paragraph-text mb-5">Audit feature changes &
+                                                    rollback any mistakes or issues</p>
+                                                <a className="card__link"
+                                                   href="https://docs.bullet-train.io/managing-features/"
+                                                   target="_blank">Learn more <ion
+                                                    className="pl-2 ion-md-arrow-dropright"/></a>
+                                            </div>
+                                        </div>
+                                        <div className="col-md-4">
+                                            <div className="card card--feature">
+                                                <ion className="card__icon ion-md-contacts mb-3"/>
+                                                <h5 className="card__title">Segment users</h5>
+                                                <p className="card__paragraph-text mb-5">Create detailed user segments
+                                                    for feature targeting</p>
+                                                <a className="card__link"
+                                                   href="https://docs.bullet-train.io/managing-features/"
+                                                   target="_blank">Learn more <ion
+                                                    className="pl-2 ion-md-arrow-dropright"/></a>
+                                            </div>
+                                        </div>
+                                        <div className="col-md-4">
+                                            <div className="card card--feature">
+                                                <ion className="card__icon ion-ios-browsers mb-3"/>
+                                                <h5 className="card__title">A/B Testing</h5>
+                                                <p className="card__paragraph-text mb-5">A/B test feature sets or
+                                                    individual features</p>
+                                                <a className="card__link"
+                                                   href="https://docs.bullet-train.io/managing-features/"
+                                                   target="_blank">Learn more <ion
+                                                    className="pl-2 ion-md-arrow-dropright"/></a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                {/* <hr/> */}
-                                {/* {getValue("home_copy") && JSON.parse(getValue("home_copy")) */}
-                                {/* .map(({title, content}) => ( */}
-                                {/* <div className={"col-md-6 push-md-3 row mt-5"}> */}
-                                {/* <div className={"text-center"}> */}
-                                {/* <h2> */}
-                                {/* {title} */}
-                                {/* </h2> */}
-                                {/* <div dangerouslySetInnerHTML={{__html: content}} */}
-                                {/* className={"col-md-12"}/> */}
-                                {/* </div> */}
-                                {/* </div> */}
-                                {/* ))} */}
                             </div>
                         </div>
 
