@@ -61,17 +61,22 @@ export default class FeaturessExampleView extends Component {
                                 <h2 className="text-center mb-4">Feature Flags</h2>
                                 <div className="row">
                                     <div className="col-sm-4">
-                                        <ion className="homepage-icon icon--green ion-md-done-all text-center"/>
+                                        <ion className="card__icon icon--green ion-md-done-all text-center"/>
                                         <p>Hide new features behind Feature Flags that are managed within Bullet Train.</p>
                                     </div>
                                     <div className="col-sm-4">
-                                        <ion className="homepage-icon icon--green ion-md-done-all text-center"/>
+                                        <ion className="card__icon icon--green ion-md-done-all text-center"/>
                                         <p>Continuously deploy new code. Separate code deployments from feature releases.</p>
                                     </div>
                                     <div className="col-sm-4">
-                                        <ion className="homepage-icon icon--green ion-md-done-all text-center"/>
+                                        <ion className="card__icon icon--green ion-md-done-all text-center"/>
                                         <p>Roll new features out to a subset of your users before enabling it for everyone.</p>
                                     </div>
+                                </div>
+                                <div className="col-md-12 text-center">
+                                    <a target="_blank" href="https://docs.bullet-train.io/managing-features/">
+                                        <Button>Learn more</Button>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -108,6 +113,13 @@ export default class FeaturessExampleView extends Component {
                             <h2 className="mb-4">Remote Config</h2>
                             <div className="col-lg-8 offset-lg-2">
                                 <p>Features dont have to be Yes/No boolean values. You can specify String or Int values and overide them whenever you like.</p>
+
+                                <div className="text-center">
+                                    <a target="_blank" href="https://docs.bullet-train.io/managing-features/">
+                                        <Button>Learn more</Button>
+                                    </a>
+                                </div>
+
                             </div>
                         </div>
                         <div className="row">
@@ -132,6 +144,9 @@ export default class FeaturessExampleView extends Component {
                             <div className="col-md-4">
                                 <h2 className="mb-4">User Traits</h2>
                                 <p>Store traits against your users without modifying your back-end.</p>
+                                <a target="_blank" href="https://docs.bullet-train.io/managing-identities/#identity-traits">
+                                    <Button>Learn more</Button>
+                                </a>
                             </div>
                             <div className="col-md-1 offset-md-2 hidden-sm-down">
                                 <img src="/images/features-page/user-traits-steps.svg" alt="User Traits" className="img-fluid"/>
