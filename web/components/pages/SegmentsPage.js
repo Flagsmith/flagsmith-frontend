@@ -180,7 +180,7 @@ User Traits
                                                         </a>
                                                         .
                                                         As user's traits are updated they will automatically be added to
-                                                        the segments based on the rules you create.
+                                                        the segments based on the rules you create. <a href="https://docs.bullet-train.io/managing-segments/">Check out the documentation on Segments</a>.
                                                     </p>
                                                 </Panel>
                                             </FormGroup>
