@@ -103,6 +103,29 @@ module.exports = Object.assign(
                 clearDown(browser, done);
             });
         },
+        afterEach: (browser, done) => {
+            if (browser.currentTest.results.failed) {
+                if (SLACK_TOKEN && browser.sessionId) {
+                    browser.pause(5000) // Workaround since waitForElementIsVisible with abortOnFailure set to false doesnt actually work https://github.com/nightwatchjs/nightwatch/issues/1493
+                        .isVisible('#e2e-request', (result) => {
+                            // There is a chance e2e request will not be present if tests failed on another website i.e. mailinator
+                            if (result.status !== -1) {
+                                browser.getText('#e2e-error', (error) => {
+                                    browser.getText('#e2e-request', (request) => {
+                                        sendFailure(browser, done, request, error);
+                                    });
+                                });
+                            } else {
+                                sendFailure(browser, done);
+                            }
+                        });
+                } else {
+                    sendFailure(browser, done);
+                }
+            } else {
+                done();
+            }
+        },
         after: (browser, done) => {
             if (SLACK_TOKEN && browser.sessionId) {
                 browser.pause(5000) // Workaround since waitForElementIsVisible with abortOnFailure set to false doesnt actually work https://github.com/nightwatchjs/nightwatch/issues/1493
