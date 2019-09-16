@@ -13,12 +13,13 @@ const Gif = class extends Component {
     render() {
         return (
             <Flex
-              onClick={() => this.setState({ paused: !this.state.paused })}
-              className={`centered-container gif ${this.state.paused ? 'paused' : 'playing'}`}
+                onClick={() => this.setState({paused: !this.state.paused})}
+                className={`centered-container gif ${this.state.paused ? 'paused' : 'playing'}`}
             >
                 <img
-                  {...this.props}
-                  src={this.state.paused ? this.props.pausedSrc : this.props.src}
+                    {...this.props}
+                    alt="Pause"
+                    src={this.state.paused ? this.props.pausedSrc : this.props.src}
                 />
                 <ion className="ion ion-ios-play"/>
             </Flex>

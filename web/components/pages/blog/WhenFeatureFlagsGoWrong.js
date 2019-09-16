@@ -149,7 +149,7 @@ This company remains nameless and their error didn’t kill their
                         <div className="float-left blog-post__media blog-post__media--padded">
                             <img
                               src="https://media.giphy.com/media/5hbbUaJHKId23nE51B/giphy.gif"
-                              alt="Me jumping on the dried tears of failure" className="blog-post__media__image"
+                              alt="Bugs Bunny" className="blog-post__media__image"
                             />
                             <caption className="full-width blog-post__media__caption">
 A poorly managed feature toggle
@@ -203,7 +203,7 @@ The last we hear about this company is that they still haven’t
                         <div className="float-left blog-post__media blog-post__media--padded">
                             <img
                               src="https://media.giphy.com/media/naxep4vNBAOL6/giphy.gif"
-                              alt="Me jumping on the dried tears of failure" className="blog-post__media__image"
+                              alt="Explosion" className="blog-post__media__image"
                             />
                             <caption className="full-width blog-post__media__caption">DO NOT TOUCH THE BUTTON</caption>
                         </div>

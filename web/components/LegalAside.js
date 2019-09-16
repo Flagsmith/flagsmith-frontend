@@ -18,7 +18,7 @@ const LegalAside = class extends Component {
         <div className="brand-container text-center">
             <Link to="/">
                 <Row>
-                    <img height={34} src="/images/icon-2.png"/>
+                    <img height={34} src="/images/icon-2.png" alt="Bullet Train Logo"/>
 							Bullet Train
 
                 </Row>

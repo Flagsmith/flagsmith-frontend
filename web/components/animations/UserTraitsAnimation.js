@@ -57,7 +57,7 @@ export default class UserTraitsAnimation extends Component {
                 <div className="cookie-container pt-3 pb-3">
                     <div className="mouse">
                         <div className="cookie-tap"/>
-                        <img className="cookie-pointer" src="/images/features-page/pointer-screen-pointer.svg" />
+                        <img className="cookie-pointer" alt="pointer" src="/images/features-page/pointer-screen-pointer.svg" />
                     </div>
                     <Row className="cookie-content">
                         <div className="col-xs-4">

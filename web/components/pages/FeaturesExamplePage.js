@@ -134,7 +134,7 @@ export default class FeaturessExampleView extends Component {
                                 <p>Store traits against your users without modifying your back-end.</p>
                             </div>
                             <div className="col-md-1 offset-md-2 hidden-sm-down">
-                                <img src="/images/features-page/user-traits-steps.svg" className="img-fluid"/>
+                                <img src="/images/features-page/user-traits-steps.svg" alt="User Traits" className="img-fluid"/>
                             </div>
                             <div className="col-md-5">
                                 <div className="card card--navy card--code">

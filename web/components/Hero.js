@@ -63,7 +63,7 @@ across web, mobile and
 
                         </div>
                         <div className="col-md-6 offset-md-1">
-                            <img src="/images/bullet-train-illustration.svg" className="hero-illustration" alt="Javascript feature flags"/>
+                            <img src="/images/bullet-train-illustration.svg" className="hero-illustration" alt="Bullet Train illustration"/>
                         </div>
                     </div>
                 </div>

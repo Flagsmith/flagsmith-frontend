@@ -205,7 +205,7 @@ Click here to Sign
                                                           href="https://bullet-train.io/" target="__blank"
                                                           className="product-item"
                                                         >
-                                                            <img src="/images/products-nav/bullet-train-logo-mark.svg" alt="Javascript feature flags"/>
+                                                            <img src="/images/products-nav/bullet-train-logo-mark.svg" alt="Bullet Train logo"/>
                                                             <h5>Bullet Train</h5>
                                                             <small>Release features with confidence</small>
                                                         </a>
@@ -214,7 +214,7 @@ Click here to Sign
                                                           className="product-item"
                                                         >
                                                             <img
-                                                              src="/images/products-nav/formly-logo-mark-colour.svg" alt="Javascript feature flags"
+                                                              src="/images/products-nav/formly-logo-mark-colour.svg" alt="Formly logo"
                                                             />
                                                             <h5>Formly</h5>
                                                             <small>Contact Forms, Simplified</small>
@@ -224,7 +224,7 @@ Click here to Sign
                                                           className="product-item"
                                                         >
                                                             <img
-                                                              src="/images/products-nav/uptimely-logo-mark-colour-filled.svg" alt="Javascript feature flags"
+                                                              src="/images/products-nav/uptimely-logo-mark-colour-filled.svg" alt="Uptimely logo"
                                                             />
                                                             <h5>Uptimely</h5>
                                                             <small>Website Monitoring. Sorted.</small>
@@ -254,13 +254,13 @@ Click here to Sign
                                                                     <img
                                                                       title="Bullet Train" height={24}
                                                                       src="/images/bullet-train-1.svg"
-                                                                      className="brand" alt="Javascript feature flags"
+                                                                      className="brand" alt="Bullet Train logo"
                                                                     />)
                                                                     : (
                                                                         <img
                                                                           title="Bullet Train" height={24}
                                                                           src="/images/bullet-train-black.svg"
-                                                                          className="brand" alt="Javascript feature flags"
+                                                                          className="brand" alt="Bullet Train logo"
                                                                         />
                                                                     ) }
                                                             </Row>
