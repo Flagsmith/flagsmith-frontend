@@ -1,6 +1,9 @@
 .aside-body {
 	padding-left: $aside-width;
 	//padding-bottom: 44px;
+	&-full-width {
+		padding-left: 0;
+	}
 }
 
 
@@ -113,6 +116,15 @@ $animation-timing-function: ease-in-out;
 		.link-header {
 			color: white;
 			padding: 20px 20px 0;
+		}
+	}
+	.toggle {
+		position: absolute;
+		left: 15px;
+		top: 15px;
+		>.icon {
+			color:white;
+			font-size: 1.5rem;
 		}
 	}
 }

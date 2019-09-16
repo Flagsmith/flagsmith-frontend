@@ -13,8 +13,12 @@ import findIndex from 'lodash/findIndex';
 import range from 'lodash/range';
 import keyBy from 'lodash/keyBy';
 import throttle from 'lodash/throttle';
+import { isMobile } from 'react-device-detect';
 import Bootstrap from '../../node_modules/bootstrap/dist/js/bootstrap';
 import Project from '../../common/project';
+
+
+window.isMobile = isMobile || $(window).width() <= 576;
 
 window.bulletTrain = bulletTrain;
 window.moment = require('moment/min/moment.min');

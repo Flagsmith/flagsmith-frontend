@@ -68,7 +68,14 @@ const Modal = class extends React.Component {
                 >
                     <div className={`modal-dialog ${this.props.large ? 'modal-lg' : ''}`}>
                         <div className="modal-content">
-                            <div className="modal-header">{this.header()}</div>
+                            <div className="modal-header">
+                                {this.header()}
+                                {isMobile && (
+                                <button onClick={() => this.refs.modal.close()} className="modal-close-btn">
+                                    <ion className="icon ion-md-close"/>
+                                </button>
+                                )}
+                            </div>
                             <div className="modal-body">{this.body()}</div>
                             <div className="modal-footer">{this.footer()}</div>
                         </div>
