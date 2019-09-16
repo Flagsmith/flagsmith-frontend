@@ -104,7 +104,7 @@ module.exports = Object.assign(
             });
         },
         afterEach: (browser, done) => {
-            if (browser.currentTest.results.failed) {
+            if (browser.currentTest.results.errors || browser.currentTest.results.failed) {
                 if (SLACK_TOKEN && browser.sessionId) {
                     browser.pause(5000) // Workaround since waitForElementIsVisible with abortOnFailure set to false doesnt actually work https://github.com/nightwatchjs/nightwatch/issues/1493
                         .isVisible('#e2e-request', (result) => {
