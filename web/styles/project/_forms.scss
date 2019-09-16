@@ -105,3 +105,41 @@ a.dark{
     z-index: 99999999 !important;
     position: fixed;
 }
+
+.notification {
+    text-align: center;
+    justify-content: center;
+    align-self: center;
+    &__icon {
+        color: $bt-brand-orange;
+        font-size: 2em;
+    }
+    &__text {
+        color: $bt-brand-orange;
+        font-weight: bold;
+    }
+}
+
+.badge {
+    display: inline-block;
+    padding: .25em .4em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.badge-pill {
+    padding-right: .6em;
+    padding-left: .6em;
+    border-radius: 10rem;
+}
+
+.badge-info {
+    background-color: $bt-brand-primary;
+    color: white;
+}

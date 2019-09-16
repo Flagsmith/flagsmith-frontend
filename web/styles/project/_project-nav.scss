@@ -47,6 +47,13 @@ nav.navbar {
             line-height: 44px;
         }
     }
+    .navbar-left {
+        .toggle {
+            >.icon {
+                font-size: 1.5rem;
+            }
+        }
+    }
     .popover-right {
         left: -175px;
         a {
@@ -61,7 +68,7 @@ nav.navbar {
         height: 50px;
         padding-top: 3px;
     }
-
+    
     .brand {
         margin-top: 5px;
     }

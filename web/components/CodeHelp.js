@@ -25,7 +25,7 @@ const CodeHelp = class extends Component {
                 {!hideHeader && (
                     <div style={{ cursor: 'pointer' }} onClick={() => this.setState({ visible: !this.state.visible })}>
                         <Row>
-                            <Flex>
+                            <Flex style={isMobile ? { overflowX: 'scroll' } : {}}>
                                 <div>
                                     <pre className="hljs-header">
                                         <ion className="ion-ios-code"/>

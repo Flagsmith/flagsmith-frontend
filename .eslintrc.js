@@ -89,6 +89,7 @@ module.exports = {
         'FormGroup': true,
         'ga': true,
         'hot': true,
+        'isMobile': true,
         'Link': true,
         'Loader': true,
         'mixpanel': true,
