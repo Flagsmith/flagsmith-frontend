@@ -31,6 +31,7 @@ const ConfirmToggleFeature = class extends Component {
                                 : <span className="feature--on"><strong>"On"</strong></span>}
                             {' '}
                             for
+                            {' '}
                             <strong>{_.find(project.environments, { api_key: this.props.environmentId }).name}</strong>
                             {identity && (
                                 <span>
@@ -40,23 +41,6 @@ const ConfirmToggleFeature = class extends Component {
                                 </span>
                             )}
                         </p>
-                        {/* <FormGroup> */}
-                        {/* <div> */}
-                        {/* <strong> */}
-                        {/* Comments (Optional) */}
-                        {/* </strong> */}
-                        {/* </div> */}
-                        {/* <textarea rows={5} onChange={(e) => this.setState({comment: Utils.safeParseEventValue(e)})}> */}
-
-                        {/* </textarea> */}
-                        {/* </FormGroup> */}
-                        {/* <Row> */}
-                        {/* Do the same for all environments <Switch */}
-                        {/* checked={this.state.allEnvironments} */}
-                        {/* onChange={(allEnvironments) => { */}
-                        {/* this.setState({allEnvironments}) */}
-                        {/* }}/> */}
-                        {/* </Row> */}
                         <FormGroup className="text-right">
                             <Button
                               onClick={() => {
