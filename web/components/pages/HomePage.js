@@ -36,6 +36,10 @@ const HomePage = class extends React.Component {
                 $('.navbar-homepage').removeClass('dark-header');
             }
         });
+
+        if (document.location.href.indexOf('invite') != -1) {
+            Utils.scrollToSignUp();
+        }
     }
 
     showForgotPassword = (e) => {
@@ -280,8 +284,16 @@ Now you can manage feature flags and remote config across web, mobile and server
                                                   login({ email, password });
                                               }}
                                             >
-                                                <h3 className="margin-bottom">User login</h3>
-                                                {isInvite && <p>Login to accept your invite</p>}
+                                                <div className="form-intro text-center">
+                                                    <h3>User login</h3>
+                                                </div>
+                                                {isInvite &&
+                                                <div className="notification flex-row">
+                                                    <ion
+                                                        className="notification__icon ion-md-information-circle-outline mb-3"/>
+                                                    <p className="notification__text pl-3">Login to accept your invite</p>
+                                                </div>
+                                                }
                                                 <fieldset id="details" className="col-lg-6 offset-lg-3">
                                                     {error && error.email ? (
                                                         <span
@@ -376,7 +388,7 @@ Not got
 
                                             <div className="form-intro text-center">
                                                 <h3>It's free to get started.</h3>
-                                                <p className="">Sign up for a 30 day free trial</p>
+                                                {!isInvite && <p className="">Sign up for a 30 day free trial</p>}
                                             </div>
                                             {error
                                             && (
@@ -387,7 +399,14 @@ Not got
                                                 </FormGroup>
                                             )
                                             }
-                                            {isInvite && <p>Sign up to accept your invite</p>}
+                                            {isInvite &&
+                                                <div className="notification flex-row">
+                                                    <ion
+                                                        className="notification__icon ion-md-information-circle-outline mb-3"/>
+                                                    <p className="notification__text pl-3">Sign up to accept your
+                                                        invite</p>
+                                                </div>
+                                            }
                                             <fieldset id="details" className="col-lg-6 offset-lg-3">
                                                 <Input
                                                   data-test="firstName"
