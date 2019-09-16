@@ -66,7 +66,7 @@ const clearDown = function (browser, done) {
     }
 };
 
-const sendFailure = (browser, done, request, error) => {
+const sendFailure = (browser, done, afterEach, request, error) => {
     const lastRequest = request && request.value ? JSON.parse(request.value) : 'No last request';
     const lastError = error && error.value ? JSON.parse(error.value) : 'No last error';
     console.log('Last request:', lastRequest);
@@ -78,6 +78,10 @@ const sendFailure = (browser, done, request, error) => {
             error: lastError,
         }, null, 2).replace(/\\/g, '')}\`\`\``, E2E_SLACK_CHANNEL, 'Screenshot')
             .then(() => {
+                if (afterEach) {
+                    done();
+                    return;
+                }
                 browser.end();
                 done();
                 server.kill('SIGINT');
@@ -112,15 +116,15 @@ module.exports = Object.assign(
                             if (result.status !== -1) {
                                 browser.getText('#e2e-error', (error) => {
                                     browser.getText('#e2e-request', (request) => {
-                                        sendFailure(browser, done, request, error);
+                                        sendFailure(browser, done, true, request, error);
                                     });
                                 });
                             } else {
-                                sendFailure(browser, done);
+                                sendFailure(browser, done, true);
                             }
                         });
                 } else {
-                    sendFailure(browser, done);
+                    sendFailure(browser, done, true);
                 }
             } else {
                 done();
@@ -134,7 +138,7 @@ module.exports = Object.assign(
                         if (result.status !== -1) {
                             browser.getText('#e2e-error', (error) => {
                                 browser.getText('#e2e-request', (request) => {
-                                    sendFailure(browser, done, request, error);
+                                    sendFailure(browser, done, false, request, error);
                                 });
                             });
                         } else {
