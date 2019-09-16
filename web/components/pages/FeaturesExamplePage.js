@@ -145,7 +145,7 @@ export default class FeaturessExampleView extends Component {
                                 <h2 className="mb-4">User Traits</h2>
                                 <p>Store traits against your users without modifying your back-end.</p>
                                 <a target="_blank" href="https://docs.bullet-train.io/managing-identities/#identity-traits">
-                                    <Button>Learn more</Button>
+                                    <Button className="mb-5">Learn more</Button>
                                 </a>
                             </div>
                             <div className="col-md-1 offset-md-2 hidden-sm-down">
