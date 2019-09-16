@@ -252,6 +252,7 @@ Click here to Sign
 
                                     )}
 
+                                    {(!pageHasAside || !asideIsVisible || !isMobile) && (
                                     <nav
                                       className={`navbar navbar-fixed-top ${pageHasAside && asideIsVisible ? ' navbar-aside' : ''}${isHomepage ? ' navbar-homepage ' : ''}${isLegal ? 'navbar-aside dark-header ' : ''}${isDark ? ' dark-header ' : ''}${this.state.myClassName ? this.state.myClassName : ''}`}
                                     >
@@ -289,7 +290,6 @@ Click here to Sign
                                                     )}
                                                 </div>
                                             </div>
-                                            {(!pageHasAside || !asideIsVisible || !isMobile) && (
                                             <div className="navbar-right">
                                                 {user ? (
                                                     <div className="flex-column org-nav">
@@ -390,9 +390,9 @@ Logout
                                                 )}
 
                                             </div>
-                                            )}
                                         </Row>
                                     </nav>
+                                    )}
                                     {pageHasAside && (
                                         <Aside
                                           className={`${AccountStore.isDemo ? 'demo' : ''} ${AccountStore.isDemo || (hasFreeTrial && !hasPaid) || (hasFreeUse && !hasPaid) || !hasPaid ? 'footer' : ''}`}
