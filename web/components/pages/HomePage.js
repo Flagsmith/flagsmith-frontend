@@ -279,7 +279,7 @@ Now you can manage feature flags and remote config across web, mobile and server
                                               }}
                                             >
                                                 <div className="form-intro text-center">
-                                                    <h3>User login</h3>
+                                                    <h3 className="mb-4">User login</h3>
                                                 </div>
                                                 {isInvite &&
                                                 <div className="notification flex-row">
