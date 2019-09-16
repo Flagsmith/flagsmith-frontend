@@ -45,7 +45,7 @@ const Aside = class extends Component {
                     <Flex className={`aside ${this.props.className || ''}`} style={!asideIsVisible ? { width: 0, overflow: 'hidden' } : isMobile ? { width: '100vw' } : {}}>
                         {isMobile && (
                             <div role="button" className="clickable toggle" onClick={toggleAside}>
-                                <ion className="icon ion-md-menu"/>
+                                {!asideIsVisible ? <ion className="icon ion-md-menu"/> : <ion className="icon ion-md-close"/> }
                             </div>
                         )}
                         <div className="brand-container text-center">
