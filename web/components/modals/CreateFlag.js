@@ -94,7 +94,7 @@ const CreateFlag = class extends Component {
                                               tabLabel={(
                                                   <Row className="row-center">
                                                       <ion className="tab-icon ion-ios-switch"/>
-                                                        Feature Flag
+                                                      <span className="tab-text">Feature Flag</span>
                                                   </Row>
                                                 )}
                                             />
@@ -105,7 +105,7 @@ const CreateFlag = class extends Component {
                                               tabLabel={(
                                                   <Row className="row-center">
                                                       <ion className="tab-icon ion-ios-settings"/>
-                                                    Remote config
+                                                      <span className="tab-text">Remote config</span>
                                                   </Row>
                                             )}
                                             />

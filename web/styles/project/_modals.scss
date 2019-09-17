@@ -26,3 +26,19 @@
     }
 }
 
+@media (max-width: 576px) {
+    .modal {
+        .tab-icon {
+            font-size: 1em;
+            margin-right: 0.25em !important;
+        }
+        .tab-text {
+            font-size: .85em;
+        }
+    }
+
+}
+
+
+
+
