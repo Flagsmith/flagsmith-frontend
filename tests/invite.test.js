@@ -83,7 +83,7 @@ module.exports = {
                     .back();
 
                 testHelpers.logout(browser);
-                testHelpers.login(browser, url, 'nightwatch-invitee@solidstategroup.com', 'nightwatch');
+                testHelpers.login(browser, url, inviteEmail, 'nightwatch');
 
                 browser.expect.element('#project-select-page').to.be.visible;
                 browser.url(inviteUrl);

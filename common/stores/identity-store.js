@@ -7,12 +7,17 @@ const controller = {
     getIdentity: (envId, id) => {
         store.loading();
         return data.get(`${Project.api}environments/${envId}/identities/${id}/`)
-            .then(identity => Promise.all([data.get(`${Project.api}identities/?identifier=${identity.identifier}`, null, { 'x-environment-key': envId }), Promise.resolve(identity)]))
+            .then(identity => Promise.all([
+                data.get(`${Project.api}identities/?identifier=${identity.identifier}`, null, { 'x-environment-key': envId }),
+                Promise.resolve(identity),
+            ]))
             .then(([res, identity]) => {
                 const features = res.flags;
                 const traits = res.traits;
-                store.model = { features, traits, identity };
+                store.model = store.model || {};
                 store.model.features = features && _.keyBy(features, f => f.feature.id);
+                store.model.traits = traits;
+                store.model.identity = identity;
                 store.loaded();
             })
             .catch(e => API.ajaxHandler(store, e));
