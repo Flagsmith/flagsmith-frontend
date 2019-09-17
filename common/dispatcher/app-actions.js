@@ -175,6 +175,13 @@ const AppActions = Object.assign({}, require('./base/_app-actions'), {
             id,
         });
     },
+    getIdentitySegments(envId, id) {
+        Dispatcher.handleViewAction({
+            actionType: Actions.GET_IDENTITY_SEGMENTS,
+            envId,
+            id,
+        });
+    },
     saveIdentity(id, identity) {
         Dispatcher.handleViewAction({
             actionType: Actions.SAVE_IDENTITY,
