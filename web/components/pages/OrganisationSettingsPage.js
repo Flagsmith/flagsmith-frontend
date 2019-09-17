@@ -122,7 +122,7 @@ const OrganisationSettingsPage = class extends Component {
                                     <form key={organisation.id} onSubmit={this.save}>
                                         <h5>Organisation Name</h5>
                                         <Row>
-                                            <Column className="m-l-0">
+                                            <Column className="m-l-0 mb-2">
                                                 <Input
                                                   ref={e => this.input = e}
                                                   value={this.state.name || organisation.name}
@@ -152,7 +152,7 @@ const OrganisationSettingsPage = class extends Component {
                                         <div>
                                             <Row>
                                                 <button
-                                                  type="button" className="btn btn-primary text-center ml-auto"
+                                                  type="button" className="btn btn-primary text-center ml-auto mt-2 mb-2"
                                                   onClick={() => openModal(null, <PaymentModal
                                                     viewOnly={false}
                                                   />, null, { large: true })}
