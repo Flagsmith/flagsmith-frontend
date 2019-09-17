@@ -37,7 +37,7 @@ const App = class extends Component {
     }
 
     hideMobileNav = () => {
-        if (this.mobileNav.isActive()) {
+        if (this.mobileNav && this.mobileNav.isActive()) {
             this.mobileNav.toggle();
         }
     }
