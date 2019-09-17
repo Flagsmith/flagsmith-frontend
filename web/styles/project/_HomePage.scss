@@ -258,15 +258,11 @@ footer {
     }
 
     footer {
-        .nav-list {
-            margin: 0 0 20px 0;
-            width: 100%;
-            text-align: center;
-            padding: 0;
-        }
-
         .brand-footer {
             display: none;
         }
+    }
+    .feature-container {
+        padding: 3em 0;
     }
 }
