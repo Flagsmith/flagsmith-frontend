@@ -205,7 +205,7 @@ const HomePage = class extends React.Component {
                                                 <ion className="card__icon ion-ios-browsers mb-3"/>
                                                 <h5 className="card__title">Staged Feature Rollouts</h5>
                                                 <p className="card__paragraph-text mb-5">Deploy features to 1% of your user base.
-                                                All good? Roll out everybody.</p>
+                                                All good? Roll out to everybody.</p>
                                                 <a className="card__link"
                                                    href="https://docs.bullet-train.io/staged-feature-rollouts/"
                                                    target="_blank">Learn more <ion

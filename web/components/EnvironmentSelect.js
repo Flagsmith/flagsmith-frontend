@@ -37,6 +37,7 @@ const EnvironmentSelect = class extends Component {
                                         <ul className="env-nav list-unstyled">
                                             <li className="env-nav__item flex-row">
                                                 <Link
+                                                  id="features-link"
                                                   activeClassName="active"
                                                   to={`/project/${project.id}/environment/${environment.api_key}/features`
                                                     }

@@ -7,16 +7,13 @@ const url = `http://localhost:${process.env.PORT || 8080}`;
 const helpers = require('./helpers');
 
 const byId = helpers.byTestID;
+const setSegmentRule = helpers.setSegmentRule;
 
 module.exports = {
     '[Main Tests] - Register': async function (browser) {
         browser.url(url); // visit the url
-
-
         browser.waitAndSet(byId('firstName'), 'Night');
-
         browser.setValue(byId('lastName'), 'Watch');
-
         browser.setValue(byId('companyName'), 'Nightwatch Ltd');
         browser.setValue(byId('email'), email);
         browser.setValue(byId('password'), password);
@@ -29,10 +26,49 @@ module.exports = {
         browser.click(byId('create-project-btn'));
         browser.waitForElementVisible(byId('features-page'));
     },
+    // END OF FEATURES
+    // Age == 18 || Age == 19
+    '[Main Tests] - Create Segment': async function (browser) {
+        browser.pause(200);
+        browser.waitAndClick('#segments-link');
+        browser.pause(200);
+        browser.waitAndClick(byId('show-create-segment-btn'));
+
+        // (=== 18 || === 19) && (> 17 || < 19) && (!=20) && (<=18) && (>=18)
+        // Rule 1- Age === 18 || Age === 19
+        browser.waitAndSet(byId('segmentID'), '18_or_19');
+        setSegmentRule(browser, 0, 0, 'age', 'EQUAL', 18);
+        browser.click(byId('rule-0-or'));
+        setSegmentRule(browser, 0, 1, 'age', 'EQUAL', 17);
+
+        // Rule 2 - Age > 17 || Age < 19
+        browser.waitAndClick(byId('add-rule'));
+        setSegmentRule(browser, 1, 0, 'age', 'GREATER_THAN', 17);
+        browser.click(byId('rule-1-or'));
+        setSegmentRule(browser, 1, 1, 'age', 'LESS_THAN', 10);
+
+        // Rule 3 - != 20
+        browser.waitAndClick(byId('add-rule'));
+        setSegmentRule(browser, 2, 0, 'age', 'NOT_EQUAL', 20);
+
+        // Rule 4 - <= 18
+        browser.waitAndClick(byId('add-rule'));
+        setSegmentRule(browser, 3, 0, 'age', 'LESS_THAN_INCLUSIVE', 18);
+
+        // Rule 5 - >= 18
+        browser.waitAndClick(byId('add-rule'));
+        setSegmentRule(browser, 4, 0, 'age', 'GREATER_THAN_INCLUSIVE', 18);
+
+        // Create
+        browser.waitAndClick(byId('create-segment'));
+        browser.waitForElementVisible(byId('segment-0-name'));
+        browser.expect.element(byId('segment-0-name')).text.to.equal('18_or_19');
+    },
     // FEATURES
     '[Main Tests] - Create feature': async function (browser) {
-        browser.waitForElementNotPresent(byId('create-project-modal'));
-        browser.click(byId('show-create-feature-btn'));
+        browser.waitAndClick('#features-link');
+        browser.pause(200);
+        browser.waitAndClick(byId('show-create-feature-btn'));
         browser.waitAndClick(byId('btn-select-remote-config'));
         browser.setValue(byId('featureID'), 'header_size');
         browser.setValue(byId('featureValue'), 'big');
@@ -90,26 +126,24 @@ module.exports = {
             .click('#confirm-toggle-feature-btn')
             .waitForElementVisible('#features-list .rc-switch[aria-checked="true"]');
     },
-    '[Main Tests] - Try feature out': function (browser) {
-        browser
-            .waitForElementNotPresent('#confirm-toggle-feature-modal')
-            .click('#try-it-btn')
-            .waitForElementVisible('#try-it-results')
-            .getText('#try-it-results', (res) => {
-                browser.assert.equal(typeof res, 'object');
-                browser.assert.equal(res.status, 0);
-                let json;
-                try {
-                    json = JSON.parse(res.value);
-                } catch (e) {
-                    throw new Error('Try it results are not valid JSON');
-                }
-                // Unfortunately chai.js expect assertions do not report success in the Nightwatch reporter (but they do report failure)
-                expect(json).to.have.property('header_size');
-                expect(json.header_size).to.have.property('value');
-                expect(json.header_size.value).to.equal('big');
-                browser.assert.ok(true, 'Try it JSON was correct for the feature'); // Re-assurance that the chai tests above passed
-            });
+    '[Main Tests] - Try feature out': async function (browser) {
+        browser.waitForElementNotPresent('#confirm-toggle-feature-modal');
+        browser.waitAndClick('#try-it-btn');
+        browser.waitForElementVisible('#try-it-results');
+        const res = await browser.getText('#try-it-results');
+        browser.assert.equal(typeof res, 'object');
+        browser.assert.equal(res.status, 0);
+        let json;
+        try {
+            json = JSON.parse(res.value);
+        } catch (e) {
+            throw new Error('Try it results are not valid JSON');
+        }
+        // Unfortunately chai.js expect assertions do not report success in the Nightwatch reporter (but they do report failure)
+        expect(json).to.have.property('header_size');
+        expect(json.header_size).to.have.property('value');
+        expect(json.header_size.value).to.equal('big');
+        browser.assert.ok(true, 'Try it JSON was correct for the feature'); // Re-assurance that the chai tests above passed
     },
     '[Main Tests] - Change feature value to number': function (browser) {
         browser
@@ -256,27 +290,15 @@ module.exports = {
             .waitForElementVisible('#user-traits-list .js-trait-value');
         browser.expect.element('#user-traits-list .js-trait-value').text.to.equal('1');
     },
-    // END OF FEATURES
-    '[Main Tests] - Create Segment': async function (browser) {
-        browser.pause(200);
-        browser.waitAndClick('#segments-link');
-        browser.waitAndClick(byId('show-create-segment-btn'));
-        browser.waitAndSet(byId('segmentID'), 'my_segment');
-        browser.waitAndSet(byId('rule-0-property'), 'age');
-        browser.waitAndSet(byId('rule-0-value'), '18');
-        browser.waitAndClick(byId('create-segment'));
-        browser.waitForElementVisible(byId('segment-0-name'));
-        browser.expect.element(byId('segment-0-name')).text.to.equal('my_segment');
-    },
     '[Main Tests] - Edit environment': function (browser) {
         browser
             .click('#env-settings-link')
             .waitForElementVisible("[name='env-name']")
             .clearValue("[name='env-name']")
             .setValue("[name='env-name']", 'Internal')
-            .click("#save-env-btn");
+            .click('#save-env-btn');
 
-        browser.waitForElementVisible(byId('switch-environment-internal-active'))
+        browser.waitForElementVisible(byId('switch-environment-internal-active'));
     },
     '[Main Tests] - Delete environment': function (browser) {
         browser
@@ -287,7 +309,7 @@ module.exports = {
             .waitForElementVisible('#project-select-page');
     },
     '[Main Tests] - View project': function (browser) {
-        browser.waitForElementVisible('#projects-list a.list-item')
+        browser.waitForElementVisible('#projects-list a.list-item');
         browser.expect.element('#projects-list a.list-item').text.to.equal('My Test Project');
         browser.click('#projects-list a.list-item');
         browser.waitForElementVisible('#features-page');
@@ -300,9 +322,9 @@ module.exports = {
             .waitForElementVisible("[name='proj-name']")
             .clearValue("[name='proj-name']")
             .setValue("[name='proj-name']", 'Test Project')
-            .click("#save-proj-btn");
+            .click('#save-proj-btn');
 
-        browser.waitForElementVisible(byId('switch-project-test project-active'))
+        browser.waitForElementVisible(byId('switch-project-test project-active'));
     },
     '[Main Tests] - Delete Nightwatch Ltd organisation': function (browser) {
         browser
@@ -310,10 +332,10 @@ module.exports = {
             .waitForElementVisible('#delete-org-btn')
             .click('#delete-org-btn')
             .waitForElementVisible('[name="confirm-org-name"]')
-            .setValue('[name="confirm-org-name"]', "Nightwatch Ltd")
+            .setValue('[name="confirm-org-name"]', 'Nightwatch Ltd')
             .click('#confirm-del-org-btn')
             .waitForElementVisible('#create-org-page');
 
         browser.end();
-    }
+    },
 };

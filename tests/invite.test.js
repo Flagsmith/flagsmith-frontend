@@ -37,6 +37,7 @@ module.exports = {
         browser;
         browser.pause(200); // Slide in transition
         browser.click('#organisation-settings-link');
+        browser.pause(200); // Slide in transition
         browser.waitAndClick('#btn-invite');
         browser.waitAndSet('[name="inviteEmails"]', inviteEmail);
         browser.click('#btn-send-invite');
