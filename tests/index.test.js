@@ -87,7 +87,7 @@ const exitTests = (browser, done) => {
     browser.end();
     done();
     server.kill('SIGINT');
-    process.exit(0);
+    process.exit(testsFailed ? 1 : 0);
 };
 
 module.exports = Object.assign(
