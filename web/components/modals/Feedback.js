@@ -46,7 +46,9 @@ const Feedback = class extends Component {
     sendFeedback = () => {
         this.setState({ isSending: true });
         const { name, email, comments } = this.state;
-        fetch('https://post.formlyapp.com/bullet-train', {
+
+        const url = 'https://post.formlyapp.com/bullet-train';
+        const options = {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -57,7 +59,17 @@ const Feedback = class extends Component {
                 email,
                 comments,
             }),
-        })
+        };
+
+        if (E2E && document.getElementById('e2e-request')) {
+            const payload = {
+                url,
+                options,
+            };
+            document.getElementById('e2e-request').innerText = JSON.stringify(payload);
+        }
+
+        fetch(url, options)
             .then((res) => {
                 const isSuccess = res.status >= 200 && res.status < 300;
                 this.close();

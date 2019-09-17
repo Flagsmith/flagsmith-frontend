@@ -13,9 +13,21 @@ const TryIt = class extends Component {
         const { environmentId, userId } = this.props;
         this.setState({ isLoading: true });
         API.trackEvent(Constants.events.TRY_IT);
-        fetch(userId ? `${Project.api}identities/?identifier=${userId}` : `${Project.api}flags/`, {
+
+        const url = userId ? `${Project.api}identities/?identifier=${userId}` : `${Project.api}flags/`;
+        const options = {
             headers: { 'X-Environment-Key': environmentId },
-        })
+        };
+
+        if (E2E && document.getElementById('e2e-request')) {
+            const payload = {
+                url,
+                options,
+            };
+            document.getElementById('e2e-request').innerText = JSON.stringify(payload);
+        }
+
+        fetch(url, options)
             .then(res => res.json())
             .then((data) => {
                 let res = {};

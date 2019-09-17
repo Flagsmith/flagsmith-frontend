@@ -13,7 +13,9 @@ const CancelPaymentPlanModal = class extends Component {
         this.setState({ isSending: true });
         const { cancellationReason } = this.state;
         const org = AccountStore.getOrganisation();
-        fetch('https://post.formlyapp.com/bullet-train-payment-plan-cancellation', {
+
+        const url = 'https://post.formlyapp.com/bullet-train-payment-plan-cancellation';
+        const options = {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -23,7 +25,17 @@ const CancelPaymentPlanModal = class extends Component {
                 orgId: org.id,
                 cancellationReason,
             }),
-        })
+        };
+
+        if (E2E && document.getElementById('e2e-request')) {
+            const payload = {
+                url,
+                options,
+            };
+            document.getElementById('e2e-request').innerText = JSON.stringify(payload);
+        }
+
+        fetch(url, options)
             .then((res) => {
                 const isSuccess = res.status >= 200 && res.status < 300;
                 closeModal();
