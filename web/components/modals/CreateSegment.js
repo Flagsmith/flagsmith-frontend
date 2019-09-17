@@ -1,8 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import engine from 'bullet-train-rules-engine';
 import Rule from './Rule';
-import Tabs from '../base/forms/Tabs';
-import TabItem from '../base/forms/TabItem';
 import Highlight from '../Highlight';
 import SegmentStore from '../../../common/stores/segment-list-store';
 

@@ -26,6 +26,7 @@ window.IdentityListProvider = require('../../common/providers/IdentityListProvid
 window.AuditLogProvider = require('../../common/providers/AuditLogProvider');
 window.ConfigProvider = require('../../common/providers/ConfigProvider');
 window.OrganisationSelect = require('../components/OrganisationSelect');
+
 window.Paging = Paging;
 
 // Useful components
@@ -80,4 +81,12 @@ window.Tooltip = require('../components/Toolip');
 
 global.hot = hot;
 global.RemoveIcon = RemoveIcon;
-global.Select = props => <Select className="react-select" classNamePrefix="react-select" {...props}/>;
+global.Select = props => (E2E ? (
+    <input
+      type="text" value={props.value && props.value.value}
+      onChange={e => props.onChange({ value: Utils.safeParseEventValue(e) })}
+      id={props.id} data-test={props['data-test']}
+    />
+) : (
+    <Select className="react-select" classNamePrefix="react-select" {...props}/>
+));

@@ -29,7 +29,7 @@ export default class Rule extends PureComponent {
                                 <Tooltip
                                   title={(
                                       <Input
-                                        data-test={`${this.props['data-test']}-property`}
+                                        data-test={`${this.props['data-test']}-property-${i}`}
                                         className="input-container--flat"
                                         value={`${rule.property}`}
                                         placeholder="Trait"
@@ -45,7 +45,7 @@ export default class Rule extends PureComponent {
                             </Column>
                             <Column style={{ width: 200 }}>
                                 <Select
-                                  data-test={`${this.props['data-test']}-operator`}
+                                  data-test={`${this.props['data-test']}-operator-${i}`}
                                   value={rule.operator && _.find(operators, { value: rule.operator })}
                                   onChange={value => this.setRuleProperty(i, 'operator', value)}
                                   options={operators}
@@ -53,7 +53,7 @@ export default class Rule extends PureComponent {
                             </Column>
                             <Column style={{ width: 150 }}>
                                 <Input
-                                  data-test={`${this.props['data-test']}-value`}
+                                  data-test={`${this.props['data-test']}-value-${i}`}
                                   className="input-container--flat"
                                   value={`${rule.value}`}
                                   placeholder="Value"
@@ -66,7 +66,10 @@ export default class Rule extends PureComponent {
                     <div>
                         <Row noWrap>
                             {isLastRule && (
-                                <Button type="button" onClick={this.addRule} className="btn btn--anchor">
+                                <Button
+                                  data-test={`${this.props['data-test']}-or`}
+                                  type="button" onClick={this.addRule} className="btn btn--anchor"
+                                >
                                     OR
                                 </Button>
                             )}

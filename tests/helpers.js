@@ -33,5 +33,13 @@ const testHelpers = {
         const res = await this.getValue(id);
         this.assert.equal(res.value, value);
     },
+    setSegmentRule(browser, ruleIndex, orIndex, name, operator, value) {
+        browser.waitAndSet(testHelpers.byTestID(`rule-${ruleIndex}-property-${orIndex}`), name);
+        if (operator) {
+            browser.clearValue(testHelpers.byTestID(`rule-${ruleIndex}-operator-${orIndex}`));
+            browser.waitAndSet(testHelpers.byTestID(`rule-${ruleIndex}-operator-${orIndex}`), operator);
+        }
+        browser.waitAndSet(testHelpers.byTestID(`rule-${ruleIndex}-value-${orIndex}`), value);
+    },
 };
 module.exports = testHelpers;
