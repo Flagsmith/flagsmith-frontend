@@ -1,26 +1,14 @@
 .alert-shown {
     .navbar {
-        margin-top: 3.6em;
+        margin-top: 60px;
     }
     .app-container {
         margin-top: 130px;
     }
     .aside {
-        margin-top: 3.6em;
-        height: calc(100% - 3.6em);
+        margin-top: 60px;
+        height: calc(100% - 60px);
         overflow-y: auto;
-    }
-    @media screen and (max-width: 576px) {
-        .navbar {
-            margin-top: 3.5em;
-        }
-        .app-container {
-            margin-top: 130px;
-        }
-        .aside {
-            margin-top: 4.5em;
-            height: calc(100% - 5em);
-        }
     }
     &.hide {
         .navbar {

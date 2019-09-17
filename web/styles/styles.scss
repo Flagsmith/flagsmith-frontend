@@ -151,6 +151,7 @@ hr {
     top: 0;
     left: 0;
     right: 0;
+    height: 60px;
     z-index: 2;
     color: #fff;
     padding: 15px;
@@ -171,6 +172,9 @@ hr {
 
     &__text{
         font-size:14px;
+        @media screen and (max-width: 368px) {
+            font-size: 11px;
+        }
     }
 
     &.pulse {
