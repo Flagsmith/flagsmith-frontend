@@ -32,6 +32,13 @@ const App = class extends Component {
             if (isMobile) {
                 this.setState({ asideIsVisible: false });
             }
+            this.hideMobileNav();
+        }
+    }
+
+    hideMobileNav = () => {
+        if (this.mobileNav && this.mobileNav.isActive()) {
+            this.mobileNav.toggle();
         }
     }
 
@@ -365,13 +372,14 @@ Logout
                                                                       />
                                                                   </div>
                                                               )}
+                                                              ref={c => this.mobileNav = c}
                                                             >
                                                                 {toggle => (
                                                                     <div className="mobile-navigation__bg">
                                                                         <ul className="list-unstyled mb-0">
                                                                             <li><Link to="/features">Features</Link></li>
                                                                             <li><Link to="/pricing">Pricing</Link></li>
-                                                                            <li><a target="_blank" href="https://docs.bullet-train.io/">Docs</a></li>
+                                                                            <li><a target="_blank" href="https://docs.bullet-train.io/" onClick={this.hideMobileNav}>Docs</a></li>
                                                                             <li><Link to="/open-source">Open Source</Link></li>
                                                                             <li><Link to="/demo">Demo</Link></li>
                                                                             <li>
