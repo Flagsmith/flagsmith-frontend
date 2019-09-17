@@ -126,26 +126,24 @@ module.exports = {
             .click('#confirm-toggle-feature-btn')
             .waitForElementVisible('#features-list .rc-switch[aria-checked="true"]');
     },
-    '[Main Tests] - Try feature out': function (browser) {
-        browser
-            .waitForElementNotPresent('#confirm-toggle-feature-modal')
-            .click('#try-it-btn')
-            .waitForElementVisible('#try-it-results')
-            .getText('#try-it-results', (res) => {
-                browser.assert.equal(typeof res, 'object');
-                browser.assert.equal(res.status, 0);
-                let json;
-                try {
-                    json = JSON.parse(res.value);
-                } catch (e) {
-                    throw new Error('Try it results are not valid JSON');
-                }
-                // Unfortunately chai.js expect assertions do not report success in the Nightwatch reporter (but they do report failure)
-                expect(json).to.have.property('header_size');
-                expect(json.header_size).to.have.property('value');
-                expect(json.header_size.value).to.equal('big');
-                browser.assert.ok(true, 'Try it JSON was correct for the feature'); // Re-assurance that the chai tests above passed
-            });
+    '[Main Tests] - Try feature out': async function (browser) {
+        browser.waitForElementNotPresent('#confirm-toggle-feature-modal');
+        browser.waitAndClick('#try-it-btn');
+        browser.waitForElementVisible('#try-it-results');
+        const res = await browser.getText('#try-it-results');
+        browser.assert.equal(typeof res, 'object');
+        browser.assert.equal(res.status, 0);
+        let json;
+        try {
+            json = JSON.parse(res.value);
+        } catch (e) {
+            throw new Error('Try it results are not valid JSON');
+        }
+        // Unfortunately chai.js expect assertions do not report success in the Nightwatch reporter (but they do report failure)
+        expect(json).to.have.property('header_size');
+        expect(json.header_size).to.have.property('value');
+        expect(json.header_size.value).to.equal('big');
+        browser.assert.ok(true, 'Try it JSON was correct for the feature'); // Re-assurance that the chai tests above passed
     },
     '[Main Tests] - Change feature value to number': function (browser) {
         browser
