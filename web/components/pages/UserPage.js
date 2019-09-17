@@ -15,7 +15,7 @@ const UserPage = class extends Component {
 
     componentDidMount() {
         AppActions.getIdentity(this.props.params.environmentId, this.props.params.id);
-        AppActions.getIdentitySegments(this.props.params.environmentId, this.props.params.id);
+        AppActions.getIdentitySegments(this.props.params.projectId, this.props.params.id);
         AppActions.getFeatures(this.props.params.projectId, this.props.params.environmentId);
         API.trackPage(Constants.pages.USER);
     }

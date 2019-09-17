@@ -175,10 +175,10 @@ const AppActions = Object.assign({}, require('./base/_app-actions'), {
             id,
         });
     },
-    getIdentitySegments(envId, id) {
+    getIdentitySegments(projectId, id) {
         Dispatcher.handleViewAction({
             actionType: Actions.GET_IDENTITY_SEGMENTS,
-            envId,
+            projectId,
             id,
         });
     },

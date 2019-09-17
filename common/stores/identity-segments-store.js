@@ -3,9 +3,9 @@ const data = require('../data/base/_data');
 
 
 const controller = {
-    getIdentitySegments: (envId, id) => {
+    getIdentitySegments: (projectId, id) => {
         store.loading();
-        return data.get(`${Project.api}segments/?identity=${id}`, null, { 'x-environment-key': envId })
+        return data.get(`${Project.api}projects/${projectId}/segments/?identity=${id}`)
             .then((segments) => {
                 store.model = segments;
                 store.loaded();
@@ -23,7 +23,7 @@ store.dispatcherIndex = Dispatcher.register(store, (payload) => {
     const action = payload.action; // this is our action from	handleViewAction
     switch (action.actionType) {
         case Actions.GET_IDENTITY_SEGMENTS:
-            controller.getIdentitySegments(action.envId, action.id);
+            controller.getIdentitySegments(action.projectId, action.id);
             break;
         default:
     }
