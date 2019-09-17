@@ -66,7 +66,7 @@ const clearDown = function (browser, done) {
     }
 };
 
-const sendFailure = (browser, done, afterEach, request, error) => {
+const sendFailure = (browser, done, request, error) => {
     const lastRequest = request && request.value ? JSON.parse(request.value) : 'No last request';
     const lastError = error && error.value ? JSON.parse(error.value) : 'No last error';
     console.log('Last request:', lastRequest);
@@ -77,17 +77,17 @@ const sendFailure = (browser, done, afterEach, request, error) => {
             request: lastRequest,
             error: lastError,
         }, null, 2).replace(/\\/g, '')}\`\`\``, E2E_SLACK_CHANNEL, 'Screenshot')
-            .then(() => {
-                if (afterEach) {
-                    done();
-                    return;
-                }
-                browser.end();
-                done();
-                server.kill('SIGINT');
-                process.exit(0);
-            });
+            .then(done);
     });
+};
+
+let testsFailed;
+
+const exitTests = (browser, done) => {
+    browser.end();
+    done();
+    server.kill('SIGINT');
+    process.exit(0);
 };
 
 module.exports = Object.assign(
@@ -109,61 +109,36 @@ module.exports = Object.assign(
         },
         afterEach: (browser, done) => {
             if (browser.currentTest.results.errors || browser.currentTest.results.failed) {
+                testsFailed = true;
                 if (SLACK_TOKEN && browser.sessionId) {
                     browser.pause(5000) // Workaround since waitForElementIsVisible with abortOnFailure set to false doesnt actually work https://github.com/nightwatchjs/nightwatch/issues/1493
-                        .isVisible('#e2e-request', (result) => {
+                        .isVisible('#e2e-error', (result) => {
                             // There is a chance e2e request will not be present if tests failed on another website i.e. mailinator
                             if (result.status !== -1) {
                                 browser.getText('#e2e-error', (error) => {
                                     browser.getText('#e2e-request', (request) => {
-                                        sendFailure(browser, done, true, request, error);
+                                        sendFailure(browser, done, request, error);
                                     });
                                 });
                             } else {
-                                sendFailure(browser, done, true);
+                                sendFailure(browser, done);
                             }
                         });
                 } else {
-                    sendFailure(browser, done, true);
+                    sendFailure(browser, done);
                 }
             } else {
                 done();
             }
         },
         after: (browser, done) => {
-            if (SLACK_TOKEN && browser.sessionId) {
-                browser.pause(5000) // Workaround since waitForElementIsVisible with abortOnFailure set to false doesnt actually work https://github.com/nightwatchjs/nightwatch/issues/1493
-                    .isVisible('#e2e-request', (result) => {
-                        // There is a chance e2e request will not be present if tests failed on another website i.e. mailinator
-                        if (result.status !== -1) {
-                            browser.getText('#e2e-error', (error) => {
-                                browser.getText('#e2e-request', (request) => {
-                                    sendFailure(browser, done, false, request, error);
-                                });
-                            });
-                        } else {
-                            if (browser.currentTest.results.failed) {
-                                sendFailure(browser, done);
-                                return;
-                            }
-                            sendSuccess()
-                                .then(() => {
-                                    browser.end();
-                                    done();
-                                    server.kill('SIGINT');
-                                    process.exit(0);
-                                });
-                        }
-                    });
-            } else {
+            if (!testsFailed) {
                 sendSuccess()
-                    .then(() => {
-                        browser.end();
-                        done();
-                        server.kill('SIGINT');
-                        process.exit(0);
-                    });
+                    .then(() => exitTests(browser, done));
+                return;
             }
+
+            exitTests(browser, done);
         },
     },
     require('./main.test'), // Main flow tests
