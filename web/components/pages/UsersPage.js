@@ -64,9 +64,19 @@ const UsersPage = class extends Component {
                                                             to={`/project/${this.props.params.projectId}/environment/${this.props.params.environmentId}/users/${id}`}
                                                           >
                                                               {identifier}
+                                                              <ion className="ion-ios-arrow-forward ml-3"/>
+
                                                           </Link>
                                                       </Flex>
-                                                      <ion className="ion-ios-arrow-forward"/>
+
+                                                      <Column>
+                                                          <button
+                                                              id="remove-feature"
+                                                              className="btn btn--with-icon"
+                                                          >
+                                                              <RemoveIcon/>
+                                                          </button>
+                                                      </Column>
                                                   </Row>
                                               )}
                                               renderNoResults={(

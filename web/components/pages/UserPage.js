@@ -210,13 +210,13 @@ const UserPage = class extends Component {
                                                   acti
                                                   renderRow={({ trait_value, trait_key }) => (
                                                       <Row
-                                                        onClick={() => this.editTrait({
-                                                            trait_value,
-                                                            trait_key,
-                                                        })} className="list-item clickable" key={trait_key}
+                                                       className="list-item clickable" key={trait_key}
                                                         space
                                                       >
-                                                          <div
+                                                          <div onClick={() => this.editTrait({
+                                                                  trait_value,
+                                                                  trait_key,
+                                                              })}
                                                             className="flex flex-1"
                                                           >
                                                               <Row>
@@ -231,6 +231,14 @@ const UserPage = class extends Component {
                                                                     className="js-trait-value"
                                                                     value={`${trait_value}`}
                                                                   />
+                                                              </Column>
+                                                              <Column>
+                                                                  <button
+                                                                      id="remove-feature"
+                                                                      className="btn btn--with-icon"
+                                                                  >
+                                                                      <RemoveIcon/>
+                                                                  </button>
                                                               </Column>
                                                           </Row>
                                                       </Row>
