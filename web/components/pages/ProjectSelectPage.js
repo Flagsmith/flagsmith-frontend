@@ -74,7 +74,7 @@ const ProjectSelectPage = class extends Component {
                             )
                             }
 
-                            {isLoading && <div className="centered-container"><Loader/></div>}
+                            {(isLoading || !projects) && <div className="centered-container"><Loader/></div>}
                             {!isLoading && (
                                 <div>
                                     <FormGroup>
