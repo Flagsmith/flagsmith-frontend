@@ -74,6 +74,7 @@ const UserPage = class extends Component {
     }
 
     render() {
+        const { hasFeature } = this.props;
         return (
             <div className="app-container">
                 <IdentityProvider onSave={this.onSave}>
@@ -267,53 +268,55 @@ const UserPage = class extends Component {
                                               userId={(identity && identity.identity.identifier) || this.props.params.id}
                                             />
                                         </FormGroup>
-                                        <IdentitySegmentsProvider>
-                                            {({ isLoading: segmentsLoading, segments }) => (segmentsLoading ? <div className="text-center"><Loader/></div> : (
-                                                <FormGroup>
-                                                    <PanelSearch
-                                                      id="user-segments-list"
-                                                      className="no-pad"
-                                                      icon="ion-ios-globe"
-                                                      title="Segments"
-                                                      items={segments || []}
-                                                      acti
-                                                      renderRow={({ name, id, enabled, created_date, type }, i) => (
-                                                          <Row
-                                                            className="list-item"
-                                                            space
-                                                            key={i}
-                                                          >
-                                                              <div
-                                                                className="flex flex-1"
+                                        {hasFeature('identity_segments') && (
+                                            <IdentitySegmentsProvider>
+                                                {({ isLoading: segmentsLoading, segments }) => (segmentsLoading ? <div className="text-center"><Loader/></div> : (
+                                                    <FormGroup>
+                                                        <PanelSearch
+                                                          id="user-segments-list"
+                                                          className="no-pad"
+                                                          icon="ion-ios-globe"
+                                                          title="Segments"
+                                                          items={segments ? segments.results : []}
+                                                          acti
+                                                          renderRow={({ name, id, enabled, created_date, type }, i) => (
+                                                              <Row
+                                                                className="list-item"
+                                                                space
+                                                                key={i}
                                                               >
-                                                                  <Row>
-                                                                      <span data-test={`segment-${i}-name`} className="bold-link">
-                                                                          {name}
-                                                                      </span>
-                                                                  </Row>
-                                                                  <div className="list-item-footer faint">
-                                                                        Created
-                                                                      {' '}
-                                                                      {moment(created_date).format('DD/MMM/YYYY')}
+                                                                  <div
+                                                                    className="flex flex-1"
+                                                                  >
+                                                                      <Row>
+                                                                          <span data-test={`segment-${i}-name`} className="bold-link">
+                                                                              {name}
+                                                                          </span>
+                                                                      </Row>
+                                                                      <div className="list-item-footer faint">
+                                                                            Created
+                                                                          {' '}
+                                                                          {moment(created_date).format('DD/MMM/YYYY')}
+                                                                      </div>
                                                                   </div>
-                                                              </div>
-                                                          </Row>
-                                                      )
-                                                        }
-                                                      renderNoResults={(
-                                                          <Panel
-                                                            icon="ion-ios-globe"
-                                                            title="Segments"
-                                                            className="text-center"
-                                                          >
-                                                                This user is not part of any segment.
-                                                          </Panel>
-                                                        )}
-                                                      filterRow={({ name }, search) => name.toLowerCase().indexOf(search) > -1}
-                                                    />
-                                                </FormGroup>
-                                            ))}
-                                        </IdentitySegmentsProvider>
+                                                              </Row>
+                                                          )
+                                                            }
+                                                          renderNoResults={(
+                                                              <Panel
+                                                                icon="ion-ios-globe"
+                                                                title="Segments"
+                                                                className="text-center"
+                                                              >
+                                                                    This user is not part of any segment.
+                                                              </Panel>
+                                                            )}
+                                                          filterRow={({ name }, search) => name.toLowerCase().indexOf(search) > -1}
+                                                        />
+                                                    </FormGroup>
+                                                ))}
+                                            </IdentitySegmentsProvider>
+                                        )}
                                     </div>
                                 </div>
                             </div>
@@ -327,4 +330,4 @@ const UserPage = class extends Component {
 
 UserPage.propTypes = {};
 
-module.exports = UserPage;
+module.exports = ConfigProvider(UserPage);
