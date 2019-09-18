@@ -111,7 +111,9 @@ module.exports = Object.assign(
             if (browser.currentTest.results.errors || browser.currentTest.results.failed) {
                 testsFailed = true;
                 if (SLACK_TOKEN && browser.sessionId) {
-                    browser.pause(5000) // Workaround since waitForElementIsVisible with abortOnFailure set to false doesnt actually work https://github.com/nightwatchjs/nightwatch/issues/1493
+                    browser
+                        .useCss()
+                        .pause(5000) // Workaround since waitForElementIsVisible with abortOnFailure set to false doesnt actually work https://github.com/nightwatchjs/nightwatch/issues/1493
                         .isVisible('#e2e-error', (result) => {
                             // There is a chance e2e request will not be present if tests failed on another website i.e. mailinator
                             if (result.status !== -1) {
