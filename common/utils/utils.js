@@ -59,7 +59,9 @@ module.exports = Object.assign({}, require('./base/_utils'), {
     },
 
     scrollToElement: (selector, timeout = 500) => {
-        $('html,body').animate({ scrollTop: $(selector).offset().top }, timeout);
+        const el = $(selector);
+        if (!el || !el.offset) return;
+        $('html,body').animate({ scrollTop: el.offset().top }, timeout);
     },
 
     scrollToSignUp: () => {
