@@ -66,9 +66,7 @@ Team Member
                                                 <li><p>Up to <strong>20,000</strong> requests per month</p></li>
                                                 <li>
                                                     <p>
-                                                        <strong>1</strong>
-                                                        {' '}
-Team Member
+                                                        <strong>1</strong> Team Member
                                                     </p>
                                                 </li>
                                                 <li><p>Unlimited Projects</p></li>
