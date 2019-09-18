@@ -33,16 +33,7 @@ const PricingPanel = class extends React.Component {
                                         <div className="panel-footer">
                                             <p className="text-small text-center link-style">What's included</p>
                                             <ul className="pricing-features">
-                                                <li>
-                                                    <p>
-Up to
-                                                        <strong>20,000</strong>
-                                                        {' '}
-                                                        {' '}
-                                                        {' '}
-requests per month
-                                                    </p>
-                                                </li>
+                                                <li>Up to <strong>20,000</strong> requests per month</li>
                                                 <li>
                                                     <p>
                                                         <strong>1</strong>
@@ -72,15 +63,7 @@ Team Member
                                         <div className="panel-footer">
                                             <p className="text-small text-center link-style">What's included</p>
                                             <ul className="pricing-features">
-                                                <li>
-                                                    <p>
-Up to
-                                                        <strong>20,000</strong>
-                                                        {' '}
-                                                        {' '}
-requests per month
-                                                    </p>
-                                                </li>
+                                                <li><p>Up to <strong>20,000</strong> requests per month</p></li>
                                                 <li>
                                                     <p>
                                                         <strong>1</strong>
@@ -110,18 +93,14 @@ Team Member
                                         <p className="text-small text-center link-style">What's included</p>
                                         <ul className="pricing-features">
                                             <li>
-                                                <p>
-Up to
-                                                    <strong>250,000</strong>
+                                                <p>Up to <strong>250,000</strong>
                                                     {' '}
                                                     {' '}
 requests per month
                                                 </p>
                                             </li>
                                             <li>
-                                                <p>
-Up to
-                                                    <strong>3</strong>
+                                                <p>Up to <strong>3</strong>
                                                     {' '}
 Team Members
                                                 </p>
@@ -148,18 +127,14 @@ Team Members
                                         <p className="text-small text-center link-style">What's included</p>
                                         <ul className="pricing-features">
                                             <li>
-                                                <p>
-Up to
-                                                    <strong>2 million</strong>
+                                                <p>Up to <strong>2 million</strong>
                                                     {' '}
                                                     {' '}
 requests per month
                                                 </p>
                                             </li>
                                             <li>
-                                                <p>
-Up to
-                                                    <strong>10</strong>
+                                                <p>Up to <strong>10</strong>
                                                     {' '}
 Team Members
                                                 </p>
@@ -186,18 +161,14 @@ Team Members
                                         <p className="text-small text-center link-style">What's included</p>
                                         <ul className="pricing-features">
                                             <li>
-                                                <p>
-Over
-                                                    <strong>2 million</strong>
+                                                <p>Over <strong>2 million</strong>
                                                     {' '}
                                                     {' '}
 requests per month
                                                 </p>
                                             </li>
                                             <li>
-                                                <p>
-Over
-                                                    <strong>10</strong>
+                                                <p>Over <strong>10</strong>
                                                     {' '}
 Team Members
                                                 </p>

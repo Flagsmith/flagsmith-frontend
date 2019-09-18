@@ -9,7 +9,7 @@ const OrganisationProvider = class extends Component {
     constructor(props, context) {
         super(props, context);
         this.state = {
-            isLoading: !OrganisationStore.getProjects() || OrganisationStore.isLoading,
+            isLoading: OrganisationStore.isLoading,
             projects: OrganisationStore.getProjects(),
             project: OrganisationStore.getProject(),
             users: OrganisationStore.getUsers(),
