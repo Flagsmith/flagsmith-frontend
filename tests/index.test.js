@@ -134,17 +134,17 @@ module.exports = Object.assign(
             }
         },
         after: (browser, done) => {
-            if (!testsFailed) {
-                sendSuccess()
-                    .then(() => exitTests(browser, done));
-                return;
-            }
-
-            exitTests(browser, done);
+            // if (!testsFailed) {
+            //     sendSuccess()
+            //         .then(() => exitTests(browser, done));
+            //     return;
+            // }
+            //
+            // exitTests(browser, done);
         },
     },
     require('./main.test'), // Main flow tests
-    require('./invite.test'), // Invite user tests
-    require('./register-fail.test'), // Registration failure tests
-    require('./login-fail.test'), // Login failure tests
+    // require('./invite.test'), // Invite user tests
+    // require('./register-fail.test'), // Registration failure tests
+    // require('./login-fail.test'), // Login failure tests
 );

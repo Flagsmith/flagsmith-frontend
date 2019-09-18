@@ -209,7 +209,7 @@ const UserPage = class extends Component {
                                                   title="Traits"
                                                   items={traits}
                                                   acti
-                                                  renderRow={({ trait_value, trait_key }) => (
+                                                  renderRow={({ trait_value, trait_key }, i) => (
                                                       <Row
                                                         onClick={() => this.editTrait({
                                                             trait_value,
@@ -221,7 +221,7 @@ const UserPage = class extends Component {
                                                             className="flex flex-1"
                                                           >
                                                               <Row>
-                                                                  <a className="js-trait-key" href="#">
+                                                                  <a className={`js-trait-key-${i}`} href="#">
                                                                       {trait_key}
                                                                   </a>
                                                               </Row>
@@ -229,7 +229,7 @@ const UserPage = class extends Component {
                                                           <Row>
                                                               <Column>
                                                                   <FeatureValue
-                                                                    className="js-trait-value"
+                                                                    className={`js-trait-value-${i}`}
                                                                     value={`${trait_value}`}
                                                                   />
                                                               </Column>
