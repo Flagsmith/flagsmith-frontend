@@ -73,6 +73,18 @@ const UserPage = class extends Component {
         />);
     }
 
+    removeTrait = (id, trait_key) => {
+        openConfirm(
+            <h3>Delete Trait</h3>,
+            <p>
+                {'Are you sure you want to delete trait '}
+                <strong>{trait_key}</strong>
+                {' from this user?'}
+            </p>,
+            () => AppActions.deleteIdentityTrait(this.props.params.environmentId, this.props.params.id, id),
+        );
+    }
+
     render() {
         return (
             <div className="app-container">
@@ -208,15 +220,16 @@ const UserPage = class extends Component {
                                                   title="Traits"
                                                   items={traits}
                                                   acti
-                                                  renderRow={({ trait_value, trait_key }) => (
+                                                  renderRow={({ id, trait_value, trait_key }) => (
                                                       <Row
-                                                       className="list-item clickable" key={trait_key}
+                                                        className="list-item clickable" key={trait_key}
                                                         space
                                                       >
-                                                          <div onClick={() => this.editTrait({
-                                                                  trait_value,
-                                                                  trait_key,
-                                                              })}
+                                                          <div
+                                                            onClick={() => this.editTrait({
+                                                                trait_value,
+                                                                trait_key,
+                                                            })}
                                                             className="flex flex-1"
                                                           >
                                                               <Row>
@@ -234,8 +247,10 @@ const UserPage = class extends Component {
                                                               </Column>
                                                               <Column>
                                                                   <button
-                                                                      id="remove-feature"
-                                                                      className="btn btn--with-icon"
+                                                                    id="remove-feature"
+                                                                    className="btn btn--with-icon"
+                                                                    type="button"
+                                                                    onClick={() => this.removeTrait(id, trait_key)}
                                                                   >
                                                                       <RemoveIcon/>
                                                                   </button>
@@ -276,7 +291,7 @@ const UserPage = class extends Component {
                                             />
                                         </FormGroup>
                                         <IdentitySegmentsProvider>
-                                            {({ isLoading: segmentsLoading, segments }) => (segmentsLoading ? <div className="text-center"><Loader/></div> : (
+                                            {({ isLoading: segmentsLoading, segments, segmentsPaging }) => (segmentsLoading ? <div className="text-center"><Loader/></div> : (
                                                 <FormGroup>
                                                     <PanelSearch
                                                       id="user-segments-list"
@@ -284,7 +299,10 @@ const UserPage = class extends Component {
                                                       icon="ion-ios-globe"
                                                       title="Segments"
                                                       items={segments || []}
-                                                      acti
+                                                      paging={segmentsPaging}
+                                                      nextPage={() => AppActions.getIdentitySegmentsPage(segmentsPaging.next)}
+                                                      prevPage={() => AppActions.getIdentitySegmentsPage(segmentsPaging.previous)}
+                                                      goToPage={page => AppActions.getIdentitySegmentsPage(`${Project.api}projects/${this.props.params.projectId}/segments/?identity=${this.props.params.id}&page=${page}`)}
                                                       renderRow={({ name, id, enabled, created_date, type }, i) => (
                                                           <Row
                                                             className="list-item"

@@ -74,6 +74,18 @@ const controller = {
             .then(() => controller.getIdentity(environmentId, identity)
                 .then(() => store.saved()));
     },
+    deleteIdentityTrait(envId, identity, id) {
+        store.saving();
+        data.delete(`${Project.api}environments/${envId}/identities/${identity}/traits/${id}/`)
+            .then(() => {
+                const index = _.findIndex(store.model.traits, trait => trait.id === id);
+                if (index !== -1) {
+                    store.model.traits.splice(index, 1);
+                }
+                store.saved();
+            })
+            .catch(e => API.ajaxHandler(store, e));
+    },
 };
 
 
@@ -115,6 +127,9 @@ store.dispatcherIndex = Dispatcher.register(store, (payload) => {
             break;
         case Actions.REMOVE_USER_FLAG:
             controller.removeUserFlag(identity, identityFlag, environmentId);
+            break;
+        case Actions.DELETE_IDENTITY_TRAIT:
+            controller.deleteIdentityTrait(action.envId, action.identity, action.id);
             break;
         default:
     }

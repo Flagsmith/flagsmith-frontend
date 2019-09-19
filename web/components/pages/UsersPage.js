@@ -28,6 +28,18 @@ const UsersPage = class extends Component {
         openModal(<EditIdentityModal id={id} envFlags={envFlags}/>);
     };
 
+    removeIdentity = (id, identifier) => {
+        openConfirm(
+            <h3>Delete User</h3>,
+            <p>
+                {'Are you sure you want to delete '}
+                <strong>{identifier}</strong>
+                {'?'}
+            </p>,
+            () => AppActions.deleteIdentity(this.props.params.environmentId, id),
+        );
+    }
+
     render() {
         const { projectId, environmentId } = this.props.params;
         const { hasFeature, getValue } = this.props;
@@ -71,8 +83,10 @@ const UsersPage = class extends Component {
 
                                                       <Column>
                                                           <button
-                                                              id="remove-feature"
-                                                              className="btn btn--with-icon"
+                                                            id="remove-feature"
+                                                            className="btn btn--with-icon"
+                                                            type="button"
+                                                            onClick={() => this.removeIdentity(id, identifier)}
                                                           >
                                                               <RemoveIcon/>
                                                           </button>

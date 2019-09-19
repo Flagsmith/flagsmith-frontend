@@ -9,6 +9,7 @@ const IdentitySegmentsProvider = class extends Component {
         this.state = {
             isLoading: IdentitySegmentsStore.isLoading,
             segments: IdentitySegmentsStore.model,
+            segmentsPaging: IdentitySegmentsStore.paging,
         };
         ES6Component(this);
     }
@@ -18,6 +19,7 @@ const IdentitySegmentsProvider = class extends Component {
             this.setState({
                 isLoading: IdentitySegmentsStore.isLoading,
                 segments: IdentitySegmentsStore.model,
+                segmentsPaging: IdentitySegmentsStore.paging,
             });
         });
     }
