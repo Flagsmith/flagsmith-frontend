@@ -28,6 +28,7 @@ module.exports = {
         'jsx-a11y/mouse-events-have-key-events': 0,
         'jsx-a11y/no-noninteractive-element-interactions': 0, // rule seems buggy, doesn't understand some htmlFor cases
         'max-len': 0,
+        'react/jsx-one-expression-per-line': 0,
         'no-multi-assign': 0,
         'no-nested-ternary': 0,
         'no-param-reassign': 0, //Disabled to it not looking for global components

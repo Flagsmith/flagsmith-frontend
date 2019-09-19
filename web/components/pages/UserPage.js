@@ -86,6 +86,7 @@ const UserPage = class extends Component {
     }
 
     render() {
+        const { hasFeature } = this.props;
         return (
             <div className="app-container">
                 <IdentityProvider onSave={this.onSave}>
@@ -290,6 +291,7 @@ const UserPage = class extends Component {
                                               userId={(identity && identity.identity.identifier) || this.props.params.id}
                                             />
                                         </FormGroup>
+                                        {hasFeature('identity_segments') && (
                                         <IdentitySegmentsProvider>
                                             {({ isLoading: segmentsLoading, segments, segmentsPaging }) => (segmentsLoading ? <div className="text-center"><Loader/></div> : (
                                                 <FormGroup>
@@ -318,28 +320,28 @@ const UserPage = class extends Component {
                                                                       </span>
                                                                   </Row>
                                                                   <div className="list-item-footer faint">
-                                                                        Created
+                                                                              Created
                                                                       {' '}
                                                                       {moment(created_date).format('DD/MMM/YYYY')}
                                                                   </div>
                                                               </div>
                                                           </Row>
-                                                      )
-                                                        }
+                                                      )}
                                                       renderNoResults={(
                                                           <Panel
                                                             icon="ion-ios-globe"
                                                             title="Segments"
                                                             className="text-center"
                                                           >
-                                                                This user is not part of any segment.
+                                                                      This user is not part of any segment.
                                                           </Panel>
-                                                        )}
+                                                              )}
                                                       filterRow={({ name }, search) => name.toLowerCase().indexOf(search) > -1}
                                                     />
                                                 </FormGroup>
                                             ))}
                                         </IdentitySegmentsProvider>
+                                        )}
                                     </div>
                                 </div>
                             </div>
@@ -353,4 +355,4 @@ const UserPage = class extends Component {
 
 UserPage.propTypes = {};
 
-module.exports = UserPage;
+module.exports = ConfigProvider(UserPage);

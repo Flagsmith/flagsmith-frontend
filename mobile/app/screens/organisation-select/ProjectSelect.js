@@ -26,9 +26,9 @@ const MarkupScreen = class extends Component {
         }
     };
 
-    selectProject = (item)=> {
+    selectProject = (item) => {
         AppActions.getProject(item.id);
-        Navigation.push(this.props.componentId, routes.environmentSelect(this.props.organisation, item, this.props.onComplete))
+        Navigation.push(this.props.componentId, routes.environmentSelect(this.props.organisation, item, this.props.onComplete));
     }
 
     render() {
@@ -38,20 +38,20 @@ const MarkupScreen = class extends Component {
                     <Flex>
                         <Flex>
                             <Select
-                                placeholder="Search"
-                                items={isLoading ? [1] : projects}
-                                multiple={false}
-                                filterItem={(item, search) => item.name.toLowerCase().indexOf(search.toLowerCase()) !== -1}
-                                renderRow={item => isLoading ? (
-                                    <View style={Styles.centeredContainer}>
-                                    <Loader/>
-                                    </View>
-                                ) : (
-                                    <ListItem index={1} onPress={()=>this.selectProject(item)}>
-                                        <Text style={Styles.listItemTitle}>{item.name}</Text>
-                                        <ION name="ios-arrow-forward" style={[Styles.listIconNav]}/>
-                                    </ListItem>
-                                )}
+                              placeholder="Search"
+                              items={(isLoading || !projects) ? [1] : projects}
+                              multiple={false}
+                              filterItem={(item, search) => item.name.toLowerCase().indexOf(search.toLowerCase()) !== -1}
+                              renderRow={item => (isLoading ? (
+                                  <View style={Styles.centeredContainer}>
+                                      <Loader/>
+                                  </View>
+                              ) : (
+                                  <ListItem index={1} onPress={() => this.selectProject(item)}>
+                                      <Text style={Styles.listItemTitle}>{item.name}</Text>
+                                      <ION name="ios-arrow-forward" style={[Styles.listIconNav]}/>
+                                  </ListItem>
+                              ))}
                             />
                         </Flex>
                     </Flex>
