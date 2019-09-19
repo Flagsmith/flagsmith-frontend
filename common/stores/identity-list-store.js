@@ -30,6 +30,18 @@ const controller = {
         store.search = search;
         controller.getIdentities(envId);
     }, 1000),
+    deleteIdentity: (envId, id) => {
+        store.saving();
+        data.delete(`${Project.api}environments/${envId}/identities/${id}/`)
+            .then(() => {
+                const index = _.findIndex(store.model, identity => identity.id === id);
+                if (index !== -1) {
+                    store.model.splice(index, 1);
+                }
+                store.saved();
+            })
+            .catch(e => API.ajaxHandler(store, e));
+    },
 };
 
 
@@ -63,6 +75,9 @@ store.dispatcherIndex = Dispatcher.register(store, (payload) => {
             break;
         case Actions.SEARCH_IDENTITIES:
             controller.searchIdentities(action.envId, action.search);
+            break;
+        case Actions.DELETE_IDENTITY:
+            controller.deleteIdentity(action.envId, action.id);
             break;
         default:
     }

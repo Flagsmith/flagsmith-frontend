@@ -73,6 +73,18 @@ const UserPage = class extends Component {
         />);
     }
 
+    removeTrait = (id, trait_key) => {
+        openConfirm(
+            <h3>Delete Trait</h3>,
+            <p>
+                {'Are you sure you want to delete trait '}
+                <strong>{trait_key}</strong>
+                {' from this user?'}
+            </p>,
+            () => AppActions.deleteIdentityTrait(this.props.params.environmentId, this.props.params.id, id),
+        );
+    }
+
     render() {
         const { hasFeature } = this.props;
         return (
@@ -209,15 +221,16 @@ const UserPage = class extends Component {
                                                   title="Traits"
                                                   items={traits}
                                                   acti
-                                                  renderRow={({ trait_value, trait_key }) => (
+                                                  renderRow={({ id, trait_value, trait_key }) => (
                                                       <Row
-                                                        onClick={() => this.editTrait({
-                                                            trait_value,
-                                                            trait_key,
-                                                        })} className="list-item clickable" key={trait_key}
+                                                        className="list-item clickable" key={trait_key}
                                                         space
                                                       >
                                                           <div
+                                                            onClick={() => this.editTrait({
+                                                                trait_value,
+                                                                trait_key,
+                                                            })}
                                                             className="flex flex-1"
                                                           >
                                                               <Row>
@@ -232,6 +245,16 @@ const UserPage = class extends Component {
                                                                     className="js-trait-value"
                                                                     value={`${trait_value}`}
                                                                   />
+                                                              </Column>
+                                                              <Column>
+                                                                  <button
+                                                                    id="remove-feature"
+                                                                    className="btn btn--with-icon"
+                                                                    type="button"
+                                                                    onClick={() => this.removeTrait(id, trait_key)}
+                                                                  >
+                                                                      <RemoveIcon/>
+                                                                  </button>
                                                               </Column>
                                                           </Row>
                                                       </Row>
@@ -269,53 +292,55 @@ const UserPage = class extends Component {
                                             />
                                         </FormGroup>
                                         {hasFeature('identity_segments') && (
-                                            <IdentitySegmentsProvider>
-                                                {({ isLoading: segmentsLoading, segments }) => (segmentsLoading ? <div className="text-center"><Loader/></div> : (
-                                                    <FormGroup>
-                                                        <PanelSearch
-                                                          id="user-segments-list"
-                                                          className="no-pad"
-                                                          icon="ion-ios-globe"
-                                                          title="Segments"
-                                                          items={segments ? segments.results : []}
-                                                          acti
-                                                          renderRow={({ name, id, enabled, created_date, type }, i) => (
-                                                              <Row
-                                                                className="list-item"
-                                                                space
-                                                                key={i}
+                                        <IdentitySegmentsProvider>
+                                            {({ isLoading: segmentsLoading, segments, segmentsPaging }) => (segmentsLoading ? <div className="text-center"><Loader/></div> : (
+                                                <FormGroup>
+                                                    <PanelSearch
+                                                      id="user-segments-list"
+                                                      className="no-pad"
+                                                      icon="ion-ios-globe"
+                                                      title="Segments"
+                                                      items={segments || []}
+                                                      paging={segmentsPaging}
+                                                      nextPage={() => AppActions.getIdentitySegmentsPage(segmentsPaging.next)}
+                                                      prevPage={() => AppActions.getIdentitySegmentsPage(segmentsPaging.previous)}
+                                                      goToPage={page => AppActions.getIdentitySegmentsPage(`${Project.api}projects/${this.props.params.projectId}/segments/?identity=${this.props.params.id}&page=${page}`)}
+                                                      renderRow={({ name, id, enabled, created_date, type }, i) => (
+                                                          <Row
+                                                            className="list-item"
+                                                            space
+                                                            key={i}
+                                                          >
+                                                              <div
+                                                                className="flex flex-1"
                                                               >
-                                                                  <div
-                                                                    className="flex flex-1"
-                                                                  >
-                                                                      <Row>
-                                                                          <span data-test={`segment-${i}-name`} className="bold-link">
-                                                                              {name}
-                                                                          </span>
-                                                                      </Row>
-                                                                      <div className="list-item-footer faint">
-                                                                            Created
-                                                                          {' '}
-                                                                          {moment(created_date).format('DD/MMM/YYYY')}
-                                                                      </div>
+                                                                  <Row>
+                                                                      <span data-test={`segment-${i}-name`} className="bold-link">
+                                                                          {name}
+                                                                      </span>
+                                                                  </Row>
+                                                                  <div className="list-item-footer faint">
+                                                                              Created
+                                                                      {' '}
+                                                                      {moment(created_date).format('DD/MMM/YYYY')}
                                                                   </div>
-                                                              </Row>
-                                                          )
-                                                            }
-                                                          renderNoResults={(
-                                                              <Panel
-                                                                icon="ion-ios-globe"
-                                                                title="Segments"
-                                                                className="text-center"
-                                                              >
-                                                                    This user is not part of any segment.
-                                                              </Panel>
-                                                            )}
-                                                          filterRow={({ name }, search) => name.toLowerCase().indexOf(search) > -1}
-                                                        />
-                                                    </FormGroup>
-                                                ))}
-                                            </IdentitySegmentsProvider>
+                                                              </div>
+                                                          </Row>
+                                                      )}
+                                                      renderNoResults={(
+                                                          <Panel
+                                                            icon="ion-ios-globe"
+                                                            title="Segments"
+                                                            className="text-center"
+                                                          >
+                                                                      This user is not part of any segment.
+                                                          </Panel>
+                                                              )}
+                                                      filterRow={({ name }, search) => name.toLowerCase().indexOf(search) > -1}
+                                                    />
+                                                </FormGroup>
+                                            ))}
+                                        </IdentitySegmentsProvider>
                                         )}
                                     </div>
                                 </div>
