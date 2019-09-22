@@ -263,8 +263,11 @@ const OrganisationSettingsPage = class extends Component {
                                                               title="Invites Pending"
                                                               className="no-pad"
                                                               items={invites}
-                                                              renderRow={({ id, email, date_created, invited_by }) => (
-                                                                  <Row className="list-item" key={id}>
+                                                              renderRow={({ id, email, date_created, invited_by }, i) => (
+                                                                  <Row
+                                                                    data-test={`pending-invite-${i}`}
+                                                                    className="list-item" key={id}
+                                                                  >
                                                                       <div className="flex flex-1">
                                                                           {email}
                                                                           <div className="list-item-footer faint">

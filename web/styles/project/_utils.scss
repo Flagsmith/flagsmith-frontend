@@ -44,6 +44,12 @@
     text-decoration: underline;
 }
 
+
+.disable-transitions {
+    .fade {
+        transition: none!important;
+    }
+}
 .e2e {
     pointer-events: none !important;
 }

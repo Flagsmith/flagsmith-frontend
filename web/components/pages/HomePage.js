@@ -91,7 +91,10 @@ const HomePage = class extends React.Component {
                                         </div>
                                         <div className="col-md-1 col-xs-6">
                                             <a href="https://docs.bullet-train.io/clients/python/">
-                                                <img src="./images/tech-logos/python.png" className="img-fluid" alt="Python" title="Python"/>
+                                                <img
+                                                  src="./images/tech-logos/python.png" className="img-fluid" alt="Python"
+                                                  title="Python"
+                                                />
                                             </a>
                                         </div>
                                         <div className="col-md-1 col-xs-6">
@@ -151,11 +154,16 @@ const HomePage = class extends React.Component {
                                                 <ion className="card__icon ion-ios-switch mb-3"/>
                                                 <h5 className="card__title">Feature Flags</h5>
                                                 <p className="card__paragraph-text mb-5">Ship features remotely across
-                                                    multiple environments. Deliver true Continuous Integration.</p>
-                                                <a className="card__link"
-                                                   href="https://docs.bullet-train.io/managing-features/"
-                                                   target="_blank">Learn more <ion
-                                                    className="pl-2 ion-md-arrow-dropright"/></a>
+                                                    multiple environments. Deliver true Continuous Integration.
+                                                </p>
+                                                <a
+                                                  className="card__link"
+                                                  href="https://docs.bullet-train.io/managing-features/"
+                                                  target="_blank"
+                                                >Learn more <ion
+                                                  className="pl-2 ion-md-arrow-dropright"
+                                                />
+                                                </a>
                                             </div>
                                         </div>
                                         <div className="col-md-4">
@@ -164,11 +172,16 @@ const HomePage = class extends React.Component {
                                                 <h5 className="card__title">Remote Config</h5>
                                                 <p className="card__paragraph-text mb-5"> Change the behaviour,
                                                     appearance and configuration of your app without needing to
-                                                    deploy.</p>
-                                                <a className="card__link"
-                                                   href="https://docs.bullet-train.io/managing-features/"
-                                                   target="_blank">Learn more <ion
-                                                    className="pl-2 ion-md-arrow-dropright"/></a>
+                                                    deploy.
+                                                </p>
+                                                <a
+                                                  className="card__link"
+                                                  href="https://docs.bullet-train.io/managing-features/"
+                                                  target="_blank"
+                                                >Learn more <ion
+                                                  className="pl-2 ion-md-arrow-dropright"
+                                                />
+                                                </a>
                                             </div>
                                         </div>
                                         <div className="col-md-4">
@@ -176,11 +189,16 @@ const HomePage = class extends React.Component {
                                                 <ion className="card__icon ion-ios-person mb-3"/>
                                                 <h5 className="card__title">User Traits</h5>
                                                 <p className="card__paragraph-text mb-5">Store traits against your users
-                                                    without modifying your back-end.</p>
-                                                <a className="card__link"
-                                                   href="https://docs.bullet-train.io/managing-identities/#identity-traits"
-                                                   target="_blank">Learn more <ion
-                                                    className="pl-2 ion-md-arrow-dropright"/></a>
+                                                    without modifying your back-end.
+                                                </p>
+                                                <a
+                                                  className="card__link"
+                                                  href="https://docs.bullet-train.io/managing-identities/#identity-traits"
+                                                  target="_blank"
+                                                >Learn more <ion
+                                                  className="pl-2 ion-md-arrow-dropright"
+                                                />
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
@@ -190,11 +208,16 @@ const HomePage = class extends React.Component {
                                                 <ion className="card__icon ion-md-contacts mb-3"/>
                                                 <h5 className="card__title">Segment Users</h5>
                                                 <p className="card__paragraph-text mb-5">Create detailed user segments
-                                                    based on their traits, then target features based on the segment.</p>
-                                                <a className="card__link"
-                                                   href="https://docs.bullet-train.io/managing-segments/"
-                                                   target="_blank">Learn more <ion
-                                                    className="pl-2 ion-md-arrow-dropright"/></a>
+                                                    based on their traits, then target features based on the segment.
+                                                </p>
+                                                <a
+                                                  className="card__link"
+                                                  href="https://docs.bullet-train.io/managing-segments/"
+                                                  target="_blank"
+                                                >Learn more <ion
+                                                  className="pl-2 ion-md-arrow-dropright"
+                                                />
+                                                </a>
                                             </div>
                                         </div>
                                         <div className="col-md-4">
@@ -202,11 +225,16 @@ const HomePage = class extends React.Component {
                                                 <ion className="card__icon ion-ios-browsers mb-3"/>
                                                 <h5 className="card__title">Staged Feature Rollouts</h5>
                                                 <p className="card__paragraph-text mb-5">Deploy features to 1% of your user base.
-                                                All good? Roll out to everybody.</p>
-                                                <a className="card__link"
-                                                   href="https://docs.bullet-train.io/staged-feature-rollouts/"
-                                                   target="_blank">Learn more <ion
-                                                    className="pl-2 ion-md-arrow-dropright"/></a>
+                                                All good? Roll out to everybody.
+                                                </p>
+                                                <a
+                                                  className="card__link"
+                                                  href="https://docs.bullet-train.io/staged-feature-rollouts/"
+                                                  target="_blank"
+                                                >Learn more <ion
+                                                  className="pl-2 ion-md-arrow-dropright"
+                                                />
+                                                </a>
                                             </div>
                                         </div>
                                         <div className="col-md-4">
@@ -214,11 +242,16 @@ const HomePage = class extends React.Component {
                                                 <ion className="card__icon ion-md-done-all mb-3"/>
                                                 <h5 className="card__title">Track Changes</h5>
                                                 <p className="card__paragraph-text mb-5">Audit changes &amp;
-                                                    rollback any mistakes or issues.</p>
-                                                <a className="card__link"
-                                                   href="https://docs.bullet-train.io/audit-logs/"
-                                                   target="_blank">Learn more <ion
-                                                    className="pl-2 ion-md-arrow-dropright"/></a>
+                                                    rollback any mistakes or issues.
+                                                </p>
+                                                <a
+                                                  className="card__link"
+                                                  href="https://docs.bullet-train.io/audit-logs/"
+                                                  target="_blank"
+                                                >Learn more <ion
+                                                  className="pl-2 ion-md-arrow-dropright"
+                                                />
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
@@ -278,12 +311,15 @@ Now you can manage feature flags and remote config across web, mobile and server
                                                 <div className="form-intro text-center">
                                                     <h3 className="mb-4">User login</h3>
                                                 </div>
-                                                {isInvite &&
+                                                {isInvite
+                                                && (
                                                 <div className="notification flex-row">
                                                     <ion
-                                                        className="notification__icon ion-md-information-circle-outline mb-3"/>
+                                                      className="notification__icon ion-md-information-circle-outline mb-3"
+                                                    />
                                                     <p className="notification__text pl-3">Login to accept your invite</p>
                                                 </div>
+                                                )
                                                 }
                                                 <fieldset id="details" className="col-lg-6 offset-lg-3">
                                                     {error && error.email ? (
@@ -295,6 +331,7 @@ Now you can manage feature flags and remote config across web, mobile and server
                                                         </span>
                                                     ) : null}
                                                     <Input
+                                                      data-test="email"
                                                       inputProps={{
                                                           name: 'email',
                                                           className: 'full-width',
@@ -329,6 +366,7 @@ Now you can manage feature flags and remote config across web, mobile and server
                                                       placeholder="Password"
                                                       type="password"
                                                       name="password"
+                                                      data-test="password"
                                                       id="password"
                                                     />
                                                     <div className="form-cta">
@@ -379,7 +417,7 @@ Not got
 
                                             <div className="form-intro text-center">
                                                 <h3>It's free to get started.</h3>
-                                                {!isInvite &&  <p className="text-white">We have a 100% free for life plan for smaller projects. <a href="/pricing">Check out our Pricing</a></p>}
+                                                {!isInvite && <p className="text-white">We have a 100% free for life plan for smaller projects. <a href="/pricing">Check out our Pricing</a></p>}
                                             </div>
                                             {error
                                             && (
@@ -390,13 +428,17 @@ Not got
                                                 </FormGroup>
                                             )
                                             }
-                                            {isInvite &&
+                                            {isInvite
+                                                && (
                                                 <div className="notification flex-row">
                                                     <ion
-                                                        className="notification__icon ion-md-information-circle-outline mb-3"/>
+                                                      className="notification__icon ion-md-information-circle-outline mb-3"
+                                                    />
                                                     <p className="notification__text pl-3">Sign up to accept your
-                                                        invite</p>
+                                                        invite
+                                                    </p>
                                                 </div>
+                                                )
                                             }
                                             <fieldset id="details" className="col-lg-6 offset-lg-3">
                                                 <Input

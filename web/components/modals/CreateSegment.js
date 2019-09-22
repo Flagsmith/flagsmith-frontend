@@ -9,7 +9,7 @@ const CreateSegment = class extends Component {
 
     constructor(props, context) {
         super(props, context);
-        ES6Component(this);
+        ES6Component(this, this.onUnmount);
         const { description, name, id, rules = [] } = this.props.segment && this.props.segment.rules.length ? _.cloneDeep(this.props.segment)
             : {
                 rules: [{
@@ -75,7 +75,7 @@ const CreateSegment = class extends Component {
         }, 500);
     };
 
-    componentWillUnmount() {
+    onUnmount() {
         if (this.focusTimeout) {
             clearTimeout(this.focusTimeout);
         }
