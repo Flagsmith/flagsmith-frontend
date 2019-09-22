@@ -20,6 +20,10 @@ const UserPage = class extends Component {
         API.trackPage(Constants.pages.USER);
     }
 
+    onTraitSaved = () => {
+        AppActions.getIdentitySegments(this.props.params.projectId, this.props.params.id);
+    }
+
     confirmToggle = (projectFlag, environmentFlag, cb) => {
         openModal('Toggle Feature', <ConfirmToggleFeature
           identity={this.props.params.id}
@@ -47,6 +51,7 @@ const UserPage = class extends Component {
         API.trackEvent(Constants.events.VIEW_USER_FEATURE);
         openModal('Create User Trait', <CreateTraitModal
           isEdit={false}
+          onSave={this.onTraitSaved}
           identity={this.props.params.id}
           environmentId={this.props.params.environmentId}
           projectId={this.props.params.projectId}
@@ -58,6 +63,7 @@ const UserPage = class extends Component {
         openModal('Edit User Trait', <CreateTraitModal
           isEdit
           {...trait}
+          onSave={this.onTraitSaved}
           identity={this.props.params.id}
           environmentId={this.props.params.environmentId}
           projectId={this.props.params.projectId}
@@ -279,7 +285,7 @@ const UserPage = class extends Component {
                                                           title="Segments"
                                                           items={segments ? segments.results : []}
                                                           acti
-                                                          renderRow={({ name, id, enabled, created_date, type }, i) => (
+                                                          renderRow={({ name, id, enabled, created_date, type, description }, i) => (
                                                               <Row
                                                                 className="list-item"
                                                                 space
@@ -294,6 +300,7 @@ const UserPage = class extends Component {
                                                                           </span>
                                                                       </Row>
                                                                       <div className="list-item-footer faint">
+                                                                          {description ? <div>{description}<br/></div> : ''}
                                                                             Created
                                                                           {' '}
                                                                           {moment(created_date).format('DD/MMM/YYYY')}

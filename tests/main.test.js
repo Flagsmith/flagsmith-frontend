@@ -298,55 +298,59 @@ module.exports = {
             .setValue('[name="traitValue"]', '18')
             .click('#create-trait-btn')
             .waitForElementNotPresent('#create-trait-btn')
-            .waitForElementVisible('#user-traits-list .js-trait-value');
+            .waitForElementVisible('#user-traits-list .js-trait-value-1');
         browser.expect.element('#user-traits-list .js-trait-value-1').text.to.equal('18');
     },
-    // '[Main Tests] - Edit environment': function (browser) {
-    //     browser
-    //         .click('#env-settings-link')
-    //         .waitForElementVisible("[name='env-name']")
-    //         .clearValue("[name='env-name']")
-    //         .setValue("[name='env-name']", 'Internal')
-    //         .click('#save-env-btn');
-    //
-    //     browser.waitForElementVisible(byId('switch-environment-internal-active'));
-    // },
-    // '[Main Tests] - Delete environment': function (browser) {
-    //     browser
-    //         .click('#delete-env-btn')
-    //         .waitForElementVisible("[name='confirm-env-name']")
-    //         .setValue("[name='confirm-env-name']", 'Internal')
-    //         .click('#confirm-delete-env-btn')
-    //         .waitForElementVisible('#project-select-page');
-    // },
-    // '[Main Tests] - View project': function (browser) {
-    //     browser.waitForElementVisible('#projects-list a.list-item');
-    //     browser.expect.element('#projects-list a.list-item').text.to.equal('My Test Project');
-    //     browser.click('#projects-list a.list-item');
-    //     browser.waitForElementVisible('#features-page');
-    // },
-    // '[Main Tests] - Edit project': function (browser) {
-    //     browser
-    //         .waitForElementVisible('#project-settings-link')
-    //         .pause(200) // Slide in transition
-    //         .click('#project-settings-link')
-    //         .waitForElementVisible("[name='proj-name']")
-    //         .clearValue("[name='proj-name']")
-    //         .setValue("[name='proj-name']", 'Test Project')
-    //         .click('#save-proj-btn');
-    //
-    //     browser.waitForElementVisible(byId('switch-project-test project-active'));
-    // },
-    // '[Main Tests] - Delete Nightwatch Ltd organisation': function (browser) {
-    //     browser
-    //         .click('#organisation-settings-link')
-    //         .waitForElementVisible('#delete-org-btn')
-    //         .click('#delete-org-btn')
-    //         .waitForElementVisible('[name="confirm-org-name"]')
-    //         .setValue('[name="confirm-org-name"]', 'Nightwatch Ltd')
-    //         .click('#confirm-del-org-btn')
-    //         .waitForElementVisible('#create-org-page');
-    //
-    //     browser.end();
-    // },
+    '[Main Tests] - Check user now belongs to segment': function (browser) {
+        browser.waitForElementVisible(byId('segment-0-name'));
+        browser.expect.element(byId('segment-0-name')).text.to.equal('18_or_19');
+    },
+    '[Main Tests] - Edit environment': function (browser) {
+        browser
+            .click('#env-settings-link')
+            .waitForElementVisible("[name='env-name']")
+            .clearValue("[name='env-name']")
+            .setValue("[name='env-name']", 'Internal')
+            .click('#save-env-btn');
+
+        browser.waitForElementVisible(byId('switch-environment-internal-active'));
+    },
+    '[Main Tests] - Delete environment': function (browser) {
+        browser
+            .click('#delete-env-btn')
+            .waitForElementVisible("[name='confirm-env-name']")
+            .setValue("[name='confirm-env-name']", 'Internal')
+            .click('#confirm-delete-env-btn')
+            .waitForElementVisible('#project-select-page');
+    },
+    '[Main Tests] - View project': function (browser) {
+        browser.waitForElementVisible('#projects-list a.list-item');
+        browser.expect.element('#projects-list a.list-item').text.to.equal('My Test Project');
+        browser.click('#projects-list a.list-item');
+        browser.waitForElementVisible('#features-page');
+    },
+    '[Main Tests] - Edit project': function (browser) {
+        browser
+            .waitForElementVisible('#project-settings-link')
+            .pause(200) // Slide in transition
+            .click('#project-settings-link')
+            .waitForElementVisible("[name='proj-name']")
+            .clearValue("[name='proj-name']")
+            .setValue("[name='proj-name']", 'Test Project')
+            .click('#save-proj-btn');
+
+        browser.waitForElementVisible(byId('switch-project-test project-active'));
+    },
+    '[Main Tests] - Delete Nightwatch Ltd organisation': function (browser) {
+        browser
+            .click('#organisation-settings-link')
+            .waitForElementVisible('#delete-org-btn')
+            .click('#delete-org-btn')
+            .waitForElementVisible('[name="confirm-org-name"]')
+            .setValue('[name="confirm-org-name"]', 'Nightwatch Ltd')
+            .click('#confirm-del-org-btn')
+            .waitForElementVisible('#create-org-page');
+
+        browser.end();
+    },
 };
