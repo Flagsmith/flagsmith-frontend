@@ -14,6 +14,13 @@ const CreateTrait = class extends Component {
         closeModal();
     }
 
+    onSave = () => {
+        if (this.props.onSave) {
+            this.props.onSave();
+        }
+        this.close();
+    }
+
     componentDidMount = () => {
         if (!this.props.isEdit) {
             this.focusTimeout = setTimeout(() => {
@@ -39,7 +46,7 @@ const CreateTrait = class extends Component {
               id={projectId}
             >
                 {({ project }) => (
-                    <IdentityProvider onSave={this.close}>
+                    <IdentityProvider onSave={this.onSave}>
                         {({ isLoading, isSaving, error }, { editTrait }) => (
                             <form
                               id="create-trait-modal"

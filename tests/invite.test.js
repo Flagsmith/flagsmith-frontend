@@ -34,7 +34,6 @@ module.exports = {
         browser.expect.element(byId('features-page')).to.be.visible;
     },
     '[Invite Tests] - Invite user': async function (browser) {
-        browser;
         browser.pause(200); // Slide in transition
         browser.click('#organisation-settings-link');
         browser.pause(200); // Slide in transition
@@ -42,7 +41,7 @@ module.exports = {
         browser.waitAndSet('[name="inviteEmails"]', inviteEmail);
         browser.click('#btn-send-invite');
         browser.waitForElementNotPresent('#btn-send-invite');
-        browser.waitForElementVisible('#org-invites-list div.list-item');
+        browser.waitForElementVisible(byId('pending-invite-0'));
     },
     '[Invite Tests] - Invite user 2': function (browser) {
         browser
@@ -51,7 +50,7 @@ module.exports = {
             .setValue('[name="inviteEmails"]', 'test@test.com')
             .click('#btn-send-invite')
             .waitForElementNotPresent('#btn-send-invite')
-            .waitForElementVisible('#org-invites-list div.list-item:nth-child(2)');
+            .waitForElementVisible(byId('pending-invite-1'));
     },
     '[Invite Tests] - Delete user 2': function (browser) {
         browser

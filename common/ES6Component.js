@@ -50,7 +50,7 @@ module.exports = function (context, onUnmount) {
             if (listener) this.stopListening(index);
         });
         if (onUnmount) {
-            onUnmount();
+            onUnmount.call(context);
         }
     };
 };

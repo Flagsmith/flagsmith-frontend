@@ -143,7 +143,9 @@ module.exports = Object.assign(
             exitTests(browser, done);
         },
     },
+    require('./initialise.test'), // Register as the demo user
     require('./main.test'), // Main flow tests
+    require('./initial-cleanup.test'), // Cleanup initialisation
     require('./invite.test'), // Invite user tests
     require('./register-fail.test'), // Registration failure tests
     require('./login-fail.test'), // Login failure tests

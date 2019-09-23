@@ -60,6 +60,9 @@ AsyncStorage.getItem('t', (err, res) => {
 // Setup for toast messages
 ReactDOM.render(<ToastMessages />, document.getElementById('toast'));
 
+if(E2E) {
+    document.body.classList.add("disable-transitions")
+}
 
 if (!E2E) {
     window.intercomSettings = {

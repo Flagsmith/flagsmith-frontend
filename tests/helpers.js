@@ -27,6 +27,7 @@ const testHelpers = {
     },
     async waitAndClick(id) {
         this.waitForElementVisible(id);
+        this.moveToElement(id, 0, 0);
         this.click(id);
     },
     async assertValue(id, value) {

@@ -105,7 +105,7 @@ export default class Rule extends PureComponent {
 
     setRuleProperty = (i, prop, { value }) => {
         const { props: { rule: { conditions: rules } } } = this;
-        rules[i][prop] = value;
+        rules[i][prop] = Utils.getTypedValue(value);
         if (prop === 'operator' && value === 'PERCENTAGE_SPLIT') {
             rules[i].property = '';
         }
