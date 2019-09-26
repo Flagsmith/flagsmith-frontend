@@ -86,12 +86,15 @@ const controller = {
                 store.trigger('removed');
             });
     },
-    inviteUsers: (emailAddresses) => {
+    inviteUsers: (invites) => {
         store.saving();
         data.post(`${Project.api}organisations/${store.id}/invite/`, {
-            emails: emailAddresses.split(',').map((e) => {
+            invites: invites.map((invite) => {
                 API.trackEvent(Constants.events.INVITE);
-                return e.trim();
+                return {
+                    email: invite.emailAddress,
+                    role: invite.role.value,
+                };
             }),
             frontend_base_url: `${document.location.origin}/invite/`,
         }).then((res) => {
@@ -162,7 +165,7 @@ store.dispatcherIndex = Dispatcher.register(store, (payload) => {
             controller.deleteProject(action.id);
             break;
         case Actions.INVITE_USERS:
-            controller.inviteUsers(action.emailAddresses);
+            controller.inviteUsers(action.invites);
             break;
         case Actions.DELETE_INVITE:
             controller.deleteInvite(action.id);

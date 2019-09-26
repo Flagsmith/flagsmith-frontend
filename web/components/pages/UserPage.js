@@ -79,6 +79,18 @@ const UserPage = class extends Component {
         />);
     }
 
+    removeTrait = (id, trait_key) => {
+        openConfirm(
+            <h3>Delete Trait</h3>,
+            <p>
+                {'Are you sure you want to delete trait '}
+                <strong>{trait_key}</strong>
+                {' from this user?'}
+            </p>,
+            () => AppActions.deleteIdentityTrait(this.props.params.environmentId, this.props.params.id, id),
+        );
+    }
+
     render() {
         const { hasFeature } = this.props;
         return (
@@ -217,13 +229,14 @@ const UserPage = class extends Component {
                                                   acti
                                                   renderRow={({ trait_value, trait_key }, i) => (
                                                       <Row
-                                                        onClick={() => this.editTrait({
-                                                            trait_value,
-                                                            trait_key,
-                                                        })} className="list-item clickable" key={trait_key}
+                                                        className="list-item clickable" key={trait_key}
                                                         space
                                                       >
                                                           <div
+                                                            onClick={() => this.editTrait({
+                                                                trait_value,
+                                                                trait_key,
+                                                            })}
                                                             className="flex flex-1"
                                                           >
                                                               <Row>
@@ -238,6 +251,16 @@ const UserPage = class extends Component {
                                                                     className={`js-trait-value-${i}`}
                                                                     value={`${trait_value}`}
                                                                   />
+                                                              </Column>
+                                                              <Column>
+                                                                  <button
+                                                                    id="remove-feature"
+                                                                    className="btn btn--with-icon"
+                                                                    type="button"
+                                                                    onClick={() => this.removeTrait(id, trait_key)}
+                                                                  >
+                                                                      <RemoveIcon/>
+                                                                  </button>
                                                               </Column>
                                                           </Row>
                                                       </Row>

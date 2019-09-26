@@ -182,8 +182,11 @@ Team Members
                                                         </li>
                                                         <li><p>Private Discord Technical Support</p></li>
                                                         <li><p>All Startup Features</p></li>
+                                                        <li><p>All Startup Features</p></li>
+                                                        <li><p>SAML, 2-factor and SSO options</p></li>
+                                                        <li><p>Telephone and Discord Technical Support</p></li>
+                                                        <li><p>Optional On Premise Installation</p></li>
                                                     </ul>
-
                                                 </div>
                                             </div>
                                         </div>

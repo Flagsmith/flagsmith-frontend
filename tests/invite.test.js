@@ -34,21 +34,21 @@ module.exports = {
         browser.expect.element(byId('features-page')).to.be.visible;
     },
     '[Invite Tests] - Invite user': async function (browser) {
-        browser.pause(200); // Slide in transition
+        browser.pause(200);
         browser.click('#organisation-settings-link');
         browser.pause(200); // Slide in transition
         browser.waitAndClick('#btn-invite');
-        browser.waitAndSet('[name="inviteEmails"]', inviteEmail);
+        browser.waitAndSet('[name="inviteEmail"]', inviteEmail);
+        browser.waitAndSet(byId('select-role'), 'ADMIN');
         browser.click('#btn-send-invite');
         browser.waitForElementNotPresent('#btn-send-invite');
         browser.waitForElementVisible(byId('pending-invite-0'));
     },
     '[Invite Tests] - Invite user 2': function (browser) {
-        browser
-            .click('#btn-invite')
-            .waitForElementVisible('[name="inviteEmails"]')
-            .setValue('[name="inviteEmails"]', 'test@test.com')
-            .click('#btn-send-invite')
+        browser.click('#btn-invite');
+        browser.waitAndSet('[name="inviteEmail"]', 'test@test.com');
+        browser.waitAndSet(byId('select-role'), 'USER');
+        browser.click('#btn-send-invite')
             .waitForElementNotPresent('#btn-send-invite')
             .waitForElementVisible(byId('pending-invite-1'));
     },
@@ -84,7 +84,7 @@ module.exports = {
                 testHelpers.logout(browser);
                 testHelpers.login(browser, url, inviteEmail, 'nightwatch');
 
-                browser.expect.element('#project-select-page').to.be.visible;
+                browser.expect.element('#org-menu').to.be.visible;
                 browser.url(inviteUrl);
                 browser
                     .useXpath()
