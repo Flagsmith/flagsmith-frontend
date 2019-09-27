@@ -78,12 +78,7 @@ const InviteUsers = class extends Component {
                                           value={invite.role}
                                           onChange={role => this.onChange(index, 'role', role)}
                                           className="pt-3 pl-2"
-                                          options={
-                                      [
-                                          { value: 'USER', label: 'User' },
-                                          { value: 'ADMIN', label: 'Admin' },
-                                      ]
-                                  }
+                                          options={_.map(Constants.roles, (label, value) => ({ value, label }))}
                                         />
                                     </Flex>
                                     {invites.length > 1 ? (
