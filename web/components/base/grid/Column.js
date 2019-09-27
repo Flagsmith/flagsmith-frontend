@@ -1,7 +1,11 @@
 // propTypes: value: OptionalNumber
+import { PureComponent } from 'react';
+
 const cn = require('classnames');
 
-const Column = class extends React.Component {
+const Column = class extends PureComponent {
+    static displayName = 'Column';
+
     render() {
         return (
             <div {...this.props} className={`${this.props.className || ''} flex-column`}>
@@ -17,7 +21,7 @@ Column.propTypes = {
     className: OptionalString,
     value: OptionalNumber,
     children: OptionalNode,
-    style: React.PropTypes.any,
+    style: propTypes.any,
 };
 
 module.exports = Column;

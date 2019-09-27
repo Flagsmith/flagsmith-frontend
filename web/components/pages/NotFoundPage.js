@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 export default class NotFoundView extends Component {
     static displayName = 'NotFoundPage'
 
-    componentWillMount = () => {
+    componentDidMount = () => {
         API.trackPage(Constants.pages.NOT_FOUND);
     };
 

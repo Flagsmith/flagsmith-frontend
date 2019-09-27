@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import engine from 'bullet-train-rules-engine';
 import Rule from './Rule';
 import Highlight from '../Highlight';

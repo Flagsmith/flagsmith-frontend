@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import OrganisationStore from '../stores/organisation-store';
 import AccountStore from '../stores/account-store';
 import data from '../data/base/_data';

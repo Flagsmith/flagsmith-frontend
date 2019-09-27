@@ -1,10 +1,10 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 
 const LegalAside = class extends Component {
 	static displayName = 'LegalAside'
 
 	static contextTypes = {
-	    router: React.PropTypes.object.isRequired,
+	    router: propTypes.object.isRequired,
 	};
 
 	constructor(props, context) {

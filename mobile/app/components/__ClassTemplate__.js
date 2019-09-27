@@ -1,18 +1,14 @@
-import propTypes from 'prop-types';
 import React, { Component } from 'react';
+import propTypes from 'prop-types';
 
 const TheComponent = class extends Component {
     static displayName = 'TheComponent';
 
     static propTypes = {};
 
+    state = {};
 
-    constructor(props, context) {
-        super(props, context);
-        this.state = {};
-    }
-
-    componentWillMount() {
+    componentDidMount() {
     }
 
     render() {

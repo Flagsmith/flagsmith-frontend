@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import EditIdentityModal from './UserPage';
 
 const UsersPage = class extends Component {
@@ -10,12 +10,12 @@ const UsersPage = class extends Component {
     }
 
     componentDidMount() {
-        AppActions.getIdentities(this.props.params.environmentId);
+        AppActions.getIdentities(this.props.match.params.environmentId);
         API.trackPage(Constants.pages.USERS);
     }
 
     componentWillUpdate(nextProps, nextState, nextContext) {
-        if (nextProps.params.environmentId !== this.props.params.environmentId) {
+        if (nextProps.params.environmentId !== this.props.match.params.environmentId) {
             AppActions.getIdentities(nextProps.params.environmentId);
         }
     }
@@ -36,12 +36,12 @@ const UsersPage = class extends Component {
                 <strong>{identifier}</strong>
                 {'?'}
             </p>,
-            () => AppActions.deleteIdentity(this.props.params.environmentId, id),
+            () => AppActions.deleteIdentity(this.props.match.params.environmentId, id),
         );
     }
 
     render() {
-        const { projectId, environmentId } = this.props.params;
+        const { projectId, environmentId } = this.props.match.params;
         const { hasFeature, getValue } = this.props;
         return (
             <div className="app-container container">
@@ -73,10 +73,10 @@ const UsersPage = class extends Component {
                                                   <Row space className="list-item" key={id}>
                                                       <Flex>
                                                           <Link
-                                                            to={`/project/${this.props.params.projectId}/environment/${this.props.params.environmentId}/users/${id}`}
+                                                            to={`/project/${this.props.match.params.projectId}/environment/${this.props.match.params.environmentId}/users/${id}`}
                                                           >
                                                               {identifier}
-                                                              <ion className="ion-ios-arrow-forward ml-3"/>
+                                                              <span className="ion-ios-arrow-forward ml-3"/>
 
                                                           </Link>
                                                       </Flex>
@@ -102,7 +102,7 @@ const UsersPage = class extends Component {
                                                   </FormGroup>
                                                 )}
                                               filterRow={hasFeature('filter_identities') ? (flag, search) => flag.identifier.indexOf(search) != -1 : null}
-                                              onChange={e => AppActions.searchIdentities(this.props.params.environmentId, Utils.safeParseEventValue(e))}
+                                              onChange={e => AppActions.searchIdentities(this.props.match.params.environmentId, Utils.safeParseEventValue(e))}
                                               isLoading={isLoading}
                                             />
                                         </FormGroup>
@@ -122,7 +122,7 @@ const UsersPage = class extends Component {
                                             <CodeHelp
                                               showInitially
                                               title="Creating users and getting their feature settings"
-                                              snippets={Constants.codeHelp.CREATE_USER(this.props.params.environmentId, identities && identities[0].identifier)}
+                                              snippets={Constants.codeHelp.CREATE_USER(this.props.match.params.environmentId, identities && identities[0].identifier)}
                                             />
                                         </FormGroup>
                                     </div>

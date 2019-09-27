@@ -1,9 +1,9 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 
 
 const InvitePage = class extends Component {
     static contextTypes = {
-        router: React.PropTypes.object.isRequired,
+        router: propTypes.object.isRequired,
     };
 
     static displayName = 'InvitePage'
@@ -11,16 +11,16 @@ const InvitePage = class extends Component {
     constructor(props, context) {
         super(props, context);
         this.state = {};
-        AppActions.acceptInvite(this.props.params.id);
+        AppActions.acceptInvite(this.props.match.params.id);
     }
 
-    componentWillMount = () => {
+    componentDidMount = () => {
         API.trackPage(Constants.pages.INVITE);
     };
 
     onSave = (id) => {
         AppActions.selectOrganisation(id);
-        this.context.router.replace('/projects?new=1');
+        this.context.router.history.replace('/projects?new=1');
     };
 
     render() {

@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import ConfirmRemoveEnvironment from '../modals/ConfirmRemoveEnvironment';
 import ProjectStore from '../../../common/stores/project-store';
 
@@ -6,16 +6,16 @@ const EnvironmentSettingsPage = class extends Component {
     static displayName = 'EnvironmentSettingsPage'
 
     static contextTypes = {
-        router: React.PropTypes.object.isRequired,
+        router: propTypes.object.isRequired,
     };
 
     constructor(props, context) {
         super(props, context);
         this.state = {};
-        AppActions.getProject(this.props.params.projectId);
+        AppActions.getProject(this.props.match.params.projectId);
     }
 
-    componentWillMount = () => {
+    componentDidMount = () => {
         API.trackPage(Constants.pages.ENVIRONMENT_SETTINGS);
     };
 
@@ -25,13 +25,13 @@ const EnvironmentSettingsPage = class extends Component {
 
     componentWillReceiveProps(newProps) {
         if (newProps.projectId !== this.props.projectId) {
-            AppActions.getProject(newProps.params.projectId);
+            AppActions.getProject(newProps.match.params.projectId);
         }
     }
 
     onRemove = () => {
         toast('Your project has been removed');
-        this.context.router.replace('/projects');
+        this.context.router.history.replace('/projects');
     };
 
     confirmRemove = (environment, cb) => {
@@ -42,7 +42,7 @@ const EnvironmentSettingsPage = class extends Component {
     };
 
     onRemoveEnvironment = () => {
-        this.context.router.replace('/projects');
+        this.context.router.history.replace('/projects');
     };
 
     saveEnv = (e) => {
@@ -51,7 +51,7 @@ const EnvironmentSettingsPage = class extends Component {
         if (ProjectStore.isSaving || (!name && webhooks_enabled === undefined && webhook_url === undefined)) {
             return;
         }
-        const env = _.find(ProjectStore.getEnvs(), { api_key: this.props.params.environmentId });
+        const env = _.find(ProjectStore.getEnvs(), { api_key: this.props.match.params.environmentId });
         AppActions.editEnv(Object.assign({}, env, {
             name: name || env.name,
             webhook_url: webhook_url !== undefined ? webhook_url : env.webhook_url,
@@ -65,7 +65,7 @@ const EnvironmentSettingsPage = class extends Component {
             return true;
         }
 
-        const env = _.find(ProjectStore.getEnvs(), { api_key: this.props.params.environmentId });
+        const env = _.find(ProjectStore.getEnvs(), { api_key: this.props.match.params.environmentId });
 
         // Must have name
         if (name !== undefined && !name) {
@@ -86,10 +86,10 @@ const EnvironmentSettingsPage = class extends Component {
             <div className="app-container container">
                 <ProjectProvider
                   onRemoveEnvironment={this.onRemoveEnvironment}
-                  id={this.props.params.projectId} onRemove={this.onRemove} onSave={this.onSave}
+                  id={this.props.match.params.projectId} onRemove={this.onRemove} onSave={this.onSave}
                 >
                     {({ isLoading, isSaving, editProject, editEnv, deleteProject, deleteEnv, project }) => {
-                        const env = _.find(project.environments, { api_key: this.props.params.environmentId });
+                        const env = _.find(project.environments, { api_key: this.props.match.params.environmentId });
                         return (
                             <div>
                                 {isLoading && <div className="centered-container"><Loader/></div>}
@@ -127,7 +127,7 @@ const EnvironmentSettingsPage = class extends Component {
                                                 <Row>
                                                     <Input
                                                       ref={e => this.input = e}
-                                                      value={this.props.params.environmentId}
+                                                      value={this.props.match.params.environmentId}
                                                       inputClassName="input input--wide"
                                                       onChange={e => this.setState({ name: Utils.safeParseEventValue(e) })}
                                                       isValid={name && name.length}
@@ -149,8 +149,8 @@ const EnvironmentSettingsPage = class extends Component {
                                                 </Column>
                                                 <Button
                                                   id="delete-env-btn"
-                                                  onClick={() => this.confirmRemove(_.find(project.environments, { api_key: this.props.params.environmentId }), () => {
-                                                      deleteEnv(_.find(project.environments, { api_key: this.props.params.environmentId }));
+                                                  onClick={() => this.confirmRemove(_.find(project.environments, { api_key: this.props.match.params.environmentId }), () => {
+                                                      deleteEnv(_.find(project.environments, { api_key: this.props.match.params.environmentId }));
                                                   })}
                                                   className="btn btn--with-icon ml-auto btn--remove"
                                                 >

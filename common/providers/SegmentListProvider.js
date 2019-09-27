@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import SegmentListStore from '../stores/segment-list-store';
 
 const SegmentListProvider = class extends Component {

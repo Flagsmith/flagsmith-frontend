@@ -1,10 +1,7 @@
-const Button = class extends React.Component {
-    static displayName = 'Button'
+import { PureComponent } from 'react';
 
-    constructor(props, context) {
-        super(props, context);
-        this.state = {};
-    }
+const Button = class extends PureComponent {
+    static displayName = 'Button'
 
     onMouseUp = () => {
         this.refs.button.blur();
@@ -27,15 +24,26 @@ Button.propTypes = {
     children: OptionalNode,
 };
 
-export default props => (
-    <Button {...props} className={`btn-primary ${props.className || ''}`}/>
-);
+export default class extends PureComponent {
+    static displayName = 'Button';
 
+    render() {
+        return <Button {...this.props} className={`btn-primary ${this.props.className || ''}`}/>;
+    }
+}
 
-export const ButtonSecondary = props => (
-    <Button {...props} className={`btn--secondary ${props.className || ''}`}/>
-);
+export const ButtonSecondary = class extends PureComponent {
+    static displayName = 'ButtonSecondary';
 
-export const ButtonWhite = props => (
-    <Button {...props} className={`white ${props.className || ''}`}/>
-);
+    render() {
+        return <Button {...this.props} className={`btn--secondary ${this.props.className || ''}`}/>;
+    }
+};
+
+export const ButtonWhite = class extends PureComponent {
+    static displayName = 'ButtonWhite';
+
+    render() {
+        return <Button {...this.props} className={`white ${this.props.className || ''}`}/>;
+    }
+};
