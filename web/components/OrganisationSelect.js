@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 
 const OrganisationSelect = class extends Component {
 	static displayName = 'OrganisationSelect'

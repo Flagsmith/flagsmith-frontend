@@ -312,6 +312,13 @@ const AppActions = Object.assign({}, require('./base/_app-actions'), {
             id,
         });
     },
+    updateUserRole(id, role) {
+        Dispatcher.handleViewAction({
+            actionType: Actions.UPDATE_USER_ROLE,
+            id,
+            role,
+        });
+    },
 });
 
 module.exports = AppActions;

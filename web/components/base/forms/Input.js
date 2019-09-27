@@ -110,13 +110,13 @@ Input.defaultProps = {
 };
 
 Input.propTypes = {
-    isValid: React.PropTypes.any,
+    isValid: propTypes.any,
     onKeyDown: OptionalFunc,
     onFocus: OptionalFunc,
     onBlur: OptionalFunc,
     placeholderChar: OptionalString,
     mask: OptionalString,
-    className: React.PropTypes.any,
+    className: propTypes.any,
     inputClassName: OptionalString,
     onSearchChange: OptionalFunc,
 };

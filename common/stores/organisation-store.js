@@ -131,6 +131,21 @@ const controller = {
                 toast(`Failed to resend invite. ${e && e.error ? e.error : 'Please try again later'}`);
             });
     },
+    updateUserRole: (id, role) => {
+        data.post(`${Project.api}organisations/${store.id}/users/${id}/update-role/`, { role })
+            .then(() => {
+                API.trackEvent(Constants.events.UPDATE_USER_ROLE);
+                const index = _.findIndex(store.model.users, user => user.id === id);
+                if (index !== -1) {
+                    store.model.users[index].role = role;
+                    store.saved();
+                }
+            })
+            .catch((e) => {
+                console.error('Failed to update user role', e);
+                toast(`Failed to update this user's role. ${e && e.error ? e.error : 'Please try again later'}`);
+            });
+    },
 
 };
 
@@ -172,6 +187,9 @@ store.dispatcherIndex = Dispatcher.register(store, (payload) => {
             break;
         case Actions.RESEND_INVITE:
             controller.resendInvite(action.id);
+            break;
+        case Actions.UPDATE_USER_ROLE:
+            controller.updateUserRole(action.id, action.role);
             break;
         default:
     }

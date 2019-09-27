@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 
 const InviteUsers = class extends Component {
     static displayName = 'InviteUsers'

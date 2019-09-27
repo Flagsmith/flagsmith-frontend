@@ -1,7 +1,7 @@
 /**
  * Created by kylejohnson on 25/07/2016.
  */
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 
 const FormGroup = class extends Component {
     static displayName = 'FormGroup'
@@ -64,8 +64,8 @@ const FormGroup = class extends Component {
 
 FormGroup.propTypes = {
     disabled: OptionalBool,
-    title: React.PropTypes.any,
-    isValid: React.PropTypes.any,
+    title: propTypes.any,
+    isValid: propTypes.any,
     inputProps: OptionalObject,
     value: OptionalString,
     onChange: OptionalFunc,

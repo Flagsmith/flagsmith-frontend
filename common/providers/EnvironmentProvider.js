@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import AccountStore from '../stores/account-store';
 import EnvironmentStore from '../stores/environment-store';
 

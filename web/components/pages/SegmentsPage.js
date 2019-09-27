@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import CreateSegmentModal from '../modals/CreateSegment';
 import TryIt from '../TryIt';
 import ConfirmRemoveSegment from '../modals/ConfirmRemoveSegment';
@@ -7,28 +7,28 @@ const SegmentsPage = class extends Component {
     static displayName = 'SegmentsPage';
 
     static contextTypes = {
-        router: React.PropTypes.object.isRequired,
+        router: propTypes.object.isRequired,
     };
 
     constructor(props, context) {
         super(props, context);
         this.state = {};
-        AppActions.getFeatures(this.props.params.projectId, this.props.params.environmentId);
-        AppActions.getSegments(this.props.params.projectId, this.props.params.environmentId);
+        AppActions.getFeatures(this.props.match.params.projectId, this.props.match.params.environmentId);
+        AppActions.getSegments(this.props.match.params.projectId, this.props.match.params.environmentId);
     }
 
     componentWillUpdate(newProps) {
-        const { params } = newProps;
-        const { params: oldParams } = this.props;
+        const { match: { params } } = newProps;
+        const { match: { params: oldParams } } = this.props;
         if (params.environmentId != oldParams.environmentId || params.projectId != oldParams.projectId) {
-            AppActions.getFeatures(this.props.params.projectId, this.props.params.environmentId);
+            AppActions.getFeatures(this.props.match.params.projectId, this.props.match.params.environmentId);
             AppActions.getSegments(params.projectId, params.environmentId);
         }
     }
 
     componentDidMount = () => {
         API.trackPage(Constants.pages.FEATURES);
-        const { params } = this.props;
+        const { match: { params } } = this.props;
         AsyncStorage.setItem('lastEnv', JSON.stringify({
             orgId: AccountStore.getOrganisation().id,
             projectId: params.projectId,
@@ -39,8 +39,8 @@ const SegmentsPage = class extends Component {
     newSegment = (flags) => {
         openModal('New Segment', <CreateSegmentModal
           flags={flags}
-          environmentId={this.props.params.environmentId}
-          projectId={this.props.params.projectId}
+          environmentId={this.props.match.params.environmentId}
+          projectId={this.props.match.params.projectId}
         />, null, { className: 'create-segment-modal' });
     };
 
@@ -50,22 +50,22 @@ const SegmentsPage = class extends Component {
         openModal('Edit Segment', <CreateSegmentModal
           segment={segment}
           isEdit
-          environmentId={this.props.params.environmentId}
-          projectId={this.props.params.projectId}
+          environmentId={this.props.match.params.environmentId}
+          projectId={this.props.match.params.projectId}
           projectFlag={segment}
         />, null, { className: 'create-segment-modal' });
     };
 
 
     componentWillReceiveProps(newProps) {
-        if (newProps.params.environmentId != this.props.params.environmentId) {
-            AppActions.getSegments(newProps.params.projectId, newProps.params.environmentId);
+        if (newProps.match.params.environmentId != this.props.match.params.environmentId) {
+            AppActions.getSegments(newProps.match.params.projectId, newProps.match.params.environmentId);
         }
     }
 
     confirmRemove = (segment, cb) => {
         openModal('Remove Segment', <ConfirmRemoveSegment
-          environmentId={this.props.params.environmentId}
+          environmentId={this.props.match.params.environmentId}
           segment={segment}
           cb={cb}
         />);
@@ -73,11 +73,11 @@ const SegmentsPage = class extends Component {
 
     onError = (error) => {
         // Kick user back out to projects
-        this.context.router.replace('/projects');
+        this.context.router.history.replace('/projects');
     }
 
     render() {
-        const { projectId, environmentId } = this.props.params;
+        const { projectId, environmentId } = this.props.match.params;
         return (
             <div data-test="segments-page" id="segments-page" className="app-container container">
                 <SegmentListProvider onSave={this.onSave} onError={this.onError}>
@@ -140,7 +140,7 @@ const SegmentsPage = class extends Component {
                                                                   <button
                                                                     id="remove-feature"
                                                                     onClick={() => this.confirmRemove(segments[i], () => {
-                                                                        removeSegment(this.props.params.projectId, segments[i].id);
+                                                                        removeSegment(this.props.match.params.projectId, segments[i].id);
                                                                     })}
                                                                     className="btn btn--with-icon"
                                                                   >
@@ -189,7 +189,7 @@ User Traits
                                                   className="btn-lg btn-primary" id="show-create-segment-btn" data-test="show-create-segment-btn"
                                                   onClick={this.newSegment}
                                                 >
-                                                    <ion className="icon ion-ios-globe"/>
+                                                    <span className="icon ion-ios-globe"/>
                                                     {' '}
                                                     Create your first Segment
                                                 </Button>

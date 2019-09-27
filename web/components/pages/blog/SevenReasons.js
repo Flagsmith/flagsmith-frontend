@@ -1,7 +1,7 @@
 /**
  * Created by niall on 27/11/2018.
  */
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import lazyframe from 'lazyframe';
 import md from './markdown/7-reasons-for-devs-to-use-feature-flags-as-a-growth-hack.md';
 import 'lazyframe/dist/lazyframe.css';

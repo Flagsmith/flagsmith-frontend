@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import Highlight from '../Highlight';
 import Tabs from '../base/forms/Tabs';
 import TabItem from '../base/forms/TabItem';
@@ -93,7 +93,7 @@ const CreateFlag = class extends Component {
                                               value="FLAG"
                                               tabLabel={(
                                                   <Row className="row-center">
-                                                      <ion className="tab-icon ion-ios-switch"/>
+                                                      <span className="tab-icon ion-ios-switch"/>
                                                       <span className="tab-text">Feature Flag</span>
                                                   </Row>
                                                 )}
@@ -104,7 +104,7 @@ const CreateFlag = class extends Component {
                                               id="btn-select-remote-config"
                                               tabLabel={(
                                                   <Row className="row-center">
-                                                      <ion className="tab-icon ion-ios-settings"/>
+                                                      <span className="tab-icon ion-ios-settings"/>
                                                       <span className="tab-text">Remote config</span>
                                                   </Row>
                                             )}

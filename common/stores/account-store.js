@@ -47,6 +47,7 @@ const controller = {
             .catch(e => API.ajaxHandler(store, e));
     },
     setToken: (token) => {
+        store.loading();
         store.user = {};
         AsyncStorage.getItem('isDemo', (err, res) => {
             if (res) {
@@ -97,8 +98,8 @@ const controller = {
     getOrganisations: () => Promise.all([data.get(`${Project.api}organisations/`), data.get(`${Project.api}auth/user/`)])
         .then(([res, userRes]) => {
             controller.setUser({
-                organisations: res.results,
                 ...userRes,
+                organisations: _.map(res.results, result => ({ ...result, role: _.get(_.find(userRes.organisations, org => org.organisation.id === result.id), 'role') || 'USER' })),
             });
         })
         .catch(e => API.ajaxHandler(store, e)),

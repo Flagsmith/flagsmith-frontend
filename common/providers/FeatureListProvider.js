@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import FeatureListStore from '../stores/feature-list-store';
 
 const FeatureListProvider = class extends Component {

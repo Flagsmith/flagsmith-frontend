@@ -1,14 +1,14 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 
 const PanelSearch = class extends Component {
     static displayName = 'PanelSearch'
 
     static propTypes = {
-        title: React.PropTypes.string,
-        items: React.PropTypes.any,
+        title: propTypes.string,
+        items: propTypes.any,
         search: OptionalString,
         renderRow: RequiredFunc,
-        renderNoResults: PropTypes.any,
+        renderNoResults: propTypes.any,
         filterRow: OptionalFunc,
         paging: OptionalObject,
         nextPage: OptionalFunc,

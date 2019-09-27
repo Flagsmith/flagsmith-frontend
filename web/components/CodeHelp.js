@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import Tabs from './base/forms/Tabs';
 import TabItem from './base/forms/TabItem';
 import Highlight from './Highlight';
@@ -28,7 +28,7 @@ const CodeHelp = class extends Component {
                             <Flex style={isMobile ? { overflowX: 'scroll' } : {}}>
                                 <div>
                                     <pre className="hljs-header">
-                                        <ion className="ion-ios-code"/>
+                                        <span className="ion-ios-code"/>
                                         {' '}
 Code example:
                                         {' '}
@@ -36,7 +36,7 @@ Code example:
                                             {this.props.title}
                                             {' '}
                                         </span>
-                                        <ion
+                                        <span
                                           className={this.state.visible ? 'icon ion-ios-arrow-down' : 'icon ion-ios-arrow-forward'}
                                         />
                                     </pre>
