@@ -70,7 +70,7 @@ const Modal = class extends React.Component {
         return (
             <Provider ref="modal">
                 <div
-                  tabIndex="-1" className={`modal alert fade expand ${this.props.className ? this.props.className : ''}`} role="dialog"
+                  tabIndex="-1" className={`modal ${this.props.className ? this.props.className : ''}`} role="dialog"
                   aria-hidden="true"
                 >
                     <div className={`modal-dialog ${this.props.large ? 'modal-lg' : ''}`}>

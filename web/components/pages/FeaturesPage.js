@@ -53,7 +53,7 @@ const FeaturesPage = class extends Component {
           projectFlag={projectFlag}
           environmentFlag={environmentFlag}
           flagId={environmentFlag.id}
-        />);
+        />, null, { className: 'side-modal fade' });
     };
 
 
