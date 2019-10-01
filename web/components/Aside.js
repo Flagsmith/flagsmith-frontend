@@ -100,14 +100,16 @@ const Aside = class extends Component {
                                 >
 Project Settings
                                 </Link>
-                                <Link
-                                  id="organisation-settings-link"
-                                  activeClassName="active"
-                                  className="link--footer"
-                                  to={`/project/${this.props.projectId}/environment/${this.props.environmentId}/organisation-settings`}
-                                >
-												Organisation Settings
-                                </Link>
+                                {AccountStore.getOrganisationRole() === 'ADMIN' && (
+                                    <Link
+                                      id="organisation-settings-link"
+                                      activeClassName="active"
+                                      className="link--footer"
+                                      to={`/project/${this.props.projectId}/environment/${this.props.environmentId}/organisation-settings`}
+                                    >
+                                                    Organisation Settings
+                                    </Link>
+                                )}
                                 <a
                                   target="blank"
                                   className="link--footer"

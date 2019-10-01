@@ -345,7 +345,7 @@ Click here to Sign
 
                                                                     <a
                                                                       id="logout-link" href="#"
-                                                                      onClick={() => AppActions.setUser(null)}
+                                                                      onClick={AppActions.logout}
                                                                       to="exampleone"
                                                                     >
 Logout

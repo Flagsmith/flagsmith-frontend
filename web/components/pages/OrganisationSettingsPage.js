@@ -21,6 +21,10 @@ const OrganisationSettingsPage = class extends Component {
 
     componentDidMount = () => {
         API.trackPage(Constants.pages.ORGANISATION_SETTINGS);
+
+        if (AccountStore.getOrganisationRole() !== 'ADMIN') {
+            this.context.router.history.replace('/projects');
+        }
     };
 
     editOrganisation = () => {
@@ -58,7 +62,7 @@ const OrganisationSettingsPage = class extends Component {
         openConfirm(<h3>Delete Invite</h3>, <p>
             Are you sure you want to delete this
             invite?
-        </p>, () => AppActions.deleteInvite(id));
+                                            </p>, () => AppActions.deleteInvite(id));
     }
 
     save = (e) => {

@@ -11,10 +11,11 @@ const controller = {
 
             Promise.all([
                 data.get(`${Project.api}organisations/${id}/projects/`),
+            ].concat(AccountStore.getOrganisationRole(id) === 'ADMIN' ? [
                 data.get(`${Project.api}organisations/${id}/users/`),
                 data.get(`${Project.api}organisations/${id}/invites/`),
                 data.get(`${Project.api}organisations/${id}/usage/`),
-            ]).then((res) => {
+            ] : [])).then((res) => {
                 if (id === store.id) {
                     const [projects, users, invites, usage] = res;
                     store.model = { users, invites: invites && invites.results };
@@ -190,6 +191,9 @@ store.dispatcherIndex = Dispatcher.register(store, (payload) => {
             break;
         case Actions.UPDATE_USER_ROLE:
             controller.updateUserRole(action.id, action.role);
+            break;
+        case Actions.LOGOUT:
+            store.id = null;
             break;
         default:
     }

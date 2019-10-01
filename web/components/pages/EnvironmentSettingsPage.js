@@ -126,11 +126,8 @@ const EnvironmentSettingsPage = class extends Component {
                                                 <label className="m-b-0">API Key</label>
                                                 <Row>
                                                     <Input
-                                                      ref={e => this.input = e}
                                                       value={this.props.match.params.environmentId}
                                                       inputClassName="input input--wide"
-                                                      onChange={e => this.setState({ name: Utils.safeParseEventValue(e) })}
-                                                      isValid={name && name.length}
                                                       type="text" title={<h3>API Key</h3>}
                                                       placeholder="API Key"
                                                     />

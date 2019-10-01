@@ -191,6 +191,9 @@ const store = Object.assign({}, BaseStore, {
     getOrganisations() {
         return store.model && store.model.organisations;
     },
+    getOrganisationRole(id) {
+        return store.model && store.model.organisations && _.get(_.find(store.model.organisations, org => org.id === id || (store.organisation && store.organisation.id)), 'role');
+    },
 });
 
 store.dispatcherIndex = Dispatcher.register(store, (payload) => {
