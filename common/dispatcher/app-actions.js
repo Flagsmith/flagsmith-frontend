@@ -220,10 +220,10 @@ const AppActions = Object.assign({}, require('./base/_app-actions'), {
         });
     },
     // Invites todo: organise actions
-    inviteUsers(emailAddresses) {
+    inviteUsers(invites) {
         Dispatcher.handleViewAction({
             actionType: Actions.INVITE_USERS,
-            emailAddresses,
+            invites,
         });
     },
     deleteInvite(id) {
@@ -310,6 +310,13 @@ const AppActions = Object.assign({}, require('./base/_app-actions'), {
             envId,
             identity,
             id,
+        });
+    },
+    updateUserRole(id, role) {
+        Dispatcher.handleViewAction({
+            actionType: Actions.UPDATE_USER_ROLE,
+            id,
+            role,
         });
     },
 });

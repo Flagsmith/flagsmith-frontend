@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 
 const ConfirmToggleFeature = class extends Component {
     static displayName = 'ConfirmToggleFeature'

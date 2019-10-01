@@ -1,7 +1,7 @@
 /**
  * Created by andrewmoffatt on 23/10/2018.
  */
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import lazyframe from 'lazyframe';
 import 'lazyframe/dist/lazyframe.css';
 

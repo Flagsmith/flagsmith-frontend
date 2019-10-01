@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 
 const WhatAreFeatureFlagsPage = class extends Component {
     static displayName = 'WhatAreFeatureFlagsPage'
@@ -8,7 +8,7 @@ const WhatAreFeatureFlagsPage = class extends Component {
         this.state = {};
     }
 
-    componentWillMount() {
+    componentDidMount() {
         API.trackPage(Constants.pages.WHAT_ARE_FEATURE_FLAGS);
     }
 

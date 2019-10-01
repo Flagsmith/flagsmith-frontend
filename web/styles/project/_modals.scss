@@ -25,6 +25,66 @@
         }
     }
 }
+$side-width: 33%;
+.side-modal {
+    .close {
+        position: absolute;
+        top: -40px;
+        right: 20px;
+        color: white;
+        font-size: 18px;
+        cursor: pointer;
+    }
+    z-index: 20000000000;
+    padding-left:0;
+    left: 0;
+    right:0;
+    top:0;
+    bottom:0;
+    opacity: 1;
+    .modal-header {
+        border-radius: 0;
+        text-align: left;
+        font-weight: bold;
+    }
+    .modal-dialog {
+        box-shadow:rgba(75, 75, 75, 0.11) 0px 1px 6px 0px, rgba(75, 75, 75, 0.11) 0px 1px 4px 0px;
+    transition: transform .2s ease-out;
+        transform: translate(100%, 0%) !important;
+        position: absolute;
+        max-width:480px;
+        width:$side-width !important;
+        height:100% !important;
+        max-height:100% !important;
+        margin:0;
+        right:0;
+        left: auto;
+    }
+    &.in {
+        .modal-dialog {
+            transform: translate(0%, 0%) !important;
+        }
+    }
+    .footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 20px;
+    }
+    .modal-content {
+        border: none;
+        width: 100%;
+        height:100%;
+        border-radius: 0;
+    }
+}
+
+.disable-transitions {
+  .modal-dialog {
+    transition: none !important;
+  }
+}
 
 @media (max-width: 576px) {
     .modal {

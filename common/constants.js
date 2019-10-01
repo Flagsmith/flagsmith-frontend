@@ -53,6 +53,7 @@ const Constants = {
         'VIEW_USER_FEATURE': { 'event': 'User feature viewed', 'category': 'User Features' },
         'VIEW_FEATURE': { 'event': 'Feature viewed', 'category': 'Features' },
         'VIEW_SEGMENT': { 'event': 'Segment viewed', 'category': 'Segment' },
+        'UPDATE_USER_ROLE': { 'event': 'Updated user role', 'category': 'Organisation' },
     },
     modals: {
         'PAYMENT': 'Payment Modal',
@@ -136,6 +137,10 @@ const Constants = {
         },
     },
     simulate: {},
+    roles: {
+        'USER': 'User',
+        'ADMIN': 'Admin',
+    },
 };
 
 module.exports = Constants;

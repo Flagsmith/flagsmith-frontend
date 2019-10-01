@@ -2,6 +2,8 @@
 const cn = require('classnames');
 
 const Flex = class extends React.Component {
+    static displayName = 'Flex';
+
     render() {
         return (
             <div {...this.props} className={`${this.props.className || ''} flex flex-1`}>
@@ -19,7 +21,7 @@ Flex.propTypes = {
     className: OptionalString,
     value: OptionalNumber,
     children: OptionalNode,
-    style: React.PropTypes.any,
+    style: propTypes.any,
 };
 
 module.exports = Flex;

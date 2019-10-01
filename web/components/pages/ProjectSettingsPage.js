@@ -1,20 +1,20 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import ConfirmRemoveProject from '../modals/ConfirmRemoveProject';
 
 const ProjectSettingsPage = class extends Component {
     static displayName = 'ProjectSettingsPage'
 
     static contextTypes = {
-        router: React.PropTypes.object.isRequired,
+        router: propTypes.object.isRequired,
     };
 
     constructor(props, context) {
         super(props, context);
         this.state = {};
-        AppActions.getProject(this.props.params.projectId);
+        AppActions.getProject(this.props.match.params.projectId);
     }
 
-    componentWillMount = () => {
+    componentDidMount = () => {
         API.trackPage(Constants.pages.PROJECT_SETTINGS);
     };
 
@@ -25,13 +25,13 @@ const ProjectSettingsPage = class extends Component {
 
     componentWillReceiveProps(newProps) {
         if (newProps.projectId !== this.props.projectId) {
-            AppActions.getProject(newProps.params.projectId);
+            AppActions.getProject(newProps.match.params.projectId);
         }
     }
 
     onRemove = () => {
         toast('Your project has been removed');
-        this.context.router.replace('/projects');
+        this.context.router.history.replace('/projects');
     };
 
     confirmRemove = (project, cb) => {
@@ -45,7 +45,7 @@ const ProjectSettingsPage = class extends Component {
         const { name } = this.state;
         return (
             <div className="app-container container">
-                <ProjectProvider id={this.props.params.projectId} onRemove={this.onRemove} onSave={this.onSave}>
+                <ProjectProvider id={this.props.match.params.projectId} onRemove={this.onRemove} onSave={this.onSave}>
                     {({ isLoading, isSaving, editProject, deleteProject, project }) => (
                         <div>
                             {isLoading && <div className="centered-container"><Loader/></div>}
@@ -94,7 +94,7 @@ const ProjectSettingsPage = class extends Component {
                                     </Column>
                                     <Button
                                       onClick={() => this.confirmRemove(project, () => {
-                                          deleteProject(this.props.params.projectId);
+                                          deleteProject(this.props.match.params.projectId);
                                       })}
                                       className="btn btn--with-icon ml-auto btn--remove"
                                     >

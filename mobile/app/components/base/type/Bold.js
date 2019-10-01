@@ -13,7 +13,7 @@ const bold = class extends React.Component {
 };
 
 bold.propTypes = {
-    style: React.PropTypes.any,
+    style: propTypes.any,
     children: OptionalElement,
 };
 

@@ -60,7 +60,7 @@ const Input = class extends React.Component {
     }
 
     render() {
-        const { isValid, onSearchChange, mask, placeholderChar, ...rest } = this.props;
+        const { isValid, onSearchChange, mask, placeholderChar, inputClassName, ...rest } = this.props;
 
         const className = cn({
             'input-container': true,
@@ -68,9 +68,9 @@ const Input = class extends React.Component {
             'invalid': this.state.shouldValidate && !isValid,
         }, this.props.className);
 
-        const inputClassName = cn({
+        const innerClassName = cn({
             input: true,
-        }, this.props.inputClassName);
+        }, inputClassName);
 
         return (
             <div
@@ -85,7 +85,7 @@ const Input = class extends React.Component {
                       onKeyDown={this.onKeyDown}
                       onFocus={this.onFocus}
                       onBlur={this.onBlur}
-                      className={inputClassName}
+                      className={innerClassName}
                       placeholderChar={placeholderChar}
                     />
                 ) : (
@@ -95,7 +95,7 @@ const Input = class extends React.Component {
                       onKeyDown={this.onKeyDown}
                       onBlur={this.onBlur}
                       value={this.props.value}
-                      className={inputClassName}
+                      className={innerClassName}
                     />
                 )}
             </div>
@@ -110,13 +110,13 @@ Input.defaultProps = {
 };
 
 Input.propTypes = {
-    isValid: React.PropTypes.any,
+    isValid: propTypes.any,
     onKeyDown: OptionalFunc,
     onFocus: OptionalFunc,
     onBlur: OptionalFunc,
     placeholderChar: OptionalString,
     mask: OptionalString,
-    className: React.PropTypes.any,
+    className: propTypes.any,
     inputClassName: OptionalString,
     onSearchChange: OptionalFunc,
 };

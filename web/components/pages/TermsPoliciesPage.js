@@ -8,7 +8,7 @@ import TermsOfService from './TermsOfServicePage';
 
 const TermsPoliciesPage = class extends React.Component {
     static contextTypes = {
-        router: React.PropTypes.object.isRequired,
+        router: propTypes.object.isRequired,
     };
 
     static displayName = 'TermsPoliciesPage'
@@ -18,13 +18,13 @@ const TermsPoliciesPage = class extends React.Component {
         this.state = {};
     }
 
-    componentWillMount() {
+    componentDidMount() {
         API.trackPage(Constants.pages.POLICIES);
     }
 
     componentDidMount() {
         if (this.props.location.pathname == '/legal') {
-            this.context.router.replace('/legal/tos');
+            this.context.router.history.replace('/legal/tos');
         }
     }
 

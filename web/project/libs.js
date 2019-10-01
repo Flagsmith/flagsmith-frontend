@@ -13,7 +13,10 @@ import findIndex from 'lodash/findIndex';
 import range from 'lodash/range';
 import keyBy from 'lodash/keyBy';
 import throttle from 'lodash/throttle';
+import every from 'lodash/every';
+import get from 'lodash/get';
 import { isMobile } from 'react-device-detect';
+import propTypes from 'prop-types';
 import Bootstrap from '../../node_modules/bootstrap/dist/js/bootstrap';
 import Project from '../../common/project';
 
@@ -23,32 +26,35 @@ window.isMobile = isMobile || $(window).width() <= 576;
 window.bulletTrain = bulletTrain;
 window.moment = require('moment/min/moment.min');
 
-window._ = { each, filter, find, partial, findIndex, range, map, cloneDeep, keyBy, throttle };
+window._ = { each, filter, find, partial, findIndex, range, map, cloneDeep, keyBy, throttle, every, get };
 
 window.React = require('react');
 window.ReactDOM = require('react-dom');
 
-window.Any = React.PropTypes.any;
-window.OptionalArray = React.PropTypes.array;
-window.OptionalBool = React.PropTypes.bool;
-window.OptionalFunc = React.PropTypes.func;
-window.OptionalNumber = React.PropTypes.number;
-window.OptionalObject = React.PropTypes.object;
-window.OptionalString = React.PropTypes.string;
-window.OptionalNode = React.PropTypes.node;
-window.OptionalElement = React.PropTypes.element;
-window.oneOf = React.PropTypes.oneOf;
-window.oneOfType = React.PropTypes.oneOfType;
-window.RequiredArray = React.PropTypes.array.isRequired;
-window.RequiredBool = React.PropTypes.bool.isRequired;
-window.RequiredFunc = React.PropTypes.func.isRequired;
-window.RequiredNumber = React.PropTypes.number.isRequired;
-window.RequiredObject = React.PropTypes.object.isRequired;
-window.RequiredString = React.PropTypes.string.isRequired;
-window.RequiredNode = React.PropTypes.node.isRequired;
-window.RequiredElement = React.PropTypes.node.isRequired;
+window.propTypes = propTypes;
 
-window.Link = require('react-router').Link;
+window.Any = propTypes.any;
+window.OptionalArray = propTypes.array;
+window.OptionalBool = propTypes.bool;
+window.OptionalFunc = propTypes.func;
+window.OptionalNumber = propTypes.number;
+window.OptionalObject = propTypes.object;
+window.OptionalString = propTypes.string;
+window.OptionalNode = propTypes.node;
+window.OptionalElement = propTypes.element;
+window.oneOf = propTypes.oneOf;
+window.oneOfType = propTypes.oneOfType;
+window.RequiredArray = propTypes.array.isRequired;
+window.RequiredBool = propTypes.bool.isRequired;
+window.RequiredFunc = propTypes.func.isRequired;
+window.RequiredNumber = propTypes.number.isRequired;
+window.RequiredObject = propTypes.object.isRequired;
+window.RequiredString = propTypes.string.isRequired;
+window.RequiredNode = propTypes.node.isRequired;
+window.RequiredElement = propTypes.node.isRequired;
+
+window.Link = require('react-router-dom').Link;
+window.NavLink = require('react-router-dom').NavLink;
 
 // Analytics
 if (Project.ga) {

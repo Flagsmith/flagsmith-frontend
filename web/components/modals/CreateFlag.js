@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import Highlight from '../Highlight';
 import Tabs from '../base/forms/Tabs';
 import TabItem from '../base/forms/TabItem';
@@ -118,7 +118,7 @@ const CreateFlag = class extends Component {
                                               value="FLAG"
                                               tabLabel={(
                                                   <Row className="row-center">
-                                                      <ion className="tab-icon ion-ios-switch"/>
+                                                      <span className="tab-icon ion-ios-switch"/>
                                                       <span className="tab-text">Feature Flag</span>
                                                   </Row>
                                                 )}
@@ -129,13 +129,17 @@ const CreateFlag = class extends Component {
                                               id="btn-select-remote-config"
                                               tabLabel={(
                                                   <Row className="row-center">
-                                                      <ion className="tab-icon ion-ios-settings"/>
+                                                      <span className="tab-icon ion-ios-settings"/>
                                                       <span className="tab-text">Remote config</span>
                                                   </Row>
                                             )}
                                             />
                                         </Tabs>
                                     </FormGroup>
+                                )}
+
+                                {isEdit && (
+                                    <span onClick={this.close} className="icon close ion-md-close"/>
                                 )}
 
                                 <FormGroup className="mb-4">
@@ -212,7 +216,8 @@ const CreateFlag = class extends Component {
                                     </FormGroup>
                                 )}
                                 {error && <Error error={error}/>}
-                                {isEdit && (
+                                <div className={isEdit ? 'footer' : ''}>
+                                    {isEdit && (
                                     <div className="mb-3">
                                         {identity ? (
                                             <p className="text-right">
@@ -242,17 +247,18 @@ const CreateFlag = class extends Component {
                                         )}
 
                                     </div>
-                                )}
-                                <div className="text-right">
-                                    {isEdit ? (
-                                        <Button data-test="update-feature-btn" id="update-feature-btn" disabled={isSaving || !name}>
-                                            {isSaving ? 'Creating' : 'Update Feature'}
-                                        </Button>
-                                    ) : (
-                                        <Button data-test="create-feature-btn" id="create-feature-btn" disabled={isSaving || !name}>
-                                            {isSaving ? 'Creating' : 'Create Feature'}
-                                        </Button>
                                     )}
+                                    <div className="text-right">
+                                        {isEdit ? (
+                                            <Button data-test="update-feature-btn" id="update-feature-btn" disabled={isSaving || !name}>
+                                                {isSaving ? 'Creating' : 'Update Feature'}
+                                            </Button>
+                                        ) : (
+                                            <Button data-test="create-feature-btn" id="create-feature-btn" disabled={isSaving || !name}>
+                                                {isSaving ? 'Creating' : 'Create Feature'}
+                                            </Button>
+                                        )}
+                                    </div>
                                 </div>
                             </form>
                         )}

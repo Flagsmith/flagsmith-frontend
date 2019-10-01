@@ -2,7 +2,7 @@
  * Created by niall on 27/11/2018.
  */
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import lazyframe from 'lazyframe';
 import md from './markdown/hacking-our-e2e-tests-to-make-them-more-useful.md';
 import 'lazyframe/dist/lazyframe.css';

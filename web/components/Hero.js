@@ -73,9 +73,7 @@ across web, mobile and
 };
 
 Hero.propTypes = {
-    children: RequiredElement,
     toggleComponent: OptionalFunc,
-    title: RequiredString,
     defaultValue: OptionalBool,
 };
 

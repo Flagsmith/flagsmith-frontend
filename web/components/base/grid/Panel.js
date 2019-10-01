@@ -1,10 +1,7 @@
-const Panel = class extends React.Component {
-    static displayName = 'Panel'
+import { PureComponent } from 'react';
 
-    constructor(props, context) {
-        super(props, context);
-        this.state = {};
-    }
+const Panel = class extends PureComponent {
+    static displayName = 'Panel'
 
     render() {
         return (
@@ -13,7 +10,7 @@ const Panel = class extends React.Component {
                     <Row space>
                         <Row className="flex-1">
                             {this.props.icon && (
-                                <span className="panel-icon"><ion className={`icon ${this.props.icon}`}/></span>
+                                <span className="panel-icon"><span className={`icon ${this.props.icon}`}/></span>
                             )}
                             <h6 className="m-b-0">{this.props.title}</h6>
                         </Row>
@@ -32,7 +29,7 @@ Panel.displayName = 'Panel';
 
 Panel.propTypes = {
     title: oneOfType([OptionalObject, OptionalString]),
-    icon: OptionalObject,
+    icon: OptionalString,
     children: OptionalNode,
 };
 

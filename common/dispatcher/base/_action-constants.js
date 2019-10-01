@@ -10,4 +10,5 @@ module.exports = {
     'SET_USER': 'SET_USER',
     'SET_TOKEN': 'SET_TOKEN',
     'REFRESH': 'REFRESH',
+    'LOGOUT': 'LOGOUT',
 };
