@@ -59,6 +59,31 @@ const CreateFlag = class extends Component {
         return 'CONFIG';
     }
 
+    save = (func, isSaving) => {
+        const { projectFlag, segmentOverrides, environmentFlag, identity, identityFlag, environmentId } = this.props;
+        const { name, initial_value, description, type, default_enabled } = this.state;
+        if (identity) {
+            !isSaving && name && func({
+                identity,
+                projectFlag,
+                environmentFlag,
+                identityFlag: Object.assign({}, identityFlag || {}, {
+                    feature_state_value: initial_value,
+                    enabled: default_enabled,
+                }),
+                environmentId,
+            });
+        } else {
+            !isSaving && name && func(this.props.projectId, this.props.environmentId, {
+                name,
+                type,
+                initial_value,
+                default_enabled,
+                description,
+            }, projectFlag, environmentFlag, segmentOverrides);
+        }
+    }
+
     render() {
         const { name, initial_value, default_enabled, featureType, type, description } = this.state;
         const { isEdit, hasFeature, projectFlag, environmentFlag, identity } = this.props;
@@ -170,7 +195,7 @@ const CreateFlag = class extends Component {
                                       placeholder="e.g. 'This determines what size the header is' "
                                     />
                                 </FormGroup>
-                                {type == 'FLAG' && this.props.segments && hasFeature('segments') && (
+                                {this.props.segments && hasFeature('segments') && (
                                     <FormGroup className="mb-4">
                                         <Tooltip
                                           title={<label className="cols-sm-2 control-label">Segment Overrides (Optional)</label>}
@@ -236,31 +261,6 @@ const CreateFlag = class extends Component {
                 )}
             </ProjectProvider>
         );
-    }
-
-    save = (func, isSaving) => {
-        const { projectFlag, segmentOverrides, environmentFlag, identity, identityFlag, environmentId } = this.props;
-        const { name, initial_value, description, type, default_enabled } = this.state;
-        if (identity) {
-            !isSaving && name && func({
-                identity,
-                projectFlag,
-                environmentFlag,
-                identityFlag: Object.assign({}, identityFlag || {}, {
-                    feature_state_value: initial_value,
-                    enabled: default_enabled,
-                }),
-                environmentId,
-            });
-        } else {
-            !isSaving && name && func(this.props.projectId, this.props.environmentId, {
-                name,
-                type,
-                initial_value,
-                default_enabled,
-                description,
-            }, projectFlag, environmentFlag, segmentOverrides);
-        }
     }
 };
 
