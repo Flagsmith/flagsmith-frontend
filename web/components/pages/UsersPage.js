@@ -15,8 +15,8 @@ const UsersPage = class extends Component {
     }
 
     componentWillUpdate(nextProps, nextState, nextContext) {
-        if (nextProps.params.environmentId !== this.props.match.params.environmentId) {
-            AppActions.getIdentities(nextProps.params.environmentId);
+        if (nextProps.match.params.environmentId !== this.props.match.params.environmentId) {
+            AppActions.getIdentities(nextProps.match.params.environmentId);
         }
     }
 
