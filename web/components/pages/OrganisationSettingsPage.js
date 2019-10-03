@@ -62,7 +62,7 @@ const OrganisationSettingsPage = class extends Component {
         openConfirm(<h3>Delete Invite</h3>, <p>
             Are you sure you want to delete this
             invite?
-                                            </p>, () => AppActions.deleteInvite(id));
+        </p>, () => AppActions.deleteInvite(id));
     }
 
     save = (e) => {
@@ -198,7 +198,7 @@ const OrganisationSettingsPage = class extends Component {
                                                 <div className="flex-row header--icon">
                                                     <h5>Your usage</h5>
                                                 </div>
-                                                {!isLoading && (
+                                                {!isLoading && !!usage && (
                                                 <div>
                                                     <p>
                                                         {'You have made '}
