@@ -33,7 +33,7 @@ const CreateFlag = class extends Component {
 
 
     componentDidMount = () => {
-        if (!this.props.isEdit) {
+        if (!this.props.isEdit && !E2E) {
             this.focusTimeout = setTimeout(() => {
                 this.input.focus();
                 this.focusTimeout = null;
