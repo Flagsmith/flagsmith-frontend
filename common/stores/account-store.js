@@ -133,7 +133,7 @@ const controller = {
         }
         data.post(`${Project.api}organisations/`, Object.assign({ name }, opts))
             .then((res) => {
-                store.model.organisations = store.model.organisations.concat([res]);
+                store.model.organisations = store.model.organisations.concat([{ ...res, role: 'ADMIN' }]);
                 AsyncStorage.setItem('user', JSON.stringify(store.model));
                 store.savedId = res.id;
                 store.saved();
