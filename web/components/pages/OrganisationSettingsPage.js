@@ -65,6 +65,12 @@ const OrganisationSettingsPage = class extends Component {
         </p>, () => AppActions.deleteInvite(id));
     }
 
+    deleteUser = (id) => {
+        openConfirm(<h3>Delete User</h3>, <p>
+            Are you sure you want to delete this user?
+        </p>, () => AppActions.deleteUser(id));
+    }
+
     save = (e) => {
         e.preventDefault();
         const { name, webhook_notification_email } = this.state;
@@ -252,24 +258,39 @@ const OrganisationSettingsPage = class extends Component {
                                                                           {email}
                                                                       </div>
                                                                   </div>
-                                                                  <Column style={{ width: 200 }}>
-                                                                      {organisation.role === 'ADMIN' && id !== AccountStore.getUserId() ? (
-                                                                          <Select
-                                                                            data-test="select-role"
-                                                                            placeholder="Select a role"
-                                                                            styles={{ menuPortal: base => ({ ...base, zIndex: 9999 }) }}
-                                                                            value={role && { value: role, label: Constants.roles[role] }}
-                                                                            onChange={e => this.roleChanged(id, Utils.safeParseEventValue(e))}
-                                                                            className="pt-3 pl-2"
-                                                                            options={_.map(Constants.roles, (label, value) => ({ value, label }))}
-                                                                            menuPortalTarget={document.body}
-                                                                            menuPosition="absolute"
-                                                                            menuPlacement="auto"
-                                                                          />
-                                                                      ) : (
-                                                                          <div className="pl-3">{Constants.roles[role] || ''}</div>
-                                                                      )}
-                                                                  </Column>
+                                                                  <Row>
+                                                                      <Column>
+                                                                          {organisation.role === 'ADMIN' && id !== AccountStore.getUserId() ? (
+                                                                              <div style={{ width: 200 }}>
+                                                                                  <Select
+                                                                                    data-test="select-role"
+                                                                                    placeholder="Select a role"
+                                                                                    styles={{ menuPortal: base => ({ ...base, zIndex: 9999 }) }}
+                                                                                    value={role && { value: role, label: Constants.roles[role] }}
+                                                                                    onChange={e => this.roleChanged(id, Utils.safeParseEventValue(e))}
+                                                                                    className="pl-2"
+                                                                                    options={_.map(Constants.roles, (label, value) => ({ value, label }))}
+                                                                                    menuPortalTarget={document.body}
+                                                                                    menuPosition="absolute"
+                                                                                    menuPlacement="auto"
+                                                                                  />
+                                                                              </div>
+                                                                          ) : (
+                                                                              <div className="pl-3">{Constants.roles[role] || ''}</div>
+                                                                          )}
+                                                                      </Column>
+
+                                                                      <Column>
+                                                                          <button
+                                                                            id="delete-invite"
+                                                                            type="button"
+                                                                            onClick={() => this.deleteUser(id)}
+                                                                            className="btn btn--with-icon ml-auto btn--remove"
+                                                                          >
+                                                                              <RemoveIcon/>
+                                                                          </button>
+                                                                      </Column>
+                                                                  </Row>
                                                               </Row>
                                                           )}
                                                           renderNoResults={(

@@ -232,6 +232,12 @@ const AppActions = Object.assign({}, require('./base/_app-actions'), {
             id,
         });
     },
+    deleteUser(id) {
+        Dispatcher.handleViewAction({
+            actionType: Actions.DELETE_USER,
+            id,
+        });
+    },
     resendInvite(id) {
         Dispatcher.handleViewAction({
             actionType: Actions.RESEND_INVITE,

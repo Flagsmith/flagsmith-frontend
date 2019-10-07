@@ -115,7 +115,19 @@ const controller = {
             .then(() => {
                 API.trackEvent(Constants.events.DELETE_INVITE);
                 if (store.model) {
-                    store.model.invites = _.filter(store.model.invites, i => i.id != id);
+                    store.model.invites = _.filter(store.model.invites, i => i.id !== id);
+                }
+                store.saved();
+            })
+            .catch(e => API.ajaxHandler(store, e));
+    },
+    deleteUser: (id) => {
+        store.saving();
+        data.post(`${Project.api}organisations/${store.id}/remove-users/`, [{ id }])
+            .then(() => {
+                API.trackEvent(Constants.events.DELETE_USER);
+                if (store.model) {
+                    store.model.users = _.filter(store.model.users, u => u.id !== id);
                 }
                 store.saved();
             })
@@ -185,6 +197,9 @@ store.dispatcherIndex = Dispatcher.register(store, (payload) => {
             break;
         case Actions.DELETE_INVITE:
             controller.deleteInvite(action.id);
+            break;
+        case Actions.DELETE_USER:
+            controller.deleteUser(action.id);
             break;
         case Actions.RESEND_INVITE:
             controller.resendInvite(action.id);

@@ -31,6 +31,7 @@ const Constants = {
         'CREATE_PROJECT': { 'event': 'Project created', 'category': 'Project' },
         'CREATE_USER_FEATURE': { 'event': 'User feature created', 'category': 'User Features' },
         'DELETE_INVITE': { 'event': 'Invite deleted', 'category': 'Invite' },
+        'DELETE_USER': { 'event': 'User deleted', 'category': 'Organisation' },
         'DELETE_ORGANISATION': { 'event': 'Organisation deleted', 'category': 'Organisation' },
         'DEMO_ACCOUNT': { 'event': 'User demo login', 'category': 'User' },
         'EDIT_ENVIRONMENT': { 'event': 'Environment edited', 'category': 'Environment' },
