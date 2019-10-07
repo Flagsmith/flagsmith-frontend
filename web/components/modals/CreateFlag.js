@@ -275,9 +275,19 @@ const CreateFlag = class extends Component {
                                               </Row>
                                           )}
                                           renderNoResults={(
-                                              <FormGroup className="text-center">
-                                                  You have no user overrides
-                                              </FormGroup>
+                                              <Panel
+                                                id="users-list"
+                                                title={(
+                                                    <Tooltip
+                                                      title={<h6 className="mb-0">Identity Overrides <span className="icon ion-ios-information-circle"/></h6>}
+                                                      place="right"
+                                                    >
+                                                        {Constants.strings.IDENTITY_OVERRIDES_DESCRIPTION}
+                                                    </Tooltip>
+                                                  )}
+                                              >
+                                                  No identities are overriding this feature.
+                                              </Panel>
                                               )}
                                           isLoading={!this.state.userOverrides}
                                         />
