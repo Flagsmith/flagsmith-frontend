@@ -98,7 +98,7 @@ const UsersPage = class extends Component {
                                             <CodeHelp
                                               showInitially
                                               title="Creating users and getting their feature settings"
-                                              snippets={Constants.codeHelp.CREATE_USER(this.props.params.environmentId, identities && identities[0].identifier)}
+                                              snippets={Constants.codeHelp.CREATE_USER(this.props.params.environmentId, identities && identities[0] && identities[0].identifier)}
                                             />
                                         </FormGroup>
                                     </div>
