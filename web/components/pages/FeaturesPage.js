@@ -38,6 +38,7 @@ const FeaturesPage = class extends Component {
 
     newFlag = () => {
         openModal('New Feature', <CreateFlagModal
+            router={this.context.router}
           environmentId={this.props.match.params.environmentId}
           projectId={this.props.match.params.projectId}
         />);
@@ -48,6 +49,7 @@ const FeaturesPage = class extends Component {
         API.trackEvent(Constants.events.VIEW_FEATURE);
         openModal('Edit Feature', <CreateFlagModal
           isEdit
+          router={this.context.router}
           environmentId={this.props.match.params.environmentId}
           projectId={this.props.match.params.projectId}
           projectFlag={projectFlag}

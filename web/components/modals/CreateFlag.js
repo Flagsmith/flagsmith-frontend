@@ -9,6 +9,10 @@ import SegmentOverrides from '../SegmentOverrides';
 const CreateFlag = class extends Component {
     static displayName = 'CreateFlag'
 
+    static contextTypes = {
+        router: propTypes.object.isRequired,
+    };
+
     constructor(props, context) {
         super(props, context);
         const { name, feature_state_value, description, enabled, type } = this.props.isEdit ? Utils.getFlagValue(this.props.projectFlag, this.props.environmentFlag, this.props.identityFlag)
@@ -260,7 +264,13 @@ const CreateFlag = class extends Component {
                                           prevPage={() => this.userOverridesPage(this.state.userOverridesPaging.currentPage - 1)}
                                           goToPage={page => this.userOverridesPage(page)}
                                           renderRow={({ id, feature_state_value, enabled, identity }) => (
-                                              <Row space className="list-item" key={id}>
+                                              <Row
+                                                onClick={() => {
+                                                    this.close();
+                                                    this.props.router.history.push(`/project/${this.props.projectId}/environment/${this.props.environmentId}/users/${identity.id}`);
+                                                }} space className="list-item cursor-pointer"
+                                                key={id}
+                                              >
                                                   <Flex>
                                                       {identity.identifier}
                                                   </Flex>
