@@ -82,6 +82,7 @@ const Constants = {
     },
     strings: {
         SEGMENT_OVERRIDES_DESCRIPTION: 'Set different values for your feature based on what segments users are in.',
+        IDENTITY_OVERRIDES_DESCRIPTION: 'See which identities have specific overridden values for this feature.',
         REMOTE_CONFIG_DESCRIPTION: 'A feature that you can turn configure per environment or user. E.g. a font size for a banner or an environment variable for a server.',
         FEATURE_FLAG_DESCRIPTION: 'A feature that you can turn on or off per environment or user. E.g. instant messaging for a mobile app or an endpoint for an API.',
         USER_PROPERTY_DESCRIPTION: 'The name of the user trait or custom property belonging to the user. E.g. firstName',

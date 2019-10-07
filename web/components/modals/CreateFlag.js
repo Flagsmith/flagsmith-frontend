@@ -3,6 +3,7 @@ import Highlight from '../Highlight';
 import Tabs from '../base/forms/Tabs';
 import TabItem from '../base/forms/TabItem';
 import withSegmentOverrides from '../../../common/providers/withSegmentOverrides';
+import data from '../../../common/data/base/_data';
 import SegmentOverrides from '../SegmentOverrides';
 
 const CreateFlag = class extends Component {
@@ -16,6 +17,9 @@ const CreateFlag = class extends Component {
             };
         const { allowEditDescription } = this.props;
         AppActions.getSegments(this.props.projectId, this.props.environmentId);
+        if (this.props.projectFlag) {
+            this.userOverridesPage(1);
+        }
         this.state = {
             type,
             tab: !type || type == 'FLAG' ? 0 : 1,
@@ -26,6 +30,7 @@ const CreateFlag = class extends Component {
             allowEditDescription,
         };
     }
+
 
     close() {
         closeModal();
@@ -45,6 +50,20 @@ const CreateFlag = class extends Component {
         if (this.focusTimeout) {
             clearTimeout(this.focusTimeout);
         }
+    }
+
+    userOverridesPage = (page) => {
+        data.get(`${Project.api}environments/${this.props.environmentId}/featurestates/?anyIdentity=1&feature=${this.props.projectFlag.id}&page=${page}`)
+            .then((userOverrides) => {
+                this.setState({
+                    userOverrides: userOverrides.results,
+                    userOverridesPaging: {
+                        next: userOverrides.next,
+                        count: userOverrides.count,
+                        currentPage: page,
+                    },
+                });
+            });
     }
 
     setTab = (tab) => {
@@ -201,20 +220,69 @@ const CreateFlag = class extends Component {
                                 </FormGroup>
                                 {this.props.segments && hasFeature('segments') && (
                                     <FormGroup className="mb-4">
-                                        <Tooltip
-                                          title={<label className="cols-sm-2 control-label">Segment Overrides (Optional)</label>}
-                                          place="right"
+                                        <Panel
+                                          icon="ion-ios-settings"
+                                          title={(
+                                              <Tooltip
+                                                title={<h6 className="mb-0">Segment Overrides <span className="icon ion-ios-information-circle"/></h6>}
+                                                place="right"
+                                              >
+                                                  {Constants.strings.SEGMENT_OVERRIDES_DESCRIPTION}
+                                              </Tooltip>
+                                          )}
                                         >
-                                            {Constants.strings.SEGMENT_OVERRIDES_DESCRIPTION}
-                                        </Tooltip>
-                                        <SegmentOverrides
-                                          type={type}
-                                          value={this.props.segmentOverrides}
-                                          segments={this.props.segments}
-                                          onChange={this.props.updateSegments}
-                                        />
+                                            <SegmentOverrides
+                                              type={type}
+                                              value={this.props.segmentOverrides}
+                                              segments={this.props.segments}
+                                              onChange={this.props.updateSegments}
+                                            />
+                                        </Panel>
                                     </FormGroup>
                                 )}
+                                {
+                                    <FormGroup>
+                                        <PanelSearch
+                                          id="users-list"
+                                          title={(
+                                              <Tooltip
+                                                title={<h6 className="mb-0">Identity Overrides <span className="icon ion-ios-information-circle"/></h6>}
+                                                place="right"
+                                              >
+                                                  {Constants.strings.IDENTITY_OVERRIDES_DESCRIPTION}
+                                              </Tooltip>
+                                          )}
+                                          className="no-pad"
+                                          icon="ion-md-person"
+                                          items={this.state.userOverrides}
+                                          paging={this.state.userOverridesPaging}
+                                          nextPage={() => this.userOverridesPage(this.state.userOverridesPaging.currentPage + 1)}
+                                          prevPage={() => this.userOverridesPage(this.state.userOverridesPaging.currentPage - 1)}
+                                          goToPage={page => this.userOverridesPage(page)}
+                                          renderRow={({ id, feature_state_value, enabled, identity }) => (
+                                              <Row space className="list-item" key={id}>
+                                                  <Flex>
+                                                      {identity.identifier}
+                                                  </Flex>
+                                                  {type === 'FLAG' ? (
+                                                      <Switch checked={enabled}/>
+                                                  ) : (
+                                                      <FeatureValue
+                                                        value={feature_state_value}
+                                                      />
+                                                  )}
+
+                                              </Row>
+                                          )}
+                                          renderNoResults={(
+                                              <FormGroup className="text-center">
+                                                  You have no user overrides
+                                              </FormGroup>
+                                              )}
+                                          isLoading={!this.state.userOverrides}
+                                        />
+                                    </FormGroup>
+                                }
                                 {error && <Error error={error}/>}
                                 <div className={isEdit ? 'footer' : ''}>
                                     {isEdit && (

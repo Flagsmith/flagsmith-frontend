@@ -130,7 +130,7 @@ class TheComponent extends Component {
                         </Flex>
                     )}
                     {value && !!value.length && (
-                        <div className="panel--grey mt-4 overflow-visible">
+                        <div className="mt-4 overflow-visible">
                             <Row className="mb-2">
                                 <div
                                   className="flex flex-1 text-left"
