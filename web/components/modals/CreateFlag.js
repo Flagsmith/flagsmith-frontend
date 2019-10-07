@@ -170,7 +170,7 @@ const CreateFlag = class extends Component {
                                       placeholder="e.g. 'This determines what size the header is' "
                                     />
                                 </FormGroup>
-                                {type == 'FLAG' && this.props.segments && hasFeature('segments') && (
+                                {this.props.segments && hasFeature('segments') && (
                                     <FormGroup className="mb-4">
                                         <Tooltip
                                           title={<label className="cols-sm-2 control-label">Segment Overrides (Optional)</label>}
