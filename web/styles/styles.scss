@@ -115,6 +115,9 @@ input:disabled {
 
 .full-width {
     width: 100%;
+    > input {
+        width: 100%;
+    }
 }
 
 .text-center {
