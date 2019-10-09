@@ -102,7 +102,7 @@ module.exports = {
             .click('#features-list .rc-switch')
             .waitForElementVisible('#confirm-toggle-feature-btn')
             .click('#confirm-toggle-feature-btn')
-            .waitForElementVisible('#features-list .rc-switch[aria-checked="true"]');
+            .waitForElementVisible('#features-list .rc-switch-checked');
     },
     '[Main Tests] - Try feature out': async function (browser) {
         browser.waitForElementNotPresent('#confirm-toggle-feature-modal');

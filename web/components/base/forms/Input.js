@@ -35,6 +35,7 @@ const Input = class extends React.Component {
     }
 
     focus = () => {
+        if (E2E) return;
         this.input.focus();
     }
 
