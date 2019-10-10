@@ -38,7 +38,6 @@
     "bullet-train-nodejs": "^1.0.1",
     "bullet-train-rules-engine": "0.0.7",
     "chai": "4.2.0",
-    "chromedriver": "2.42.0",
     "classnames": "^2.2.5",
     "clean-webpack-plugin": "0.1.19",
     "color": "^3.1.0",
@@ -68,6 +67,7 @@
     "lazyframe": "^1.1.6",
     "lodash": "^4.17.15",
     "moment": "2.22.2",
+    "nightwatch-commands": "^3.0.0",
     "node-fetch": "^2.1.2",
     "node-sass": "4.11.0",
     "polyfill-react-native": "^1.0.5",
@@ -101,13 +101,13 @@
   },
   "devDependencies": {
     "chai": "^4.1.2",
-    "chromedriver": "^2.33.2",
+    "chromedriver": "77.0.0",
     "env2": "^2.2.0",
-    "nightwatch": "^1.2.2",
+    "nightwatch": "1.2.2",
     "node-slack-upload": "^2.0.0",
     "nodemon": "^1.17.5",
     "raw-loader": "^0.5.1",
     "react-markdown": "^4.0.3",
-    "selenium-server": "^3.8.1"
+    "selenium-server": "3.141.59"
   }
 }

@@ -124,7 +124,10 @@ const UserPage = class extends Component {
                                                       const featureIsDifferent = identityFlag.identity;
                                                       const values = Object.assign({}, environmentFlags[id], identityFlag || {});
                                                       return (
-                                                          <Row className="list-item clickable" key={id} space>
+                                                          <Row
+                                                            className="list-item clickable" key={id} space
+                                                            data-test={`user-feature-${i}`}
+                                                          >
                                                               <div
                                                                 onClick={() => this.editFlag(projectFlags[i], environmentFlags[id], identityFlag)}
                                                                 className="flex flex-1"
@@ -157,6 +160,7 @@ const UserPage = class extends Component {
                                                                   <Column>
                                                                       {type == 'FLAG' ? (
                                                                           <Switch
+                                                                            data-test={`user-feature-switch-${i}${(identityFlags[id] ? identityFlags[id].enabled : environmentFlags[id].enabled) ? '-on' : '-off'}`}
                                                                             checked={identityFlags[id] ? identityFlags[id].enabled : environmentFlags[id].enabled}
                                                                             onChange={() => this.confirmToggle(projectFlags[i], environmentFlags[id], (environments) => {
                                                                                 toggleFlag({
@@ -170,6 +174,7 @@ const UserPage = class extends Component {
                                                                           />
                                                                       ) : (
                                                                           <FeatureValue
+                                                                            data-test={`user-feature-value-${i}`}
                                                                             value={`${values.feature_state_value}`}
                                                                           />
                                                                       )}
