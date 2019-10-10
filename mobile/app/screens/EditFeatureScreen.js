@@ -17,12 +17,12 @@ const TermsScreen = class extends Component {
         const { allowEditDescription } = this.props;
         this.state = {
             type,
-            tab: !type || type == "FLAG" ? 0 : 1,
+            tab: !type || type == 'FLAG' ? 0 : 1,
             default_enabled: enabled,
             name,
             initial_value: Utils.getTypedValue(feature_state_value),
             description,
-            allowEditDescription
+            allowEditDescription,
         };
     }
 
@@ -31,8 +31,8 @@ const TermsScreen = class extends Component {
     }
 
     save = (func, isSaving) => {
-        const {projectFlag, environmentFlag, identity, identityFlag, selectedEnvironment, selectedProject} = this.props;
-        const {name, initial_value, description, type, default_enabled} = this.state;
+        const { projectFlag, environmentFlag, identity, identityFlag, selectedEnvironment, selectedProject } = this.props;
+        const { name, initial_value, description, type, default_enabled } = this.state;
         const environmentId = selectedEnvironment.api_key;
         const projectId = selectedProject.id;
         if (identity) {
@@ -42,85 +42,91 @@ const TermsScreen = class extends Component {
                 environmentFlag,
                 identityFlag: Object.assign({}, identityFlag || {}, {
                     feature_state_value: initial_value,
-                    enabled: default_enabled
+                    enabled: default_enabled,
                 }),
-                environmentId
-            })
+                environmentId,
+            });
         } else {
             !isSaving && name && func(projectId, environmentId, {
                 name,
                 type,
                 initial_value,
                 default_enabled,
-                description
-            }, projectFlag, environmentFlag)
+                description,
+            }, projectFlag, environmentFlag);
         }
     }
 
     // componentDidAppear() {}
-    close = ()=> {
-        Navigation.dismissModal(this.props.componentId)
+    close = () => {
+        Navigation.dismissModal(this.props.componentId);
     }
+
     render() {
         const { dismiss } = this.props;
         const { name, initial_value, default_enabled, featureType, type, description } = this.state;
         const { isEdit, projectFlag, environmentFlag, identity, selectedEnvironment } = this.props;
         const Provider = identity ? IdentityProvider : FeatureListProvider;
-        const valueString = isEdit ? "Value" : "Initial value";
-        const enabledString = isEdit ? "Enabled by default" : "Enabled";
+        const valueString = isEdit ? 'Value' : 'Initial value';
+        const enabledString = isEdit ? 'Enabled by default' : 'Enabled';
         return (
-            <Flex style={{backgroundColor:'white'}}>
-                    <ProjectProvider
-                        id={this.props.projectId}
-                    >
-                        {({ project }) => (
-                            <Provider onSave={this.close}>
-                                {({ isLoading, isSaving, error }, { createFlag, editFlag }) => (
+            <Flex style={{ backgroundColor: 'white' }}>
+                <ProjectProvider
+                  id={this.props.projectId}
+                >
+                    {({ project }) => (
+                        <Provider onSave={this.close}>
+                            {({ isLoading, isSaving, error }, { createFlag, editFlag }) => (
+                                <Flex>
                                     <Flex>
-                                        <Flex>
-                                            <Container>
-                                        <TextInput
-                                            textarea={true}
-                                            value={initial_value + ""}
-                                            inputProps={{ name: "featureValue", className: "full-width" }}
-                                            onChangeText={(e) => this.setState({ initial_value: Utils.getTypedValue(Utils.safeParseEventValue(e)) })}
-                                            type="text"
-                                            title={valueString + " (optional)" + (!isEdit ? " - these can be set later per environment" : "")}
-                                            placeholder="e.g. 'big' "
-                                        />
-                                        <FormGroup>
-                                            {identity ? (
-                                                <Text>
+                                        <Container>
+                                            <TextInput
+                                              textarea
+                                              value={`${initial_value}`}
+                                              inputProps={{ name: 'featureValue', className: 'full-width' }}
+                                              onChangeText={e => this.setState({ initial_value: Utils.getTypedValue(Utils.safeParseEventValue(e)) })}
+                                              type="text"
+                                              title={`${valueString} (optional)${!isEdit ? ' - these can be set later per environment' : ''}`}
+                                              placeholder="e.g. 'big' "
+                                            />
+                                            <FormGroup>
+                                                {identity ? (
+                                                    <Text>
                                                     This will update the feature value for the
-                                                    user <Text style={{ fontWeight: 'bold' }}>{identity}</Text> in{" "}
-                                                    {selectedEnvironment.name}
-                                                </Text>
-                                            ) : (
-                                                <Text>
+                                                    user
+                                                        {' '}
+                                                        <Text style={{ fontWeight: 'bold' }}>{identity}</Text>
+                                                        {' '}
+in
+                                                        {' '}
+                                                        {selectedEnvironment.name}
+                                                    </Text>
+                                                ) : (
+                                                    <Text>
                                                     This will update the feature for the environment
-                                                    {" "}
-                                                    <Text style={{ fontWeight: 'bold' }}>{selectedEnvironment.name}</Text>
-                                                </Text>
-                                            )}
-                                        </FormGroup>
-                                            </Container>
-                                        </Flex>
-                                        <FormGroup>
-
-                                            <Column>
-                                                <Button
-                                                    disabled={isSaving}
-                                                    onPress={()=>this.save(editFlag)}
-                                                >
-                                                    Ok
-                                                </Button>
-                                            </Column>
-                                        </FormGroup>
+                                                        {' '}
+                                                        <Text style={{ fontWeight: 'bold' }}>{selectedEnvironment.name}</Text>
+                                                    </Text>
+                                                )}
+                                            </FormGroup>
+                                        </Container>
                                     </Flex>
-                                )}
-                            </Provider>
-                        )}
-                    </ProjectProvider>
+                                    <FormGroup>
+
+                                        <Column>
+                                            <Button
+                                              disabled={isSaving}
+                                              onPress={() => this.save(editFlag)}
+                                            >
+                                                    Ok
+                                            </Button>
+                                        </Column>
+                                    </FormGroup>
+                                </Flex>
+                            )}
+                        </Provider>
+                    )}
+                </ProjectProvider>
             </Flex>
         );
     }

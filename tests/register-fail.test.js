@@ -1,19 +1,15 @@
-var conf = require('../nightwatch.conf.js');
-
 const email = 'nightwatch@solidstategroup.com';
 const password = 'nightwatch';
-const url = 'http://localhost:' + (process.env.PORT || 8080);
+const url = `http://localhost:${process.env.PORT || 8080}`;
 
-const fillOutForm = (browser) => {
-    return browser
-        .url(url)   // visit the url
-        .waitForElementVisible('[name="firstName"]') // wait for the sign up fields to show
-        .setValue('[name="firstName"]', 'Night')
-        .setValue('[name="lastName"]', 'Watch')
-        .setValue('[name="companyName"]', 'Nightwatch Ltd')
-        .setValue('[name="email"]', email)
-        .setValue('[name="password"]', password)
-}
+const fillOutForm = browser => browser
+    .url(url) // visit the url
+    .waitForElementVisible('[name="firstName"]') // wait for the sign up fields to show
+    .setValue('[name="firstName"]', 'Night')
+    .setValue('[name="lastName"]', 'Watch')
+    .setValue('[name="companyName"]', 'Nightwatch Ltd')
+    .setValue('[name="email"]', email)
+    .setValue('[name="password"]', password);
 
 module.exports = {
     'Registration should fail with already used email address': function (browser) {
@@ -59,5 +55,5 @@ module.exports = {
         browser.expect.element('#error-alert').to.be.visible;
         browser.expect.element('#password-error').to.be.visible;
         browser.end();
-    }
+    },
 };

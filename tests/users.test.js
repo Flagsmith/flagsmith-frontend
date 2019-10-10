@@ -1,0 +1,73 @@
+/* eslint-disable func-names */
+const expect = require('chai').expect;
+const { byTestID: byId, setSegmentRule } = require('./helpers');
+
+module.exports = {
+    '[Users Tests] - Edit flag for user': function (browser) {
+        browser
+            .waitAndClick('#users-link')
+            .waitAndClick(byId('user-item-0'))
+            .waitAndClick(byId('user-feature-0'))
+            .waitForElementPresent('#create-feature-modal')
+            .waitForElementVisible('[name="featureValue"]')
+            .pause(200) // todo: Clear fails without a delay here. Find better solution
+            .clearValue('[name="featureValue"]')
+            .setValue('[name="featureValue"]', 'small')
+            .click('#update-feature-btn')
+            .waitForElementNotPresent('#create-feature-modal')
+            .expect.element(byId('user-feature-value-0')).text.to.equal('"small"');
+    },
+    '[Users Tests] - Toggle flag for user': function (browser) {
+        browser
+            .pause(200) // Additional wait here as it seems rc-switch can be unresponsive for a while
+            .click(byId('user-feature-switch-1-off'))
+            .waitAndClick('#confirm-toggle-feature-btn')
+            .waitForElementNotPresent('#confirm-toggle-feature-btn')
+            .waitForElementVisible(byId('user-feature-switch-1-on'));
+    },
+    '[Users Tests] - Toggle flag for user again': function (browser) {
+        browser
+            .pause(200) // Additional wait here as it seems rc-switch can be unresponsive for a while
+            .click(byId('user-feature-switch-1-on'))
+            .waitAndClick('#confirm-toggle-feature-btn')
+            .waitForElementNotPresent('#confirm-toggle-feature-btn')
+            .waitForElementVisible(byId('user-feature-switch-1-off'));
+    },
+    // '[Users Tests] - Add trait for user': function (browser) {
+    //     browser
+    //         .click('#add-trait')
+    //         .waitForElementVisible('[name="traitID"]')
+    //         .setValue('[name="traitID"]', 'color')
+    //         .setValue('[name="traitValue"]', 'red')
+    //         .click('#create-trait-btn')
+    //         .waitForElementNotPresent('#create-trait-btn')
+    //         .waitForElementVisible('#user-traits-list .js-trait-value-0');
+    //     browser.expect.element('#user-traits-list .js-trait-value-0').text.to.equal('"red"');
+    // },
+    // '[Users Tests] - Edit trait for user': function (browser) {
+    //     browser
+    //         .click('#user-traits-list .list-item')
+    //         .waitForElementVisible('[name="traitID"]')
+    //         .clearValue("[name='traitValue']")
+    //         .setValue('[name="traitValue"]', '1')
+    //         .click('#update-trait-btn')
+    //         .waitForElementNotPresent('#update-trait-btn')
+    //         .waitForElementVisible('#user-traits-list .js-trait-value-0');
+    //     browser.expect.element('#user-traits-list .js-trait-value-0').text.to.equal('1');
+    // },
+    // '[Users Tests] - Add segment trait for user': function (browser) {
+    //     browser
+    //         .click('#add-trait')
+    //         .waitForElementVisible('[name="traitID"]')
+    //         .setValue('[name="traitID"]', 'age')
+    //         .setValue('[name="traitValue"]', '18')
+    //         .click('#create-trait-btn')
+    //         .waitForElementNotPresent('#create-trait-btn')
+    //         .waitForElementVisible('#user-traits-list .js-trait-value-1');
+    //     browser.expect.element('#user-traits-list .js-trait-value-1').text.to.equal('18');
+    // },
+    // '[Users Tests] - Check user now belongs to segment': function (browser) {
+    //     browser.waitForElementVisible(byId('segment-0-name'));
+    //     browser.expect.element(byId('segment-0-name')).text.to.equal('18_or_19');
+    // },
+};

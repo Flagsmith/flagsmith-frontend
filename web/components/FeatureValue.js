@@ -11,7 +11,7 @@ const FeatureValue = class extends Component {
     render() {
         const type = typeof Utils.getTypedValue(this.props.value);
         return (
-            <span className={`feature-value-container ${type} ${this.props.className || ''}`} onClick={this.props.onClick}>
+            <span className={`feature-value-container ${type} ${this.props.className || ''}`} onClick={this.props.onClick} data-test={this.props['data-test']}>
                 {type == 'string' && <span className="quot">"</span>}
                 <span
                   className="feature-value"

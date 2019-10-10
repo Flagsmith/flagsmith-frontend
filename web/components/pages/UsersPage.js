@@ -69,8 +69,11 @@ const UsersPage = class extends Component {
                                               nextPage={() => AppActions.getIdentitiesPage(environmentId, identitiesPaging.next)}
                                               prevPage={() => AppActions.getIdentitiesPage(environmentId, identitiesPaging.previous)}
                                               goToPage={page => AppActions.getIdentitiesPage(environmentId, `${Project.api}environments/${environmentId}/identities/?page=${page}`)}
-                                              renderRow={({ id, identifier }) => (
-                                                  <Row space className="list-item" key={id}>
+                                              renderRow={({ id, identifier }, index) => (
+                                                  <Row
+                                                    space className="list-item" key={id}
+                                                    data-test={`user-item-${index}`}
+                                                  >
                                                       <Flex>
                                                           <Link
                                                             to={`/project/${this.props.match.params.projectId}/environment/${this.props.match.params.environmentId}/users/${id}`}

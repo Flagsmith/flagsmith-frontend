@@ -38,7 +38,7 @@ const FeaturesPage = class extends Component {
 
     newFlag = () => {
         openModal('New Feature', <CreateFlagModal
-            router={this.context.router}
+          router={this.context.router}
           environmentId={this.props.match.params.environmentId}
           projectId={this.props.match.params.projectId}
         />);
@@ -173,6 +173,7 @@ const FeaturesPage = class extends Component {
                                                               <Column>
                                                                   {type == 'FLAG' ? (
                                                                       <Switch
+                                                                        data-test={`feature-switch-${i}${environmentFlags[id] && environmentFlags[id].enabled ? '-on' : '-off'}`}
                                                                         checked={environmentFlags[id] && environmentFlags[id].enabled}
                                                                         onChange={() => this.confirmToggle(projectFlags[i], environmentFlags[id], (environments) => {
                                                                             toggleFlag(i, environments);
