@@ -211,9 +211,11 @@ module.exports = {
     },
     '[Features Tests] - Create environment': function (browser) {
         browser.waitAndClick('#create-env-link')
+            .waitForElementPresent('#create-env-modal')
             .waitForElementVisible('[name="envName"]')
             .setValue('[name="envName"]', 'Staging')
             .click('#create-env-btn')
+            .waitForElementNotPresent('#create-env-modal')
             .waitForElementVisible(byId('switch-environment-staging-active'));
     },
 

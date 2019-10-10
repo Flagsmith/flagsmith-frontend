@@ -41,10 +41,12 @@ const CreateEnvironmentPage = class extends Component {
                 </p>
                 <ProjectProvider id={this.props.match.params.projectId} onSave={this.onSave}>
                     {({ isLoading, isSaving, createEnv, error }) => (
-                        <form onSubmit={(e) => {
-                            e.preventDefault();
-                            !isSaving && name && createEnv(name, this.props.match.params.projectId);
-                        }}
+                        <form
+                          id="create-env-modal"
+                          onSubmit={(e) => {
+                              e.preventDefault();
+                              !isSaving && name && createEnv(name, this.props.match.params.projectId);
+                          }}
                         >
                             <InputGroup
                               ref={(e) => {
