@@ -151,7 +151,7 @@ module.exports = Object.assign(
     require('./features.test'), // Features tests
     require('./users.test'), // Users tests
     require('./initial-cleanup.test'), // Cleanup initialisation
-    // require('./invite.test'), // Invite user tests
-    // require('./register-fail.test'), // Registration failure tests
-    // require('./login-fail.test'), // Login failure tests
+    require('./invite.test'), // Invite user tests
+    require('./register-fail.test'), // Registration failure tests
+    require('./login-fail.test'), // Login failure tests
 );
