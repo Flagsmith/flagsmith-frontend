@@ -1,3 +1,4 @@
+/* eslint-disable func-names */
 const expect = require('chai').expect;
 const helpers = require('./helpers');
 
@@ -6,7 +7,7 @@ const setSegmentRule = helpers.setSegmentRule;
 
 module.exports = {
     // // Age == 18 || Age == 19
-    // '[Main Tests] - Create Segment': async function (browser) {
+    // '[Features Tests] - Create Segment': function (browser) {
     //     browser.pause(200);
     //     browser.waitAndClick('#segments-link');
     //     browser.pause(200);
@@ -43,7 +44,7 @@ module.exports = {
     //     browser.expect.element(byId('segment-0-name')).text.to.equal('18_or_19');
     // },
     // FEATURES
-    '[Main Tests] - Create feature': async function (browser) {
+    '[Features Tests] - Create feature': function (browser) {
         browser.waitAndClick('#features-link');
         browser.pause(200);
         browser.waitAndClick(byId('show-create-feature-btn'));
@@ -63,7 +64,7 @@ module.exports = {
             .waitForElementVisible('#features-list div.list-item')
             .expect.element('#features-list .feature-value').text.to.equal('big');
     },
-    '[Main Tests] - Create feature 2': function (browser) {
+    '[Features Tests] - Create feature 2': function (browser) {
         browser
             .waitForElementNotPresent('#create-feature-modal')
             .click('#show-create-feature-btn')
@@ -73,7 +74,7 @@ module.exports = {
             .click('#create-feature-btn')
             .waitForElementVisible('#features-list div.list-item:nth-child(2)');
     },
-    '[Main Tests] - Create feature 3': function (browser) {
+    '[Features Tests] - Create feature 3': function (browser) {
         browser
             .waitForElementNotPresent('#create-feature-modal')
             .waitForElementVisible('#show-create-feature-btn')
@@ -84,7 +85,7 @@ module.exports = {
             .click('#create-feature-btn')
             .waitForElementVisible('#features-list div.list-item:nth-child(3) div'); // todo change
     },
-    '[Main Tests] - Delete feature 3': function (browser) {
+    '[Features Tests] - Delete feature 3': function (browser) {
         browser
             .waitForElementNotPresent('#create-feature-modal')
             .waitForElementVisible('#features-list div.list-item:nth-child(3) #remove-feature')
@@ -94,7 +95,7 @@ module.exports = {
             .click('#confirm-remove-feature-btn')
             .waitForElementNotPresent('#features-list div.list-item:nth-child(3)');
     },
-    '[Main Tests] - Toggle feature on': function (browser) {
+    '[Features Tests] - Toggle feature on': function (browser) {
         browser
             .waitForElementNotPresent('#confirm-remove-feature-modal')
             .pause(200) // Additional wait here as it seems rc-switch can be unresponsive for a while
@@ -104,27 +105,28 @@ module.exports = {
             .click('#confirm-toggle-feature-btn')
             .waitForElementVisible(byId('feature-switch-1-on'));
     },
-    '[Main Tests] - Try feature out': async function (browser) {
-        browser.waitForElementNotPresent('#confirm-toggle-feature-modal');
-        browser.pause(200);
-        browser.waitAndClick('#try-it-btn');
-        browser.waitForElementVisible('#try-it-results');
-        const res = await browser.getText('#try-it-results');
-        browser.assert.equal(typeof res, 'object');
-        browser.assert.equal(res.status, 0);
-        let json;
-        try {
-            json = JSON.parse(res.value);
-        } catch (e) {
-            throw new Error('Try it results are not valid JSON');
-        }
-        // Unfortunately chai.js expect assertions do not report success in the Nightwatch reporter (but they do report failure)
-        expect(json).to.have.property('header_size');
-        expect(json.header_size).to.have.property('value');
-        expect(json.header_size.value).to.equal('big');
-        browser.assert.ok(true, 'Try it JSON was correct for the feature'); // Re-assurance that the chai tests above passed
+    '[Features Tests] - Try feature out': function (browser) {
+        browser.waitForElementNotPresent('#confirm-toggle-feature-modal')
+            .pause(200)
+            .waitAndClick('#try-it-btn')
+            .waitForElementVisible('#try-it-results')
+            .getText('#try-it-results', (res) => {
+                browser.assert.equal(typeof res, 'object');
+                browser.assert.equal(res.status, 0);
+                let json;
+                try {
+                    json = JSON.parse(res.value);
+                } catch (e) {
+                    throw new Error('Try it results are not valid JSON');
+                }
+                // Unfortunately chai.js expect assertions do not report success in the Nightwatch reporter (but they do report failure)
+                expect(json).to.have.property('header_size');
+                expect(json.header_size).to.have.property('value');
+                expect(json.header_size.value).to.equal('big');
+                browser.assert.ok(true, 'Try it JSON was correct for the feature'); // Re-assurance that the chai tests above passed
+            });
     },
-    '[Main Tests] - Change feature value to number': function (browser) {
+    '[Features Tests] - Change feature value to number': function (browser) {
         browser
             .useXpath()
             .click('//div[@id="features-list"]//a[text()="header_size"]')
@@ -133,11 +135,10 @@ module.exports = {
             .clearValue('[name="featureValue"]')
             .setValue('[name="featureValue"]', '12')
             .click('#update-feature-btn')
-            .waitForElementVisible('#features-list .feature-value');
-
-        browser.expect.element('#features-list .feature-value').text.to.equal('12');
+            .waitForElementVisible('#features-list .feature-value')
+            .expect.element('#features-list .feature-value').text.to.equal('12');
     },
-    '[Main Tests] - Try feature out should return numeric value': function (browser) {
+    '[Features Tests] - Try feature out should return numeric value': function (browser) {
         browser
             .refresh()
             .waitForElementNotPresent('#create-feature-modal')
@@ -163,7 +164,7 @@ module.exports = {
                 browser.assert.ok(true, 'Try it JSON was correct for the feature'); // Re-assurance that the chai tests above passed
             });
     },
-    '[Main Tests] - Change feature value to boolean': function (browser) {
+    '[Features Tests] - Change feature value to boolean': function (browser) {
         browser
             .useXpath()
             .click('//div[@id="features-list"]//a[text()="header_size"]')
@@ -171,11 +172,10 @@ module.exports = {
             .waitForElementVisible('[name="featureValue"]')
             .clearValue('[name="featureValue"]')
             .setValue('[name="featureValue"]', 'false')
-            .click('#update-feature-btn');
-
-        browser.expect.element('#features-list .feature-value').text.to.equal('false');
+            .click('#update-feature-btn')
+            .expect.element('#features-list .feature-value').text.to.equal('false');
     },
-    '[Main Tests] - Try feature out should return boolean value': function (browser) {
+    '[Features Tests] - Try feature out should return boolean value': function (browser) {
         browser
             .refresh()
             .waitForElementNotPresent('#create-feature-modal')
@@ -201,23 +201,23 @@ module.exports = {
                 browser.assert.ok(true, 'Try it JSON was correct for the feature'); // Re-assurance that the chai tests above passed
             });
     },
-    '[Main Tests] - Switch environment': function (browser) {
+    '[Features Tests] - Switch environment': function (browser) {
         browser
-            .waitAndClick(byId('switch-environment-production'));
-        browser.waitForElementVisible(byId('switch-environment-production-active'));
+            .waitAndClick(byId('switch-environment-production'))
+            .waitForElementVisible(byId('switch-environment-production-active'));
     },
-    '[Main Tests] - Feature should be off under different environment': function (browser) {
-        browser.expect.element(byId('feature-switch-1-off')).to.be.visible;
+    '[Features Tests] - Feature should be off under different environment': function (browser) {
+        browser.waitForElementVisible(byId('feature-switch-1-off'));
     },
-    '[Main Tests] - Create environment': async function (browser) {
-        browser.waitAndClick('#create-env-link');
-        browser.waitForElementVisible('[name="envName"]');
-        browser.setValue('[name="envName"]', 'Staging');
-        browser.click('#create-env-btn');
-        browser.waitForElementVisible(byId('switch-environment-staging-active'));
+    '[Features Tests] - Create environment': function (browser) {
+        browser.waitAndClick('#create-env-link')
+            .waitForElementVisible('[name="envName"]')
+            .setValue('[name="envName"]', 'Staging')
+            .click('#create-env-btn')
+            .waitForElementVisible(byId('switch-environment-staging-active'));
     },
 
-    // '[Main Tests] - Edit environment': function (browser) {
+    // '[Features Tests] - Edit environment': function (browser) {
     //     browser
     //         .click('#env-settings-link')
     //         .waitForElementVisible("[name='env-name']")
@@ -227,7 +227,7 @@ module.exports = {
     //
     //     browser.waitForElementVisible(byId('switch-environment-internal-active'));
     // },
-    // '[Main Tests] - Delete environment': function (browser) {
+    // '[Features Tests] - Delete environment': function (browser) {
     //     browser
     //         .click('#delete-env-btn')
     //         .waitForElementVisible("[name='confirm-env-name']")
@@ -235,13 +235,13 @@ module.exports = {
     //         .click('#confirm-delete-env-btn')
     //         .waitForElementVisible('#project-select-page');
     // },
-    // '[Main Tests] - View project': function (browser) {
+    // '[Features Tests] - View project': function (browser) {
     //     browser.waitForElementVisible('#projects-list a.list-item');
     //     browser.expect.element('#projects-list a.list-item').text.to.equal('My Test Project');
     //     browser.click('#projects-list a.list-item');
     //     browser.waitForElementVisible('#features-page');
     // },
-    // '[Main Tests] - Edit project': function (browser) {
+    // '[Features Tests] - Edit project': function (browser) {
     //     browser
     //         .waitForElementVisible('#project-settings-link')
     //         .pause(200) // Slide in transition

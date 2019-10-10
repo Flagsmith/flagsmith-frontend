@@ -101,13 +101,13 @@
   },
   "devDependencies": {
     "chai": "^4.1.2",
-    "chromedriver": "77.0.0",
+    "chromedriver": "2.42.0",
     "env2": "^2.2.0",
-    "nightwatch": "1.2.2",
+    "nightwatch": "^1.2.2",
     "node-slack-upload": "^2.0.0",
     "nodemon": "^1.17.5",
     "raw-loader": "^0.5.1",
     "react-markdown": "^4.0.3",
-    "selenium-server": "3.141.59"
+    "selenium-server": "^3.8.1"
   }
 }

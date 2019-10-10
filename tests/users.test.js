@@ -1,18 +1,21 @@
+/* eslint-disable func-names */
 const expect = require('chai').expect;
 const { byTestID: byId, setSegmentRule } = require('./helpers');
 
 module.exports = {
     '[Users Tests] - Edit flag for user': function (browser) {
-        browser.waitAndClick('#users-link')
+        browser
+            .waitAndClick('#users-link')
             .waitAndClick(byId('user-item-0'))
-            .waitAndClick(byId('user-feature-0'));
-        browser.waitForElementPresent('#create-feature-modal');
-        browser.waitForElementVisible('[name="featureValue"]')
+            .waitAndClick(byId('user-feature-0'))
+            .waitForElementPresent('#create-feature-modal')
+            .waitForElementVisible('[name="featureValue"]')
+            .pause(200) // todo: Clear fails without a delay here. Find better solution
             .clearValue('[name="featureValue"]')
-            .setValue('[name="featureValue"]', 'small');
-        browser.click('#update-feature-btn');
-        browser.waitForElementNotPresent('#create-feature-modal');
-        browser.expect.element(byId('user-feature-value-0')).text.to.equal('"small"');
+            .setValue('[name="featureValue"]', 'small')
+            .click('#update-feature-btn')
+            .waitForElementNotPresent('#create-feature-modal')
+            .expect.element(byId('user-feature-value-0')).text.to.equal('"small"');
     },
     '[Users Tests] - Toggle flag for user': function (browser) {
         browser
