@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import lazyframe from 'lazyframe';
 import md from './markdown/using-feature-flags-for-client-demos-and-simulating-complex-scenarios.md';
 import 'lazyframe/dist/lazyframe.css';

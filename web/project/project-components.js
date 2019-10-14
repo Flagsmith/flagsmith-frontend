@@ -1,3 +1,4 @@
+import { PureComponent } from 'react';
 import { hot } from 'react-hot-loader';
 import Select from 'react-select';
 import Button, { ButtonSecondary, ButtonWhite } from '../components/base/forms/Button';
@@ -53,41 +54,53 @@ window.FeatureValue = require('../components/FeatureValue');
 window.CodeHelp = require('../components/CodeHelp');
 
 // Useful for components used all the time within a project
-window.Loader = () => (
-    <svg
-      version="1.1" id="loader-1" x="0px"
-      y="0px"
-      width="40px" height="40px" viewBox="0 0 50 50"
-      style={{ enableBackground: '0 0 50 50' }}
-    >
-        <path
-          fill="#4f98a3"
-          d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z"
-        >
-            <animateTransform
-              attributeType="xml"
-              attributeName="transform"
-              type="rotate"
-              from="0 25 25"
-              to="360 25 25"
-              dur="0.6s"
-              repeatCount="indefinite"
-            />
-        </path>
-    </svg>
-);
+window.Loader = class extends PureComponent {
+  static displayName = 'Loader';
 
+  render() {
+      return (
+          <svg
+            version="1.1" id="loader-1" x="0px"
+            y="0px"
+            width="40px" height="40px" viewBox="0 0 50 50"
+            style={{ enableBackground: '0 0 50 50' }}
+          >
+              <path
+                fill="#4f98a3"
+                d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z"
+              >
+                  <animateTransform
+                    attributeType="xml"
+                    attributeName="transform"
+                    type="rotate"
+                    from="0 25 25"
+                    to="360 25 25"
+                    dur="0.6s"
+                    repeatCount="indefinite"
+                  />
+              </path>
+          </svg>
+      );
+  }
+};
 
 window.Tooltip = require('../components/Toolip');
 
 global.hot = hot;
 global.RemoveIcon = RemoveIcon;
-global.Select = props => (E2E ? (
-    <input
-      type="text" value={props.value && props.value.value}
-      onChange={e => props.onChange({ value: Utils.safeParseEventValue(e) })}
-      id={props.id} data-test={props['data-test']}
-    />
-) : (
-    <Select className="react-select" classNamePrefix="react-select" {...props}/>
-));
+global.Select = class extends PureComponent {
+    static displayName = 'Select';
+
+    render() {
+        const props = this.props;
+        return E2E ? (
+            <input
+              type="text" value={props.value && props.value.value}
+              onChange={e => props.onChange({ value: Utils.safeParseEventValue(e) })}
+              id={props.id} data-test={props['data-test']}
+            />
+        ) : (
+            <Select className="react-select" classNamePrefix="react-select" {...props}/>
+        );
+    }
+};

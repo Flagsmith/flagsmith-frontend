@@ -6,8 +6,8 @@ const Column = props => (
 );
 
 Column.propTypes = {
-    style: React.PropTypes.any,
-    children: React.PropTypes.any,
+    style: propTypes.any,
+    children: propTypes.any,
 };
 
 module.exports = Column;

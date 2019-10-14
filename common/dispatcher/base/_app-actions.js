@@ -40,4 +40,9 @@ module.exports = {
             details,
         });
     },
+    logout() { // refresh the entire app
+        Dispatcher.handleViewAction({
+            actionType: Actions.LOGOUT,
+        });
+    },
 };

@@ -33,7 +33,7 @@ module.exports = {
 
         browser.expect.element(byId('features-page')).to.be.visible;
     },
-    '[Invite Tests] - Invite user': async function (browser) {
+    '[Invite Tests] - Invite user': function (browser) {
         browser.pause(200);
         browser.click('#organisation-settings-link');
         browser.pause(200); // Slide in transition

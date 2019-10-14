@@ -3,7 +3,8 @@ import './project/libs';
 import './project/api';
 import './project/project-components';
 import './styles/styles.scss';
-import { Router, browserHistory } from 'react-router';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
 import ToastMessages from './project/toast';
 import routes from './routes';
 
@@ -39,6 +40,8 @@ AsyncStorage.getItem('t', (err, res) => {
     }
 
     setTimeout(() => {
+        const browserHistory = createBrowserHistory();
+
         // redirect before login
         // todo: move to util to decide if url is public
         if (
@@ -51,7 +54,7 @@ AsyncStorage.getItem('t', (err, res) => {
         }
 
         ReactDOM.render(
-            <Router history={browserHistory} routes={routes} onUpdate={hashLinkScroll} />,
+            <Router>{routes}</Router>,
             rootElement,
         );
     }, 1);
@@ -60,8 +63,8 @@ AsyncStorage.getItem('t', (err, res) => {
 // Setup for toast messages
 ReactDOM.render(<ToastMessages />, document.getElementById('toast'));
 
-if(E2E) {
-    document.body.classList.add("disable-transitions")
+if (E2E) {
+    document.body.classList.add('disable-transitions');
 }
 
 if (!E2E) {

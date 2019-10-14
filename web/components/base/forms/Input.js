@@ -35,6 +35,7 @@ const Input = class extends React.Component {
     }
 
     focus = () => {
+        if (E2E) return;
         this.input.focus();
     }
 
@@ -110,13 +111,13 @@ Input.defaultProps = {
 };
 
 Input.propTypes = {
-    isValid: React.PropTypes.any,
+    isValid: propTypes.any,
     onKeyDown: OptionalFunc,
     onFocus: OptionalFunc,
     onBlur: OptionalFunc,
     placeholderChar: OptionalString,
     mask: OptionalString,
-    className: React.PropTypes.any,
+    className: propTypes.any,
     inputClassName: OptionalString,
     onSearchChange: OptionalFunc,
 };

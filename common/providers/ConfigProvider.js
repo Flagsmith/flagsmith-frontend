@@ -1,9 +1,9 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import bulletTrain from 'bullet-train-client';
 import ConfigStore from '../stores/config-store';
 
 module.exports = (WrappedComponent) => {
-    class HOC extends React.Component {
+    class HOC extends Component {
         constructor(props) {
             super(props);
             this.state = {
@@ -12,7 +12,7 @@ module.exports = (WrappedComponent) => {
             ES6Component(this);
         }
 
-        componentWillMount() {
+        componentDidMount() {
             this.listenTo(ConfigStore, 'change', () => {
                 this.setState({
                     isLoading: ConfigStore.isLoading,

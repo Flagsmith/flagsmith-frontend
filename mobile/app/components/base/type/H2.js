@@ -10,7 +10,7 @@ const h2 = class extends React.Component {
 };
 
 h2.propTypes = {
-    style: React.PropTypes.any,
+    style: propTypes.any,
     children: OptionalElement,
 };
 

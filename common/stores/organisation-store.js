@@ -11,10 +11,11 @@ const controller = {
 
             Promise.all([
                 data.get(`${Project.api}organisations/${id}/projects/`),
+            ].concat(AccountStore.getOrganisationRole(id) === 'ADMIN' ? [
                 data.get(`${Project.api}organisations/${id}/users/`),
                 data.get(`${Project.api}organisations/${id}/invites/`),
                 data.get(`${Project.api}organisations/${id}/usage/`),
-            ]).then((res) => {
+            ] : [])).then((res) => {
                 if (id === store.id) {
                     const [projects, users, invites, usage] = res;
                     store.model = { users, invites: invites && invites.results };
@@ -114,7 +115,19 @@ const controller = {
             .then(() => {
                 API.trackEvent(Constants.events.DELETE_INVITE);
                 if (store.model) {
-                    store.model.invites = _.filter(store.model.invites, i => i.id != id);
+                    store.model.invites = _.filter(store.model.invites, i => i.id !== id);
+                }
+                store.saved();
+            })
+            .catch(e => API.ajaxHandler(store, e));
+    },
+    deleteUser: (id) => {
+        store.saving();
+        data.post(`${Project.api}organisations/${store.id}/remove-users/`, [{ id }])
+            .then(() => {
+                API.trackEvent(Constants.events.DELETE_USER);
+                if (store.model) {
+                    store.model.users = _.filter(store.model.users, u => u.id !== id);
                 }
                 store.saved();
             })
@@ -129,6 +142,21 @@ const controller = {
             .catch((e) => {
                 console.error('Failed to resend invite', e);
                 toast(`Failed to resend invite. ${e && e.error ? e.error : 'Please try again later'}`);
+            });
+    },
+    updateUserRole: (id, role) => {
+        data.post(`${Project.api}organisations/${store.id}/users/${id}/update-role/`, { role })
+            .then(() => {
+                API.trackEvent(Constants.events.UPDATE_USER_ROLE);
+                const index = _.findIndex(store.model.users, user => user.id === id);
+                if (index !== -1) {
+                    store.model.users[index].role = role;
+                    store.saved();
+                }
+            })
+            .catch((e) => {
+                console.error('Failed to update user role', e);
+                toast(`Failed to update this user's role. ${e && e.error ? e.error : 'Please try again later'}`);
             });
     },
 
@@ -170,8 +198,17 @@ store.dispatcherIndex = Dispatcher.register(store, (payload) => {
         case Actions.DELETE_INVITE:
             controller.deleteInvite(action.id);
             break;
+        case Actions.DELETE_USER:
+            controller.deleteUser(action.id);
+            break;
         case Actions.RESEND_INVITE:
             controller.resendInvite(action.id);
+            break;
+        case Actions.UPDATE_USER_ROLE:
+            controller.updateUserRole(action.id, action.role);
+            break;
+        case Actions.LOGOUT:
+            store.id = null;
             break;
         default:
     }

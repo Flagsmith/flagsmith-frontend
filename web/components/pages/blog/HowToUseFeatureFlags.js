@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import lazyframe from 'lazyframe';
 import md from './markdown/how-to-use-feature-flags-in-continuous-integration.md';
 import 'lazyframe/dist/lazyframe.css';

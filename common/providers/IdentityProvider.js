@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import FeatureListStore from '../stores/feature-list-store';
 import IdentityStore from '../stores/identity-store';
 
@@ -17,7 +17,7 @@ const IdentityProvider = class extends Component {
         ES6Component(this);
     }
 
-    componentWillMount() {
+    componentDidMount() {
         this.listenTo(IdentityStore, 'change', () => {
             this.setState({
                 isSaving: IdentityStore.isSaving,

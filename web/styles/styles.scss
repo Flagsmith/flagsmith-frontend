@@ -34,6 +34,10 @@
     }
 }
 
+.cursor-pointer {
+    cursor: pointer;
+}
+
 .gif {
     position: relative;
     cursor: pointer;
@@ -111,6 +115,9 @@ input:disabled {
 
 .full-width {
     width: 100%;
+    > input {
+        width: 100%;
+    }
 }
 
 .text-center {
@@ -186,10 +193,10 @@ hr {
 }
 
 @media screen and (max-width: 576px) {
-    
+
     .alert-bar {
         padding: 10px 10px 5px 0;
         font-size: 1em;
     }
-    
+
 }

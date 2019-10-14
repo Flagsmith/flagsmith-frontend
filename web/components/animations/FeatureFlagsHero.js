@@ -5,7 +5,7 @@ import anime from 'animejs';
 export default class NotFoundView extends Component {
     static displayName = 'FeatureFlagsHero'
 
-    // componentWillMount = () => {
+    // componentDidMount = () => {
     //     API.trackPage(Constants.pages.NOT_FOUND);
     // };
 

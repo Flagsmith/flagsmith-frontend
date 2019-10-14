@@ -60,7 +60,8 @@ const SortableList = SortableContainer(({ items, type, confirmRemove, toggle, se
 class TheComponent extends Component {
     static displayName = 'TheComponent';
 
-    static propTypes = {};
+    static propTypes = {
+    };
 
     constructor(props) {
         super(props);
@@ -72,6 +73,7 @@ class TheComponent extends Component {
         this.props.onChange([{
             segment: this.state.selectedSegment.value,
             enabled: true,
+            value: '',
         }].concat(value).map((v, i) => ({ ...v, priority: i + 1 })));
         this.setState({
             selectedSegment: null,
@@ -106,7 +108,7 @@ class TheComponent extends Component {
     render() {
         const { props: { value, segments } } = this;
         const segmentOptions = _.filter(
-            segments, segment => !value || !_.find(value, v => v.segment.id === segment.id),
+            segments, segment => !value || !_.find(value, v => v.segment === segment.id),
         )
             .map(({ name: label, id: value }) => ({ value, label }));
         return (
@@ -128,7 +130,7 @@ class TheComponent extends Component {
                         </Flex>
                     )}
                     {value && !!value.length && (
-                        <div className="panel--grey mt-4 overflow-visible">
+                        <div className="mt-4 overflow-visible">
                             <Row className="mb-2">
                                 <div
                                   className="flex flex-1 text-left"

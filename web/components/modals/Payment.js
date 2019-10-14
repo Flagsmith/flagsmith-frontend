@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import makeAsyncScriptLoader from 'react-async-script';
 
 const PaymentModal = class extends Component {
@@ -9,7 +9,7 @@ const PaymentModal = class extends Component {
         this.state = {};
     }
 
-    componentWillMount = () => {
+    componentDidMount = () => {
         API.trackPage(Constants.modals.PAYMENT);
     };
 

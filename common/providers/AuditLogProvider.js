@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import AuditLogStore from '../stores/audit-log-store';
 
 const AuditLogProvider = class extends Component {
@@ -14,7 +14,7 @@ const AuditLogProvider = class extends Component {
         ES6Component(this);
     }
 
-    componentWillMount() {
+    componentDidMount() {
         this.listenTo(AuditLogStore, 'change', () => {
             this.setState({
                 isSaving: AuditLogStore.isSaving,
