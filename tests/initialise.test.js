@@ -1,3 +1,4 @@
+/* eslint-disable func-names */
 const email = 'nightwatch@solidstategroup.com';
 const password = 'nightwatch';
 const url = `http://localhost:${process.env.PORT || 8080}`;
@@ -6,20 +7,20 @@ const helpers = require('./helpers');
 const byId = helpers.byTestID;
 
 module.exports = {
-    '[Initialise Tests] - Register': async function (browser) {
-        browser.url(url); // visit the url
-        browser.waitAndSet(byId('firstName'), 'Night');
-        browser.setValue(byId('lastName'), 'Watch');
-        browser.setValue(byId('companyName'), 'Nightwatch Ltd');
-        browser.setValue(byId('email'), email);
-        browser.setValue(byId('password'), password);
-        browser.click(byId('signup-btn'));
-        browser.waitForElementVisible(byId('project-select-page'));
+    '[Initialise Tests] - Register': function (browser) {
+        browser.url(url)
+            .waitAndSet(byId('firstName'), 'Night') // visit the url
+            .setValue(byId('lastName'), 'Watch')
+            .setValue(byId('companyName'), 'Nightwatch Ltd')
+            .setValue(byId('email'), email)
+            .setValue(byId('password'), password)
+            .click(byId('signup-btn'))
+            .waitForElementVisible(byId('project-select-page'));
     },
     '[Initialise Tests] - Create project': function (browser) {
-        browser.waitAndClick(byId('create-first-project-btn'));
-        browser.waitAndSet(byId('projectName'), 'My Test Project');
-        browser.click(byId('create-project-btn'));
-        browser.waitForElementVisible(byId('features-page'));
+        browser.waitAndClick(byId('create-first-project-btn'), 10000)
+            .waitAndSet(byId('projectName'), 'My Test Project')
+            .click(byId('create-project-btn'))
+            .waitForElementVisible(byId('features-page'));
     },
 };

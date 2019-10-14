@@ -1,10 +1,10 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 
 const CancelPaymentPlanModal = class extends Component {
     static displayName = 'CancelPaymentPlanModal'
 
     static contextTypes = {
-        router: React.PropTypes.object.isRequired,
+        router: propTypes.object.isRequired,
     };
 
     state = {}

@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 
 const AuditLogPage = class extends Component {
     static displayName = 'AuditLogPage'
@@ -11,7 +11,7 @@ const AuditLogPage = class extends Component {
     }
 
     componentWillUpdate(nextProps, nextState) {
-        // if (nextProps.params.environmentId !== this.props.params.environmentId) {
+        // if (nextProps.params.environmentId !== this.props.match.params.environmentId) {
         //     AppActions.getIdentities(nextProps.params.environmentId);
         // }
     }
@@ -23,24 +23,24 @@ const AuditLogPage = class extends Component {
 
     renderRow = ({ created_date, log, author }) => (
         <Row space className="list-item audit__item" key={created_date}>
-                <Flex>
-                    <div
+            <Flex>
+                <div
                       className="audit__log"
                     >
                         {log}
                     </div>
-                    <div
+                <div
                       className="audit__author"
                     >
                         {`${author.first_name} ${author.last_name}`}
                     </div>
-                </Flex>
-                <div className="audit__date">{moment(created_date).format('Do MMM YYYY HH:mma')}</div>
+            </Flex>
+            <div className="audit__date">{moment(created_date).format('Do MMM YYYY HH:mma')}</div>
         </Row>
     )
 
     render() {
-        const { environmentId } = this.props.params;
+        const { environmentId } = this.props.match.params;
         return (
             <div className="app-container container">
 

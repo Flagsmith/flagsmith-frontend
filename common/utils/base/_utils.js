@@ -75,9 +75,12 @@ var Utils = {
     },
 
     fromParam(str) { // {min:100,max:200} <- ?min=100&max=200
-        return (str || document.location.search).replace(/(^\?)/, '').split('&').map(function (n) {
-            return n = n.split('='), this[n[0]] = n[1];
-        }.bind({}))[0];
+        if (!str && !document.location.search) {
+            return {};
+        }
+        // eslint-disable-next-line
+        const urlString= (str || document.location.search).replace(/(^\?)/, '');
+        return JSON.parse(`{"${urlString.replace(/&/g, '","').replace(/=/g, '":"')}"}`, (key, value) => (key === '' ? value : decodeURIComponent(value)));
     },
 
     preventDefault(e) {

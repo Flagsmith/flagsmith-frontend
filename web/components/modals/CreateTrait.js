@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import Highlight from '../Highlight';
 
 const CreateTrait = class extends Component {

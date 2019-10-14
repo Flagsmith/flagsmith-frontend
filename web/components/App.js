@@ -1,5 +1,6 @@
-import React, { Component, PropTypes } from 'react';
-import { Link } from 'react-router';
+import React, { Component } from 'react';
+import { matchPath } from 'react-router';
+import { withRouter } from 'react-router-dom';
 import Aside from './Aside';
 import Popover from './base/Popover';
 import Feedback from './modals/Feedback';
@@ -8,11 +9,11 @@ import AlertBar from './AlertBar';
 
 const App = class extends Component {
     static propTypes = {
-        children: PropTypes.element.isRequired,
+        children: propTypes.element.isRequired,
     };
 
     static contextTypes = {
-        router: React.PropTypes.object.isRequired,
+        router: propTypes.object.isRequired,
     };
 
     state = {
@@ -47,18 +48,18 @@ const App = class extends Component {
     }
 
     onLogin = () => {
-        const { redirect } = this.props.location.query;
+        const { redirect } = Utils.fromParam();
 
 
         if (!AccountStore.getOrganisation() && document.location.href.indexOf('invite') == -1) { // If user has no organisation redirect to /create
-            this.context.router.replace('/create');
+            this.context.router.history.replace('/create');
             return;
         }
 
         // Redirect on login
         if (this.props.location.pathname == '/' || this.props.location.pathname == '/login' || this.props.location.pathname == '/demo' || this.props.location.pathname == '/signup') {
             if (redirect) {
-                this.context.router.replace(redirect);
+                this.context.router.history.replace(redirect);
             } else {
                 AsyncStorage.getItem('lastEnv')
                     .then((res) => {
@@ -66,7 +67,7 @@ const App = class extends Component {
                             const lastEnv = JSON.parse(res);
                             const lastOrg = _.find(AccountStore.getUser().organisations, { id: lastEnv.orgId });
                             if (!lastOrg) {
-                                this.context.router.replace('/projects');
+                                this.context.router.history.replace('/projects');
                                 return;
                             }
 
@@ -76,11 +77,11 @@ const App = class extends Component {
                                 AppActions.getOrganisation(lastOrg.id);
                             }
 
-                            this.context.router.replace(`/project/${lastEnv.projectId}/environment/${lastEnv.environmentId}/features`);
+                            this.context.router.history.replace(`/project/${lastEnv.projectId}/environment/${lastEnv.environmentId}/features`);
                             return;
                         }
 
-                        this.context.router.replace('/projects');
+                        this.context.router.history.replace('/projects');
                     });
             }
         }
@@ -96,7 +97,7 @@ const App = class extends Component {
     }
 
     onLogout = () => {
-        this.context.router.replace('/');
+        this.context.router.history.replace('/');
     };
 
     feedback = () => {
@@ -104,16 +105,24 @@ const App = class extends Component {
     }
 
     render() {
-        const { hasFeature, getValue, params, location } = this.props;
-        const { asideIsVisible } = this.state;
-        const { projectId, environmentId } = params;
-        const pageHasAside = environmentId;
+        console.log(this.context.router);
+        const { hasFeature, getValue, match: { params }, location } = this.props;
         const pathname = location.pathname;
+        const { asideIsVisible } = this.state;
+        console.log(this.props);
+        const match = matchPath(pathname, {
+            path: '/project/:projectId/environment/:environmentId',
+            exact: false,
+            strict: false,
+        });
+        const projectId = _.get(match, 'params.projectId');
+        const environmentId = _.get(match, 'params.environmentId');
+        const pageHasAside = environmentId;
         const isHomepage = pathname == '/' || pathname == '/login';
         const isLegal = pathname == '/legal/tos' || pathname == '/legal/sla' || pathname == '/legal/privacy-policy';
         const isDark = /* pathname.indexOf('/blog') !== -1 */ true;
 
-        const redirect = location.query.redirect ? `?redirect=${location.query.redirect}` : '';
+        const redirect = Utils.fromParam().redirect ? `?redirect=${Utils.fromParam().redirect}` : '';
         return (
             <div>
                 <AccountProvider onNoUser={this.onNoUser} onLogout={this.onLogout} onLogin={this.onLogin}>
@@ -154,14 +163,14 @@ days remaining on it's free
                                             Your organisation is using Bullet Train for
                                             free.
                                             {' '}
-                                            {pathname.indexOf('organisation-settings') === -1 && this.props.params.projectId && this.props.params.environmentId ? (
+                                            {pathname.indexOf('organisation-settings') === -1 && projectId && environmentId ? (
                                                 <span>
                                                     {'Click '}
                                                     <Link
                                                       id="organisation-settings-link"
                                                       className="bold"
                                                       activeClassName="active"
-                                                      to={`/project/${this.props.params.projectId}/environment/${this.props.params.environmentId}/organisation-settings`}
+                                                      to={`/project/${projectId}/environment/${environmentId}/organisation-settings`}
                                                     >
                                             here
                                                     </Link>
@@ -215,7 +224,7 @@ Click here to Sign
                                               renderTitle={(toggle, isActive) => (
                                                   <div className="products-button" onClick={toggle}>
                                                             Products
-                                                      <ion
+                                                      <span
                                                         className={isActive ? 'ion-ios-arrow-dropup' : 'ion-ios-arrow-dropdown'}
                                                       />
                                                   </div>
@@ -268,7 +277,7 @@ Click here to Sign
                                                 <div className="navbar-nav">
                                                     {pageHasAside && !asideIsVisible && (
                                                     <div role="button" className="clickable toggle" onClick={this.toggleAside}>
-                                                        <ion className="icon ion-md-menu"/>
+                                                        <span className="icon ion-md-menu"/>
                                                     </div>
                                                     )}
                                                     {!projectId && (
@@ -321,7 +330,7 @@ Click here to Sign
                                                                           toggle();
                                                                           AppActions.selectOrganisation(organisation.id);
                                                                           AppActions.getOrganisation(organisation.id);
-                                                                          this.context.router.push('/projects');
+                                                                          this.context.router.history.push('/projects');
                                                                       }}
                                                                     />
                                                                     )}
@@ -336,7 +345,7 @@ Click here to Sign
 
                                                                     <a
                                                                       id="logout-link" href="#"
-                                                                      onClick={() => AppActions.setUser(null)}
+                                                                      onClick={AppActions.logout}
                                                                       to="exampleone"
                                                                     >
 Logout
@@ -367,7 +376,7 @@ Logout
                                                               className="popover-right mobile-navigation"
                                                               renderTitle={(toggle, isActive) => (
                                                                   <div className="mobile-navigation__button" onClick={toggle}>
-                                                                      <ion
+                                                                      <span
                                                                         className={isActive ? 'icon ion-ios-close' : 'icon ion-md-menu'}
                                                                       />
                                                                   </div>
@@ -404,8 +413,8 @@ Logout
                                     {pageHasAside && (
                                         <Aside
                                           className={`${AccountStore.isDemo ? 'demo' : ''} ${AccountStore.isDemo || (hasFreeTrial && !hasPaid) || (hasFreeUse && !hasPaid) || !hasPaid ? 'footer' : ''}`}
-                                          projectId={this.props.params.projectId}
-                                          environmentId={this.props.params.environmentId}
+                                          projectId={projectId}
+                                          environmentId={environmentId}
                                           toggleAside={this.toggleAside}
                                           asideIsVisible={asideIsVisible}
                                         />
@@ -427,4 +436,4 @@ App.propTypes = {
     history: RequiredObject,
 };
 
-export default ConfigProvider(hot(module)(App));
+export default hot(module)(withRouter(ConfigProvider(App)));

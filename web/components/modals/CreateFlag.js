@@ -1,12 +1,17 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import Highlight from '../Highlight';
 import Tabs from '../base/forms/Tabs';
 import TabItem from '../base/forms/TabItem';
 import withSegmentOverrides from '../../../common/providers/withSegmentOverrides';
+import data from '../../../common/data/base/_data';
 import SegmentOverrides from '../SegmentOverrides';
 
 const CreateFlag = class extends Component {
     static displayName = 'CreateFlag'
+
+    static contextTypes = {
+        router: propTypes.object.isRequired,
+    };
 
     constructor(props, context) {
         super(props, context);
@@ -16,6 +21,9 @@ const CreateFlag = class extends Component {
             };
         const { allowEditDescription } = this.props;
         AppActions.getSegments(this.props.projectId, this.props.environmentId);
+        if (this.props.projectFlag) {
+            this.userOverridesPage(1);
+        }
         this.state = {
             type,
             tab: !type || type == 'FLAG' ? 0 : 1,
@@ -27,13 +35,14 @@ const CreateFlag = class extends Component {
         };
     }
 
+
     close() {
         closeModal();
     }
 
 
     componentDidMount = () => {
-        if (!this.props.isEdit) {
+        if (!this.props.isEdit && !E2E) {
             this.focusTimeout = setTimeout(() => {
                 this.input.focus();
                 this.focusTimeout = null;
@@ -47,6 +56,20 @@ const CreateFlag = class extends Component {
         }
     }
 
+    userOverridesPage = (page) => {
+        data.get(`${Project.api}environments/${this.props.environmentId}/featurestates/?anyIdentity=1&feature=${this.props.projectFlag.id}&page=${page}`)
+            .then((userOverrides) => {
+                this.setState({
+                    userOverrides: userOverrides.results,
+                    userOverridesPaging: {
+                        next: userOverrides.next,
+                        count: userOverrides.count,
+                        currentPage: page,
+                    },
+                });
+            });
+    }
+
     setTab = (tab) => {
         this.setState({ tab, type: this.getTypeFromTab(tab) });
     };
@@ -57,6 +80,31 @@ const CreateFlag = class extends Component {
                 return 'FLAG';
         }
         return 'CONFIG';
+    }
+
+    save = (func, isSaving) => {
+        const { projectFlag, segmentOverrides, environmentFlag, identity, identityFlag, environmentId } = this.props;
+        const { name, initial_value, description, type, default_enabled } = this.state;
+        if (identity) {
+            !isSaving && name && func({
+                identity,
+                projectFlag,
+                environmentFlag,
+                identityFlag: Object.assign({}, identityFlag || {}, {
+                    feature_state_value: initial_value,
+                    enabled: default_enabled,
+                }),
+                environmentId,
+            });
+        } else {
+            !isSaving && name && func(this.props.projectId, this.props.environmentId, {
+                name,
+                type,
+                initial_value,
+                default_enabled,
+                description,
+            }, projectFlag, environmentFlag, segmentOverrides);
+        }
     }
 
     render() {
@@ -93,7 +141,7 @@ const CreateFlag = class extends Component {
                                               value="FLAG"
                                               tabLabel={(
                                                   <Row className="row-center">
-                                                      <ion className="tab-icon ion-ios-switch"/>
+                                                      <span className="tab-icon ion-ios-switch"/>
                                                       <span className="tab-text">Feature Flag</span>
                                                   </Row>
                                                 )}
@@ -104,13 +152,17 @@ const CreateFlag = class extends Component {
                                               id="btn-select-remote-config"
                                               tabLabel={(
                                                   <Row className="row-center">
-                                                      <ion className="tab-icon ion-ios-settings"/>
+                                                      <span className="tab-icon ion-ios-settings"/>
                                                       <span className="tab-text">Remote config</span>
                                                   </Row>
                                             )}
                                             />
                                         </Tabs>
                                     </FormGroup>
+                                )}
+
+                                {isEdit && (
+                                    <span onClick={this.close} className="icon close ion-md-close"/>
                                 )}
 
                                 <FormGroup className="mb-4">
@@ -170,24 +222,90 @@ const CreateFlag = class extends Component {
                                       placeholder="e.g. 'This determines what size the header is' "
                                     />
                                 </FormGroup>
-                                {type == 'FLAG' && this.props.segments && hasFeature('segments') && (
+                                {this.props.segments && hasFeature('segments') && (
                                     <FormGroup className="mb-4">
-                                        <Tooltip
-                                          title={<label className="cols-sm-2 control-label">Segment Overrides (Optional)</label>}
-                                          place="right"
+                                        <Panel
+                                          icon="ion-ios-settings"
+                                          title={(
+                                              <Tooltip
+                                                title={<h6 className="mb-0">Segment Overrides <span className="icon ion-ios-information-circle"/></h6>}
+                                                place="right"
+                                              >
+                                                  {Constants.strings.SEGMENT_OVERRIDES_DESCRIPTION}
+                                              </Tooltip>
+                                          )}
                                         >
-                                            {Constants.strings.SEGMENT_OVERRIDES_DESCRIPTION}
-                                        </Tooltip>
-                                        <SegmentOverrides
-                                          type={type}
-                                          value={this.props.segmentOverrides}
-                                          segments={this.props.segments}
-                                          onChange={this.props.updateSegments}
-                                        />
+                                            <SegmentOverrides
+                                              type={type}
+                                              value={this.props.segmentOverrides}
+                                              segments={this.props.segments}
+                                              onChange={this.props.updateSegments}
+                                            />
+                                        </Panel>
                                     </FormGroup>
                                 )}
+                                {
+                                    <FormGroup>
+                                        <PanelSearch
+                                          id="users-list"
+                                          title={(
+                                              <Tooltip
+                                                title={<h6 className="mb-0">Identity Overrides <span className="icon ion-ios-information-circle"/></h6>}
+                                                place="right"
+                                              >
+                                                  {Constants.strings.IDENTITY_OVERRIDES_DESCRIPTION}
+                                              </Tooltip>
+                                          )}
+                                          className="no-pad"
+                                          icon="ion-md-person"
+                                          items={this.state.userOverrides}
+                                          paging={this.state.userOverridesPaging}
+                                          nextPage={() => this.userOverridesPage(this.state.userOverridesPaging.currentPage + 1)}
+                                          prevPage={() => this.userOverridesPage(this.state.userOverridesPaging.currentPage - 1)}
+                                          goToPage={page => this.userOverridesPage(page)}
+                                          renderRow={({ id, feature_state_value, enabled, identity }) => (
+                                              <Row
+                                                onClick={() => {
+                                                    this.close();
+                                                    this.props.router.history.push(`/project/${this.props.projectId}/environment/${this.props.environmentId}/users/${identity.id}`);
+                                                }} space className="list-item cursor-pointer"
+                                                key={id}
+                                              >
+                                                  <Flex>
+                                                      {identity.identifier}
+                                                  </Flex>
+                                                  {type === 'FLAG' ? (
+                                                      <Switch checked={enabled}/>
+                                                  ) : (
+                                                      <FeatureValue
+                                                        value={feature_state_value}
+                                                      />
+                                                  )}
+
+                                              </Row>
+                                          )}
+                                          renderNoResults={(
+                                              <Panel
+                                                id="users-list"
+                                                title={(
+                                                    <Tooltip
+                                                      title={<h6 className="mb-0">Identity Overrides <span className="icon ion-ios-information-circle"/></h6>}
+                                                      place="right"
+                                                    >
+                                                        {Constants.strings.IDENTITY_OVERRIDES_DESCRIPTION}
+                                                    </Tooltip>
+                                                  )}
+                                              >
+                                                  No identities are overriding this feature.
+                                              </Panel>
+                                              )}
+                                          isLoading={!this.state.userOverrides}
+                                        />
+                                    </FormGroup>
+                                }
                                 {error && <Error error={error}/>}
-                                {isEdit && (
+                                <div className={isEdit ? 'footer' : ''}>
+                                    {isEdit && (
                                     <div className="mb-3">
                                         {identity ? (
                                             <p className="text-right">
@@ -217,17 +335,18 @@ const CreateFlag = class extends Component {
                                         )}
 
                                     </div>
-                                )}
-                                <div className="text-right">
-                                    {isEdit ? (
-                                        <Button data-test="update-feature-btn" id="update-feature-btn" disabled={isSaving || !name}>
-                                            {isSaving ? 'Creating' : 'Update Feature'}
-                                        </Button>
-                                    ) : (
-                                        <Button data-test="create-feature-btn" id="create-feature-btn" disabled={isSaving || !name}>
-                                            {isSaving ? 'Creating' : 'Create Feature'}
-                                        </Button>
                                     )}
+                                    <div className="text-right">
+                                        {isEdit ? (
+                                            <Button data-test="update-feature-btn" id="update-feature-btn" disabled={isSaving || !name}>
+                                                {isSaving ? 'Creating' : 'Update Feature'}
+                                            </Button>
+                                        ) : (
+                                            <Button data-test="create-feature-btn" id="create-feature-btn" disabled={isSaving || !name}>
+                                                {isSaving ? 'Creating' : 'Create Feature'}
+                                            </Button>
+                                        )}
+                                    </div>
                                 </div>
                             </form>
                         )}
@@ -236,31 +355,6 @@ const CreateFlag = class extends Component {
                 )}
             </ProjectProvider>
         );
-    }
-
-    save = (func, isSaving) => {
-        const { projectFlag, segmentOverrides, environmentFlag, identity, identityFlag, environmentId } = this.props;
-        const { name, initial_value, description, type, default_enabled } = this.state;
-        if (identity) {
-            !isSaving && name && func({
-                identity,
-                projectFlag,
-                environmentFlag,
-                identityFlag: Object.assign({}, identityFlag || {}, {
-                    feature_state_value: initial_value,
-                    enabled: default_enabled,
-                }),
-                environmentId,
-            });
-        } else {
-            !isSaving && name && func(this.props.projectId, this.props.environmentId, {
-                name,
-                type,
-                initial_value,
-                default_enabled,
-                description,
-            }, projectFlag, environmentFlag, segmentOverrides);
-        }
     }
 };
 

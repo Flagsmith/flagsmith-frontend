@@ -61,15 +61,15 @@ export default class FeaturessExampleView extends Component {
                                 <h2 className="text-center mb-4">Feature Flags</h2>
                                 <div className="row">
                                     <div className="col-sm-4">
-                                        <ion className="card__icon icon--green ion-md-done-all text-center"/>
+                                        <span className="card__icon icon--green ion-md-done-all text-center"/>
                                         <p>Hide new features behind Feature Flags that are managed within Bullet Train.</p>
                                     </div>
                                     <div className="col-sm-4">
-                                        <ion className="card__icon icon--green ion-md-done-all text-center"/>
+                                        <span className="card__icon icon--green ion-md-done-all text-center"/>
                                         <p>Continuously deploy new code. Separate code deployments from feature releases.</p>
                                     </div>
                                     <div className="col-sm-4">
-                                        <ion className="card__icon icon--green ion-md-done-all text-center"/>
+                                        <span className="card__icon icon--green ion-md-done-all text-center"/>
                                         <p>Roll new features out to a subset of your users before enabling it for everyone.</p>
                                     </div>
                                 </div>

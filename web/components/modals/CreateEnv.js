@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 
 const CreateEnv = class extends Component {
     static displayName = 'CreateEnv'

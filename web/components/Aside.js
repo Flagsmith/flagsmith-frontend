@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import propTypes from 'prop-types';
 import ProjectSelect from './ProjectSelect';
 
@@ -6,7 +6,7 @@ const Aside = class extends Component {
 	static displayName = 'Aside';
 
 	static contextTypes = {
-	    router: React.PropTypes.object.isRequired,
+	    router: propTypes.object.isRequired,
 	};
 
     static propTypes = {
@@ -45,7 +45,7 @@ const Aside = class extends Component {
                     <Flex className={`aside ${this.props.className || ''}`} style={!asideIsVisible ? { width: 0, overflow: 'hidden' } : isMobile ? { width: '100vw' } : {}}>
                         {isMobile && (
                             <div role="button" className="clickable toggle" onClick={toggleAside}>
-                                {!asideIsVisible ? <ion className="icon ion-md-menu"/> : <ion className="icon ion-md-close"/> }
+                                {!asideIsVisible ? <span className="icon ion-md-menu"/> : <span className="icon ion-md-close"/> }
                             </div>
                         )}
                         <div className="brand-container text-center">
@@ -78,7 +78,7 @@ const Aside = class extends Component {
                                   clearableValue={false}
                                   onChange={(project) => {
 												    AppActions.getProject(project.id);
-												    this.context.router.push(`/project/${project.id}/environment/${project.environments[0].api_key}/features`);
+												    this.context.router.history.push(`/project/${project.id}/environment/${project.environments[0].api_key}/features`);
 												    AsyncStorage.setItem('lastEnv', JSON.stringify({
 												        orgId: AccountStore.getOrganisation().id,
 												        projectId: project.id,
@@ -100,14 +100,16 @@ const Aside = class extends Component {
                                 >
 Project Settings
                                 </Link>
-                                <Link
-                                  id="organisation-settings-link"
-                                  activeClassName="active"
-                                  className="link--footer"
-                                  to={`/project/${this.props.projectId}/environment/${this.props.environmentId}/organisation-settings`}
-                                >
-												Organisation Settings
-                                </Link>
+                                {AccountStore.getOrganisationRole() === 'ADMIN' && (
+                                    <Link
+                                      id="organisation-settings-link"
+                                      activeClassName="active"
+                                      className="link--footer"
+                                      to={`/project/${this.props.projectId}/environment/${this.props.environmentId}/organisation-settings`}
+                                    >
+                                                    Organisation Settings
+                                    </Link>
+                                )}
                                 <a
                                   target="blank"
                                   className="link--footer"

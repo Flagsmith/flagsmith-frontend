@@ -1,5 +1,7 @@
 <img width="100%" src="./hero.png"/>
 
+[![Donate](https://liberapay.com/assets/widgets/donate.svg)](https://liberapay.com/Bullet-Train/donate)
+
 # Bullet Train Frontend
 
 The frontend application for [https://bullet-train.io/](https://www.bullet-train.io/). Bullet Train allows you to manage feature flags and remote config across multiple projects, environments and organisations.

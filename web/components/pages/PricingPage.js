@@ -5,7 +5,7 @@ import Feedback from '../modals/Feedback';
 
 const PricingPage = class extends React.Component {
     static contextTypes = {
-        router: React.PropTypes.object.isRequired,
+        router: propTypes.object.isRequired,
     };
 
     static displayName = 'PricingPage'
@@ -15,7 +15,7 @@ const PricingPage = class extends React.Component {
         this.state = {};
     }
 
-    componentWillMount() {
+    componentDidMount() {
         API.trackPage(Constants.pages.PRICING);
     }
 

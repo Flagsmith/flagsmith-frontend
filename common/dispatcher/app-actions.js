@@ -232,6 +232,12 @@ const AppActions = Object.assign({}, require('./base/_app-actions'), {
             id,
         });
     },
+    deleteUser(id) {
+        Dispatcher.handleViewAction({
+            actionType: Actions.DELETE_USER,
+            id,
+        });
+    },
     resendInvite(id) {
         Dispatcher.handleViewAction({
             actionType: Actions.RESEND_INVITE,
@@ -310,6 +316,13 @@ const AppActions = Object.assign({}, require('./base/_app-actions'), {
             envId,
             identity,
             id,
+        });
+    },
+    updateUserRole(id, role) {
+        Dispatcher.handleViewAction({
+            actionType: Actions.UPDATE_USER_ROLE,
+            id,
+            role,
         });
     },
 });
