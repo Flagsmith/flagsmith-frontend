@@ -16,6 +16,15 @@ p{
     opacity: 0.85;
 }
 
+.text {
+    &__link {
+        color: $bt-dark-green;
+        &:hover {
+            color: lighten($bt-dark-green, 10)
+        }
+    }
+}
+
 .large-para{
     font-size:1.25rem;
 }
