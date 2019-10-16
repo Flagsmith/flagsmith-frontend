@@ -99,7 +99,7 @@ const controller = {
         .then(([res, userRes]) => {
             controller.setUser({
                 ...userRes,
-                organisations: _.map(res.results, result => ({ ...result, role: _.get(_.find(userRes.organisations, org => org.organisation.id === result.id), 'role') || 'USER' })),
+                organisations: res.results,
             });
         })
         .catch(e => API.ajaxHandler(store, e)),
@@ -192,7 +192,7 @@ const store = Object.assign({}, BaseStore, {
         return store.model && store.model.organisations;
     },
     getOrganisationRole(id) {
-        return store.model && store.model.organisations && _.get(_.find(store.model.organisations, org => org.id === id || (store.organisation && store.organisation.id)), 'role');
+        return store.model && store.model.organisations && _.get(_.find(store.model.organisations, org => (id ? org.id === id : org.id === (store.organisation && store.organisation.id))), 'role');
     },
 });
 
