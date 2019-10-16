@@ -311,8 +311,7 @@ const UserPage = class extends Component {
                                                           className="no-pad"
                                                           icon="ion-ios-globe"
                                                           title="Segments"
-                                                          items={segments ? segments.results : []}
-                                                          acti
+                                                          items={segments || []}
                                                           renderRow={({ name, id, enabled, created_date, type, description }, i) => (
                                                               <Row
                                                                 className="list-item"
