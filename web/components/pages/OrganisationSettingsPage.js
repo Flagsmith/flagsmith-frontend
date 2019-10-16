@@ -237,6 +237,7 @@ const OrganisationSettingsPage = class extends Component {
                                                         {` seat${organisation.num_seats === 1 ? '' : 's'}.`}
                                                     </p>
                                                 )}
+                                                <p><a className="text__link" target="_blank" href="https://docs.bullet-train.io/system-administration/">Learn about User Roles</a></p>
                                             </div>
                                             <div className="panel--grey">
                                                 {isLoading && <div className="centered-container"><Loader/></div>}
