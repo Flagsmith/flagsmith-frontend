@@ -34,7 +34,7 @@ export default class FeaturessExampleView extends Component {
     }
 
     render() {
-        const redirect = this.props.location.query.redirect ? `?redirect=${this.props.location.query.redirect}` : '';
+        const redirect = Utils.fromParam().redirect ? `?redirect=${Utils.fromParam().redirect}` : '';
         return (
             <div className="features-page">
                 <div className="hero hero--features-page ">
