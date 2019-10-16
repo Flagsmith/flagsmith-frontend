@@ -28,7 +28,7 @@ const PricingPage = class extends React.Component {
         const redirect = Utils.fromParam().redirect ? `?redirect=${Utils.fromParam().redirect}` : '';
 
         return (
-            <div>
+            <div data-test="pricing-page">
                 <PricingPanel redirect={redirect}/>
 
                 <div className="faq">

@@ -235,7 +235,7 @@ const UserPage = class extends Component {
                                                   renderRow={({ trait_value, trait_key }, i) => (
                                                       <Row
                                                         className="list-item clickable" key={trait_key}
-                                                        space
+                                                        space data-test={`user-trait-${i}`}
                                                       >
                                                           <div
                                                             onClick={() => this.editTrait({
@@ -253,7 +253,7 @@ const UserPage = class extends Component {
                                                           <Row>
                                                               <Column>
                                                                   <FeatureValue
-                                                                    className={`js-trait-value-${i}`}
+                                                                    data-test={`user-trait-value-${i}`}
                                                                     value={`${trait_value}`}
                                                                   />
                                                               </Column>

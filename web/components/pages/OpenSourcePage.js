@@ -22,7 +22,7 @@ export default class OpenSourcePage extends Component {
 
     render() {
         return (
-            <div className="">
+            <div data-test="open-source-page" className="">
                 <div className="hero__open-source pt-3 text-center">
                     <h1 className="display pt-5">Open Source</h1>
                     <p className="pb-3">All of our open source repositiories are listed here</p>

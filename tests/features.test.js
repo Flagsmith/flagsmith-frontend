@@ -3,46 +3,8 @@ const expect = require('chai').expect;
 const helpers = require('./helpers');
 
 const byId = helpers.byTestID;
-const setSegmentRule = helpers.setSegmentRule;
 
 module.exports = {
-    // // Age == 18 || Age == 19
-    // '[Features Tests] - Create Segment': function (browser) {
-    //     browser.pause(200);
-    //     browser.waitAndClick('#segments-link');
-    //     browser.pause(200);
-    //     browser.waitAndClick(byId('show-create-segment-btn'));
-    //
-    //     // (=== 18 || === 19) && (> 17 || < 19) && (!=20) && (<=18) && (>=18)
-    //     // Rule 1- Age === 18 || Age === 19
-    //     browser.waitAndSet(byId('segmentID'), '18_or_19');
-    //     setSegmentRule(browser, 0, 0, 'age', 'EQUAL', 18);
-    //     browser.click(byId('rule-0-or'));
-    //     setSegmentRule(browser, 0, 1, 'age', 'EQUAL', 17);
-    //
-    //     // Rule 2 - Age > 17 || Age < 19
-    //     browser.waitAndClick(byId('add-rule'));
-    //     setSegmentRule(browser, 1, 0, 'age', 'GREATER_THAN', 17);
-    //     browser.click(byId('rule-1-or'));
-    //     setSegmentRule(browser, 1, 1, 'age', 'LESS_THAN', 10);
-    //
-    //     // Rule 3 - != 20
-    //     browser.waitAndClick(byId('add-rule'));
-    //     setSegmentRule(browser, 2, 0, 'age', 'NOT_EQUAL', 20);
-    //
-    //     // Rule 4 - <= 18
-    //     browser.waitAndClick(byId('add-rule'));
-    //     setSegmentRule(browser, 3, 0, 'age', 'LESS_THAN_INCLUSIVE', 18);
-    //
-    //     // Rule 5 - >= 18
-    //     browser.waitAndClick(byId('add-rule'));
-    //     setSegmentRule(browser, 4, 0, 'age', 'GREATER_THAN_INCLUSIVE', 18);
-    //
-    //     // Create
-    //     browser.waitAndClick(byId('create-segment'));
-    //     browser.waitForElementVisible(byId('segment-0-name'));
-    //     browser.expect.element(byId('segment-0-name')).text.to.equal('18_or_19');
-    // },
     // FEATURES
     '[Features Tests] - Create feature': function (browser) {
         browser.waitAndClick('#features-link');
@@ -209,50 +171,4 @@ module.exports = {
     '[Features Tests] - Feature should be off under different environment': function (browser) {
         browser.waitForElementVisible(byId('feature-switch-1-off'));
     },
-    '[Features Tests] - Create environment': function (browser) {
-        browser.waitAndClick('#create-env-link')
-            .waitForElementPresent('#create-env-modal')
-            .waitForElementVisible('[name="envName"]')
-            .setValue('[name="envName"]', 'Staging')
-            .click('#create-env-btn')
-            .waitForElementNotPresent('#create-env-modal')
-            .waitForElementVisible(byId('switch-environment-staging-active'));
-    },
-
-    // '[Features Tests] - Edit environment': function (browser) {
-    //     browser
-    //         .click('#env-settings-link')
-    //         .waitForElementVisible("[name='env-name']")
-    //         .clearValue("[name='env-name']")
-    //         .setValue("[name='env-name']", 'Internal')
-    //         .click('#save-env-btn');
-    //
-    //     browser.waitForElementVisible(byId('switch-environment-internal-active'));
-    // },
-    // '[Features Tests] - Delete environment': function (browser) {
-    //     browser
-    //         .click('#delete-env-btn')
-    //         .waitForElementVisible("[name='confirm-env-name']")
-    //         .setValue("[name='confirm-env-name']", 'Internal')
-    //         .click('#confirm-delete-env-btn')
-    //         .waitForElementVisible('#project-select-page');
-    // },
-    // '[Features Tests] - View project': function (browser) {
-    //     browser.waitForElementVisible('#projects-list a.list-item');
-    //     browser.expect.element('#projects-list a.list-item').text.to.equal('My Test Project');
-    //     browser.click('#projects-list a.list-item');
-    //     browser.waitForElementVisible('#features-page');
-    // },
-    // '[Features Tests] - Edit project': function (browser) {
-    //     browser
-    //         .waitForElementVisible('#project-settings-link')
-    //         .pause(200) // Slide in transition
-    //         .click('#project-settings-link')
-    //         .waitForElementVisible("[name='proj-name']")
-    //         .clearValue("[name='proj-name']")
-    //         .setValue("[name='proj-name']", 'Test Project')
-    //         .click('#save-proj-btn');
-    //
-    //     browser.waitForElementVisible(byId('switch-project-test project-active'));
-    // },
 };

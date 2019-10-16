@@ -36,7 +36,7 @@ export default class FeaturessExampleView extends Component {
     render() {
         const redirect = Utils.fromParam().redirect ? `?redirect=${Utils.fromParam().redirect}` : '';
         return (
-            <div className="features-page">
+            <div data-test="features-example-page" className="features-page">
                 <div className="hero hero--features-page ">
                     <div>
                         <div className="row" style={{ width: '100%', margin: 0, marginRight: 0 }}>
