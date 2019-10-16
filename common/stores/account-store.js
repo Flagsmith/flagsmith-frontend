@@ -192,7 +192,7 @@ const store = Object.assign({}, BaseStore, {
         return store.model && store.model.organisations;
     },
     getOrganisationRole(id) {
-        return store.model && store.model.organisations && _.get(_.find(store.model.organisations, org => org.id === id || (store.organisation && store.organisation.id)), 'role');
+        return store.model && store.model.organisations && _.get(_.find(store.model.organisations, org => (id ? org.id === id : org.id === (store.organisation && store.organisation.id))), 'role');
     },
 });
 
