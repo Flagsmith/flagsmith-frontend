@@ -232,10 +232,10 @@ const UserPage = class extends Component {
                                                   title="Traits"
                                                   items={traits}
                                                   acti
-                                                  renderRow={({ trait_value, trait_key }, i) => (
+                                                  renderRow={({ id, trait_value, trait_key }, i) => (
                                                       <Row
                                                         className="list-item clickable" key={trait_key}
-                                                        space
+                                                        space data-test={`user-trait-${i}`}
                                                       >
                                                           <div
                                                             onClick={() => this.editTrait({
@@ -253,7 +253,7 @@ const UserPage = class extends Component {
                                                           <Row>
                                                               <Column>
                                                                   <FeatureValue
-                                                                    className={`js-trait-value-${i}`}
+                                                                    data-test={`user-trait-value-${i}`}
                                                                     value={`${trait_value}`}
                                                                   />
                                                               </Column>
@@ -263,6 +263,7 @@ const UserPage = class extends Component {
                                                                     className="btn btn--with-icon"
                                                                     type="button"
                                                                     onClick={() => this.removeTrait(id, trait_key)}
+                                                                    data-test={`delete-user-trait-${i}`}
                                                                   >
                                                                       <RemoveIcon/>
                                                                   </button>
@@ -311,8 +312,7 @@ const UserPage = class extends Component {
                                                           className="no-pad"
                                                           icon="ion-ios-globe"
                                                           title="Segments"
-                                                          items={segments ? segments.results : []}
-                                                          acti
+                                                          items={segments || []}
                                                           renderRow={({ name, id, enabled, created_date, type, description }, i) => (
                                                               <Row
                                                                 className="list-item"

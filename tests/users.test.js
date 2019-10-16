@@ -33,41 +33,34 @@ module.exports = {
             .waitForElementNotPresent('#confirm-toggle-feature-btn')
             .waitForElementVisible(byId('user-feature-switch-1-off'));
     },
-    // '[Users Tests] - Add trait for user': function (browser) {
-    //     browser
-    //         .click('#add-trait')
-    //         .waitForElementVisible('[name="traitID"]')
-    //         .setValue('[name="traitID"]', 'color')
-    //         .setValue('[name="traitValue"]', 'red')
-    //         .click('#create-trait-btn')
-    //         .waitForElementNotPresent('#create-trait-btn')
-    //         .waitForElementVisible('#user-traits-list .js-trait-value-0');
-    //     browser.expect.element('#user-traits-list .js-trait-value-0').text.to.equal('"red"');
-    // },
-    // '[Users Tests] - Edit trait for user': function (browser) {
-    //     browser
-    //         .click('#user-traits-list .list-item')
-    //         .waitForElementVisible('[name="traitID"]')
-    //         .clearValue("[name='traitValue']")
-    //         .setValue('[name="traitValue"]', '1')
-    //         .click('#update-trait-btn')
-    //         .waitForElementNotPresent('#update-trait-btn')
-    //         .waitForElementVisible('#user-traits-list .js-trait-value-0');
-    //     browser.expect.element('#user-traits-list .js-trait-value-0').text.to.equal('1');
-    // },
-    // '[Users Tests] - Add segment trait for user': function (browser) {
-    //     browser
-    //         .click('#add-trait')
-    //         .waitForElementVisible('[name="traitID"]')
-    //         .setValue('[name="traitID"]', 'age')
-    //         .setValue('[name="traitValue"]', '18')
-    //         .click('#create-trait-btn')
-    //         .waitForElementNotPresent('#create-trait-btn')
-    //         .waitForElementVisible('#user-traits-list .js-trait-value-1');
-    //     browser.expect.element('#user-traits-list .js-trait-value-1').text.to.equal('18');
-    // },
-    // '[Users Tests] - Check user now belongs to segment': function (browser) {
-    //     browser.waitForElementVisible(byId('segment-0-name'));
-    //     browser.expect.element(byId('segment-0-name')).text.to.equal('18_or_19');
-    // },
+    '[Users Tests] - Add trait for user': function (browser) {
+        browser
+            .waitAndClick('#add-trait')
+            .waitForElementPresent('#create-trait-modal')
+            .waitForElementVisible('[name="traitID"]')
+            .setValue('[name="traitID"]', 'color')
+            .setValue('[name="traitValue"]', 'red')
+            .click('#create-trait-btn')
+            .waitForElementNotPresent('#create-trait-modal')
+            .waitForElementVisible(byId('user-trait-value-0'));
+        browser.expect.element(byId('user-trait-value-0')).text.to.equal('"red"');
+    },
+    '[Users Tests] - Edit trait for user': function (browser) {
+        browser
+            .waitAndClick(byId('user-trait-0'))
+            .waitForElementPresent('#create-trait-modal')
+            .waitForElementVisible('[name="traitID"]')
+            .clearValue("[name='traitValue']")
+            .setValue('[name="traitValue"]', '1')
+            .click('#update-trait-btn')
+            .waitForElementNotPresent('#create-trait-modal')
+            .waitForElementVisible(byId('user-trait-value-0'));
+        browser.expect.element(byId('user-trait-value-0')).text.to.equal('1');
+    },
+    '[Users Tests] - Delete trait for user': function (browser) {
+        browser
+            .waitAndClick(byId('delete-user-trait-0'))
+            .waitAndClick('#confirm-btn-yes')
+            .waitForElementNotPresent(byId('user-trait-0'));
+    },
 };

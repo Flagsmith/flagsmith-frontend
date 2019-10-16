@@ -3,66 +3,27 @@ const expect = require('chai').expect;
 const helpers = require('./helpers');
 
 const byId = helpers.byTestID;
-const setSegmentRule = helpers.setSegmentRule;
 
 module.exports = {
-    // // Age == 18 || Age == 19
-    // '[Features Tests] - Create Segment': function (browser) {
-    //     browser.pause(200);
-    //     browser.waitAndClick('#segments-link');
-    //     browser.pause(200);
-    //     browser.waitAndClick(byId('show-create-segment-btn'));
-    //
-    //     // (=== 18 || === 19) && (> 17 || < 19) && (!=20) && (<=18) && (>=18)
-    //     // Rule 1- Age === 18 || Age === 19
-    //     browser.waitAndSet(byId('segmentID'), '18_or_19');
-    //     setSegmentRule(browser, 0, 0, 'age', 'EQUAL', 18);
-    //     browser.click(byId('rule-0-or'));
-    //     setSegmentRule(browser, 0, 1, 'age', 'EQUAL', 17);
-    //
-    //     // Rule 2 - Age > 17 || Age < 19
-    //     browser.waitAndClick(byId('add-rule'));
-    //     setSegmentRule(browser, 1, 0, 'age', 'GREATER_THAN', 17);
-    //     browser.click(byId('rule-1-or'));
-    //     setSegmentRule(browser, 1, 1, 'age', 'LESS_THAN', 10);
-    //
-    //     // Rule 3 - != 20
-    //     browser.waitAndClick(byId('add-rule'));
-    //     setSegmentRule(browser, 2, 0, 'age', 'NOT_EQUAL', 20);
-    //
-    //     // Rule 4 - <= 18
-    //     browser.waitAndClick(byId('add-rule'));
-    //     setSegmentRule(browser, 3, 0, 'age', 'LESS_THAN_INCLUSIVE', 18);
-    //
-    //     // Rule 5 - >= 18
-    //     browser.waitAndClick(byId('add-rule'));
-    //     setSegmentRule(browser, 4, 0, 'age', 'GREATER_THAN_INCLUSIVE', 18);
-    //
-    //     // Create
-    //     browser.waitAndClick(byId('create-segment'));
-    //     browser.waitForElementVisible(byId('segment-0-name'));
-    //     browser.expect.element(byId('segment-0-name')).text.to.equal('18_or_19');
-    // },
     // FEATURES
     '[Features Tests] - Create feature': function (browser) {
-        browser.waitAndClick('#features-link');
-        browser.pause(200);
-        browser.waitAndClick(byId('show-create-feature-btn'));
-        browser.waitAndClick(byId('btn-select-remote-config'));
-        browser.setValue(byId('featureID'), 'header_size')
+        browser.waitAndClick('#features-link')
+            .pause(200)
+            .waitAndClick(byId('show-create-feature-btn'))
+            .waitAndClick(byId('btn-select-remote-config'))
+            .setValue(byId('featureID'), 'header_size')
             .setValue(byId('featureValue'), 'big')
             .setValue(byId('featureDesc'), 'This determines what size the header is')
             .click(byId('create-feature-btn'))
-            .waitForElementVisible('#features-list div.list-item')
             .waitForElementNotPresent('#create-feature-modal')
-            .click('#features-list div.list-item div')
+            .waitAndClick(byId('feature-item-0'))
             .waitForElementVisible('#update-feature-btn')
             .assertValue('[name="featureID"]', 'header_size')
             .assertValue('[name="featureValue"]', 'big')
             .assertValue('[name="featureDesc"]', 'This determines what size the header is')
             .click('#update-feature-btn')
-            .waitForElementVisible('#features-list div.list-item')
-            .expect.element('#features-list .feature-value').text.to.equal('big');
+            .waitForElementNotPresent('#create-feature-modal')
+            .expect.element(byId('feature-value-0')).text.to.equal('"big"');
     },
     '[Features Tests] - Create feature 2': function (browser) {
         browser
@@ -72,37 +33,37 @@ module.exports = {
             .setValue('[name="featureID"]', 'header_enabled')
             .setValue('[name="featureDesc"]', 'This determines whether header is shown')
             .click('#create-feature-btn')
-            .waitForElementVisible('#features-list div.list-item:nth-child(2)');
+            .waitForElementVisible(byId('feature-item-1'));
     },
     '[Features Tests] - Create feature 3': function (browser) {
         browser
             .waitForElementNotPresent('#create-feature-modal')
-            .waitForElementVisible('#show-create-feature-btn')
-            .click('#show-create-feature-btn')
+            .waitAndClick('#show-create-feature-btn')
             .waitForElementVisible('[name="featureID"]')
             .setValue('[name="featureID"]', 'short_life_feature')
             .setValue('[name="featureDesc"]', 'This feature is pointless')
             .click('#create-feature-btn')
-            .waitForElementVisible('#features-list div.list-item:nth-child(3) div'); // todo change
+            .waitForElementVisible(byId('feature-item-2'));
     },
     '[Features Tests] - Delete feature 3': function (browser) {
         browser
             .waitForElementNotPresent('#create-feature-modal')
-            .waitForElementVisible('#features-list div.list-item:nth-child(3) #remove-feature')
-            .click('#features-list div.list-item:nth-child(3) #remove-feature')
+            .waitAndClick(byId('remove-feature-btn-2'))
+            .waitForElementPresent('#confirm-remove-feature-modal')
             .waitForElementVisible('[name="confirm-feature-name"]')
             .setValue('[name="confirm-feature-name"]', 'short_life_feature')
             .click('#confirm-remove-feature-btn')
-            .waitForElementNotPresent('#features-list div.list-item:nth-child(3)');
+            .waitForElementNotPresent('#confirm-remove-feature-modal')
+            .waitForElementNotPresent(byId('remove-feature-btn-2'));
     },
     '[Features Tests] - Toggle feature on': function (browser) {
         browser
             .waitForElementNotPresent('#confirm-remove-feature-modal')
             .pause(200) // Additional wait here as it seems rc-switch can be unresponsive for a while
-            .waitForElementVisible(byId('feature-switch-1-off'))
-            .click('#features-list .rc-switch')
-            .waitForElementVisible('#confirm-toggle-feature-btn')
-            .click('#confirm-toggle-feature-btn')
+            .waitAndClick(byId('feature-switch-1-off'))
+            .waitForElementPresent('#confirm-toggle-feature-modal')
+            .waitAndClick('#confirm-toggle-feature-btn')
+            .waitForElementNotPresent('#confirm-toggle-feature-modal')
             .waitForElementVisible(byId('feature-switch-1-on'));
     },
     '[Features Tests] - Try feature out': function (browser) {
@@ -128,15 +89,15 @@ module.exports = {
     },
     '[Features Tests] - Change feature value to number': function (browser) {
         browser
-            .useXpath()
-            .click('//div[@id="features-list"]//a[text()="header_size"]')
-            .useCss()
+            .waitAndClick(byId('feature-item-0'))
+            .waitForElementPresent('#create-feature-modal')
             .waitForElementVisible('[name="featureValue"]')
             .clearValue('[name="featureValue"]')
             .setValue('[name="featureValue"]', '12')
             .click('#update-feature-btn')
-            .waitForElementVisible('#features-list .feature-value')
-            .expect.element('#features-list .feature-value').text.to.equal('12');
+            .waitForElementNotPresent('#create-feature-modal')
+            .waitForElementVisible(byId('feature-value-0'))
+            .expect.element(byId('feature-value-0')).text.to.equal('12');
     },
     '[Features Tests] - Try feature out should return numeric value': function (browser) {
         browser
@@ -166,14 +127,15 @@ module.exports = {
     },
     '[Features Tests] - Change feature value to boolean': function (browser) {
         browser
-            .useXpath()
-            .click('//div[@id="features-list"]//a[text()="header_size"]')
-            .useCss()
+            .waitAndClick(byId('feature-item-0'))
+            .waitForElementPresent('#create-feature-modal')
             .waitForElementVisible('[name="featureValue"]')
             .clearValue('[name="featureValue"]')
             .setValue('[name="featureValue"]', 'false')
             .click('#update-feature-btn')
-            .expect.element('#features-list .feature-value').text.to.equal('false');
+            .waitForElementNotPresent('#create-feature-modal')
+            .waitForElementVisible(byId('feature-value-0'))
+            .expect.element(byId('feature-value-0')).text.to.equal('false');
     },
     '[Features Tests] - Try feature out should return boolean value': function (browser) {
         browser
@@ -209,50 +171,4 @@ module.exports = {
     '[Features Tests] - Feature should be off under different environment': function (browser) {
         browser.waitForElementVisible(byId('feature-switch-1-off'));
     },
-    '[Features Tests] - Create environment': function (browser) {
-        browser.waitAndClick('#create-env-link')
-            .waitForElementPresent('#create-env-modal')
-            .waitForElementVisible('[name="envName"]')
-            .setValue('[name="envName"]', 'Staging')
-            .click('#create-env-btn')
-            .waitForElementNotPresent('#create-env-modal')
-            .waitForElementVisible(byId('switch-environment-staging-active'));
-    },
-
-    // '[Features Tests] - Edit environment': function (browser) {
-    //     browser
-    //         .click('#env-settings-link')
-    //         .waitForElementVisible("[name='env-name']")
-    //         .clearValue("[name='env-name']")
-    //         .setValue("[name='env-name']", 'Internal')
-    //         .click('#save-env-btn');
-    //
-    //     browser.waitForElementVisible(byId('switch-environment-internal-active'));
-    // },
-    // '[Features Tests] - Delete environment': function (browser) {
-    //     browser
-    //         .click('#delete-env-btn')
-    //         .waitForElementVisible("[name='confirm-env-name']")
-    //         .setValue("[name='confirm-env-name']", 'Internal')
-    //         .click('#confirm-delete-env-btn')
-    //         .waitForElementVisible('#project-select-page');
-    // },
-    // '[Features Tests] - View project': function (browser) {
-    //     browser.waitForElementVisible('#projects-list a.list-item');
-    //     browser.expect.element('#projects-list a.list-item').text.to.equal('My Test Project');
-    //     browser.click('#projects-list a.list-item');
-    //     browser.waitForElementVisible('#features-page');
-    // },
-    // '[Features Tests] - Edit project': function (browser) {
-    //     browser
-    //         .waitForElementVisible('#project-settings-link')
-    //         .pause(200) // Slide in transition
-    //         .click('#project-settings-link')
-    //         .waitForElementVisible("[name='proj-name']")
-    //         .clearValue("[name='proj-name']")
-    //         .setValue("[name='proj-name']", 'Test Project')
-    //         .click('#save-proj-btn');
-    //
-    //     browser.waitForElementVisible(byId('switch-project-test project-active'));
-    // },
 };
