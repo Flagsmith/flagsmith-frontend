@@ -99,7 +99,7 @@ const controller = {
         .then(([res, userRes]) => {
             controller.setUser({
                 ...userRes,
-                organisations: _.map(res.results, result => ({ ...result, role: _.get(_.find(userRes.organisations, org => org.organisation.id === result.id), 'role') || 'USER' })),
+                organisations: res.results,
             });
         })
         .catch(e => API.ajaxHandler(store, e)),

@@ -417,7 +417,6 @@ Logout
                                           environmentId={environmentId}
                                           toggleAside={this.toggleAside}
                                           asideIsVisible={asideIsVisible}
-                                          organisation={organisation}
                                         />
                                     )}
                                     {isMobile && pageHasAside && asideIsVisible ? null : this.props.children}

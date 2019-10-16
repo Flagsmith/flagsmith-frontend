@@ -13,7 +13,6 @@ const Aside = class extends Component {
         className: propTypes.string,
         toggleAside: propTypes.func,
         asideIsVisible: propTypes.bool,
-        organisation: propTypes.object,
     }
 
     constructor(props, context) {
@@ -37,7 +36,7 @@ const Aside = class extends Component {
     }
 
     render() {
-        const { hasFeature, getValue, toggleAside, asideIsVisible, organisation } = this.props;
+        const { hasFeature, getValue, toggleAside, asideIsVisible } = this.props;
 	    return (
     <OrganisationProvider>
         {({ isLoading: isLoadingOrg, projects }) => (
@@ -101,7 +100,7 @@ const Aside = class extends Component {
                                 >
 Project Settings
                                 </Link>
-                                {AccountStore.getOrganisationRole(organisation && organisation.id) === 'ADMIN' && (
+                                {AccountStore.getOrganisationRole() === 'ADMIN' && (
                                     <Link
                                       id="organisation-settings-link"
                                       activeClassName="active"
