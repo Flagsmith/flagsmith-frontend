@@ -232,7 +232,7 @@ const UserPage = class extends Component {
                                                   title="Traits"
                                                   items={traits}
                                                   acti
-                                                  renderRow={({ trait_value, trait_key }, i) => (
+                                                  renderRow={({ id, trait_value, trait_key }, i) => (
                                                       <Row
                                                         className="list-item clickable" key={trait_key}
                                                         space data-test={`user-trait-${i}`}
@@ -263,6 +263,7 @@ const UserPage = class extends Component {
                                                                     className="btn btn--with-icon"
                                                                     type="button"
                                                                     onClick={() => this.removeTrait(id, trait_key)}
+                                                                    data-test={`delete-user-trait-${i}`}
                                                                   >
                                                                       <RemoveIcon/>
                                                                   </button>

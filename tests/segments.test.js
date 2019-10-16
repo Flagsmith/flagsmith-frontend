@@ -42,4 +42,26 @@ module.exports = {
             .waitForElementVisible(byId('segment-0-name'))
             .expect.element(byId('segment-0-name')).text.to.equal('18_or_19');
     },
+    '[Segments Tests] - Add segment trait for user': function (browser) {
+        browser
+            .waitAndClick('#users-link')
+            .waitAndClick(byId('user-item-0'))
+            .waitAndClick('#add-trait')
+            .waitForElementVisible('[name="traitID"]')
+            .setValue('[name="traitID"]', 'age')
+            .setValue('[name="traitValue"]', '18')
+            .click('#create-trait-btn')
+            .waitForElementNotPresent('#create-trait-btn')
+            .waitForElementVisible(byId('user-trait-value-0'));
+        browser.expect.element(byId('user-trait-value-0')).text.to.equal('18');
+    },
+    '[Segments Tests] - Check user now belongs to segment': function (browser) {
+        browser.waitForElementVisible(byId('segment-0-name'));
+        browser.expect.element(byId('segment-0-name')).text.to.equal('18_or_19');
+    },
+    '[Segments Tests] - Delete segment trait for user': function (browser) {
+        browser.waitAndClick(byId('delete-user-trait-0'))
+            .waitAndClick('#confirm-btn-yes')
+            .waitForElementNotPresent(byId('user-trait-0'));
+    },
 };
