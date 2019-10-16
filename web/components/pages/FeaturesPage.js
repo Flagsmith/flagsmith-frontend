@@ -151,7 +151,10 @@ const FeaturesPage = class extends Component {
                                                   title="Features"
                                                   items={projectFlags}
                                                   renderRow={({ name, id, enabled, created_date, type }, i) => (
-                                                      <Row className="list-item clickable" key={id} space>
+                                                      <Row
+                                                        className="list-item clickable" key={id} space
+                                                        data-test={`feature-item-${i}`}
+                                                      >
                                                           <div
                                                             className="flex flex-1"
                                                             onClick={() => this.editFlag(projectFlags[i], environmentFlags[id])}
@@ -183,6 +186,7 @@ const FeaturesPage = class extends Component {
                                                                       <FeatureValue
                                                                         onClick={() => this.editFlag(projectFlags[i], environmentFlags[id])}
                                                                         value={environmentFlags[id] && environmentFlags[id].feature_state_value}
+                                                                        data-test={`feature-value-${i}`}
                                                                       />
                                                                   )}
                                                               </Column>
@@ -193,6 +197,7 @@ const FeaturesPage = class extends Component {
                                                                         removeFlag(this.props.match.params.projectId, projectFlags[i]);
                                                                     })}
                                                                     className="btn btn--with-icon"
+                                                                    data-test={`remove-feature-btn-${i}`}
                                                                   >
                                                                       <RemoveIcon/>
                                                                   </button>

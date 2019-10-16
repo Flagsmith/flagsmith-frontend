@@ -7,24 +7,23 @@ const byId = helpers.byTestID;
 module.exports = {
     // FEATURES
     '[Features Tests] - Create feature': function (browser) {
-        browser.waitAndClick('#features-link');
-        browser.pause(200);
-        browser.waitAndClick(byId('show-create-feature-btn'));
-        browser.waitAndClick(byId('btn-select-remote-config'));
-        browser.setValue(byId('featureID'), 'header_size')
+        browser.waitAndClick('#features-link')
+            .pause(200)
+            .waitAndClick(byId('show-create-feature-btn'))
+            .waitAndClick(byId('btn-select-remote-config'))
+            .setValue(byId('featureID'), 'header_size')
             .setValue(byId('featureValue'), 'big')
             .setValue(byId('featureDesc'), 'This determines what size the header is')
             .click(byId('create-feature-btn'))
-            .waitForElementVisible('#features-list div.list-item')
             .waitForElementNotPresent('#create-feature-modal')
-            .click('#features-list div.list-item div')
+            .waitAndClick(byId('feature-item-0'))
             .waitForElementVisible('#update-feature-btn')
             .assertValue('[name="featureID"]', 'header_size')
             .assertValue('[name="featureValue"]', 'big')
             .assertValue('[name="featureDesc"]', 'This determines what size the header is')
             .click('#update-feature-btn')
-            .waitForElementVisible('#features-list div.list-item')
-            .expect.element('#features-list .feature-value').text.to.equal('big');
+            .waitForElementNotPresent('#create-feature-modal')
+            .expect.element(byId('feature-value-0')).text.to.equal('"big"');
     },
     '[Features Tests] - Create feature 2': function (browser) {
         browser
@@ -34,37 +33,37 @@ module.exports = {
             .setValue('[name="featureID"]', 'header_enabled')
             .setValue('[name="featureDesc"]', 'This determines whether header is shown')
             .click('#create-feature-btn')
-            .waitForElementVisible('#features-list div.list-item:nth-child(2)');
+            .waitForElementVisible(byId('feature-item-1'));
     },
     '[Features Tests] - Create feature 3': function (browser) {
         browser
             .waitForElementNotPresent('#create-feature-modal')
-            .waitForElementVisible('#show-create-feature-btn')
-            .click('#show-create-feature-btn')
+            .waitAndClick('#show-create-feature-btn')
             .waitForElementVisible('[name="featureID"]')
             .setValue('[name="featureID"]', 'short_life_feature')
             .setValue('[name="featureDesc"]', 'This feature is pointless')
             .click('#create-feature-btn')
-            .waitForElementVisible('#features-list div.list-item:nth-child(3) div'); // todo change
+            .waitForElementVisible(byId('feature-item-2'));
     },
     '[Features Tests] - Delete feature 3': function (browser) {
         browser
             .waitForElementNotPresent('#create-feature-modal')
-            .waitForElementVisible('#features-list div.list-item:nth-child(3) #remove-feature')
-            .click('#features-list div.list-item:nth-child(3) #remove-feature')
+            .waitAndClick(byId('remove-feature-btn-2'))
+            .waitForElementPresent('#confirm-remove-feature-modal')
             .waitForElementVisible('[name="confirm-feature-name"]')
             .setValue('[name="confirm-feature-name"]', 'short_life_feature')
             .click('#confirm-remove-feature-btn')
-            .waitForElementNotPresent('#features-list div.list-item:nth-child(3)');
+            .waitForElementNotPresent('#confirm-remove-feature-modal')
+            .waitForElementNotPresent(byId('remove-feature-btn-2'));
     },
     '[Features Tests] - Toggle feature on': function (browser) {
         browser
             .waitForElementNotPresent('#confirm-remove-feature-modal')
             .pause(200) // Additional wait here as it seems rc-switch can be unresponsive for a while
-            .waitForElementVisible(byId('feature-switch-1-off'))
-            .click('#features-list .rc-switch')
-            .waitForElementVisible('#confirm-toggle-feature-btn')
-            .click('#confirm-toggle-feature-btn')
+            .waitAndClick(byId('feature-switch-1-off'))
+            .waitForElementPresent('#confirm-toggle-feature-modal')
+            .waitAndClick('#confirm-toggle-feature-btn')
+            .waitForElementNotPresent('#confirm-toggle-feature-modal')
             .waitForElementVisible(byId('feature-switch-1-on'));
     },
     '[Features Tests] - Try feature out': function (browser) {
@@ -90,15 +89,15 @@ module.exports = {
     },
     '[Features Tests] - Change feature value to number': function (browser) {
         browser
-            .useXpath()
-            .click('//div[@id="features-list"]//a[text()="header_size"]')
-            .useCss()
+            .waitAndClick(byId('feature-item-0'))
+            .waitForElementPresent('#create-feature-modal')
             .waitForElementVisible('[name="featureValue"]')
             .clearValue('[name="featureValue"]')
             .setValue('[name="featureValue"]', '12')
             .click('#update-feature-btn')
-            .waitForElementVisible('#features-list .feature-value')
-            .expect.element('#features-list .feature-value').text.to.equal('12');
+            .waitForElementNotPresent('#create-feature-modal')
+            .waitForElementVisible(byId('feature-value-0'))
+            .expect.element(byId('feature-value-0')).text.to.equal('12');
     },
     '[Features Tests] - Try feature out should return numeric value': function (browser) {
         browser
@@ -128,14 +127,15 @@ module.exports = {
     },
     '[Features Tests] - Change feature value to boolean': function (browser) {
         browser
-            .useXpath()
-            .click('//div[@id="features-list"]//a[text()="header_size"]')
-            .useCss()
+            .waitAndClick(byId('feature-item-0'))
+            .waitForElementPresent('#create-feature-modal')
             .waitForElementVisible('[name="featureValue"]')
             .clearValue('[name="featureValue"]')
             .setValue('[name="featureValue"]', 'false')
             .click('#update-feature-btn')
-            .expect.element('#features-list .feature-value').text.to.equal('false');
+            .waitForElementNotPresent('#create-feature-modal')
+            .waitForElementVisible(byId('feature-value-0'))
+            .expect.element(byId('feature-value-0')).text.to.equal('false');
     },
     '[Features Tests] - Try feature out should return boolean value': function (browser) {
         browser
