@@ -25,12 +25,12 @@ export default class Rule extends PureComponent {
                 <Row noWrap className="rule">
                     <Flex>
                         <Row>
-                            <Column style={{ width: 200 }}>
+                            <Flex value={20} className="px-1">
                                 <Tooltip
                                   title={(
                                       <Input
                                         data-test={`${this.props['data-test']}-property-${i}`}
-                                        className="input-container--flat"
+                                        className="input-container--flat full-width"
                                         value={`${rule.property}`}
                                         placeholder="Trait"
                                         onChange={e => this.setRuleProperty(i, 'property', { value: Utils.safeParseEventValue(e) })}
@@ -41,37 +41,39 @@ export default class Rule extends PureComponent {
                                 >
                                     {Constants.strings.USER_PROPERTY_DESCRIPTION}
                                 </Tooltip>
-
-                            </Column>
-                            <Column style={{ width: 200 }}>
+                            </Flex>
+                            <Flex value={30} className="px-1">
                                 <Select
                                   data-test={`${this.props['data-test']}-operator-${i}`}
                                   value={rule.operator && _.find(operators, { value: rule.operator })}
                                   onChange={value => this.setRuleProperty(i, 'operator', value)}
                                   options={operators}
                                 />
-                            </Column>
-                            <Column style={{ width: 150 }}>
+                            </Flex>
+                            <Flex value={15} className="px-1">
                                 <Input
                                   data-test={`${this.props['data-test']}-value-${i}`}
-                                  className="input-container--flat"
+                                  className="input-container--flat full-width"
                                   value={`${rule.value}`}
                                   placeholder="Value"
                                   onChange={e => this.setRuleProperty(i, 'value', { value: Utils.getTypedValue(Utils.safeParseEventValue(e)) })}
                                   isValid={rule.value && this.validateRule(rule)}
                                 />
-                            </Column>
+                            </Flex>
                         </Row>
                     </Flex>
                     <div>
                         <Row noWrap>
-                            {isLastRule && (
+                            {isLastRule ? (
                                 <Button
                                   data-test={`${this.props['data-test']}-or`}
                                   type="button" onClick={this.addRule} className="btn btn--anchor"
+                                  style={{ width: 40 }}
                                 >
                                     OR
                                 </Button>
+                            ) : (
+                                <div style={{ width: 40 }} />
                             )}
 
                             <div>
