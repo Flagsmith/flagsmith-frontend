@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import IdentitySegmentsStore from '../stores/identity-segments-store';
 
 const IdentitySegmentsProvider = class extends Component {
@@ -9,15 +9,17 @@ const IdentitySegmentsProvider = class extends Component {
         this.state = {
             isLoading: IdentitySegmentsStore.isLoading,
             segments: IdentitySegmentsStore.model,
+            segmentsPaging: IdentitySegmentsStore.paging,
         };
         ES6Component(this);
     }
 
-    componentWillMount() {
+    componentDidMount() {
         this.listenTo(IdentitySegmentsStore, 'change', () => {
             this.setState({
                 isLoading: IdentitySegmentsStore.isLoading,
                 segments: IdentitySegmentsStore.model,
+                segmentsPaging: IdentitySegmentsStore.paging,
             });
         });
     }

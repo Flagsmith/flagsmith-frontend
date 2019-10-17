@@ -7,7 +7,10 @@ const Actions = Object.assign({}, require('./base/_action-constants'), {
     'CREATE_SEGMENT': 'CREATE_SEGMENT',
     'DELETE_ENVIRONMENT': 'DELETE_ENVIRONMENT',
     'DELETE_FLAG': 'DELETE_FLAG',
+    'DELETE_IDENTITY': 'DELETE_IDENTITY',
+    'DELETE_IDENTITY_TRAIT': 'DELETE_IDENTITY_TRAIT',
     'DELETE_INVITE': 'DELETE_INVITE',
+    'DELETE_USER': 'DELETE_USER',
     'DELETE_ORGANISATION': 'DELETE_ORGANISATION',
     'DELETE_PROJECT': 'DELETE_PROJECT',
     'DELETE_SEGMENT': 'DELETE_SEGMENT',
@@ -44,6 +47,8 @@ const Actions = Object.assign({}, require('./base/_action-constants'), {
     'SET_USER_FLAG': 'SET_USER_FLAG',
     'TOGGLE_FLAG': 'TOGGLE_FLAG',
     'TOGGLE_USER_FLAG': 'TOGGLE_USER_FLAG',
+    'UPDATE_USER_ROLE': 'UPDATE_USER_ROLE',
+    'UPDATE_SUBSCRIPTION': 'UPDATE_SUBSCRIPTION',
 });
 
 window.Actions = Actions;

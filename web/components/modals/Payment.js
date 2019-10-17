@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import makeAsyncScriptLoader from 'react-async-script';
 
 const PaymentModal = class extends Component {
@@ -9,12 +9,13 @@ const PaymentModal = class extends Component {
         this.state = {};
     }
 
-    componentWillMount = () => {
+    componentDidMount = () => {
         API.trackPage(Constants.modals.PAYMENT);
     };
 
     onSave = () => {
-        toast('Account Saved');
+        toast('Account Updated');
+        closeModal();
     };
 
     componentWillReceiveProps(newProps) {
@@ -119,7 +120,7 @@ Team Member
                                                     <ul className="pricing-features">
                                                         <li>
                                                             <p>
-Up to
+                                                                {'Up to '}
                                                                 <strong>250,000</strong>
                                                                 {' '}
 requests per month
@@ -166,7 +167,7 @@ Team Members
                                                     <ul className="pricing-features">
                                                         <li>
                                                             <p>
-Up to
+                                                                {'Up to '}
                                                                 <strong>2 million</strong>
                                                                 {' '}
 requests per month
@@ -174,7 +175,7 @@ requests per month
                                                         </li>
                                                         <li>
                                                             <p>
-Up to
+                                                                {'Up to '}
                                                                 <strong>10</strong>
                                                                 {' '}
 Team Members
@@ -182,8 +183,11 @@ Team Members
                                                         </li>
                                                         <li><p>Private Discord Technical Support</p></li>
                                                         <li><p>All Startup Features</p></li>
+                                                        <li><p>All Startup Features</p></li>
+                                                        <li><p>SAML, 2-factor and SSO options</p></li>
+                                                        <li><p>Telephone and Discord Technical Support</p></li>
+                                                        <li><p>Optional On Premise Installation</p></li>
                                                     </ul>
-
                                                 </div>
                                             </div>
                                         </div>
@@ -214,7 +218,7 @@ Team Members
                                                         <li><p>Optional On Premise Installation</p></li>
                                                         <li>
                                                             <p>
-Over
+                                                                {'Over '}
                                                                 <strong>2 million</strong>
                                                                 {' '}
 requests per month
@@ -222,7 +226,7 @@ requests per month
                                                         </li>
                                                         <li>
                                                             <p>
-Over
+                                                                {'Over '}
                                                                 <strong>10</strong>
                                                                 {' '}
 Team Members
@@ -260,12 +264,7 @@ module.exports = props => (
           });
           Chargebee.registerAgain();
           Chargebee.getInstance().setCheckoutCallbacks(cart => ({
-              success: () => {
-                  AppActions.editOrganisation(Object.assign({}, AccountStore.getOrganisation(), {
-                      paid_subscription: true,
-                      plan: cart.products[0].planId,
-                  }));
-              },
+              success: hostedPageId => AppActions.updateSubscription(hostedPageId),
           }));
       }}
     />

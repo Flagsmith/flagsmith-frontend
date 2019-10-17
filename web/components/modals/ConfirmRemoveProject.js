@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 
 const ConfirmRemoveProject = class extends Component {
     static displayName = 'ConfirmRemoveProject'

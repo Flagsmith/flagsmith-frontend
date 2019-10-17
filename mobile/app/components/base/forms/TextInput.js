@@ -147,7 +147,7 @@ const TextInput = class extends PureComponent {
                     <Animated.View style={[{
                         marginTop: -(Math.round(1 / PixelRatio.get() * 2)),
                         transform: [{ scaleX: this.animation }],
-                        backgroundColor: this.props.lineColour||pallette.primary,
+                        backgroundColor: this.props.lineColour || pallette.primary,
                         height: Math.round(1 / PixelRatio.get() * 3),
                     }]}
                     />
@@ -170,7 +170,7 @@ TextInput.propTypes = {
     mask: OptionalString,
     onChangeText: OptionalFunc,
     height: OptionalNumber,
-    style: React.PropTypes.any,
+    style: propTypes.any,
     secureTextInput: OptionalBool,
     disabled: OptionalBool,
     keyboardType: OptionalString,
@@ -186,4 +186,4 @@ TextInput.propTypes = {
 
 
 export default TextInput;
-export const FlatInput = props => <TextInput noLine={true} {...props} style={[Styles.flatInput, props.style]}/>;
+export const FlatInput = props => <TextInput noLine {...props} style={[Styles.flatInput, props.style]}/>;

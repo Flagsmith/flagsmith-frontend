@@ -15,7 +15,8 @@ const Footer = class extends React.Component {
               <div className="container">
                   <div className="row footer__homepage-content pt-5">
                       <div className="col-md-4">
-                          <img src="/images/bullet-train-1.svg" width={166} alt="Bullet Train Logo" className="img-responsive"/>
+                          <img src="/images/bullet-train-1.svg" width={166} alt="Bullet Train Logo"
+className="img-responsive"/>
                           <div className="service-status">
                               <a href="https://status.bullet-train.io/" target="_blank">
                                   {this.state.operational
@@ -42,12 +43,12 @@ const Footer = class extends React.Component {
                           <ul className="list-inline">
                               <li className="list-inline-item">
                                   <a href="https://github.com/SolidStateGroup?utf8=%E2%9C%93&q=bullet+train" target="_blank" title="GitHub">
-                                      <ion className="icon ion-logo-github"/>
+                                      <span className="icon ion-logo-github"/>
                                   </a>
                               </li>
                               <li className="list-inline-item">
                                   <a href="https://twitter.com/GetBulletTrain" target="_blank" title="Twitter">
-                                      <ion className="pl-4 icon ion-logo-twitter"/>
+                                      <span className="pl-4 icon ion-logo-twitter"/>
                                   </a>
                               </li>
                           </ul>

@@ -1,9 +1,9 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 
 
 const PasswordResetPage = class extends Component {
     static contextTypes = {
-        router: React.PropTypes.object.isRequired,
+        router: propTypes.object.isRequired,
     };
 
     static displayName = 'PasswordResetPage'
@@ -13,12 +13,12 @@ const PasswordResetPage = class extends Component {
         this.state = {};
     }
 
-    componentWillMount = () => {
+    componentDidMount = () => {
         API.trackPage(Constants.pages.RESET_PASSWORD);
     };
 
     onSave = () => {
-        this.context.router.replace('/login');
+        this.context.router.history.replace('/login');
         toast('Your password has been reset');
     }
 
@@ -27,8 +27,8 @@ const PasswordResetPage = class extends Component {
         const isValid = this.state.password && (this.state.password == this.state.password2);
         if (isValid) {
             AppActions.resetPassword({
-                uid: this.props.params.uid,
-                token: this.props.params.token,
+                uid: this.props.match.params.uid,
+                token: this.props.match.params.token,
                 new_password1: this.state.password,
                 new_password2: this.state.password2,
             });

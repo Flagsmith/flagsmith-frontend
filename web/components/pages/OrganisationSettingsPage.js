@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import CreateProjectModal from '../modals/CreateProject';
 import EditOrganisationModal from '../modals/EditOrganisation';
 import InviteUsersModal from '../modals/InviteUsers';
@@ -7,6 +7,10 @@ import PaymentModal from '../modals/Payment';
 import CancelPaymentPlanModal from '../modals/CancelPaymentPlan';
 
 const OrganisationSettingsPage = class extends Component {
+    static contextTypes = {
+        router: propTypes.object.isRequired,
+    };
+
     static displayName = 'OrganisationSettingsPage';
 
     constructor(props, context) {
@@ -15,12 +19,12 @@ const OrganisationSettingsPage = class extends Component {
         AppActions.getOrganisation(AccountStore.getOrganisation().id);
     }
 
-    componentWillMount = () => {
+    componentDidMount = () => {
         API.trackPage(Constants.pages.ORGANISATION_SETTINGS);
-    };
 
-    static contextTypes = {
-        router: React.PropTypes.object.isRequired,
+        if (AccountStore.getOrganisationRole() !== 'ADMIN') {
+            this.context.router.history.replace('/projects');
+        }
     };
 
     editOrganisation = () => {
@@ -29,7 +33,7 @@ const OrganisationSettingsPage = class extends Component {
 
     newProject = () => {
         openModal('Create  Project', <CreateProjectModal onSave={(projectId) => {
-            this.context.router.push(`/project/${projectId}/environment/create`);
+            this.context.router.history.push(`/project/${projectId}/environment/create`);
         }}
         />);
     };
@@ -48,9 +52,9 @@ const OrganisationSettingsPage = class extends Component {
     onRemove = () => {
         toast('Your organisation has been removed');
         if (AccountStore.getOrganisation()) {
-            this.context.router.replace('/projects');
+            this.context.router.history.replace('/projects');
         } else {
-            this.context.router.replace('/create');
+            this.context.router.history.replace('/create');
         }
     };
 
@@ -59,6 +63,12 @@ const OrganisationSettingsPage = class extends Component {
             Are you sure you want to delete this
             invite?
         </p>, () => AppActions.deleteInvite(id));
+    }
+
+    deleteUser = (id) => {
+        openConfirm(<h3>Delete User</h3>, <p>
+            Are you sure you want to delete this user?
+        </p>, () => AppActions.deleteUser(id));
     }
 
     save = (e) => {
@@ -101,13 +111,16 @@ const OrganisationSettingsPage = class extends Component {
         );
     }
 
+    roleChanged = (id, { value: role }) => {
+        AppActions.updateUserRole(id, role);
+    }
+
     render() {
         const { hasFeature, getValue } = this.props;
         const { name, webhook_notification_email } = this.state;
         const freeTrialDaysRemaining = Utils.freeTrialDaysRemaining(AccountStore.getOrganisation().subscription_date);
 
         return (
-
             <AccountProvider onSave={this.onSave} onRemove={this.onRemove}>
                 {({
                     isLoading,
@@ -147,7 +160,7 @@ const OrganisationSettingsPage = class extends Component {
                                         </div>
                                         <div className="plan__details flex flex-1">
                                             <p className="text-small m-b-0">Your plan</p>
-                                            <h3 className="m-b-0">{Utils.getPlanName(organisation.plan) ? Utils.getPlanName(organisation.plan) : 'Free'}</h3>
+                                            <h3 className="m-b-0">{Utils.getPlanName(_.get(organisation, 'subscription.plan')) ? Utils.getPlanName(_.get(organisation, 'subscription.plan')) : 'Free'}</h3>
                                         </div>
                                         <div>
                                             <Row>
@@ -190,7 +203,7 @@ const OrganisationSettingsPage = class extends Component {
                                                 <div className="flex-row header--icon">
                                                     <h5>Your usage</h5>
                                                 </div>
-                                                {!isLoading && (
+                                                {!isLoading && !!usage && (
                                                 <div>
                                                     <p>
                                                         {'You have made '}
@@ -217,12 +230,13 @@ const OrganisationSettingsPage = class extends Component {
                                                 {organisation.num_seats && (
                                                     <p>
                                                         {'You are currently using '}
-                                                        <strong>
-                                                            {organisation.num_seats}
+                                                        <strong className={organisation.num_seats > (_.get(organisation, 'subscription.max_seats') || 1) ? 'text-danger' : ''}>
+                                                            {`${organisation.num_seats} / ${_.get(organisation, 'subscription.max_seats') || 1}`}
                                                         </strong>
                                                         {` seat${organisation.num_seats === 1 ? '' : 's'}.`}
                                                     </p>
                                                 )}
+                                                <p><a className="text__link" target="_blank" href="https://docs.bullet-train.io/system-administration/">Learn about User Roles</a></p>
                                             </div>
                                             <div className="panel--grey">
                                                 {isLoading && <div className="centered-container"><Loader/></div>}
@@ -234,15 +248,50 @@ const OrganisationSettingsPage = class extends Component {
                                                           title="Members"
                                                           className="no-pad"
                                                           items={users}
-                                                          renderRow={({ id, first_name, last_name, email }) => (
-                                                              <div className="list-item" key={id}>
-                                                                  {`${first_name} ${last_name}`}
-                                                                  {' '}
-                                                                  {id == AccountStore.getUserId() && '(You)'}
-                                                                  <div className="list-item-footer faint">
-                                                                      {email}
+                                                          renderRow={({ id, first_name, last_name, email, role }) => (
+                                                              <Row space className="list-item" key={id}>
+                                                                  <div>
+                                                                      {`${first_name} ${last_name}`}
+                                                                      {' '}
+                                                                      {id == AccountStore.getUserId() && '(You)'}
+                                                                      <div className="list-item-footer faint">
+                                                                          {email}
+                                                                      </div>
                                                                   </div>
-                                                              </div>
+                                                                  <Row>
+                                                                      <Column>
+                                                                          {organisation.role === 'ADMIN' && id !== AccountStore.getUserId() ? (
+                                                                              <div style={{ width: 200 }}>
+                                                                                  <Select
+                                                                                    data-test="select-role"
+                                                                                    placeholder="Select a role"
+                                                                                    styles={{ menuPortal: base => ({ ...base, zIndex: 9999 }) }}
+                                                                                    value={role && { value: role, label: Constants.roles[role] }}
+                                                                                    onChange={e => this.roleChanged(id, Utils.safeParseEventValue(e))}
+                                                                                    className="pl-2"
+                                                                                    options={_.map(Constants.roles, (label, value) => ({ value, label }))}
+                                                                                    menuPortalTarget={document.body}
+                                                                                    menuPosition="absolute"
+                                                                                    menuPlacement="auto"
+                                                                                  />
+                                                                              </div>
+                                                                          ) : (
+                                                                              <div className="pl-3">{Constants.roles[role] || ''}</div>
+                                                                          )}
+                                                                      </Column>
+
+                                                                      <Column>
+                                                                          <button
+                                                                            id="delete-invite"
+                                                                            type="button"
+                                                                            onClick={() => this.deleteUser(id)}
+                                                                            className="btn btn--with-icon ml-auto btn--remove"
+                                                                          >
+                                                                              <RemoveIcon/>
+                                                                          </button>
+                                                                      </Column>
+                                                                  </Row>
+                                                              </Row>
                                                           )}
                                                           renderNoResults={(
                                                               <div>
@@ -254,6 +303,7 @@ const OrganisationSettingsPage = class extends Component {
                                                               return strToSearch.toLowerCase().indexOf(search.toLowerCase()) !== -1;
                                                           }}
                                                         />
+                                                        <div id="select-portal" />
                                                     </FormGroup>
 
                                                     {invites && invites.length ? (

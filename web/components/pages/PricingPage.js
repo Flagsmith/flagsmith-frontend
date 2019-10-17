@@ -5,7 +5,7 @@ import Feedback from '../modals/Feedback';
 
 const PricingPage = class extends React.Component {
     static contextTypes = {
-        router: React.PropTypes.object.isRequired,
+        router: propTypes.object.isRequired,
     };
 
     static displayName = 'PricingPage'
@@ -15,7 +15,7 @@ const PricingPage = class extends React.Component {
         this.state = {};
     }
 
-    componentWillMount() {
+    componentDidMount() {
         API.trackPage(Constants.pages.PRICING);
     }
 
@@ -25,10 +25,10 @@ const PricingPage = class extends React.Component {
 
     render = () => {
         const { hasFeature, getValue } = this.props;
-        const redirect = this.props.location.query.redirect ? `?redirect=${this.props.location.query.redirect}` : '';
+        const redirect = Utils.fromParam().redirect ? `?redirect=${Utils.fromParam().redirect}` : '';
 
         return (
-            <div>
+            <div data-test="pricing-page">
                 <PricingPanel redirect={redirect}/>
 
                 <div className="faq">

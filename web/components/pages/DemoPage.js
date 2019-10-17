@@ -1,9 +1,9 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 
 
 const DemoPage = class extends Component {
     static contextTypes = {
-        router: React.PropTypes.object.isRequired,
+        router: propTypes.object.isRequired,
     };
 
     static displayName = 'DemoPage'
@@ -13,7 +13,7 @@ const DemoPage = class extends Component {
         this.state = {};
     }
 
-    componentWillMount = () => {
+    componentDidMount = () => {
         setTimeout(() => {
             AppActions.login(Project.demoAccount);
         }, 2000);

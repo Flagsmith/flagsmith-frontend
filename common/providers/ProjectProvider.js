@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import ProjectStore from '../stores/project-store';
 import OrganisationStore from '../stores/organisation-store';
 
@@ -16,7 +16,7 @@ const ProjectProvider = class extends Component {
         });
     }
 
-    componentWillMount() {
+    componentDidMount() {
         this.listenTo(ProjectStore, 'change', () => {
             this.setState(Object.assign({
                 isLoading: ProjectStore.isLoading,

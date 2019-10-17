@@ -71,14 +71,18 @@ const sendFailure = (browser, done, request, error) => {
     const lastError = error && error.value ? JSON.parse(error.value) : 'No last error';
     console.log('Last request:', lastRequest);
     console.log('Last error:', lastError);
-    const uri = path.join(__dirname, 'screenshot.png');
-    browser.saveScreenshot(uri, () => {
-        slackUpload(uri, `E2E for Bullet Train Failed. ${formatCommit()}\n\`\`\`${JSON.stringify({
-            request: lastRequest,
-            error: lastError,
-        }, null, 2).replace(/\\/g, '')}\`\`\``, E2E_SLACK_CHANNEL, 'Screenshot')
-            .then(done);
-    });
+    if (SLACK_TOKEN && E2E_SLACK_CHANNEL) {
+        const uri = path.join(__dirname, 'screenshot.png');
+        browser.saveScreenshot(uri, () => {
+            slackUpload(uri, `E2E for Bullet Train Failed. ${formatCommit()}\n\`\`\`${JSON.stringify({
+                request: lastRequest,
+                error: lastError,
+            }, null, 2).replace(/\\/g, '')}\`\`\``, E2E_SLACK_CHANNEL, 'Screenshot')
+                .then(done);
+        });
+        return;
+    }
+    done();
 };
 
 let testsFailed;
@@ -90,14 +94,14 @@ const exitTests = (browser, done) => {
     process.exit(testsFailed ? 1 : 0);
 };
 
+// Tests unexpected terminated i.e. Ctrl+c
+process.on('SIGINT', () => {
+    if (!server.killed) server.kill('SIGINT');
+    process.exit(2);
+});
+
 module.exports = Object.assign(
     {
-        beforeEach(browser, done) {
-            browser.waitAndSet = testHelpers.waitAndSet.bind(browser);
-            browser.waitAndClick = testHelpers.waitAndClick.bind(browser);
-            browser.assertValue = testHelpers.assertValue.bind(browser);
-            done();
-        },
         before: (browser, done) => {
             if (SLACK_TOKEN) {
                 slackMessage(`Running tests.${formatCommit()}`, E2E_SLACK_CHANNEL_NAME);
@@ -143,9 +147,14 @@ module.exports = Object.assign(
             exitTests(browser, done);
         },
     },
+
     require('./initialise.test'), // Register as the demo user
-    require('./main.test'), // Main flow tests
+    require('./features.test'), // Features tests
+    require('./segments.test'), // Segments tests
+    require('./users.test'), // Users tests
+    require('./project.test'), // Project/environment tests
     require('./initial-cleanup.test'), // Cleanup initialisation
+    require('./marketing-pages.test'), // Marketing pages tests
     require('./invite.test'), // Invite user tests
     require('./register-fail.test'), // Registration failure tests
     require('./login-fail.test'), // Login failure tests

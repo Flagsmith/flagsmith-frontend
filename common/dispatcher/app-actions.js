@@ -182,6 +182,12 @@ const AppActions = Object.assign({}, require('./base/_app-actions'), {
             id,
         });
     },
+    getIdentitySegmentsPage(page) {
+        Dispatcher.handleViewAction({
+            actionType: Actions.GET_IDENTITY_SEGMENTS_PAGE,
+            page,
+        });
+    },
     saveIdentity(id, identity) {
         Dispatcher.handleViewAction({
             actionType: Actions.SAVE_IDENTITY,
@@ -214,15 +220,21 @@ const AppActions = Object.assign({}, require('./base/_app-actions'), {
         });
     },
     // Invites todo: organise actions
-    inviteUsers(emailAddresses) {
+    inviteUsers(invites) {
         Dispatcher.handleViewAction({
             actionType: Actions.INVITE_USERS,
-            emailAddresses,
+            invites,
         });
     },
     deleteInvite(id) {
         Dispatcher.handleViewAction({
             actionType: Actions.DELETE_INVITE,
+            id,
+        });
+    },
+    deleteUser(id) {
+        Dispatcher.handleViewAction({
+            actionType: Actions.DELETE_USER,
             id,
         });
     },
@@ -289,6 +301,34 @@ const AppActions = Object.assign({}, require('./base/_app-actions'), {
         Dispatcher.handleViewAction({
             actionType: Actions.SEARCH_AUDIT_LOG,
             search,
+        });
+    },
+    deleteIdentity(envId, id) {
+        Dispatcher.handleViewAction({
+            actionType: Actions.DELETE_IDENTITY,
+            envId,
+            id,
+        });
+    },
+    deleteIdentityTrait(envId, identity, id) {
+        Dispatcher.handleViewAction({
+            actionType: Actions.DELETE_IDENTITY_TRAIT,
+            envId,
+            identity,
+            id,
+        });
+    },
+    updateUserRole(id, role) {
+        Dispatcher.handleViewAction({
+            actionType: Actions.UPDATE_USER_ROLE,
+            id,
+            role,
+        });
+    },
+    updateSubscription(hostedPageId) {
+        Dispatcher.handleViewAction({
+            actionType: Actions.UPDATE_SUBSCRIPTION,
+            hostedPageId,
         });
     },
 });

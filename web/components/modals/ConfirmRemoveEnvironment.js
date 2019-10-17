@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 
 const ConfirmRemoveEnvironment = class extends Component {
     static displayName = 'ConfirmRemoveEnvironment'

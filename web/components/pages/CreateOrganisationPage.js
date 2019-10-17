@@ -11,7 +11,7 @@ export default class ExampleOne extends Component {
 
 
     static contextTypes = {
-        router: React.PropTypes.object.isRequired,
+        router: propTypes.object.isRequired,
     };
 
     componentDidMount = () => {
@@ -30,7 +30,7 @@ export default class ExampleOne extends Component {
 
     onSave = (id) => {
         AppActions.selectOrganisation(id);
-        this.context.router.push('/projects');
+        this.context.router.history.push('/projects');
     };
 
     render() {

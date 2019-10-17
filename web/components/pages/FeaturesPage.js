@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import EditIdentityModal from './UserPage';
 import CreateFlagModal from '../modals/CreateFlag';
 import ConfirmToggleFeature from '../modals/ConfirmToggleFeature';
@@ -9,18 +9,18 @@ const FeaturesPage = class extends Component {
     static displayName = 'FeaturesPage';
 
     static contextTypes = {
-        router: React.PropTypes.object.isRequired,
+        router: propTypes.object.isRequired,
     };
 
     constructor(props, context) {
         super(props, context);
         this.state = {};
-        AppActions.getFeatures(this.props.params.projectId, this.props.params.environmentId);
+        AppActions.getFeatures(this.props.match.params.projectId, this.props.match.params.environmentId);
     }
 
     componentWillUpdate(newProps) {
-        const { params } = newProps;
-        const { params: oldParams } = this.props;
+        const { match: { params } } = newProps;
+        const { match: { params: oldParams } } = this.props;
         if (params.environmentId != oldParams.environmentId || params.projectId != oldParams.projectId) {
             AppActions.getFeatures(params.projectId, params.environmentId);
         }
@@ -28,7 +28,7 @@ const FeaturesPage = class extends Component {
 
     componentDidMount = () => {
         API.trackPage(Constants.pages.FEATURES);
-        const { params } = this.props;
+        const { match: { params } } = this.props;
         AsyncStorage.setItem('lastEnv', JSON.stringify({
             orgId: AccountStore.getOrganisation().id,
             projectId: params.projectId,
@@ -38,8 +38,9 @@ const FeaturesPage = class extends Component {
 
     newFlag = () => {
         openModal('New Feature', <CreateFlagModal
-          environmentId={this.props.params.environmentId}
-          projectId={this.props.params.projectId}
+          router={this.context.router}
+          environmentId={this.props.match.params.environmentId}
+          projectId={this.props.match.params.projectId}
         />);
     };
 
@@ -48,18 +49,19 @@ const FeaturesPage = class extends Component {
         API.trackEvent(Constants.events.VIEW_FEATURE);
         openModal('Edit Feature', <CreateFlagModal
           isEdit
-          environmentId={this.props.params.environmentId}
-          projectId={this.props.params.projectId}
+          router={this.context.router}
+          environmentId={this.props.match.params.environmentId}
+          projectId={this.props.match.params.projectId}
           projectFlag={projectFlag}
           environmentFlag={environmentFlag}
           flagId={environmentFlag.id}
-        />);
+        />, null, { className: 'side-modal fade' });
     };
 
 
     componentWillReceiveProps(newProps) {
-        if (newProps.params.environmentId != this.props.params.environmentId) {
-            AppActions.getFeatures(newProps.params.projectId, newProps.params.environmentId);
+        if (newProps.match.params.environmentId != this.props.match.params.environmentId) {
+            AppActions.getFeatures(newProps.match.params.projectId, newProps.match.params.environmentId);
         }
     }
 
@@ -73,7 +75,7 @@ const FeaturesPage = class extends Component {
 
     confirmToggle = (projectFlag, environmentFlag, cb) => {
         openModal('Toggle Feature', <ConfirmToggleFeature
-          environmentId={this.props.params.environmentId}
+          environmentId={this.props.match.params.environmentId}
           projectFlag={projectFlag} environmentFlag={environmentFlag}
           cb={cb}
         />);
@@ -81,7 +83,7 @@ const FeaturesPage = class extends Component {
 
     confirmRemove = (projectFlag, cb) => {
         openModal('Remove Feature', <ConfirmRemoveFeature
-          environmentId={this.props.params.environmentId}
+          environmentId={this.props.match.params.environmentId}
           projectFlag={projectFlag}
           cb={cb}
         />);
@@ -89,11 +91,11 @@ const FeaturesPage = class extends Component {
 
     onError = (error) => {
         // Kick user back out to projects
-        this.context.router.replace('/projects');
+        this.context.router.history.replace('/projects');
     }
 
     render() {
-        const { projectId, environmentId } = this.props.params;
+        const { projectId, environmentId } = this.props.match.params;
         return (
             <div data-test="features-page" id="features-page" className="app-container container">
                 <FeatureListProvider onSave={this.onSave} onError={this.onError}>
@@ -149,7 +151,10 @@ const FeaturesPage = class extends Component {
                                                   title="Features"
                                                   items={projectFlags}
                                                   renderRow={({ name, id, enabled, created_date, type }, i) => (
-                                                      <Row className="list-item clickable" key={id} space>
+                                                      <Row
+                                                        className="list-item clickable" key={id} space
+                                                        data-test={`feature-item-${i}`}
+                                                      >
                                                           <div
                                                             className="flex flex-1"
                                                             onClick={() => this.editFlag(projectFlags[i], environmentFlags[id])}
@@ -171,6 +176,7 @@ const FeaturesPage = class extends Component {
                                                               <Column>
                                                                   {type == 'FLAG' ? (
                                                                       <Switch
+                                                                        data-test={`feature-switch-${i}${environmentFlags[id] && environmentFlags[id].enabled ? '-on' : '-off'}`}
                                                                         checked={environmentFlags[id] && environmentFlags[id].enabled}
                                                                         onChange={() => this.confirmToggle(projectFlags[i], environmentFlags[id], (environments) => {
                                                                             toggleFlag(i, environments);
@@ -180,6 +186,7 @@ const FeaturesPage = class extends Component {
                                                                       <FeatureValue
                                                                         onClick={() => this.editFlag(projectFlags[i], environmentFlags[id])}
                                                                         value={environmentFlags[id] && environmentFlags[id].feature_state_value}
+                                                                        data-test={`feature-value-${i}`}
                                                                       />
                                                                   )}
                                                               </Column>
@@ -187,9 +194,10 @@ const FeaturesPage = class extends Component {
                                                                   <button
                                                                     id="remove-feature"
                                                                     onClick={() => this.confirmRemove(projectFlags[i], () => {
-                                                                        removeFlag(this.props.params.projectId, projectFlags[i]);
+                                                                        removeFlag(this.props.match.params.projectId, projectFlags[i]);
                                                                     })}
                                                                     className="btn btn--with-icon"
+                                                                    data-test={`remove-feature-btn-${i}`}
                                                                   >
                                                                       <RemoveIcon/>
                                                                   </button>
@@ -203,7 +211,7 @@ const FeaturesPage = class extends Component {
                                                           {/* <button onClick={this.newFlag} */}
                                                           {/* className={"btn btn-primary btn-lg"} */}
                                                           {/* id="showCreateFeatureBtn"> */}
-                                                          {/* <ion className="icon ion-ios-rocket"/> */}
+                                                          {/* <span className="icon ion-ios-rocket"/> */}
                                                           {/* Create your first feature */}
                                                           {/* </button> */}
                                                           {/* </FormGroup> */}
@@ -220,13 +228,13 @@ const FeaturesPage = class extends Component {
                                                 />
                                                 <CodeHelp
                                                   title="2: Initialising your project"
-                                                  snippets={Constants.codeHelp.INIT(this.props.params.environmentId, projectFlags && projectFlags[0] && projectFlags[0].name)}
+                                                  snippets={Constants.codeHelp.INIT(this.props.match.params.environmentId, projectFlags && projectFlags[0] && projectFlags[0].name)}
                                                 />
                                             </FormGroup>
                                             <FormGroup>
                                                 <TryIt
                                                   title="Test what values are being returned from the API on this environment"
-                                                  environmentId={this.props.params.environmentId}
+                                                  environmentId={this.props.match.params.environmentId}
                                                 />
                                             </FormGroup>
                                         </div>
@@ -327,7 +335,7 @@ const FeaturesPage = class extends Component {
                                                   className="btn-lg btn-primary" id="show-create-feature-btn" data-test="show-create-feature-btn"
                                                   onClick={this.newFlag}
                                                 >
-                                                    <ion className="icon ion-ios-rocket"/>
+                                                    <span className="icon ion-ios-rocket"/>
                                                     {' '}
                                                     Create your first Feature
                                                 </Button>

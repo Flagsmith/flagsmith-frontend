@@ -1,9 +1,13 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import CreateProjectModal from '../modals/CreateProject';
 import EditOrganisationModal from '../modals/EditOrganisation';
 
 const ProjectSelectPage = class extends Component {
     static displayName = 'ProjectSelectPage';
+
+    static contextTypes = {
+        router: propTypes.object.isRequired,
+    };
 
     constructor(props, context) {
         super(props, context);
@@ -19,17 +23,13 @@ const ProjectSelectPage = class extends Component {
         }
     };
 
-    static contextTypes = {
-        router: React.PropTypes.object.isRequired,
-    };
-
     editOrganisation = () => {
         openModal('Edit Organisation', <EditOrganisationModal/>);
     };
 
     newProject = () => {
         openModal('Create  Project', <CreateProjectModal onSave={({ projectId, environmentId }) => {
-            this.context.router.push(`/project/${projectId}/environment/${environmentId}/features?new=true`);
+            this.context.router.history.push(`/project/${projectId}/environment/${environmentId}/features?new=true`);
         }}
         />);
     };
@@ -109,7 +109,7 @@ const ProjectSelectPage = class extends Component {
                                                             data-test="create-first-project-btn"
                                                             id="create-first-project-btn"
                                                           >
-                                                              <ion className="icon ion-ios-rocket"/>
+                                                              <span className="icon ion-ios-rocket"/>
                                                               {' '}
                                                                 Create a project
                                                           </button>

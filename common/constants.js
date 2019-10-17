@@ -31,6 +31,7 @@ const Constants = {
         'CREATE_PROJECT': { 'event': 'Project created', 'category': 'Project' },
         'CREATE_USER_FEATURE': { 'event': 'User feature created', 'category': 'User Features' },
         'DELETE_INVITE': { 'event': 'Invite deleted', 'category': 'Invite' },
+        'DELETE_USER': { 'event': 'User deleted', 'category': 'Organisation' },
         'DELETE_ORGANISATION': { 'event': 'Organisation deleted', 'category': 'Organisation' },
         'DEMO_ACCOUNT': { 'event': 'User demo login', 'category': 'User' },
         'EDIT_ENVIRONMENT': { 'event': 'Environment edited', 'category': 'Environment' },
@@ -53,6 +54,7 @@ const Constants = {
         'VIEW_USER_FEATURE': { 'event': 'User feature viewed', 'category': 'User Features' },
         'VIEW_FEATURE': { 'event': 'Feature viewed', 'category': 'Features' },
         'VIEW_SEGMENT': { 'event': 'Segment viewed', 'category': 'Segment' },
+        'UPDATE_USER_ROLE': { 'event': 'Updated user role', 'category': 'Organisation' },
     },
     modals: {
         'PAYMENT': 'Payment Modal',
@@ -81,6 +83,7 @@ const Constants = {
     },
     strings: {
         SEGMENT_OVERRIDES_DESCRIPTION: 'Set different values for your feature based on what segments users are in.',
+        IDENTITY_OVERRIDES_DESCRIPTION: 'See which identities have specific overridden values for this feature.',
         REMOTE_CONFIG_DESCRIPTION: 'A feature that you can turn configure per environment or user. E.g. a font size for a banner or an environment variable for a server.',
         FEATURE_FLAG_DESCRIPTION: 'A feature that you can turn on or off per environment or user. E.g. instant messaging for a mobile app or an endpoint for an API.',
         USER_PROPERTY_DESCRIPTION: 'The name of the user trait or custom property belonging to the user. E.g. firstName',
@@ -136,6 +139,10 @@ const Constants = {
         },
     },
     simulate: {},
+    roles: {
+        'USER': 'User',
+        'ADMIN': 'Admin',
+    },
 };
 
 module.exports = Constants;

@@ -34,9 +34,9 @@ export default class FeaturessExampleView extends Component {
     }
 
     render() {
-        const redirect = this.props.location.query.redirect ? `?redirect=${this.props.location.query.redirect}` : '';
+        const redirect = Utils.fromParam().redirect ? `?redirect=${Utils.fromParam().redirect}` : '';
         return (
-            <div className="features-page">
+            <div data-test="features-example-page" className="features-page">
                 <div className="hero hero--features-page ">
                     <div>
                         <div className="row" style={{ width: '100%', margin: 0, marginRight: 0 }}>
@@ -61,15 +61,15 @@ export default class FeaturessExampleView extends Component {
                                 <h2 className="text-center mb-4">Feature Flags</h2>
                                 <div className="row">
                                     <div className="col-sm-4">
-                                        <ion className="card__icon icon--green ion-md-done-all text-center"/>
+                                        <span className="card__icon icon--green ion-md-done-all text-center"/>
                                         <p>Hide new features behind Feature Flags that are managed within Bullet Train.</p>
                                     </div>
                                     <div className="col-sm-4">
-                                        <ion className="card__icon icon--green ion-md-done-all text-center"/>
+                                        <span className="card__icon icon--green ion-md-done-all text-center"/>
                                         <p>Continuously deploy new code. Separate code deployments from feature releases.</p>
                                     </div>
                                     <div className="col-sm-4">
-                                        <ion className="card__icon icon--green ion-md-done-all text-center"/>
+                                        <span className="card__icon icon--green ion-md-done-all text-center"/>
                                         <p>Roll new features out to a subset of your users before enabling it for everyone.</p>
                                     </div>
                                 </div>

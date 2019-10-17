@@ -47,6 +47,7 @@ const controller = {
             .catch(e => API.ajaxHandler(store, e));
     },
     setToken: (token) => {
+        store.loading();
         store.user = {};
         AsyncStorage.getItem('isDemo', (err, res) => {
             if (res) {
@@ -97,8 +98,8 @@ const controller = {
     getOrganisations: () => Promise.all([data.get(`${Project.api}organisations/`), data.get(`${Project.api}auth/user/`)])
         .then(([res, userRes]) => {
             controller.setUser({
-                organisations: res.results,
                 ...userRes,
+                organisations: res.results,
             });
         })
         .catch(e => API.ajaxHandler(store, e)),
@@ -132,7 +133,7 @@ const controller = {
         }
         data.post(`${Project.api}organisations/`, Object.assign({ name }, opts))
             .then((res) => {
-                store.model.organisations = store.model.organisations.concat([res]);
+                store.model.organisations = store.model.organisations.concat([{ ...res, role: 'ADMIN' }]);
                 AsyncStorage.setItem('user', JSON.stringify(store.model));
                 store.savedId = res.id;
                 store.saved();
@@ -167,6 +168,19 @@ const controller = {
                 AsyncStorage.setItem('user', JSON.stringify(store.model));
             });
     },
+
+    updateSubscription: (hostedPageId) => {
+        data.post(`${Project.api}organisations/${store.organisation.id}/update-subscription/`, { hosted_page_id: hostedPageId })
+            .then((res) => {
+                const idx = _.findIndex(store.model.organisations, { id: store.organisation.id });
+                if (idx !== -1) {
+                    store.model.organisations[idx] = res;
+                    store.organisation = res;
+                }
+                store.saved();
+            })
+            .catch(e => API.ajaxHandler(store, e));
+    },
 };
 
 
@@ -189,6 +203,9 @@ const store = Object.assign({}, BaseStore, {
     },
     getOrganisations() {
         return store.model && store.model.organisations;
+    },
+    getOrganisationRole(id) {
+        return store.model && store.model.organisations && _.get(_.find(store.model.organisations, org => (id ? org.id === id : org.id === (store.organisation && store.organisation.id))), 'role');
     },
 });
 
@@ -231,6 +248,9 @@ store.dispatcherIndex = Dispatcher.register(store, (payload) => {
             break;
         case Actions.GET_ORGANISATIONS:
             controller.getOrganisations();
+            break;
+        case Actions.UPDATE_SUBSCRIPTION:
+            controller.updateSubscription(action.hostedPageId);
             break;
         default:
     }

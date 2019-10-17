@@ -1,11 +1,11 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import EnvironmentSelect from './EnvironmentSelect';
 
 const ProjectSelect = class extends Component {
     static displayName = 'ProjectSelect'
 
     static contextTypes = {
-        router: React.PropTypes.object.isRequired,
+        router: propTypes.object.isRequired,
     };
 
     constructor(props, context) {
@@ -50,7 +50,7 @@ const ProjectSelect = class extends Component {
                                               environmentId={this.props.environmentId}
                                               clearableValue={false}
                                               onChange={(environment) => {
-                                                  this.context.router.push(`/project/${this.props.projectId}/environment/${environment}/features`);
+                                                  this.context.router.history.push(`/project/${this.props.projectId}/environment/${environment}/features`);
                                                   AsyncStorage.setItem('lastEnv', JSON.stringify({
                                                       orgId: AccountStore.getOrganisation().id,
                                                       projectId: this.props.projectId,
