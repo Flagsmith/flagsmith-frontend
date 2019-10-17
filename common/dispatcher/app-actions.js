@@ -325,6 +325,12 @@ const AppActions = Object.assign({}, require('./base/_app-actions'), {
             role,
         });
     },
+    updateSubscription(hostedPageId) {
+        Dispatcher.handleViewAction({
+            actionType: Actions.UPDATE_SUBSCRIPTION,
+            hostedPageId,
+        });
+    },
 });
 
 module.exports = AppActions;

@@ -168,6 +168,19 @@ const controller = {
                 AsyncStorage.setItem('user', JSON.stringify(store.model));
             });
     },
+
+    updateSubscription: (hostedPageId) => {
+        data.post(`${Project.api}organisations/${store.organisation.id}/update-subscription/`, { hosted_page_id: hostedPageId })
+            .then((res) => {
+                const idx = _.findIndex(store.model.organisations, { id: store.organisation.id });
+                if (idx !== -1) {
+                    store.model.organisations[idx] = res;
+                    store.organisation = res;
+                }
+                store.saved();
+            })
+            .catch(e => API.ajaxHandler(store, e));
+    },
 };
 
 
@@ -235,6 +248,9 @@ store.dispatcherIndex = Dispatcher.register(store, (payload) => {
             break;
         case Actions.GET_ORGANISATIONS:
             controller.getOrganisations();
+            break;
+        case Actions.UPDATE_SUBSCRIPTION:
+            controller.updateSubscription(action.hostedPageId);
             break;
         default:
     }

@@ -14,7 +14,8 @@ const PaymentModal = class extends Component {
     };
 
     onSave = () => {
-        toast('Account Saved');
+        toast('Account Updated');
+        closeModal();
     };
 
     componentWillReceiveProps(newProps) {
@@ -119,7 +120,7 @@ Team Member
                                                     <ul className="pricing-features">
                                                         <li>
                                                             <p>
-Up to
+                                                                {'Up to '}
                                                                 <strong>250,000</strong>
                                                                 {' '}
 requests per month
@@ -166,7 +167,7 @@ Team Members
                                                     <ul className="pricing-features">
                                                         <li>
                                                             <p>
-Up to
+                                                                {'Up to '}
                                                                 <strong>2 million</strong>
                                                                 {' '}
 requests per month
@@ -174,7 +175,7 @@ requests per month
                                                         </li>
                                                         <li>
                                                             <p>
-Up to
+                                                                {'Up to '}
                                                                 <strong>10</strong>
                                                                 {' '}
 Team Members
@@ -217,7 +218,7 @@ Team Members
                                                         <li><p>Optional On Premise Installation</p></li>
                                                         <li>
                                                             <p>
-Over
+                                                                {'Over '}
                                                                 <strong>2 million</strong>
                                                                 {' '}
 requests per month
@@ -225,7 +226,7 @@ requests per month
                                                         </li>
                                                         <li>
                                                             <p>
-Over
+                                                                {'Over '}
                                                                 <strong>10</strong>
                                                                 {' '}
 Team Members
@@ -263,12 +264,7 @@ module.exports = props => (
           });
           Chargebee.registerAgain();
           Chargebee.getInstance().setCheckoutCallbacks(cart => ({
-              success: () => {
-                  AppActions.editOrganisation(Object.assign({}, AccountStore.getOrganisation(), {
-                      paid_subscription: true,
-                      plan: cart.products[0].planId,
-                  }));
-              },
+              success: hostedPageId => AppActions.updateSubscription(hostedPageId),
           }));
       }}
     />
