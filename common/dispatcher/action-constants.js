@@ -48,6 +48,7 @@ const Actions = Object.assign({}, require('./base/_action-constants'), {
     'TOGGLE_FLAG': 'TOGGLE_FLAG',
     'TOGGLE_USER_FLAG': 'TOGGLE_USER_FLAG',
     'UPDATE_USER_ROLE': 'UPDATE_USER_ROLE',
+    'UPDATE_SUBSCRIPTION': 'UPDATE_SUBSCRIPTION',
 });
 
 window.Actions = Actions;

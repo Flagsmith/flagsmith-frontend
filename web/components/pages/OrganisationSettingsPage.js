@@ -121,7 +121,6 @@ const OrganisationSettingsPage = class extends Component {
         const freeTrialDaysRemaining = Utils.freeTrialDaysRemaining(AccountStore.getOrganisation().subscription_date);
 
         return (
-
             <AccountProvider onSave={this.onSave} onRemove={this.onRemove}>
                 {({
                     isLoading,
@@ -161,7 +160,7 @@ const OrganisationSettingsPage = class extends Component {
                                         </div>
                                         <div className="plan__details flex flex-1">
                                             <p className="text-small m-b-0">Your plan</p>
-                                            <h3 className="m-b-0">{Utils.getPlanName(organisation.plan) ? Utils.getPlanName(organisation.plan) : 'Free'}</h3>
+                                            <h3 className="m-b-0">{Utils.getPlanName(_.get(organisation, 'subscription.plan')) ? Utils.getPlanName(_.get(organisation, 'subscription.plan')) : 'Free'}</h3>
                                         </div>
                                         <div>
                                             <Row>
@@ -231,8 +230,8 @@ const OrganisationSettingsPage = class extends Component {
                                                 {organisation.num_seats && (
                                                     <p>
                                                         {'You are currently using '}
-                                                        <strong>
-                                                            {organisation.num_seats}
+                                                        <strong className={organisation.num_seats > (_.get(organisation, 'subscription.max_seats') || 1) ? 'text-danger' : ''}>
+                                                            {`${organisation.num_seats} / ${_.get(organisation, 'subscription.max_seats') || 1}`}
                                                         </strong>
                                                         {` seat${organisation.num_seats === 1 ? '' : 's'}.`}
                                                     </p>

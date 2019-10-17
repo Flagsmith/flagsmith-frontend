@@ -22,7 +22,7 @@ module.exports = {
             .pause(200) // Additional wait here as it seems rc-switch can be unresponsive for a while
             .click(byId('user-feature-switch-1-off'))
             .waitAndClick('#confirm-toggle-feature-btn')
-            .waitForElementNotPresent('#confirm-toggle-feature-btn')
+            .waitForElementNotPresent('#confirm-toggle-feature-modal')
             .waitForElementVisible(byId('user-feature-switch-1-on'));
     },
     '[Users Tests] - Toggle flag for user again': function (browser) {
@@ -30,7 +30,7 @@ module.exports = {
             .pause(200) // Additional wait here as it seems rc-switch can be unresponsive for a while
             .click(byId('user-feature-switch-1-on'))
             .waitAndClick('#confirm-toggle-feature-btn')
-            .waitForElementNotPresent('#confirm-toggle-feature-btn')
+            .waitForElementNotPresent('#confirm-toggle-feature-modal')
             .waitForElementVisible(byId('user-feature-switch-1-off'));
     },
     '[Users Tests] - Add trait for user': function (browser) {
