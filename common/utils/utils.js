@@ -68,11 +68,6 @@ module.exports = Object.assign({}, require('./base/_utils'), {
         Utils.scrollToElement('.signup-form');
     },
 
-    freeTrialDaysRemaining: (subscriptionDate) => {
-        if (!subscriptionDate) return 0;
-        return moment(subscriptionDate).add('30', 'd').endOf('d').diff(moment(), 'd');
-    },
-
     getPlanName: (plan) => {
         switch (plan) {
             case 'side-project':

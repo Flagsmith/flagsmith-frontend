@@ -22,12 +22,6 @@ const controller = {
                 if (isInvite) {
                     return controller.onLogin();
                 }
-                const opts = {};
-                if (ConfigStore.model && ConfigStore.model.free_tier && ConfigStore.model.free_tier.enabled) {
-                    opts.free_to_use_subscription = true;
-                } else {
-                    opts.subscription_date = moment();
-                }
                 return data.post(`${Project.api}organisations/`, Object.assign({}, { name: organisation_name }, opts))
                     .then(() => controller.onLogin());
             })
@@ -125,12 +119,6 @@ const controller = {
     createOrganisation: (name) => {
         store.saving();
         API.trackEvent(Constants.events.CREATE_ORGANISATION);
-        const opts = {};
-        if (ConfigStore.model && ConfigStore.model.free_tier && ConfigStore.model.free_tier.enabled) {
-            opts.free_to_use_subscription = true;
-        } else {
-            opts.subscription_date = moment();
-        }
         data.post(`${Project.api}organisations/`, Object.assign({ name }, opts))
             .then((res) => {
                 store.model.organisations = store.model.organisations.concat([{ ...res, role: 'ADMIN' }]);
