@@ -56,7 +56,7 @@ across web, mobile and
                             </p>
                             <div className="hero-cta mt-1">
 
-                                <Button onClick={Utils.scrollToSignUp}><Link to={`/${this.props.redirect}#sign-up`}>{hasFeature('free_tier') ? 'Sign up now' : 'Start free trial'}</Link></Button>
+                                <Button onClick={Utils.scrollToSignUp}><Link to={`/${this.props.redirect}#sign-up`}>Sign up now</Link></Button>
 
                                 <p className="text-small">No payment card required</p>
                             </div>

@@ -126,79 +126,23 @@ const App = class extends Component {
         return (
             <div>
                 <AccountProvider onNoUser={this.onNoUser} onLogout={this.onLogout} onLogin={this.onLogin}>
-                    {({ isLoading, user, organisation }) => {
-                        const loggedInUser = organisation && !AccountStore.isDemo;
-                        const hasPaid = loggedInUser && organisation.paid_subscription; // Organisation has paid via chargebee
-                        const freeTrialDaysRemaining = loggedInUser && Utils.freeTrialDaysRemaining(organisation.subscription_date);
-                        const hasFreeTrial = loggedInUser && freeTrialDaysRemaining > 0; // Organisation is still within their free trial
-                        const hasFreeUse = loggedInUser && organisation.free_to_use_subscription;
-                        /* Organisation was created before payment options came in and therefore they have free usage (for now) */
-
-                        const inTrial = !hasPaid && loggedInUser && hasFreeTrial && !hasFreeUse;
-                        const expiredTrial = !hasPaid && loggedInUser && !hasFreeTrial && !hasFreeUse;
-                        const freeTier = !hasPaid && loggedInUser && hasFreeUse;
-
-                        return (
-                            <div>
-                                {inTrial && (
-                                    <AlertBar>
-                                        Your organisation has
-                                        {' '}
-                                        {freeTrialDaysRemaining}
-                                        {' '}
-days remaining on it's free
-                                        trial.
-                                    </AlertBar>
-                                )}
-
-                                {expiredTrial && (
-                                    <AlertBar>
-                                        Your trial period has expired. Click here to view payment plans.
-                                    </AlertBar>
-                                )}
-
-                                {freeTier && (
-                                    <AlertBar>
-                                        <div>
-                                            Your organisation is using Bullet Train for
-                                            free.
-                                            {' '}
-                                            {pathname.indexOf('organisation-settings') === -1 && projectId && environmentId ? (
-                                                <span>
-                                                    {'Click '}
-                                                    <Link
-                                                      id="organisation-settings-link"
-                                                      className="bold"
-                                                      activeClassName="active"
-                                                      to={`/project/${projectId}/environment/${environmentId}/organisation-settings`}
-                                                    >
-                                            here
-                                                    </Link>
-                                                    {' '}
-for further information on
-                                                    {hasFeature('free_tier') ? ' upgrading ' : ' migrating '}
-                                                to a paid plan.
-                                                </span>
-                                            ) : null}
-                                        </div>
-                                    </AlertBar>
-                                )}
-
-                                {AccountStore.isDemo && (
-                                    <AlertBar className="pulse">
-                                        <div>
+                    {({ isLoading, user, organisation }) => (
+                        <div>
+                            {AccountStore.isDemo && (
+                            <AlertBar className="pulse">
+                                <div>
                                             You are using a demo account. Finding this useful?
-                                            {' '}
-                                            <Link onClick={() => AppActions.setUser(null)} to="/">
+                                    {' '}
+                                    <Link onClick={() => AppActions.setUser(null)} to="/">
 Click here to Sign
                                                 up
-                                            </Link>
-                                        </div>
-                                    </AlertBar>
-                                )}
-                                <div className={pageHasAside ? `aside-body${isMobile && !asideIsVisible ? '-full-width' : ''}` : ''}>
+                                    </Link>
+                                </div>
+                            </AlertBar>
+                            )}
+                            <div className={pageHasAside ? `aside-body${isMobile && !asideIsVisible ? '-full-width' : ''}` : ''}>
 
-                                    {isHomepage && (
+                                {isHomepage && (
                                     <nav className={isHomepage && 'show navbar navbar__master-brand'}>
                                         <div className="navbar-left">
                                             <div className="navbar-nav">
@@ -266,9 +210,9 @@ Click here to Sign
                                         </div>
                                     </nav>
 
-                                    )}
+                                )}
 
-                                    {(!pageHasAside || !asideIsVisible || !isMobile) && (
+                                {(!pageHasAside || !asideIsVisible || !isMobile) && (
                                     <nav
                                       className={`navbar navbar-fixed-top ${pageHasAside && asideIsVisible ? ' navbar-aside' : ''}${isHomepage ? ' navbar-homepage ' : ''}${isLegal ? 'navbar-aside dark-header ' : ''}${isDark ? ' dark-header ' : ''}${this.state.myClassName ? this.state.myClassName : ''}`}
                                     >
@@ -409,21 +353,20 @@ Logout
                                             </div>
                                         </Row>
                                     </nav>
-                                    )}
-                                    {pageHasAside && (
-                                        <Aside
-                                          className={`${AccountStore.isDemo ? 'demo' : ''} ${AccountStore.isDemo || (hasFreeTrial && !hasPaid) || (hasFreeUse && !hasPaid) || !hasPaid ? 'footer' : ''}`}
-                                          projectId={projectId}
-                                          environmentId={environmentId}
-                                          toggleAside={this.toggleAside}
-                                          asideIsVisible={asideIsVisible}
-                                        />
-                                    )}
-                                    {isMobile && pageHasAside && asideIsVisible ? null : this.props.children}
-                                </div>
+                                )}
+                                {pageHasAside && (
+                                <Aside
+                                  className={`${AccountStore.isDemo ? 'demo' : ''} ${AccountStore.isDemo ? 'footer' : ''}`}
+                                  projectId={projectId}
+                                  environmentId={environmentId}
+                                  toggleAside={this.toggleAside}
+                                  asideIsVisible={asideIsVisible}
+                                />
+                                )}
+                                {isMobile && pageHasAside && asideIsVisible ? null : this.props.children}
                             </div>
-                        );
-                    }}
+                        </div>
+                    )}
                 </AccountProvider>
 
             </div>

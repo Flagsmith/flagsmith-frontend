@@ -62,13 +62,13 @@ const OrganisationSettingsPage = class extends Component {
         openConfirm(<h3>Delete Invite</h3>, <p>
             Are you sure you want to delete this
             invite?
-        </p>, () => AppActions.deleteInvite(id));
+                                            </p>, () => AppActions.deleteInvite(id));
     }
 
     deleteUser = (id) => {
         openConfirm(<h3>Delete User</h3>, <p>
             Are you sure you want to delete this user?
-        </p>, () => AppActions.deleteUser(id));
+                                          </p>, () => AppActions.deleteUser(id));
     }
 
     save = (e) => {
@@ -118,7 +118,6 @@ const OrganisationSettingsPage = class extends Component {
     render() {
         const { hasFeature, getValue } = this.props;
         const { name, webhook_notification_email } = this.state;
-        const freeTrialDaysRemaining = Utils.freeTrialDaysRemaining(AccountStore.getOrganisation().subscription_date);
 
         return (
             <AccountProvider onSave={this.onSave} onRemove={this.onRemove}>
@@ -203,7 +202,7 @@ const OrganisationSettingsPage = class extends Component {
                                                 <div className="flex-row header--icon">
                                                     <h5>Your usage</h5>
                                                 </div>
-                                                {!isLoading && !!usage && (
+                                                {!isLoading && usage != null && (
                                                 <div>
                                                     <p>
                                                         {'You have made '}
