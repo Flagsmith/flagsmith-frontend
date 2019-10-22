@@ -19,64 +19,32 @@ const PricingPanel = class extends React.Component {
                     <p className="text-center">Then increase your plan as your business grows.</p>
                     <div className="col-md-12">
                         <div className="flex-row row-center">
-                            {!hasFeature('free_tier') ? (
-                                <div className="col-md-3 pricing-panel">
-                                    <div className="panel panel-default">
-                                        <div className="panel-content">
-                                            <p className="featured" />
-                                            <p className="pricing-price">Side Project</p>
-                                            <img src="/images/growth.svg" alt="free icon" className="pricing-icon"/>
-                                            <p className="pricing-type">$5</p>
-                                            <p className="text-small text-center">Billed monthly</p>
-                                            <Link to={`/${redirect}#sign-up`} className="pricing-cta blue" onClick={Utils.scrollToSignUp}>Start free trial</Link>
-                                        </div>
-                                        <div className="panel-footer">
-                                            <p className="text-small text-center link-style">What's included</p>
-                                            <ul className="pricing-features">
-                                                <li>Up to <strong>20,000</strong> requests per month</li>
-                                                <li>
-                                                    <p>
-                                                        <strong>1</strong>
-                                                        {' '}
-Team Member
-                                                    </p>
-                                                </li>
-                                                <li><p>Unlimited Projects</p></li>
-                                                <li><p>Unlimited Environments</p></li>
-                                                <li><p>Unlimited Feature Flags</p></li>
-                                                <li><p>Email Technical Support</p></li>
-                                            </ul>
-                                        </div>
+                            <div className="col-md-3 pricing-panel">
+                                <div className="panel panel-default">
+                                    <div className="panel-content">
+                                        <p className="featured" />
+                                        <p className="pricing-price">Free</p>
+                                        <img src="/images/growth.svg" alt="free icon" className="pricing-icon"/>
+                                        <p className="pricing-type">Free</p>
+                                        <p className="text-small text-center">more flags than the UN</p>
+                                        <Link to={`/${redirect}#sign-up`} className="pricing-cta blue" onClick={Utils.scrollToSignUp}>Sign up</Link>
+                                    </div>
+                                    <div className="panel-footer">
+                                        <p className="text-small text-center link-style">What's included</p>
+                                        <ul className="pricing-features">
+                                            <li><p>Up to <strong>20,000</strong> requests per month</p></li>
+                                            <li>
+                                                <p>
+                                                    <strong>1</strong> Team Member
+                                                </p>
+                                            </li>
+                                            <li><p>Unlimited Projects</p></li>
+                                            <li><p>Unlimited Environments</p></li>
+                                            <li><p>Unlimited Feature Flags</p></li>
+                                        </ul>
                                     </div>
                                 </div>
-                            ) : (
-                                <div className="col-md-3 pricing-panel">
-                                    <div className="panel panel-default">
-                                        <div className="panel-content">
-                                            <p className="featured" />
-                                            <p className="pricing-price">Free</p>
-                                            <img src="/images/growth.svg" alt="free icon" className="pricing-icon"/>
-                                            <p className="pricing-type">Free</p>
-                                            <p className="text-small text-center">more flags than the UN</p>
-                                            <Link to={`/${redirect}#sign-up`} className="pricing-cta blue" onClick={Utils.scrollToSignUp}>Sign up</Link>
-                                        </div>
-                                        <div className="panel-footer">
-                                            <p className="text-small text-center link-style">What's included</p>
-                                            <ul className="pricing-features">
-                                                <li><p>Up to <strong>20,000</strong> requests per month</p></li>
-                                                <li>
-                                                    <p>
-                                                        <strong>1</strong> Team Member
-                                                    </p>
-                                                </li>
-                                                <li><p>Unlimited Projects</p></li>
-                                                <li><p>Unlimited Environments</p></li>
-                                                <li><p>Unlimited Feature Flags</p></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            )}
+                            </div>
                             <div className="col-md-3 pricing-panel">
                                 <div className="panel panel-default">
                                     <div className="panel-content">
