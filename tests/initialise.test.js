@@ -15,7 +15,7 @@ module.exports = {
             .setValue(byId('email'), email)
             .setValue(byId('password'), password)
             .click(byId('signup-btn'))
-            .waitForElementVisible(byId('project-select-page'));
+            .waitForElementVisible(byId('project-select-page'), 10000);
     },
     '[Initialise Tests] - Create project': function (browser) {
         browser.waitAndClick(byId('create-first-project-btn'), 10000)
