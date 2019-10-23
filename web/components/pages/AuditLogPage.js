@@ -32,7 +32,7 @@ const AuditLogPage = class extends Component {
                 <div
                       className="audit__author"
                     >
-                        {`${author.first_name} ${author.last_name}`}
+                        {author? `${author.first_name} ${author.last_name}`: 'Unknown'}
                     </div>
             </Flex>
             <div className="audit__date">{moment(created_date).format('Do MMM YYYY HH:mma')}</div>
