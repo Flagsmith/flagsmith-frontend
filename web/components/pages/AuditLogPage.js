@@ -25,15 +25,17 @@ const AuditLogPage = class extends Component {
         <Row space className="list-item audit__item" key={created_date}>
             <Flex>
                 <div
-                      className="audit__log"
-                    >
-                        {log}
-                    </div>
+                  className="audit__log"
+                >
+                    {log}
+                </div>
+                {!!author && (
                 <div
-                      className="audit__author"
-                    >
+                  className="audit__author"
+                >
                         {`${author.first_name} ${author.last_name}`}
-                    </div>
+                </div>
+                )}
             </Flex>
             <div className="audit__date">{moment(created_date).format('Do MMM YYYY HH:mma')}</div>
         </Row>
