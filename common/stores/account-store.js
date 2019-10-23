@@ -22,7 +22,7 @@ const controller = {
                 if (isInvite) {
                     return controller.onLogin();
                 }
-                return data.post(`${Project.api}organisations/`, Object.assign({}, { name: organisation_name }))
+                return data.post(`${Project.api}organisations/`, { name: organisation_name })
                     .then(() => controller.onLogin());
             })
             .catch(e => API.ajaxHandler(store, e));
@@ -119,7 +119,7 @@ const controller = {
     createOrganisation: (name) => {
         store.saving();
         API.trackEvent(Constants.events.CREATE_ORGANISATION);
-        data.post(`${Project.api}organisations/`, Object.assign({ name }))
+        data.post(`${Project.api}organisations/`, { name })
             .then((res) => {
                 store.model.organisations = store.model.organisations.concat([{ ...res, role: 'ADMIN' }]);
                 AsyncStorage.setItem('user', JSON.stringify(store.model));
