@@ -16,23 +16,24 @@ These instructions will get you a copy of the project up and running on your loc
 
 What things you need to install the software and how to install them
 
-
 | Location                                                     | Suggested Version       |
 | -------------                                                |:-------------:|
-| <a href="https://nodejs.org/en/">NodeJS</a>                     | >= 6.0.0 | 
-| <a href="https://nodejs.org/en/">npm</a>                        | >= 4.0.0 | 
-
+| <a href="https://nodejs.org/en/">NodeJS</a>                     | >= 6.0.0 |
+| <a href="https://nodejs.org/en/">npm</a>                        | >= 4.0.0 |
 
 ## Installing
-```
+
+```bash
 npm i
 ```
 
 ## Running
+
 **Development**
 
-Hot reloading for client / server 
-```
+Hot reloading for client / server
+
+```bash
 npm run dev
 ```
 
@@ -42,18 +43,21 @@ You can deploy this application on [Heroku](https://www.heroku.com/) and [Dokku]
 
 Bundles, minifies and cache busts the project to a build folder and runs node in production. This can be used as part of your deployment script.
 
-```
+```bash
 npm run bundle
 npm start
 ```
+
 **E2E Testing**
 
 This project uses [Nightwatch](http://nightwatchjs.org/) for automated end to end testing with chromedriver.
-```
+
+```bash
 npm test
 ```
 
 ## Built With
+
 - React
 - Webpack
 - Node
@@ -64,7 +68,7 @@ Please read [CONTRIBUTING.md](https://gist.github.com/kyle-ssg/c36a03aebe492e45c
 
 ## Getting Help
 
-If you encounter a bug or feature request we would like to hear about it. Before you submit an issue please search existing issues in order to prevent duplicates. 
+If you encounter a bug or feature request we would like to hear about it. Before you submit an issue please search existing issues in order to prevent duplicates.
 
 ## Get in touch
 
