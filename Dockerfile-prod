@@ -3,15 +3,19 @@ FROM node:10
 # Create app directory
 WORKDIR /usr/src/app
 
+# Bundle app source
+COPY . .
+
 # Install app dependencies
 # A wildcard is used to ensure both package.json AND package-lock.json are copied
 # where available (npm@5+)
 COPY package*.json ./
 
-RUN npm install
-
-# Bundle app source
-COPY . .
+# Build the node application in prod mode
+ENV ENV prod
+RUN npm i
+RUN npm run env
+RUN npm run bundle
 
 EXPOSE 8080
-CMD [ "npm", "run", "dev" ]
+CMD [ "npm", "run", "start" ]
