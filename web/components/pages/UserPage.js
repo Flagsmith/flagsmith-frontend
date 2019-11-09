@@ -293,7 +293,7 @@ const UserPage = class extends Component {
                                         <FormGroup>
                                             <CodeHelp
                                               title="Managing user traits and segments"
-                                              snippets={Constants.codeHelp.USER_TRAITS(this.props.match.params.id)}
+                                              snippets={Constants.codeHelp.USER_TRAITS(this.props.match.params.environmentId, this.props.match.params.id)}
                                             />
                                         </FormGroup>
                                         <FormGroup>

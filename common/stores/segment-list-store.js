@@ -29,7 +29,7 @@ const controller = {
                         store.loaded();
                         store.saved();
                     });
-            });
+            }).catch((e) => API.ajaxHandler(store, e));
     },
     editSegment(projectId, _data) {
         data.put(`${Project.api}projects/${projectId}/segments/${_data.id}/`, {

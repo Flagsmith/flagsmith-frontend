@@ -8,7 +8,7 @@ const controller = {
         store.loading();
         return data.get(`${Project.api}environments/${envId}/identities/${id}/`)
             .then(identity => Promise.all([
-                data.get(`${Project.api}identities/?identifier=${identity.identifier}`, null, { 'x-environment-key': envId }),
+                data.get(`${Project.api}identities/?identifier=${encodeURIComponent(identity.identifier)}`, null, { 'x-environment-key': envId }),
                 Promise.resolve(identity),
             ]))
             .then(([res, identity]) => {

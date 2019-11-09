@@ -104,6 +104,7 @@ const Constants = {
             'Node JS': require('./code-help/create-user/create-user-node')(envId, keywords, userId),
             'Java': require('./code-help/create-user/create-user-java')(envId, keywords, userId),
             '.NET': require('./code-help/create-user/create-user-dotnet')(envId, keywords, userId),
+            'cURL': require('./code-help/create-user/create-user-curl')(envId, keywords, userId),
         }),
 
         'SEGMENTS': envId => ({
@@ -120,6 +121,7 @@ const Constants = {
             'Node JS': '//Coming Soon',
             'Java': '//Coming Soon',
             '.NET': '//Coming Soon',
+            'cURL': require('./code-help/traits/traits-curl')(envId, keywords),
         }),
 
         'INIT': (envId, flagName) => ({
@@ -128,6 +130,7 @@ const Constants = {
             'Node JS': require('./code-help/init/init-node')(envId, keywords, flagName),
             'Java': require('./code-help/init/init-java')(envId, keywords, flagName),
             '.NET': require('./code-help/init/init-dotnet')(envId, keywords, flagName),
+            'cURL': require('./code-help/init/init-curl')(envId, keywords, flagName),
         }),
 
         'INSTALL': {

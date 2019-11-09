@@ -258,45 +258,6 @@ const HomePage = class extends React.Component {
                                 </div>
                             </div>
                         </div>
-
-                        <div className="mobile-app tech">
-                            <div className="container text-center">
-                                <div className="col-md-6 offset-md-3 pb-3">
-                                    <h2>Feature Flags on the go</h2>
-                                    <p>
-Now you can manage feature flags and remote config across web, mobile and server
-                                        side applications with our Android and IOS apps.
-                                    </p>
-                                </div>
-                                <a
-                                  href="https://itunes.apple.com/us/app/bullet-train-feature-manager/id1460735497?ls=1&mt=8"
-                                  target="__blank"
-                                >
-                                    <img
-                                      width={160} className="img-fluid mr-5 app-store-badge"
-                                      src="./images/app-store-icons/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg"
-                                      alt="download on the app store"
-                                    />
-                                </a>
-                                <a
-                                  href="https://play.google.com/store/apps/details?id=com.solidstategroup.bullettrain"
-                                  target="__blank"
-                                >
-                                    <img
-                                      width={180} className="img-fluid ml-5 play-badge"
-                                      src="./images/app-store-icons/google-play-badge2x.png"
-                                      alt="get it on google play"
-                                    />
-                                </a>
-                                <div className="col-md-12">
-                                    <img
-                                      className="img-fluid pt-5" src="./images/mobile_1.png"
-                                      alt="bullet train mobile"
-                                    />
-                                </div>
-                            </div>
-                        </div>
-
                         <div className="sign-up" id="sign-up">
                             {isLogin ? (
                                 <div className="card signup-form container animated fadeIn col-md-8 col-xl-8">

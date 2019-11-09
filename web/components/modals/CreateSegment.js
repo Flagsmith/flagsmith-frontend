@@ -36,6 +36,9 @@ const CreateSegment = class extends Component {
         this.listenTo(SegmentStore, 'saved', () => {
             this.close();
         });
+        this.listenTo(SegmentStore, 'problem', () => {
+            this.setState({ error: true });
+        });
     }
 
     addRule = () => {
@@ -109,7 +112,7 @@ const CreateSegment = class extends Component {
     }
 
     render() {
-        const { name, description, rules, isSaving, hasFeature, createSegment, editSegment } = this.state;
+        const { name, description, rules, isSaving, error } = this.state;
         const { getValue, isEdit, identity } = this.props;
 
         const rulesEl = (
@@ -193,6 +196,10 @@ const CreateSegment = class extends Component {
                                 rulesEl
                             }
                         </div>
+
+                        {error
+                        && <div className="alert alert-danger">Error creating segment, please ensure you have entered a trait and value for each rule.</div>
+                        }
 
                         <div className="text-right">
                             {isEdit ? (
