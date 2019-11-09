@@ -67,7 +67,6 @@
     "lazyframe": "^1.1.6",
     "lodash": "^4.17.15",
     "moment": "2.22.2",
-    "nightwatch-commands": "^3.0.0",
     "node-fetch": "^2.1.2",
     "node-sass": "4.11.0",
     "polyfill-react-native": "^1.0.5",
