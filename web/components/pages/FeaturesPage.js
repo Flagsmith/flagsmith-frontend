@@ -150,61 +150,64 @@ const FeaturesPage = class extends Component {
                                                   icon="ion-ios-rocket"
                                                   title="Features"
                                                   items={projectFlags}
-                                                  renderRow={({ name, id, enabled, created_date, type }, i) => (
-                                                      <Row
-                                                        className="list-item clickable" key={id} space
-                                                        data-test={`feature-item-${i}`}
-                                                      >
-                                                          <div
-                                                            className="flex flex-1"
-                                                            onClick={() => this.editFlag(projectFlags[i], environmentFlags[id])}
-                                                          >
-                                                              <Row>
-                                                                  <a href="#">
-                                                                      {name}
-                                                                  </a>
-                                                                  <Column/>
-                                                              </Row>
-                                                              <div className="list-item-footer faint">
+                                                  renderRow={(projectFlag, i) => {
+                                                      const { name, id, enabled, created_date, type } = projectFlag;
+                                                      return (
+                                                        <Row
+                                                          className="list-item clickable" key={id} space
+                                                          data-test={`feature-item-${i}`}
+                                                        >
+                                                            <div
+                                                              className="flex flex-1"
+                                                              onClick={() => this.editFlag(projectFlag, environmentFlags[id])}
+                                                            >
+                                                                <Row>
+                                                                    <a href="#">
+                                                                        {name}
+                                                                    </a>
+                                                                    <Column/>
+                                                                </Row>
+                                                                <div className="list-item-footer faint">
                                                                     Created
-                                                                  {' '}
-                                                                  {moment(created_date).format('DD/MMM/YYYY')}
-                                                              </div>
-                                                          </div>
-                                                          <Row>
+                                                                    {' '}
+                                                                    {moment(created_date).format('DD/MMM/YYYY')}
+                                                                </div>
+                                                            </div>
+                                                            <Row>
 
-                                                              <Column>
-                                                                  {type == 'FLAG' ? (
+                                                                <Column>
+                                                                    {type == 'FLAG' ? (
                                                                       <Switch
                                                                         data-test={`feature-switch-${i}${environmentFlags[id] && environmentFlags[id].enabled ? '-on' : '-off'}`}
                                                                         checked={environmentFlags[id] && environmentFlags[id].enabled}
-                                                                        onChange={() => this.confirmToggle(projectFlags[i], environmentFlags[id], (environments) => {
-                                                                            toggleFlag(i, environments);
+                                                                        onChange={() => this.confirmToggle(projectFlag, environmentFlags[id], (environments) => {
+                                                                            toggleFlag(_.findIndex(projectFlags, {id}), environments);
                                                                         })}
                                                                       />
-                                                                  ) : (
+                                                                    ) : (
                                                                       <FeatureValue
-                                                                        onClick={() => this.editFlag(projectFlags[i], environmentFlags[id])}
+                                                                        onClick={() => this.editFlag(projectFlag, environmentFlags[id])}
                                                                         value={environmentFlags[id] && environmentFlags[id].feature_state_value}
                                                                         data-test={`feature-value-${i}`}
                                                                       />
-                                                                  )}
-                                                              </Column>
-                                                              <Column>
-                                                                  <button
-                                                                    id="remove-feature"
-                                                                    onClick={() => this.confirmRemove(projectFlags[i], () => {
-                                                                        removeFlag(this.props.match.params.projectId, projectFlags[i]);
-                                                                    })}
-                                                                    className="btn btn--with-icon"
-                                                                    data-test={`remove-feature-btn-${i}`}
-                                                                  >
-                                                                      <RemoveIcon/>
-                                                                  </button>
-                                                              </Column>
-                                                          </Row>
-                                                      </Row>
-                                                  )}
+                                                                    )}
+                                                                </Column>
+                                                                <Column>
+                                                                    <button
+                                                                      id="remove-feature"
+                                                                      onClick={() => this.confirmRemove(projectFlag, () => {
+                                                                          removeFlag(this.props.match.params.projectId, projectFlag);
+                                                                      })}
+                                                                      className="btn btn--with-icon"
+                                                                      data-test={`remove-feature-btn-${i}`}
+                                                                    >
+                                                                        <RemoveIcon/>
+                                                                    </button>
+                                                                </Column>
+                                                            </Row>
+                                                        </Row>
+                                                      );
+                                                  }}
                                                   renderNoResults={(
                                                       <div className="text-center">
                                                           {/* <FormGroup> */}
