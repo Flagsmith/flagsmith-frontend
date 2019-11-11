@@ -42,9 +42,9 @@ a, .btn, button{
         &:hover {
             box-shadow: none;
             background: white;
-            color: darken($brand-primary, 10);
+            color: darken($bt-brand-primary, 10);
         }
-        color: $brand-primary;
+        color: $bt-brand-primary;
     }
 
     &--condensed {

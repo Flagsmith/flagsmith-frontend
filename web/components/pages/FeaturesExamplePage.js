@@ -58,7 +58,7 @@ export default class FeaturessExampleView extends Component {
                     <div className="container-fluid">
                         <div className="container mb-4">
                             <div className="col-lg-10 offset-lg-1">
-                                <h2 className="text-center mb-4">Feature Flags</h2>
+                                <h2 className="text-center mb-4">Feature Flag Management</h2>
                                 <div className="row">
                                     <div className="col-sm-4">
                                         <span className="card__icon icon--green ion-md-done-all text-center"/>
@@ -74,8 +74,8 @@ export default class FeaturessExampleView extends Component {
                                     </div>
                                 </div>
                                 <div className="col-md-12 text-center">
-                                    <a target="_blank" href="https://docs.bullet-train.io/managing-features/">
-                                        <Button>Learn more</Button>
+                                    <a href="https://docs.bullet-train.io/managing-features/">
+                                        <Button>Feature flags</Button>
                                     </a>
                                 </div>
                             </div>
@@ -110,13 +110,13 @@ export default class FeaturessExampleView extends Component {
                 <section className="section--white mt-5 mb-5">
                     <div className="container-fluid mb-4">
                         <div className="col-lg-8 offset-lg-2 col-xl-6 offset-xl-3 text-center mb-5">
-                            <h2 className="mb-4">Remote Config</h2>
+                            <h2 className="mb-4">Customise your Features</h2>
                             <div className="col-lg-8 offset-lg-2">
-                                <p>Features dont have to be Yes/No boolean values. You can specify String or Int values and overide them whenever you like.</p>
+                                <p>Features dont have to be Yes/No boolean values with remote config. You can specify String, number or boolean values and override them whenever you like.</p>
 
                                 <div className="text-center">
-                                    <a target="_blank" href="https://docs.bullet-train.io/managing-features/">
-                                        <Button>Learn more</Button>
+                                    <a href="https://docs.bullet-train.io/managing-features/">
+                                        <Button>Remote Config</Button>
                                     </a>
                                 </div>
 
@@ -144,8 +144,8 @@ export default class FeaturessExampleView extends Component {
                             <div className="col-md-4">
                                 <h2 className="mb-4">User Traits</h2>
                                 <p>Store traits against your users without modifying your back-end.</p>
-                                <a target="_blank" href="https://docs.bullet-train.io/managing-identities/#identity-traits">
-                                    <Button className="mb-5">Learn more</Button>
+                                <a href="https://docs.bullet-train.io/managing-identities/#identity-traits">
+                                    <Button className="mb-5">User Traits</Button>
                                 </a>
                             </div>
                             <div className="col-md-1 offset-md-2 hidden-sm-down">

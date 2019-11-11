@@ -111,7 +111,6 @@ Project Settings
                                     </Link>
                                 )}
                                 <a
-                                  target="blank"
                                   className="link--footer"
                                   href="https://docs.bullet-train.io"
                                 >

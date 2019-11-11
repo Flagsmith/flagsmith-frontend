@@ -181,7 +181,6 @@ const OrganisationSettingsPage = class extends Component {
                                                       }}
                                                       className="btn btn-primary text-center ml-2"
                                                       href="https://bullettrain.chargebeeportal.com"
-                                                      target="_blank"
                                                     >
                                                         Manage Subscription
                                                     </a>
@@ -235,7 +234,7 @@ const OrganisationSettingsPage = class extends Component {
                                                         {` seat${organisation.num_seats === 1 ? '' : 's'}.`}
                                                     </p>
                                                 )}
-                                                <p><a className="text__link" target="_blank" href="https://docs.bullet-train.io/system-administration/">Learn about User Roles</a></p>
+                                                <p><a className="text__link" href="https://docs.bullet-train.io/system-administration/">Learn about User Roles</a></p>
                                             </div>
                                             <div className="panel--grey">
                                                 {isLoading && <div className="centered-container"><Loader/></div>}

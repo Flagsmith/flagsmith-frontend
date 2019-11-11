@@ -14,7 +14,7 @@ module.exports = {
         testHelpers.login(browser, url, email, password);
     },
     '[Invite Tests] - Create organisation': function (browser) {
-        browser.expect.element('#create-org-page').to.be.visible;
+        browser.waitForElementVisible('#create-org-page');
 
         browser
             .waitForElementVisible('[name="orgName"]')
@@ -84,7 +84,7 @@ module.exports = {
                 testHelpers.logout(browser);
                 testHelpers.login(browser, url, inviteEmail, 'nightwatch');
 
-                browser.expect.element('#org-menu').to.be.visible;
+                browser.waitForElementVisible('#org-menu');
                 browser.url(inviteUrl);
                 browser
                     .useXpath()
@@ -113,7 +113,7 @@ module.exports = {
             .setValue('[name="confirm-org-name"]', `Nightwatch Org${append}`)
             .click('#confirm-del-org-btn');
 
-        browser.expect.element('#project-select-page').to.be.visible;
+        browser.waitForElementVisible('#project-select-page');
         browser.end();
     },
 };

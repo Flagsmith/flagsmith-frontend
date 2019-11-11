@@ -18,7 +18,7 @@ const Footer = class extends React.Component {
                           <img src="/images/bullet-train-1.svg" width={166} alt="Bullet Train Logo"
 className="img-responsive"/>
                           <div className="service-status">
-                              <a href="https://status.bullet-train.io/" target="_blank">
+                              <a href="https://status.bullet-train.io/">
                                   {this.state.operational
                                       ? (
                                           <div>
@@ -42,12 +42,12 @@ className="img-responsive"/>
 
                           <ul className="list-inline">
                               <li className="list-inline-item">
-                                  <a href="https://github.com/SolidStateGroup?utf8=%E2%9C%93&q=bullet+train" target="_blank" title="GitHub">
+                                  <a href="https://github.com/SolidStateGroup?utf8=%E2%9C%93&q=bullet+train" title="GitHub">
                                       <span className="icon ion-logo-github"/>
                                   </a>
                               </li>
                               <li className="list-inline-item">
-                                  <a href="https://twitter.com/GetBulletTrain" target="_blank" title="Twitter">
+                                  <a href="https://twitter.com/GetBulletTrain" title="Twitter">
                                       <span className="pl-4 icon ion-logo-twitter"/>
                                   </a>
                               </li>
@@ -65,7 +65,7 @@ className="img-responsive"/>
                           <h6>Support</h6>
                           <ul className=" float-left nav-list">
                               <li><a href="mailto:support@bullet-train.io">Contact Us</a></li>
-                              <li><a href="https://status.bullet-train.io/" target="_blank">Status</a></li>
+                              <li><a href="https://status.bullet-train.io/">Status</a></li>
                               <li><Link to="/blog/remote-config-and-feature-flags">What are feature flags?</Link></li>
                               <li><Link to="/blog/remote-config-and-feature-flags">What is remote config?</Link></li>
                           </ul>
@@ -73,9 +73,9 @@ className="img-responsive"/>
                       <div className="col-md-2">
                           <h6>Company</h6>
                           <ul className=" float-left nav-list">
-                              <li><Link to="/legal/tos" target="_blank">Terms of Service</Link></li>
-                              <li><Link to="/legal/privacy-policy" target="_blank">Privacy Policy</Link></li>
-                              <li><Link to="/legal/sla" target="_blank">Service Level Agreement</Link></li>
+                              <li><Link to="/legal/tos">Terms of Service</Link></li>
+                              <li><Link to="/legal/privacy-policy">Privacy Policy</Link></li>
+                              <li><Link to="/legal/sla">Service Level Agreement</Link></li>
                           </ul>
                       </div>
                   </div>

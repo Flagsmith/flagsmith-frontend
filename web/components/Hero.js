@@ -47,7 +47,6 @@ across web, mobile and
                                 {' '}
                                 <a
                                   className="link" href="https://github.com/SolidStateGroup?utf8=%E2%9C%93&q=bullet-train"
-                                  target="_blank"
                                 >
 100% Open Source
                                 </a>

@@ -152,15 +152,14 @@ const HomePage = class extends React.Component {
                                         <div className="col-md-4">
                                             <div className="card card--feature">
                                                 <span className="card__icon ion-ios-switch mb-3"/>
-                                                <h5 className="card__title">Feature Flags</h5>
-                                                <p className="card__paragraph-text mb-5">Ship features remotely across
+                                                <h5 className="card__title">Feature Flag Management</h5>
+                                                <p className="card__paragraph-text">Ship features remotely across
                                                     multiple environments. Deliver true Continuous Integration.
                                                 </p>
                                                 <a
                                                   className="card__link"
                                                   href="https://docs.bullet-train.io/managing-features/"
-                                                  target="_blank"
-                                                >Learn more <span
+                                                >Feature flags<span
                                                   className="pl-2 ion-md-arrow-dropright"
                                                 />
                                                 </a>
@@ -169,16 +168,15 @@ const HomePage = class extends React.Component {
                                         <div className="col-md-4">
                                             <div className="card card--feature">
                                                 <span className="card__icon ion-ios-options mb-3"/>
-                                                <h5 className="card__title">Remote Config</h5>
-                                                <p className="card__paragraph-text mb-5"> Change the behaviour,
+                                                <h5 className="card__title">Customise Features</h5>
+                                                <p className="card__paragraph-text"> Change the behaviour,
                                                     appearance and configuration of your app without needing to
                                                     deploy.
                                                 </p>
                                                 <a
                                                   className="card__link"
                                                   href="https://docs.bullet-train.io/managing-features/"
-                                                  target="_blank"
-                                                >Learn more <span
+                                                >Remote config <span
                                                   className="pl-2 ion-md-arrow-dropright"
                                                 />
                                                 </a>
@@ -188,14 +186,13 @@ const HomePage = class extends React.Component {
                                             <div className="card card--feature">
                                                 <span className="card__icon ion-ios-person mb-3"/>
                                                 <h5 className="card__title">User Traits</h5>
-                                                <p className="card__paragraph-text mb-5">Store traits against your users
-                                                    without modifying your back-end.
+                                                <p className="card__paragraph-text">Store traits against your users
+                                                    without modifying your back-end and target features specifically for them.
                                                 </p>
                                                 <a
                                                   className="card__link"
                                                   href="https://docs.bullet-train.io/managing-identities/#identity-traits"
-                                                  target="_blank"
-                                                >Learn more <span
+                                                >User Traits <span
                                                   className="pl-2 ion-md-arrow-dropright"
                                                 />
                                                 </a>
@@ -206,15 +203,14 @@ const HomePage = class extends React.Component {
                                         <div className="col-md-4">
                                             <div className="card card--feature">
                                                 <span className="card__icon ion-md-contacts mb-3"/>
-                                                <h5 className="card__title">Segment Users</h5>
-                                                <p className="card__paragraph-text mb-5">Create detailed user segments
+                                                <h5 className="card__title">Create User Segements</h5>
+                                                <p className="card__paragraph-text">Create detailed user segments
                                                     based on their traits, then target features based on the segment.
                                                 </p>
                                                 <a
                                                   className="card__link"
                                                   href="https://docs.bullet-train.io/managing-segments/"
-                                                  target="_blank"
-                                                >Learn more <span
+                                                >User Segments <span
                                                   className="pl-2 ion-md-arrow-dropright"
                                                 />
                                                 </a>
@@ -224,14 +220,13 @@ const HomePage = class extends React.Component {
                                             <div className="card card--feature">
                                                 <span className="card__icon ion-ios-browsers mb-3"/>
                                                 <h5 className="card__title">Staged Feature Rollouts</h5>
-                                                <p className="card__paragraph-text mb-5">Deploy features to 1% of your user base.
+                                                <p className="card__paragraph-text">Deploy features to 1% of your user base.
                                                 All good? Roll out to everybody.
                                                 </p>
                                                 <a
                                                   className="card__link"
                                                   href="https://docs.bullet-train.io/staged-feature-rollouts/"
-                                                  target="_blank"
-                                                >Learn more <span
+                                                >A/B Deployments<span
                                                   className="pl-2 ion-md-arrow-dropright"
                                                 />
                                                 </a>
@@ -241,14 +236,13 @@ const HomePage = class extends React.Component {
                                             <div className="card card--feature">
                                                 <span className="card__icon ion-md-done-all mb-3"/>
                                                 <h5 className="card__title">Track Changes</h5>
-                                                <p className="card__paragraph-text mb-5">Audit changes &amp;
+                                                <p className="card__paragraph-text">Audit changes &amp;
                                                     rollback any mistakes or issues.
                                                 </p>
                                                 <a
                                                   className="card__link"
                                                   href="https://docs.bullet-train.io/audit-logs/"
-                                                  target="_blank"
-                                                >Learn more <span
+                                                >Feature Audit<span
                                                   className="pl-2 ion-md-arrow-dropright"
                                                 />
                                                 </a>
@@ -291,7 +285,8 @@ const HomePage = class extends React.Component {
                                                             {error.email}
                                                         </span>
                                                     ) : null}
-                                                    <Input
+                                                    <InputGroup
+                                                      title="Email address"
                                                       data-test="email"
                                                       inputProps={{
                                                           name: 'email',
@@ -302,7 +297,6 @@ const HomePage = class extends React.Component {
                                                           this.setState({ email: Utils.safeParseEventValue(e) });
                                                       }}
                                                       className="input-default full-width"
-                                                      placeholder="Email"
                                                       type="text"
                                                       name="email" id="email"
                                                     />
@@ -314,7 +308,8 @@ const HomePage = class extends React.Component {
                                                             {error.password1}
                                                         </span>
                                                     ) : null}
-                                                    <Input
+                                                    <InputGroup
+                                                      title="Password"
                                                       inputProps={{
                                                           name: 'password',
                                                           className: 'full-width',
@@ -402,7 +397,8 @@ Not got
                                                 )
                                             }
                                             <fieldset id="details" className="col-lg-6 offset-lg-3">
-                                                <Input
+                                                <InputGroup
+                                                  title="First Name"
                                                   data-test="firstName"
                                                   inputProps={{
                                                       name: 'firstName',
@@ -413,11 +409,11 @@ Not got
                                                       this.setState({ first_name: Utils.safeParseEventValue(e) });
                                                   }}
                                                   className="input-default full-width"
-                                                  placeholder="First name"
                                                   type="text"
                                                   name="firstName" id="firstName"
                                                 />
-                                                <Input
+                                                <InputGroup
+                                                  title="Last Name"
                                                   data-test="lastName"
                                                   inputProps={{
                                                       name: 'lastName',
@@ -433,14 +429,13 @@ Not got
                                                   name="lastName" id="lastName"
                                                 />
                                                 {!isInvite && (
-                                                    <Input
+                                                    <InputGroup
+                                                      title="Organisation name"
                                                       data-test="companyName"
                                                       inputProps={{
                                                           name: 'companyName',
                                                           className: 'full-width',
                                                       }}
-                                                      placeholder="Organisation name"
-
                                                       onChange={(e) => {
                                                           this.setState({ organisation_name: Utils.safeParseEventValue(e) });
                                                       }}
@@ -458,20 +453,21 @@ Not got
                                                         {error.email}
                                                     </span>
                                                 ) : null}
-                                                <Input
+                                                <InputGroup
+                                                  title="Email address"
                                                   data-test="email"
                                                   inputProps={{
                                                       name: 'email',
                                                       className: 'full-width',
                                                       error: error && error.email,
                                                   }}
-                                                  placeholder="Email Address"
                                                   onChange={(e) => {
                                                       this.setState({ email: Utils.safeParseEventValue(e) });
                                                   }}
                                                   className="input-default full-width"
-                                                  type="text"
-                                                  name="email" id="email"
+                                                  type="email"
+                                                  name="email"
+                                                  id="email"
                                                 />
 
                                                 {error && error.password1 ? (
@@ -482,14 +478,14 @@ Not got
                                                         {error.password1}
                                                     </span>
                                                 ) : null}
-                                                <Input
+                                                <InputGroup
+                                                  title="Password"
                                                   data-test="password"
                                                   inputProps={{
                                                       name: 'password',
                                                       className: 'full-width',
                                                       error: error && error.password1,
                                                   }}
-                                                  placeholder="Password"
                                                   onChange={(e) => {
                                                       this.setState({ password: Utils.safeParseEventValue(e) });
                                                   }}
