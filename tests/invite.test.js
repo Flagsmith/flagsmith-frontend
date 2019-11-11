@@ -31,7 +31,7 @@ module.exports = {
             .setValue('[name="projectName"]', 'My Test Project')
             .click(byId('create-project-btn'));
 
-        browser.expect.element(byId('features-page')).to.be.visible;
+        browser.waitForElementVisible('features-page');
     },
     '[Invite Tests] - Invite user': function (browser) {
         browser.pause(200);
