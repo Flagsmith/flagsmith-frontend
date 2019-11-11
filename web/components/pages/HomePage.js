@@ -465,7 +465,7 @@ Not got
                                                       this.setState({ email: Utils.safeParseEventValue(e) });
                                                   }}
                                                   className="input-default full-width"
-                                                  type="email"
+                                                  type="text"
                                                   name="email"
                                                   id="email"
                                                 />
