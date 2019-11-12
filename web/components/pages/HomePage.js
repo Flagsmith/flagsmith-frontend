@@ -319,7 +319,6 @@ const HomePage = class extends React.Component {
                                                           this.setState({ password: Utils.safeParseEventValue(e) });
                                                       }}
                                                       className="input-default full-width"
-                                                      placeholder="Password"
                                                       type="password"
                                                       name="password"
                                                       data-test="password"
@@ -420,7 +419,6 @@ Not got
                                                       className: 'full-width',
                                                       error: error && error.last_name,
                                                   }}
-                                                  placeholder="Last Name"
                                                   onChange={(e) => {
                                                       this.setState({ last_name: Utils.safeParseEventValue(e) });
                                                   }}
