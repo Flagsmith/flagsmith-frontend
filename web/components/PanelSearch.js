@@ -34,7 +34,7 @@ const PanelSearch = class extends Component {
         const { search } = this.state;
         const { title, items, renderRow, renderNoResults, paging, goToPage, isLoading } = this.props;
         const filteredItems = this.filter(items);
-        return (
+        return (!search && (!filteredItems || !filteredItems.length)) && !this.props.renderSearchWithNoResults ? renderNoResults : (
             <Panel
               className={this.props.className}
               title={this.props.title}
@@ -65,12 +65,12 @@ const PanelSearch = class extends Component {
                                 <div>
                                     {'No results '}
                                     {search && (
-                                    <span>
+                                        <span>
 for
-                                        <strong>
-                                            {` "${search}"`}
-                                        </strong>
-                                    </span>
+                                            <strong>
+                                                {` "${search}"`}
+                                            </strong>
+                                        </span>
                                     )}
                                 </div>
                             </Column>
