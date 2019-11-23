@@ -67,9 +67,9 @@ if (E2E) {
     document.body.classList.add('disable-transitions');
 }
 
-if (!E2E) {
-    window.intercomSettings = {
-        app_id: 'zh7jljcl',
-    };
-    (function () { const w = window; const ic = w.Intercom; if (typeof ic === 'function') { ic('reattach_activator'); ic('update', w.intercomSettings); } else { const d = document; var i = function () { i.c(arguments); }; i.q = []; i.c = function (args) { i.q.push(args); }; w.Intercom = i; const l = function () { const s = d.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = 'https://widget.intercom.io/widget/zh7jljcl'; const x = d.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x); }; if (w.attachEvent) { w.attachEvent('onload', l); } else { w.addEventListener('load', l, false); } } }());
+if (!E2E && Project.freshChat) {
+    function initFreshChat() {
+        window.fcWidget.init(Project.freshChat);
+    }
+    function initialize(i, t) { let e; i.getElementById(t) ? initFreshChat() : ((e = i.createElement('script')).id = t, e.async = !0, e.src = 'https://wchat.freshchat.com/js/widget.js', e.onload = initFreshChat, i.head.appendChild(e)); } function initiateCall() { initialize(document, 'freshchat-js-sdk'); }window.addEventListener ? window.addEventListener('load', initiateCall, !1) : window.attachEvent('load', initiateCall, !1);
 }

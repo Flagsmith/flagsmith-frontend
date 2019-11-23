@@ -9,6 +9,10 @@ module.exports = global.Project = {
         email: 'kyle+bullet-train@solidstategroup.com',
         password: 'demo_account',
     },
+    freshChat: {
+        token: '5a71b820-b007-4bc4-86f6-4145411604c2',
+        host: 'https://wchat.freshchat.com',
+    },
     chargebee: {
         site: 'bullettrain',
     },
