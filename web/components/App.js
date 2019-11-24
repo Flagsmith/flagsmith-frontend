@@ -153,29 +153,23 @@ Click here to Sign
                                                         <span className="icon ion-md-menu"/>
                                                     </div>
                                                     )}
-                                                    {!projectId && (
-                                                    <Link
-                                                      to={user ? '/projects' : '/'}
-                                                      className="nav-item nav-item-brand nav-link"
-                                                    >
-                                                        {isLegal ? null : (
-                                                            <Row>
-                                                                {isHomepage || isDark ? (
+                                                    {!projectId && (isLegal ? null : (
+                                                        <a href={user ? '/projects' : 'https://bullet-train.io'}>
+                                                            {isHomepage || isDark ? (
+                                                                <img
+                                                                  title="Bullet Train" height={24}
+                                                                  src="/images/bullet-train-1.svg"
+                                                                  className="brand" alt="Bullet Train logo"
+                                                                />)
+                                                                : (
                                                                     <img
                                                                       title="Bullet Train" height={24}
-                                                                      src="/images/bullet-train-1.svg"
+                                                                      src="/images/bullet-train-black.svg"
                                                                       className="brand" alt="Bullet Train logo"
-                                                                    />)
-                                                                    : (
-                                                                        <img
-                                                                          title="Bullet Train" height={24}
-                                                                          src="/images/bullet-train-black.svg"
-                                                                          className="brand" alt="Bullet Train logo"
-                                                                        />
-                                                                    ) }
-                                                            </Row>
-                                                        )}
-                                                    </Link>
+                                                                    />
+                                                                ) }
+                                                        </a>
+                                                    )
                                                     )}
                                                 </div>
                                             </div>
@@ -228,9 +222,7 @@ Logout
                                                         </Popover>
                                                     </div>
                                                 ) : (
-                                                    <div>
-
-                                                    </div>
+                                                    <div />
                                                 )}
 
                                             </div>
