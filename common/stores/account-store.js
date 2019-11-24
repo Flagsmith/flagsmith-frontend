@@ -74,7 +74,7 @@ const controller = {
     },
     onLogin: (skipCaching) => {
         if (!skipCaching) {
-            AsyncStorage.setItem('t', data.token);
+            require('js-cookie').set('t', data.token);
         }
         return controller.getOrganisations();
     },
@@ -137,6 +137,7 @@ const controller = {
             store.loaded();
         } else if (!user) {
             AsyncStorage.clear();
+            require('js-cookie').set('t', '');
             data.setToken(null);
             store.isDemo = false;
             store.model = user;

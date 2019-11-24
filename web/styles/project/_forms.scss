@@ -52,6 +52,16 @@
 }
 
 .homepage{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    .sign-up {
+        padding-top: 20px;
+        height: 100%;
+    }
     .input-container{
         background-color:transparent;
         margin-bottom:20px;
