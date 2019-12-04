@@ -6,7 +6,7 @@
 
 The frontend application for [https://bullet-train.io/](https://www.bullet-train.io/). Bullet Train allows you to manage feature flags and remote config across multiple projects, environments and organisations.
 
-This project connects to the [Bullet Train API](https://github.com/SolidStateGroup/Bullet-Train-API).
+This project connects to the [Bullet Train API](https://github.com/BulletTrainHQ/Bullet-Train-API).
 
 ## Getting Started
 
@@ -80,6 +80,6 @@ If you have any questions about our projects you can email <a href="mailto:proje
 
 [Documentation](https://docs.bullet-train.io/)
 
-[Code Examples](https://github.com/SolidStateGroup/bullet-train-docs)
+[Code Examples](https://github.com/BulletTrainHQ/bullet-train-docs)
 
 [Youtube Tutorials](https://www.youtube.com/channel/UCki7GZrOdZZcsV9rAIRchCw)

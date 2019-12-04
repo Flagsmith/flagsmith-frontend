@@ -42,7 +42,7 @@ className="img-responsive"/>
 
                           <ul className="list-inline">
                               <li className="list-inline-item">
-                                  <a href="https://github.com/SolidStateGroup?utf8=%E2%9C%93&q=bullet+train" title="GitHub">
+                                  <a href="https://github.com/BulletTrainHQ" title="GitHub">
                                       <span className="icon ion-logo-github"/>
                                   </a>
                               </li>
