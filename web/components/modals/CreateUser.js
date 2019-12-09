@@ -44,10 +44,10 @@ const CreateUser = class extends Component {
 
     submit = () => {
         const value = this.state.value;
-        data.post(''.concat(Project.api, 'environments/').concat(this.props.environmentId, '/identities/'), {
+        Promise.all(value.map(v => data.post(''.concat(Project.api, 'environments/').concat(this.props.environmentId, '/identities/'), {
             environment: this.props.environmentId,
-            identifier: value[0],
-        }).then(() => {
+            identifier: v,
+        }))).then(() => {
             closeModal();
             AppActions.getIdentities(this.props.environmentId);
         });

@@ -36,8 +36,10 @@ export default class ChipInput extends PureComponent {
   }
 
   onSubmit = (chip, index) => {
-      this.state.chips.push(chip);
-      this.onChange(this.state.chips);
+      if (chip) {
+          this.state.chips.push(chip);
+          this.onChange(this.state.chips);
+      }
   }
 
   render() {
@@ -51,7 +53,7 @@ export default class ChipInput extends PureComponent {
             value={this.state.chips}
             inputValue={this.state.inputValue}
             onDelete={this.onDelete}
-            onSubmit={this.onSubmit}
+            onBeforeAdd={this.onSubmit}
             onChange={this.onChange}
           />
       );
