@@ -41,7 +41,7 @@ const FeaturesPage = class extends Component {
           router={this.context.router}
           environmentId={this.props.match.params.environmentId}
           projectId={this.props.match.params.projectId}
-        />);
+        />, null, { className: 'alert fade expand' });
     };
 
 
@@ -91,7 +91,9 @@ const FeaturesPage = class extends Component {
 
     onError = (error) => {
         // Kick user back out to projects
-        this.context.router.history.replace('/projects');
+        this.setState({ error });
+        closeModal();
+        toast('We could not create this feature, please check the name is not in use.');
     }
 
     render() {
@@ -153,59 +155,59 @@ const FeaturesPage = class extends Component {
                                                   renderRow={(projectFlag, i) => {
                                                       const { name, id, enabled, created_date, type } = projectFlag;
                                                       return (
-                                                        <Row
-                                                          className="list-item clickable" key={id} space
-                                                          data-test={`feature-item-${i}`}
-                                                        >
-                                                            <div
-                                                              className="flex flex-1"
-                                                              onClick={() => this.editFlag(projectFlag, environmentFlags[id])}
-                                                            >
-                                                                <Row>
-                                                                    <a href="#">
-                                                                        {name}
-                                                                    </a>
-                                                                    <Column/>
-                                                                </Row>
-                                                                <div className="list-item-footer faint">
+                                                          <Row
+                                                            className="list-item clickable" key={id} space
+                                                            data-test={`feature-item-${i}`}
+                                                          >
+                                                              <div
+                                                                className="flex flex-1"
+                                                                onClick={() => this.editFlag(projectFlag, environmentFlags[id])}
+                                                              >
+                                                                  <Row>
+                                                                      <a href="#">
+                                                                          {name}
+                                                                      </a>
+                                                                      <Column/>
+                                                                  </Row>
+                                                                  <div className="list-item-footer faint">
                                                                     Created
-                                                                    {' '}
-                                                                    {moment(created_date).format('DD/MMM/YYYY')}
-                                                                </div>
-                                                            </div>
-                                                            <Row>
+                                                                      {' '}
+                                                                      {moment(created_date).format('DD/MMM/YYYY')}
+                                                                  </div>
+                                                              </div>
+                                                              <Row>
 
-                                                                <Column>
-                                                                    {type == 'FLAG' ? (
-                                                                      <Switch
-                                                                        data-test={`feature-switch-${i}${environmentFlags[id] && environmentFlags[id].enabled ? '-on' : '-off'}`}
-                                                                        checked={environmentFlags[id] && environmentFlags[id].enabled}
-                                                                        onChange={() => this.confirmToggle(projectFlag, environmentFlags[id], (environments) => {
-                                                                            toggleFlag(_.findIndex(projectFlags, {id}), environments);
+                                                                  <Column>
+                                                                      {type == 'FLAG' ? (
+                                                                          <Switch
+                                                                            data-test={`feature-switch-${i}${environmentFlags[id] && environmentFlags[id].enabled ? '-on' : '-off'}`}
+                                                                            checked={environmentFlags[id] && environmentFlags[id].enabled}
+                                                                            onChange={() => this.confirmToggle(projectFlag, environmentFlags[id], (environments) => {
+                                                                                toggleFlag(_.findIndex(projectFlags, { id }), environments);
+                                                                            })}
+                                                                          />
+                                                                      ) : (
+                                                                          <FeatureValue
+                                                                            onClick={() => this.editFlag(projectFlag, environmentFlags[id])}
+                                                                            value={environmentFlags[id] && environmentFlags[id].feature_state_value}
+                                                                            data-test={`feature-value-${i}`}
+                                                                          />
+                                                                      )}
+                                                                  </Column>
+                                                                  <Column>
+                                                                      <button
+                                                                        id="remove-feature"
+                                                                        onClick={() => this.confirmRemove(projectFlag, () => {
+                                                                            removeFlag(this.props.match.params.projectId, projectFlag);
                                                                         })}
-                                                                      />
-                                                                    ) : (
-                                                                      <FeatureValue
-                                                                        onClick={() => this.editFlag(projectFlag, environmentFlags[id])}
-                                                                        value={environmentFlags[id] && environmentFlags[id].feature_state_value}
-                                                                        data-test={`feature-value-${i}`}
-                                                                      />
-                                                                    )}
-                                                                </Column>
-                                                                <Column>
-                                                                    <button
-                                                                      id="remove-feature"
-                                                                      onClick={() => this.confirmRemove(projectFlag, () => {
-                                                                          removeFlag(this.props.match.params.projectId, projectFlag);
-                                                                      })}
-                                                                      className="btn btn--with-icon"
-                                                                      data-test={`remove-feature-btn-${i}`}
-                                                                    >
-                                                                        <RemoveIcon/>
-                                                                    </button>
-                                                                </Column>
-                                                            </Row>
-                                                        </Row>
+                                                                        className="btn btn--with-icon"
+                                                                        data-test={`remove-feature-btn-${i}`}
+                                                                      >
+                                                                          <RemoveIcon/>
+                                                                      </button>
+                                                                  </Column>
+                                                              </Row>
+                                                          </Row>
                                                       );
                                                   }}
                                                   renderNoResults={(
