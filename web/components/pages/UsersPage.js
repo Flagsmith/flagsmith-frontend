@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import EditIdentityModal from './UserPage';
+import CreateUserModal from '../modals/CreateUser';
 
 const UsersPage = class extends Component {
     static displayName = 'UsersPage'
@@ -40,6 +41,12 @@ const UsersPage = class extends Component {
         );
     }
 
+    newUser = () => {
+        openModal('New Users', <CreateUserModal
+          environmentId={this.props.match.params.environmentId}
+        />, null, { className: 'alert fade expand' });
+    }
+
     render() {
         const { projectId, environmentId } = this.props.match.params;
         const { hasFeature, getValue } = this.props;
@@ -48,12 +55,20 @@ const UsersPage = class extends Component {
 
                 <div>
                     <div>
-                        <h3>Users</h3>
-                        <p>
-                            View and manage features states for individual users. This will override individual default
-                            feature
-                            settings for your selected environment.
-                        </p>
+                        <Row>
+                            <Flex>
+                                <h3>Users</h3>
+                                <p>
+                                    View and manage features states for individual users. This will override individual default
+                                    feature
+                                    settings for your selected environment.
+                                </p>
+                            </Flex>
+                            <Button data-test="show-create-feature-btn" id="show-create-feature-btn" onClick={this.newUser}>
+                                Create Users
+                            </Button>
+                        </Row>
+
                         <FormGroup>
                             <IdentityListProvider>
                                 {({ isLoading, identities, identitiesPaging }) => (
