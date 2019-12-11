@@ -129,7 +129,7 @@ const UserPage = class extends Component {
                                                             data-test={`user-feature-${i}`}
                                                           >
                                                               <div
-                                                                onClick={() => this.editFlag(projectFlags[i], environmentFlags[id], identityFlag)}
+                                                                onClick={() => this.editFlag(_.find(projectFlags, { id }), environmentFlags[id], identityFlag)}
                                                                 className="flex flex-1"
                                                               >
                                                                   <Row>
@@ -162,7 +162,7 @@ const UserPage = class extends Component {
                                                                           <Switch
                                                                             data-test={`user-feature-switch-${i}${(identityFlags[id] ? identityFlags[id].enabled : environmentFlags[id].enabled) ? '-on' : '-off'}`}
                                                                             checked={identityFlags[id] ? identityFlags[id].enabled : environmentFlags[id].enabled}
-                                                                            onChange={() => this.confirmToggle(projectFlags[i], environmentFlags[id], (environments) => {
+                                                                            onChange={() => this.confirmToggle(_.find(projectFlags, { id }), environmentFlags[id], (environments) => {
                                                                                 toggleFlag({
                                                                                     environmentId: this.props.match.params.environmentId,
                                                                                     identity: this.props.match.params.id,
@@ -183,7 +183,7 @@ const UserPage = class extends Component {
                                                                   {featureIsDifferent && (
                                                                   <Column>
                                                                       <Button
-                                                                        onClick={() => this.confirmRemove(projectFlags[i], () => {
+                                                                        onClick={() => this.confirmRemove(_.find(projectFlags, { id }), () => {
                                                                             removeFlag({
                                                                                 environmentId: this.props.match.params.environmentId,
                                                                                 identity: this.props.match.params.id,
