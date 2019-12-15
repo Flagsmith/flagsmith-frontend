@@ -1,7 +1,7 @@
 /* eslint-disable func-names */
 const email = 'nightwatch@solidstategroup.com';
 const password = 'nightwatch';
-const url = `http://localhost:${process.env.PORT || 8080}`;
+const url = `http://localhost:${process.env.PORT || 8080}/signup`;
 const helpers = require('./helpers');
 
 const byId = helpers.byTestID;
