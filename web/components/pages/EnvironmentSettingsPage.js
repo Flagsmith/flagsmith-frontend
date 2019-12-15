@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import ConfirmRemoveEnvironment from '../modals/ConfirmRemoveEnvironment';
 import ProjectStore from '../../../common/stores/project-store';
+import ConfigProvider from '../../../common/providers/ConfigProvider';
+import withWebhooks from '../../../common/providers/withWebhooks';
+import CreateWebhookModal from '../modals/CreateWebhook';
+import ConfirmRemoveWebhook from '../modals/ConfirmRemoveWebhook';
 
 const EnvironmentSettingsPage = class extends Component {
     static displayName = 'EnvironmentSettingsPage'
@@ -17,6 +21,9 @@ const EnvironmentSettingsPage = class extends Component {
 
     componentDidMount = () => {
         API.trackPage(Constants.pages.ENVIRONMENT_SETTINGS);
+        if (this.props.hasFeature('webhooks')) {
+            this.props.getWebhooks();
+        }
     };
 
     onSave = () => {
@@ -47,21 +54,19 @@ const EnvironmentSettingsPage = class extends Component {
 
     saveEnv = (e) => {
         e.preventDefault();
-        const { name, webhooks_enabled, webhook_url } = this.state;
-        if (ProjectStore.isSaving || (!name && webhooks_enabled === undefined && webhook_url === undefined)) {
+        const { name } = this.state;
+        if (ProjectStore.isSaving || (!name)) {
             return;
         }
         const env = _.find(ProjectStore.getEnvs(), { api_key: this.props.match.params.environmentId });
         AppActions.editEnv(Object.assign({}, env, {
             name: name || env.name,
-            webhook_url: webhook_url !== undefined ? webhook_url : env.webhook_url,
-            webhooks_enabled: webhooks_enabled !== undefined ? webhooks_enabled : env.webhooks_enabled,
         }));
     }
 
     saveDisabled = () => {
-        const { name, webhooks_enabled, webhook_url } = this.state;
-        if (ProjectStore.isSaving || (!name && webhooks_enabled === undefined && webhook_url === undefined)) {
+        const { name } = this.state;
+        if (ProjectStore.isSaving || (!name)) {
             return true;
         }
 
@@ -72,16 +77,41 @@ const EnvironmentSettingsPage = class extends Component {
             return true;
         }
 
-        // Must have webhook URL if webhooks is enabled
-        if ((webhooks_enabled !== undefined && webhooks_enabled) && (webhook_url === undefined ? !env.webhook_url : !webhook_url || !Utils.isValidURL(webhook_url))) {
-            return true;
-        }
-
         return false;
     }
 
+    createWebhook = () => {
+        openModal('New Webhook', <CreateWebhookModal
+          router={this.context.router}
+          environmentId={this.props.match.params.environmentId}
+          projectId={this.props.match.params.projectId}
+          save={this.props.createWebhook}
+        />, null, { className: 'alert fade expand' });
+    };
+
+
+    editWebhook = (webhook) => {
+        openModal('Edit Webhook', <CreateWebhookModal
+          router={this.context.router}
+          webhook={webhook}
+          isEdit
+          environmentId={this.props.match.params.environmentId}
+          projectId={this.props.match.params.projectId}
+          save={this.props.saveWebhook}
+        />, null, { className: 'alert fade expand' });
+    };
+
+    deleteWebhook = (webhook) => {
+        openModal('Remove Webhook', <ConfirmRemoveWebhook
+          environmentId={this.props.match.params.environmentId}
+          projectId={this.props.match.params.projectId}
+          url={webhook.url}
+          cb={() => this.props.deleteWebhook(webhook)}
+        />);
+    };
+
     render() {
-        const { name, webhook_url, webhooks_enabled } = this.state;
+        const { props: { webhooks, webhooksLoading }, state: { name } } = this;
         return (
             <div className="app-container container">
                 <ProjectProvider
@@ -134,6 +164,86 @@ const EnvironmentSettingsPage = class extends Component {
                                                 </Row>
                                             </FormGroup>
                                         </div>
+                                            {this.props.hasFeature('webhooks') && (
+                                                <FormGroup className="m-y-3">
+                                                    <Row className="mb-3" space>
+                                                        <h3 className="m-b-0">Webhooks</h3>
+                                                        <Button onClick={this.createWebhook}>
+                                                        Create webhook
+                                                        </Button>
+                                                    </Row>
+                                                    {webhooksLoading && !webhooks ? (
+                                                        <Loader/>
+                                                    ) : (
+                                                        <PanelSearch
+                                                          id="webhook-list"
+                                                          title={(
+                                                              <Tooltip
+                                                                title={<h6 className="mb-0">Webhooks <span className="icon ion-ios-information-circle"/></h6>}
+                                                                place="right"
+                                                              >
+                                                                  {Constants.strings.WEBHOOKS_DESCRIPTION}
+                                                              </Tooltip>
+                                                    )}
+                                                          className="no-pad"
+                                                          icon="ion-md-cloud"
+                                                          items={webhooks}
+                                                          renderRow={webhook => (
+                                                              <Row
+                                                                onClick={() => {
+                                                                    this.editWebhook(webhook);
+                                                                }} space className="list-item clickable cursor-pointer"
+                                                                key={webhook.id}
+                                                              >
+                                                                  <Flex>
+                                                                      <a href="#">
+                                                                          {webhook.url}
+                                                                      </a>
+                                                                      <div className="list-item-footer faint">
+                                                                          Created
+                                                                          {' '}
+                                                                          {moment(webhook.created_date).format('DD/MMM/YYYY')}
+                                                                      </div>
+                                                                  </Flex>
+                                                                  <Row>
+                                                                      <Switch checked={webhook.enabled}/>
+                                                                      <button
+                                                                        id="delete-invite"
+                                                                        type="button"
+                                                                        onClick={(e) => {
+                                                                            e.stopPropagation();
+                                                                            e.preventDefault();
+                                                                            this.deleteWebhook(webhook);
+                                                                        }}
+                                                                        className="btn btn--with-icon ml-auto btn--remove"
+                                                                      >
+                                                                          <RemoveIcon/>
+                                                                      </button>
+                                                                  </Row>
+                                                              </Row>
+                                                          )}
+                                                          renderNoResults={(
+                                                              <Panel
+                                                                id="users-list"
+                                                                icon="ion-md-cloud"
+                                                                title={(
+                                                                    <Tooltip
+                                                                      title={<h6 className="mb-0">Webhooks <span className="icon ion-ios-information-circle"/></h6>}
+                                                                      place="right"
+                                                                    >
+                                                                        {Constants.strings.WEBHOOKS_DESCRIPTION}
+                                                                    </Tooltip>
+                                                        )}
+                                                              >
+                                                          You currently have no webhooks configured for this environment.
+                                                              </Panel>
+                                                    )}
+                                                          isLoading={this.props.webhookLoading}
+                                                        />
+                                                    )}
+                                                </FormGroup>
+                                            )}
+
                                         <FormGroup className="m-y-3">
                                             <Row>
                                                 <Column className="d-flex">
@@ -169,4 +279,4 @@ const EnvironmentSettingsPage = class extends Component {
 
 EnvironmentSettingsPage.propTypes = {};
 
-module.exports = EnvironmentSettingsPage;
+module.exports = ConfigProvider(withWebhooks(EnvironmentSettingsPage));
