@@ -25,18 +25,6 @@ const HomePage = class extends React.Component {
 
         API.trackPage(Constants.pages.HOME);
 
-        $(window).scroll(() => {
-            const scroll = $(window).scrollTop();
-
-            // >=, not <=
-            if (scroll >= 75) {
-                // clearHeader, not clearheader - caps H
-                $('.navbar-homepage').addClass('dark-header');
-            } else if (scroll <= 75) {
-                $('.navbar-homepage').removeClass('dark-header');
-            }
-        });
-
         if (document.location.href.indexOf('invite') != -1) {
             Utils.scrollToSignUp();
         }
@@ -54,14 +42,14 @@ const HomePage = class extends React.Component {
         const { email, password, organisation_name, first_name, last_name } = this.state;
         const redirect = Utils.fromParam().redirect ? `?redirect=${Utils.fromParam().redirect}` : '';
         const isInvite = document.location.href.indexOf('invite') != -1;
-        const isLogin = document.location.href.indexOf('login') != -1;
+        const isSignup = document.location.href.indexOf('signup') != -1;
 
         return (
             <AccountProvider onLogout={this.onLogout} onLogin={this.onLogin}>
                 {({ isLoading, isSaving, error }, { register }) => (
                     <div className="homepage">
                         <div className="sign-up" id="sign-up">
-                            {isLogin ? (
+                            {!isSignup ? (
                                 <div className="card signup-form container animated fadeIn col-md-8 col-xl-8">
                                     <AccountProvider>
                                         {({ isLoading, isSaving, error }, { login }) => (
@@ -141,7 +129,7 @@ const HomePage = class extends React.Component {
                                                             Login
                                                         </button>
                                                         <div>
-                                                            <Link to={`/${redirect}`} className="float-left">
+                                                            <Link to={`/signup${redirect}`} className="float-left">
 Not got
                                                                     an account?
                                                             </Link>
