@@ -5,6 +5,7 @@ import TabItem from '../base/forms/TabItem';
 import withSegmentOverrides from '../../../common/providers/withSegmentOverrides';
 import data from '../../../common/data/base/_data';
 import SegmentOverrides from '../SegmentOverrides';
+import ErrorMessage from '../ErrorMessage';
 
 const exampleJSON = `{
     "data": {
@@ -44,6 +45,7 @@ const CreateFlag = class extends Component {
       this.state = {
           enabled: this.props.isEdit ? this.props.webhook.enabled : true,
           url: this.props.isEdit ? this.props.webhook.url : '',
+          error: false,
       };
   }
 
@@ -55,9 +57,12 @@ const CreateFlag = class extends Component {
       if (this.props.isEdit) {
           webhook.id = this.props.webhook.id;
       }
-      this.setState({ isSaving: true });
+      this.setState({ isSaving: true, error: false });
       this.props.save(webhook)
-          .then(() => closeModal());
+          .then(() => closeModal())
+          .catch((e) => {
+              this.setState({ error: true, isSaving:false });
+          });
   };
 
   render() {
@@ -76,7 +81,7 @@ const CreateFlag = class extends Component {
                     }}
                   >
                       <Row space>
-                          <FormGroup className="mb-4">
+                          <Flex className="mb-4 mr-4">
                               <div>
                                   <label>URL (Expects a 200 response from POST)</label>
                               </div>
@@ -87,9 +92,9 @@ const CreateFlag = class extends Component {
                                 isValid={url && url.length}
                                 type="text"
                                 inputClassName="input--wide"
-                                placeholder="My Organisation"
+                                placeholder="https://example.com/feature-changed/"
                               />
-                          </FormGroup>
+                          </Flex>
                           <FormGroup className="mb-4 ml-1">
                               <div>
                                   <label>Enabled</label>
@@ -111,7 +116,7 @@ const CreateFlag = class extends Component {
                               </Highlight>
                           </div>
                       </FormGroup>
-                      {error && <Error error={error}/>}
+                      {error && <ErrorMessage error="Could not create a webhook for this url, please ensure you include http or https."/>}
                       <div className={isEdit ? 'footer' : ''}>
                           <div className="mb-3">
                               <p className="text-right">
