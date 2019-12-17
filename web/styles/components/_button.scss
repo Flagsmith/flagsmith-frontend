@@ -1,6 +1,7 @@
 @import "../variables";
 
 button.btn {
+	font-weight: bold;
 	border-radius: $btn-border-radius;
 	box-shadow: rgba(75, 75, 75, 0.11) 0px 1px 6px, rgba(75, 75, 75, 0.11) 0px 1px 4px;
 	color: $btn-default-color;

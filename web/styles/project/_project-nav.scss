@@ -68,9 +68,9 @@ nav.navbar {
         height: 50px;
         padding-top: 3px;
     }
-    
+
     .brand {
-        margin-top: 5px;
+        margin-top: -10px;
     }
 
     .btn{
@@ -138,7 +138,7 @@ nav.navbar {
 
 .nav-item-brand {
     font-size: 1em;
-    font-family: 'Andika', sans-serif;
+    font-family: $font-family, sans-serif;
 }
 
 .nav-list {
@@ -233,7 +233,7 @@ nav.navbar {
         &--open{
                 height:auto;
                 transition: height 1s ease-out;
-            
+
             & > .project-nav__button{
                 background: #2bafa5;
                 min-width: 100%;

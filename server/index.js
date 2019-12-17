@@ -1,3 +1,4 @@
+require('dotenv').config()
 const bodyParser = require('body-parser');
 const api = require('./api');
 const exphbs = require('express-handlebars');

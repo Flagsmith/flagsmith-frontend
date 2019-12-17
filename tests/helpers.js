@@ -8,13 +8,12 @@ const testHelpers = {
             .pause(200) // Allows the dropdown to fade in
             .click('#logout-link');
 
-        browser.expect.element('#existing-member-btn').to.be.visible;
+        browser.expect.element(testHelpers.byTestID('email')).to.be.visible;
     },
     byTestID: id => `[data-test="${id}"]`,
     login: async (browser, url, email, password) => {
         browser.url(url)
             .pause(200) // Allows the dropdown to fade in
-            .waitAndClick('#existing-member-btn')
             .waitForElementVisible('#login-btn')
             .setValue('[name="email"]', email)
             .setValue('[name="password"]', password)

@@ -61,7 +61,7 @@ const CreateFlag = class extends Component {
       this.props.save(webhook)
           .then(() => closeModal())
           .catch((e) => {
-              this.setState({ error: true, isSaving:false });
+              this.setState({ error: true, isSaving: false });
           });
   };
 
@@ -111,6 +111,7 @@ const CreateFlag = class extends Component {
                       <FormGroup className="mb-4 ml-1">
                           <div>
                               <label>Example Response</label>
+                              <a className="btn btn-link" href="https://docs.bullet-train.io/system-administration/" target="_blank">View docs</a>
                               <Highlight className="json">
                                   {exampleJSON}
                               </Highlight>

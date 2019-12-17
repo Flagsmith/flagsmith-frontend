@@ -37,6 +37,7 @@ export default (
             <Route path="/" exact component={HomePage}/>
             <Route path="/markup" exact component={MarkupPage}/>
             <Route path="/login" exact component={HomePage}/>
+            <Route path="/signup" exact component={HomePage}/>
             <Route path="/demo" exact component={DemoPage}/>
             <Route path="/signup" exact component={HomePage}/>
             <Route path="/home" exact component={HomePage}/>

@@ -141,7 +141,7 @@ Click here to Sign
                             </AlertBar>
                             )}
                             <div className={pageHasAside ? `aside-body${isMobile && !asideIsVisible ? '-full-width' : ''}` : ''}>
-                                {(!pageHasAside || !asideIsVisible || !isMobile) && (
+                                {(!isHomepage && !pageHasAside || !asideIsVisible || !isMobile) && (
                                     <nav
                                       className={`navbar navbar-fixed-top ${pageHasAside && asideIsVisible ? ' navbar-aside' : ''}${isLegal ? 'navbar-aside dark-header ' : ''}${isDark ? ' dark-header ' : ''}${this.state.myClassName ? this.state.myClassName : ''}`}
                                     >
@@ -153,29 +153,23 @@ Click here to Sign
                                                         <span className="icon ion-md-menu"/>
                                                     </div>
                                                     )}
-                                                    {!projectId && (
-                                                    <Link
-                                                      to={user ? '/projects' : '/'}
-                                                      className="nav-item nav-item-brand nav-link"
-                                                    >
-                                                        {isLegal ? null : (
-                                                            <Row>
-                                                                {isHomepage || isDark ? (
+                                                    {!projectId && (isLegal ? null : (
+                                                        <a href={user ? '/projects' : 'https://bullet-train.io'}>
+                                                            {isHomepage || isDark ? (
+                                                                <img
+                                                                  title="Bullet Train" height={24}
+                                                                  src="/images/bullet-train-1.svg"
+                                                                  className="brand" alt="Bullet Train logo"
+                                                                />)
+                                                                : (
                                                                     <img
                                                                       title="Bullet Train" height={24}
-                                                                      src="/images/bullet-train-1.svg"
+                                                                      src="/images/bullet-train-black.svg"
                                                                       className="brand" alt="Bullet Train logo"
-                                                                    />)
-                                                                    : (
-                                                                        <img
-                                                                          title="Bullet Train" height={24}
-                                                                          src="/images/bullet-train-black.svg"
-                                                                          className="brand" alt="Bullet Train logo"
-                                                                        />
-                                                                    ) }
-                                                            </Row>
-                                                        )}
-                                                    </Link>
+                                                                    />
+                                                                ) }
+                                                        </a>
+                                                    )
                                                     )}
                                                 </div>
                                             </div>
@@ -228,55 +222,7 @@ Logout
                                                         </Popover>
                                                     </div>
                                                 ) : (
-                                                    <div>
-
-                                                        <div className="hidden-sm-down">
-                                                            <Link className="float-right" to={`/login${redirect}`} onClick={Utils.scrollToSignUp}>
-                                                                <Button className="btn-primary">Login</Button>
-                                                            </Link>
-                                                            <ul className="nav-list list-unstyled float-right">
-                                                                <li><Link to="/features">Features</Link></li>
-                                                                <li><Link to="/pricing">Pricing</Link></li>
-                                                                <li><a href="https://docs.bullet-train.io/">Docs</a></li>
-                                                                <li><Link to="/open-source">Open Source</Link></li>
-                                                                <li><Link to="/demo">Demo</Link></li>
-                                                            </ul>
-                                                        </div>
-
-
-                                                        <div className="hidden-md-up">
-                                                            <Popover
-                                                              className="popover-right mobile-navigation"
-                                                              renderTitle={(toggle, isActive) => (
-                                                                  <div className="mobile-navigation__button" onClick={toggle}>
-                                                                      <span
-                                                                        className={isActive ? 'icon ion-ios-close' : 'icon ion-md-menu'}
-                                                                      />
-                                                                  </div>
-                                                              )}
-                                                              ref={c => this.mobileNav = c}
-                                                            >
-                                                                {toggle => (
-                                                                    <div className="mobile-navigation__bg">
-                                                                        <ul className="list-unstyled mb-0">
-                                                                            <li><Link to="/features">Features</Link></li>
-                                                                            <li><Link to="/pricing">Pricing</Link></li>
-                                                                            <li><a href="https://docs.bullet-train.io/" onClick={this.hideMobileNav}>Docs</a></li>
-                                                                            <li><Link to="/open-source">Open Source</Link></li>
-                                                                            <li><Link to="/demo">Demo</Link></li>
-                                                                            <li>
-                                                                                <Link to={`/login${redirect}`} onClick={Utils.scrollToSignUp}>
-                                                                                    <Button className="btn-block">Login</Button>
-                                                                                </Link>
-                                                                            </li>
-                                                                        </ul>
-                                                                    </div>
-                                                                )}
-                                                            </Popover>
-                                                        </div>
-
-
-                                                    </div>
+                                                    <div />
                                                 )}
 
                                             </div>

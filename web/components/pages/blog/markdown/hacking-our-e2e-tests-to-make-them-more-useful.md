@@ -81,7 +81,7 @@ We then use this E2E variable to write our debug info to DOM elements. Which we 
 
 ## A real-world example
 
-If you’re curious to how this actually gets used in production, here’s the commit which is now running in our gitlab pipelines [https://github.com/SolidStateGroup/bullet-train-frontend/commit/4a1d41b3ea103a3c2b823803d3fa273eae8bd49f](https://github.com/SolidStateGroup/bullet-train-frontend/commit/4a1d41b3ea103a3c2b823803d3fa273eae8bd49f).
+If you’re curious to how this actually gets used in production, here’s the commit which is now running in our gitlab pipelines [https://github.com/BulletTrainHQ/bullet-train-frontend/commit/4a1d41b3ea103a3c2b823803d3fa273eae8bd49f](https://github.com/BulletTrainHQ/bullet-train-frontend/commit/4a1d41b3ea103a3c2b823803d3fa273eae8bd49f).
 
 Happy hacking!
 

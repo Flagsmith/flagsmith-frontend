@@ -1,8 +1,10 @@
 //MARGIN AND PADDING
-$font-family: Roboto, sans-serif;
+
+$font-family: "Proxima Nova", sans-serif;
+$font-family-header: "Proxima Nova Bold", sans-serif;
 
 // COLORS
-
+$header-color: #1c2b3d;
 $bt-brand-primary: #2cd6ca;
 $bt-brand-secondary: #22354a;
 $bt-dark-green: #14635d;
@@ -96,7 +98,7 @@ $modal-backdrop-bg: rgba(0, 0, 0, 0.870588);
 $modal-header-border-width: 0;
 
 //TRANSITIONS
-$button-transition: all 400ms cubic-bezier(0.23, 1, 0.32, 1);
+$button-transition: background-color 400ms cubic-bezier(0.23, 1, 0.32, 1);
 //Hero
 $hero-bg:#22354a;
 $hero-bg-dark:darken(#22354a,5);
@@ -118,4 +120,4 @@ $aside-width:250px;
 $toast-bg:rgba(0,0,0,.9);
 $toast-color:white;
 
-$bold: 400;
+$bold: bold;

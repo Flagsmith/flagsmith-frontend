@@ -34,31 +34,31 @@ function hashLinkScroll() {
 }
 
 // Render the React application to the DOM
-AsyncStorage.getItem('t', (err, res) => {
-    if (res) {
-        AppActions.setToken(res);
-    }
+const res = require('js-cookie').get('t');
 
-    setTimeout(() => {
-        const browserHistory = createBrowserHistory();
+if (res) {
+    AppActions.setToken(res);
+}
 
-        // redirect before login
-        // todo: move to util to decide if url is public
-        if (
-            (document.location.pathname.indexOf('/project/') !== -1
+setTimeout(() => {
+    const browserHistory = createBrowserHistory();
+
+    // redirect before login
+    // todo: move to util to decide if url is public
+    if (
+        (document.location.pathname.indexOf('/project/') !== -1
                 || document.location.pathname.indexOf('/create') !== -1
                 || document.location.pathname.indexOf('/invite') !== -1
                 || document.location.pathname.indexOf('/projects') !== -1)
             && !AccountStore.getUser()) {
-            browserHistory.push(`/?redirect=${encodeURIComponent(document.location.pathname)}`);
-        }
+        browserHistory.push(`/?redirect=${encodeURIComponent(document.location.pathname)}`);
+    }
 
-        ReactDOM.render(
-            <Router>{routes}</Router>,
-            rootElement,
-        );
-    }, 1);
-});
+    ReactDOM.render(
+        <Router>{routes}</Router>,
+        rootElement,
+    );
+}, 1);
 
 // Setup for toast messages
 ReactDOM.render(<ToastMessages />, document.getElementById('toast'));

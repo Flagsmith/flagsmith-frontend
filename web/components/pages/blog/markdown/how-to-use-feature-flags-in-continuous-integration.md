@@ -29,7 +29,7 @@ Rather than repeat the tutorial from the start, we’re going to start at a poin
 
 At this point we’ll use feature flags and remote configuration to continuously configure, push and deploy new features. To take this concept to an extreme we’ll continuously be pushing to master; no other branches will be used. We’ll introduce a bug (intentionally of course!) and push the fix to master, to demonstrate how dealing with this scenario doesn’t require a full rollback or additional branching.
 
-If you wish to follow along writing code during this tutorial, you can fork the [repository here](https://github.com/SolidStateGroup/ff-tutorial-tic-tac-toe).
+If you wish to follow along writing code during this tutorial, you can fork the [repository here](https://github.com/BulletTrainHQ/ff-tutorial-tic-tac-toe).
 
 ## Achieving CI
 
@@ -108,7 +108,7 @@ Go back to the Bullet Train admin and toggle the feature using the switch on the
 
 ![](https://cdn-images-1.medium.com/max/2048/0*IFtX7x3KDBMa-i0U.png)
 
-Refresh your browser and the game becomes winnable again. Check out the code for the end of this part [here](https://github.com/SolidStateGroup/ff-tutorial-tic-tac-toe/tree/step-2-declare-winner-feature-flag).
+Refresh your browser and the game becomes winnable again. Check out the code for the end of this part [here](https://github.com/BulletTrainHQ/ff-tutorial-tic-tac-toe/tree/step-2-declare-winner-feature-flag).
 
 Commit and push your code (yes, all on master) and Netlify will automatically deploy your code. Browse to your assigned Netlify URL again and toggle the feature flag to see it working in a production environment. Sweet!
 
@@ -158,7 +158,7 @@ Turn the feature back on again in Bullet Train and test that in your local envir
 
 Head on over to your Netlify URL and you should see the new feature fixed and working properly.
 
-You can see the final code at the end of this section [here](https://github.com/SolidStateGroup/ff-tutorial-tic-tac-toe/tree/step-3-who-goes-first-bug).
+You can see the final code at the end of this section [here](https://github.com/BulletTrainHQ/ff-tutorial-tic-tac-toe/tree/step-3-who-goes-first-bug).
 
 ## Remote Config
 
@@ -184,7 +184,7 @@ Note that for the instances in the return call in render() you’ll need to wrap
 
 Commit this into master and push to your Git repository to see the changes on your Netlify URL. If you’ve done it correctly, the game should play as before with ‘X’ and ‘O’ shapes. Go ahead and change the shapes in the admin to different letters and refresh the page. If all is well you will now be playing with different shapes.
 
-There is a lot more you can achieve with remote config, such as controlling the styling of the entire game or say the dimensions of the board. We added even more remote config values including shape color and square size. You can see the finished code for the game [here](https://github.com/SolidStateGroup/ff-tutorial-tic-tac-toe/tree/step-4-remote-config).
+There is a lot more you can achieve with remote config, such as controlling the styling of the entire game or say the dimensions of the board. We added even more remote config values including shape color and square size. You can see the finished code for the game [here](https://github.com/BulletTrainHQ/ff-tutorial-tic-tac-toe/tree/step-4-remote-config).
 
 ## Other Things to Think About
 
