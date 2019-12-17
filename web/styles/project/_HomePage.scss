@@ -47,14 +47,18 @@ h2 {
 }
 
 .signup-form {
-    color: #fff;
+    background-color: white;
     padding: 20px;
-    margin-bottom: 0;
-    background: none;
     border: none;
-
+    margin: auto;
+    margin-top: 80px;
+    margin-bottom: 80px;
+    max-width: 500px;
+    box-shadow: rgba(67, 90, 111, 0.3) 0px 0px 1px, rgba(67, 90, 111, 0.47) 0px 2px 4px -2px;
+    a {
+        color: $body-text;
+    }
     .form-intro {
-        padding-top: 30px;
     }
 
 	//ion{
@@ -69,10 +73,6 @@ h2 {
 	//}
 	.form-group {
 		text-align: left;
-	}
-
-	.btn-primary{
-		margin:40px 0 10px;
 	}
 
 	.btn{
@@ -102,28 +102,6 @@ h2 {
     padding: $input-padding-y * 3;
 }
 
-.tech {
-    background: #f9f9f9;
-    padding: 40px 0;
-    position: relative;
-    .row > div {
-        margin: 0 auto;
-
-        img {
-            min-width: 50px;
-            width: 50px;
-            margin-top: 20px;
-            margin-bottom: 20px;
-            opacity: 0.75;
-        }
-    }
-
-    a {
-        color: #22354a;
-        font-weight: bold;
-    }
-}
-
 .pricing {
     background: #f9f9f9;
     padding: 40px 0;
@@ -134,7 +112,7 @@ h2 {
 }
 
 .sign-up {
-    background: linear-gradient(#407a7d, #22354a);
+    background: #f1f1f1;
 }
 
 footer.homepage {

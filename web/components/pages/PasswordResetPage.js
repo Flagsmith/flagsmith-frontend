@@ -41,7 +41,7 @@ const PasswordResetPage = class extends Component {
             <div className="app-container">
                 <AccountProvider onSave={this.onSave}>
                     {({ isSaving, error }) => (
-                        <div className="card signup-form container animated fadeIn col-md-6 col-xl-6">
+                        <div className="card signup-form container">
                             <h3>Reset Password</h3>
 
                             {isSaving ? (

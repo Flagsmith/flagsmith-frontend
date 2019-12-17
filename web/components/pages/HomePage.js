@@ -7,6 +7,7 @@ import Popover from '../base/Popover';
 import 'lazyframe/dist/lazyframe.css';
 import PricingPanel from '../PricingPanel';
 import { ButtonWhite } from '../base/forms/Button';
+import CreateFlagModal from '../modals/CreateFlag';
 
 const HomePage = class extends React.Component {
     static contextTypes = {
@@ -35,7 +36,7 @@ const HomePage = class extends React.Component {
         openModal('Forgot password', <ForgotPasswordModal onComplete={() => {
             toast('Forgot password submitted');
         }}
-        />);
+        />, null, { className: 'alert fade expand' });
     }
 
     render = () => {
@@ -50,7 +51,7 @@ const HomePage = class extends React.Component {
                     <div className="homepage">
                         <div className="sign-up" id="sign-up">
                             {!isSignup ? (
-                                <div className="card signup-form container animated fadeIn col-md-8 col-xl-8">
+                                <div className="card signup-form container">
                                     <AccountProvider>
                                         {({ isLoading, isSaving, error }, { login }) => (
                                             <form
@@ -60,7 +61,7 @@ const HomePage = class extends React.Component {
                                               }}
                                             >
                                                 <div className="form-intro text-center">
-                                                    <h3 className="mb-4">User login</h3>
+                                                    <h3 className="mb-4">Login to Bullet Train</h3>
                                                 </div>
                                                 {isInvite
                                                 && (
@@ -72,7 +73,7 @@ const HomePage = class extends React.Component {
                                                 </div>
                                                 )
                                                 }
-                                                <fieldset id="details" className="col-lg-6 offset-lg-3">
+                                                <fieldset id="details">
                                                     {error && error.email ? (
                                                         <span
                                                           id="email-error"
@@ -124,7 +125,7 @@ const HomePage = class extends React.Component {
                                                         <button
                                                           id="login-btn"
                                                           disabled={isLoading || isSaving}
-                                                          className="btn white full-width" type="submit"
+                                                          className="btn full-width" type="submit"
                                                         >
                                                             Login
                                                         </button>
@@ -145,7 +146,7 @@ Not got
                                                     </div>
                                                 </fieldset>
                                                 {error && (
-                                                    <div id="error-alert" className="alert alert-danger">
+                                                    <div id="error-alert" className="alert mt-3 alert-danger">
                                                         Please check your details and try again
                                                     </div>
                                                 )}
@@ -156,7 +157,7 @@ Not got
                                 </div>
                             ) : (
                                 <div>
-                                    <div className="card signup-form container animated fadeIn col-md-8 col-xl-8">
+                                    <div className="card signup-form container">
                                         <form
                                           id="form" name="form" onSubmit={(e) => {
                                               Utils.preventDefault(e);
@@ -168,11 +169,16 @@ Not got
 
                                             <div className="form-intro text-center">
                                                 <h3>It's free to get started.</h3>
-                                                {!isInvite && <p className="text-white">We have a 100% free for life plan for smaller projects. <a href="/pricing">Check out our Pricing</a></p>}
+                                                {!isInvite && (
+                                                <p>We have a 100% free for life plan for smaller projects. <a target="_blank" href="https://bullet-train.io/pricing">
+                                                    <br/>Check out our Pricing
+                                                </a>
+                                                </p>
+                                                )}
                                             </div>
                                             {error
                                             && (
-                                                <FormGroup className="col-lg-6 offset-lg-3">
+                                                <FormGroup>
                                                     <div id="error-alert" className="alert alert-danger">
                                                         Please check your details and try again
                                                     </div>
@@ -191,7 +197,7 @@ Not got
                                                 </div>
                                                 )
                                             }
-                                            <fieldset id="details" className="col-lg-6 offset-lg-3">
+                                            <fieldset id="details" className="">
                                                 <InputGroup
                                                   title="First Name"
                                                   data-test="firstName"
@@ -288,9 +294,8 @@ Not got
                                                   name="password"
                                                   id="password"
                                                 />
-                                                <div className="form-cta margin-top">
-
-                                                    <ButtonWhite
+                                                <div className="form-cta">
+                                                    <Button
                                                       data-test="signup-btn"
                                                       name="signup-btn"
                                                       disabled={isLoading || isSaving}
@@ -298,8 +303,7 @@ Not got
                                                       type="submit"
                                                     >
                                                         Sign Up
-                                                    </ButtonWhite>
-
+                                                    </Button>
                                                     <Link id="existing-member-btn" to={`/login${redirect}`}>
                                                         Already a member?
                                                     </Link>
