@@ -76,7 +76,7 @@ $animation-timing-function: ease-in-out;
 		a {
 			font-weight: 200;
 			font-size: 1em;
-			font-family: 'Andika', sans-serif;
+			font-family: $font-family, sans-serif;
 			padding-left: 0;
 			color: $aside-brand-color;
 		}
