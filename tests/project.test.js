@@ -18,17 +18,16 @@ module.exports = {
         browser
             .waitAndClick('#env-settings-link')
             .waitForElementVisible("[name='env-name']")
-            .clearValue("[name='env-name']")
             .setValue("[name='env-name']", 'Internal')
             .click('#save-env-btn');
 
-        browser.waitForElementVisible(byId('switch-environment-internal-active'));
+        browser.waitForElementVisible(byId('switch-environment-staginginternal-active'));
     },
     '[Project Tests] - Delete environment': function (browser) {
         browser
             .waitAndClick('#delete-env-btn')
             .waitForElementVisible("[name='confirm-env-name']")
-            .setValue("[name='confirm-env-name']", 'Internal')
+            .setValue("[name='confirm-env-name']", 'StagingInternal')
             .click('#confirm-delete-env-btn')
             .waitForElementVisible('#project-select-page');
     },
