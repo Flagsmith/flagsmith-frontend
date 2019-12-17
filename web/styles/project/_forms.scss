@@ -52,7 +52,8 @@
 }
 
 .homepage{
-    height: 100vh;
+    min-height: 100vh;
+    background-color: #f1f1f1;
     .sign-up {
         padding-top: 20px;
         height: 100%;
