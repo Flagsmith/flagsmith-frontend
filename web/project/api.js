@@ -92,6 +92,8 @@ global.API = {
         if (window.fcWidget && window.fcWidget.user) {
             const dto = {
                 email: id,
+                firstName: user.first_name,
+                lastName: user.first_name,
                 ...user,
                 // NAME(ROLE)[num_seats], NAME(ROLE)[num_seats]
                 organisations: _.map(user.organisations, o => `${o.name}(${o.role})[${o.num_seats}]`).join(','),
