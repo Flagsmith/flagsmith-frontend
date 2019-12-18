@@ -14,11 +14,16 @@ const controller = {
             ].concat(AccountStore.getOrganisationRole(id) === 'ADMIN' ? [
                 data.get(`${Project.api}organisations/${id}/users/`),
                 data.get(`${Project.api}organisations/${id}/invites/`),
-                data.get(`${Project.api}organisations/${id}/usage/`),
             ] : [])).then((res) => {
                 if (id === store.id) {
                     const [projects, users, invites, usage] = res;
                     store.model = { users, invites: invites && invites.results };
+
+                    data.get(`${Project.api}organisations/${id}/usage/`).then((usage) => {
+                        store.model.usage = usage && usage.events;
+                        store.loaded();
+                    });
+
                     return Promise.all(projects.map((project, i) => data.get(`${Project.api}projects/${project.id}/environments/`)
                         .then((res) => {
                             projects[i].environments = res;
@@ -30,7 +35,6 @@ const controller = {
                                 return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
                             });
                             store.model.projects = projects;
-                            store.model.usage = usage && usage.events;
                             store.model.keyedProjects = _.keyBy(store.model.projects, 'id');
                             store.loaded();
                         });
