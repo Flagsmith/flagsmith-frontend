@@ -8,7 +8,7 @@ global.API = {
                 // ErrorModal(null, error);
                 break;
             default:
-            // ErrorModal(null, error);
+      // ErrorModal(null, error);
         }
 
         // Catch coding errors that end up here
@@ -83,12 +83,21 @@ global.API = {
         bulletTrain.identify(id);
         bulletTrain.setTrait('email', id);
     },
-    identify(id) {
+    identify(id, user = {}) {
         if (Project.mixpanel) {
             mixpanel.identify(id);
         }
         bulletTrain.identify(id);
         bulletTrain.setTrait('email', id);
+        if (window.fcWidget && window.fcWidget.user) {
+            const dto = {
+                email: id,
+                ...user,
+                // NAME(ROLE)[num_seats], NAME(ROLE)[num_seats]
+                organisations: _.map(user.organisations, o => `${o.name}(${o.role})[${o.num_seats}]`).join(','),
+            };
+            window.fcWidget.user.setProperties(dto);
+        }
     },
     register(email, firstName, lastName) {
         if (Project.mixpanel) {

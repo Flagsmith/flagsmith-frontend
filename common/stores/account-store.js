@@ -134,7 +134,7 @@ const controller = {
             store.organisation = user && user.organisations && user.organisations[0];
             AsyncStorage.setItem('user', JSON.stringify(store.model));
             if (!store.isDemo) {
-                API.identify(user && user.email);
+                API.identify(user && user.email, user);
             }
             store.loaded();
         } else if (!user) {
