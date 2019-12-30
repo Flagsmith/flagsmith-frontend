@@ -5,6 +5,7 @@ import InviteUsersModal from '../modals/InviteUsers';
 import ConfirmRemoveOrganisation from '../modals/ConfirmRemoveOrganisation';
 import PaymentModal from '../modals/Payment';
 import CancelPaymentPlanModal from '../modals/CancelPaymentPlan';
+import data from '../../../common/data/base/_data';
 
 const OrganisationSettingsPage = class extends Component {
     static contextTypes = {
@@ -15,8 +16,22 @@ const OrganisationSettingsPage = class extends Component {
 
     constructor(props, context) {
         super(props, context);
-        this.state = {};
+        this.state = {
+            manageSubscriptionLoaded: true,
+        };
         AppActions.getOrganisation(AccountStore.getOrganisation().id);
+        // todo could be a provider
+        const org = AccountStore.getOrganisation();
+        if (props.hasFeature('manage_chargbee') && org.subscription) {
+            this.state.manageSubscriptionLoaded = false;
+            data.get(`/organisations/${org.id}/portal-url`)
+                .then((chargebeeURL) => {
+                    this.setState({
+                        manageSubscriptionLoaded: true,
+                        chargebeeURL,
+                    });
+                });
+        }
     }
 
     componentDidMount = () => {
@@ -162,30 +177,32 @@ const OrganisationSettingsPage = class extends Component {
                                             <h3 className="m-b-0">{Utils.getPlanName(_.get(organisation, 'subscription.plan')) ? Utils.getPlanName(_.get(organisation, 'subscription.plan')) : 'Free'}</h3>
                                         </div>
                                         <div>
-                                            <Row>
+                                            { organisation.subscription ? (
+                                                <button
+                                                  disabled={!this.state.manageSubscriptionLoaded}
+                                                  type="button" className="btn btn-primary text-center ml-auto mt-2 mb-2"
+                                                  onClick={() => {
+                                                      if (this.state.chargebeeURL) {
+                                                          window.location = this.state.chargebeeURL;
+                                                      } else {
+                                                          openModal(null, <PaymentModal
+                                                            viewOnly={false}
+                                                          />, null, { large: true });
+                                                      }
+                                                  }}
+                                                >
+                                                  Manage payment plan
+                                                </button>
+                                            ) : (
                                                 <button
                                                   type="button" className="btn btn-primary text-center ml-auto mt-2 mb-2"
                                                   onClick={() => openModal(null, <PaymentModal
                                                     viewOnly={false}
                                                   />, null, { large: true })}
                                                 >
-                                            View payment plans
+                                                  View payment plans
                                                 </button>
-                                                {organisation.paid_subscription && (
-                                                    <a
-                                                      style={{
-                                                          padding: '0px 20px',
-                                                          height: '50px',
-                                                          border: 'none',
-                                                          'line-height': '50px',
-                                                      }}
-                                                      className="btn btn-primary text-center ml-2"
-                                                      href="https://bullettrain.chargebeeportal.com"
-                                                    >
-                                                        Manage Subscription
-                                                    </a>
-                                                )}
-                                            </Row>
+                                            ) }
                                         </div>
                                     </div>
                                 </div>

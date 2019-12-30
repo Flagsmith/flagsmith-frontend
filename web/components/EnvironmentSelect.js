@@ -67,8 +67,6 @@ Segments
 Users
                                                 </Link>
                                             </li>
-                                            {hasFeature('audit_log') && (
-
                                             <li className="env-nav__item flex-row">
                                                 <Link
                                                   id="audit-log-link"
@@ -79,7 +77,6 @@ Users
                                                     Audit Log
                                                 </Link>
                                             </li>
-                                            )}
                                             <li className="env-nav__item flex-row">
                                                 <Link
                                                   id="env-settings-link"

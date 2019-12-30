@@ -117,7 +117,7 @@ const UsersPage = class extends Component {
                                                         You have no users in your project{this.state.search ? <span> for <strong>"{this.state.search}"</strong></span> : ''}.
                                                   </FormGroup>
                                                 )}
-                                              filterRow={hasFeature('filter_identities') ? (flag, search) => flag.identifier.indexOf(search) != -1 : null}
+                                              filterRow={(flag, search) => flag.identifier.indexOf(search) != -1}
                                               onChange={(e) => {
                                                   this.setState({ search: Utils.safeParseEventValue(e) });
                                                   AppActions.searchIdentities(this.props.match.params.environmentId, Utils.safeParseEventValue(e));
