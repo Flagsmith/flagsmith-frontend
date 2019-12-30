@@ -4,7 +4,7 @@ module.exports = function (req, res, next) {
     let rewriteTarget = '/index.html';
 
     if (req.method !== 'GET') {
-        req.url = rewriteTarget.split('/')[rewriteTarget.split('/').length - 1];
+        // req.url = rewriteTarget.split('/')[rewriteTarget.split('/').length - 1];
         return next();
     } if (!headers || typeof headers.accept !== 'string') {
         req.url = rewriteTarget.split('/')[rewriteTarget.split('/').length - 1];
