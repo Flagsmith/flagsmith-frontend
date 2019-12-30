@@ -24,11 +24,11 @@ const OrganisationSettingsPage = class extends Component {
         const org = AccountStore.getOrganisation();
         if (props.hasFeature('manage_chargbee') && org.subscription) {
             this.state.manageSubscriptionLoaded = false;
-            data.get(`/organisations/${org.id}/portal-url`)
-                .then((chargebeeURL) => {
+            data.get(`${Project.api}organisations/${org.id}/portal-url/`)
+                .then((res) => {
                     this.setState({
                         manageSubscriptionLoaded: true,
-                        chargebeeURL,
+                        chargebeeURL:res.url,
                     });
                 });
         }
