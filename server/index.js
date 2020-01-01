@@ -50,11 +50,13 @@ app.post('/api/webhook', (req, res) => {
     let body = {};
     try {
         body = JSON.stringify(req.body);
-    } catch (e) {}
-    if (slackMessage) {
-        slackMessage(body, E2E_SLACK_CHANNEL_NAME);
+        res.json(req.body);
+        if (slackMessage) {
+            slackMessage(body, E2E_SLACK_CHANNEL_NAME);
+        }
+    } catch (e) {
+        res.json({ error: e.message || e });
     }
-    res.json({});
 });
 
 app.listen(port, () => {
