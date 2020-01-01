@@ -7,7 +7,7 @@ const spm = require('./middleware/single-page-middleware');
 const webpackMiddleware = require('./middleware/webpack-middleware');
 
 const SLACK_TOKEN = process.env.SLACK_TOKEN;
-const slackMessage = SLACK_TOKEN && require('../tests/slack-message.test');
+const slackMessage = SLACK_TOKEN && require('./slack-client');
 
 const E2E_SLACK_CHANNEL_NAME = process.env.E2E_SLACK_CHANNEL_NAME;
 

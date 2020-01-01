@@ -5,7 +5,7 @@ const path = require('path');
 
 const SLACK_TOKEN = process.env.SLACK_TOKEN;
 const slackUpload = SLACK_TOKEN && require('./slack-upload.test');
-const slackMessage = SLACK_TOKEN && require('./slack-message.test');
+const slackMessage = SLACK_TOKEN && require('../server/slack-client');
 const fork = require('child_process').fork;
 
 process.env.PORT = 8081;
