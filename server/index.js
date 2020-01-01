@@ -5,6 +5,7 @@ const express = require('express');
 const api = require('./api');
 const spm = require('./middleware/single-page-middleware');
 const webpackMiddleware = require('./middleware/webpack-middleware');
+const env = require('../common/project').env;
 
 const SLACK_TOKEN = process.env.SLACK_TOKEN;
 const slackMessage = SLACK_TOKEN && require('./slack-client');
@@ -47,12 +48,17 @@ app.get('/', (req, res) => {
 });
 
 app.post('/api/webhook', (req, res) => {
-    let body = {};
     try {
-        body = JSON.stringify(req.body);
-        res.json(req.body);
+        const body = req.body;
+        let message = '';
+        res.json(body);
+        if (req.new_state.identity_identifier) {
+            message = `${env} change: Identifier ${req.new_state.identity_identifier}(${req.new_state.identity}) changed ${req.new_state.feature.name} to ${req.new_state.feature.type === 'FLAG' ? req.new_state.enabled : req.new_state.value}`;
+        } else {
+            message = `${env} change: changed ${req.new_state.feature.name} to ${req.new_state.feature.type === 'FLAG' ? req.new_state.enabled : req.new_state.value}`;
+        }
         if (slackMessage) {
-            slackMessage(body, E2E_SLACK_CHANNEL_NAME);
+            slackMessage(message, E2E_SLACK_CHANNEL_NAME);
         }
     } catch (e) {
         res.json({ error: e.message || e });
