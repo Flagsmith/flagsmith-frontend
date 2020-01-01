@@ -25,6 +25,7 @@ deploymaster:
     script:
         - npm i
         - export ENV=prod; npm run env
+        - npm run dotenv
         - npm run bundle
         - echo $DEPLOY_KEY_FILE_PROD > /tmp/$CI_PIPELINE_ID.json
         - gcloud auth activate-service-account --key-file /tmp/$CI_PIPELINE_ID.json
@@ -39,10 +40,11 @@ deploydevelop:
     script:
         - npm i
         - export ENV=dev; npm run env
+        - npm run dotenv
         - npm run bundledev
         - echo $DEPLOY_KEY_FILE_DEV > /tmp/$CI_PIPELINE_ID.json
         - gcloud auth activate-service-account --key-file /tmp/$CI_PIPELINE_ID.json
         - gcloud config set project bullet-train-front-end-dev
-        - gcloud app deploy --set-env-vars SLACK_TOKEN=$SLACK_TOKEN
+        - gcloud app deploy
     only:
         - develop

@@ -26,7 +26,8 @@ const exampleJSON = `{
             "feature_segment": null,
             "feature_state_value": null,
             "id": 7952,
-            "identity": null
+            "identity": 1234
+            "identity_identifier": "user@domain.com"
         },
         "timestamp": "2019-12-11T15:47:26.973Z"
     },
