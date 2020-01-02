@@ -112,7 +112,7 @@ const CreateFlag = class extends Component {
         const { isEdit, hasFeature, projectFlag, environmentFlag, identity } = this.props;
         const Provider = identity ? IdentityProvider : FeatureListProvider;
         const valueString = isEdit ? 'Value' : 'Initial value';
-        const enabledString = isEdit ? 'Enabled by default' : 'Enabled';
+        const enabledString = isEdit ? 'Enabled' : 'Enabled by default';
 
         return (
             <ProjectProvider
