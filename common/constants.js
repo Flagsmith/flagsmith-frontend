@@ -147,6 +147,32 @@ const Constants = {
         'USER': 'User',
         'ADMIN': 'Admin',
     },
+    exampleWebhook: `{
+  "data": {
+    "changed_by": "Some User",
+    "new_state": {
+      "enabled": true,
+      "environment": 4053,
+      "feature": {
+        "created_date": "2019-12-11T15:47:26.959385Z",
+        "default_enabled": true,
+        "description": null,
+        "id": 2391,
+        "initial_value": null,
+        "name": "your_feature_name",
+        "project": 1661,
+        "type": "FLAG"
+      },
+      "feature_segment": null,
+      "feature_state_value": null,
+      "id": 7952,
+      "identity": 1234,
+      "identity_identifier": "user@domain.com"
+    },
+    "timestamp": "2019-12-11T15:47:26.973Z"
+  },
+  "event_type": "FLAG_UPDATED"
+}`,
 };
 
 module.exports = Constants;

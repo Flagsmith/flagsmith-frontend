@@ -4,6 +4,9 @@ h1,h2,h3,h4,h5,h6{
     font-family: $font-family-header, sans-serif;
 }
 
+a.link-dark {
+    color: $btn-primary-bg;
+}
 .text-small{
     font-size:0.75rem!important;
 }

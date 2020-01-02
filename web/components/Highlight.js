@@ -43,8 +43,9 @@ class Highlight extends React.Component {
 	        return <Element {...props}>{children}</Element>;
 	    }
 	    return (
-    <pre ref={this.setEl}>
+    <pre style={this.props.style} ref={this.setEl}>
         <code
+					style={this.props.style}
           contentEditable={!!this.props.onChange} onBlur={this.highlightCode}
           onKeyPress={(e) => {
 		    setTimeout(() => this.props.onChange(this.el.innerText), 100);

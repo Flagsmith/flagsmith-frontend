@@ -52,15 +52,20 @@ app.post('/api/webhook', (req, res) => {
         const body = req.body;
         let message = '';
         res.json(body);
-        if (req.new_state.identity_identifier) {
-            message = `${env} change: Identifier ${req.new_state.identity_identifier}(${req.new_state.identity}) changed ${req.new_state.feature.name} to ${req.new_state.feature.type === 'FLAG' ? req.new_state.enabled : req.new_state.value}`;
-        } else {
-            message = `${env} change: changed ${req.new_state.feature.name} to ${req.new_state.feature.type === 'FLAG' ? req.new_state.enabled : req.new_state.value}`;
+        if (body.data) {
+            const state = body.data.new_state;
+            if (state.identity_identifier) {
+                message = `\`${env} webhook:\` ${body.data.changed_by} changed \`${state.feature.name}\` to \`${state.feature.type === 'FLAG' ? state.enabled : state.feature_state_value}\` for user \`${state.identity_identifier}(${state.identity})\``;
+            } else {
+                message = `\`${env} webhook:\` ${body.data.changed_by} changed \`${state.feature.name}\` to \`${state.feature.type === 'FLAG' ? state.enabled : state.feature_state_value}\``;
+            }
+            if (slackMessage) {
+                slackMessage(message, E2E_SLACK_CHANNEL_NAME);
+            }
         }
-        if (slackMessage) {
-            slackMessage(message, E2E_SLACK_CHANNEL_NAME);
-        }
+
     } catch (e) {
+        console.log(e)
         res.json({ error: e.message || e });
     }
 });

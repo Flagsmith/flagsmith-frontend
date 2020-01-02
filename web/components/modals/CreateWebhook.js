@@ -1,38 +1,11 @@
 import React, { Component } from 'react';
 import Highlight from '../Highlight';
-import Tabs from '../base/forms/Tabs';
-import TabItem from '../base/forms/TabItem';
 import withSegmentOverrides from '../../../common/providers/withSegmentOverrides';
-import data from '../../../common/data/base/_data';
-import SegmentOverrides from '../SegmentOverrides';
 import ErrorMessage from '../ErrorMessage';
+import Constants from '../../../common/constants';
+import TestWebhook from '../TestWebhook';
 
-const exampleJSON = `{
-    "data": {
-        "changed_by": "Ben Rometsch",
-        "new_state": {
-            "enabled": true,
-            "environment": 4053,
-            "feature": {
-                "created_date": "2019-12-11T15:47:26.959385Z",
-                "default_enabled": true,
-                "description": null,
-                "id": 2391,
-                "initial_value": null,
-                "name": "your_feature_name",
-                "project": 1661,
-                "type": "FLAG"
-            },
-            "feature_segment": null,
-            "feature_state_value": null,
-            "id": 7952,
-            "identity": 1234
-            "identity_identifier": "user@domain.com"
-        },
-        "timestamp": "2019-12-11T15:47:26.973Z"
-    },
-    "event_type": "FLAG_UPDATED"
-}`;
+const exampleJSON = Constants.exampleWebhook;
 
 const CreateFlag = class extends Component {
   static displayName = 'CreateFlag';
@@ -111,11 +84,14 @@ const CreateFlag = class extends Component {
                       </Row>
                       <FormGroup className="mb-4 ml-1">
                           <div>
-                              <label>Example Response</label>
-                              <a className="btn btn-link" href="https://docs.bullet-train.io/system-administration/" target="_blank">View docs</a>
-                              <Highlight className="json">
+                              <label>Example Response </label>
+                              <a className="link-dark" href="https://docs.bullet-train.io/system-administration/" target="_blank">View docs</a>
+                              <Highlight style={{ marginBottom: 10 }} className="json">
                                   {exampleJSON}
                               </Highlight>
+                              <div className="text-center">
+                                  <TestWebhook webhook={this.state.url}/>
+                              </div>
                           </div>
                       </FormGroup>
                       {error && <ErrorMessage error="Could not create a webhook for this url, please ensure you include http or https."/>}
