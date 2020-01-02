@@ -52,21 +52,13 @@ app.post('/api/webhook', (req, res) => {
         const body = req.body;
         let message = '';
         res.json(body);
-        if (body.event_type === 'FLAG_UPDATED') {
-            if (body.data) {
-                const state = body.data.new_state;
-                if (state.identity_identifier) {
-                    message = `\`${env} webhook:\` ${body.data.changed_by} changed \`${state.feature.name}\` to \`${state.feature.type === 'FLAG' ? state.enabled : state.feature_state_value}\` for user \`${state.identity_identifier}(${state.identity})\``;
-                } else {
-                    message = `\`${env} webhook:\` ${body.data.changed_by} changed \`${state.feature.name}\` to \`${state.feature.type === 'FLAG' ? state.enabled : state.feature_state_value}\``;
-                }
-                if (slackMessage) {
-                    slackMessage(message, E2E_SLACK_CHANNEL_NAME);
-                }
-            }
-        } else if (body.event_type === 'FLAG_CREATED') {
+        if (body.data) {
             const state = body.data.new_state;
-            message = `\`${env} webhook:\` ${body.data.changed_by} created \`${state.feature.name}\` and set it to \`${state.feature.type === 'FLAG' ? state.feature.default_enabled : state.feature.initial_value}\``;
+            if (state.identity_identifier) {
+                message = `\`${env} webhook:\` ${body.data.changed_by} changed \`${state.feature.name}\` to \`${state.feature.type === 'FLAG' ? state.enabled : state.feature_state_value || state.feature.initial_value}\` for user \`${state.identity_identifier}(${state.identity})\``;
+            } else {
+                message = `\`${env} webhook:\` ${body.data.changed_by} changed \`${state.feature.name}\` to \`${state.feature.type === 'FLAG' ? state.enabled : state.feature_state_value || state.feature.initial_value}\``;
+            }
             if (slackMessage) {
                 slackMessage(message, E2E_SLACK_CHANNEL_NAME);
             }
