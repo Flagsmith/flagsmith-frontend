@@ -103,7 +103,7 @@ module.exports = {
         browser
             .refresh()
             .waitForElementNotPresent('#create-feature-modal')
-            .pause(11000)
+            .pause(200)
             .waitForElementVisible('#try-it-btn')
             .click('#try-it-btn')
             .waitForElementVisible('#try-it-results')
@@ -142,7 +142,7 @@ module.exports = {
             .refresh()
             .waitForElementNotPresent('#create-feature-modal')
             .waitForElementVisible('#try-it-btn')
-            .pause(200)
+            .pause(11000) // wait for cache to expire, todo: remove when api has shared cache
             .click('#try-it-btn')
             .waitForElementVisible('#try-it-results')
             .getText('#try-it-results', (res) => {
