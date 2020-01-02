@@ -84,8 +84,8 @@ const CreateFlag = class extends Component {
                       </Row>
                       <FormGroup className="mb-4 ml-1">
                           <div>
-                              <label>Example Response </label>
-                              <a className="link-dark" href="https://docs.bullet-train.io/system-administration/" target="_blank">View docs</a>
+                              <label>Example Payload </label>
+                              <a className="link-dark ml-2" href="https://docs.bullet-train.io/system-administration/" target="_blank">View docs</a>
                               <Highlight style={{ marginBottom: 10 }} className="json">
                                   {exampleJSON}
                               </Highlight>
