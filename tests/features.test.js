@@ -103,7 +103,7 @@ module.exports = {
         browser
             .refresh()
             .waitForElementNotPresent('#create-feature-modal')
-            .pause(200)
+            .pause(11000)
             .waitForElementVisible('#try-it-btn')
             .click('#try-it-btn')
             .waitForElementVisible('#try-it-results')

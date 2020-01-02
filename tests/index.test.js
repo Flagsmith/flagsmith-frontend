@@ -154,7 +154,6 @@ module.exports = Object.assign(
     require('./users.test'), // Users tests
     require('./project.test'), // Project/environment tests
     require('./initial-cleanup.test'), // Cleanup initialisation
-    require('./marketing-pages.test'), // Marketing pages tests
     require('./invite.test'), // Invite user tests
     require('./register-fail.test'), // Registration failure tests
     require('./login-fail.test'), // Login failure tests
