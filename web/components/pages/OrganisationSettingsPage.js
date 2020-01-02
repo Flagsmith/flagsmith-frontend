@@ -145,7 +145,7 @@ const OrganisationSettingsPage = class extends Component {
                     <div className="app-container container">
                         <FormGroup>
                             <div className="margin-bottom">
-                                <div className="panel--grey" style={{ marginTop: '9em' }}>
+                                <div className="panel--grey" style={{ marginTop: '3em' }}>
                                     <form key={organisation.id} onSubmit={this.save}>
                                         <h5>Organisation Name</h5>
                                         <Row>
@@ -228,32 +228,29 @@ const OrganisationSettingsPage = class extends Component {
                                                 </div>
                                                 )}
 
-                                                <div className="flex-row header--icon mt-5">
+                                                <Row space className="mt-5">
                                                     <h5>Team members</h5>
-                                                    <button
+                                                    <Button
+                                                      className="mr-2"
                                                       id="btn-invite" onClick={() => openModal('Invite Users',
                                                           <InviteUsersModal/>)}
-                                                      className="btn btn--with-icon p-x-0 p-y-0"
                                                       type="button"
                                                     >
-                                                        <img
-                                                          className="btn__icon" src="/images/icons/plus-button.svg"
-                                                          alt="Invite"
-                                                        />
-                                                    </button>
-                                                </div>
+                                                        Invite members
+                                                    </Button>
+                                                </Row>
                                                 {organisation.num_seats && (
                                                     <p>
                                                         {'You are currently using '}
                                                         <strong className={organisation.num_seats > (_.get(organisation, 'subscription.max_seats') || 1) ? 'text-danger' : ''}>
                                                             {`${organisation.num_seats} / ${_.get(organisation, 'subscription.max_seats') || 1}`}
                                                         </strong>
-                                                        {` seat${organisation.num_seats === 1 ? '' : 's'}.`}
+                                                        {` seat${organisation.num_seats === 1 ? '' : 's'}. `}
+                                                        <a className="link-dark" href="https://docs.bullet-train.io/system-administration/">Learn about User Roles</a>
                                                     </p>
                                                 )}
-                                                <p><a className="text__link" href="https://docs.bullet-train.io/system-administration/">Learn about User Roles</a></p>
                                             </div>
-                                            <div className="panel--grey">
+                                            <div className="ml-3 mr-3">
                                                 {isLoading && <div className="centered-container"><Loader/></div>}
                                                 {!isLoading && (
                                                 <div>
