@@ -92,7 +92,7 @@ const Aside = class extends Component {
                             <div>
                                 {hasFeature('demo_feature') && (
                                     <a
-                                      style={{ color: 'white' }}
+                                      style={{ color: getValue('demo_link_color') || 'white' }}
                                       className="link--footer active"
                                       href="https://docs.bullet-train.io"
                                     >
