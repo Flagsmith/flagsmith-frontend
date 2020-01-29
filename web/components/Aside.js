@@ -90,6 +90,16 @@ const Aside = class extends Component {
                             <div className="flex flex-1" />
 
                             <div>
+                                {hasFeature('demo_feature') && (
+                                    <a
+                                      style={{ color: 'white' }}
+                                      className="link--footer active"
+                                      href="https://docs.bullet-train.io"
+                                    >
+                                        <i className="icon mr-2 ion-ios-star"/>
+                                        Super cool demo feature!
+                                    </a>
+                                )}
                                 <Link
                                   id="project-settings-link"
                                   activeClassName="active"
