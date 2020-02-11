@@ -19,7 +19,7 @@ const controller = {
                 store.saved();
             });
     },
-    createGroup: (orgId,group) => {
+    createGroup: (orgId, group) => {
         store.saving();
         data.post(`${Project.api}organisations/${orgId}/groups/`, group)
             .then(() => {
@@ -27,7 +27,7 @@ const controller = {
             })
             .catch(e => API.ajaxHandler(store, e));
     },
-    updateGroup: (orgId,group) => {
+    updateGroup: (orgId, group) => {
         store.saving();
         data.put(`${Project.api}organisations/${orgId}/groups/${group.id}/`, group)
             .then(() => {
@@ -35,11 +35,11 @@ const controller = {
             })
             .catch(e => API.ajaxHandler(store, e));
     },
-    deleteGroup: (group) => {
+    deleteGroup: (orgId, group) => {
         store.saving();
-        data.delete(`${Project.api}organisations/${store.id}/groups/${group.id}/`, group)
+        data.delete(`${Project.api}organisations/${orgId}/groups/${group}/`)
             .then(() => {
-                controller.refreshGroups();
+                controller.getGroups(orgId);
             })
             .catch(e => API.ajaxHandler(store, e));
     },

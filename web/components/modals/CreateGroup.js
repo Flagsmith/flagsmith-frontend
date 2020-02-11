@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Switch from 'rc-switch/lib/Switch';
 import UserGroupsProvider from '../../../common/providers/UserGroupsProvider';
 
 const CreateGroup = class extends Component {
@@ -53,6 +54,12 @@ const CreateGroup = class extends Component {
         }
     }
 
+    toggleUser = (email) => {
+        const isMember = _.find(this.state.users, { email });
+        const users = _.filter(this.state.users, u => u.email !== email);
+        this.setState({ users: isMember ? users : users.concat([{ email }]) });
+    }
+
     render() {
         const { name, users } = this.state;
         const isEdit = !!this.props.group;
@@ -64,6 +71,7 @@ const CreateGroup = class extends Component {
                       onSubmit={this.save}
                     >
                         <InputGroup
+                          title="Group name"
                           ref={e => this.input = e}
                           data-test="groupName"
                           inputProps={{
@@ -77,6 +85,35 @@ const CreateGroup = class extends Component {
                           name="Name*"
                           placeholder="E.g. Developers"
                         />
+                        <div className="mb-5">
+                            <OrganisationProvider>
+                                {({ users }) => (
+                                    <PanelSearch
+                                      id="org-members-list"
+                                      title="Members"
+                                      className="mt-5 no-pad"
+                                      items={users}
+                                      filterRow={(item, search) => {
+                                          const strToSearch = `${item.first_name} ${item.last_name} ${item.email}`;
+                                          return strToSearch.toLowerCase().indexOf(search.toLowerCase()) !== -1;
+                                      }}
+                                      renderRow={({ id, first_name, last_name, email, role }) => (
+                                          <Row space className="list-item" key={id}>
+                                              <div>
+                                                  {`${first_name} ${last_name}`}
+                                                  {' '}
+                                                  {id == AccountStore.getUserId() && '(You)'}
+                                                  <div className="list-item-footer faint">
+                                                      {email}
+                                                  </div>
+                                              </div>
+                                              <Switch onChange={() => this.toggleUser(email)} value={_.find(users, { email })}/>
+                                          </Row>
+                                      )}
+                                    />
+                                )}
+                            </OrganisationProvider>
+                        </div>
                         <div className="text-right">
                             {isEdit ? (
                                 <Button data-test="update-feature-btn" id="update-feature-btn" disabled={isSaving || !name}>

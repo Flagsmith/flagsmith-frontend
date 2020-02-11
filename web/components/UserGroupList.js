@@ -23,6 +23,20 @@ export default class TheComponent extends PureComponent {
       }
   }
 
+
+  removeGroup = (id, name) => {
+      openConfirm(
+          <h3>Delete Group</h3>,
+          <p>
+              {'Are you sure you want to delete '}
+              <strong>{name}</strong>
+              {'?'}
+          </p>,
+          () => AppActions.deleteGroup(this.props.orgId, id),
+      );
+  }
+
+
   render() {
       // const { props } = this;
       return (
@@ -41,13 +55,16 @@ export default class TheComponent extends PureComponent {
                             nextPage={() => AppActions.getGroupsPage(this.props.orgId, userGroupsPaging.next)}
                             prevPage={() => AppActions.getGroupsPage(this.props.orgId, userGroupsPaging.previous)}
                             goToPage={page => AppActions.getGroupsPage(this.props.orgId, `${Project.api}organisations/${this.props.orgId}/groups/?page=${page}`)}
-                            renderRow={({ id, name }, index) => (
+                            renderRow={({ id, name, users }, index) => (
                                 <Row
                                   space className="list-item" key={id}
                                   data-test={`user-item-${index}`}
                                 >
                                     <Flex onClick={() => openModal('Edit Group', <CreateGroup orgId={this.props.orgId} group={{ id, name }}/>)} className="clickable">
                                         {name}
+                                        <div className="list-item-footer faint">
+                                            {users.length}{users.length == 1 ? ' Member' : ' Members'}
+                                        </div>
                                     </Flex>
 
                                     <Column>
@@ -55,7 +72,7 @@ export default class TheComponent extends PureComponent {
                                           id="remove-group"
                                           className="btn btn--with-icon"
                                           type="button"
-                                          onClick={() => this.removeGroup(id)}
+                                          onClick={() => this.removeGroup(id, name)}
                                         >
                                             <RemoveIcon/>
                                         </button>
