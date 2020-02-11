@@ -19,6 +19,13 @@ window.openConfirm = require('./project/modals').openConfirm;
 
 const rootElement = document.getElementById('app');
 
+const params = Utils.fromParam();
+
+if (params.token) {
+    require('js-cookie').set('t', params.token);
+    document.location = document.location.origin;
+}
+
 function hashLinkScroll() {
     const { hash } = window.location;
     if (hash !== '') {
