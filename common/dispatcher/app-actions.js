@@ -18,6 +18,42 @@ const AppActions = Object.assign({}, require('./base/_app-actions'), {
             name,
         });
     },
+
+    getGroupsPage(orgId, page) {
+        Dispatcher.handleViewAction({
+            actionType: Actions.GET_GROUPS_PAGE,
+            orgId,
+            page,
+        });
+    },
+
+    getGroups(orgId) {
+        Dispatcher.handleViewAction({
+            actionType: Actions.GET_GROUPS,
+            orgId,
+        });
+    },
+    createGroup(orgId, data) {
+        Dispatcher.handleViewAction({
+            actionType: Actions.CREATE_GROUP,
+            data,
+            orgId,
+        });
+    },
+    deleteGroup(orgId, data) {
+        Dispatcher.handleViewAction({
+            actionType: Actions.DELETE_GROUP,
+            data,
+            orgId,
+        });
+    },
+    updateGroup(orgId, data) {
+        Dispatcher.handleViewAction({
+            actionType: Actions.UPDATE_GROUP,
+            data,
+            orgId,
+        });
+    },
     getProject(projectId) {
         Dispatcher.handleViewAction({
             actionType: Actions.GET_PROJECT,

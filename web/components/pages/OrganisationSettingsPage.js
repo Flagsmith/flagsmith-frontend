@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import CreateProjectModal from '../modals/CreateProject';
 import EditOrganisationModal from '../modals/EditOrganisation';
 import InviteUsersModal from '../modals/InviteUsers';
+import UserGroupList from '../UserGroupList';
 import ConfirmRemoveOrganisation from '../modals/ConfirmRemoveOrganisation';
 import PaymentModal from '../modals/Payment';
+import CreateGroupModal from '../modals/CreateGroup';
 import CancelPaymentPlanModal from '../modals/CancelPaymentPlan';
 import data from '../../../common/data/base/_data';
 
@@ -28,7 +30,7 @@ const OrganisationSettingsPage = class extends Component {
                 .then((res) => {
                     this.setState({
                         manageSubscriptionLoaded: true,
-                        chargebeeURL:res.url,
+                        chargebeeURL: res.url,
                     });
                 });
         }
@@ -375,6 +377,25 @@ const OrganisationSettingsPage = class extends Component {
                                                             />
                                                         </FormGroup>
                                                     ) : null}
+
+                                                    {hasFeature('fine_permissions') && (
+                                                    <div>
+                                                        <Row space className="mt-5">
+                                                            <h5>User groups</h5>
+                                                            <Button
+                                                              className="mr-2"
+                                                              id="btn-invite" onClick={() => openModal('Create Group',
+                                                                  <CreateGroupModal orgId={organisation.id}/>)}
+                                                              type="button"
+                                                            >
+                                                                  Create Group
+                                                            </Button>
+                                                        </Row>
+                                                        <p>Groups allow you to manage permissions for viewing and editing projects, features and environments.</p>
+                                                        <UserGroupList orgId={organisation.id}/>
+                                                    </div>
+                                                    )}
+
                                                 </div>
                                                 )}
                                             </div>
