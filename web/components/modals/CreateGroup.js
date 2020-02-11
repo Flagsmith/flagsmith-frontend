@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Switch from 'rc-switch/lib/Switch';
 import UserGroupsProvider from '../../../common/providers/UserGroupsProvider';
+import data from '../../../common/data/base/_data';
 
 const CreateGroup = class extends Component {
     static displayName = 'CreateGroup'
@@ -37,67 +38,78 @@ const CreateGroup = class extends Component {
         }
     }
 
-    save = (e) => {
-        Utils.preventDefault(e);
+    getUsersToRemove = (users) => {
+        return _.filter(users, ({id})=>{
+            return !_.find(this.state.users, {id})
+        })
+    }
+
+    save = (allUsers) => {
         const { name, users } = this.state;
         if (this.props.group) {
             AppActions.updateGroup(this.props.orgId, {
                 id: this.props.group.id,
                 name,
                 users,
+                usersToRemove: this.getUsersToRemove(allUsers),
             });
         } else {
             AppActions.createGroup(this.props.orgId, {
                 name,
                 users,
+                usersToRemove: this.getUsersToRemove(allUsers),
             });
         }
     }
 
-    toggleUser = (email) => {
-        const isMember = _.find(this.state.users, { email });
-        const users = _.filter(this.state.users, u => u.email !== email);
-        this.setState({ users: isMember ? users : users.concat([{ email }]) });
+    toggleUser = (id) => {
+        const isMember = _.find(this.state.users, { id });
+        const users = _.filter(this.state.users, u => u.id !== id);
+        this.setState({ users: isMember ? users : users.concat([{ id }]) });
     }
 
     render() {
-        const { name, users } = this.state;
+        const { name } = this.state;
         const isEdit = !!this.props.group;
         return (
-            <UserGroupsProvider onSave={this.close}>
-                {({ isSaving }) => (
-                    <form
-                      id="create-feature-modal"
-                      onSubmit={this.save}
-                    >
-                        <InputGroup
-                          title="Group name"
-                          ref={e => this.input = e}
-                          data-test="groupName"
-                          inputProps={{
-                              className: 'full-width',
-                              name: 'groupName',
-                          }}
-                          value={name}
-                          onChange={e => this.setState({ name: Utils.safeParseEventValue(e) })}
-                          isValid={name && name.length}
-                          type="text"
-                          name="Name*"
-                          placeholder="E.g. Developers"
-                        />
-                        <div className="mb-5">
-                            <OrganisationProvider>
-                                {({ users }) => (
+
+            <OrganisationProvider>
+                {({ users }) => (
+                    <UserGroupsProvider onSave={this.close}>
+                        {({ isSaving }) => (
+                            <form
+                              id="create-feature-modal"
+                              onSubmit={(e) => {
+                                  Utils.preventDefault(e);
+                                  this.save(users);
+                              }}
+                            >
+                                <InputGroup
+                                  title="Group name"
+                                  ref={e => this.input = e}
+                                  data-test="groupName"
+                                  inputProps={{
+                                      className: 'full-width',
+                                      name: 'groupName',
+                                  }}
+                                  value={name}
+                                  onChange={e => this.setState({ name: Utils.safeParseEventValue(e) })}
+                                  isValid={name && name.length}
+                                  type="text"
+                                  name="Name*"
+                                  placeholder="E.g. Developers"
+                                />
+                                <div className="mb-5">
                                     <PanelSearch
                                       id="org-members-list"
                                       title="Members"
                                       className="mt-5 no-pad"
                                       items={users}
                                       filterRow={(item, search) => {
-                                          const strToSearch = `${item.first_name} ${item.last_name} ${item.email}`;
+                                          const strToSearch = `${item.first_name} ${item.last_name} ${item.id}`;
                                           return strToSearch.toLowerCase().indexOf(search.toLowerCase()) !== -1;
                                       }}
-                                      renderRow={({ id, first_name, last_name, email, role }) => (
+                                      renderRow={({ id, first_name, last_name, email }) => (
                                           <Row space className="list-item" key={id}>
                                               <div>
                                                   {`${first_name} ${last_name}`}
@@ -107,27 +119,27 @@ const CreateGroup = class extends Component {
                                                       {email}
                                                   </div>
                                               </div>
-                                              <Switch onChange={() => this.toggleUser(email)} value={_.find(users, { email })}/>
+                                              <Switch onChange={() => this.toggleUser(id)} checked={!!_.find(this.state.users, { id })}/>
                                           </Row>
                                       )}
                                     />
-                                )}
-                            </OrganisationProvider>
-                        </div>
-                        <div className="text-right">
-                            {isEdit ? (
-                                <Button data-test="update-feature-btn" id="update-feature-btn" disabled={isSaving || !name}>
-                                    {isSaving ? 'Updating' : 'Update Group'}
-                                </Button>
-                            ) : (
-                                <Button data-test="create-feature-btn" id="create-feature-btn" disabled={isSaving || !name}>
-                                    {isSaving ? 'Creating' : 'Create Group'}
-                                </Button>
-                            )}
-                        </div>
-                    </form>
+                                </div>
+                                <div className="text-right">
+                                    {isEdit ? (
+                                        <Button data-test="update-feature-btn" id="update-feature-btn" disabled={isSaving || !name}>
+                                            {isSaving ? 'Updating' : 'Update Group'}
+                                        </Button>
+                                    ) : (
+                                        <Button data-test="create-feature-btn" id="create-feature-btn" disabled={isSaving || !name}>
+                                            {isSaving ? 'Creating' : 'Create Group'}
+                                        </Button>
+                                    )}
+                                </div>
+                            </form>
+                        )}
+                    </UserGroupsProvider>
                 )}
-            </UserGroupsProvider>
+            </OrganisationProvider>
 
         );
     }

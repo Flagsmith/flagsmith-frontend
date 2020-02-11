@@ -60,7 +60,7 @@ export default class TheComponent extends PureComponent {
                                   space className="list-item" key={id}
                                   data-test={`user-item-${index}`}
                                 >
-                                    <Flex onClick={() => openModal('Edit Group', <CreateGroup orgId={this.props.orgId} group={{ id, name }}/>)} className="clickable">
+                                    <Flex onClick={() => openModal('Edit Group', <CreateGroup orgId={this.props.orgId} group={{ id, users, name }}/>)} className="clickable">
                                         {name}
                                         <div className="list-item-footer faint">
                                             {users.length}{users.length == 1 ? ' Member' : ' Members'}
