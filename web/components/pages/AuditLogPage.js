@@ -17,7 +17,7 @@ const AuditLogPage = class extends Component {
     }
 
     filterRow = (logMessage, search) => {
-        const stringToSearch = `${logMessage.log} ${logMessage.author.first_name} ${logMessage.author.last_name} ${logMessage.author.email} ${moment(logMessage.created_date).format('L LTS')}`;
+        const stringToSearch = `${logMessage.log} ${logMessage.author?logMessage.author.first_name:""} ${logMessage.author?logMessage.author.last_name:""} ${logMessage.author?logMessage.author.email:""} ${moment(logMessage.created_date).format('L LTS')}`;
         return stringToSearch.toLowerCase().indexOf(search.toLowerCase()) !== -1;
     }
 
