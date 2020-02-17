@@ -54,6 +54,19 @@ const AppActions = Object.assign({}, require('./base/_app-actions'), {
             orgId,
         });
     },
+    getPermissions(id, level) {
+        Dispatcher.handleViewAction({
+            actionType: Actions.GET_PERMISSIONS,
+            id,
+            level,
+        });
+    },
+    getAvailablePermissions(level) {
+        Dispatcher.handleViewAction({
+            actionType: Actions.GET_AVAILABLE_PERMISSIONS,
+            level,
+        });
+    },
     getProject(projectId) {
         Dispatcher.handleViewAction({
             actionType: Actions.GET_PROJECT,
