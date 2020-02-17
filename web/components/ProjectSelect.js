@@ -59,19 +59,26 @@ const ProjectSelect = class extends Component {
                                               }}
                                             />
                                             <ul className="project-list list-unstyled pt-0">
-                                                <li className="project-nav__item flex-row">
-                                                    <Link
-                                                      id="create-env-link"
-                                                      to={`/project/${this.props.projectId}/environment/create`}
-                                                      className="project-nav__button project-nav__button--cta"
-                                                    >
-                                                        <span className="project-nav__item__text">Environments</span>
-                                                        <img
-                                                          className="project-nav__icon" src="/images/plus-button.svg"
-                                                          alt="New"
-                                                        />
-                                                    </Link>
-                                                </li>
+                                                <Permission level="project" permission="CREATE_ENVIRONMENT" id={this.props.projectId}>
+                                                    {({ permission, isLoading }) => (
+                                                        <li className="project-nav__item flex-row">
+                                                            {permission && (
+                                                            <Link
+                                                              id="create-env-link"
+                                                              to={`/project/${this.props.projectId}/environment/create`}
+                                                              className="project-nav__button project-nav__button--cta"
+                                                            >
+                                                                <span className="project-nav__item__text">Environments</span>
+                                                                <img
+                                                                  className="project-nav__icon" src="/images/plus-button.svg"
+                                                                  alt="New"
+                                                                />
+                                                            </Link>
+                                                            )}
+
+                                                        </li>
+                                                    )}
+                                                </Permission>
                                             </ul>
                                         </div>
                                     )}

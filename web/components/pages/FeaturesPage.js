@@ -89,6 +89,30 @@ const FeaturesPage = class extends Component {
         />);
     }
 
+    createFeaturePermission(el) {
+        return (
+            <Permission level="project" permission="CREATE_FEATURE" id={this.props.match.params.projectId}>
+                {({ permission, isLoading }) => (permission ? (
+                    el(permission)
+                ) : this.renderWithPermission(permission, Constants.projectPermissions('Create Feature'), el(permission)))}
+            </Permission>
+        );
+    }
+
+    renderWithPermission(permission, name, el) {
+        return permission ? (
+            el
+        ) : (
+            <Tooltip
+              title={el}
+              place="right"
+              html
+            >
+                {name}
+            </Tooltip>
+        );
+    }
+
     onError = (error) => {
         // Kick user back out to projects
         this.setState({ error });
@@ -136,96 +160,112 @@ const FeaturesPage = class extends Component {
                                                     </p>
                                                 </Flex>
                                                 <FormGroup className="float-right">
-                                                    {projectFlags && projectFlags.length ? (
+                                                    {projectFlags && projectFlags.length ? this.createFeaturePermission(perm => (
                                                         <div className="text-right">
-                                                            <Button data-test="show-create-feature-btn" id="show-create-feature-btn" onClick={this.newFlag}>
-                                                                Create Feature
+                                                            <Button
+                                                              disabled={!perm} data-test="show-create-feature-btn" id="show-create-feature-btn"
+                                                              onClick={this.newFlag}
+                                                            >
+                                                              Create Feature
                                                             </Button>
                                                         </div>
-                                                    ) : null}
+                                                    ))
+                                                        : null}
                                                 </FormGroup>
                                             </Row>
-                                            <FormGroup>
-                                                <PanelSearch
-                                                  className="no-pad"
-                                                  id="features-list"
-                                                  icon="ion-ios-rocket"
-                                                  title="Features"
-                                                  items={projectFlags}
-                                                  renderRow={(projectFlag, i) => {
-                                                      const { name, id, enabled, created_date, type } = projectFlag;
-                                                      return (
-                                                          <Row
-                                                            className="list-item clickable" key={id} space
-                                                            data-test={`feature-item-${i}`}
-                                                          >
-                                                              <div
-                                                                className="flex flex-1"
-                                                                onClick={() => this.editFlag(projectFlag, environmentFlags[id])}
-                                                              >
-                                                                  <Row>
-                                                                      <a href="#">
-                                                                          {name}
-                                                                      </a>
-                                                                      <Column/>
-                                                                  </Row>
-                                                                  <div className="list-item-footer faint">
-                                                                    Created
-                                                                      {' '}
-                                                                      {moment(created_date).format('DD/MMM/YYYY')}
-                                                                  </div>
-                                                              </div>
-                                                              <Row>
-
-                                                                  <Column>
-                                                                      {type == 'FLAG' ? (
-                                                                          <Switch
-                                                                            data-test={`feature-switch-${i}${environmentFlags[id] && environmentFlags[id].enabled ? '-on' : '-off'}`}
-                                                                            checked={environmentFlags[id] && environmentFlags[id].enabled}
-                                                                            onChange={() => this.confirmToggle(projectFlag, environmentFlags[id], (environments) => {
-                                                                                toggleFlag(_.findIndex(projectFlags, { id }), environments);
-                                                                            })}
-                                                                          />
-                                                                      ) : (
-                                                                          <FeatureValue
-                                                                            onClick={() => this.editFlag(projectFlag, environmentFlags[id])}
-                                                                            value={environmentFlags[id] && environmentFlags[id].feature_state_value}
-                                                                            data-test={`feature-value-${i}`}
-                                                                          />
-                                                                      )}
-                                                                  </Column>
-                                                                  <Column>
-                                                                      <button
-                                                                        id="remove-feature"
-                                                                        onClick={() => this.confirmRemove(projectFlag, () => {
-                                                                            removeFlag(this.props.match.params.projectId, projectFlag);
-                                                                        })}
-                                                                        className="btn btn--with-icon"
-                                                                        data-test={`remove-feature-btn-${i}`}
+                                            <Permission level="environment" permission="ADMIN" id={this.props.match.params.environmentId}>
+                                                {({ permission, isLoading }) => (
+                                                    <FormGroup>
+                                                        <PanelSearch
+                                                          className="no-pad"
+                                                          id="features-list"
+                                                          icon="ion-ios-rocket"
+                                                          title="Features"
+                                                          items={projectFlags}
+                                                          renderRow={(projectFlag, i) => {
+                                                              const { name, id, enabled, created_date, type } = projectFlag;
+                                                              return (
+                                                                  <Row
+                                                                    className={permission ? 'list-item clickable' : 'list-item'} key={id} space
+                                                                    data-test={`feature-item-${i}`}
+                                                                  >
+                                                                      <div
+                                                                        className="flex flex-1"
+                                                                        onClick={() => permission && this.editFlag(projectFlag, environmentFlags[id])}
                                                                       >
-                                                                          <RemoveIcon/>
-                                                                      </button>
-                                                                  </Column>
-                                                              </Row>
-                                                          </Row>
-                                                      );
-                                                  }}
-                                                  renderNoResults={(
-                                                      <div className="text-center">
-                                                          {/* <FormGroup> */}
-                                                          {/* <button onClick={this.newFlag} */}
-                                                          {/* className={"btn btn-primary btn-lg"} */}
-                                                          {/* id="showCreateFeatureBtn"> */}
-                                                          {/* <span className="icon ion-ios-rocket"/> */}
-                                                          {/* Create your first feature */}
-                                                          {/* </button> */}
-                                                          {/* </FormGroup> */}
-                                                      </div>
-                                                    )}
-                                                  filterRow={({ name }, search) => name.toLowerCase().indexOf(search) > -1}
-                                                />
-                                            </FormGroup>
+                                                                          <Row>
+                                                                              <a href="#">
+                                                                                  {name}
+                                                                              </a>
+                                                                              <Column/>
+                                                                          </Row>
+                                                                          <div className="list-item-footer faint">
+                                                                          Created
+                                                                              {' '}
+                                                                              {moment(created_date).format('DD/MMM/YYYY')}
+                                                                          </div>
+                                                                      </div>
 
+                                                                      {
+                                                                              this.renderWithPermission(permission, Constants.environmentPermissions('Admin'), (
+                                                                                  <Row>
+
+                                                                                      <Column>
+                                                                                          {type === 'FLAG' ? (
+                                                                                              <Switch
+                                                                                                disabled={!permission}
+                                                                                                data-test={`feature-switch-${i}${environmentFlags[id] && environmentFlags[id].enabled ? '-on' : '-off'}`}
+                                                                                                checked={environmentFlags[id] && environmentFlags[id].enabled}
+                                                                                                onChange={() => this.confirmToggle(projectFlag, environmentFlags[id], (environments) => {
+                                                                                                    toggleFlag(_.findIndex(projectFlags, { id }), environments);
+                                                                                                })}
+                                                                                              />
+                                                                                          ) : (
+                                                                                              <FeatureValue
+                                                                                                onClick={() => permission && this.editFlag(projectFlag, environmentFlags[id])}
+                                                                                                value={environmentFlags[id] && environmentFlags[id].feature_state_value}
+                                                                                                data-test={`feature-value-${i}`}
+                                                                                              />
+                                                                                          )}
+                                                                                      </Column>
+                                                                                      <Column>
+                                                                                          <button
+                                                                                            disabled={!permission}
+                                                                                            id="remove-feature"
+                                                                                            onClick={() => permission && this.confirmRemove(projectFlag, () => {
+                                                                                                removeFlag(this.props.match.params.projectId, projectFlag);
+                                                                                            })}
+                                                                                            className="btn btn--with-icon"
+                                                                                            data-test={`remove-feature-btn-${i}`}
+                                                                                          >
+                                                                                              <RemoveIcon/>
+                                                                                          </button>
+                                                                                      </Column>
+                                                                                  </Row>
+                                                                              ))
+                                                                          }
+
+                                                                  </Row>
+                                                              );
+                                                          }}
+                                                          renderNoResults={(
+                                                              <div className="text-center">
+                                                                  {/* <FormGroup> */}
+                                                                  {/* <button onClick={this.newFlag} */}
+                                                                  {/* className={"btn btn-primary btn-lg"} */}
+                                                                  {/* id="showCreateFeatureBtn"> */}
+                                                                  {/* <span className="icon ion-ios-rocket"/> */}
+                                                                  {/* Create your first feature */}
+                                                                  {/* </button> */}
+                                                                  {/* </FormGroup> */}
+                                                              </div>
+                                                        )}
+                                                          filterRow={({ name }, search) => name.toLowerCase().indexOf(search) > -1}
+                                                        />
+                                                    </FormGroup>
+                                                )}
+
+                                            </Permission>
                                             <FormGroup>
                                                 <CodeHelp
                                                   title="1: Installing the SDK"
@@ -334,17 +374,19 @@ const FeaturesPage = class extends Component {
                                                     </p>
                                                 </Panel>
                                             </FormGroup>
-                                            <FormGroup className="text-center">
-
-                                                <Button
-                                                  className="btn-lg btn-primary" id="show-create-feature-btn" data-test="show-create-feature-btn"
-                                                  onClick={this.newFlag}
-                                                >
-                                                    <span className="icon ion-ios-rocket"/>
-                                                    {' '}
-                                                    Create your first Feature
-                                                </Button>
-                                            </FormGroup>
+                                            {this.createFeaturePermission(perm => (
+                                                <FormGroup className="text-center">
+                                                    <Button
+                                                      disabled={!perm}
+                                                      className="btn-lg btn-primary" id="show-create-feature-btn" data-test="show-create-feature-btn"
+                                                      onClick={this.newFlag}
+                                                    >
+                                                        <span className="icon ion-ios-rocket"/>
+                                                        {' '}
+                                                      Create your first Feature
+                                                    </Button>
+                                                </FormGroup>
+                                            ))}
                                         </div>
                                     )}
 
