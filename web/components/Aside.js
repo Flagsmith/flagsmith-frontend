@@ -77,13 +77,13 @@ const Aside = class extends Component {
                                   environmentId={this.props.environmentId}
                                   clearableValue={false}
                                   onChange={(project) => {
-												    AppActions.getProject(project.id);
-												    this.context.router.history.push(`/project/${project.id}/environment/${project.environments[0].api_key}/features`);
-												    AsyncStorage.setItem('lastEnv', JSON.stringify({
-												        orgId: AccountStore.getOrganisation().id,
-												        projectId: project.id,
-												        environmentId: project.environments[0].api_key,
-												    }));
+                                      AppActions.getProject(project.id);
+                                      this.context.router.history.push(`/project/${project.id}/environment/${project.environments[0].api_key}/features`);
+                                      AsyncStorage.setItem('lastEnv', JSON.stringify({
+                                          orgId: AccountStore.getOrganisation().id,
+                                          projectId: project.id,
+                                          environmentId: project.environments[0].api_key,
+                                      }));
                                   }}
                                 />
                             </div>
@@ -100,16 +100,20 @@ const Aside = class extends Component {
                                         Super cool demo feature!
                                     </a>
                                 )}
-                                <Link
-                                  id="project-settings-link"
-                                  activeClassName="active"
-                                  className="link--footer"
-                                  to={
-													`/project/${this.props.projectId}/environment/${this.props.environmentId}/project-settings`
-												}
-                                >
-Project Settings
-                                </Link>
+                                <Permission level="project" permission="ADMIN" id={this.props.projectId}>
+                                    {({ isLoading, permission }) => !!permission && (
+                                    <Link
+                                      id="project-settings-link"
+                                      activeClassName="active"
+                                      className="link--footer"
+                                      to={`/project/${this.props.projectId}/environment/${this.props.environmentId}/project-settings`}
+                                    >
+                                        Project Settings
+                                    </Link>
+                                    )}
+
+                                </Permission>
+
                                 {AccountStore.getOrganisationRole() === 'ADMIN' && (
                                     <Link
                                       id="organisation-settings-link"

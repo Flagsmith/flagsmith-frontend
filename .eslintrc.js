@@ -97,6 +97,7 @@ module.exports = {
         'moment': true,
         'openConfirm': true,
         'openModal': true,
+        'Permission': true,
         'Project': true,
         'propTypes': true,
         'Radio': true,
