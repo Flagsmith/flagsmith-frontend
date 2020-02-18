@@ -205,46 +205,45 @@ const FeaturesPage = class extends Component {
                                                                               {moment(created_date).format('DD/MMM/YYYY')}
                                                                           </div>
                                                                       </div>
-
-                                                                      {
+                                                                      <Row>
+                                                                          {
                                                                               this.renderWithPermission(permission, Constants.environmentPermissions('Admin'), (
-                                                                                  <Row>
 
-                                                                                      <Column>
-                                                                                          {type === 'FLAG' ? (
-                                                                                              <Switch
-                                                                                                disabled={!permission}
-                                                                                                data-test={`feature-switch-${i}${environmentFlags[id] && environmentFlags[id].enabled ? '-on' : '-off'}`}
-                                                                                                checked={environmentFlags[id] && environmentFlags[id].enabled}
-                                                                                                onChange={() => this.confirmToggle(projectFlag, environmentFlags[id], (environments) => {
-                                                                                                    toggleFlag(_.findIndex(projectFlags, { id }), environments);
-                                                                                                })}
-                                                                                              />
-                                                                                          ) : (
-                                                                                              <FeatureValue
-                                                                                                onClick={() => permission && this.editFlag(projectFlag, environmentFlags[id])}
-                                                                                                value={environmentFlags[id] && environmentFlags[id].feature_state_value}
-                                                                                                data-test={`feature-value-${i}`}
-                                                                                              />
-                                                                                          )}
-                                                                                      </Column>
-                                                                                      <Column>
-                                                                                          <button
+
+                                                                                  <Column>
+                                                                                      {type === 'FLAG' ? (
+                                                                                          <Switch
                                                                                             disabled={!permission}
-                                                                                            id="remove-feature"
-                                                                                            onClick={() => permission && this.confirmRemove(projectFlag, () => {
-                                                                                                removeFlag(this.props.match.params.projectId, projectFlag);
+                                                                                            data-test={`feature-switch-${i}${environmentFlags[id] && environmentFlags[id].enabled ? '-on' : '-off'}`}
+                                                                                            checked={environmentFlags[id] && environmentFlags[id].enabled}
+                                                                                            onChange={() => this.confirmToggle(projectFlag, environmentFlags[id], (environments) => {
+                                                                                                toggleFlag(_.findIndex(projectFlags, { id }), environments);
                                                                                             })}
-                                                                                            className="btn btn--with-icon"
-                                                                                            data-test={`remove-feature-btn-${i}`}
-                                                                                          >
-                                                                                              <RemoveIcon/>
-                                                                                          </button>
-                                                                                      </Column>
-                                                                                  </Row>
+                                                                                          />
+                                                                                      ) : (
+                                                                                          <FeatureValue
+                                                                                            onClick={() => permission && this.editFlag(projectFlag, environmentFlags[id])}
+                                                                                            value={environmentFlags[id] && environmentFlags[id].feature_state_value}
+                                                                                            data-test={`feature-value-${i}`}
+                                                                                          />
+                                                                                      )}
+                                                                                  </Column>
                                                                               ))
-                                                                          }
-
+                                                                            }
+                                                                          <Column>
+                                                                              <button
+                                                                                disabled={!permission}
+                                                                                id="remove-feature"
+                                                                                onClick={() => permission && this.confirmRemove(projectFlag, () => {
+                                                                                    removeFlag(this.props.match.params.projectId, projectFlag);
+                                                                                })}
+                                                                                className="btn btn--with-icon"
+                                                                                data-test={`remove-feature-btn-${i}`}
+                                                                              >
+                                                                                  <RemoveIcon/>
+                                                                              </button>
+                                                                          </Column>
+                                                                      </Row>
                                                                   </Row>
                                                               );
                                                           }}
