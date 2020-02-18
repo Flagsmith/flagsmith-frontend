@@ -15,13 +15,13 @@ const controller = {
                     'READ',
                     'CREATE_FEATUREd',
                 ],
-                // 'admin': true,
+                'admin': true,
             }: {
                 'permissions': [
                     'READ',
                     'CREATE_FEATUREd',
                 ],
-                // 'admin': true,
+                'admin': true,
             };
             store.model[level] = store.model[level] || {};
             store.model[level][id] = store.model[level][id] || {};
