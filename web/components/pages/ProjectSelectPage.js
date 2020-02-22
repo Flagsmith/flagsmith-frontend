@@ -76,7 +76,7 @@ const ProjectSelectPage = class extends Component {
                                 <div>
                                     <h3>Your projects</h3>
                                     <p>
-                                        You do not have access to any projects within this organisation yet, please contact member of this organisation who has administrator privileges. Users can be added to projects from the project settings menu.
+                                        You do not have access to any projects within this organisation yet, if this is unexpected please contact member of the project who has administrator privileges. Users can be added to projects from the project settings menu.
                                     </p>
                                 </div>
                             )
@@ -111,36 +111,16 @@ const ProjectSelectPage = class extends Component {
                                               <div className="text-center">
                                                   <div className="text-center">
                                                       <div>
-                                                          {!isAdmin ? (
-                                                              <Tooltip
-                                                                html
-                                                                title={
-                                                                  <button
-                                                                    disabled
-                                                                    className="btn btn-primary btn-lg"
-                                                                    data-test="create-first-project-btn"
-                                                                    id="create-first-project-btn"
-                                                                  >
-                                                                      <span className="icon ion-ios-rocket"/>
-                                                                      {' '}
-                                                                  Create a project
-                                                                  </button>}
-                                                              >
-                                                                  {Constants.adminPermissions()}
-                                                              </Tooltip>
-                                                          ) : (
-                                                              <button
-                                                                onClick={this.newProject}
-                                                                className="btn btn-primary btn-lg"
-                                                                data-test="create-first-project-btn"
-                                                                id="create-first-project-btn"
-                                                              >
-                                                                  <span className="icon ion-ios-rocket"/>
-                                                                  {' '}
-                                                                Create a project
-                                                              </button>
-                                                          )}
-
+                                                          <button
+                                                            onClick={this.newProject}
+                                                            className="btn btn-primary btn-lg"
+                                                            data-test="create-first-project-btn"
+                                                            id="create-first-project-btn"
+                                                          >
+                                                              <span className="icon ion-ios-rocket"/>
+                                                              {' '}
+                                                              Create a project
+                                                          </button>
                                                       </div>
                                                   </div>
                                               </div>

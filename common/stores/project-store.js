@@ -21,7 +21,7 @@ const controller = {
                 store.id = id;
                 store.loaded();
             }).catch(() => {
-                document.location.href = '/404';
+                document.location.href = '/404?entity=project';
             });
         }
     },

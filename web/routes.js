@@ -14,7 +14,7 @@ import FlagsPage from './components/pages/FeaturesPage';
 import SegmentsPage from './components/pages/SegmentsPage';
 import OrganisationSettingsPage from './components/pages/OrganisationSettingsPage';
 import ComingSoon from './components/pages/ComingSoonPage';
-import NotFoundErrorPage from './components/pages/ComingSoonPage';
+import NotFoundErrorPage from './components/pages/NotFoundErrorPage';
 import ProjectSettingsPage from './components/pages/ProjectSettingsPage';
 import WhatAreFeatureFlagsPage from './components/pages/WhatAreFeatureFlagsPage';
 import WhenFeatureFlagsGoWrong from './components/pages/blog/WhenFeatureFlagsGoWrong';
