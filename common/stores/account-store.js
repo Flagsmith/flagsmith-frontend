@@ -192,6 +192,10 @@ const store = Object.assign({}, BaseStore, {
     getOrganisation() {
         return store.organisation;
     },
+    isAdmin() {
+        const id = store.organisation && store.organisation.id;
+        return id && store.getOrganisationRole(id) === 'ADMIN';
+    },
     getOrganisations() {
         return store.model && store.model.organisations;
     },

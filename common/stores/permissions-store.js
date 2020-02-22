@@ -1,5 +1,6 @@
 const BaseStore = require('./base/_store');
 const data = require('../data/base/_data');
+const OrganisationStore = require('../stores/organisation-store');
 
 const controller = {
 
@@ -13,13 +14,13 @@ const controller = {
             const res = level === 'environment' ? {
                 'permissions': [
                     'READ',
-                    'CREATE_FEATURE',
+                    'CREATE_FEATURE2',
                 ],
-                'admin': true,
+                'admin': false,
             } : {
                 'permissions': [
                     'READ',
-                    'CREATE_FEATURE',
+                    'CREATE_FEATURE2',
                 ],
                 'admin': false,
             };
@@ -78,6 +79,9 @@ var store = Object.assign({}, BaseStore, {
         return store.model[level] && store.model[level][id];
     },
     getPermission(id, level, permission) {
+        if (AccountStore.isAdmin()) {
+            return true
+        }
         const perms = store.getPermissions(id, level);
         return perms && (perms[permission] || perms.ADMIN);
     },

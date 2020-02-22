@@ -35,6 +35,7 @@ const ProjectSelectPage = class extends Component {
     };
 
     render() {
+        const isAdmin = AccountStore.isAdmin();
         return (
             <div data-test="project-select-page" id="project-select-page" className="app-container container">
                 <OrganisationProvider>
@@ -42,7 +43,7 @@ const ProjectSelectPage = class extends Component {
                         <div>
                             {projects && projects.length ? (
                                 <div>
-                                    <Button onClick={this.newProject} className="float-right">
+                                    <Button disabled={!isAdmin} onClick={this.newProject} className="float-right">
                                         Create Project
                                     </Button>
                                     <h3>Your projects</h3>
@@ -52,7 +53,7 @@ const ProjectSelectPage = class extends Component {
                                         app environments.
                                     </p>
                                 </div>
-                            ) : (
+                            ) : isAdmin ? (
                                 <div className="text-center">
                                     <h3>Great! Now you can create your first project.</h3>
                                     <p>
@@ -69,6 +70,13 @@ const ProjectSelectPage = class extends Component {
                                     <p>
                                         You can create features for your project, then enable and configure them per
                                         environment.
+                                    </p>
+                                </div>
+                            ) : (
+                                <div>
+                                    <h3>Your projects</h3>
+                                    <p>
+                                        You do not have access to any projects within this organisation yet, please contact member of this organisation who has administrator privileges. Users can be added to projects from the project settings menu.
                                     </p>
                                 </div>
                             )
@@ -103,16 +111,36 @@ const ProjectSelectPage = class extends Component {
                                               <div className="text-center">
                                                   <div className="text-center">
                                                       <div>
-                                                          <button
-                                                            onClick={this.newProject}
-                                                            className="btn btn-primary btn-lg"
-                                                            data-test="create-first-project-btn"
-                                                            id="create-first-project-btn"
-                                                          >
-                                                              <span className="icon ion-ios-rocket"/>
-                                                              {' '}
+                                                          {!isAdmin ? (
+                                                              <Tooltip
+                                                                html
+                                                                title={
+                                                                  <button
+                                                                    disabled
+                                                                    className="btn btn-primary btn-lg"
+                                                                    data-test="create-first-project-btn"
+                                                                    id="create-first-project-btn"
+                                                                  >
+                                                                      <span className="icon ion-ios-rocket"/>
+                                                                      {' '}
+                                                                  Create a project
+                                                                  </button>}
+                                                              >
+                                                                  {Constants.adminPermissions()}
+                                                              </Tooltip>
+                                                          ) : (
+                                                              <button
+                                                                onClick={this.newProject}
+                                                                className="btn btn-primary btn-lg"
+                                                                data-test="create-first-project-btn"
+                                                                id="create-first-project-btn"
+                                                              >
+                                                                  <span className="icon ion-ios-rocket"/>
+                                                                  {' '}
                                                                 Create a project
-                                                          </button>
+                                                              </button>
+                                                          )}
+
                                                       </div>
                                                   </div>
                                               </div>

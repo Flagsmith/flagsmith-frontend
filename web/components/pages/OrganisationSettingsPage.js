@@ -248,7 +248,11 @@ const OrganisationSettingsPage = class extends Component {
                                                             {`${organisation.num_seats} / ${_.get(organisation, 'subscription.max_seats') || 1}`}
                                                         </strong>
                                                         {` seat${organisation.num_seats === 1 ? '' : 's'}. `}
-                                                        <a className="link-dark" href="https://docs.bullet-train.io/system-administration/">Learn about User Roles</a>
+                                                        <br/>
+                                                        <br/>
+                                                        Users without an admin role will need to have their permissions managed per project and environment.
+                                                        {" "}
+                                                        <a className="link-dark" href="https://docs.bullet-train.io/system-administration/">Learn about User Roles.</a>
                                                     </p>
                                                 )}
                                             </div>

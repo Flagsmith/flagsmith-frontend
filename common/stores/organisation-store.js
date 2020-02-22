@@ -10,7 +10,7 @@ const controller = {
             store.loading();
 
             Promise.all([
-                data.get(`${Project.api}organisations/${id}/projects/`),
+                data.get(`${Project.api}projects/?organisation_id=${id}`),
             ].concat(AccountStore.getOrganisationRole(id) === 'ADMIN' ? [
                 data.get(`${Project.api}organisations/${id}/users/`),
                 data.get(`${Project.api}organisations/${id}/invites/`),
@@ -19,14 +19,19 @@ const controller = {
                     const [projects, users, invites, usage] = res;
                     store.model = { users, invites: invites && invites.results };
 
-                    data.get(`${Project.api}organisations/${id}/usage/`).then((usage) => {
-                        store.model.usage = usage && usage.events;
-                        store.loaded();
-                    });
+                    if (AccountStore.getOrganisationRole(id) === 'ADMIN') {
+                        data.get(`${Project.api}organisations/${id}/usage/`).then((usage) => {
+                            store.model.usage = usage && usage.events;
+                            store.loaded();
+                        });
+                    }
 
                     return Promise.all(projects.map((project, i) => data.get(`${Project.api}projects/${project.id}/environments/`)
                         .then((res) => {
                             projects[i].environments = res;
+                        })
+                        .catch((res) => {
+                            projects[i].environments = [];
                         })))
                         .then(() => {
                             projects.sort((a, b) => {

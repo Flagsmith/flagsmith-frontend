@@ -76,6 +76,31 @@ const SegmentsPage = class extends Component {
         this.context.router.history.replace('/projects');
     }
 
+
+    createSegmentPermission(el, level, id, permissionText) {
+        return (
+            <Permission level="environment" permission="CREATE_SEGMENT" id={this.props.match.params.environmentId}>
+                {({ permission, isLoading }) => (permission ? (
+                    el(permission)
+                ) : this.renderWithPermission(permission, level, el(permission)))}
+            </Permission>
+        );
+    }
+
+    renderWithPermission(permission, name, el) {
+        return permission ? (
+            el
+        ) : (
+            <Tooltip
+              title={el}
+              place="right"
+              html
+            >
+                {name}
+            </Tooltip>
+        );
+    }
+
     render() {
         const { projectId, environmentId } = this.props.match.params;
         return (
@@ -95,18 +120,21 @@ const SegmentsPage = class extends Component {
                                                         Create and manage groups of users with similar traits.
                                                     </p>
                                                 </Flex>
-                                                <FormGroup className="float-right">
-                                                    <div className="text-right">
-                                                        <Button
-                                                          className="btn-lg btn-primary"
-                                                          id="show-create-segment-btn"
-                                                          data-test="show-create-segment-btn"
-                                                          onClick={this.newSegment}
-                                                        >
-                                                            Create Segment
-                                                        </Button>
-                                                    </div>
-                                                </FormGroup>
+                                                {this.createSegmentPermission(perm => (
+                                                    <FormGroup className="float-right">
+                                                        <div className="text-right">
+                                                            <Button
+                                                              disabled={!perm}
+                                                              className="btn-lg btn-primary"
+                                                              id="show-create-segment-btn"
+                                                              data-test="show-create-segment-btn"
+                                                              onClick={this.newSegment}
+                                                            >
+                                                                  Create Segment
+                                                            </Button>
+                                                        </div>
+                                                    </FormGroup>
+                                                ))}
                                             </Row>
 
                                             <FormGroup>
@@ -184,16 +212,19 @@ User Traits
                                                     </p>
                                                 </Panel>
                                             </FormGroup>
-                                            <FormGroup className="text-center">
-                                                <Button
-                                                  className="btn-lg btn-primary" id="show-create-segment-btn" data-test="show-create-segment-btn"
-                                                  onClick={this.newSegment}
-                                                >
-                                                    <span className="icon ion-ios-globe"/>
-                                                    {' '}
+                                            {this.createSegmentPermission(perm => (
+                                                <FormGroup className="text-center">
+                                                    <Button
+                                                      disabled={!perm}
+                                                      className="btn-lg btn-primary" id="show-create-segment-btn" data-test="show-create-segment-btn"
+                                                      onClick={this.newSegment}
+                                                    >
+                                                        <span className="icon ion-ios-globe"/>
+                                                        {' '}
                                                     Create your first Segment
-                                                </Button>
-                                            </FormGroup>
+                                                    </Button>
+                                                </FormGroup>
+                                            ))}
                                         </div>
                                     )}
 
