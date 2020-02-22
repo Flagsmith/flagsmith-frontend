@@ -48,7 +48,7 @@ const EnvironmentSelect = class extends Component {
                                                         Features
                                                         </Link>
                                                     </li>
-                                                    {hasFeature('segments') && (
+                                                    {hasFeature('segments') && environmentAdmin && (
                                                     <li className="env-nav__item flex-row">
                                                         <Link
                                                           id="segments-link"
@@ -70,7 +70,6 @@ const EnvironmentSelect = class extends Component {
                                                         Users
                                                         </Link>
                                                     </li>
-                                                    {environmentAdmin && (
                                                     <li className="env-nav__item flex-row">
                                                         <Link
                                                           id="audit-log-link"
@@ -81,7 +80,6 @@ const EnvironmentSelect = class extends Component {
                                                         Audit Log
                                                         </Link>
                                                     </li>
-                                                    )}
                                                     {environmentAdmin && (
                                                     <li className="env-nav__item flex-row">
                                                         <Link

@@ -64,9 +64,31 @@ const UsersPage = class extends Component {
                                     settings for your selected environment.
                                 </p>
                             </Flex>
-                            <Button data-test="show-create-feature-btn" id="show-create-feature-btn" onClick={this.newUser}>
-                                Create Users
-                            </Button>
+                            <Permission level="environment" permission="ADMIN" id={environmentId}>
+                                {({ permission }) => (permission ? (
+                                    <Button data-test="show-create-feature-btn" id="show-create-feature-btn" onClick={this.newUser}>
+                                      Create Users
+                                    </Button>
+                                ) : (
+                                    <Tooltip
+                                      html
+                                      title={(
+                                          <Button
+                                            disabled data-test="show-create-feature-btn" id="show-create-feature-btn"
+                                            onClick={this.newUser}
+                                          >
+                                            Create Users
+                                          </Button>
+                                      )}
+                                      place="right"
+                                    >
+                                        {
+                                            Constants.environmentPermissions('Admin')
+                                        }
+                                    </Tooltip>
+                                ))}
+                            </Permission>
+
                         </Row>
 
                         <FormGroup>
