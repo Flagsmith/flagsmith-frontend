@@ -56,7 +56,8 @@ var store = Object.assign({}, BaseStore, {
             return true;
         }
         const perms = store.getPermissions(id, level);
-        return perms && (perms[permission] || perms.ADMIN);
+        // return !!(perms && (perms[permission]));
+        return (!!(perms && (perms[permission])) || (perms && perms.ADMIN));
     },
     getAvailablePermissions(level) {
         return store.model.availablePermissions[level];

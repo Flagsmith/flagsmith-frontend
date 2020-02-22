@@ -222,7 +222,7 @@ const CreateFlag = class extends Component {
                                       placeholder="e.g. 'This determines what size the header is' "
                                     />
                                 </FormGroup>
-                                {this.props.segments && hasFeature('segments') && !identity && (
+                                {this.props.segments && hasFeature('segments') && !identity && isEdit && (
                                     <FormGroup className="mb-4">
                                         <Panel
                                           icon="ion-ios-settings"
@@ -246,7 +246,7 @@ const CreateFlag = class extends Component {
                                 )}
                                 {
                                     !identity
-                                    && (
+                                    && isEdit && (
                                     <FormGroup>
                                         <PanelSearch
                                           id="users-list"
