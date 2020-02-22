@@ -10,18 +10,18 @@ const controller = {
         }
         store.loading();
         setTimeout(() => {
-            const res = level === 'environment'? {
+            const res = level === 'environment' ? {
                 'permissions': [
                     'READ',
-                    'CREATE_FEATUREd',
+                    'CREATE_FEATURE',
                 ],
                 'admin': true,
-            }: {
+            } : {
                 'permissions': [
                     'READ',
-                    'CREATE_FEATUREd',
+                    'CREATE_FEATURE',
                 ],
-                'admin': true,
+                'admin': false,
             };
             store.model[level] = store.model[level] || {};
             store.model[level][id] = store.model[level][id] || {};
@@ -75,11 +75,11 @@ var store = Object.assign({}, BaseStore, {
         },
     },
     getPermissions(id, level) {
-        return store.model[level] && (store.model[level].ADMIN || store.model[level][id]);
+        return store.model[level] && store.model[level][id];
     },
     getPermission(id, level, permission) {
         const perms = store.getPermissions(id, level);
-        return perms && perms[permission];
+        return perms && (perms[permission] || perms.ADMIN);
     },
     getAvailablePermissions(id, level) {
         return store.model.availablePermissions[level];
