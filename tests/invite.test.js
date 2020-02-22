@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-expressions */
 /* eslint-disable func-names */
-const inviteEmail = 'bullet-train@mailinator.com';
+const inviteEmail = 'bullet-train@mailnesia.com';
 const email = 'nightwatch@solidstategroup.com';
 const password = 'nightwatch';
 const url = `http://localhost:${process.env.PORT || 8080}`;
@@ -62,17 +62,15 @@ module.exports = {
     '[Invite Tests] - Accept invite': function (browser) {
         let inviteUrl;
         browser
-            .url('https://mailinator.com/v3/#/#inboxpane')
-            .waitForElementVisible('#inbox_field')
-            .setValue('#inbox_field', ['bullet-train', browser.Keys.ENTER])
+            .pause(20000)
+            .url('http://mailnesia.com/mailbox/bullet-train')
+            .waitForElementVisible('.email')
             .useXpath()
-            .waitForElementVisible(`//tbody/tr/td/a[contains(text(),"${`Bullet Train Org${append}`}")]`, 60000)
-            .click(`//tbody/tr/td/a[contains(text(),"${`Bullet Train Org${append}`}")]`)
+            .waitForElementVisible(`//*[contains(text(), '${`Bullet Train Org${append}`}')]`)
+            .click(`//*[contains(text(), '${`Bullet Train Org${append}`}')]`)
             .useCss()
-            .waitForElementVisible('#msg_body')
-            .pause(1000) // TODO revise this. currently necessary as the msg_body does not appear to show text immediately leading to an empty result
-            .frame('msg_body')
-            .getText('body', (res) => {
+            .waitForElementVisible('.pill-content')
+            .getText('.pill-content', (res) => {
                 console.log(res.value);
                 inviteUrl = res.value.match(/(https?[^.]*)/g)[0];
                 console.log('Invite URL:', inviteUrl);

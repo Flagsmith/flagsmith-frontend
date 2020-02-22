@@ -1,7 +1,7 @@
 module.exports = global.Project = {
     debug: false,
     env: 'staging', // This is used for Sentry tracking
-    bulletTrain: '8KzETdDeMY7xkqkSkY3Gsg', // This is our Bullet Train API key - Bullet Train runs on Bullet Train!
+    bulletTrain: 'ENktaJnfLVbLifybz34JmX', // This is our Bullet Train API key - Bullet Train runs on Bullet Train!
     api: 'https://api-staging.bullet-train.io/api/v1/',
     ga: 'UA-120237963-7', // This is our Google Analytics key
     demoAccount: {
