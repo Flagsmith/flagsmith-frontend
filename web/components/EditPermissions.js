@@ -1,18 +1,162 @@
 // import propTypes from 'prop-types';
-import React, { PureComponent } from 'react';
+import React, { PureComponent, Component } from 'react';
+import Switch from 'rc-switch';
 import Tabs from './base/forms/Tabs';
 import TabItem from './base/forms/TabItem';
-import InviteUsersModal from './modals/InviteUsers';
-import CreateGroupModal from './modals/CreateGroup';
-import UserGroupList from './UserGroupList';
+import AvailablePermissionsProvider from '../../common/providers/AvailablePermissionsProvider';
+import _data from '../../common/data/base/_data';
+// import propTypes from 'prop-types';
 
+class EditPermissionsModal extends Component {
+  static displayName = 'EditPermissionsModal';
+
+  static propTypes = {};
+
+  constructor(props) {
+      super(props);
+      AppActions.getAvailablePermissions();
+      const url = props.isGroup ? `${props.level}s/${props.id}/user-group-permissions/` : `${props.level}s/${props.id}/user-permissions/`;
+      _data.get(`${Project.api}${url}`)
+          .then((results) => {
+              const entityPermissions = props.isGroup ? results : _.find(results, r => r.user.id === props.user.id);
+              if (entityPermissions.user) {
+                  entityPermissions.user = entityPermissions.user.id;
+              }
+              if (entityPermissions.group) {
+                  entityPermissions.group = entityPermissions.group.id;
+              }
+              this.setState({ entityPermissions });
+          });
+      this.state = {};
+  }
+
+  admin = () => this.state.entityPermissions && this.state.entityPermissions.admin
+
+  hasPermission = (key) => {
+      if (this.admin()) return true;
+      return this.state.entityPermissions.permissions.includes(key);
+  }
+
+  close = () => {
+      closeModal();
+  }
+
+  save = () => {
+      const url = this.props.isGroup ? `${this.props.level}s/${this.props.id}/user-group-permissions/${this.state.entityPermissions.id}`
+          : `${this.props.level}s/${this.props.id}/user-permissions/${this.state.entityPermissions.id}`;
+      this.setState({ isSaving: true });
+      _data.put(`${Project.api}${url}/`, this.state.entityPermissions)
+          .then(() => {
+              this.close();
+          })
+          .catch((e) => {
+              this.setState({ isSaving: false, error: e });
+          });
+  }
+
+  togglePermission = (key) => {
+      const index = _.findIndex(this.state.entityPermissions.permissions, key);
+      if (index === -1) {
+          this.state.entityPermissions.permissions.push(key);
+      } else {
+          this.state.entityPermissions.permissions.splice(index, 1);
+      }
+      this.forceUpdate();
+  }
+
+  toggleAdmin = (p) => {
+      this.state.entityPermissions.admin = !this.state.entityPermissions.admin;
+      this.forceUpdate();
+  }
+
+  render() {
+      const {
+          props: {
+              level,
+          },
+          state: {
+              entityPermissions,
+              isSaving,
+          },
+      } = this;
+      const isAdmin = this.admin();
+      return (
+          <AvailablePermissionsProvider level={level}>
+              {(props) => {
+                  const { permissions, isLoading } = props;
+                  return (isLoading || !permissions || !entityPermissions ? <div className="text-center"><Loader/></div>
+                      : (
+                          <div>
+                              <div className="list-item">
+                                  <Row>
+                                      <Flex>
+                                          <bold>
+                                              Administrator
+                                          </bold>
+                                          <div className="list-item-footer faint">
+                                              This will grant all of the following permissions.
+                                          </div>
+                                      </Flex>
+                                      <Switch onChange={this.toggleAdmin} checked={isAdmin}/>
+                                  </Row>
+                              </div>
+                              <div className="panel--grey">
+                                  <PanelSearch
+                                    title="Permissions"
+                                    className="no-pad"
+                                    items={permissions}
+                                    filterRow={(p, search) => {
+                                        const strToSearch = Format.enumeration.get(p.key);
+                                        return strToSearch.toLowerCase().indexOf(search.toLowerCase()) !== -1;
+                                    }}
+                                    renderRow={p => (
+                                        <div key={p.key} style={this.admin() ? { opacity: 0.5 } : null} className="list-item">
+                                            <Row>
+                                                <Flex>
+                                                    <bold>
+                                                        {Format.enumeration.get(p.key)}
+                                                    </bold>
+                                                    <div className="list-item-footer faint">
+                                                        {p.description}
+                                                    </div>
+                                                </Flex>
+                                                <Switch onChange={() => this.togglePermission(p.key)} disabled={this.admin()} checked={this.hasPermission(p.key)}/>
+                                            </Row>
+                                        </div>
+                                    )}
+                                  />
+                              </div>
+
+                              <p className="text-right mt-2">
+                                This will edit the permissions for <bold>{this.props.isGroup ? `the ${this.props.name} group` : ` ${this.props.name}`}</bold>.
+                              </p>
+                              <div className="text-right">
+                                  <Button
+                                    onClick={this.save} data-test="update-feature-btn" id="update-feature-btn"
+                                    disabled={isSaving}
+                                  >
+                                      {isSaving ? 'Saving' : 'Save'}
+                                  </Button>
+                              </div>
+                          </div>
+                      ));
+              } }
+          </AvailablePermissionsProvider>
+      );
+  }
+}
 export default class EditPermissions extends PureComponent {
   static displayName = 'EditPermissions';
 
   static propTypes = {};
 
   editUserPermissions = (user) => {
-
+      openModal(`Edit ${Format.camelCase(this.props.level)} Permissions`, <EditPermissionsModal
+        name={`${user.first_name} ${user.last_name}`}
+        id={this.props.id}
+        level={this.props.level}
+        user={user}
+      />);
   }
 
   editGroupPermissions = (user) => {
@@ -53,7 +197,7 @@ export default class EditPermissions extends PureComponent {
                                                             {email}
                                                         </div>
                                                     </div>
-                                                    <ion style={{fontSize:24}} className="icon--green ion ion-md-settings"/>
+                                                    <ion style={{ fontSize: 24 }} className="icon--green ion ion-md-settings"/>
                                                 </Row>
                                             )}
                                             renderNoResults={(

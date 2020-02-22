@@ -81,7 +81,7 @@ const ProjectSettingsPage = class extends Component {
                                     </FormGroup>
                                 </div>
                             )}
-                            <EditPermissions/>
+                            <EditPermissions id={this.props.match.params.projectId} level="project"/>
                             <FormGroup className="m-y-3">
                                 <Row>
                                     <Column className="d-flex">

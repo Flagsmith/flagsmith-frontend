@@ -13,11 +13,11 @@ const AvailablePermissionsProvider = class extends Component {
         ES6Component(this);
     }
 
-    componentDidMount() {
+    componentDidMount = () => {
         this.listenTo(PermissionsStore, 'change', () => {
             this.setState({
                 isLoading: PermissionsStore.isLoading,
-                permissions: PermissionsStore.getAvailablePermissions(props.level),
+                permissions: PermissionsStore.getAvailablePermissions(this.props.level),
             });
         });
     }

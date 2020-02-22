@@ -37,31 +37,14 @@ const controller = {
     },
 
     getAvailablePermissions: () => {
-        if (store.model.availablePermissions.project) {
+        if (store.model.availablePermissions.projects) {
             return;
         }
-        Promise.all(['project', 'environment'].map((v) => {
-            store.model.availablePermissions[v] = [
-                {
-                    'key': 'READ',
-                    'description': 'Read permission for the given project.',
-                },
-                {
-                    'key': 'CREATE_ENVIRONMENT',
-                    'description': 'Ability to create an environment in the given project.',
-                },
-                {
-                    'key': 'DELETE_FEATURE',
-                    'description': 'Ability to delete features in the given project.',
-                },
-                {
-                    'key': 'CREATE_FEATURE',
-                    'description': 'Ability to create features in the given project.',
-                },
-            ];
-            return Promise.resolve();
-        })).then(() => {
-            store.changed();
+        Promise.all(['project', 'environment'].map(v => data.get(`${Project.api}${v}s/permissions/`)
+            .then((res) => {
+                store.model.availablePermissions[v] = res;
+            }))).then(() => {
+            store.loaded();
         });
     },
 
@@ -80,12 +63,12 @@ var store = Object.assign({}, BaseStore, {
     },
     getPermission(id, level, permission) {
         if (AccountStore.isAdmin()) {
-            return true
+            return true;
         }
         const perms = store.getPermissions(id, level);
         return perms && (perms[permission] || perms.ADMIN);
     },
-    getAvailablePermissions(id, level) {
+    getAvailablePermissions(level) {
         return store.model.availablePermissions[level];
     },
 });
@@ -99,11 +82,10 @@ store.dispatcherIndex = Dispatcher.register(store, (payload) => {
             controller.getPermissions(action.id, action.level);
             break;
         case Actions.GET_AVAILABLE_PERMISSIONS:
-            controller.getAvailablePermissions(action.level);
+            controller.getAvailablePermissions();
             break;
         default:
     }
 });
 controller.store = store;
-controller.getAvailablePermissions();
 module.exports = controller.store;
