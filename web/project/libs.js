@@ -10,6 +10,7 @@ import find from 'lodash/find';
 import partial from 'lodash/partial';
 import cloneDeep from 'lodash/cloneDeep';
 import findIndex from 'lodash/findIndex';
+import sortBy from 'lodash/sortBy';
 import range from 'lodash/range';
 import keyBy from 'lodash/keyBy';
 import throttle from 'lodash/throttle';
@@ -26,7 +27,7 @@ window.isMobile = isMobile || $(window).width() <= 576;
 window.bulletTrain = bulletTrain;
 window.moment = require('moment/min/moment.min');
 
-window._ = { each, filter, find, partial, findIndex, range, map, cloneDeep, keyBy, throttle, every, get };
+window._ = { each, sortBy, filter, find, partial, findIndex, range, map, cloneDeep, keyBy, throttle, every, get };
 
 window.React = require('react');
 window.ReactDOM = require('react-dom');
