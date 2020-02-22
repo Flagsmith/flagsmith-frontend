@@ -9,9 +9,9 @@ const byId = helpers.byTestID;
 module.exports = {
     '[Initialise Tests] - Register': function (browser) {
         browser.url(url)
-            .waitAndSet(byId('firstName'), 'Night') // visit the url
-            .setValue(byId('lastName'), 'Watch')
-            .setValue(byId('companyName'), 'Nightwatch Ltd')
+            .waitAndSet(byId('firstName'), 'Bullet') // visit the url
+            .setValue(byId('lastName'), 'Train')
+            .setValue(byId('companyName'), 'Bullet Train Ltd')
             .setValue(byId('email'), email)
             .setValue(byId('password'), password)
             .click(byId('signup-btn'))

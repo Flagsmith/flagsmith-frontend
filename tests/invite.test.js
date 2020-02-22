@@ -18,10 +18,10 @@ module.exports = {
 
         browser
             .waitForElementVisible('[name="orgName"]')
-            .setValue('[name="orgName"]', `Nightwatch Org${append}`)
+            .setValue('[name="orgName"]', `Bullet Train Org${append}`)
             .click('#create-org-btn')
             .waitForElementVisible('#project-select-page')
-            .assert.containsText('#org-menu', `Nightwatch Org${append}`);
+            .assert.containsText('#org-menu', `Bullet Train Org${append}`);
     },
     '[Invite Tests] - Create project': function (browser) {
         browser
@@ -66,8 +66,8 @@ module.exports = {
             .waitForElementVisible('#inbox_field')
             .setValue('#inbox_field', ['bullet-train', browser.Keys.ENTER])
             .useXpath()
-            .waitForElementVisible(`//tbody/tr/td/a[contains(text(),"${`Nightwatch Org${append}`}")]`, 60000)
-            .click(`//tbody/tr/td/a[contains(text(),"${`Nightwatch Org${append}`}")]`)
+            .waitForElementVisible(`//tbody/tr/td/a[contains(text(),"${`Bullet Train Org${append}`}")]`, 60000)
+            .click(`//tbody/tr/td/a[contains(text(),"${`Bullet Train Org${append}`}")]`)
             .useCss()
             .waitForElementVisible('#msg_body')
             .pause(1000) // TODO revise this. currently necessary as the msg_body does not appear to show text immediately leading to an empty result
@@ -88,7 +88,7 @@ module.exports = {
                 browser.url(inviteUrl);
                 browser
                     .useXpath()
-                    .waitForElementPresent(`//div[contains(@class, "org-nav")]//a[contains(text(),"${`Nightwatch Org${append}`}")]`);
+                    .waitForElementPresent(`//div[contains(@class, "org-nav")]//a[contains(text(),"${`Bullet Train Org${append}`}")]`);
             });
     },
     '[Invite Tests] - Delete organisation': function (browser) {
@@ -96,9 +96,9 @@ module.exports = {
             .useCss()
             .click('#org-menu')
             .useXpath()
-            .waitForElementVisible(`//a[contains(text(),"${`Nightwatch Org${append}`}")]`)
+            .waitForElementVisible(`//a[contains(text(),"${`Bullet Train Org${append}`}")]`)
             .pause(200) // Allows the dropdown to fade in
-            .click(`//a[contains(text(),"${`Nightwatch Org${append}`}")]`)
+            .click(`//a[contains(text(),"${`Bullet Train Org${append}`}")]`)
             .useCss()
             .waitForElementVisible('#projects-list a.list-item')
             .assert.containsText('#projects-list a.list-item', 'My Test Project')
@@ -110,7 +110,7 @@ module.exports = {
             .waitForElementVisible('#delete-org-btn')
             .click('#delete-org-btn')
             .waitForElementVisible('[name="confirm-org-name"]')
-            .setValue('[name="confirm-org-name"]', `Nightwatch Org${append}`)
+            .setValue('[name="confirm-org-name"]', `Bullet Train Org${append}`)
             .click('#confirm-del-org-btn');
 
         browser.waitForElementVisible('#project-select-page');

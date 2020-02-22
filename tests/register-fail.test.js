@@ -5,9 +5,9 @@ const url = `http://localhost:${process.env.PORT || 8080}/signup`;
 const fillOutForm = browser => browser
     .url(url) // visit the url
     .waitForElementVisible('[name="firstName"]') // wait for the sign up fields to show
-    .setValue('[name="firstName"]', 'Night')
-    .setValue('[name="lastName"]', 'Watch')
-    .setValue('[name="companyName"]', 'Nightwatch Ltd')
+    .setValue('[name="firstName"]', 'Bullet')
+    .setValue('[name="lastName"]', 'Train')
+    .setValue('[name="companyName"]', 'Bullet Train Ltd')
     .setValue('[name="email"]', email)
     .setValue('[name="password"]', password);
 
