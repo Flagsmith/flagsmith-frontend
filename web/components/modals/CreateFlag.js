@@ -222,7 +222,7 @@ const CreateFlag = class extends Component {
                                       placeholder="e.g. 'This determines what size the header is' "
                                     />
                                 </FormGroup>
-                                {this.props.segments && hasFeature('segments') && (
+                                {this.props.segments && hasFeature('segments') && !identity && (
                                     <FormGroup className="mb-4">
                                         <Panel
                                           icon="ion-ios-settings"
@@ -245,6 +245,8 @@ const CreateFlag = class extends Component {
                                     </FormGroup>
                                 )}
                                 {
+                                    !identity
+                                    && (
                                     <FormGroup>
                                         <PanelSearch
                                           id="users-list"
@@ -278,8 +280,8 @@ const CreateFlag = class extends Component {
                                                       <Switch checked={enabled}/>
                                                   ) : (
                                                       <FeatureValue
-                                                        value={feature_state_value}
-                                                      />
+                    value={feature_state_value}
+                  />
                                                   )}
 
                                               </Row>
@@ -302,6 +304,7 @@ const CreateFlag = class extends Component {
                                           isLoading={!this.state.userOverrides}
                                         />
                                     </FormGroup>
+                                    )
                                 }
                                 {error && <Error error={error}/>}
                                 <div className={isEdit ? 'footer' : ''}>
