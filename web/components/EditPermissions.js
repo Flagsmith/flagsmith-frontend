@@ -61,7 +61,7 @@ class EditPermissionsModal extends Component {
   }
 
   togglePermission = (key) => {
-      const index = this.state.entityPermissions.permissions.indexOf(key)
+      const index = this.state.entityPermissions.permissions.indexOf(key);
       if (index === -1) {
           this.state.entityPermissions.permissions.push(key);
       } else {
@@ -209,7 +209,11 @@ export default class EditPermissions extends PureComponent {
                                             items={users}
                                             renderRow={({ id, first_name, last_name, email, role }) => (
                                                 <Row
-                                                  onClick={() => this.editUserPermissions({ id, first_name, last_name, email, role })} space className="clickable list-item"
+                                                  onClick={() => {
+                                                      if (role !== 'ADMIN') {
+                                                          this.editUserPermissions({ id, first_name, last_name, email, role });
+                                                      }
+                                                  }} space className={`list-item${role === 'ADMIN' ? '' : ' clickable'}`}
                                                   key={id}
                                                 >
                                                     <div>
@@ -220,7 +224,13 @@ export default class EditPermissions extends PureComponent {
                                                             {email}
                                                         </div>
                                                     </div>
-                                                    <ion style={{ fontSize: 24 }} className="icon--green ion ion-md-settings"/>
+                                                    {role === 'ADMIN' ? (
+                                                        <Tooltip html title="Organisation Administrator">
+                                                            {'Organisation administrators have all permissions enabled.<br/>To change the role of this user, visit Organisation Settings.'}
+                                                        </Tooltip>
+                                                    ) : (
+                                                        <ion style={{ fontSize: 24 }} className="icon--green ion ion-md-settings"/>
+                                                    )}
                                                 </Row>
                                             )}
                                             renderNoResults={(
