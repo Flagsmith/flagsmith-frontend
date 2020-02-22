@@ -15,29 +15,24 @@ const Permission = class extends Component {
 
   constructor(props, context) {
       super(props, context);
-      this.state = this.props.hasFeature('fine_permissions') ? {
+      this.state = {
           isLoading: !PermissionsStore.getPermissions(this.props.id, this.props.level),
-      } : {};
+      };
       ES6Component(this);
   }
 
   componentDidMount() {
-      if (this.props.hasFeature('fine_permissions')) {
-          if (this.state.isLoading) {
-              AppActions.getPermissions(this.props.id, this.props.level);
-          }
-          this.listenTo(PermissionsStore, 'change', () => {
-              this.setState({
-                  isLoading: !PermissionsStore.getPermissions(this.props.id, this.props.level),
-              });
-          });
+      if (this.state.isLoading) {
+          AppActions.getPermissions(this.props.id, this.props.level);
       }
+      this.listenTo(PermissionsStore, 'change', () => {
+          this.setState({
+              isLoading: !PermissionsStore.getPermissions(this.props.id, this.props.level),
+          });
+      });
   }
 
   render() {
-      if (!this.props.hasFeature('fine_permissions')) {
-          return this.props.children({ permission: true });
-      }
       const permission = PermissionsStore.getPermission(this.props.id, this.props.level, this.props.permission);
       const isLoading = this.state.isLoading;
       return this.props.children({ permission, isLoading }) || <div/>;

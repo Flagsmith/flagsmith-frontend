@@ -5,6 +5,7 @@ import Tabs from './base/forms/Tabs';
 import TabItem from './base/forms/TabItem';
 import AvailablePermissionsProvider from '../../common/providers/AvailablePermissionsProvider';
 import _data from '../../common/data/base/_data';
+import UserGroupList from './UserGroupList';
 // import propTypes from 'prop-types';
 
 class EditPermissionsModal extends Component {
@@ -18,12 +19,15 @@ class EditPermissionsModal extends Component {
       const url = props.isGroup ? `${props.level}s/${props.id}/user-group-permissions/` : `${props.level}s/${props.id}/user-permissions/`;
       _data.get(`${Project.api}${url}`)
           .then((results) => {
-              const entityPermissions = props.isGroup ? results : _.find(results, r => r.user.id === props.user.id);
-              if (entityPermissions.user) {
-                  entityPermissions.user = entityPermissions.user.id;
+              let entityPermissions = props.isGroup ? _.find(results, r => r.group.id === props.group.id) : _.find(results, r => r.user.id === props.user.id);
+              if (!entityPermissions) {
+                  entityPermissions = { admin: false, permissions: [] };
               }
-              if (entityPermissions.group) {
-                  entityPermissions.group = entityPermissions.group.id;
+              if (this.props.user) {
+                  entityPermissions.user = this.props.user.id;
+              }
+              if (this.props.group) {
+                  entityPermissions.group = this.props.group.id;
               }
               this.setState({ entityPermissions });
           });
@@ -42,10 +46,12 @@ class EditPermissionsModal extends Component {
   }
 
   save = () => {
-      const url = this.props.isGroup ? `${this.props.level}s/${this.props.id}/user-group-permissions/${this.state.entityPermissions.id}`
-          : `${this.props.level}s/${this.props.id}/user-permissions/${this.state.entityPermissions.id}`;
+      const id = typeof this.state.entityPermissions.id === 'undefined' ? '' : this.state.entityPermissions.id;
+      const url = this.props.isGroup ? `${this.props.level}s/${this.props.id}/user-group-permissions/${id}`
+          : `${this.props.level}s/${this.props.id}/user-permissions/${id}`;
       this.setState({ isSaving: true });
-      _data.put(`${Project.api}${url}/`, this.state.entityPermissions)
+      const action = id ? 'put' : 'post';
+      _data[action](`${Project.api}${url}${id && '/'}`, this.state.entityPermissions)
           .then(() => {
               this.close();
           })
@@ -150,6 +156,12 @@ export default class EditPermissions extends PureComponent {
 
   static propTypes = {};
 
+  constructor(props) {
+      super(props);
+      this.state = { tab: 0 };
+      AppActions.getGroups(AccountStore.getOrganisation().id);
+  }
+
   editUserPermissions = (user) => {
       openModal(`Edit ${Format.camelCase(this.props.level)} Permissions`, <EditPermissionsModal
         name={`${user.first_name} ${user.last_name}`}
@@ -159,8 +171,14 @@ export default class EditPermissions extends PureComponent {
       />);
   }
 
-  editGroupPermissions = (user) => {
-
+  editGroupPermissions = (group) => {
+      openModal(`Edit ${Format.camelCase(this.props.level)} Permissions`, <EditPermissionsModal
+        name={`${group.name}`}
+        id={this.props.id}
+        isGroup
+        level={this.props.level}
+        group={group}
+      />);
   }
 
   render() {
@@ -170,7 +188,7 @@ export default class EditPermissions extends PureComponent {
               <h5>
                 Manage Permissions
               </h5>
-              <Tabs>
+              <Tabs value={this.state.tab} onChange={tab => this.setState({ tab })}>
                   <TabItem tabLabel="Users">
                       <OrganisationProvider>
                           {({ isLoading, name, projects, usage, users, invites }) => (
@@ -218,7 +236,11 @@ export default class EditPermissions extends PureComponent {
                           )}
                       </OrganisationProvider>
                   </TabItem>
-                  <TabItem tabLabel="Groups"/>
+                  <TabItem tabLabel="Groups">
+                      <FormGroup className="panel--grey">
+                          <UserGroupList orgId={AccountStore.getOrganisation().id} onClick={group => this.editGroupPermissions(group)}/>
+                      </FormGroup>
+                  </TabItem>
               </Tabs>
           </div>
       );

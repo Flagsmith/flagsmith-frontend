@@ -115,4 +115,4 @@ const ProjectSettingsPage = class extends Component {
 
 ProjectSettingsPage.propTypes = {};
 
-module.exports = ProjectSettingsPage;
+module.exports = ConfigProvider(ProjectSettingsPage);

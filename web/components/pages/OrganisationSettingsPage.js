@@ -382,7 +382,6 @@ const OrganisationSettingsPage = class extends Component {
                                                         </FormGroup>
                                                     ) : null}
 
-                                                    {hasFeature('fine_permissions') && (
                                                     <div>
                                                         <Row space className="mt-5">
                                                             <h5>User groups</h5>
@@ -396,9 +395,8 @@ const OrganisationSettingsPage = class extends Component {
                                                             </Button>
                                                         </Row>
                                                         <p>Groups allow you to manage permissions for viewing and editing projects, features and environments.</p>
-                                                        <UserGroupList orgId={organisation.id}/>
+                                                        <UserGroupList showRemove orgId={organisation.id}/>
                                                     </div>
-                                                    )}
 
                                                 </div>
                                                 )}
