@@ -10,9 +10,16 @@ const controller = {
         }
         store.loading();
         setTimeout(() => {
-            const res = {
+            const res = level === 'environment'? {
                 'permissions': [
                     'READ',
+                    'CREATE_FEATUREd',
+                ],
+                'admin': true,
+            }: {
+                'permissions': [
+                    'READ',
+                    'CREATE_FEATUREd',
                 ],
                 'admin': true,
             };

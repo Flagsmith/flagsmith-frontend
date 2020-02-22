@@ -62,6 +62,8 @@ const Constants = {
         'PAYMENT': 'Payment Modal',
     },
 
+    projectPermissions: perm => `To use this feature you need the <i>${perm}</i> permission for this project.<br/>Please contact member of this project who has administrator privileges.`,
+    environmentPermissions: perm => `To use this feature you need the <i>${perm}</i> permission for this environment.<br/>Please contact member of this environment who has administrator privileges.`,
     pages: {
         'ACCOUNT': 'Account Page',
         'AUDIT_LOG': 'Audit Log Page',
