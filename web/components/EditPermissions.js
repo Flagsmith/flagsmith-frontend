@@ -188,6 +188,11 @@ export default class EditPermissions extends PureComponent {
               <h5>
                 Manage Permissions
               </h5>
+              <p>
+                  Bullet Train lets you manage fine-grained permissions for your projects and environments.
+                  {' '}
+                  <a className="link-dark" href="https://docs.bullet-train.io/permissions/">Learn about User Roles.</a>
+              </p>
               <Tabs value={this.state.tab} onChange={tab => this.setState({ tab })}>
                   <TabItem tabLabel="Users">
                       <OrganisationProvider>

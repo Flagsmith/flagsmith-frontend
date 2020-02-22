@@ -251,8 +251,8 @@ const OrganisationSettingsPage = class extends Component {
                                                         <br/>
                                                         <br/>
                                                         Users without an admin role will need to have their permissions managed per project and environment.
-                                                        {" "}
-                                                        <a className="link-dark" href="https://docs.bullet-train.io/system-administration/">Learn about User Roles.</a>
+                                                        {' '}
+                                                        <a className="link-dark" href="https://docs.bullet-train.io/permissions/">Learn about User Roles.</a>
                                                     </p>
                                                 )}
                                             </div>

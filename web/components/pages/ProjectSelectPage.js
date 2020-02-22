@@ -43,7 +43,7 @@ const ProjectSelectPage = class extends Component {
                         <div>
                             {projects && projects.length ? (
                                 <div>
-                                    <Button disabled={!isAdmin} onClick={this.newProject} className="float-right">
+                                    <Button onClick={this.newProject} className="float-right">
                                         Create Project
                                     </Button>
                                     <h3>Your projects</h3>
