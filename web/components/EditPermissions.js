@@ -61,7 +61,7 @@ class EditPermissionsModal extends Component {
   }
 
   togglePermission = (key) => {
-      const index = _.findIndex(this.state.entityPermissions.permissions, key);
+      const index = this.state.entityPermissions.permissions.indexOf(key)
       if (index === -1) {
           this.state.entityPermissions.permissions.push(key);
       } else {

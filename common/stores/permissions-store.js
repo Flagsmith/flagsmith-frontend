@@ -9,31 +9,21 @@ const controller = {
         if (store.model[level] && store.model[level][id]) {
             return;
         }
+        store.model[level] = store.model[level] || {};
+        store.model[level][id] = store.model[level][id] || {};
+
         store.loading();
-        setTimeout(() => {
-            const res = level === 'environment' ? {
-                'permissions': [
-                    'READ',
-                    'CREATE_FEATURE2',
-                ],
-                'admin': false,
-            } : {
-                'permissions': [
-                    'READ',
-                    'CREATE_FEATURE2',
-                ],
-                'admin': false,
-            };
-            store.model[level] = store.model[level] || {};
-            store.model[level][id] = store.model[level][id] || {};
-            _.map(res.permissions, (p) => {
-                store.model[level][id][p] = true;
+        data.get(`${Project.api}${level}s/${id}/my-permissions/`)
+            .then((res) => {
+                store.model[level][id] = store.model[level][id] || {};
+                _.map(res.permissions, (p) => {
+                    store.model[level][id][p] = true;
+                });
+                if (res.admin) {
+                    store.model[level][id].ADMIN = true;
+                }
+                store.changed();
             });
-            if (res.admin) {
-                store.model[level][id].ADMIN = true;
-            }
-            store.changed();
-        }, 200);
     },
 
     getAvailablePermissions: () => {

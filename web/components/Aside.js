@@ -65,12 +65,17 @@ const Aside = class extends Component {
                             <div className="project-nav">
                                 <Row className="project-nav__item--header">
                                     <span className="flex-1">Projects</span>
-                                    <Link
-                                      id="create-project-link"
-                                      to="/projects" className="project-nav__button project-nav__button--cta" state={{ create: true }}
-                                    >
-                                        <img className="project-nav__icon" src="/images/plus-button--white.svg" alt="New" />
-                                    </Link>
+                                    <Permission level="project" permission="CREATE_FEATURE" id={this.props.projectId}>
+                                        {({ permission }) => permission && (
+                                        <Link
+                                          id="create-project-link"
+                                          to="/projects" className="project-nav__button project-nav__button--cta" state={{ create: true }}
+                                        >
+                                            <img className="project-nav__icon" src="/images/plus-button--white.svg" alt="New" />
+                                        </Link>
+                                        )}
+                                    </Permission>
+
                                 </Row>
                                 <ProjectSelect
                                   projectId={this.props.projectId}
