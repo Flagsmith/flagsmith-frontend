@@ -34,7 +34,7 @@ const HomePage = class extends React.Component {
     showForgotPassword = (e) => {
         e.preventDefault();
         openModal('Forgot password', <ForgotPasswordModal onComplete={() => {
-            toast('Forgot password submitted');
+            toast('Please check your email to reset your password.');
         }}
         />, null, { className: 'alert fade expand' });
     }
