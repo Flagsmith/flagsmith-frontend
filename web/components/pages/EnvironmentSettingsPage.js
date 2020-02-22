@@ -5,6 +5,7 @@ import ConfigProvider from '../../../common/providers/ConfigProvider';
 import withWebhooks from '../../../common/providers/withWebhooks';
 import CreateWebhookModal from '../modals/CreateWebhook';
 import ConfirmRemoveWebhook from '../modals/ConfirmRemoveWebhook';
+import EditPermissions from '../EditPermissions';
 
 const EnvironmentSettingsPage = class extends Component {
     static displayName = 'EnvironmentSettingsPage'
@@ -164,6 +165,9 @@ const EnvironmentSettingsPage = class extends Component {
                                                 </Row>
                                             </FormGroup>
                                         </div>
+                                        <FormGroup className="mt-1">
+                                            <EditPermissions id={this.props.match.params.environmentId} level="environment"/>
+                                        </FormGroup>
                                             {this.props.hasFeature('webhooks') && (
                                                 <FormGroup className="m-y-3">
                                                     <Row className="mb-3" space>
