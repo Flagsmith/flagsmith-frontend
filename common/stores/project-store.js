@@ -11,9 +11,9 @@ const controller = {
 
             Promise.all([
                 data.get(`${Project.api}projects/${id}/`),
-                data.get(`${Project.api}projects/${id}/environments/`).catch(() => []),
+                data.get(`${Project.api}environments/?project_id=${id}`).catch(() => []),
             ]).then(([project, environments]) => {
-                store.model = Object.assign(project, { environments });
+                store.model = Object.assign(project, { environments: environments.results });
                 if (project.organisation !== OrganisationStore.id) {
                     AppActions.selectOrganisation(project.organisation);
                     AppActions.getOrganisation(project.organisation);
