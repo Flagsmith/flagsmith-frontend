@@ -43,9 +43,9 @@ const EnvironmentSelect = class extends Component {
                                                           id="features-link"
                                                           activeClassName="active"
                                                           to={`/project/${project.id}/environment/${environment.api_key}/features`
-                                                      }
+                                                            }
                                                         >
-                                                        Features
+                                                              Features
                                                         </Link>
                                                     </li>
                                                     {hasFeature('segments') && environmentAdmin && (
@@ -54,9 +54,9 @@ const EnvironmentSelect = class extends Component {
                                                           id="segments-link"
                                                           activeClassName="active"
                                                           to={`/project/${project.id}/environment/${environment.api_key}/segments`
-                                                        }
+                                                              }
                                                         >
-                                                          Segments
+                                                                Segments
                                                         </Link>
                                                     </li>
                                                     )}
@@ -65,9 +65,9 @@ const EnvironmentSelect = class extends Component {
                                                           id="users-link"
                                                           activeClassName="active"
                                                           to={`/project/${project.id}/environment/${environment.api_key}/users`
-                                                      }
+                                                            }
                                                         >
-                                                        Users
+                                                              Users
                                                         </Link>
                                                     </li>
                                                     <li className="env-nav__item flex-row">
@@ -75,9 +75,9 @@ const EnvironmentSelect = class extends Component {
                                                           id="audit-log-link"
                                                           activeClassName="active"
                                                           to={`/project/${project.id}/environment/${environment.api_key}/audit-log`
-                                                      }
+                                                            }
                                                         >
-                                                        Audit Log
+                                                              Audit Log
                                                         </Link>
                                                     </li>
                                                     {environmentAdmin && (
@@ -86,9 +86,9 @@ const EnvironmentSelect = class extends Component {
                                                           id="env-settings-link"
                                                           activeClassName="active"
                                                           to={`/project/${project.id}/environment/${environment.api_key}/settings`
-                                                            }
+                                                              }
                                                         >
-                                                              Settings
+                                                                Settings
                                                         </Link>
                                                     </li>
                                                     )}

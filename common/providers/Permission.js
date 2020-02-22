@@ -15,26 +15,23 @@ const Permission = class extends Component {
 
   constructor(props, context) {
       super(props, context);
-      this.state = {
-          isLoading: !PermissionsStore.getPermissions(this.props.id, this.props.level),
-      };
+      this.state = {};
       ES6Component(this);
   }
 
   componentDidMount() {
-      if (this.state.isLoading) {
+      const isLoading = !PermissionsStore.getPermissions(this.props.id, this.props.level) || !Object.keys(PermissionsStore.getPermissions(this.props.id, this.props.level)).length;
+      if (isLoading) {
           AppActions.getPermissions(this.props.id, this.props.level);
       }
       this.listenTo(PermissionsStore, 'change', () => {
-          this.setState({
-              isLoading: !PermissionsStore.getPermissions(this.props.id, this.props.level),
-          });
+          this.forceUpdate();
       });
   }
 
   render() {
       const permission = PermissionsStore.getPermission(this.props.id, this.props.level, this.props.permission);
-      const isLoading = this.state.isLoading;
+      const isLoading = !PermissionsStore.getPermissions(this.props.id, this.props.level) || !Object.keys(PermissionsStore.getPermissions(this.props.id, this.props.level)).length;
       return this.props.children({ permission, isLoading }) || <div/>;
   }
 };
