@@ -11,8 +11,8 @@ const controller = {
 
             Promise.all([
                 data.get(`${Project.api}projects/?organisation=${id}`),
-            ].concat(AccountStore.getOrganisationRole(id) === 'ADMIN' ? [
                 data.get(`${Project.api}organisations/${id}/users/`),
+            ].concat(AccountStore.getOrganisationRole(id) === 'ADMIN' ? [
                 data.get(`${Project.api}organisations/${id}/invites/`),
             ] : [])).then((res) => {
                 if (id === store.id) {
