@@ -298,6 +298,9 @@ color:#fff;
     &__text{
         display: inline-block;
         color:#2cd6ca;
+        &:hover {
+            color: #2cece0;
+        }
         font-size: 16px;
     }
 
