@@ -1,9 +1,11 @@
 module.exports = global.Project = {
     debug: false,
-    env: 'dev', // This is used for Sentry tracking
-    bulletTrain: '8KzETdDeMY7xkqkSkY3Gsg', // This is our Bullet Train API key - Bullet Train runs on Bullet Train!
-    api: 'https://bullet-train-api-dev.dokku1.solidstategroup.com/api/v1/',
-    ga: 'UA-120237963-3', // This is our Google Analytics key
+    env: 'prod', // This is used for Sentry tracking
+    bulletTrain: '4vfqhypYjcPoGGu8ByrBaj', // This is our Bullet Train API key - Bullet Train runs on Bullet Train!
+    api: 'https://api.bullet-train.io/api/v1/',
+    ga: 'UA-120237963-1', // This is our Google Analytics key
+    sentry: 'https://11c8828dc24041b0a875e324b0380769@sentry.io/1320942',
+    cookieDomain: '.bullet-train.io',
     demoAccount: {
         email: 'kyle+bullet-train@solidstategroup.com',
         password: 'demo_account',
@@ -13,8 +15,9 @@ module.exports = global.Project = {
         host: 'https://wchat.freshchat.com',
     },
     chargebee: {
-        site: 'bullettrain-test',
+        site: 'bullettrain',
     },
-    mixpanel: '6143f9ceefb1c67640a0771345e8c095',
+    mixpanel: '9448f5be8a5555c380e5dd4b7ac2c345',
     youtubeApi: 'AIzaSyCAjMzgz8vbxqReBxkQGcwsda6zAO0L2JE',
+    assetUrl: 'https://cdn.bullet-train.io', // Location of the static files from build/, should contain a directory called static/
 };

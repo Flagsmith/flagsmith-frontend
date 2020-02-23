@@ -74,11 +74,7 @@ const controller = {
     },
     onLogin: (skipCaching) => {
         if (!skipCaching) {
-            if (Project.cookieDomain) {
-                require('js-cookie').set('t', data.token, { path: '', domain: Project.cookieDomain });
-            } else {
-                require('js-cookie').set('t', data.token);
-            }
+            require('js-cookie').set('t', data.token);
         }
         return controller.getOrganisations();
     },

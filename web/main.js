@@ -22,11 +22,7 @@ const rootElement = document.getElementById('app');
 const params = Utils.fromParam();
 
 if (params.token) {
-    if (Project.cookieDomain) {
-        require('js-cookie').set('t', params.token, { path: '', domain: Project.cookieDomain });
-    } else {
-        require('js-cookie').set('t', params.token);
-    }
+    require('js-cookie').set('t', params.token);
     document.location = document.location.origin;
 }
 
@@ -45,8 +41,12 @@ function hashLinkScroll() {
 }
 
 // Render the React application to the DOM
-const res = require('js-cookie').get('t');
-
+let res;
+if (Project.cookieDomain) {
+    res = require('js-cookie').get('t', { domain: Project.cookieDomain });
+} else {
+    res = require('js-cookie').get('t');
+}
 if (res) {
     AppActions.setToken(res);
 }
