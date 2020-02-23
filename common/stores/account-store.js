@@ -139,7 +139,11 @@ const controller = {
             store.loaded();
         } else if (!user) {
             AsyncStorage.clear();
-            require('js-cookie').set('t', '');
+            if (Project.cookieDomain) {
+                require('js-cookie').set('t', '', { path: '', domain: Project.cookieDomain });
+            } else {
+                require('js-cookie').set('t', '');
+            }
             data.setToken(null);
             store.isDemo = false;
             store.model = user;
