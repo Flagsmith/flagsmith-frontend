@@ -78,7 +78,11 @@ const Aside = class extends Component {
                                   clearableValue={false}
                                   onChange={(project) => {
                                       AppActions.getProject(project.id);
-                                      this.context.router.history.push(`/project/${project.id}/environment/${project.environments[0].api_key}/features`);
+                                      if (project.environments[0]) {
+                                          this.context.router.history.push(`/project/${project.id}/environment/${project.environments[0].api_key}/features`);
+                                      } else {
+                                          this.context.router.history.push(`/project/${project.id}/environment/create`);
+                                      }
                                       AsyncStorage.setItem('lastEnv', JSON.stringify({
                                           orgId: AccountStore.getOrganisation().id,
                                           projectId: project.id,
