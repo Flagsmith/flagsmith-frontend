@@ -100,17 +100,18 @@ const Aside = class extends Component {
                                         Super cool demo feature!
                                     </a>
                                 )}
+                                {AccountStore.getOrganisationRole() === 'ADMIN' && (
+                                <NavLink
+                                  id="audit-log-link"
+                                  activeClassName="active"
+                                  className="link--footer"
+                                  to={`/project/${this.props.projectId}/environment/${this.props.environmentId}/audit-log`}
+                                >
+                                  Audit Log
+                                </NavLink>
+                                )}
                                 <Permission level="project" permission="ADMIN" id={this.props.projectId}>
                                     {({ isLoading, permission }) => !!permission && (
-                                    <React.Fragment>
-                                        <NavLink
-                                          id="audit-log-link"
-                                          activeClassName="active"
-                                          className="link--footer"
-                                          to={`/project/${this.props.projectId}/environment/${this.props.environmentId}/audit-log`}
-                                        >
-                                          Audit Log
-                                        </NavLink>
                                         <NavLink
                                           id="project-settings-link"
                                           activeClassName="active"
@@ -119,7 +120,6 @@ const Aside = class extends Component {
                                         >
                                         Project Settings
                                         </NavLink>
-                                    </React.Fragment>
                                     )}
                                 </Permission>
 
