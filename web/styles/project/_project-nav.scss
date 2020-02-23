@@ -229,17 +229,33 @@ nav.navbar {
                 //color: $bt-brand-primary;
             }
         }
+        .project-nav__button {
+            font-size: 18px;
+        }
+        .project-list__item {
+            .project-nav__button {
+                font-size: 16px;
+                line-height: 24px
+            }
+        }
+
+        opacity: 0.5;
 
         &--open{
+
+                opacity: 1;
                 height:auto;
                 transition: height 1s ease-out;
 
             & > .project-nav__button{
-                background: #2bafa5;
+                //background: #2bafa5;
+                background-color: #37485B;
+
                 min-width: 100%;
                 padding: 5px 5px 5px 10px;
                 &--title {
                     .icon {
+                        margin-right: 10px;
                         transform: rotate(90deg);
                     }
                 }
@@ -251,10 +267,16 @@ nav.navbar {
 .project-list {
     &__item {
         &--open {
+            .project-nav__button {
+                background: #2bafa5;
+            }
+            opacity: 1;
+            font-weight: bold;
            .icon {
                transform: rotate(90deg);
            }
         }
+        opacity: 0.5;
     }
 }
 
@@ -279,8 +301,13 @@ color:#fff;
     }
 
     &--header{
-        background:#2cd6ca;
-        padding:10px;
+        color: rgba(255,255,255,.8);
+        //color:#2cd6ca;
+        //border-bottom: 2px solid #141e2b;
+        //border-top: 2px solid #141e2b;
+        font-size: 20px;
+        font-weight: 500;
+        padding:10px 10px 10px 10px;
     }
 
     &--open{
@@ -293,13 +320,13 @@ color:#fff;
 
 &__icon{
     height:15px;
-    margin-left:5px;
+    margin-left:10px;
 }
 
 &__button{
     background:none;
     border:none;
-    color:rgba(#fff,0.75);
+    color: white;
     padding-left:10px;
 
     &__dot{
@@ -324,7 +351,7 @@ color:#fff;
 }
 
 .project-list{
-    padding: 10px 0 10px 0;
+    //padding: 10px 0 10px 0;
     background-color: #37485B;
     &__item{
 
@@ -353,7 +380,6 @@ color:#fff;
 }
 
 .env-nav{
-margin-left:22px;
 &__item{
     //font-size:0.75em;
     color: rgba(255,255,255,.75);

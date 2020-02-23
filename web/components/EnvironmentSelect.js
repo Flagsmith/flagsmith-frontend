@@ -31,13 +31,13 @@ const EnvironmentSelect = class extends Component {
                                                 <Flex className="text-left">
                                                     {environment.name}
                                                 </Flex>
-                                                <span className=" flex-column icon ion-ios-arrow-forward"/>
+                                                {/*<span className=" flex-column icon ion-ios-arrow-forward"/>*/}
                                             </Row>
                                         </button>
                                         {this.props.environmentId === (`${environment.api_key}`) && (
                                         <Permission level="environment" permission="ADMIN" id={environment.api_key}>
                                             {({ permission: environmentAdmin, isLoading }) => (isLoading ? <div><Loader/></div> : (
-                                                <ul className="env-nav list-unstyled">
+                                                <ul className="env-nav lisƒt-unstyled">
                                                     <li className="env-nav__item flex-row">
                                                         <Link
                                                           id="features-link"
