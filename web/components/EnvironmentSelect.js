@@ -81,7 +81,7 @@ const EnvironmentSelect = class extends Component {
                                                           to={`/project/${project.id}/environment/${environment.api_key}/settings`
                                                               }
                                                         >
-                                                                Settings
+                                                                Environment Settings
                                                         </NavLink>
                                                     </li>
                                                     )}
