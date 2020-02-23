@@ -16,7 +16,6 @@ const keywords = {
     FEATURE_NAME_ALT_VALUE: 'big',
 };
 
-
 const Constants = {
     defaultRule: {
         property: '',
@@ -62,7 +61,7 @@ const Constants = {
         'PAYMENT': 'Payment Modal',
     },
 
-    adminPermissions: () => `To use this feature you need the to be admin of the organisation.<br/>Please contact member of this organisation who has administrator privileges.`,
+    adminPermissions: () => 'To use this feature you need the to be admin of the organisation.<br/>Please contact member of this organisation who has administrator privileges.',
     projectPermissions: perm => `To use this feature you need the <i>${perm}</i> permission for this project.<br/>Please contact member of this project who has administrator privileges.`,
     environmentPermissions: perm => `To use this feature you need the <i>${perm}</i> permission for this environment.<br/>Please contact member of this environment who has administrator privileges.`,
     pages: {
@@ -91,6 +90,7 @@ const Constants = {
         IDENTITY_OVERRIDES_DESCRIPTION: 'See which identities have specific overridden values for this feature.',
         REMOTE_CONFIG_DESCRIPTION: 'A feature that you can turn configure per environment or user. E.g. a font size for a banner or an environment variable for a server.',
         FEATURE_FLAG_DESCRIPTION: 'A feature that you can turn on or off per environment or user. E.g. instant messaging for a mobile app or an endpoint for an API.',
+        AUDIT_WEBHOOKS_DESCRIPTION: 'Receive a webhook for when an audit log is recieved.',
         WEBHOOKS_DESCRIPTION: 'Receive a webhook for when feature values are changed.',
         USER_PROPERTY_DESCRIPTION: 'The name of the user trait or custom property belonging to the user. E.g. firstName',
         ORGANISATION_DESCRIPTION: 'This is used to create a default organisation for team members to create and manage projects.',
@@ -178,6 +178,14 @@ const Constants = {
   },
   "event_type": "FLAG_UPDATED"
 }`,
+    exampleAuditWebhook: `{
+  "created_date": "2020-02-23T17:30:57.006318Z",
+  "log": "New Flag / Remote Config created: my_feature",
+  "author": { "id": 3, "email": "user@domain.com", "first_name": "Kyle", "last_name": "Johnson" },
+  "environment": null,
+  "project": { "id": 6, "name": "Project name", "organisation": 1 },
+  "related_object_id": 6,
+  "related_object_type": "FEATURE"
+}`,
 };
-
 module.exports = Constants;

@@ -5,10 +5,10 @@ import ErrorMessage from '../ErrorMessage';
 import Constants from '../../../common/constants';
 import TestWebhook from '../TestWebhook';
 
-const exampleJSON = Constants.exampleWebhook;
+const exampleJSON = Constants.exampleAuditWebhook;
 
-const CreateFlag = class extends Component {
-  static displayName = 'CreateFlag';
+const CreateAuditWebhook = class extends Component {
+  static displayName = 'CreateAuditWebhook';
 
   static contextTypes = {
       router: propTypes.object.isRequired,
@@ -66,7 +66,7 @@ const CreateFlag = class extends Component {
                                 isValid={url && url.length}
                                 type="text"
                                 inputClassName="input--wide"
-                                placeholder="https://example.com/feature-changed/"
+                                placeholder="https://example.com/audit/"
                               />
                           </Flex>
                           <FormGroup className="mb-4 ml-1">
@@ -85,12 +85,12 @@ const CreateFlag = class extends Component {
                       <FormGroup className="mb-4 ml-1">
                           <div>
                               <label>Example Payload </label>
-                              <a className="link-dark ml-2" href="https://docs.bullet-train.io/system-administration/" target="_blank">View docs</a>
+                              <a className="link-dark ml-2" href="https://docs.bullet-train.io/audit-logs/" target="_blank">View docs</a>
                               <Highlight style={{ marginBottom: 10 }} className="json">
                                   {exampleJSON}
                               </Highlight>
                               <div className="text-center">
-                                  <TestWebhook json={Constants.exampleWebhook} webhook={this.state.url}/>
+                                  <TestWebhook json={Constants.exampleAuditWebhook} webhook={this.state.url}/>
                               </div>
                           </div>
                       </FormGroup>
@@ -98,12 +98,10 @@ const CreateFlag = class extends Component {
                       <div className={isEdit ? 'footer' : ''}>
                           <div className="mb-3">
                               <p className="text-right">
-                  This will {isEdit ? 'update' : 'create'} a webhook for the environment
+                  This will {isEdit ? 'update' : 'create'} a webhook the organisation
                                   {' '}
                                   <strong>
-                                      {
-                      _.find(project.environments, { api_key: this.props.environmentId }).name
-                    }
+                                      {AccountStore.getOrganisation().name}
                                   </strong>
                               </p>
                           </div>
@@ -126,6 +124,6 @@ const CreateFlag = class extends Component {
   }
 };
 
-CreateFlag.propTypes = {};
+CreateAuditWebhook.propTypes = {};
 
-module.exports = ConfigProvider(withSegmentOverrides(CreateFlag));
+module.exports = ConfigProvider(withSegmentOverrides(CreateAuditWebhook));

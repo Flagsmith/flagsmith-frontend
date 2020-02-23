@@ -16,7 +16,7 @@ export default class TheComponent extends Component {
 
   submit = () => {
       this.setState({ loading: true, error: false, success: false });
-      data.post(this.props.webhook, JSON.parse(Constants.exampleWebhook))
+      data.post(this.props.webhook, JSON.parse(this.props.json))
           .then(() => {
               this.setState({ success: true, loading: false });
           })
