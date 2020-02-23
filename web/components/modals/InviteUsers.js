@@ -112,7 +112,7 @@ const InviteUsers = class extends Component {
                                   label: Constants.roles[Object.keys(Constants.roles)[0]],
                               }]) })}
                             >
-                                {isSaving ? 'Sending' : 'Invited additional member'}
+                                {isSaving ? 'Sending' : 'Invite additional member'}
                             </Button>
 
                             <p className="mt-5">
