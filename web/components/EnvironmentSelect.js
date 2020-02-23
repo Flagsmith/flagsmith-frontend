@@ -48,18 +48,6 @@ const EnvironmentSelect = class extends Component {
                                                               Features
                                                         </NavLink>
                                                     </li>
-                                                    {hasFeature('segments') && environmentAdmin && (
-                                                    <li className="env-nav__item flex-row">
-                                                        <NavLink
-                                                          id="segments-link"
-                                                          activeClassName="active"
-                                                          to={`/project/${project.id}/environment/${environment.api_key}/segments`
-                                                              }
-                                                        >
-                                                                Segments
-                                                        </NavLink>
-                                                    </li>
-                                                    )}
                                                     {environmentAdmin && (
                                                     <li className="env-nav__item flex-row">
                                                         <NavLink

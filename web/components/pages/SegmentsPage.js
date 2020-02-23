@@ -117,7 +117,9 @@ const SegmentsPage = class extends Component {
                                                 <Flex>
                                                     <h3>Segments</h3>
                                                     <p>
-                                                        Create and manage groups of users with similar traits.
+                                                        Create and manage groups of users with similar traits. Segments can be used to override features within the features page for any environment.
+                                                        {' '}
+                                                        <a target="_blank" className="link-dark" href="https://docs.bullet-train.io/permissions/">Learn about Segments.</a>
                                                     </p>
                                                 </Flex>
                                                 {this.createSegmentPermission(perm => (

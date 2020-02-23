@@ -82,14 +82,27 @@ const ProjectSelect = class extends Component {
                                             </ul>
                                             <Permission level="project" permission="ADMIN" id={this.props.projectId}>
                                                 {({ isLoading, permission }) => !!permission && (
-                                                <NavLink
-                                                  id="project-settings-link"
-                                                  activeClassName="active"
-                                                  className="project-nav__item project-list__item  project-settings-link"
-                                                  to={`/project/${this.props.projectId}/environment/${this.props.environmentId}/project-settings`}
-                                                >
-                                                      Project Settings
-                                                </NavLink>
+                                                <React.Fragment>
+                                                    {this.props.hasFeature('segments') && (
+                                                        <NavLink
+                                                          id="segments-link"
+                                                          className="project-nav__item project-list__item  project-settings-link"
+                                                          activeClassName="active"
+                                                          to={`/project/${project.id}/environment/${this.props.environmentId}/segments`
+                                                              }
+                                                        >
+                                                                Segments
+                                                        </NavLink>
+                                                    )}
+                                                    <NavLink
+                                                      id="project-settings-link"
+                                                      activeClassName="active"
+                                                      className="project-nav__item project-list__item  project-settings-link"
+                                                      to={`/project/${this.props.projectId}/environment/${this.props.environmentId}/project-settings`}
+                                                    >
+                                                          Project Settings
+                                                    </NavLink>
+                                                </React.Fragment>
                                                 )}
                                             </Permission>
                                         </div>
@@ -105,4 +118,4 @@ const ProjectSelect = class extends Component {
 
 ProjectSelect.propTypes = {};
 
-module.exports = ProjectSelect;
+module.exports = ConfigProvider(ProjectSelect);
