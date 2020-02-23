@@ -365,6 +365,12 @@ color:#fff;
             .env-nav{
                 display:block;
                 height:auto;
+                &__item a {
+                    opacity: 0.5;
+                    &.active {
+                        opacity: 1;
+                    }
+                }
             }
         }
     }
@@ -387,7 +393,7 @@ color:#fff;
     padding: 5px 0 5px 0;
     a {
         &.active {
-            color: $bt-brand-primary;
+            opacity: 1;
         }
     }
 }

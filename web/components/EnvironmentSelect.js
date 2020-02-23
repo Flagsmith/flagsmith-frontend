@@ -39,57 +39,58 @@ const EnvironmentSelect = class extends Component {
                                             {({ permission: environmentAdmin, isLoading }) => (isLoading ? <div><Loader/></div> : (
                                                 <ul className="env-nav lisƒt-unstyled">
                                                     <li className="env-nav__item flex-row">
-                                                        <Link
+                                                        <NavLink
                                                           id="features-link"
                                                           activeClassName="active"
                                                           to={`/project/${project.id}/environment/${environment.api_key}/features`
                                                             }
                                                         >
                                                               Features
-                                                        </Link>
+                                                        </NavLink>
                                                     </li>
                                                     {hasFeature('segments') && environmentAdmin && (
                                                     <li className="env-nav__item flex-row">
-                                                        <Link
+                                                        <NavLink
                                                           id="segments-link"
                                                           activeClassName="active"
                                                           to={`/project/${project.id}/environment/${environment.api_key}/segments`
                                                               }
                                                         >
                                                                 Segments
-                                                        </Link>
+                                                        </NavLink>
                                                     </li>
                                                     )}
                                                     <li className="env-nav__item flex-row">
-                                                        <Link
+                                                        <NavLink
                                                           id="users-link"
                                                           activeClassName="active"
+                                                          exact
                                                           to={`/project/${project.id}/environment/${environment.api_key}/users`
                                                             }
                                                         >
                                                               Users
-                                                        </Link>
+                                                        </NavLink>
                                                     </li>
                                                     <li className="env-nav__item flex-row">
-                                                        <Link
+                                                        <NavLink
                                                           id="audit-log-link"
                                                           activeClassName="active"
                                                           to={`/project/${project.id}/environment/${environment.api_key}/audit-log`
                                                             }
                                                         >
                                                               Audit Log
-                                                        </Link>
+                                                        </NavLink>
                                                     </li>
                                                     {environmentAdmin && (
                                                     <li className="env-nav__item flex-row">
-                                                        <Link
+                                                        <NavLink
                                                           id="env-settings-link"
                                                           activeClassName="active"
                                                           to={`/project/${project.id}/environment/${environment.api_key}/settings`
                                                               }
                                                         >
                                                                 Settings
-                                                        </Link>
+                                                        </NavLink>
                                                     </li>
                                                     )}
                                                 </ul>
