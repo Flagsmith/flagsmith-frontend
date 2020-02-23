@@ -116,8 +116,10 @@ const FeaturesPage = class extends Component {
     onError = (error) => {
         // Kick user back out to projects
         this.setState({ error });
-        closeModal();
-        toast('We could not create this feature, please check the name is not in use.');
+        if (typeof closeModal !== 'undefined') {
+            closeModal();
+            toast('We could not create this feature, please check the name is not in use.');
+        }
     }
 
     render() {

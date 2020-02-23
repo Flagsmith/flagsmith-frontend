@@ -14,6 +14,7 @@ import FlagsPage from './components/pages/FeaturesPage';
 import SegmentsPage from './components/pages/SegmentsPage';
 import OrganisationSettingsPage from './components/pages/OrganisationSettingsPage';
 import ComingSoon from './components/pages/ComingSoonPage';
+import NotFoundErrorPage from './components/pages/NotFoundErrorPage';
 import ProjectSettingsPage from './components/pages/ProjectSettingsPage';
 import WhatAreFeatureFlagsPage from './components/pages/WhatAreFeatureFlagsPage';
 import WhenFeatureFlagsGoWrong from './components/pages/blog/WhenFeatureFlagsGoWrong';
@@ -37,6 +38,7 @@ export default (
             <Route path="/" exact component={HomePage}/>
             <Route path="/markup" exact component={MarkupPage}/>
             <Route path="/login" exact component={HomePage}/>
+            <Route path="/404" exact component={NotFoundErrorPage}/>
             <Route path="/signup" exact component={HomePage}/>
             <Route path="/demo" exact component={DemoPage}/>
             <Route path="/signup" exact component={HomePage}/>

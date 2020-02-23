@@ -167,11 +167,16 @@ const EnvironmentSettingsPage = class extends Component {
                                             {this.props.hasFeature('webhooks') && (
                                                 <FormGroup className="m-y-3">
                                                     <Row className="mb-3" space>
-                                                        <h3 className="m-b-0">Webhooks</h3>
+                                                        <h3 className="m-b-0">Feature Webhooks</h3>
                                                         <Button onClick={this.createWebhook}>
-                                                        Create webhook
+                                                        Create feature webhook
                                                         </Button>
                                                     </Row>
+                                                    <p>
+                                                        Feature webhooks let you know when features have changed, you can configure 1 or more feature webhooks per environment.
+                                                        {' '}
+                                                        <a target="_blank" className="link-dark" href="https://docs.bullet-train.io/system-administration/">Learn about feature webhooks.</a>
+                                                    </p>
                                                     {webhooksLoading && !webhooks ? (
                                                         <Loader/>
                                                     ) : (
