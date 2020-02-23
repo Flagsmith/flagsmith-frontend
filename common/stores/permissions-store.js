@@ -19,9 +19,7 @@ const controller = {
                 _.map(res.permissions, (p) => {
                     store.model[level][id][p] = true;
                 });
-                if (res.admin) {
-                    store.model[level][id].ADMIN = true;
-                }
+                store.model[level][id].ADMIN = res.admin;
                 store.changed();
             });
     },

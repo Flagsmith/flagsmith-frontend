@@ -26,7 +26,7 @@ const controller = {
                         });
                     }
 
-                    return Promise.all(projects.map((project, i) => data.get(`${Project.api}environments/?project=${project.id}/`)
+                    return Promise.all(projects.map((project, i) => data.get(`${Project.api}environments/?project=${project.id}`)
                         .then((res) => {
                             projects[i].environments = res.results;
                         })

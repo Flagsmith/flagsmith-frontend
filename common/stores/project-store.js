@@ -11,7 +11,7 @@ const controller = {
 
             Promise.all([
                 data.get(`${Project.api}projects/${id}/`),
-                data.get(`${Project.api}environments/?project_id=${id}`).catch(() => []),
+                data.get(`${Project.api}environments/?project=${id}`).catch(() => []),
             ]).then(([project, environments]) => {
                 store.model = Object.assign(project, { environments: environments.results });
                 if (project.organisation !== OrganisationStore.id) {
@@ -21,7 +21,7 @@ const controller = {
                 store.id = id;
                 store.loaded();
             }).catch(() => {
-                // document.location.href = '/404?entity=project';
+                document.location.href = '/404?entity=project';
             });
         }
     },

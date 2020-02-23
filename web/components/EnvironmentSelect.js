@@ -35,7 +35,7 @@ const EnvironmentSelect = class extends Component {
                                             </Row>
                                         </button>
                                         {this.props.environmentId === (`${environment.api_key}`) && (
-                                        <Permission level="environment" permission="ADMIN" id={environment.api_key}>
+                                        <Permission level="environment" permission="VIEW_ENVIRONMENT" id={environment.api_key}>
                                             {({ permission: environmentAdmin, isLoading }) => (isLoading ? <div><Loader/></div> : (
                                                 <ul className="env-nav lisƒt-unstyled">
                                                     <li className="env-nav__item flex-row">

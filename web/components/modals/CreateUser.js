@@ -51,7 +51,6 @@ const CreateUser = class extends Component {
             closeModal();
             AppActions.getIdentities(this.props.environmentId);
         });
-        data.get(`${Project.api}identities/?identifier=' + encodeURIComponent(identity)`);
     }
 
     render() {
