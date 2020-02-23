@@ -267,8 +267,19 @@ nav.navbar {
     }
 }
 
+.project-settings-link {
+    padding-left: 10px;
+    display: block;
+    opacity: 1 !important;
+    background: #36475b;
+    line-height: 34px;
+}
 .project-list {
     &__item {
+        .project-nav__button {
+
+            //padding-left: 30px;
+        }
         &--open {
             .project-nav__button {
                 background: #2bafa5;

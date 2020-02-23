@@ -110,18 +110,6 @@ const Aside = class extends Component {
                                   Audit Log
                                 </NavLink>
                                 )}
-                                <Permission level="project" permission="ADMIN" id={this.props.projectId}>
-                                    {({ isLoading, permission }) => !!permission && (
-                                        <NavLink
-                                          id="project-settings-link"
-                                          activeClassName="active"
-                                          className="link--footer"
-                                          to={`/project/${this.props.projectId}/environment/${this.props.environmentId}/project-settings`}
-                                        >
-                                        Project Settings
-                                        </NavLink>
-                                    )}
-                                </Permission>
 
                                 {AccountStore.getOrganisationRole() === 'ADMIN' && (
                                     <NavLink
