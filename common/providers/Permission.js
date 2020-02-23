@@ -15,21 +15,28 @@ const Permission = class extends Component {
 
   constructor(props, context) {
       super(props, context);
-      this.state = {};
+      this.state = this.props.hasFeature('fine_permissions') ? {
+          isLoading: !PermissionsStore.getPermissions(this.props.id, this.props.level),
+      } : {};
       ES6Component(this);
   }
 
   componentDidMount() {
-      const isLoading = !PermissionsStore.getPermissions(this.props.id, this.props.level) || !Object.keys(PermissionsStore.getPermissions(this.props.id, this.props.level)).length;
-      if (isLoading) {
-          AppActions.getPermissions(this.props.id, this.props.level);
+      if (this.props.hasFeature('fine_permissions')) {
+          const isLoading = !PermissionsStore.getPermissions(this.props.id, this.props.level) || !Object.keys(PermissionsStore.getPermissions(this.props.id, this.props.level)).length;
+          if (isLoading) {
+              AppActions.getPermissions(this.props.id, this.props.level);
+          }
+          this.listenTo(PermissionsStore, 'change', () => {
+              this.forceUpdate();
+          });
       }
-      this.listenTo(PermissionsStore, 'change', () => {
-          this.forceUpdate();
-      });
   }
 
   render() {
+      if (!this.props.hasFeature('fine_permissions')) {
+          return this.props.children({ permission: true });
+      }
       const permission = PermissionsStore.getPermission(this.props.id, this.props.level, this.props.permission);
       const isLoading = !PermissionsStore.getPermissions(this.props.id, this.props.level) || !Object.keys(PermissionsStore.getPermissions(this.props.id, this.props.level)).length;
       return this.props.children({ permission, isLoading }) || <div/>;
