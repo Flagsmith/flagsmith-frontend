@@ -7,7 +7,12 @@ const InviteUsers = class extends Component {
         super(props, context);
         this.state = {
             name: props.name,
-            invites: [{}],
+            invites: [{
+                role: {
+                    value: Object.keys(Constants.roles)[0],
+                    label: Constants.roles[Object.keys(Constants.roles)[0]],
+                },
+            }],
         };
     }
 
@@ -102,11 +107,19 @@ const InviteUsers = class extends Component {
                               id="btn-add-invite"
                               disabled={isSaving}
                               type="button"
-                              onClick={() => this.setState({ invites: this.state.invites.concat([{}]) })}
+                              onClick={() => this.setState({ invites: this.state.invites.concat([{
+                                  value: Object.keys(Constants.roles)[0],
+                                  label: Constants.roles[Object.keys(Constants.roles)[0]],
+                              }]) })}
                             >
-                                {isSaving ? 'Sending' : 'Add Invite'}
+                                {isSaving ? 'Sending' : 'Invited additional member'}
                             </Button>
 
+                            <p className="mt-5">
+                                Users without administrator privileges will need to be invited to individual projects.
+                                {' '}
+                                <a target="_blank" className="link-dark" href="https://docs.bullet-train.io/permissions/">Learn about User Roles.</a>
+                            </p>
                             <div className="text-right mt-2">
                                 {error && <Error error={error}/>}
                                 <Button

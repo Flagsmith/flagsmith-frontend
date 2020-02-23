@@ -149,8 +149,8 @@ const Constants = {
     },
     simulate: {},
     roles: {
-        'USER': 'User',
         'ADMIN': 'Admin',
+        'USER': 'User',
     },
     exampleWebhook: `{
   "data": {
