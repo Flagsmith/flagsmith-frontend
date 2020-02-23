@@ -41,12 +41,8 @@ function hashLinkScroll() {
 }
 
 // Render the React application to the DOM
-let res;
-if (Project.cookieDomain) {
-    res = require('js-cookie').get('t', { domain: Project.cookieDomain });
-} else {
-    res = require('js-cookie').get('t');
-}
+const res = require('js-cookie').get('t');
+
 if (res) {
     AppActions.setToken(res);
 }
