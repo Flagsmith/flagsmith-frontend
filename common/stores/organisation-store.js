@@ -10,7 +10,7 @@ const controller = {
             store.loading();
 
             Promise.all([
-                data.get(`${Project.api}projects/?organisation_id=${id}`),
+                data.get(`${Project.api}projects/?organisation=${id}`),
             ].concat(AccountStore.getOrganisationRole(id) === 'ADMIN' ? [
                 data.get(`${Project.api}organisations/${id}/users/`),
                 data.get(`${Project.api}organisations/${id}/invites/`),
@@ -26,7 +26,7 @@ const controller = {
                         });
                     }
 
-                    return Promise.all(projects.map((project, i) => data.get(`${Project.api}environments/?project_id=${project.id}/`)
+                    return Promise.all(projects.map((project, i) => data.get(`${Project.api}environments/?project=${project.id}/`)
                         .then((res) => {
                             projects[i].environments = res.results;
                         })
