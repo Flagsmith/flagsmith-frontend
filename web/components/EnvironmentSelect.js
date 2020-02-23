@@ -76,18 +76,6 @@ const EnvironmentSelect = class extends Component {
                                                     {environmentAdmin && (
                                                     <li className="env-nav__item flex-row">
                                                         <NavLink
-                                                          id="audit-log-link"
-                                                          activeClassName="active"
-                                                          to={`/project/${project.id}/environment/${environment.api_key}/audit-log`
-                                                            }
-                                                        >
-                                                              Audit Log
-                                                        </NavLink>
-                                                    </li>
-                                                    )}
-                                                    {environmentAdmin && (
-                                                    <li className="env-nav__item flex-row">
-                                                        <NavLink
                                                           id="env-settings-link"
                                                           activeClassName="active"
                                                           to={`/project/${project.id}/environment/${environment.api_key}/settings`

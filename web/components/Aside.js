@@ -102,27 +102,36 @@ const Aside = class extends Component {
                                 )}
                                 <Permission level="project" permission="ADMIN" id={this.props.projectId}>
                                     {({ isLoading, permission }) => !!permission && (
-                                    <Link
-                                      id="project-settings-link"
-                                      activeClassName="active"
-                                      className="link--footer"
-                                      to={`/project/${this.props.projectId}/environment/${this.props.environmentId}/project-settings`}
-                                    >
+                                    <React.Fragment>
+                                        <NavLink
+                                          id="audit-log-link"
+                                          activeClassName="active"
+                                          className="link--footer"
+                                          to={`/project/${this.props.projectId}/environment/${this.props.environmentId}/audit-log`}
+                                        >
+                                          Audit Log
+                                        </NavLink>
+                                        <NavLink
+                                          id="project-settings-link"
+                                          activeClassName="active"
+                                          className="link--footer"
+                                          to={`/project/${this.props.projectId}/environment/${this.props.environmentId}/project-settings`}
+                                        >
                                         Project Settings
-                                    </Link>
+                                        </NavLink>
+                                    </React.Fragment>
                                     )}
-
                                 </Permission>
 
                                 {AccountStore.getOrganisationRole() === 'ADMIN' && (
-                                    <Link
+                                    <NavLink
                                       id="organisation-settings-link"
                                       activeClassName="active"
                                       className="link--footer"
                                       to={`/project/${this.props.projectId}/environment/${this.props.environmentId}/organisation-settings`}
                                     >
                                                     Organisation Settings
-                                    </Link>
+                                    </NavLink>
                                 )}
                                 <a
                                   className="link--footer"
