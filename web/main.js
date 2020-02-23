@@ -22,7 +22,11 @@ const rootElement = document.getElementById('app');
 const params = Utils.fromParam();
 
 if (params.token) {
-    require('js-cookie').set('t', params.token);
+    if (Project.cookieDomain) {
+        require('js-cookie').set('t', params.token, { path: '', domain: Project.cookieDomain });
+    } else {
+        require('js-cookie').set('t', params.token);
+    }
     document.location = document.location.origin;
 }
 

@@ -5,6 +5,7 @@ module.exports = global.Project = {
     api: 'https://api.bullet-train.io/api/v1/',
     ga: 'UA-120237963-1', // This is our Google Analytics key
     sentry: 'https://11c8828dc24041b0a875e324b0380769@sentry.io/1320942',
+    cookieDomain: '.bullet-train.io',
     demoAccount: {
         email: 'kyle+bullet-train@solidstategroup.com',
         password: 'demo_account',
