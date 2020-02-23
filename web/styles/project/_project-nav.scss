@@ -296,8 +296,9 @@ color:#fff;
 
 &__item{
     &__text{
+        display: inline-block;
         color:#2cd6ca;
-        font-size: 0.85rem;
+        font-size: 16px;
     }
 
     &--header{
