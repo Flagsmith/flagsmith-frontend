@@ -66,6 +66,7 @@ class TheComponent extends Component {
     constructor(props) {
         super(props);
         this.state = {};
+        AppActions.getSegments(props.projectId, props.environmentId);
     }
 
     addItem = () => {

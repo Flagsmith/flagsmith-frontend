@@ -20,7 +20,6 @@ const CreateFlag = class extends Component {
                 type: 'FLAG',
             };
         const { allowEditDescription } = this.props;
-        AppActions.getSegments(this.props.projectId, this.props.environmentId);
         if (this.props.projectFlag) {
             this.userOverridesPage(1);
         }
@@ -222,7 +221,10 @@ const CreateFlag = class extends Component {
                                       placeholder="e.g. 'This determines what size the header is' "
                                     />
                                 </FormGroup>
-                                {this.props.segments && hasFeature('segments') && !identity && isEdit && (
+                                {hasFeature('segments') && !identity && isEdit && (
+                                <Permission level="project" permission="ADMIN" id={this.props.projectId}>
+                                    {({ permission: projectAdmin }) => projectAdmin && (
+
                                     <FormGroup className="mb-4">
                                         <Panel
                                           icon="ion-ios-settings"
@@ -233,9 +235,11 @@ const CreateFlag = class extends Component {
                                               >
                                                   {Constants.strings.SEGMENT_OVERRIDES_DESCRIPTION}
                                               </Tooltip>
-                                          )}
+                                            )}
                                         >
                                             <SegmentOverrides
+                                              projectId={this.props.projectId}
+                                              environmentId={this.props.environmentId}
                                               type={type}
                                               value={this.props.segmentOverrides}
                                               segments={this.props.segments}
@@ -243,6 +247,8 @@ const CreateFlag = class extends Component {
                                             />
                                         </Panel>
                                     </FormGroup>
+                                    )}
+                                </Permission>
                                 )}
                                 {
                                     !identity
@@ -280,8 +286,8 @@ const CreateFlag = class extends Component {
                                                       <Switch checked={enabled}/>
                                                   ) : (
                                                       <FeatureValue
-                    value={feature_state_value}
-                  />
+                                                        value={feature_state_value}
+                                                      />
                                                   )}
 
                                               </Row>

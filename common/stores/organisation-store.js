@@ -18,7 +18,7 @@ const controller = {
                 if (id === store.id) {
                     // eslint-disable-next-line prefer-const
                     let [projects, users, invites, usage] = res;
-                    projects = projects.results;
+                    // projects = projects.results;
                     store.model = { users, invites: invites && invites.results };
 
                     if (AccountStore.getOrganisationRole(id) === 'ADMIN') {
