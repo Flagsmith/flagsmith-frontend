@@ -8,6 +8,9 @@ import PaymentModal from '../modals/Payment';
 import CreateGroupModal from '../modals/CreateGroup';
 import CancelPaymentPlanModal from '../modals/CancelPaymentPlan';
 import data from '../../../common/data/base/_data';
+import withAuditWebhooks from '../../../common/providers/withAuditWebhooks';
+import CreateAuditWebhookModal from '../modals/CreateAuditWebhook';
+import ConfirmRemoveAuditWebhook from '../modals/ConfirmRemoveAuditWebhook';
 
 const OrganisationSettingsPage = class extends Component {
     static contextTypes = {
@@ -33,6 +36,9 @@ const OrganisationSettingsPage = class extends Component {
                         chargebeeURL: res.url,
                     });
                 });
+        }
+        if (this.props.hasFeature('audit_webhooks')) {
+            this.props.getWebhooks();
         }
     }
 
@@ -132,9 +138,34 @@ const OrganisationSettingsPage = class extends Component {
         AppActions.updateUserRole(id, role);
     }
 
+    createWebhook = () => {
+        openModal('New Webhook', <CreateAuditWebhookModal
+          router={this.context.router}
+          save={this.props.createWebhook}
+        />, null, { className: 'alert fade expand' });
+    };
+
+
+    editWebhook = (webhook) => {
+        openModal('Edit Webhook', <CreateAuditWebhookModal
+          router={this.context.router}
+          webhook={webhook}
+          isEdit
+          save={this.props.saveWebhook}
+        />, null, { className: 'alert fade expand' });
+    };
+
+    deleteWebhook = (webhook) => {
+        openModal('Remove Webhook', <ConfirmRemoveAuditWebhook
+          url={webhook.url}
+          cb={() => this.props.deleteWebhook(webhook)}
+        />);
+    };
+
     render() {
         const { hasFeature, getValue } = this.props;
         const { name, webhook_notification_email } = this.state;
+        const { props: { webhooks, webhooksLoading } } = this;
 
         return (
             <AccountProvider onSave={this.onSave} onRemove={this.onRemove}>
@@ -404,6 +435,93 @@ const OrganisationSettingsPage = class extends Component {
                                 </OrganisationProvider>
                             </div>
                         </FormGroup>
+                        {this.props.hasFeature('audit_webhooks') && (
+                        <div className="col-md-12">
+
+                            <FormGroup className="m-y-3">
+                                <Row className="mb-3" space>
+                                    <h3 className="m-b-0">Audit webhooks</h3>
+                                    <Button onClick={this.createWebhook}>
+                                      Create audit webhook
+                                    </Button>
+                                </Row>
+                                <p>
+                                  Audit webhooks let you know when audit logs occur, you can configure 1 or more audit webhooks per organisation.
+                                    {' '}
+                                    <a target="_blank" className="link-dark" href="https://docs.bullet-train.io/system-administration/">Learn about audit webhooks.</a>
+                                </p>
+                                {webhooksLoading && !webhooks ? (
+                                    <Loader/>
+                                ) : (
+                                    <PanelSearch
+                                      id="webhook-list"
+                                      title={(
+                                          <Tooltip
+                                            title={<h6 className="mb-0">Webhooks <span className="icon ion-ios-information-circle"/></h6>}
+                                            place="right"
+                                          >
+                                              {Constants.strings.WEBHOOKS_DESCRIPTION}
+                                          </Tooltip>
+                                  )}
+                                      className="no-pad"
+                                      icon="ion-md-cloud"
+                                      items={webhooks}
+                                      renderRow={webhook => (
+                                          <Row
+                                            onClick={() => {
+                                                this.editWebhook(webhook);
+                                            }} space className="list-item clickable cursor-pointer"
+                                            key={webhook.id}
+                                          >
+                                              <Flex>
+                                                  <a href="#">
+                                                      {webhook.url}
+                                                  </a>
+                                                  <div className="list-item-footer faint">
+                                                Created
+                                                      {' '}
+                                                      {moment(webhook.created_date).format('DD/MMM/YYYY')}
+                                                  </div>
+                                              </Flex>
+                                              <Row>
+                                                  <Switch checked={webhook.enabled}/>
+                                                  <button
+                                                    id="delete-invite"
+                                                    type="button"
+                                                    onClick={(e) => {
+                                                          e.stopPropagation();
+                                                          e.preventDefault();
+                                                          this.deleteWebhook(webhook);
+                                                      }}
+                                                    className="btn btn--with-icon ml-auto btn--remove"
+                                                  >
+                                                      <RemoveIcon/>
+                                                  </button>
+                                              </Row>
+                                          </Row>
+                                      )}
+                                      renderNoResults={(
+                                          <Panel
+                                            id="users-list"
+                                            icon="ion-md-cloud"
+                                            title={(
+                                                <Tooltip
+                                                  title={<h6 className="mb-0">Webhooks <span className="icon ion-ios-information-circle"/></h6>}
+                                                  place="right"
+                                                >
+                                                    {Constants.strings.AUDIT_WEBHOOKS_DESCRIPTION}
+                                                </Tooltip>
+                                      )}
+                                          >
+                                        You currently have no webhooks configured for this organisation.
+                                          </Panel>
+                                  )}
+                                      isLoading={this.props.webhookLoading}
+                                    />
+                                )}
+                            </FormGroup>
+                        </div>
+                        )}
                         <FormGroup className="mt-5">
                             <Row>
                                 <Column className="d-flex pl-3">
@@ -432,4 +550,4 @@ const OrganisationSettingsPage = class extends Component {
 
 OrganisationSettingsPage.propTypes = {};
 
-module.exports = ConfigProvider(OrganisationSettingsPage);
+module.exports = ConfigProvider(withAuditWebhooks(OrganisationSettingsPage));
