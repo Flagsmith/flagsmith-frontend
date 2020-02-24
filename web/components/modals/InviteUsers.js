@@ -7,12 +7,7 @@ const InviteUsers = class extends Component {
         super(props, context);
         this.state = {
             name: props.name,
-            invites: [{
-                role: {
-                    value: Object.keys(Constants.roles)[0],
-                    label: Constants.roles[Object.keys(Constants.roles)[0]],
-                },
-            }],
+            invites: [{}],
         };
     }
 
@@ -107,10 +102,7 @@ const InviteUsers = class extends Component {
                               id="btn-add-invite"
                               disabled={isSaving}
                               type="button"
-                              onClick={() => this.setState({ invites: this.state.invites.concat([{
-                                  value: Object.keys(Constants.roles)[0],
-                                  label: Constants.roles[Object.keys(Constants.roles)[0]],
-                              }]) })}
+                              onClick={() => this.setState({ invites: this.state.invites.concat([{}]) })}
                             >
                                 {isSaving ? 'Sending' : 'Invite additional member'}
                             </Button>
