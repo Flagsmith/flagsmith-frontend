@@ -16,7 +16,9 @@ const controller = {
                 data.get(`${Project.api}organisations/${id}/invites/`),
             ] : [])).then((res) => {
                 if (id === store.id) {
-                    const [projects, users, invites, usage] = res;
+                    // eslint-disable-next-line prefer-const
+                    let [projects, users, invites, usage] = res;
+                    projects = projects.results;
                     store.model = { users, invites: invites && invites.results };
 
                     if (AccountStore.getOrganisationRole(id) === 'ADMIN') {
