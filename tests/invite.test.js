@@ -64,6 +64,8 @@ module.exports = {
         browser
             .pause(20000)
             .url('http://mailnesia.com/mailbox/bullet-train')
+            .pause(200)
+            .refresh()
             .waitForElementVisible('.email')
             .useXpath()
             .waitForElementVisible(`//*[contains(text(), '${`Bullet Train Org${append}`}')]`)
