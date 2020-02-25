@@ -76,7 +76,7 @@ export default class TheComponent extends PureComponent {
                                     </div>
                                 </Flex>
 
-                                {this.props.showRemove && (
+                                {this.props.showRemove ? (
                                     <Column>
                                         <button
                                           id="remove-group"
@@ -87,6 +87,9 @@ export default class TheComponent extends PureComponent {
                                             <RemoveIcon/>
                                         </button>
                                     </Column>
+                                ): (
+                                  <ion style={{ fontSize: 24 }} className="icon--green ion ion-md-settings"/>
+
                                 )}
 
                             </Row>

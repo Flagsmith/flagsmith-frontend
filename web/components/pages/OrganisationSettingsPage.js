@@ -279,7 +279,7 @@ const OrganisationSettingsPage = class extends Component {
                                                                   <Row>
                                                                       <Column>
                                                                           {organisation.role === 'ADMIN' && id !== AccountStore.getUserId() ? (
-                                                                              <div style={{ width: 200 }}>
+                                                                              <div style={{ width: 250 }}>
                                                                                   <Select
                                                                                     data-test="select-role"
                                                                                     placeholder="Select a role"
