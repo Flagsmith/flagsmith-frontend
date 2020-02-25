@@ -116,15 +116,27 @@ const Aside = class extends Component {
                                 )}
 
                                 {AccountStore.getOrganisationRole() === 'ADMIN' && (
-                                    <NavLink
-                                      id="organisation-settings-link"
-                                      activeClassName="active"
-                                      className="link--footer"
-                                      to={`/project/${this.props.projectId}/environment/${this.props.environmentId}/organisation-settings`}
-                                    >
-                                                    Organisation Settings
-                                    </NavLink>
+                                <NavLink
+                                  id="organisation-settings-link"
+                                  activeClassName="active"
+                                  className="link--footer"
+                                  to={`/project/${this.props.projectId}/environment/${this.props.environmentId}/organisation-settings`}
+                                >
+                                  Organisation Settings
+                                </NavLink>
                                 )}
+
+                                {hasFeature('edit_account') && (
+                                <NavLink
+                                  id="organisation-settings-link"
+                                  activeClassName="active"
+                                  className="link--footer"
+                                  to={`/project/${this.props.projectId}/environment/${this.props.environmentId}/account-settings`}
+                                >
+                                  Account Settings
+                                </NavLink>
+                                )}
+
                                 <a
                                   className="link--footer"
                                   href="https://docs.bullet-train.io"

@@ -13,6 +13,7 @@ import UserPage from './components/pages/UserPage';
 import FlagsPage from './components/pages/FeaturesPage';
 import SegmentsPage from './components/pages/SegmentsPage';
 import OrganisationSettingsPage from './components/pages/OrganisationSettingsPage';
+import AccountSettingsPage from './components/pages/AccountSettingsPage';
 import ComingSoon from './components/pages/ComingSoonPage';
 import NotFoundErrorPage from './components/pages/NotFoundErrorPage';
 import ProjectSettingsPage from './components/pages/ProjectSettingsPage';
@@ -65,6 +66,7 @@ export default (
             <Route path="/project/:projectId/environment/:environmentId/project-settings" exact component={ProjectSettingsPage}/>
             <Route path="/project/:projectId/environment/:environmentId/segments" exact component={SegmentsPage}/>
             <Route path="/project/:projectId/environment/:environmentId/organisation-settings" exact component={OrganisationSettingsPage}/>
+            <Route path="/project/:projectId/environment/:environmentId/account-settings" exact component={AccountSettingsPage}/>
             <Route path="/project/:projectId/environment/:environmentId/audit-log" exact component={AuditLogPage}/>
             <Route path="/create" exact component={CreateOrganisationPage}/>
             <Route component={NotFoundPage}/>
