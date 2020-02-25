@@ -76,7 +76,7 @@ const ProjectSelectPage = class extends Component {
                                 <div>
                                     <h3>Your projects</h3>
                                     <p>
-                                        You do not have access to any projects within this organisation yet, if this is unexpected please contact member of the project who has administrator privileges. Users can be added to projects from the project settings menu.
+                                        You do not have access to any projects within this Organisation. If this is unexpected please contact a member of the Project who has Administrator privileges. Users can be added to Projects from the Project settings menu.
                                     </p>
                                 </div>
                             )
