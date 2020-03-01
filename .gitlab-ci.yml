@@ -18,6 +18,7 @@ test:
         - npm run test
     only:
         - master
+        - staging
         - develop
 
 deploymaster:
