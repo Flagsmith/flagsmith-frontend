@@ -232,19 +232,23 @@ const FeaturesPage = class extends Component {
                                                                                   </Column>
                                                                               ))
                                                                             }
-                                                                          <Column>
-                                                                              <button
-                                                                                disabled={!permission}
-                                                                                id="remove-feature"
-                                                                                onClick={() => permission && this.confirmRemove(projectFlag, () => {
-                                                                                    removeFlag(this.props.match.params.projectId, projectFlag);
-                                                                                })}
-                                                                                className="btn btn--with-icon"
-                                                                                data-test={`remove-feature-btn-${i}`}
-                                                                              >
-                                                                                  <RemoveIcon/>
-                                                                              </button>
-                                                                          </Column>
+                                                                          <Permission level="project" permission="DELETE_FEATURE" id={this.props.match.params.projectId}>
+                                                                              {({ permission: removeFeaturePermission }) => this.renderWithPermission(removeFeaturePermission, Constants.projectPermissions('Delete Feature'), (
+                                                                                  <Column>
+                                                                                      <button
+                                                                                        disabled={!removeFeaturePermission}
+                                                                                        id="remove-feature"
+                                                                                        onClick={() => this.confirmRemove(projectFlag, () => {
+                                                                                            removeFlag(this.props.match.params.projectId, projectFlag);
+                                                                                        })}
+                                                                                        className="btn btn--with-icon"
+                                                                                        data-test={`remove-feature-btn-${i}`}
+                                                                                      >
+                                                                                          <RemoveIcon/>
+                                                                                      </button>
+                                                                                  </Column>
+                                                                              ))}
+                                                                          </Permission>
                                                                       </Row>
                                                                   </Row>
                                                               );

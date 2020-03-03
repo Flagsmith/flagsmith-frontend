@@ -42,31 +42,41 @@ export default class TheComponent extends PureComponent {
       return (
           <UserGroupsProvider>
               {({ isLoading, userGroups, userGroupsPaging }) => (
-                  <div className="mt-5">
-                      <FormGroup>
-                          <PanelSearch
-                            renderSearchWithNoResults
-                            id="users-list"
-                            title="Groups"
-                            className="no-pad"
-                            icon="ion-md-people"
-                            items={userGroups}
-                            paging={userGroupsPaging}
-                            nextPage={() => AppActions.getGroupsPage(this.props.orgId, userGroupsPaging.next)}
-                            prevPage={() => AppActions.getGroupsPage(this.props.orgId, userGroupsPaging.previous)}
-                            goToPage={page => AppActions.getGroupsPage(this.props.orgId, `${Project.api}organisations/${this.props.orgId}/groups/?page=${page}`)}
-                            renderRow={({ id, name, users }, index) => (
-                                <Row
-                                  space className="list-item" key={id}
-                                  data-test={`user-item-${index}`}
-                                >
-                                    <Flex onClick={() => openModal('Edit Group', <CreateGroup orgId={this.props.orgId} group={{ id, users, name }}/>)} className="clickable">
-                                        {name}
-                                        <div className="list-item-footer faint">
-                                            {users.length}{users.length == 1 ? ' Member' : ' Members'}
-                                        </div>
-                                    </Flex>
+                  <FormGroup>
+                      <PanelSearch
+                        renderSearchWithNoResults
+                        id="users-list"
+                        title="Groups"
+                        className="no-pad"
+                        icon="ion-md-people"
+                        items={userGroups}
+                        paging={userGroupsPaging}
+                        nextPage={() => AppActions.getGroupsPage(this.props.orgId, userGroupsPaging.next)}
+                        prevPage={() => AppActions.getGroupsPage(this.props.orgId, userGroupsPaging.previous)}
+                        goToPage={page => AppActions.getGroupsPage(this.props.orgId, `${Project.api}organisations/${this.props.orgId}/groups/?page=${page}`)}
+                        renderRow={({ id, name, users }, index) => (
+                            <Row
+                              space className="list-item" key={id}
+                              data-test={`user-item-${index}`}
+                            >
+                                <Flex
+                                  onClick={() => {
+                                      if (this.props.onClick) {
+                                          this.props.onClick({ id, users, name });
+                                      } else {
+                                          openModal('Edit Group', <CreateGroup orgId={this.props.orgId} group={{ id, users, name }}/>);
+                                      }
+                                  }}
 
+                                  className="clickable"
+                                >
+                                    {name}
+                                    <div className="list-item-footer faint">
+                                        {users.length}{users.length == 1 ? ' Member' : ' Members'}
+                                    </div>
+                                </Flex>
+
+                                {this.props.showRemove ? (
                                     <Column>
                                         <button
                                           id="remove-group"
@@ -77,17 +87,21 @@ export default class TheComponent extends PureComponent {
                                             <RemoveIcon/>
                                         </button>
                                     </Column>
-                                </Row>
-                            )}
-                            renderNoResults={(
-                                <FormGroup className="text-center">
+                                ): (
+                                  <ion style={{ fontSize: 24 }} className="icon--green ion ion-md-settings"/>
+
+                                )}
+
+                            </Row>
+                        )}
+                        renderNoResults={(
+                            <FormGroup className="text-center">
                                       You have no groups in your organisation.
-                                </FormGroup>
+                            </FormGroup>
                 )}
-                            isLoading={isLoading}
-                          />
-                      </FormGroup>
-                  </div>
+                        isLoading={isLoading}
+                      />
+                  </FormGroup>
               )}
 
           </UserGroupsProvider>

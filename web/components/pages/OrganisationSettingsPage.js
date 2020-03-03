@@ -279,7 +279,11 @@ const OrganisationSettingsPage = class extends Component {
                                                             {`${organisation.num_seats} / ${_.get(organisation, 'subscription.max_seats') || 1}`}
                                                         </strong>
                                                         {` seat${organisation.num_seats === 1 ? '' : 's'}. `}
-                                                        <a className="link-dark" href="https://docs.bullet-train.io/system-administration/">Learn about User Roles</a>
+                                                        <br/>
+                                                        <br/>
+                                                        Users without an admin role will need to have their permissions managed per project and environment.
+                                                        {' '}
+                                                        <a target="_blank" className="link-dark" href="https://docs.bullet-train.io/permissions/">Learn about User Roles.</a>
                                                     </p>
                                                 )}
                                             </div>
@@ -306,7 +310,7 @@ const OrganisationSettingsPage = class extends Component {
                                                                   <Row>
                                                                       <Column>
                                                                           {organisation.role === 'ADMIN' && id !== AccountStore.getUserId() ? (
-                                                                              <div style={{ width: 200 }}>
+                                                                              <div style={{ width: 250 }}>
                                                                                   <Select
                                                                                     data-test="select-role"
                                                                                     placeholder="Select a role"
@@ -409,7 +413,6 @@ const OrganisationSettingsPage = class extends Component {
                                                         </FormGroup>
                                                     ) : null}
 
-                                                    {hasFeature('fine_permissions') && (
                                                     <div>
                                                         <Row space className="mt-5">
                                                             <h5>User groups</h5>
@@ -423,9 +426,8 @@ const OrganisationSettingsPage = class extends Component {
                                                             </Button>
                                                         </Row>
                                                         <p>Groups allow you to manage permissions for viewing and editing projects, features and environments.</p>
-                                                        <UserGroupList orgId={organisation.id}/>
+                                                        <UserGroupList showRemove orgId={organisation.id}/>
                                                     </div>
-                                                    )}
 
                                                 </div>
                                                 )}

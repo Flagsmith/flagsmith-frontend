@@ -35,6 +35,7 @@ const ProjectSelectPage = class extends Component {
     };
 
     render() {
+        const isAdmin = AccountStore.isAdmin();
         return (
             <div data-test="project-select-page" id="project-select-page" className="app-container container">
                 <OrganisationProvider>
@@ -52,7 +53,7 @@ const ProjectSelectPage = class extends Component {
                                         app environments.
                                     </p>
                                 </div>
-                            ) : (
+                            ) : isAdmin ? (
                                 <div className="text-center">
                                     <h3>Great! Now you can create your first project.</h3>
                                     <p>
@@ -69,6 +70,13 @@ const ProjectSelectPage = class extends Component {
                                     <p>
                                         You can create features for your project, then enable and configure them per
                                         environment.
+                                    </p>
+                                </div>
+                            ) : (
+                                <div>
+                                    <h3>Your projects</h3>
+                                    <p>
+                                        You do not have access to any projects within this Organisation. If this is unexpected please contact a member of the Project who has Administrator privileges. Users can be added to Projects from the Project settings menu.
                                     </p>
                                 </div>
                             )
@@ -111,7 +119,7 @@ const ProjectSelectPage = class extends Component {
                                                           >
                                                               <span className="icon ion-ios-rocket"/>
                                                               {' '}
-                                                                Create a project
+                                                              Create a project
                                                           </button>
                                                       </div>
                                                   </div>

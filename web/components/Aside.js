@@ -78,7 +78,11 @@ const Aside = class extends Component {
                                   clearableValue={false}
                                   onChange={(project) => {
                                       AppActions.getProject(project.id);
-                                      this.context.router.history.push(`/project/${project.id}/environment/${project.environments[0].api_key}/features`);
+                                      if (project.environments[0]) {
+                                          this.context.router.history.push(`/project/${project.id}/environment/${project.environments[0].api_key}/features`);
+                                      } else {
+                                          this.context.router.history.push(`/project/${project.id}/environment/create`);
+                                      }
                                       AsyncStorage.setItem('lastEnv', JSON.stringify({
                                           orgId: AccountStore.getOrganisation().id,
                                           projectId: project.id,
@@ -100,30 +104,39 @@ const Aside = class extends Component {
                                         Super cool demo feature!
                                     </a>
                                 )}
-                                <Permission level="project" permission="ADMIN" id={this.props.projectId}>
-                                    {({ isLoading, permission }) => !!permission && (
-                                    <Link
-                                      id="project-settings-link"
-                                      activeClassName="active"
-                                      className="link--footer"
-                                      to={`/project/${this.props.projectId}/environment/${this.props.environmentId}/project-settings`}
-                                    >
-                                        Project Settings
-                                    </Link>
-                                    )}
-
-                                </Permission>
+                                {AccountStore.getOrganisationRole() === 'ADMIN' && (
+                                <NavLink
+                                  id="audit-log-link"
+                                  activeClassName="active"
+                                  className="link--footer"
+                                  to={`/project/${this.props.projectId}/environment/${this.props.environmentId}/audit-log`}
+                                >
+                                  Audit Log
+                                </NavLink>
+                                )}
 
                                 {AccountStore.getOrganisationRole() === 'ADMIN' && (
-                                    <Link
-                                      id="organisation-settings-link"
-                                      activeClassName="active"
-                                      className="link--footer"
-                                      to={`/project/${this.props.projectId}/environment/${this.props.environmentId}/organisation-settings`}
-                                    >
-                                                    Organisation Settings
-                                    </Link>
+                                <NavLink
+                                  id="organisation-settings-link"
+                                  activeClassName="active"
+                                  className="link--footer"
+                                  to={`/project/${this.props.projectId}/environment/${this.props.environmentId}/organisation-settings`}
+                                >
+                                  Organisation Settings
+                                </NavLink>
                                 )}
+
+                                {hasFeature('edit_account') && (
+                                <NavLink
+                                  id="organisation-settings-link"
+                                  activeClassName="active"
+                                  className="link--footer"
+                                  to={`/project/${this.props.projectId}/environment/${this.props.environmentId}/account-settings`}
+                                >
+                                  Account Settings
+                                </NavLink>
+                                )}
+
                                 <a
                                   className="link--footer"
                                   href="https://docs.bullet-train.io"

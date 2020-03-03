@@ -10,23 +10,30 @@ const controller = {
             store.loading();
 
             Promise.all([
-                data.get(`${Project.api}organisations/${id}/projects/`),
-            ].concat(AccountStore.getOrganisationRole(id) === 'ADMIN' ? [
+                data.get(`${Project.api}projects/?organisation=${id}`),
                 data.get(`${Project.api}organisations/${id}/users/`),
+            ].concat(AccountStore.getOrganisationRole(id) === 'ADMIN' ? [
                 data.get(`${Project.api}organisations/${id}/invites/`),
             ] : [])).then((res) => {
                 if (id === store.id) {
-                    const [projects, users, invites, usage] = res;
+                    // eslint-disable-next-line prefer-const
+                    let [projects, users, invites, usage] = res;
+                    // projects = projects.results;
                     store.model = { users, invites: invites && invites.results };
 
-                    data.get(`${Project.api}organisations/${id}/usage/`).then((usage) => {
-                        store.model.usage = usage && usage.events;
-                        store.loaded();
-                    });
+                    if (AccountStore.getOrganisationRole(id) === 'ADMIN') {
+                        data.get(`${Project.api}organisations/${id}/usage/`).then((usage) => {
+                            store.model.usage = usage && usage.events;
+                            store.loaded();
+                        });
+                    }
 
-                    return Promise.all(projects.map((project, i) => data.get(`${Project.api}projects/${project.id}/environments/`)
+                    return Promise.all(projects.map((project, i) => data.get(`${Project.api}environments/?project=${project.id}`)
                         .then((res) => {
-                            projects[i].environments = res;
+                            projects[i].environments = res.results;
+                        })
+                        .catch((res) => {
+                            projects[i].environments = [];
                         })))
                         .then(() => {
                             projects.sort((a, b) => {

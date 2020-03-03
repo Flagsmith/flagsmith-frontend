@@ -61,10 +61,9 @@ const AppActions = Object.assign({}, require('./base/_app-actions'), {
             level,
         });
     },
-    getAvailablePermissions(level) {
+    getAvailablePermissions() {
         Dispatcher.handleViewAction({
             actionType: Actions.GET_AVAILABLE_PERMISSIONS,
-            level,
         });
     },
     getProject(projectId) {

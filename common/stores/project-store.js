@@ -11,15 +11,17 @@ const controller = {
 
             Promise.all([
                 data.get(`${Project.api}projects/${id}/`),
-                data.get(`${Project.api}projects/${id}/environments/`),
+                data.get(`${Project.api}environments/?project=${id}`).catch(() => []),
             ]).then(([project, environments]) => {
-                store.model = Object.assign(project, { environments });
-                if (project.organisation != OrganisationStore.id) {
+                store.model = Object.assign(project, { environments: environments.results });
+                if (project.organisation !== OrganisationStore.id) {
                     AppActions.selectOrganisation(project.organisation);
                     AppActions.getOrganisation(project.organisation);
                 }
                 store.id = id;
                 store.loaded();
+            }).catch(() => {
+                document.location.href = '/404?entity=project';
             });
         }
     },

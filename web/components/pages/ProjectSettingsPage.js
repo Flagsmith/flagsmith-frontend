@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ConfirmRemoveProject from '../modals/ConfirmRemoveProject';
+import EditPermissions from '../EditPermissions';
 
 const ProjectSettingsPage = class extends Component {
     static displayName = 'ProjectSettingsPage'
@@ -80,13 +81,14 @@ const ProjectSettingsPage = class extends Component {
                                     </FormGroup>
                                 </div>
                             )}
+                            <EditPermissions id={this.props.match.params.projectId} level="project"/>
                             <FormGroup className="m-y-3">
                                 <Row>
                                     <Column className="d-flex">
-                                        <strong>
+                                        <h5>
                                             Delete Project
 
-                                        </strong>
+                                        </h5>
                                         <p>
                                             This project will be deleted permanently
 
@@ -113,4 +115,4 @@ const ProjectSettingsPage = class extends Component {
 
 ProjectSettingsPage.propTypes = {};
 
-module.exports = ProjectSettingsPage;
+module.exports = ConfigProvider(ProjectSettingsPage);

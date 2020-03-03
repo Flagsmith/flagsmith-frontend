@@ -19,7 +19,10 @@ const controller = {
                     keyedEnvironmentFeatures: environmentFeatures.results && _.keyBy(environmentFeatures.results, 'feature'),
                 };
                 store.loaded();
-            }).catch(e => API.ajaxHandler(store, e));
+            }).catch(e => {
+                document.location.href = '/404?entity=environment';
+                API.ajaxHandler(store, e)
+            });
         }
     },
     createFlag(projectId, environmentId, flag, segmentOverrides) {

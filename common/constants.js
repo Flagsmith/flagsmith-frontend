@@ -16,7 +16,6 @@ const keywords = {
     FEATURE_NAME_ALT_VALUE: 'big',
 };
 
-
 const Constants = {
     defaultRule: {
         property: '',
@@ -150,8 +149,8 @@ const Constants = {
     },
     simulate: {},
     roles: {
+        'ADMIN': 'Organisation Administrator',
         'USER': 'User',
-        'ADMIN': 'Admin',
     },
     exampleWebhook: `{
   "data": {
@@ -189,5 +188,4 @@ const Constants = {
   "related_object_type": "FEATURE"
 }`,
 };
-
 module.exports = Constants;

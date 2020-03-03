@@ -1,5 +1,6 @@
 const BaseStore = require('./base/_store');
 const data = require('../data/base/_data');
+const OrganisationStore = require('../stores/organisation-store');
 
 const controller = {
 
@@ -8,59 +9,30 @@ const controller = {
         if (store.model[level] && store.model[level][id]) {
             return;
         }
+        store.model[level] = store.model[level] || {};
+        store.model[level][id] = store.model[level][id] || {};
+
         store.loading();
-        setTimeout(() => {
-            const res = level === 'environment' ? {
-                'permissions': [
-                    'READ',
-                    'CREATE_FEATURE',
-                ],
-                'admin': true,
-            } : {
-                'permissions': [
-                    'READ',
-                    'CREATE_FEATURE',
-                ],
-                'admin': false,
-            };
-            store.model[level] = store.model[level] || {};
-            store.model[level][id] = store.model[level][id] || {};
-            _.map(res.permissions, (p) => {
-                store.model[level][id][p] = true;
+        data.get(`${Project.api}${level}s/${id}/my-permissions/`)
+            .then((res) => {
+                store.model[level][id] = store.model[level][id] || {};
+                _.map(res.permissions, (p) => {
+                    store.model[level][id][p] = true;
+                });
+                store.model[level][id].ADMIN = res.admin;
+                store.changed();
             });
-            if (res.admin) {
-                store.model[level][id].ADMIN = true;
-            }
-            store.changed();
-        }, 200);
     },
 
     getAvailablePermissions: () => {
-        if (store.model.availablePermissions.project) {
+        if (store.model.availablePermissions.projects) {
             return;
         }
-        Promise.all(['project', 'environment'].map((v) => {
-            store.model.availablePermissions[v] = [
-                {
-                    'key': 'READ',
-                    'description': 'Read permission for the given project.',
-                },
-                {
-                    'key': 'CREATE_ENVIRONMENT',
-                    'description': 'Ability to create an environment in the given project.',
-                },
-                {
-                    'key': 'DELETE_FEATURE',
-                    'description': 'Ability to delete features in the given project.',
-                },
-                {
-                    'key': 'CREATE_FEATURE',
-                    'description': 'Ability to create features in the given project.',
-                },
-            ];
-            return Promise.resolve();
-        })).then(() => {
-            store.changed();
+        Promise.all(['project', 'environment'].map(v => data.get(`${Project.api}${v}s/permissions/`)
+            .then((res) => {
+                store.model.availablePermissions[v] = res && _.sortBy(res, 'key');
+            }))).then(() => {
+            store.loaded();
         });
     },
 
@@ -78,10 +50,14 @@ var store = Object.assign({}, BaseStore, {
         return store.model[level] && store.model[level][id];
     },
     getPermission(id, level, permission) {
+        if (AccountStore.isAdmin()) {
+            return true;
+        }
         const perms = store.getPermissions(id, level);
-        return perms && (perms[permission] || perms.ADMIN);
+        // return !!(perms && (perms[permission]));
+        return (!!(perms && (perms[permission])) || (perms && perms.ADMIN));
     },
-    getAvailablePermissions(id, level) {
+    getAvailablePermissions(level) {
         return store.model.availablePermissions[level];
     },
 });
@@ -95,11 +71,10 @@ store.dispatcherIndex = Dispatcher.register(store, (payload) => {
             controller.getPermissions(action.id, action.level);
             break;
         case Actions.GET_AVAILABLE_PERMISSIONS:
-            controller.getAvailablePermissions(action.level);
+            controller.getAvailablePermissions();
             break;
         default:
     }
 });
 controller.store = store;
-controller.getAvailablePermissions();
 module.exports = controller.store;

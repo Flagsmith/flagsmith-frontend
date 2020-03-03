@@ -58,7 +58,7 @@ const ProjectSelect = class extends Component {
                                                   }));
                                               }}
                                             />
-                                            <ul className="project-list list-unstyled pt-0">
+                                            <ul className="project-list list-unstyled pt-2">
                                                 <Permission level="project" permission="CREATE_ENVIRONMENT" id={this.props.projectId}>
                                                     {({ permission, isLoading }) => (
                                                         <li className="project-nav__item flex-row">
@@ -68,7 +68,7 @@ const ProjectSelect = class extends Component {
                                                               to={`/project/${this.props.projectId}/environment/create`}
                                                               className="project-nav__button project-nav__button--cta"
                                                             >
-                                                                <span className="project-nav__item__text">Environments</span>
+                                                                <span className="project-nav__item__text">Create Environment</span>
                                                                 <img
                                                                   className="project-nav__icon" src="/images/plus-button.svg"
                                                                   alt="New"
@@ -80,6 +80,31 @@ const ProjectSelect = class extends Component {
                                                     )}
                                                 </Permission>
                                             </ul>
+                                            <Permission level="project" permission="ADMIN" id={this.props.projectId}>
+                                                {({ isLoading, permission }) => !!permission && (
+                                                <React.Fragment>
+                                                    {this.props.hasFeature('segments') && (
+                                                        <NavLink
+                                                          id="segments-link"
+                                                          className="project-nav__item project-list__item  project-settings-link"
+                                                          activeClassName="active"
+                                                          to={`/project/${project.id}/environment/${this.props.environmentId}/segments`
+                                                              }
+                                                        >
+                                                                Segments
+                                                        </NavLink>
+                                                    )}
+                                                    <NavLink
+                                                      id="project-settings-link"
+                                                      activeClassName="active"
+                                                      className="project-nav__item project-list__item  project-settings-link"
+                                                      to={`/project/${this.props.projectId}/environment/${this.props.environmentId}/project-settings`}
+                                                    >
+                                                          Project Settings
+                                                    </NavLink>
+                                                </React.Fragment>
+                                                )}
+                                            </Permission>
                                         </div>
                                     )}
                                 </li>
@@ -93,4 +118,4 @@ const ProjectSelect = class extends Component {
 
 ProjectSelect.propTypes = {};
 
-module.exports = ProjectSelect;
+module.exports = ConfigProvider(ProjectSelect);
