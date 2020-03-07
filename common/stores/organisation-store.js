@@ -17,7 +17,7 @@ const controller = {
             ] : [])).then((res) => {
                 if (id === store.id) {
                     // eslint-disable-next-line prefer-const
-                    let [projects, users, invites, usage] = res;
+                    let [projects, users, invites] = res;
                     // projects = projects.results;
                     store.model = { users, invites: invites && invites.results };
 
@@ -25,7 +25,7 @@ const controller = {
                         data.get(`${Project.api}organisations/${id}/usage/`).then((usage) => {
                             store.model.usage = usage && usage.events;
                             store.loaded();
-                        });
+                        }).catch(() => {});
                     }
 
                     return Promise.all(projects.map((project, i) => data.get(`${Project.api}environments/?project=${project.id}`)
