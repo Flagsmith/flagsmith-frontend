@@ -30,7 +30,7 @@ const controller = {
 
                     return Promise.all(projects.map((project, i) => data.get(`${Project.api}environments/?project=${project.id}`)
                         .then((res) => {
-                            projects[i].environments = res.results;
+                            projects[i].environments = _.sortBy(res.results, 'name');
                         })
                         .catch((res) => {
                             projects[i].environments = [];

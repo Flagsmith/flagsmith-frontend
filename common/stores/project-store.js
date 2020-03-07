@@ -13,7 +13,7 @@ const controller = {
                 data.get(`${Project.api}projects/${id}/`),
                 data.get(`${Project.api}environments/?project=${id}`).catch(() => []),
             ]).then(([project, environments]) => {
-                store.model = Object.assign(project, { environments: environments.results });
+                store.model = Object.assign(project, { environments: _.sortBy(environments.results, "name") });
                 if (project.organisation !== OrganisationStore.id) {
                     AppActions.selectOrganisation(project.organisation);
                     AppActions.getOrganisation(project.organisation);
