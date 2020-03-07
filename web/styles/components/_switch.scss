@@ -1,18 +1,94 @@
 @import "../variables";
 
-$switch-height: 20px;
+$switch-height: 25px;
+$switch-width: 60px;
+
+.switch-checked,.switch-unchecked, {
+  position: absolute;
+  top: 0;
+  height: 28px;
+  line-height: 26px;
+  font-size: 10px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+}
+.switch-unchecked {
+  right: 8px;
+  color: white;
+  animation: fadeIn ease 0.5s;
+  -webkit-animation: fadeIn ease 0.5s;
+  -moz-animation: fadeIn ease 0.5s;
+  -o-animation: fadeIn ease 0.5s;
+  -ms-animation: fadeIn ease 0.5s;
+}
+
+.switch-checked {
+  left: 16px;
+  color: white;
+  animation: fadeIn ease 0.5s;
+  -webkit-animation: fadeIn ease 0.5s;
+  -moz-animation: fadeIn ease 0.5s;
+  -o-animation: fadeIn ease 0.5s;
+  -ms-animation: fadeIn ease 0.5s;
+
+}
+@keyframes fadeIn {
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
+}
+
+@-moz-keyframes fadeIn {
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
+}
+
+@-o-keyframes fadeIn {
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
+}
+
+@-ms-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 
 .rc-switch {
   position: relative;
   display: inline-block;
   margin-left: 5px;
   box-sizing: border-box;
-  width: $switch-height * 2;
+  width: $switch-width;
   height: $switch-height;
   vertical-align: middle;
   border-radius: 20px 20px;
-  border: 1px solid #ccc;
-  background-color: #ccc;
+  border: 1px solid #999;
+  background-color: #999;
   cursor: pointer;
   -webkit-transition: all 0.3s cubic-bezier(0.35, 0, 0.25, 1);
   transition: all 0.3s cubic-bezier(0.35, 0, 0.25, 1);
@@ -56,14 +132,14 @@ $switch-height: 20px;
   outline: none;
 }
 .rc-switch-checked {
-  border: 1px solid $btn-primary-light-bg;
-  background-color: $btn-primary-light-bg;
+  border: 1px solid #36475b;
+  background-color: #465d71;
 }
 .rc-switch-checked .rc-switch-inner {
   left: 6px;
 }
 .rc-switch-checked:after {
-  left: $switch-height - 5;
+  left: $switch-width/1.9;
 }
 .rc-switch-disabled {
   cursor: no-drop;

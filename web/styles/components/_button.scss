@@ -1,23 +1,5 @@
 @import "../variables";
 
-button.btn {
-	font-weight: bold;
-	border-radius: $btn-border-radius;
-	box-shadow: rgba(75, 75, 75, 0.11) 0px 1px 6px, rgba(75, 75, 75, 0.11) 0px 1px 4px;
-	color: $btn-default-color;
-	cursor: pointer;
-	text-decoration: none;
-	outline: none !important;
-	border: 10px;
-	box-sizing: border-box;
-	display: inline-block;
-	transition: $button-transition;
-	&:hover {
-		color: $btn-primary-color-hover;
-		background: $btn-primary-bg-hover;
-	}
-}
-
 $remove-btn-size: 24px;
 $add-btn-size: 34px;
 .btn.btn-remove {

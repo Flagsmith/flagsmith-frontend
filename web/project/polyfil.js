@@ -1,7 +1,7 @@
 import Promise from 'promise-polyfill';
 import 'whatwg-fetch';
 import { AsyncStorage, AppState, NetInfo, Clipboard } from 'polyfill-react-native';
-import Switch from 'rc-switch';
+import Switch from '../components/Switch';
 
 window.AppState = AppState;
 window.NetInfo = NetInfo;

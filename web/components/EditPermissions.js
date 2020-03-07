@@ -1,6 +1,6 @@
 // import propTypes from 'prop-types';
 import React, { PureComponent, Component } from 'react';
-import Switch from 'rc-switch';
+import Switch from './Switch';
 import Tabs from './base/forms/Tabs';
 import TabItem from './base/forms/TabItem';
 import AvailablePermissionsProvider from '../../common/providers/AvailablePermissionsProvider';

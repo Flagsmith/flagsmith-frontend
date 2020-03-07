@@ -31,8 +31,8 @@ const ConfirmToggleFeature = class extends Component {
                                 : <span className="feature--on"><strong>"On"</strong></span>}
                             {' '}
                             for
-                            {' '}
-                            <strong>{_.find(project.environments, { api_key: this.props.environmentId }).name}</strong>
+                            <br/>
+                            <strong>{project.name} → {_.find(project.environments, { api_key: this.props.environmentId }).name}</strong>
                             {identity && (
                                 <span>
                                     {' '}

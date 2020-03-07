@@ -7,13 +7,20 @@
 	border-top-left-radius: 15px;
 	border-top-right-radius: 15px;
 	button,button.btn,button.btn-primary {
+		border-radius: 0 !important;
 		box-shadow: none;
+		&:first-child {
+			border-top-left-radius: 15px !important;
+		}
+		&:last-child {
+			border-top-right-radius: 15px !important;
+		}
 		flex:1;
 		background-color: transparent;
 		background: transparent;
 		color: #000;
 		&:hover {
-			background-color: rgba(0,0,0,.2);
+			background: #eaeaea;
 			box-shadow: none;
 		}
 		font-weight: $input-font-weight;

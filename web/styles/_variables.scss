@@ -48,8 +48,8 @@ $input-border-highlight-color: rgb(0, 188, 212);
 $pagination-color: #333;
 
 //BUTTONS
-$btn-border-radius: 10px;
-$btn-height: 44px;
+$btn-border-radius: 8px;
+$btn-height: 41px;
 $btn-secondary-bg: rgb(240, 240, 240);
 $btn-primary-bg: #009de2;
 $btn-primary-color-hover: white;
@@ -98,7 +98,7 @@ $modal-backdrop-bg: rgba(0, 0, 0, 0.870588);
 $modal-header-border-width: 0;
 
 //TRANSITIONS
-$button-transition: background-color 400ms cubic-bezier(0.23, 1, 0.32, 1);
+$button-transition: all 400ms cubic-bezier(0.23, 1, 0.32, 1);
 //Hero
 $hero-bg:#22354a;
 $hero-bg-dark:darken(#22354a,5);

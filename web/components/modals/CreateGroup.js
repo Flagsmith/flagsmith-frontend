@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Switch from 'rc-switch/lib/Switch';
+import Switch from '../Switch';
 import UserGroupsProvider from '../../../common/providers/UserGroupsProvider';
 import data from '../../../common/data/base/_data';
 
