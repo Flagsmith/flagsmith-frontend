@@ -215,7 +215,7 @@ nav.navbar {
 
 .aside-list{
     & > .project-nav__item{
-        height:35px;
+        min-height:35px;
         transition: height 1s ease-out;
         a{
             &:hover {
