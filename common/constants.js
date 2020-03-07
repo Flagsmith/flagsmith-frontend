@@ -176,10 +176,23 @@ const Constants = {
       "identity_identifier": null
     },
     "previous_state": {
-      "enabled": false,
+    "enabled": false,
       "environment": 23,
-      "feature": {...},
-       ...
+      "feature": {
+        "created_date": "2020-02-25T22:11:16.355547Z",
+        "default_enabled": false,
+        "description": null,
+        "id": 2411,
+        "initial_value": "red",
+        "name": "feature_name",
+        "project": 12,
+        "type": "FLAG|CONFIG"
+      },
+      "feature_segment": null,
+      "feature_state_value": null,
+      "id": 10430,
+      "identity": null,
+      "identity_identifier": null
     },
     "timestamp": "2020-03-07T13:59:07.040Z"
   },
