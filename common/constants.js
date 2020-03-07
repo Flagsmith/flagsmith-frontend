@@ -153,28 +153,35 @@ const Constants = {
         'USER': 'User',
     },
     exampleWebhook: `{
+ {
   "data": {
     "changed_by": "Some User",
     "new_state": {
       "enabled": true,
-      "environment": 4053,
+      "environment": 23,
       "feature": {
-        "created_date": "2019-12-11T15:47:26.959385Z",
-        "default_enabled": true,
+        "created_date": "2020-02-25T22:11:16.355547Z",
+        "default_enabled": false,
         "description": null,
-        "id": 2391,
-        "initial_value": null,
-        "name": "your_feature_name",
-        "project": 1661,
-        "type": "FLAG"
+        "id": 2411,
+        "initial_value": "blue",
+        "name": "feature_name",
+        "project": 12,
+        "type": "FLAG|CONFIG"
       },
       "feature_segment": null,
       "feature_state_value": null,
-      "id": 7952,
-      "identity": 1234,
-      "identity_identifier": "user@domain.com"
+      "id": 10430,
+      "identity": null,
+      "identity_identifier": null
     },
-    "timestamp": "2019-12-11T15:47:26.973Z"
+    "previous_state": {
+      "enabled": false,
+      "environment": 23,
+      "feature": {...},
+       ...
+    },
+    "timestamp": "2020-03-07T13:59:07.040Z"
   },
   "event_type": "FLAG_UPDATED"
 }`,
