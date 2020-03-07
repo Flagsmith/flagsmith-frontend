@@ -11,6 +11,11 @@ $switch-width: 60px;
   font-size: 10px;
   font-weight: bold;
   text-transform: uppercase;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
   letter-spacing: 1.2px;
 }
 .switch-unchecked {
