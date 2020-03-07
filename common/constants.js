@@ -152,7 +152,7 @@ const Constants = {
         'ADMIN': 'Organisation Administrator',
         'USER': 'User',
     },
-    exampleWebhook: `{
+    exampleWebhook: `
  {
   "data": {
     "changed_by": "Some User",
