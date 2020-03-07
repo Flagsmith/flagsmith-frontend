@@ -79,7 +79,10 @@ module.exports = {
 
                 browser
                     .back()
-                    .back();
+                    .back()
+                    .pause(500)
+                    .refresh();
+
 
                 testHelpers.logout(browser);
                 testHelpers.login(browser, url, inviteEmail, 'nightwatch');
