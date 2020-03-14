@@ -6,6 +6,7 @@ const api = require('./api');
 const spm = require('./middleware/single-page-middleware');
 const webpackMiddleware = require('./middleware/webpack-middleware');
 const env = require('../common/project').env;
+const slackClient = require('./slack-client');
 
 const SLACK_TOKEN = process.env.SLACK_TOKEN;
 const slackMessage = SLACK_TOKEN && require('./slack-client');
@@ -47,8 +48,16 @@ app.get('/', (req, res) => {
     });
 });
 
-app.get('/api/yaml', (req, res) => {
-    res.json({ res: process.env.EVENTS_SLACK_CHANNEL });
+app.post('/api/event', (req, res) => {
+    res.json({ });
+    try {
+        const body = req.body;
+        if (process.env.SLACK_TOKEN && process.env.EVENTS_SLACK_CHANNEL) {
+            slackClient(body.event, process.env.EVENTS_SLACK_CHANNEL);
+        }
+    } catch (e) {
+
+    }
 });
 
 app.post('/api/webhook', (req, res) => {
@@ -94,6 +103,10 @@ app.post('/api/webhook', (req, res) => {
 //         res.json({ error: e.message || e });
 //     }
 // });
+
+if (process.env.SLACK_TOKEN && process.env.DEPLOYMENT_SLACK_CHANNEL) {
+    slackClient('Server started', process.env.DEPLOYMENT_SLACK_CHANNEL);
+}
 
 app.listen(port, () => {
     console.log(`Server listening on: ${port}`);
