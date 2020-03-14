@@ -52,7 +52,7 @@ app.post('/api/event', (req, res) => {
     res.json({ });
     try {
         const body = req.body;
-        if (process.env.SLACK_TOKEN && process.env.EVENTS_SLACK_CHANNEL) {
+        if (process.env.SLACK_TOKEN && process.env.EVENTS_SLACK_CHANNEL && !process.env.E2E) {
             slackClient(body.event, process.env.EVENTS_SLACK_CHANNEL);
         }
     } catch (e) {
@@ -104,7 +104,7 @@ app.post('/api/webhook', (req, res) => {
 //     }
 // });
 
-if (process.env.SLACK_TOKEN && process.env.DEPLOYMENT_SLACK_CHANNEL) {
+if (process.env.SLACK_TOKEN && process.env.DEPLOYMENT_SLACK_CHANNEL && !process.env.E2E) {
     slackClient('Server started', process.env.DEPLOYMENT_SLACK_CHANNEL);
 }
 
