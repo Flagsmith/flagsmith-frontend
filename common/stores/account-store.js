@@ -141,11 +141,11 @@ const controller = {
         API.trackEvent(Constants.events.CREATE_ORGANISATION);
         if (API.getReferrer()) {
             // eslint-disable-next-line camelcase
-            postEvent(`New Additional Organisation ${name} from ${API.getReferrer()}`);
+            postEvent(`New Organisation ${name} from ${API.getReferrer()}`);
             API.trackEvent(Constants.events.REFERRER_CONVERSION(API.getReferrer()));
         } else {
             // eslint-disable-next-line camelcase
-            postEvent(`New Additional Organisation ${name}`);
+            postEvent(`New Organisation ${name}`);
         }
         data.post(`${Project.api}organisations/`, { name })
             .then((res) => {
