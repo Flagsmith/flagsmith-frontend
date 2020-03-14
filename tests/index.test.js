@@ -28,6 +28,7 @@ const formatCommit = function () {
 
 const sendSuccess = function () {
     if (SLACK_TOKEN) {
+        console.log("SENDING SLACK MESSAGE")
         return slackMessage(`Tests Passed!${formatCommit()}`, E2E_SLACK_CHANNEL_NAME);
     }
     return Promise.resolve();

@@ -20,3 +20,4 @@ ignore/*
 coverage/*
 .nyc_output/*
 .env
+env.yaml

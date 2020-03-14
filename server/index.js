@@ -47,6 +47,10 @@ app.get('/', (req, res) => {
     });
 });
 
+app.get('/api/yaml', (req, res) => {
+    res.json({ res: process.env.EVENTS_SLACK_CHANNEL });
+});
+
 app.post('/api/webhook', (req, res) => {
     try {
         const body = req.body;
@@ -68,6 +72,28 @@ app.post('/api/webhook', (req, res) => {
         res.json({ error: e.message || e });
     }
 });
+
+// app.post('/api/events', (req, res) => {
+//     try {
+//         const body = req.body;
+//         let message = '';
+//         res.json(body);
+//         if (process.env) {
+//             const state = body.data.new_state;
+//             if (state.identity_identifier) {
+//                 message = `\`${env} webhook:\` ${body.data.changed_by} changed \`${state.feature.name}\` to \`${state.feature.type === 'FLAG' ? state.enabled : state.feature_state_value || state.feature.initial_value}\` for user \`${state.identity_identifier}(${state.identity})\``;
+//             } else {
+//                 message = `\`${env} webhook:\` ${body.data.changed_by} changed \`${state.feature.name}\` to \`${state.feature.type === 'FLAG' ? state.enabled : state.feature_state_value || state.feature.initial_value}\``;
+//             }
+//             if (slackMessage) {
+//                 slackMessage(message, E2E_SLACK_CHANNEL_NAME);
+//             }
+//         }
+//     } catch (e) {
+//         console.log(e);
+//         res.json({ error: e.message || e });
+//     }
+// });
 
 app.listen(port, () => {
     console.log(`Server listening on: ${port}`);
