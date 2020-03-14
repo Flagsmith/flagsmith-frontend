@@ -4,7 +4,10 @@ import ConfigStore from './config-store';
 const BaseStore = require('./base/_store');
 const data = require('../data/base/_data');
 
-const postEvent = event => data.post('/api/event', { event: `${event}(${AccountStore.getUser().email} ${AccountStore.getUser().name})` });
+const postEvent = (event) => {
+    if (!AccountStore.getUser()) return;
+    return data.post('/api/event', { event: `${event}(${AccountStore.getUser().email} ${AccountStore.getUser().name})` });
+};
 const controller = {
     register: ({ email, password, first_name, last_name, organisation_name = 'Default Organisation' }, isInvite) => {
         store.saving();
@@ -28,16 +31,19 @@ const controller = {
                     return controller.onLogin();
                 }
                 API.trackEvent(Constants.events.CREATE_ORGANISATION);
-                if (API.getReferrer()) {
-                    // eslint-disable-next-line camelcase
-                    postEvent(`New Organisation ${organisation_name} from ${API.getReferrer()}`);
-                    API.trackEvent(Constants.events.REFERRER_CONVERSION(API.getReferrer()));
-                } else {
-                    // eslint-disable-next-line camelcase
-                    postEvent(`New Organisation ${organisation_name}`);
-                }
+
                 return data.post(`${Project.api}organisations/`, { name: organisation_name })
-                    .then(() => controller.onLogin());
+                    .then(() => controller.onLogin())
+                    .then(() => {
+                        if (API.getReferrer()) {
+                            // eslint-disable-next-line camelcase
+                            postEvent(`New Organisation ${organisation_name} from ${API.getReferrer()}`);
+                            API.trackEvent(Constants.events.REFERRER_CONVERSION(API.getReferrer()));
+                        } else {
+                            // eslint-disable-next-line camelcase
+                            postEvent(`New Organisation ${organisation_name}`);
+                        }
+                    });
             })
             .catch(e => API.ajaxHandler(store, e));
     },
