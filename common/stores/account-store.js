@@ -6,7 +6,7 @@ const data = require('../data/base/_data');
 
 const postEvent = (event) => {
     if (!AccountStore.getUser()) return;
-    return data.post('/api/event', { event: `${event}(${AccountStore.getUser().email} ${AccountStore.getUser().name})` });
+    return data.post('/api/event', { event: `${event}(${AccountStore.getUser().email} ${AccountStore.getUser().first_name} ${AccountStore.getUser().first_name})` });
 };
 const controller = {
     register: ({ email, password, first_name, last_name, organisation_name = 'Default Organisation' }, isInvite) => {
