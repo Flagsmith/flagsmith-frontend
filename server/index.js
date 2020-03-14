@@ -1,7 +1,11 @@
 require('dotenv').config();
+
 const bodyParser = require('body-parser');
 const exphbs = require('express-handlebars');
 const express = require('express');
+const Project = require('../common/project');
+
+const postToSlack = Project.env === 'prod';
 const api = require('./api');
 const spm = require('./middleware/single-page-middleware');
 const webpackMiddleware = require('./middleware/webpack-middleware');
@@ -52,7 +56,7 @@ app.post('/api/event', (req, res) => {
     res.json({ });
     try {
         const body = req.body;
-        if (process.env.SLACK_TOKEN && process.env.EVENTS_SLACK_CHANNEL && !process.env.E2E) {
+        if (process.env.SLACK_TOKEN && process.env.EVENTS_SLACK_CHANNEL && postToSlack) {
             slackClient(body.event, process.env.EVENTS_SLACK_CHANNEL);
         }
     } catch (e) {
@@ -104,7 +108,7 @@ app.post('/api/webhook', (req, res) => {
 //     }
 // });
 
-if (process.env.SLACK_TOKEN && process.env.DEPLOYMENT_SLACK_CHANNEL && !process.env.E2E) {
+if (process.env.SLACK_TOKEN && process.env.DEPLOYMENT_SLACK_CHANNEL && postToSlack) {
     slackClient('Server started', process.env.DEPLOYMENT_SLACK_CHANNEL);
 }
 
