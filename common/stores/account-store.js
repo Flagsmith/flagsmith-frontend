@@ -20,6 +20,7 @@ const controller = {
                 API.trackEvent(Constants.events.REGISTER);
                 if (API.getReferrer()) {
                     API.trackEvent(Constants.events.REFERRER_REGISTERED(API.getReferrer()));
+                    API.trackEvent(Constants.events.REFERRER_CONVERSION(API.getReferrer()));
                 }
                 API.alias(email);
                 API.register(email, first_name, last_name);
