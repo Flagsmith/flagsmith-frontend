@@ -13,10 +13,14 @@ const controller = {
             password2: password,
             first_name,
             last_name,
+            referrer: API.getReferrer() || '',
         })
             .then((res) => {
                 data.setToken(res.key);
                 API.trackEvent(Constants.events.REGISTER);
+                if (API.getReferrer()) {
+                    API.trackEvent(Constants.events.REFERRER_REGISTERED(API.getReferrer()));
+                }
                 API.alias(email);
                 API.register(email, first_name, last_name);
                 if (isInvite) {
@@ -119,6 +123,9 @@ const controller = {
     createOrganisation: (name) => {
         store.saving();
         API.trackEvent(Constants.events.CREATE_ORGANISATION);
+        if (API.getReferrer()) {
+            API.trackEvent(Constants.events.REFERRER_CONVERSION(API.getReferrer()));
+        }
         data.post(`${Project.api}organisations/`, { name })
             .then((res) => {
                 store.model.organisations = store.model.organisations.concat([{ ...res, role: 'ADMIN' }]);

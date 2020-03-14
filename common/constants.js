@@ -27,6 +27,8 @@ const Constants = {
         'CREATE_FEATURE': { 'event': 'Feature created', 'category': 'Features' },
         'CREATE_SEGMENT': { 'event': 'Segment created', 'category': 'Segments' },
         'CREATE_ORGANISATION': { 'event': 'Organisation created', 'category': 'Organisation' },
+        'REFERRER_CONVERSION': referrer => ({ 'event': `${referrer} converted`, 'category': 'Referrer' }),
+        'REFERRER_REGISTERED': referrer => ({ 'event': `${referrer} registered`, 'category': 'Referrer' }),
         'CREATE_PROJECT': { 'event': 'Project created', 'category': 'Project' },
         'CREATE_USER_FEATURE': { 'event': 'User feature created', 'category': 'User Features' },
         'DELETE_INVITE': { 'event': 'Invite deleted', 'category': 'Invite' },

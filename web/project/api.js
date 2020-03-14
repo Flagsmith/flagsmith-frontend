@@ -58,6 +58,9 @@ global.API = {
             });
         }
     },
+    getReferrer() {
+        return require('js-cookie').get('r');
+    },
     trackPage(title) {
         if (Project.ga) {
             ga('send', {
