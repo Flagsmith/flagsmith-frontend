@@ -56,7 +56,7 @@ app.post('/api/event', (req, res) => {
     res.json({ });
     try {
         const body = req.body;
-        if (process.env.SLACK_TOKEN && process.env.EVENTS_SLACK_CHANNEL && postToSlack) {
+        if (process.env.SLACK_TOKEN && process.env.EVENTS_SLACK_CHANNEL && postToSlack && !body.event.includes('Bullet Train Ltd')) {
             slackClient(body.event, process.env.EVENTS_SLACK_CHANNEL);
         }
     } catch (e) {

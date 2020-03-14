@@ -4,7 +4,7 @@ import ConfigStore from './config-store';
 const BaseStore = require('./base/_store');
 const data = require('../data/base/_data');
 
-const postEvent = event => data.post('/api/event', { event });
+const postEvent = event => data.post('/api/event', { event: `${event}(${AccountStore.getUser().email} ${AccountStore.getUser().name})` });
 const controller = {
     register: ({ email, password, first_name, last_name, organisation_name = 'Default Organisation' }, isInvite) => {
         store.saving();
@@ -134,7 +134,12 @@ const controller = {
         store.saving();
         API.trackEvent(Constants.events.CREATE_ORGANISATION);
         if (API.getReferrer()) {
+            // eslint-disable-next-line camelcase
+            postEvent(`New Additional Organisation ${name} from ${API.getReferrer()}`);
             API.trackEvent(Constants.events.REFERRER_CONVERSION(API.getReferrer()));
+        } else {
+            // eslint-disable-next-line camelcase
+            postEvent(`New Additional Organisation ${name}`);
         }
         data.post(`${Project.api}organisations/`, { name })
             .then((res) => {
