@@ -59,7 +59,12 @@ global.API = {
         }
     },
     getReferrer() {
-        return require('js-cookie').get('r');
+        const r = require('js-cookie').get('r');
+        try {
+            return JSON.parse(r);
+        } catch (e) {
+            return null;
+        }
     },
     trackPage(title) {
         if (Project.ga) {

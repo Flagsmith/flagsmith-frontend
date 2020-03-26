@@ -23,7 +23,7 @@ const controller = {
                 data.setToken(res.key);
                 API.trackEvent(Constants.events.REGISTER);
                 if (API.getReferrer()) {
-                    API.trackEvent(Constants.events.REFERRER_REGISTERED(API.getReferrer()));
+                    API.trackEvent(Constants.events.REFERRER_REGISTERED(API.getReferrer().utm_source));
                 }
                 API.alias(email);
                 API.register(email, first_name, last_name);
@@ -37,8 +37,8 @@ const controller = {
                     .then(() => {
                         if (API.getReferrer()) {
                             // eslint-disable-next-line camelcase
-                            postEvent(`New Organisation ${organisation_name} from ${API.getReferrer()}`);
-                            API.trackEvent(Constants.events.REFERRER_CONVERSION(API.getReferrer()));
+                            postEvent(`New Organisation ${organisation_name} from ${API.getReferrer().utm_source}`);
+                            API.trackEvent(Constants.events.REFERRER_CONVERSION(API.getReferrer().utm_source));
                         } else {
                             // eslint-disable-next-line camelcase
                             postEvent(`New Organisation ${organisation_name}`);
@@ -141,8 +141,8 @@ const controller = {
         API.trackEvent(Constants.events.CREATE_ORGANISATION);
         if (API.getReferrer()) {
             // eslint-disable-next-line camelcase
-            postEvent(`New Organisation ${name} from ${API.getReferrer()}`);
-            API.trackEvent(Constants.events.REFERRER_CONVERSION(API.getReferrer()));
+            postEvent(`New Organisation ${name} from ${API.getReferrer()+""}`);
+            API.trackEvent(Constants.events.REFERRER_CONVERSION(API.getReferrer().utm_source));
         } else {
             // eslint-disable-next-line camelcase
             postEvent(`New Organisation ${name}`);

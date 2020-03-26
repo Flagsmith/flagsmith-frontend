@@ -51,8 +51,14 @@ const App = class extends Component {
         const { redirect } = Utils.fromParam();
 
 
+        const referrer = API.getReferrer();
+        let query = '';
+        if (referrer) {
+            query = `?${Utils.toParam(referrer)}`;
+        }
+
         if (!AccountStore.getOrganisation() && document.location.href.indexOf('invite') == -1) { // If user has no organisation redirect to /create
-            this.context.router.history.replace('/create');
+            this.context.router.history.replace(`/create${query}`);
             return;
         }
 
