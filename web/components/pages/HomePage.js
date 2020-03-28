@@ -44,7 +44,41 @@ const HomePage = class extends React.Component {
         const redirect = Utils.fromParam().redirect ? `?redirect=${Utils.fromParam().redirect}` : '';
         const isInvite = document.location.href.indexOf('invite') != -1;
         const isSignup = document.location.href.indexOf('signup') != -1;
-
+        const oauths = [];
+        if (this.props.getValue('oauth_github')) {
+            oauths.push((
+                <a key="github" className="oauth oauth-github" href={JSON.parse(this.props.getValue('oauth_github')).url}>
+                    <img src="/images/github.svg"/> GitHub
+                </a>
+            ));
+        }
+        if (this.props.getValue('oauth_microsoft')) {
+            oauths.push((
+                <a
+                  key="microsoft" className="oauth oauth-microsoft" onClick={() => {
+                      const data = JSON.parse(this.props.getValue('oauth_microsoft'));
+                      const myMSALObj = new Msal.UserAgentApplication(data);
+                      myMSALObj.handleRedirectCallback((error, response) => {
+                          // if error is not null, something went wrong
+                          // if not, response is a successful login response
+                      });
+                      myMSALObj.loginRedirect({
+                          scopes: data.scope,
+                          prompt: 'select_account',
+                      });
+                  }}
+                >
+                    <img src="/images/microsoft.svg"/> Microsoft
+                </a>
+            ));
+        }
+        if (this.props.hasFeature('oauth-google')) {
+            oauths.push((
+                <a key="google" className="oauth oauth-google" href={Project.oauth.google.url}>
+                    <img src="/images/google.svg"/>
+                </a>
+            ));
+        }
         return (
             <AccountProvider onLogout={this.onLogout} onLogin={this.onLogin}>
                 {({ isLoading, isSaving, error }, { register }) => (
@@ -61,8 +95,21 @@ const HomePage = class extends React.Component {
                                               }}
                                             >
                                                 <div className="form-intro text-center">
-                                                    <h3 className="mb-4">Login to Bullet Train</h3>
+                                                    <h3 className="mb-4">Sign in</h3>
+                                                    {!!oauths.length && (
+                                                    <p>
+                                                          Log in to your account with one of these services.
+                                                    </p>
+                                                    )}
+
                                                 </div>
+
+                                                {!!oauths.length && (
+                                                <Row>
+                                                    {oauths}
+                                                </Row>
+                                                )}
+
                                                 {isInvite
                                                 && (
                                                 <div className="notification flex-row">
