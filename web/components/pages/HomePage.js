@@ -55,18 +55,8 @@ const HomePage = class extends React.Component {
         if (this.props.getValue('oauth_microsoft')) {
             oauths.push((
                 <a
-                  key="microsoft" className="oauth oauth-microsoft" onClick={() => {
-                      const data = JSON.parse(this.props.getValue('oauth_microsoft'));
-                      const myMSALObj = new Msal.UserAgentApplication(data);
-                      myMSALObj.handleRedirectCallback((error, response) => {
-                          // if error is not null, something went wrong
-                          // if not, response is a successful login response
-                      });
-                      myMSALObj.loginRedirect({
-                          scopes: data.scope,
-                          prompt: 'select_account',
-                      });
-                  }}
+                  key="microsoft" className="oauth oauth-microsoft"
+                  ref={JSON.parse(this.props.getValue('oauth_microsoft')).url}
                 >
                     <img src="/images/microsoft.svg"/> Microsoft
                 </a>

@@ -8,7 +8,7 @@ a, .btn, button{
 }
 .btn, button.btn{
     outline: none !important;
-    background: #54b4b3;
+    background: #1c9997;
     transition: $button-transition;
     border-radius: $border-radius-default !important;
     color:#fff;
@@ -16,12 +16,12 @@ a, .btn, button{
     border: none !important;
     padding: 0 20px;
     letter-spacing: 0.8px;
-    line-height: 40px;
+    line-height: $input-height;
     -webkit-font-smoothing:antialiased;
     text-transform: capitalize;
     font-weight: 700;
     font-size: 16px;
-    height:40px;
+    height:$input-height;
     box-shadow:0 0 5px rgba(0,0,0,0.2);
 
     &:hover, &:disabled:hover {
