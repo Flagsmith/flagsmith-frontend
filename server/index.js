@@ -3,6 +3,7 @@ require('dotenv').config();
 const bodyParser = require('body-parser');
 const exphbs = require('express-handlebars');
 const express = require('express');
+const curl = require('curl');
 const Project = require('../common/project');
 
 const postToSlack = Project.env === 'prod';
@@ -56,10 +57,7 @@ app.post('/api/event', (req, res) => {
     res.json({ });
     try {
         const body = req.body;
-        console.log('OK');
-        if (process.env.SLACK_TOKEN && process.env.EVENTS_SLACK_CHANNEL && postToSlack
-        // && !body.event.includes('Bullet Train')
-        ) {
+        if (process.env.SLACK_TOKEN && process.env.EVENTS_SLACK_CHANNEL && postToSlack && !body.event.includes('Bullet Train')) {
             const match = body.event.match(/([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})/);
             let url = '';
             if (match && match[0]) {
