@@ -37,7 +37,11 @@ const controller = {
                     .then(() => {
                         if (API.getReferrer()) {
                             // eslint-disable-next-line camelcase
-                            postEvent(`New Organisation ${organisation_name} from ${API.getReferrer().utm_source}`);
+                            try {
+                                postEvent(`New Organisation ${organisation_name} from ${JSON.stringify(API.getReferrer().utm_source)}`);
+                            } catch (e) {
+                                postEvent(`New Organisation ${organisation_name} from ${API.getReferrer().utm_source}`);
+                            }
                             API.trackEvent(Constants.events.REFERRER_CONVERSION(API.getReferrer().utm_source));
                         } else {
                             // eslint-disable-next-line camelcase
@@ -141,7 +145,7 @@ const controller = {
         API.trackEvent(Constants.events.CREATE_ORGANISATION);
         if (API.getReferrer()) {
             // eslint-disable-next-line camelcase
-            postEvent(`New Organisation ${name} from ${API.getReferrer()+""}`);
+            postEvent(`New Organisation ${name} from ${`${API.getReferrer()}`}`);
             API.trackEvent(Constants.events.REFERRER_CONVERSION(API.getReferrer().utm_source));
         } else {
             // eslint-disable-next-line camelcase
