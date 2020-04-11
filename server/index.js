@@ -3,8 +3,7 @@ require('dotenv').config();
 const bodyParser = require('body-parser');
 const exphbs = require('express-handlebars');
 const express = require('express');
-const curl = require('curl');
-const Project = require('../common/project');
+§const Project = require('../common/project');
 
 const postToSlack = Project.env === 'prod';
 const api = require('./api');
