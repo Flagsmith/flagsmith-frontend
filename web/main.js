@@ -29,9 +29,9 @@ if (params.token) {
 function hashLinkScroll() {
     const { hash } = window.location;
     if (hash !== '') {
-        // Push onto callback queue so it runs after the DOM is updated,
-        // this is required when navigating from a different page so that
-        // the element is rendered on the page before trying to getElementById.
+    // Push onto callback queue so it runs after the DOM is updated,
+    // this is required when navigating from a different page so that
+    // the element is rendered on the page before trying to getElementById.
         setTimeout(() => {
             const id = hash.replace('#', '');
             const element = document.getElementById(id);
@@ -54,10 +54,10 @@ setTimeout(() => {
     // todo: move to util to decide if url is public
     if (
         (document.location.pathname.indexOf('/project/') !== -1
-                || document.location.pathname.indexOf('/create') !== -1
-                || document.location.pathname.indexOf('/invite') !== -1
-                || document.location.pathname.indexOf('/projects') !== -1)
-            && !AccountStore.getUser()) {
+      || document.location.pathname.indexOf('/create') !== -1
+      || document.location.pathname.indexOf('/invite') !== -1
+      || document.location.pathname.indexOf('/projects') !== -1)
+    && !AccountStore.getUser()) {
         browserHistory.push(`/?redirect=${encodeURIComponent(document.location.pathname)}`);
     }
 
@@ -68,15 +68,20 @@ setTimeout(() => {
 }, 1);
 
 // Setup for toast messages
-ReactDOM.render(<ToastMessages />, document.getElementById('toast'));
+ReactDOM.render(<ToastMessages/>, document.getElementById('toast'));
 
 if (E2E) {
     document.body.classList.add('disable-transitions');
 }
 
-if (!E2E && Project.freshChat) {
-    function initFreshChat() {
-        window.fcWidget.init(Project.freshChat);
-    }
-    function initialize(i, t) { let e; i.getElementById(t) ? initFreshChat() : ((e = i.createElement('script')).id = t, e.async = !0, e.src = 'https://wchat.freshchat.com/js/widget.js', e.onload = initFreshChat, i.head.appendChild(e)); } function initiateCall() { initialize(document, 'freshchat-js-sdk'); }window.addEventListener ? window.addEventListener('load', initiateCall, !1) : window.attachEvent('load', initiateCall, !1);
+if (!E2E && Project.crispChat) {
+    window.$crisp = [];
+    window.CRISP_WEBSITE_ID = Project.crispChat;
+    (function () {
+        const d = document;
+        const s = d.createElement('script');
+        s.src = 'https://client.crisp.chat/l.js';
+        s.async = 1;
+        d.getElementsByTagName('head')[0].appendChild(s);
+    }());
 }

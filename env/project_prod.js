@@ -16,6 +16,7 @@ module.exports = global.Project = {
     chargebee: {
         site: 'bullettrain',
     },
+    crispChat: '8857f89e-0eb5-4263-ab49-a293872b6c19',
     mixpanel: '9448f5be8a5555c380e5dd4b7ac2c345',
     youtubeApi: 'AIzaSyCAjMzgz8vbxqReBxkQGcwsda6zAO0L2JE',
     assetUrl: 'https://cdn.bullet-train.io', // Location of the static files from build/, should contain a directory called static/

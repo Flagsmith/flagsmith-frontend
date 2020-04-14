@@ -15,6 +15,7 @@ module.exports = global.Project = {
     chargebee: {
         site: 'bullettrain-test',
     },
+    crispChat: '8857f89e-0eb5-4263-ab49-a293872b6c19',
     mixpanel: '6143f9ceefb1c67640a0771345e8c095',
     youtubeApi: 'AIzaSyCAjMzgz8vbxqReBxkQGcwsda6zAO0L2JE',
 };
