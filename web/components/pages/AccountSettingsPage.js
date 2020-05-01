@@ -3,8 +3,10 @@ import React, { PureComponent } from 'react';
 import Button from '../base/forms/Button';
 import ErrorMessage from '../ErrorMessage';
 import _data from '../../../common/data/base/_data';
+import ConfigProvider from '../../../common/providers/ConfigProvider';
+import TwoFactor from '../../components/TwoFactor';
 
-export default class TheComponent extends PureComponent {
+class TheComponent extends PureComponent {
   static displayName = 'TheComponent';
 
   static propTypes = {};
@@ -68,6 +70,7 @@ export default class TheComponent extends PureComponent {
           passwordError,
           email,
       } } = this;
+      const has2Factor = this.props.hasFeature('2_factor');
       return (
           <div className="app-container container">
               <div className="col-md-6">
@@ -166,9 +169,15 @@ export default class TheComponent extends PureComponent {
                           </Button>
                       </div>
                   </form>
+
+                {has2Factor&& (
+                  <2Factor/>
+                ) }
               </div>
 
           </div>
       );
   }
 }
+
+export default ConfigProvider(TheComponent);
