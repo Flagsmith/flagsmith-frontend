@@ -74,6 +74,13 @@ If you encounter a bug or feature request we would like to hear about it. Before
 
 If you have any questions about our projects you can email <a href="mailto:projects@solidstategroup.com">projects@solidstategroup.com</a>.
 
+## Running locally against your own Bullet Train API instance
+
+We use Bullet Train to manage features we rollout, if you are using your own bullet train environment (i.e. by editing project_x.js-> bulletTrain) then you will need to have a replica of our flags.
+
+A list of the flags and remote config we're currently using in production can be found here https://gist.github.com/kyle-ssg/4c65b4185d0fe3ae35f73244de5e2fef.
+
+
 ## Useful links
 
 [Website](https://bullet-train.io)
