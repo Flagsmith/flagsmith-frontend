@@ -48,8 +48,11 @@ const App = class extends Component {
     }
 
     onLogin = () => {
-        const { redirect } = Utils.fromParam();
-
+        let { redirect } = Utils.fromParam();
+        const invite = API.getInvite();
+        if (invite) {
+            redirect = "/invite/" + invite
+        }
 
         const referrer = API.getReferrer();
         let query = '';

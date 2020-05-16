@@ -43,6 +43,13 @@ const HomePage = class extends React.Component {
         API.trackPage(Constants.pages.HOME);
 
         if (document.location.href.indexOf('invite') != -1) {
+            const invite = Utils.fromParam().redirect;
+
+            if (invite.includes("invite")) {
+                // persist invite incase user changes page or logs in with oauth
+                const id = invite.split("invite/")[1];
+                API.setInvite(id);
+            }
             Utils.scrollToSignUp();
         }
     }

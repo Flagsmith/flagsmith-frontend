@@ -66,6 +66,13 @@ global.API = {
             return null;
         }
     },
+    setInvite(id) {
+        const cookie = require('js-cookie');
+        cookie.set('invite', id);
+    },
+    getInvite() {
+        return require('js-cookie').get('invite');
+    },
     trackPage(title) {
         if (Project.ga) {
             ga('send', {

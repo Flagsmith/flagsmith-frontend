@@ -135,6 +135,7 @@ const controller = {
     },
     acceptInvite: (id) => {
         store.saving();
+        API.setInvite('');
         return data.post(`${Project.api}users/join/${id}/`)
             .then((res) => {
                 store.savedId = res.id;
@@ -142,7 +143,9 @@ const controller = {
                 AsyncStorage.setItem('user', JSON.stringify(store.model));
                 store.saved();
             })
-            .catch(e => API.ajaxHandler(store, e));
+            .catch((e) => {
+                API.ajaxHandler(store, e);
+            });
     },
     getOrganisations: () => Promise.all([data.get(`${Project.api}organisations/`), data.get(`${Project.api}auth/user/`)])
         .then(([res, userRes]) => {
