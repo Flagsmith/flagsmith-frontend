@@ -5,6 +5,13 @@ const AppActions = Object.assign({}, require('./base/_app-actions'), {
             id: organisationId,
         });
     },
+    oauthLogin(oauthType, data) {
+        Dispatcher.handleViewAction({
+            actionType: Actions.OAUTH,
+            oauthType,
+            data,
+        });
+    },
     getFeatures(projectId, environmentId) {
         Dispatcher.handleViewAction({
             actionType: Actions.GET_FLAGS,

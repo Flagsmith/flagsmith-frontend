@@ -8,6 +8,7 @@ import 'lazyframe/dist/lazyframe.css';
 import PricingPanel from '../PricingPanel';
 import { ButtonWhite } from '../base/forms/Button';
 import CreateFlagModal from '../modals/CreateFlag';
+import { Google } from '../../project/auth';
 
 const HomePage = class extends React.Component {
     static contextTypes = {
@@ -24,6 +25,21 @@ const HomePage = class extends React.Component {
     componentDidMount() {
         lazyframe('.lazyframe');
 
+        if (document.location.href.includes('oauth')) {
+            const parts = location.href.split('oauth/');
+            const params = parts[1];
+            if (params && params.includes('google')) {
+                const access_token = Utils.fromParam().code;
+                AppActions.oauthLogin('google', {
+                    access_token,
+                });
+            } else if (params && params.includes('github')) {
+                const access_token = Utils.fromParam().code;
+                AppActions.oauthLogin('github', {
+                    access_token,
+                });
+            }
+        }
         API.trackPage(Constants.pages.HOME);
 
         if (document.location.href.indexOf('invite') != -1) {
@@ -44,11 +60,30 @@ const HomePage = class extends React.Component {
         const redirect = Utils.fromParam().redirect ? `?redirect=${Utils.fromParam().redirect}` : '';
         const isInvite = document.location.href.indexOf('invite') != -1;
         const isSignup = document.location.href.indexOf('signup') != -1;
+
+        console.log(this.props);
         const oauths = [];
         if (this.props.getValue('oauth_github')) {
             oauths.push((
                 <a key="github" className="oauth oauth-github" href={JSON.parse(this.props.getValue('oauth_github')).url}>
                     <img src="/images/github.svg"/> GitHub
+                </a>
+            ));
+        }
+        if (this.props.getValue('oauth_google')) {
+            const { apiKey, clientId } = JSON.parse(this.props.getValue('oauth_google'));
+            Google.init(apiKey, clientId);
+            oauths.push((
+                <a
+                  key="github" className="oauth oauth-google" onClick={() => {
+                      Google.login().then((res) => {
+                          if (res) {
+                              document.location = `${document.location.origin}/oauth/google?code=${res}`;
+                          }
+                      });
+                  }}
+                >
+                    <img src="/images/google.svg"/> Google
                 </a>
             ));
         }
@@ -95,7 +130,7 @@ const HomePage = class extends React.Component {
                                                 </div>
 
                                                 {!!oauths.length && (
-                                                <Row>
+                                                <Row style={{ justifyContent: 'center' }}>
                                                     {oauths}
                                                 </Row>
                                                 )}

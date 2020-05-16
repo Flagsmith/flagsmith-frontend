@@ -18,6 +18,10 @@ bold,strong {
     font-size: 0.8em;
 }
 .oauth {
+    margin-right: 20px;
+    &:last-child {
+        margin-right: 0;
+    }
     border-radius: 4px;
     display: inline-block;
     padding-right: 20px;
@@ -49,7 +53,6 @@ bold,strong {
     &:hover {
         background-color: #dbdcdb;
     }
-    margin-right: 20px;
 }
 .oauth-microsoft {
     background-color: #339af4;
@@ -63,6 +66,7 @@ bold,strong {
 }
 .oauth-google {
     background-color: #c53d23;
+    color:white !important;
 }
 .oauth-facebook {
     background-color: #3a5696;
