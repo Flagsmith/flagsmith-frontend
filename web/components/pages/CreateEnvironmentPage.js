@@ -41,59 +41,86 @@ const CreateEnvironmentPage = class extends Component {
                   permission="CREATE_ENVIRONMENT"
                   id={this.props.match.params.projectId}
                 >
-                    {({ permission }) => (
+                    {({ permission, isLoading }) => (isLoading ? <Loader/> : (
                         <div>
-                            <h3>Create Environment</h3>
-                            <p>
-                                {Constants.strings.ENVIRONMENT_DESCRIPTION}
-                            </p>
-                            <ProjectProvider id={this.props.match.params.projectId} onSave={this.onSave}>
-                                {({ isLoading, isSaving, createEnv, error }) => (
-                                    <form
-                                      id="create-env-modal"
-                                      onSubmit={(e) => {
-                                          e.preventDefault();
-                                          !isSaving && name && createEnv(name, this.props.match.params.projectId);
-                                      }}
-                                    >
-                                        <InputGroup
-                                          ref={(e) => {
-                                              if (e) this.input = e;
-                                          }}
-                                          inputProps={{ name: 'envName', className: 'full-width' }}
-                                          onChange={e => this.setState({ name: Utils.safeParseEventValue(e) })}
-                                          isValid={name}
-                                          type="text" title="Name*"
-                                          placeholder="An environment name e.g. Develop"
-                                        />
-                                        {error && <Error error={error}/>}
-                                        <div className="text-right">
-                                            {permission ? (
-                                                <Button id="create-env-btn" disabled={isSaving || !name}>
-                                                    {isSaving ? 'Creating' : 'Create Environment'}
-                                                </Button>
-                                            ) : (
-                                                <Tooltip
-                                                  html
-                                                  title={(
-                                                      <Button id="create-env-btn" disabled={isSaving || !name}>
-                                                      Create Environment
-                                                      </Button>
-                                                )}
-                                                  place="right"
-                                                >
-                                                    {
-                                                      Constants.projectPermissions('Create Environment')
-                                                  }
-                                                </Tooltip>
-                                            )}
+                            {permission ? (
+                                <div>
+                                    <h3>Create Environment</h3>
+                                    <p>
+                                        {Constants.strings.ENVIRONMENT_DESCRIPTION}
+                                    </p>
+                                    <ProjectProvider id={this.props.match.params.projectId} onSave={this.onSave}>
+                                        {({ isLoading, isSaving, createEnv, error }) => (
+                                            <form
+                                              id="create-env-modal"
+                                              onSubmit={(e) => {
+                                                  e.preventDefault();
+                                                  !isSaving && name && createEnv(name, this.props.match.params.projectId);
+                                              }}
+                                            >
+                                                <InputGroup
+                                                  ref={(e) => {
+                                                      if (e) this.input = e;
+                                                  }}
+                                                  inputProps={{ name: 'envName', className: 'full-width' }}
+                                                  onChange={e => this.setState({ name: Utils.safeParseEventValue(e) })}
+                                                  isValid={name}
+                                                  type="text" title="Name*"
+                                                  placeholder="An environment name e.g. Develop"
+                                                />
+                                                {error && <Error error={error}/>}
+                                                <div className="text-right">
+                                                    {permission ? (
+                                                        <Button id="create-env-btn" disabled={isSaving || !name}>
+                                                            {isSaving ? 'Creating' : 'Create Environment'}
+                                                        </Button>
+                                                    ) : (
+                                                        <Tooltip
+                                                          html
+                                                          title={(
+                                                            <Button id="create-env-btn" disabled={isSaving || !name}>
+                                                          Create Environment
+                                                            </Button>
+                                                    )}
+                                                          place="right"
+                                                        >
+                                                            {
+                                                          Constants.projectPermissions('Create Environment')
+                                                      }
+                                                        </Tooltip>
+                                                    )}
 
-                                        </div>
-                                    </form>
-                                )}
-                            </ProjectProvider>
+                                                </div>
+                                                <p className="text-center faint">
+                                                    Not seeing an environment? Check that your project administrator has invited you to it.
+                                                </p>
+                                            </form>
+                                        )}
+                                    </ProjectProvider>
+                                </div>
+                            ) : (
+                                <div>
+                                    <p className="notification__text ">Check your project permissions</p>
+
+                                    <p>
+                                        Although you have been invited to this project, you are not invited to any environments yet!
+                                    </p>
+                                    <p>
+                                        Contact your project administrator asking them to either:
+                                        <ul>
+                                            <li>
+                                                Invite you to an environment (e.g. develop) by visiting <strong>Environment settings</strong>
+                                            </li>
+                                            <li>
+                                                Grant permissions to create an environment under <strong>Project settings</strong>.
+                                            </li>
+                                        </ul>
+                                    </p>
+                                </div>
+                            )}
                         </div>
-                    )}
+
+                    ))}
                 </Permission>
             </div>
         );

@@ -37,7 +37,7 @@ const InvitePage = class extends Component {
 
                                         </h3>
                                         <p>
-                                            We could not validate your invite, please check the invite URL you have
+                                            We could not validate your invite, please check the invite URL and email address you have
                                             entered is correct.
 
                                         </p>
