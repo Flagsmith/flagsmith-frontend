@@ -8,6 +8,7 @@ import 'lazyframe/dist/lazyframe.css';
 import PricingPanel from '../PricingPanel';
 import { ButtonWhite } from '../base/forms/Button';
 import CreateFlagModal from '../modals/CreateFlag';
+import { Google } from '../../project/auth';
 
 const HomePage = class extends React.Component {
     static contextTypes = {
@@ -24,6 +25,21 @@ const HomePage = class extends React.Component {
     componentDidMount() {
         lazyframe('.lazyframe');
 
+        if (document.location.href.includes('oauth')) {
+            const parts = location.href.split('oauth/');
+            const params = parts[1];
+            if (params && params.includes('google')) {
+                const access_token = Utils.fromParam().code;
+                AppActions.oauthLogin('google', {
+                    access_token,
+                });
+            } else if (params && params.includes('github')) {
+                const access_token = Utils.fromParam().code;
+                AppActions.oauthLogin('github', {
+                    access_token,
+                });
+            }
+        }
         API.trackPage(Constants.pages.HOME);
 
         if (document.location.href.indexOf('invite') != -1) {
@@ -45,6 +61,49 @@ const HomePage = class extends React.Component {
         const isInvite = document.location.href.indexOf('invite') != -1;
         const isSignup = (isInvite && document.location.href.indexOf('login')===-1) || document.location.href.indexOf('signup') != -1;
 
+        console.log(this.props);
+        const oauths = [];
+        if (this.props.getValue('oauth_github')) {
+            oauths.push((
+                <a key="github" className="oauth oauth-github" href={JSON.parse(this.props.getValue('oauth_github')).url}>
+                    <img src="/images/github.svg"/> GitHub
+                </a>
+            ));
+        }
+        if (this.props.getValue('oauth_google')) {
+            const { apiKey, clientId } = JSON.parse(this.props.getValue('oauth_google'));
+            Google.init(apiKey, clientId);
+            oauths.push((
+                <a
+                  key="github" className="oauth oauth-google" onClick={() => {
+                      Google.login().then((res) => {
+                          if (res) {
+                              document.location = `${document.location.origin}/oauth/google?code=${res}`;
+                          }
+                      });
+                  }}
+                >
+                    <img src="/images/google.svg"/> Google
+                </a>
+            ));
+        }
+        if (this.props.getValue('oauth_microsoft')) {
+            oauths.push((
+                <a
+                  key="microsoft" className="oauth oauth-microsoft"
+                  ref={JSON.parse(this.props.getValue('oauth_microsoft')).url}
+                >
+                    <img src="/images/microsoft.svg"/> Microsoft
+                </a>
+            ));
+        }
+        if (this.props.hasFeature('oauth-google')) {
+            oauths.push((
+                <a key="google" className="oauth oauth-google" href={Project.oauth.google.url}>
+                    <img src="/images/google.svg"/>
+                </a>
+            ));
+        }
         return (
             <AccountProvider onLogout={this.onLogout} onLogin={this.onLogin}>
                 {({ isLoading, isSaving, error }, { register }) => (
@@ -61,8 +120,21 @@ const HomePage = class extends React.Component {
                                               }}
                                             >
                                                 <div className="form-intro text-center">
-                                                    <h3 className="mb-4">Login to Bullet Train</h3>
+                                                    <h3 className="mb-4">Sign in</h3>
+                                                    {!!oauths.length && (
+                                                    <p>
+                                                          Log in to your account with one of these services.
+                                                    </p>
+                                                    )}
+
                                                 </div>
+
+                                                {!!oauths.length && (
+                                                <Row style={{ justifyContent: 'center' }}>
+                                                    {oauths}
+                                                </Row>
+                                                )}
+
                                                 {isInvite
                                                 && (
                                                 <div className="notification flex-row">

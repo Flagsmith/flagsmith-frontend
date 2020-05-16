@@ -39,6 +39,7 @@ const Actions = Object.assign({}, require('./base/_action-constants'), {
     'GET_IDENTITY': 'GET_IDENTITY',
     'GET_IDENTITY_SEGMENTS': 'GET_IDENTITY_SEGMENTS',
     'GET_ORGANISATION': 'GET_ORGANISATION',
+    'OAUTH': 'OAUTH',
     'GET_PROJECT': 'GET_PROJECT',
     'GET_SEGMENTS': 'GET_SEGMENTS',
     'INVITE_USERS': 'INVITE_USERS',

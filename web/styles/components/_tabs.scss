@@ -23,6 +23,10 @@
 			background: #eaeaea;
 			box-shadow: none;
 		}
+		&:active {
+			background: #dedede !important;
+			box-shadow: none;
+		}
 		font-weight: $input-font-weight;
 		min-height: 34px;
 		&.active {
