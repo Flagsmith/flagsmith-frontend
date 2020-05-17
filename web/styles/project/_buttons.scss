@@ -1,3 +1,4 @@
+@import "../variables";
 a, .btn, button{
     outline:none;
 
@@ -7,30 +8,35 @@ a, .btn, button{
 }
 .btn, button.btn{
     outline: none !important;
-    background:linear-gradient(#2cd6ca,#48A69D);
-    &:active {
-        background:linear-gradient(#2cd6ca,#48A69D);
-    }
+    background: #1c9997;
     transition: $button-transition;
-    border-radius: 8px!important;
+    border-radius: $border-radius-default !important;
     color:#fff;
     text-align: center;
     border: none !important;
     padding: 0 20px;
     letter-spacing: 0.8px;
-    line-height: 36px;
+    line-height: $input-height;
     -webkit-font-smoothing:antialiased;
     text-transform: capitalize;
     font-weight: 700;
-    font-size: 14px;
-    height:36px;
+    font-size: 16px;
+    height:$input-height;
     box-shadow:0 0 5px rgba(0,0,0,0.2);
 
-    &:hover{
-        background:linear-gradient(#2cd6ca,#48A69D);
+    &:hover, &:disabled:hover {
+        background: #29aaa8;
+    }
+    &:hover {
         box-shadow:0 0 10px rgba(0,0,0,0.5);
     }
-
+    &:disabled {
+        box-shadow: none;
+    }
+    &:active,&:focus{
+        background: #098783 !important;
+        box-shadow:0 0 10px rgba(0,0,0,0.5);
+    }
     &.white{
         background:#fff;
         color:black;

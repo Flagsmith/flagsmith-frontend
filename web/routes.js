@@ -59,6 +59,7 @@ export default (
             <Route path="/password-reset/confirm/:uid/:token/" exact component={PasswordResetPage}/>
             <Route path="/project/:projectId/environment/:environmentId/features" exact component={FlagsPage}/>
             <Route path="/invite/:id" exact component={InvitePage}/>
+            <Route path="/oauth/:type" exact component={HomePage}/>
             <Route path="/project/:projectId/environment/:environmentId/settings" exact component={EnvironmentSettingsPage}/>
             <Route path="/project/:projectId/environment/:environmentId/users" exact component={UsersPage}/>
             <Route path="/project/:projectId/environment/:environmentId/users/:id" exact component={UserPage}/>
