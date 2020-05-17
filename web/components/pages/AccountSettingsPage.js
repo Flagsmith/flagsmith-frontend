@@ -31,14 +31,14 @@ class TheComponent extends PureComponent {
           return;
       }
       // _data.patch(`${Project.api}auth/users/me/`, {
-      _data.put(`${Project.api}auth/user/`, {
+      _data.put(`${Project.api}auth/users/me/`, {
           first_name,
           last_name,
           email,
-          organisations: AccountStore.getUser().organisations,
+          id: AccountStore.model.id,
       }).then(() => {
           toast('Your account has been updated');
-      }).catch(error => this.setState({ error }));
+      }).catch(error => this.setState({ error: 'There was an error setting your account, please check your details' }));
   }
 
   savePassword = (e) => {
@@ -52,12 +52,13 @@ class TheComponent extends PureComponent {
           return;
       }
       // _data.post(`${Project.api}auth/users/set_password/`, {
-      _data.post(`${Project.api}auth/password/change/`, {
-          new_password1,
-          new_password2,
+      _data.post(`${Project.api}auth/users/set_password/`, {
+          current_password,
+          new_password: new_password1,
+          re_new_password: new_password2,
       }).then(() => {
           toast('Your password has been updated');
-      }).catch(passwordError => this.setState({ passwordError }));
+      }).catch(passwordError => this.setState({ passwordError: 'There was an error setting your password, please check your details.' }));
   }
 
   render() {
