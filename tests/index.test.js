@@ -46,13 +46,13 @@ const clearDown = function (browser, done) {
         }
     }
     if (token) {
-        console.log(`${Project.api}e2etests/teardown/`, token)
+        console.log(`${Project.api}e2etests/teardown/`, token.trim())
         fetch(`${Project.api}e2etests/teardown/`, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                'X-E2E-Test-Auth-Token': token,
+                'X-E2E-Test-Auth-Token': token.trim(),
             },
             body: JSON.stringify({}),
         }).then((res) => {
