@@ -1,5 +1,5 @@
 import './lib/gapi';
-import './lib/fb';
+// import './lib/fb';
 
 export const Facebook = {
     init: (appId) => {
