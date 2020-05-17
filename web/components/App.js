@@ -6,6 +6,7 @@ import Popover from './base/Popover';
 import Feedback from './modals/Feedback';
 import PaymentModal from './modals/Payment';
 import AlertBar from './AlertBar';
+import TwoFactorPrompt from './SimpleTwoFactor/prompt';
 
 const App = class extends Component {
     static propTypes = {
@@ -18,6 +19,7 @@ const App = class extends Component {
 
     state = {
         asideIsVisible: !isMobile,
+        pin: '',
     }
 
     constructor(props, context) {
@@ -51,13 +53,18 @@ const App = class extends Component {
         let { redirect } = Utils.fromParam();
         const invite = API.getInvite();
         if (invite) {
-            redirect = "/invite/" + invite
+            redirect = `/invite/${invite}`;
         }
 
         const referrer = API.getReferrer();
         let query = '';
         if (referrer) {
             query = `?${Utils.toParam(referrer)}`;
+        }
+
+        if (AccountStore.ephemeral_token) {
+            this.forceUpdate();
+            return;
         }
 
         if (!AccountStore.getOrganisation() && document.location.href.indexOf('invite') == -1) { // If user has no organisation redirect to /create
@@ -135,7 +142,22 @@ const App = class extends Component {
         return (
             <div>
                 <AccountProvider onNoUser={this.onNoUser} onLogout={this.onLogout} onLogin={this.onLogin}>
-                    {({ isLoading, user, organisation }) => (
+                    {({ isLoading, isSaving, user, organisation }, { twoFactorLogin }) => (user && user.twoFactorPrompt ? (
+                        <div className="col-md-6 push-md-3 mt-5">
+                            <TwoFactorPrompt
+                              pin={this.state.pin}
+                              error={this.state.error}
+                              onSubmit={() => {
+                                  this.setState({ error: false });
+                                  twoFactorLogin(this.state.pin, () => {
+                                      this.setState({ error: true });
+                                  });
+                              }}
+                              isLoading={isSaving}
+                              onChange={e => this.setState({ pin: Utils.safeParseEventValue(e) })}
+                            />
+                        </div>
+                    ) : (
                         <div>
                             {AccountStore.isDemo && (
                             <AlertBar className="pulse">
@@ -250,7 +272,7 @@ Logout
                                 {isMobile && pageHasAside && asideIsVisible ? null : this.props.children}
                             </div>
                         </div>
-                    )}
+                    ))}
                 </AccountProvider>
 
             </div>

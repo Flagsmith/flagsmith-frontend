@@ -10,7 +10,8 @@ const ForgotPassword = class extends React.Component {
         e.preventDefault();
         const { email } = this.state;
         if (Utils.isValidEmail(email)) {
-            data.post(`${Project.api}auth/password/reset/`, { email })
+            // data.post(`${Project.api}auth/password/reset/`, { email })
+            data.post(`${Project.api}auth/users/reset_password/`, { email })
                 .then((res) => {
                     this.props.onComplete && this.props.onComplete();
                     closeModal();

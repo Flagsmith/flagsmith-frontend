@@ -23,3 +23,15 @@ handlers:
   secure: always
   redirect_http_response_code: 301
   script: auto
+
+env_variables:
+  SLACK_TOKEN: undefined
+  EVENTS_SLACK_CHANNEL: undefined
+
+env_variables:
+  SLACK_TOKEN: undefined
+  EVENTS_SLACK_CHANNEL: undefined
+
+env_variables:
+  SLACK_TOKEN: undefined
+  EVENTS_SLACK_CHANNEL: undefined
