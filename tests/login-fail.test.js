@@ -2,7 +2,7 @@
 const helpers = require('./helpers');
 
 const email = 'nightwatch@solidstategroup.com';
-const password = 'nightwatch';
+const password = 'password123';
 const url = `http://localhost:${process.env.PORT || 8080}`;
 
 module.exports = {

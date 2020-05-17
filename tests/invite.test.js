@@ -2,7 +2,7 @@
 /* eslint-disable func-names */
 const inviteEmail = 'bullet-train@mailnesia.com';
 const email = 'nightwatch@solidstategroup.com';
-const password = 'nightwatch';
+const password = 'password123';
 const url = `http://localhost:${process.env.PORT || 8080}`;
 const append = `${new Date().valueOf()}`;
 const helpers = require('./helpers');
