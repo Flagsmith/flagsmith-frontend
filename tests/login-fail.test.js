@@ -9,7 +9,6 @@ module.exports = {
     'Login should fail due to invalid email address': function (browser) {
         helpers.login(browser, url, 'bad-email', password);
         browser.expect.element('#error-alert').to.be.visible;
-        browser.expect.element('#email-error').to.be.visible;
     },
     'Login should fail due to wrong password': function (browser) {
         helpers.login(browser, url, email, 'bad-password');

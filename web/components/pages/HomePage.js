@@ -176,12 +176,12 @@ const HomePage = class extends React.Component {
                                                       type="text"
                                                       name="email" id="email"
                                                     />
-                                                    {error && error.password1 ? (
+                                                    {error && error.password ? (
                                                         <span
                                                           id="password-error"
                                                           className="text-danger"
                                                         >
-                                                            {error.password1}
+                                                            {error.password}
                                                         </span>
                                                     ) : null}
                                                     <InputGroup
@@ -189,7 +189,7 @@ const HomePage = class extends React.Component {
                                                       inputProps={{
                                                           name: 'password',
                                                           className: 'full-width',
-                                                          error: error && error.password1,
+                                                          error: error && error.password,
                                                       }}
                                                       onChange={(e) => {
                                                           this.setState({ password: Utils.safeParseEventValue(e) });
@@ -349,12 +349,12 @@ Not got
                                                   id="email"
                                                 />
 
-                                                {error && error.password1 ? (
+                                                {error && error.password ? (
                                                     <span
                                                       id="password-error"
                                                       className="text-danger"
                                                     >
-                                                        {error.password1}
+                                                        {error.password}
                                                     </span>
                                                 ) : null}
                                                 <InputGroup
@@ -363,7 +363,7 @@ Not got
                                                   inputProps={{
                                                       name: 'password',
                                                       className: 'full-width',
-                                                      error: error && error.password1,
+                                                      error: error && error.password,
                                                   }}
                                                   onChange={(e) => {
                                                       this.setState({ password: Utils.safeParseEventValue(e) });
