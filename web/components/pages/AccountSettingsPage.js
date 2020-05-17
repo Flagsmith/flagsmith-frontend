@@ -97,7 +97,6 @@ class TheComponent extends PureComponent {
                             isValid={first_name && first_name.length}
                             type="text"
                             name="First Name*"
-                            placeholder="E.g. Paul"
                           />
                           <InputGroup
                             title="Last Name"
@@ -111,7 +110,6 @@ class TheComponent extends PureComponent {
                             isValid={last_name && last_name.length}
                             type="text"
                             name="Last Name*"
-                            placeholder="E.g. Paul"
                           />
                           {error && (
                           <ErrorMessage>
