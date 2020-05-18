@@ -45,9 +45,9 @@ const HomePage = class extends React.Component {
         if (document.location.href.indexOf('invite') != -1) {
             const invite = Utils.fromParam().redirect;
 
-            if (invite.includes("invite")) {
+            if (invite.includes('invite')) {
                 // persist invite incase user changes page or logs in with oauth
-                const id = invite.split("invite/")[1];
+                const id = invite.split('invite/')[1];
                 API.setInvite(id);
             }
             Utils.scrollToSignUp();
@@ -66,7 +66,7 @@ const HomePage = class extends React.Component {
         const { email, password, organisation_name, first_name, last_name } = this.state;
         const redirect = Utils.fromParam().redirect ? `?redirect=${Utils.fromParam().redirect}` : '';
         const isInvite = document.location.href.indexOf('invite') != -1;
-        const isSignup = (isInvite && document.location.href.indexOf('login')===-1) || document.location.href.indexOf('signup') != -1;
+        const isSignup = (isInvite && document.location.href.indexOf('login') === -1) || document.location.href.indexOf('signup') != -1;
 
         console.log(this.props);
         const oauths = [];
@@ -255,6 +255,13 @@ Not got
                                                 </p>
                                                 )}
                                             </div>
+
+                                            {!!oauths.length && (
+                                            <Row style={{ justifyContent: 'center' }}>
+                                                {oauths}
+                                            </Row>
+                                            )}
+
                                             {error
                                             && (
                                                 <FormGroup>
