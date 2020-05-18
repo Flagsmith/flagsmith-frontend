@@ -101,6 +101,7 @@ const AccountProvider = class extends Component {
                 login: this.login,
                 register: this.register,
                 enableTwoFactor: AppActions.enableTwoFactor,
+                confirmTwoFactor: AppActions.confirmTwoFactor,
                 twoFactorLogin: AppActions.twoFactorLogin,
                 disableTwoFactor: AppActions.disableTwoFactor,
                 selectOrganisation: AppActions.selectOrganisation,
