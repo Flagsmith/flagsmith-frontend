@@ -47,37 +47,30 @@ const controller = {
             .catch(e => API.ajaxHandler(store, e));
     },
     oauth: (type, _data) => {
-        store.saving();
-        data.post(`${Project.api}auth/oauth/${type}`, _data)
+        store.loading();
+        data.post(`${Project.api}auth/oauth/${type}/`, _data)
             .then((res) => {
-                data.setToken(res.key);
-                API.trackEvent(Constants.events.REGISTER);
-                if (API.getReferrer()) {
-                    API.trackEvent(Constants.events.REFERRER_REGISTERED(API.getReferrer().utm_source));
+                // const isDemo = email == Project.demoAccount.email;
+                // store.isDemo = isDemo;
+                // if (isDemo) {
+                //     AsyncStorage.setItem('isDemo', `${isDemo}`);
+                //     API.trackEvent(Constants.events.LOGIN_DEMO);
+                // } else {
+                //     API.trackEvent(Constants.events.LOGIN);
+                //     API.identify(email);
+                // }
+                if (res.ephemeral_token) {
+                    store.ephemeral_token = res.ephemeral_token;
+                    store.model = {
+                        twoFactorPrompt: true,
+                        twoFactorEnabled: true,
+                    };
+                    store.loaded();
+                    return;
                 }
-                API.alias(email);
-                API.register(email, first_name, last_name);
-                if (isInvite) {
-                    return controller.onLogin();
-                }
-                API.trackEvent(Constants.events.CREATE_ORGANISATION);
 
-                return data.post(`${Project.api}organisations/`, { name: organisation_name })
-                    .then(() => controller.onLogin())
-                    .then(() => {
-                        if (API.getReferrer()) {
-                            // eslint-disable-next-line camelcase
-                            try {
-                                postEvent(`New Organisation ${organisation_name} from ${JSON.stringify(API.getReferrer().utm_source)}`);
-                            } catch (e) {
-                                postEvent(`New Organisation ${organisation_name} from ${API.getReferrer().utm_source}`);
-                            }
-                            API.trackEvent(Constants.events.REFERRER_CONVERSION(API.getReferrer().utm_source));
-                        } else {
-                            // eslint-disable-next-line camelcase
-                            postEvent(`New Organisation ${organisation_name}`);
-                        }
-                    });
+                data.setToken(res.key);
+                return controller.onLogin();
             })
             .catch(e => API.ajaxHandler(store, e));
     },

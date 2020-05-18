@@ -73,7 +73,7 @@ const App = class extends Component {
         }
 
         // Redirect on login
-        if (this.props.location.pathname == '/' || this.props.location.pathname == '/login' || this.props.location.pathname == '/demo' || this.props.location.pathname == '/signup') {
+        if (this.props.location.pathname == '/' || this.props.location.pathname.includes("/oauth") || this.props.location.pathname == '/login' || this.props.location.pathname == '/demo' || this.props.location.pathname == '/signup') {
             if (redirect) {
                 this.context.router.history.replace(redirect);
             } else {
