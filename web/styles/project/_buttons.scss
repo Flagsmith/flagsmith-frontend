@@ -100,14 +100,14 @@ a, .btn, button{
 
 .pill{
     .btn:first-child{
-        border-bottom-left-radius:15px!important;
-        border-top-left-radius:15px!important;
+        border-bottom-left-radius:$border-radius-default!important;
+        border-top-left-radius:$border-radius-default!important;
         border-bottom-right-radius:0!important;
         border-top-right-radius:0!important;
     }
     .btn:last-child{
-        border-bottom-right-radius:15px!important;
-        border-top-right-radius:15px!important;
+        border-bottom-right-radius:$border-radius-default!important;
+        border-top-right-radius:$border-radius-default!important;
         border-bottom-left-radius:0!important;
         border-top-left-radius:0!important;
     }

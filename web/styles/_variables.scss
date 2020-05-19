@@ -14,7 +14,6 @@ $bt-brand-red: #ff9aaf;
 $bt-brand-purple: #a28af9;
 $body-text: #5a5e63;
 $body-text-faint: #989ca1;
-$border-radius-default: 4px;
 $bt-primary-gradient: linear-gradient(#2cd6ca, #48A69D);
 
 $brand-secondary: rgb(255,152,0);
@@ -41,6 +40,7 @@ $navbar-light-active-color:          #000;
 $navbar-light-disabled-color:        #333;
 
 // BORDER RADIUS
+$border-radius-default: 4px;
 $default-border-radius: 8px;
 
 // INPUT
@@ -87,7 +87,7 @@ $panel-alt-heading-bg: #36a39c;
 $panel-alt-heading-color: #fff;
 
 //TABS
-$tab-inactive-color: rgba(255, 255, 255, .75);
+$tab-inactive-color: #5a5e63;
 $tab-active-color: #36a39c;
 $tab-line-color: #36a39c;
 

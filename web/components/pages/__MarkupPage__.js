@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import { ButtonSecondary, ButtonWhite } from '../base/forms/Button';
+import Tabs from '../base/forms/Tabs';
+import TabItem from '../base/forms/TabItem';
 import PricingPanel from '../PricingPanel';
 
 export default class ExampleOne extends Component {
@@ -8,7 +10,7 @@ export default class ExampleOne extends Component {
 
     constructor(props, context) {
         super(props, context);
-        this.state = { name: '' };
+        this.state = { name: '', tab: '' };
     }
 
     render() {
@@ -125,7 +127,22 @@ export default class ExampleOne extends Component {
 
                         </FormGroup>
 
+                        <FormGroup>
+                            <Tabs value={this.state.tab}>
+                                <TabItem tabLabel={'Hello'}>
+                                    <p>Tab 1 content</p>
+                                </TabItem>
+                                <TabItem tabLabel={'Tab 2'}>
+                                    <p>Tab 2 content</p>
+                                </TabItem>
+                            </Tabs>
+
+
+                        </FormGroup>
+
+                        <FormGroup>
                         <PricingPanel/>
+                        </FormGroup>
                     </section>
 
                 </div>
