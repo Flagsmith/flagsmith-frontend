@@ -1,6 +1,6 @@
 .popover-bt{
     border-top:8px solid #2cd6ca;
-    border-radius: 8px;
+    border-radius: $border-radius-default;
     overflow:visible;
 
     &:before{

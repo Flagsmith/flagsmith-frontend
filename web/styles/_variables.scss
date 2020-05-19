@@ -1,7 +1,7 @@
 //MARGIN AND PADDING
 
 $font-family: "Proxima Nova", sans-serif;
-$font-family-header: "Proxima Nova Bold", sans-serif;
+$font-family-header: "Proxima Nova Semibold", sans-serif;
 
 // COLORS
 $header-color: #1c2b3d;
@@ -14,7 +14,7 @@ $bt-brand-red: #ff9aaf;
 $bt-brand-purple: #a28af9;
 $body-text: #5a5e63;
 $body-text-faint: #989ca1;
-$border-radius-default: 2px;
+$border-radius-default: 4px;
 $bt-primary-gradient: linear-gradient(#2cd6ca, #48A69D);
 
 $brand-secondary: rgb(255,152,0);
@@ -25,6 +25,14 @@ $alert-danger-text: rgb(255, 255, 255);
 $body-bg: #f9f9f9;
 $list-item-striped-background: #f3f6f6;
 $navbar-background: 'transparent';
+
+
+// Card Styles
+
+$card-default: 0 6px 13px 0 rgba(34,53,74,0.10);
+
+
+
 
 //Nav
 $navbar-light-color:                 #333 !default;

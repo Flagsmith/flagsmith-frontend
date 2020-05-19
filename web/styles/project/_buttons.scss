@@ -6,6 +6,7 @@ a, .btn, button{
         outline:none;
     }
 }
+
 .btn, button.btn{
     outline: none !important;
     background: #1c9997;
@@ -109,5 +110,20 @@ a, .btn, button{
         border-top-right-radius:15px!important;
         border-bottom-left-radius:0!important;
         border-top-left-radius:0!important;
+    }
+}
+
+
+
+
+
+
+
+@include media-breakpoint-down(sm) {
+    .btn {
+        &__md-full {
+            width: 100%;
+            background-color: red;
+        }
     }
 }

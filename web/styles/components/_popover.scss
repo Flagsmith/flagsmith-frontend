@@ -41,6 +41,10 @@
 .popover-inner {
 	position: absolute !important;
 	left: 10px;
+	&__content {
+		border-radius: $border-radius-default;
+		overflow: hidden;
+	}
 }
 
 .absolute {

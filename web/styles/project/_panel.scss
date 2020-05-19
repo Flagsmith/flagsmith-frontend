@@ -1,5 +1,5 @@
 .panel{
-    border-radius:4px;
+    border-radius:$border-radius-default;
 
     a{
         color:#373a3c;
@@ -9,7 +9,7 @@
         background:#fff;
         opacity:1;
         border:1px solid #d6dbe0;
-        border-radius: 8px;
+        border-radius: $border-radius-default;
     }
 
     &--grey{

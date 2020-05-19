@@ -219,7 +219,7 @@ Click here to Sign
                                                           )}
                                                         >
                                                             {toggle => (
-                                                                <div>
+                                                                <div className="popover-inner__content">
 
                                                                     {organisation && (
                                                                     <OrganisationSelect

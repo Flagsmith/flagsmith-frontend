@@ -115,7 +115,16 @@ export default class ExampleOne extends Component {
                     </section>
 
                     <section className="pt-5 pb-3">
-                        <h2>Components</h2>
+                        <h2 className="mb-5">Components</h2>
+
+                        <FormGroup>
+                            <h3>Panel</h3>
+                            <Panel title="Panel" className="mb-5" >
+                                Panel content
+                            </Panel>
+
+                        </FormGroup>
+
                         <PricingPanel/>
                     </section>
 
