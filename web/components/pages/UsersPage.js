@@ -56,39 +56,40 @@ const UsersPage = class extends Component {
                 <div>
                     <div>
                         <Row>
-                            <Flex>
+                            <div className="col-md-9 pl-0">
                                 <h3>Users</h3>
                                 <p>
                                     View and manage features states for individual users. This will override individual default
                                     feature
                                     settings for your selected environment.
                                 </p>
-                            </Flex>
-                            <Permission level="environment" permission="ADMIN" id={environmentId}>
-                                {({ permission }) => (permission ? (
-                                    <Button data-test="show-create-feature-btn" id="show-create-feature-btn" onClick={this.newUser}>
+                            </div>
+                            <div className="col-md-3 pr-0">
+                                <Permission level="environment" permission="ADMIN" id={environmentId}>
+                                    {({ permission }) => (permission ? (
+                                        <Button className="float-right" data-test="show-create-feature-btn" id="show-create-feature-btn" onClick={this.newUser}>
                                       Create Users
-                                    </Button>
-                                ) : (
-                                    <Tooltip
-                                      html
-                                      title={(
-                                          <Button
-                                            disabled data-test="show-create-feature-btn" id="show-create-feature-btn"
-                                            onClick={this.newUser}
-                                          >
+                                        </Button>
+                                    ) : (
+                                        <Tooltip
+                                          html
+                                          title={(
+                                              <Button
+                                                disabled data-test="show-create-feature-btn" id="show-create-feature-btn"
+                                                onClick={this.newUser}
+                                              >
                                             Create Users
-                                          </Button>
+                                              </Button>
                                       )}
-                                      place="right"
-                                    >
-                                        {
+                                          place="right"
+                                        >
+                                            {
                                             Constants.environmentPermissions('Admin')
                                         }
-                                    </Tooltip>
-                                ))}
-                            </Permission>
-
+                                        </Tooltip>
+                                    ))}
+                                </Permission>
+                            </div>
                         </Row>
 
                         <FormGroup>

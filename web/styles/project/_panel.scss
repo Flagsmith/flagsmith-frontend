@@ -15,7 +15,10 @@
     &--grey{
         background:#f7f7f7;
         border-radius: 4px;
+        //border:1px solid #d6dbe0;
+        //box-shadow: $card-default;
         padding:20px;
+        
     }
     &__segments-achievements {
             border: 1px solid $bt-brand-primary !important;
