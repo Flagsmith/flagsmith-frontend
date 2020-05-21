@@ -31,7 +31,7 @@ export default class ExampleOne extends Component {
                             View and manage
                             {' '}
                             <Tooltip
-                              title={<a className="dark" href="#">feature flags</a>}
+                              title={<ButtonLink href="#" buttonText="feature flags" />}
                               place="right"
                             >
                                 {Constants.strings.FEATURE_FLAG_DESCRIPTION}
@@ -41,7 +41,7 @@ export default class ExampleOne extends Component {
                             {' '}
                             {' '}
                             <Tooltip
-                              title={<a className="dark" href="#">remote config</a>}
+                              title={<ButtonLink buttonText="remote config" />}
                               place="right"
                             >
                                 {Constants.strings.REMOTE_CONFIG_DESCRIPTION}
@@ -70,6 +70,8 @@ export default class ExampleOne extends Component {
                         <div className="colour-block colour-block--brand-orange"/>
                         <div className="colour-block colour-block--brand-purple"/>
                         <div className="colour-block colour-block--brand-red"/>
+                        <div className="colour-block colour-block--brand-pink"/>
+
 
                     </section>
 
@@ -82,9 +84,11 @@ export default class ExampleOne extends Component {
 
                             <ButtonWhite className="mr-3">White</ButtonWhite>
 
-                            <ButtonLink href="https://www.google.com/" buttonText={'Text Button'} />
+                            <ButtonLink href="https://www.google.com/" buttonText="Text Button" />
 
-
+                            <Button className="btn btn--with-icon" icon="/images/icon-play.svg">
+                              Button with icon
+                            </Button>
                         </FormGroup>
 
                     </section>
@@ -116,6 +120,22 @@ export default class ExampleOne extends Component {
                             />
                         </FormGroup>
 
+                        <FormGroup className="mt-3">
+                            <Select
+                              data-test="select-segment"
+                              placeholder="Select a segment"
+                              value={0}
+                              styles={{
+                                  control: (base, state) => ({
+                                      ...base,
+                                      '&:hover': { borderColor: '#2cd6ca' }, // border style on hover
+                                      border: '1px solid #2cd6ca', // default border color
+                                      boxShadow: 'none', // no box-shadow
+                                  }),
+                              }}
+                            />
+                        </FormGroup>
+
 
                     </section>
 
@@ -132,10 +152,10 @@ export default class ExampleOne extends Component {
 
                         <FormGroup>
                             <Tabs value={this.state.tab}>
-                                <TabItem tabLabel={'Hello'}>
+                                <TabItem tabLabel="Hello">
                                     <p>Tab 1 content</p>
                                 </TabItem>
-                                <TabItem tabLabel={'Tab 2'}>
+                                <TabItem tabLabel="Tab 2">
                                     <p>Tab 2 content</p>
                                 </TabItem>
                             </Tabs>
@@ -144,7 +164,7 @@ export default class ExampleOne extends Component {
                         </FormGroup>
 
                         <FormGroup>
-                        <PricingPanel/>
+                            <PricingPanel/>
                         </FormGroup>
                     </section>
 

@@ -141,7 +141,7 @@ const FeaturesPage = class extends Component {
                                                         View and manage
                                                         {' '}
                                                         <Tooltip
-                                                          title={<a className="dark" href="#">feature flags</a>}
+                                                          title={<ButtonLink buttonText={'feature flags'} />}
                                                           place="right"
                                                         >
                                                             {Constants.strings.FEATURE_FLAG_DESCRIPTION}
@@ -151,7 +151,7 @@ const FeaturesPage = class extends Component {
                                                         {' '}
                                                         {' '}
                                                         <Tooltip
-                                                          title={<a className="dark" href="#">remote config</a>}
+                                                          title={<ButtonLink buttonText={'remote config'} />}
                                                           place="right"
                                                         >
                                                             {Constants.strings.REMOTE_CONFIG_DESCRIPTION}
@@ -177,7 +177,7 @@ const FeaturesPage = class extends Component {
                                             </Row>
                                             <Permission level="environment" permission="ADMIN" id={this.props.match.params.environmentId}>
                                                 {({ permission, isLoading }) => (
-                                                    <FormGroup>
+                                                    <FormGroup className="mb-4">
                                                         <PanelSearch
                                                           className="no-pad"
                                                           id="features-list"

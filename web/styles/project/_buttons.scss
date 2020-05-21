@@ -24,6 +24,8 @@ a, .btn, button{
     font-size: 16px;
     //height:$input-height;
     box-shadow:0 0 5px rgba(0,0,0,0.2);
+    
+    
 
     &:hover, &:disabled:hover {
         background: #29aaa8;
@@ -34,10 +36,10 @@ a, .btn, button{
     &:disabled {
         box-shadow: none;
     }
-    &:active,&:focus{
-        background: #098783;
-        box-shadow:0 0 10px rgba(0,0,0,0.5);
-    }
+    //&:active,&:focus{
+    //    background: #098783;
+    //    box-shadow:0 0 10px rgba(0,0,0,0.5);
+    //}
     &.white{
         background:#fff;
         color:black;
@@ -52,23 +54,20 @@ a, .btn, button{
     }
     
     &--link {
+        font-family: 'Proxima Nova';
         background: transparent;
-        color: $bt-dark-green;
+        color: $bt-dark-green-alt;
         text-decoration: underline;
         border: none;
         box-shadow: none;
         padding: 0;
         height: auto;
+        font-size: 15px;
+        text-transform: inherit;
         line-height: 0px;
-        &:hover {
-            color: lighten($bt-dark-green, 10);
-            background: transparent;
-            text-decoration: underline;
-            border: none;
-            box-shadow: none;
-        }
-        &:focus {
-            color: lighten($bt-dark-green, 10);
+        font-weight: bold;
+        &:hover, &:focus  {
+            color: darken($bt-dark-green-alt, 10);
             background: transparent;
             text-decoration: underline;
             border: none;
@@ -105,10 +104,10 @@ a, .btn, button{
         height:auto;
         line-height: 1;
 
-        &:hover{
-            background:none;
-            color:darken(#2cd6ca,5);
-            box-shadow: none;
+        &:hover, &:focus {
+            background:none !important;
+            color:darken($bt-brand-primary, 10) !important;
+            box-shadow: none !important;
         }
     }
 

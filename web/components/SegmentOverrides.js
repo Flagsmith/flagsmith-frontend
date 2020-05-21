@@ -127,6 +127,13 @@ class TheComponent extends Component {
                               options={
                                     segmentOptions
                                 }
+                              styles={{
+                                  control: (base) => ({
+                                      ...base,
+                                      '&:hover': { borderColor: '#2cd6ca' },
+                                      border: '1px solid #2cd6ca',
+                                  }),
+                              }}
                             />
                         </Flex>
                     )}
