@@ -22,7 +22,7 @@ a, .btn, button{
     text-transform: capitalize;
     font-weight: 700;
     font-size: 16px;
-    height:$input-height;
+    //height:$input-height;
     box-shadow:0 0 5px rgba(0,0,0,0.2);
 
     &:hover, &:disabled:hover {
@@ -35,7 +35,7 @@ a, .btn, button{
         box-shadow: none;
     }
     &:active,&:focus{
-        background: #098783 !important;
+        background: #098783;
         box-shadow:0 0 10px rgba(0,0,0,0.5);
     }
     &.white{
@@ -49,6 +49,31 @@ a, .btn, button{
 
     &--secondary{
         background:#22354a;
+    }
+    
+    &--link {
+        background: transparent;
+        color: $bt-dark-green;
+        text-decoration: underline;
+        border: none;
+        box-shadow: none;
+        padding: 0;
+        height: auto;
+        line-height: 0px;
+        &:hover {
+            color: lighten($bt-dark-green, 10);
+            background: transparent;
+            text-decoration: underline;
+            border: none;
+            box-shadow: none;
+        }
+        &:focus {
+            color: lighten($bt-dark-green, 10);
+            background: transparent;
+            text-decoration: underline;
+            border: none;
+            box-shadow: none;
+        }
     }
 
 

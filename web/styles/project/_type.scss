@@ -6,6 +6,16 @@ h1,h2,h3,h4,h5,h6{
 a.link-dark {
     color: $btn-primary-bg;
 }
+
+a.dark{
+    color: $bt-dark-green;
+    text-decoration: underline;
+    &:hover {
+        color: lighten($bt-dark-green, 10);
+    }
+}
+
+
 .text-small{
     font-size:0.75rem!important;
 }

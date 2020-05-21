@@ -27,7 +27,7 @@ const ForgotPassword = class extends React.Component {
                 <p>Please enter your email address</p>
                 <form onSubmit={this.handleSubmit}>
                     <InputGroup
-                      inputProps={{ className: 'full-width' }}
+                      inputProps={{ className: 'full-width mb-2' }}
                       title="Email Address"
                       placeholder="email" type="email"
                       onChange={e => this.setState({ email: Utils.safeParseEventValue(e) })}

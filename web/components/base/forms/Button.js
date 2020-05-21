@@ -47,3 +47,13 @@ export const ButtonWhite = class extends PureComponent {
         return <Button {...this.props} className={`white ${this.props.className || ''}`}/>;
     }
 };
+
+export const ButtonLink = class extends PureComponent {
+    static displayName = 'ButtonLink';
+
+    render() {
+        return <Button {...this.props} className={`btn--link ${this.props.className || ''}`}>
+            <a className="btn--link" href={this.props.href}>{this.props.buttonText}</a>
+        </Button>;
+    }
+};

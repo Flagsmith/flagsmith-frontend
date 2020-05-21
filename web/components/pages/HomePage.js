@@ -6,7 +6,7 @@ import Footer from '../Footer';
 import Popover from '../base/Popover';
 import 'lazyframe/dist/lazyframe.css';
 import PricingPanel from '../PricingPanel';
-import { ButtonWhite } from '../base/forms/Button';
+import { ButtonWhite, ButtonLink } from '../base/forms/Button';
 import CreateFlagModal from '../modals/CreateFlag';
 import { Google } from '../../project/auth';
 
@@ -210,16 +210,14 @@ const HomePage = class extends React.Component {
                                                         </button>
                                                         <div>
                                                             <Link to={`/signup${redirect}`} className="float-left">
-Not got
-                                                                    an account?
+                                                                <ButtonLink className="pt-4 pb-3 mt-2" buttonText={' Not got an account?'} />
                                                             </Link>
                                                             <Link
                                                               className="float-right"
                                                               to={`/password-recovery${redirect}`}
                                                               onClick={this.showForgotPassword}
                                                             >
-                                                                    Forgot
-                                                                    password?
+                                                                <ButtonLink className="pt-4 pb-3 mt-2" buttonText={'Forgot password?'} />
                                                             </Link>
                                                         </div>
                                                     </div>
