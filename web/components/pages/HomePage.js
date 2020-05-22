@@ -127,7 +127,7 @@ const HomePage = class extends React.Component {
                                               }}
                                             >
                                                 <div className="form-intro text-center">
-                                                    <h3 className="mb-4">Sign in</h3>
+                                                    <h3>Sign in</h3>
                                                     {!!oauths.length && (
                                                     <p>
                                                           Log in to your account with one of these services.

@@ -1,6 +1,37 @@
+@font-face {
+    font-family: 'ProximaNova-Regular';
+    src: url('/fonts/proxima-nova/ProximaNova-Regular.eot?') format('eot'),
+    url('/fonts/proxima-nova/ProximaNova-Regular.otf')  format('opentype'),
+    url('/fonts/proxima-nova/ProximaNova-Regular.woff') format('woff'),
+    url('/fonts/proxima-nova/ProximaNova-Regular.ttf')  format('truetype'),
+    url('/fonts/proxima-nova/ProximaNova-Regular.svg#ProximaNova-Regular') format('svg');
+}
+
+@font-face {
+    font-family: 'ProximaNova-Black';
+    src: url('/fonts/proxima-nova/ProximaNova-Black.eot?') format('eot'),
+    url('/fonts/proxima-nova/ProximaNova-Black.otf')  format('opentype'),
+    url('/fonts/proxima-nova/ProximaNova-Black.woff') format('woff'),
+    url('/fonts/proxima-nova/ProximaNova-Black.ttf')  format('truetype'),
+    url('/fonts/proxima-nova/ProximaNova-Black.svg#ProximaNova-Black') format('svg');
+}
+
+
+@font-face {
+    font-family: 'ProximaNova-Bold';
+    src: url('/fonts/proxima-nova/ProximaNova-Bold.eot?') format('eot'),
+    url('/fonts/proxima-nova/ProximaNova-Bold.otf')  format('opentype'),
+    url('/fonts/proxima-nova/ProximaNova-Bold.woff') format('woff'),
+    url('/fonts/proxima-nova/ProximaNova-Bold.ttf')  format('truetype'),
+    url('/fonts/proxima-nova/ProximaNova-Bold.svg#ProximaNova-Bold') format('svg');
+}
+
+
+
+
 h1,h2,h3,h4,h5,h6{
     color: $header-color;
-    font-family: $font-family-header, sans-serif;
+    font-family: $font-family-header;
 }
 
 * {
@@ -32,7 +63,7 @@ a.dark{
 p{
     color: #22354a;
     opacity: 0.85;
-    font-family: 'Proxima Nova';
+    font-family: $font-family;
 }
 
 .text {

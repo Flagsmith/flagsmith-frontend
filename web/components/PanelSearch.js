@@ -46,6 +46,7 @@ const PanelSearch = class extends Component {
                         onChange={e => (this.props.onChange ? this.props.onChange(e) : this.setState({ search: Utils.safeParseEventValue(e) }))}
                         type="text"
                         value={this.props.search || search}
+                        className="pl-4"
                       />
                       <span style={{ marginLeft: 10, position: 'absolute' }} className="icon ion-ios-search" />
                   </Row>

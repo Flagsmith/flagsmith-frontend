@@ -70,14 +70,14 @@ a, .btn, button{
     }
     
     &--link {
-        font-family: 'Proxima Nova';
+        font-family: $font-family;
         background: transparent;
         color: $bt-dark-green-alt;
         //text-decoration: underline;
         border: none;
         box-shadow: none;
         padding: 0;
-        height: 20px;
+        height: 25px;
         font-size: 15px;
         text-transform: inherit;
         line-height: 0px;
