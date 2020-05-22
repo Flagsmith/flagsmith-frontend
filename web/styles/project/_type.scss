@@ -3,6 +3,11 @@ h1,h2,h3,h4,h5,h6{
     font-family: $font-family-header, sans-serif;
 }
 
+* {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
 a.link-dark {
     color: $btn-primary-bg;
 }
@@ -32,9 +37,9 @@ p{
 
 .text {
     &__link {
-        color: $bt-dark-green;
+        color: $bt-dark-green-alt;
         &:hover {
-            color: lighten($bt-dark-green, 10)
+            color: lighten($bt-dark-green-alt, 10)
         }
     }
 }

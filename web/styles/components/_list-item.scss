@@ -4,6 +4,7 @@
 	padding-right: $input-padding-x;
 	padding-top: 10px;
 	padding-bottom: 10px;
+	transition: all .2s ease-in;
 
 	&:hover {
 		text-decoration: none;
@@ -16,7 +17,8 @@
 		font-size: 0.8em;
 	}
 	&.clickable:hover {
-		background: #f9f9f9;
+		background: $card-default;
+		box-shadow: $card-default;
 	}
 }
 

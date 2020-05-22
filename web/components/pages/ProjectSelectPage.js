@@ -104,10 +104,12 @@ const ProjectSelectPage = class extends Component {
                                                 }`}
                                               >
                                                   <Row>
-                                                      <Flex>
-                                                          {name}
+                                                      <Flex className="align-start">
+                                                          <ButtonLink>
+                                                              {name}
+                                                          </ButtonLink>
                                                       </Flex>
-                                                      <span className="icon ion-ios-arrow-forward list-item"/>
+                                                      <span className="text__link icon ion-ios-arrow-forward list-item"/>
                                                   </Row>
                                               </Link>
                                           )}

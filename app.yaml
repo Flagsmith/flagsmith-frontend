@@ -51,3 +51,7 @@ env_variables:
 env_variables:
   SLACK_TOKEN: undefined
   EVENTS_SLACK_CHANNEL: undefined
+
+env_variables:
+  SLACK_TOKEN: undefined
+  EVENTS_SLACK_CHANNEL: undefined

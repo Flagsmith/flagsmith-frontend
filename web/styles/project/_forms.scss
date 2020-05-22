@@ -49,29 +49,13 @@
     margin-bottom:1rem;
 }
 
-.homepage{
-    min-height: 100vh;
-    background-color: #f1f1f1;
-    .sign-up {
-        padding-top: 20px;
-        height: 100%;
-    }
-    .input-container{
-        margin-bottom:20px;
-    }
-}
+
 
 .hljs, .hljs-header {
     border-radius: $default-border-radius;
 }
 
-.btn-primary {
-    a {
-        &:hover {
-            text-decoration: none !important;
-        }
-    }
-}
+
 
 .__react_component_tooltip {
     z-index: 99999999 !important;

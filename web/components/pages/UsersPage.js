@@ -67,7 +67,10 @@ const UsersPage = class extends Component {
                             <div className="col-md-3 pr-0">
                                 <Permission level="environment" permission="ADMIN" id={environmentId}>
                                     {({ permission }) => (permission ? (
-                                        <Button className="float-right" data-test="show-create-feature-btn" id="show-create-feature-btn" onClick={this.newUser}>
+                                        <Button
+                                          className="float-right" data-test="show-create-feature-btn" id="show-create-feature-btn"
+                                          onClick={this.newUser}
+                                        >
                                       Create Users
                                         </Button>
                                     ) : (
@@ -117,8 +120,11 @@ const UsersPage = class extends Component {
                                                           <Link
                                                             to={`/project/${this.props.match.params.projectId}/environment/${this.props.match.params.environmentId}/users/${id}`}
                                                           >
-                                                              {identifier}
-                                                              <span className="ion-ios-arrow-forward ml-3"/>
+                                                              <ButtonLink>
+                                                                  {identifier}
+
+                                                                  <span className="ion-ios-arrow-forward ml-3"/>
+                                                              </ButtonLink>
 
                                                           </Link>
                                                       </Flex>

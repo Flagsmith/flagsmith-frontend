@@ -196,9 +196,9 @@ const FeaturesPage = class extends Component {
                                                                         onClick={() => permission && this.editFlag(projectFlag, environmentFlags[id])}
                                                                       >
                                                                           <Row>
-                                                                              <a href="#">
+                                                                              <ButtonLink>
                                                                                   {name}
-                                                                              </a>
+                                                                              </ButtonLink>
                                                                               <Column/>
                                                                           </Row>
                                                                           <div className="list-item-footer faint">
