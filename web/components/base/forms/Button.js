@@ -47,6 +47,14 @@ export const ButtonSecondary = class extends PureComponent {
     }
 };
 
+export const ButtonOutline= class extends PureComponent {
+    static displayName = 'ButtonOutline';
+
+    render() {
+        return <Button {...this.props} className={`btn--outline ${this.props.className || ''}`}/>;
+    }
+};
+
 export const ButtonWhite = class extends PureComponent {
     static displayName = 'ButtonWhite';
 

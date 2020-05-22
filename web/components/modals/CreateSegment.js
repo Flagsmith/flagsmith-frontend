@@ -144,9 +144,10 @@ const CreateSegment = class extends Component {
                       onClick={this.addRule} style={{ marginTop: 20 }}
                       className="text-center"
                     >
-                        <Button data-test="add-rule" type="button" className="btn btn--anchor">
+
+                        <ButtonOutline data-test="add-rule" type="button">
                             ADD RULE
-                        </Button>
+                        </ButtonOutline>
                     </div>
                 </div>
             </div>

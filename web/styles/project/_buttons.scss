@@ -58,7 +58,18 @@ a, .btn, button{
     }
 
     &--secondary{
-        background:#22354a;
+        background:$bt-brand-secondary;
+        &:hover {
+            background-color: lighten($bt-brand-secondary, 10);
+        }
+    }
+    &--outline{
+        background: white;
+        border: 2px solid $bt-brand-primary !important;
+        color: $bt-brand-primary;
+        &:hover {
+            background-color: white;
+        }
     }
     
     &--link {
