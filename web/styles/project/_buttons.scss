@@ -32,9 +32,6 @@ a, .btn, button{
     font-size: 16px;
     height:$input-height;
     //box-shadow:0 0 5px rgba(0,0,0,0.2);
-    
-    
-
     &:hover, &:disabled:hover {
         background: #29aaa8;
     }
@@ -80,7 +77,7 @@ a, .btn, button{
         border: none;
         box-shadow: none;
         padding: 0;
-        //height: auto;
+        height: 20px;
         font-size: 15px;
         text-transform: inherit;
         line-height: 0px;

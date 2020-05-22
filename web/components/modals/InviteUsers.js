@@ -110,7 +110,7 @@ const InviteUsers = class extends Component {
                             <p className="mt-5">
                                 Users without administrator privileges will need to be invited to individual projects.
                                 {' '}
-                                <a target="_blank" className="link-dark" href="https://docs.bullet-train.io/permissions/">Learn about User Roles.</a>
+                                <ButtonLink target="_blank" href="https://docs.bullet-train.io/permissions/">Learn about User Roles.</ButtonLink>
                             </p>
                             <div className="text-right mt-2">
                                 {error && <Error error={error}/>}

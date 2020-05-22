@@ -171,16 +171,20 @@ const EnvironmentSettingsPage = class extends Component {
                                             {this.props.hasFeature('webhooks') && (
                                                 <FormGroup className="m-y-3">
                                                     <Row className="mb-3" space>
-                                                        <h3 className="m-b-0">Feature Webhooks</h3>
-                                                        <Button onClick={this.createWebhook}>
+                                                        <div className="col-md-8">
+                                                            <h3 className="m-b-0">Feature Webhooks</h3>
+                                                            <p>
+                                                            Feature webhooks let you know when features have changed, you can configure 1 or more feature webhooks per environment.
+                                                                {' '}
+                                                                <ButtonLink href="https://docs.bullet-train.io/system-administration/">Learn about feature webhooks.</ButtonLink>
+                                                            </p>
+                                                        </div>
+                                                        <div className="col-md-4">
+                                                            <Button className="float-right" onClick={this.createWebhook}>
                                                         Create feature webhook
-                                                        </Button>
+                                                            </Button>
+                                                        </div>
                                                     </Row>
-                                                    <p>
-                                                        Feature webhooks let you know when features have changed, you can configure 1 or more feature webhooks per environment.
-                                                        {' '}
-                                                        <a target="_blank" className="link-dark" href="https://docs.bullet-train.io/system-administration/">Learn about feature webhooks.</a>
-                                                    </p>
                                                     {webhooksLoading && !webhooks ? (
                                                         <Loader/>
                                                     ) : (
