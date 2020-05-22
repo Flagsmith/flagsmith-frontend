@@ -51,7 +51,6 @@ const HomePage = class extends React.Component {
                 const id = invite.split('invite/')[1];
                 API.setInvite(id);
             }
-            Utils.scrollToSignUp();
         }
     }
 
