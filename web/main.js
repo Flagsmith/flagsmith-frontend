@@ -11,6 +11,11 @@ import routes from './routes';
 import AccountStore from '../common/stores/account-store';
 
 window.Project = require('../common/project');
+
+window.Project = {
+    ...window.Project,
+    ...projectOverrides, // environment.js (also app.yaml if using app engine)
+};
 window.Utils = require('../common/utils/utils');
 window.Constants = require('../common/constants');
 

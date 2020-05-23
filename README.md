@@ -48,6 +48,11 @@ npm run bundle
 npm start
 ```
 
+## ENV variables
+
+Variables that differ per environment are exported globally in ``common/project.js``. You can override these variables or add more by editing environment.js. 
+
+
 **E2E Testing**
 
 This project uses [Nightwatch](http://nightwatchjs.org/) for automated end to end testing with chromedriver.
