@@ -55,7 +55,7 @@ Variables that differ per environment are exported globally to ``window.Project 
 You can override each variable individually or add more by editing [environment.js](./environment.js). 
 
 
-**E2E Testing**
+## E2E testing
 
 This project uses [Nightwatch](http://nightwatchjs.org/) for automated end to end testing with chromedriver.
 
