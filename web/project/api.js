@@ -99,21 +99,16 @@ global.API = {
         bulletTrain.setTrait('email', id);
     },
     identify(id, user = {}) {
+        const orgs = (user && user.organisations && _.map(user.organisations, o => `${o.name} #${o.id}(${o.role})[${o.num_seats}]`).join(',')) || '';
         if (Project.mixpanel) {
             mixpanel.identify(id);
         }
         bulletTrain.identify(id);
         bulletTrain.setTrait('email', id);
-        if (window.fcWidget && window.fcWidget.user) {
-            const dto = {
-                email: id,
-                firstName: user.first_name,
-                lastName: user.last_name,
-                ...user,
-                // NAME(ROLE)[num_seats], NAME(ROLE)[num_seats]
-                organisations: _.map(user.organisations, o => `${o.name}(${o.role})[${o.num_seats}]`).join(','),
-            };
-            window.fcWidget.user.setProperties(dto);
+        if (window.$crisp) {
+            $crisp.push(['set', 'user:email', id]);
+            $crisp.push(['set', 'user:nickname', `${user.first_name} ${user.last_name}`]);
+            $crisp.push(['set', 'user:company', orgs]);
         }
     },
     register(email, firstName, lastName) {

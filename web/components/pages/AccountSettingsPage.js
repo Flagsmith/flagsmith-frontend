@@ -125,6 +125,7 @@ class TheComponent extends PureComponent {
                       </form>
                   </div>
               </div>
+              {AccountStore.model.auth_type === 'EMAIL' && (
               <div className="row">
                   <div className="col-md-4 col-lg-3 col-sm-12">
                       <h5>Change password</h5>
@@ -177,12 +178,13 @@ class TheComponent extends PureComponent {
                           )}
                           <div className="text-right">
                               <Button type="submit" disabled={isSaving || !new_password2 || !new_password1 || !current_password || (new_password1 !== new_password2)}>
-                          Save Password
+                        Save Password
                               </Button>
                           </div>
                       </form>
                   </div>
               </div>
+              )}
               <div className="row">
                   <div className="col-md-4 col-lg-3 col-sm-12">
 

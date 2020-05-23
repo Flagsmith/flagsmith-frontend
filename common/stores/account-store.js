@@ -24,8 +24,6 @@ const controller = {
                 if (API.getReferrer()) {
                     API.trackEvent(Constants.events.REFERRER_REGISTERED(API.getReferrer().utm_source));
                 }
-                API.alias(email);
-                API.register(email, first_name, last_name);
                 if (isInvite) {
                     return controller.onLogin();
                 }
@@ -113,7 +111,6 @@ const controller = {
                     API.trackEvent(Constants.events.LOGIN_DEMO);
                 } else {
                     API.trackEvent(Constants.events.LOGIN);
-                    API.identify(email);
                 }
                 if (res.ephemeral_token) {
                     store.ephemeral_token = res.ephemeral_token;
@@ -257,6 +254,7 @@ const controller = {
             store.organisation = user && user.organisations && user.organisations[0];
             AsyncStorage.setItem('user', JSON.stringify(store.model));
             if (!store.isDemo) {
+                API.alias(user.email);
                 API.identify(user && user.email, user);
             }
             store.loaded();
