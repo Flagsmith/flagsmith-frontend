@@ -50,7 +50,9 @@ npm start
 
 ## ENV variables
 
-Variables that differ per environment are exported globally in ``common/project.js``. You can override these variables or add more by editing environment.js. 
+Variables that differ per environment are exported globally to ``window.Project in`` [common/project.js](./common/project.js), this file gets replaced by a project.js located in [env](./env) by webpack based on what is set to the "ENV" environment variable (e.g. ENV=prod).
+ 
+You can override each variable individually or add more by editing [environment.js](./environment.js). 
 
 
 **E2E Testing**
