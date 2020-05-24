@@ -54,6 +54,14 @@ Variables that differ per environment are exported globally to ``window.Project 
  
 You can override each variable individually or add more by editing [environment.js](./environment.js). 
 
+Current variables used between [environment.js](./environment.js) and [common/project.js](./common/project.js):
+
+- API_URL: The API to hit for requests 
+- BULLET_TRAIN: The bullet train project we use to manage features
+- GA: Google analytics key
+- CRISP_CHAT: Chat widget key
+- MIXPANEL: Mixpanel analytics key
+- SENTRY: Sentry key
 
 ## E2E testing
 
