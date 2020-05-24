@@ -17,7 +17,6 @@ test:
         - if [ $CI_COMMIT_REF_NAME == "master" ]; then export ENV=prod; echo 'Setting env to' $ENV; npm run env; fi;
         - npm run test
     only:
-        - master
         - staging
         - develop
 
