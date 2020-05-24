@@ -7,5 +7,6 @@ module.exports = {
         mixpanel: process.env.MIXPANEL,
         sentry: process.env.SENTRY,
         api: process.env.API_URL,
+        assetURL: process.env.ASSET_URL,
     }),
 };

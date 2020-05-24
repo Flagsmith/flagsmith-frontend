@@ -17,6 +17,7 @@ env_variables:
   CRISP_CHAT: ${process.env.CRISP_CHAT}
   MIXPANEL: ${process.env.MIXPANEL}
   API_URL: ${process.env.API_URL}
+  ASSET_URL: ${process.env.ASSET_URL}
 `;
 
 fs.writeFileSync(src, str);
