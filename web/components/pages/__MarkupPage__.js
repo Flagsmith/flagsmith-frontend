@@ -1,17 +1,34 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-import { ButtonSecondary, ButtonWhite } from '../base/forms/Button';
+import { ButtonSecondary, ButtonWhite, ButtonLink } from '../base/forms/Button';
+import Tabs from '../base/forms/Tabs';
+import TabItem from '../base/forms/TabItem';
 import PricingPanel from '../PricingPanel';
+import ChipInput from '../ChipInput';
 
 export default class ExampleOne extends Component {
     static displayName = 'CreateOrganisastionPage'
 
     constructor(props, context) {
         super(props, context);
-        this.state = { name: '' };
+        this.state = { name: '', tab: '', text: '',
+            value: [], };
     }
 
+
     render() {
+        // We can inject some CSS into the DOM.
+        const styles = {
+            root: {
+                background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+                borderRadius: 3,
+                border: 0,
+                color: 'white',
+                height: 48,
+                padding: '0 30px',
+                boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+            },
+        };
         return (
             <div className="mt-5">
                 <div className="container">
@@ -29,7 +46,7 @@ export default class ExampleOne extends Component {
                             View and manage
                             {' '}
                             <Tooltip
-                              title={<a className="dark" href="#">feature flags</a>}
+                              title={<ButtonLink href="#" buttonText="feature flags" />}
                               place="right"
                             >
                                 {Constants.strings.FEATURE_FLAG_DESCRIPTION}
@@ -39,7 +56,7 @@ export default class ExampleOne extends Component {
                             {' '}
                             {' '}
                             <Tooltip
-                              title={<a className="dark" href="#">remote config</a>}
+                              title={<ButtonLink buttonText="remote config" />}
                               place="right"
                             >
                                 {Constants.strings.REMOTE_CONFIG_DESCRIPTION}
@@ -68,6 +85,8 @@ export default class ExampleOne extends Component {
                         <div className="colour-block colour-block--brand-orange"/>
                         <div className="colour-block colour-block--brand-purple"/>
                         <div className="colour-block colour-block--brand-red"/>
+                        <div className="colour-block colour-block--brand-pink"/>
+
 
                     </section>
 
@@ -78,8 +97,15 @@ export default class ExampleOne extends Component {
 
                             <ButtonSecondary className="mr-3">Secondary</ButtonSecondary>
 
-                            <ButtonWhite>White</ButtonWhite>
+                            <ButtonWhite className="mr-3">White</ButtonWhite>
 
+                            <ButtonOutline className="mr-3">Outline</ButtonOutline>
+
+                            <ButtonLink href="https://www.google.com/" buttonText="Text Button" />
+
+                            <Button className="btn btn--with-icon" icon="/images/icon-play.svg">
+                              Button with icon
+                            </Button>
                         </FormGroup>
 
                     </section>
@@ -87,17 +113,42 @@ export default class ExampleOne extends Component {
                     <section className="pt-5 pb-3">
                         <h2>Forms</h2>
 
-                        <Input
-                          inputProps={{
-                              name: 'firstName',
-                              className: 'full-width',
-                          }}
-                          className="input-default full-width"
-                          placeholder="First name"
-                          type="text"
-                          name="firstName" id="firstName"
-                        />
+                        <FormGroup>
+                            <Input
+                              inputProps={{
+                                  name: 'firstName',
+                                  className: 'full-width',
+                              }}
+                              className="input-default full-width"
+                              placeholder="First name"
+                              type="text"
+                              name="firstName" id="firstName"
+                            />
+                        </FormGroup>
 
+                        <FormGroup>
+                            <ChipInput
+                                placeholder="User1, User2, User3"
+                                inputStyle={{ border: '1px solid green', color: 'red' }}
+                                textFieldStyle={{ border: '1px solid red' }}
+                            />
+                            <ChipInput
+                                defaultValue={['foo', 'bar']}
+                                fullWidth
+                                chipRenderer={({ value, isFocused, isDisabled, handleClick, handleRequestDelete }, key) => (
+                                    <Chip
+                                        key={key}
+                                        style={{ margin: '8px 8px 0 0', float: 'left', pointerEvents: isDisabled ? 'none' : undefined }}
+                                        backgroundColor={isFocused ? 'red' : 'blue'}
+                                        onTouchTap={handleClick}
+                                        onRequestDelete={handleRequestDelete}
+                                    >
+                                        <Avatar size={32}>{value[0].toUpperCase()}</Avatar>
+                                        {value}
+                                    </Chip>
+                                )}
+                            />
+                        </FormGroup>
 
                         <FormGroup className="mt-3">
                             <InputGroup
@@ -111,12 +162,52 @@ export default class ExampleOne extends Component {
                             />
                         </FormGroup>
 
+                        <FormGroup className="mt-3">
+                            <Select
+                              data-test="select-segment"
+                              placeholder="Select a segment"
+                              value={0}
+                              styles={{
+                                  control: (base, state) => ({
+                                      ...base,
+                                      '&:hover': { borderColor: '#2cd6ca' }, // border style on hover
+                                      border: '1px solid #2cd6ca', // default border color
+                                      boxShadow: 'none', // no box-shadow
+                                  }),
+                              }}
+                            />
+                        </FormGroup>
+
 
                     </section>
 
                     <section className="pt-5 pb-3">
-                        <h2>Components</h2>
-                        <PricingPanel/>
+                        <h2 className="mb-5">Components</h2>
+
+                        <FormGroup>
+                            <h3>Panel</h3>
+                            <Panel title="Panel" className="mb-5" >
+                                Panel content
+                            </Panel>
+
+                        </FormGroup>
+
+                        <FormGroup>
+                            <Tabs value={this.state.tab}>
+                                <TabItem tabLabel="Hello">
+                                    <p>Tab 1 content</p>
+                                </TabItem>
+                                <TabItem tabLabel="Tab 2">
+                                    <p>Tab 2 content</p>
+                                </TabItem>
+                            </Tabs>
+
+
+                        </FormGroup>
+
+                        <FormGroup>
+                            <PricingPanel/>
+                        </FormGroup>
                     </section>
 
                 </div>

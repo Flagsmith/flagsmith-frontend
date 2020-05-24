@@ -14,6 +14,13 @@ const Button = class extends PureComponent {
               className={`btn ${this.props.className || ''}`}
             >
                 {this.props.children}
+                {this.props.icon ? (
+                    <React.Fragment>
+                        <img className="btn__icon btn__icon--small" src={this.props.icon || "/images/icon-play.svg"} alt="Run"/>
+                    </React.Fragment>
+                ) : (
+                    null
+                )}
             </button>
         );
     }
@@ -28,7 +35,7 @@ export default class extends PureComponent {
     static displayName = 'Button';
 
     render() {
-        return <Button {...this.props} className={`btn-primary ${this.props.className || ''}`}/>;
+        return <Button {...this.props} className={`${this.props.className || ''}`}/>;
     }
 }
 
@@ -40,10 +47,30 @@ export const ButtonSecondary = class extends PureComponent {
     }
 };
 
+export const ButtonOutline= class extends PureComponent {
+    static displayName = 'ButtonOutline';
+
+    render() {
+        return <Button {...this.props} className={`btn--outline ${this.props.className || ''}`}/>;
+    }
+};
+
 export const ButtonWhite = class extends PureComponent {
     static displayName = 'ButtonWhite';
 
     render() {
         return <Button {...this.props} className={`white ${this.props.className || ''}`}/>;
+    }
+};
+
+export const ButtonLink = class extends PureComponent {
+    static displayName = 'ButtonLink';
+
+    render() {
+        return (
+            <Button {...this.props} className={`btn--link ${this.props.className || ''}`}>
+                <a className="btn--link" target={this.props.target} href={this.props.href}>{this.props.buttonText}{this.props.children}</a>
+            </Button>
+        );
     }
 };

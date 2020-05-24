@@ -122,6 +122,7 @@ const CreateFlag = class extends Component {
                         {({ isLoading, isSaving, error }, { createFlag, editFlag }) => (
                             <form
                               id="create-feature-modal"
+                              className="mt-4"
                               onSubmit={(e) => {
                                   e.preventDefault();
                                   const func = isEdit ? editFlag : createFlag;

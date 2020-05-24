@@ -283,7 +283,7 @@ const OrganisationSettingsPage = class extends Component {
                                                         <br/>
                                                         Users without an admin role will need to have their permissions managed per project and environment.
                                                         {' '}
-                                                        <a target="_blank" className="link-dark" href="https://docs.bullet-train.io/permissions/">Learn about User Roles.</a>
+                                                        <ButtonLink href="https://docs.bullet-train.io/permissions/">Learn about User Roles.</ButtonLink>
                                                     </p>
                                                 )}
                                             </div>
@@ -450,7 +450,7 @@ const OrganisationSettingsPage = class extends Component {
                                 <p>
                                   Audit webhooks let you know when audit logs occur, you can configure 1 or more audit webhooks per organisation.
                                     {' '}
-                                    <a target="_blank" className="link-dark" href="https://docs.bullet-train.io/system-administration/">Learn about audit webhooks.</a>
+                                   <ButtonLink href="https://docs.bullet-train.io/system-administration/">Learn about audit webhooks.</ButtonLink>
                                 </p>
                                 {webhooksLoading && !webhooks ? (
                                     <Loader/>

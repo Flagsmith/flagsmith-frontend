@@ -6,7 +6,8 @@ import Footer from '../Footer';
 import Popover from '../base/Popover';
 import 'lazyframe/dist/lazyframe.css';
 import PricingPanel from '../PricingPanel';
-import { ButtonWhite } from '../base/forms/Button';
+import Card from '../Card';
+import { ButtonWhite, ButtonLink } from '../base/forms/Button';
 import CreateFlagModal from '../modals/CreateFlag';
 import { Google } from '../../project/auth';
 
@@ -43,7 +44,13 @@ const HomePage = class extends React.Component {
         API.trackPage(Constants.pages.HOME);
 
         if (document.location.href.indexOf('invite') != -1) {
-            Utils.scrollToSignUp();
+            const invite = Utils.fromParam().redirect;
+
+            if (invite.includes('invite')) {
+                // persist invite incase user changes page or logs in with oauth
+                const id = invite.split('invite/')[1];
+                API.setInvite(id);
+            }
         }
     }
 
@@ -59,13 +66,13 @@ const HomePage = class extends React.Component {
         const { email, password, organisation_name, first_name, last_name } = this.state;
         const redirect = Utils.fromParam().redirect ? `?redirect=${Utils.fromParam().redirect}` : '';
         const isInvite = document.location.href.indexOf('invite') != -1;
-        const isSignup = (isInvite && document.location.href.indexOf('login')===-1) || document.location.href.indexOf('signup') != -1;
+        const isSignup = (isInvite && document.location.href.indexOf('login') === -1) || document.location.href.indexOf('signup') != -1;
 
         console.log(this.props);
         const oauths = [];
         if (this.props.getValue('oauth_github')) {
             oauths.push((
-                <a key="github" className="oauth oauth-github" href={JSON.parse(this.props.getValue('oauth_github')).url}>
+                <a key="github" className="btn btn__oauth btn__oauth--github" href={JSON.parse(this.props.getValue('oauth_github')).url}>
                     <img src="/images/github.svg"/> GitHub
                 </a>
             ));
@@ -75,7 +82,7 @@ const HomePage = class extends React.Component {
             Google.init(apiKey, clientId);
             oauths.push((
                 <a
-                  key="github" className="oauth oauth-google" onClick={() => {
+                  key="github" className="btn btn__oauth btn__oauth--google" onClick={() => {
                       Google.login().then((res) => {
                           if (res) {
                               document.location = `${document.location.origin}/oauth/google?code=${res}`;
@@ -90,7 +97,7 @@ const HomePage = class extends React.Component {
         if (this.props.getValue('oauth_microsoft')) {
             oauths.push((
                 <a
-                  key="microsoft" className="oauth oauth-microsoft"
+                  key="microsoft" className="btn btn__oauth btn__oauth--microsoft"
                   ref={JSON.parse(this.props.getValue('oauth_microsoft')).url}
                 >
                     <img src="/images/microsoft.svg"/> Microsoft
@@ -99,7 +106,7 @@ const HomePage = class extends React.Component {
         }
         if (this.props.hasFeature('oauth-google')) {
             oauths.push((
-                <a key="google" className="oauth oauth-google" href={Project.oauth.google.url}>
+                <a key="google" className="btn btn__oauth btn__oauth--google" href={Project.oauth.google.url}>
                     <img src="/images/google.svg"/>
                 </a>
             ));
@@ -107,10 +114,10 @@ const HomePage = class extends React.Component {
         return (
             <AccountProvider onLogout={this.onLogout} onLogin={this.onLogin}>
                 {({ isLoading, isSaving, error }, { register }) => (
-                    <div className="homepage">
-                        <div className="sign-up" id="sign-up">
+                    <div className="fullscreen-container fullscreen-container__grey">
+                        <div className="sign-up offset-lg-4 col-lg-4 col-md-8 offset-md-2" id="sign-up">
                             {!isSignup ? (
-                                <div className="card signup-form container">
+                                <Card>
                                     <AccountProvider>
                                         {({ isLoading, isSaving, error }, { login }) => (
                                             <form
@@ -120,7 +127,7 @@ const HomePage = class extends React.Component {
                                               }}
                                             >
                                                 <div className="form-intro text-center">
-                                                    <h3 className="mb-4">Sign in</h3>
+                                                    <h3>Sign in</h3>
                                                     {!!oauths.length && (
                                                     <p>
                                                           Log in to your account with one of these services.
@@ -169,12 +176,12 @@ const HomePage = class extends React.Component {
                                                       type="text"
                                                       name="email" id="email"
                                                     />
-                                                    {error && error.password1 ? (
+                                                    {error && error.password ? (
                                                         <span
                                                           id="password-error"
                                                           className="text-danger"
                                                         >
-                                                            {error.password1}
+                                                            {error.password}
                                                         </span>
                                                     ) : null}
                                                     <InputGroup
@@ -182,7 +189,7 @@ const HomePage = class extends React.Component {
                                                       inputProps={{
                                                           name: 'password',
                                                           className: 'full-width',
-                                                          error: error && error.password1,
+                                                          error: error && error.password,
                                                       }}
                                                       onChange={(e) => {
                                                           this.setState({ password: Utils.safeParseEventValue(e) });
@@ -203,16 +210,14 @@ const HomePage = class extends React.Component {
                                                         </button>
                                                         <div>
                                                             <Link to={`/signup${redirect}`} className="float-left">
-Not got
-                                                                    an account?
+                                                                <ButtonLink className="pt-4 pb-3 mt-2" buttonText=" Not got an account?" />
                                                             </Link>
                                                             <Link
                                                               className="float-right"
                                                               to={`/password-recovery${redirect}`}
                                                               onClick={this.showForgotPassword}
                                                             >
-                                                                    Forgot
-                                                                    password?
+                                                                <ButtonLink className="pt-4 pb-3 mt-2" buttonText="Forgot password?" />
                                                             </Link>
                                                         </div>
                                                     </div>
@@ -226,28 +231,47 @@ Not got
                                             </form>
                                         )}
                                     </AccountProvider>
-                                </div>
+                                </Card>
                             ) : (
-                                <div>
-                                    <div className="card signup-form container">
+                                <React.Fragment>
+
+                                    <Card>
                                         <form
                                           id="form" name="form" onSubmit={(e) => {
                                               Utils.preventDefault(e);
                                               const isInvite = document.location.href.indexOf('invite') != -1;
-                                              register({ email, password, organisation_name, first_name, last_name },
-                                                  isInvite);
+                                              register({
+                                                  email,
+                                                  password,
+                                                  organisation_name,
+                                                  first_name,
+                                                  last_name,
+                                              },
+                                              isInvite);
                                           }}
                                         >
 
                                             <div className="form-intro text-center">
                                                 <h3>It's free to get started.</h3>
                                                 {!isInvite && (
-                                                <p>We have a 100% free for life plan for smaller projects. <a target="_blank" href="https://bullet-train.io/pricing">
-                                                    <br/>Check out our Pricing
-                                                </a>
-                                                </p>
+                                                    <React.Fragment>
+                                                        <p className="mb-0">We have a 100% free for life plan for smaller projects.</p>
+                                                        <ButtonLink
+                                                          className="pt-3 pb-3"
+                                                          buttonText="Check out our Pricing"
+                                                          href="https://bullet-train.io/pricing"
+                                                          target="_blank"
+                                                        />
+                                                    </React.Fragment>
                                                 )}
                                             </div>
+
+                                            {!!oauths.length && (
+                                                <Row style={{ justifyContent: 'center' }}>
+                                                    {oauths}
+                                                </Row>
+                                            )}
+
                                             {error
                                             && (
                                                 <FormGroup>
@@ -258,7 +282,7 @@ Not got
                                             )
                                             }
                                             {isInvite
-                                                && (
+                                            && (
                                                 <div className="notification flex-row">
                                                     <span
                                                       className="notification__icon ion-md-information-circle-outline mb-3"
@@ -267,7 +291,7 @@ Not got
                                                         invite
                                                     </p>
                                                 </div>
-                                                )
+                                            )
                                             }
                                             <fieldset id="details" className="">
                                                 <InputGroup
@@ -342,12 +366,12 @@ Not got
                                                   id="email"
                                                 />
 
-                                                {error && error.password1 ? (
+                                                {error && error.password ? (
                                                     <span
                                                       id="password-error"
                                                       className="text-danger"
                                                     >
-                                                        {error.password1}
+                                                        {error.password}
                                                     </span>
                                                 ) : null}
                                                 <InputGroup
@@ -356,7 +380,7 @@ Not got
                                                   inputProps={{
                                                       name: 'password',
                                                       className: 'full-width',
-                                                      error: error && error.password1,
+                                                      error: error && error.password,
                                                   }}
                                                   onChange={(e) => {
                                                       this.setState({ password: Utils.safeParseEventValue(e) });
@@ -377,13 +401,17 @@ Not got
                                                         Sign Up
                                                     </Button>
                                                     <Link id="existing-member-btn" to={`/login${redirect}`}>
-                                                        Already a member?
+                                                        <ButtonLink
+                                                            className="mt-4 pb-3 pt-2"
+                                                            buttonText="Already a member?"
+                                                        />
                                                     </Link>
                                                 </div>
                                             </fieldset>
                                         </form>
-                                    </div>
-                                </div>
+                                    </Card>
+
+                                </React.Fragment>
                             )}
                         </div>
                     </div>

@@ -4,16 +4,19 @@
 	display: flex;
 	flex-direction: row;
 	background-color: #f1f1f1;
-	border-top-left-radius: 15px;
-	border-top-right-radius: 15px;
+	border-top-left-radius: $border-radius-default;
+	border-top-right-radius: $border-radius-default;
+	.tab-text {
+		font-weight: 600;
+	}
 	button,button.btn,button.btn-primary {
 		border-radius: 0 !important;
 		box-shadow: none;
 		&:first-child {
-			border-top-left-radius: 15px !important;
+			border-top-left-radius: $border-radius-default !important;
 		}
 		&:last-child {
-			border-top-right-radius: 15px !important;
+			border-top-right-radius: $border-radius-default !important;
 		}
 		flex:1;
 		background-color: transparent;
@@ -27,13 +30,9 @@
 			background: #dedede !important;
 			box-shadow: none;
 		}
-		font-weight: $input-font-weight;
 		min-height: 34px;
-		&.active {
-			font-weight: 500;
-		}
 		&.tab-active {
-			background: #e8e8e8;
+			background: #36a39c;
 		}
 	}
 }
@@ -53,16 +52,16 @@
 .tabs.pill {
 	.btn.btn-tab {
 		&:first-child{
-			border-top-left-radius: 15px;
-			border-bottom-left-radius: 15px;
+			border-top-left-radius: $border-radius-default;
+			border-bottom-left-radius: $border-radius-default;
 		}
 		&:last-child {
-			border-top-right-radius: 15px;
-			border-bottom-right-radius: 15px;
+			border-top-right-radius: $border-radius-default;
+			border-bottom-right-radius: $border-radius-default;
 		}
 	}
 	.tabs-nav {
-		border-radius: 15px;
+		border-radius: $border-radius-default;
 	}
 	.tab-line {
 		display: none;
@@ -70,14 +69,14 @@
 }
 	.btn.btn-tab {
 		&:first-child{
-			border-top-left-radius: 15px;
+			border-top-left-radius: $border-radius-default;
 		}
 		&:last-child {
-			border-top-right-radius: 15px;
+			border-top-right-radius: $border-radius-default;
 		}
 		color: $tab-inactive-color;
 		&.tab-active {
-			color: $tab-active-color;
+			color: white;
 		}
 	}
 

@@ -6,6 +6,15 @@ a, .btn, button{
         outline:none;
     }
 }
+
+.btn-primary {
+    a {
+        &:hover {
+            text-decoration: none !important;
+        }
+    }
+}
+
 .btn, button.btn{
     outline: none !important;
     background: #1c9997;
@@ -22,8 +31,7 @@ a, .btn, button{
     font-weight: 700;
     font-size: 16px;
     height:$input-height;
-    box-shadow:0 0 5px rgba(0,0,0,0.2);
-
+    //box-shadow:0 0 5px rgba(0,0,0,0.2);
     &:hover, &:disabled:hover {
         background: #29aaa8;
     }
@@ -33,10 +41,10 @@ a, .btn, button{
     &:disabled {
         box-shadow: none;
     }
-    &:active,&:focus{
-        background: #098783 !important;
-        box-shadow:0 0 10px rgba(0,0,0,0.5);
-    }
+    //&:active,&:focus{
+    //    background: #098783;
+    //    box-shadow:0 0 10px rgba(0,0,0,0.5);
+    //}
     &.white{
         background:#fff;
         color:black;
@@ -47,7 +55,40 @@ a, .btn, button{
     }
 
     &--secondary{
-        background:#22354a;
+        background:$bt-brand-secondary;
+        &:hover {
+            background-color: lighten($bt-brand-secondary, 10);
+        }
+    }
+    &--outline{
+        background: white;
+        border: 2px solid $bt-brand-primary !important;
+        color: $bt-brand-primary;
+        &:hover {
+            background-color: white;
+        }
+    }
+    
+    &--link {
+        font-family: $font-family;
+        background: transparent;
+        color: $bt-dark-green-alt;
+        //text-decoration: underline;
+        border: none;
+        box-shadow: none;
+        padding: 0;
+        height: 25px;
+        font-size: 15px;
+        text-transform: inherit;
+        line-height: 0px;
+        font-weight: 600;
+        &:hover, &:focus  {
+            color: darken($bt-dark-green-alt, 10);
+            background: transparent;
+            text-decoration: underline;
+            border: none;
+            box-shadow: none;
+        }
     }
 
 
@@ -79,10 +120,10 @@ a, .btn, button{
         height:auto;
         line-height: 1;
 
-        &:hover{
-            background:none;
-            color:darken(#2cd6ca,5);
-            box-shadow: none;
+        &:hover, &:focus {
+            background:none !important;
+            color:darken($bt-brand-primary, 10) !important;
+            box-shadow: none !important;
         }
     }
 
@@ -95,19 +136,75 @@ a, .btn, button{
             height:20px;
         }
     }
+    &__oauth {
+        margin-right: 20px;
+        &:last-child {
+            margin-right: 0;
+        }
+        border-radius: $border-radius-default;
+        display: inline-block;
+        color: #000 !important;
+        font-weight: bold;
+        width: 150px;
+        &:hover {
+            text-decoration: none;
+        }
+        user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        -moz-user-select: none;
+        img {
+            height: 24px;
+        }
+        margin-top: 10px;
+        margin-bottom: 20px;
+        &--github {
+            background-color: $github;
+            &:hover {
+                background-color: darken($github, 5);
+            }
+        }
+        &--google {
+            background-color: $google;
+            color:white !important;
+            &:hover {
+                background-color: lighten($google, 5);
+            }
+        }
+        &--microsoft {
+            background-color: #339af4;
+            color: white !important;
+            &:hover {
+                background-color: #327ed6;
+            }
+            img{
+                height: 20px;
+            }
+        }
+    }
 }
 
 .pill{
     .btn:first-child{
-        border-bottom-left-radius:15px!important;
-        border-top-left-radius:15px!important;
+        border-bottom-left-radius:$border-radius-default!important;
+        border-top-left-radius:$border-radius-default!important;
         border-bottom-right-radius:0!important;
         border-top-right-radius:0!important;
     }
     .btn:last-child{
-        border-bottom-right-radius:15px!important;
-        border-top-right-radius:15px!important;
+        border-bottom-right-radius:$border-radius-default!important;
+        border-top-right-radius:$border-radius-default!important;
         border-bottom-left-radius:0!important;
         border-top-left-radius:0!important;
+    }
+}
+
+
+@include media-breakpoint-down(sm) {
+    .btn {
+        &__md-full {
+            width: 100%;
+            background-color: red;
+        }
     }
 }

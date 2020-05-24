@@ -133,9 +133,9 @@ const UserPage = class extends Component {
                                                                 className="flex flex-1"
                                                               >
                                                                   <Row>
-                                                                      <a href="#">
+                                                                        <ButtonLink>
                                                                           {name}
-                                                                      </a>
+                                                                        </ButtonLink>
                                                                   </Row>
                                                                   {featureIsDifferent ? (
                                                                       <Row className="chip">

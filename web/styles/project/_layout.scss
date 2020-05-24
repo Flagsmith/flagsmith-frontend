@@ -1,0 +1,16 @@
+.app-container {
+    margin-top: 6em;
+    margin-bottom: 70px;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.fullscreen-container {
+    min-height: 100vh;
+    align-items: center;
+    display: flex;
+    &__grey {
+        background-color: #f1f1f1;
+    }
+}

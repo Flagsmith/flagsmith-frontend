@@ -67,6 +67,11 @@
 }
 
 
+.align-start {
+    align-items: flex-start;
+}
+
+
 .colour-block {
     width: 30px;
     height: 30px;
@@ -100,6 +105,9 @@
     }
     &--brand-red {
         background-color: $bt-brand-red;
+    }
+    &--brand-pink {
+        background-color: #ff9aaf;
     }
     &--python {
         background-color: #3572A5;

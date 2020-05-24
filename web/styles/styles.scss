@@ -4,6 +4,7 @@
 @import "flexbox/index";
 @import "project/index";
 @import "project/segments";
+@import "project/tabs";
 
 bold,strong {
     font-weight: bold;
@@ -17,60 +18,9 @@ bold,strong {
     color: $text-muted;
     font-size: 0.8em;
 }
-.oauth {
-    margin-right: 20px;
-    &:last-child {
-        margin-right: 0;
-    }
-    border-radius: 4px;
-    display: inline-block;
-    padding-right: 20px;
-    //color: white !important;
-    height: 44px;
-    text-align: center;
-    line-height: 44px;
-    border-radius: 22px;
-    color: #000 !important;
-    font-weight: bold;
-    width: 150px;
-    &:hover {
-        text-decoration: none;
-    }
-    user-select: none;
-    -webkit-user-select: none;
-    -ms-user-select: none;
-    -moz-user-select: none;
-    img {
-        margin: 0 5px 0 20px;
-        height: 24px;
-        margin-bottom: 5px;
-    }
-    margin-top: 10px;
-    margin-bottom: 20px;
-}
-.oauth-github {
-    background-color: #eeefee;
-    &:hover {
-        background-color: #dbdcdb;
-    }
-}
-.oauth-microsoft {
-    background-color: #339af4;
-    color: white !important;
-    &:hover {
-        background-color: #327ed6;
-    }
-    img{
-        height: 20px;
-    }
-}
-.oauth-google {
-    background-color: #c53d23;
-    color:white !important;
-}
-.oauth-facebook {
-    background-color: #3a5696;
-}
+
+
+
 .faint-lg {
     color: $text-muted;
     font-size: 1.25em;
@@ -188,14 +138,6 @@ input:disabled {
 
 .inline-block {
     display: inline-block;
-}
-
-.app-container {
-    margin-top: 70px;
-    margin-bottom: 70px;
-    -webkit-transition: all 0.3s ease;
-    -moz-transition: all 0.3s ease;
-    transition: all 0.3s ease;
 }
 
 hr {

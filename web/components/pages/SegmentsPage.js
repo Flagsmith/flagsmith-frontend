@@ -202,15 +202,11 @@ const SegmentsPage = class extends Component {
                                                     <p>
                                                         You can create a segment that targets
                                                         {' '}
-                                                        <a
-                                                          href="https://docs.bullet-train.io/managing-identities/#identity-traits"
-                                                          target="new"
-                                                        >
-User Traits
-                                                        </a>
+                                                        <ButtonLink href="https://docs.bullet-train.io/managing-identities/#identity-traits"
+                                                                    target="new">User Traits</ButtonLink>
                                                         .
                                                         As user's traits are updated they will automatically be added to
-                                                        the segments based on the rules you create. <a href="https://docs.bullet-train.io/managing-segments/">Check out the documentation on Segments</a>.
+                                                        the segments based on the rules you create. <ButtonLink href="https://docs.bullet-train.io/managing-segments/">Check out the documentation on Segments</ButtonLink>.
                                                     </p>
                                                 </Panel>
                                             </FormGroup>

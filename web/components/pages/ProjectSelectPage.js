@@ -42,16 +42,20 @@ const ProjectSelectPage = class extends Component {
                     {({ isLoading, name, projects, users }) => (
                         <div>
                             {projects && projects.length ? (
-                                <div>
-                                    <Button onClick={this.newProject} className="float-right">
-                                        Create Project
-                                    </Button>
-                                    <h3>Your projects</h3>
-                                    <p>
-                                        Projects let you create and manage a set of features and configure them between
-                                        multiple
-                                        app environments.
-                                    </p>
+                                <div className="flex-row pl-0 pr-0">
+                                    <div className="col-md-9 pl-0 pr-0">
+                                        <h3>Your projects</h3>
+                                        <p>
+                                            Projects let you create and manage a set of features and configure them between
+                                            multiple
+                                            app environments.
+                                        </p>
+                                    </div>
+                                    <div className="col-md-3 pl-0 pr-0">
+                                        <Button className="float-right btn__md-full mb-md-0 mb-3" onClick={this.newProject}>
+                                            Create Project
+                                        </Button>
+                                    </div>
                                 </div>
                             ) : isAdmin ? (
                                 <div className="text-center">
@@ -84,7 +88,7 @@ const ProjectSelectPage = class extends Component {
 
                             {(isLoading || !projects) && <div className="centered-container"><Loader/></div>}
                             {!isLoading && (
-                                <div>
+                                <div className="conatiner">
                                     <FormGroup>
                                         <PanelSearch
                                           id="projects-list"
@@ -100,10 +104,12 @@ const ProjectSelectPage = class extends Component {
                                                 }`}
                                               >
                                                   <Row>
-                                                      <Flex>
-                                                          {name}
+                                                      <Flex className="align-start">
+                                                          <ButtonLink>
+                                                              {name}
+                                                          </ButtonLink>
                                                       </Flex>
-                                                      <span className="icon ion-ios-arrow-forward list-item"/>
+                                                      <span className="text__link icon ion-ios-arrow-forward list-item"/>
                                                   </Row>
                                               </Link>
                                           )}

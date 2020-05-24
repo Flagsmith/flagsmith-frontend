@@ -210,6 +210,30 @@ const AppActions = Object.assign({}, require('./base/_app-actions'), {
             id,
         });
     },
+    enableTwoFactor() {
+        Dispatcher.handleViewAction({
+            actionType: Actions.ENABLE_TWO_FACTOR,
+        });
+    },
+    disableTwoFactor() {
+        Dispatcher.handleViewAction({
+            actionType: Actions.DISABLE_TWO_FACTOR,
+        });
+    },
+    confirmTwoFactor(pin, onError) {
+        Dispatcher.handleViewAction({
+            actionType: Actions.CONFIRM_TWO_FACTOR,
+            pin,
+            onError,
+        });
+    },
+    twoFactorLogin(pin, onError) {
+        Dispatcher.handleViewAction({
+            actionType: Actions.TWO_FACTOR_LOGIN,
+            pin,
+            onError,
+        });
+    },
     getIdentities(envId) {
         Dispatcher.handleViewAction({
             actionType: Actions.GET_IDENTITIES,

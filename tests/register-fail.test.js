@@ -1,5 +1,5 @@
 const email = 'nightwatch@solidstategroup.com';
-const password = 'nightwatch';
+const password = 'str0ngp4ssw0rd!';
 const url = `http://localhost:${process.env.PORT || 8080}/signup`;
 
 const fillOutForm = browser => browser
@@ -32,6 +32,8 @@ module.exports = {
         fillOutForm(browser)
             .clearValue('[name="password"]')
             .setValue('[name="password"]', 'abc123')
+            .clearValue('[name="email"]')
+            .setValue('[name="email"]', 'example@example.com')
             .click('button[name="signup-btn"]');
 
         browser.expect.element('#error-alert').to.be.visible;
@@ -41,6 +43,8 @@ module.exports = {
         fillOutForm(browser)
             .clearValue('[name="password"]')
             .setValue('[name="password"]', '12345678')
+            .clearValue('[name="email"]')
+            .setValue('[name="email"]', 'example@example.com')
             .click('button[name="signup-btn"]');
 
         browser.expect.element('#error-alert').to.be.visible;
@@ -48,6 +52,9 @@ module.exports = {
     },
     'Registration should fail with password too common error': function (browser) {
         fillOutForm(browser)
+            .clearValue('[name="email"]')
+            .setValue('[name="email"]', 'example@example.com')
+
             .clearValue('[name="password"]')
             .setValue('[name="password"]', 'abcd1234')
             .click('button[name="signup-btn"]');
