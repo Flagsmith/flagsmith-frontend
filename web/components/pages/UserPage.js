@@ -245,9 +245,9 @@ const UserPage = class extends Component {
                                                             className="flex flex-1"
                                                           >
                                                               <Row>
-                                                                  <a className={`js-trait-key-${i}`} href="#">
+                                                                  <ButtonLink className={`js-trait-key-${i}`} href="#">
                                                                       {trait_key}
-                                                                  </a>
+                                                                  </ButtonLink>
                                                               </Row>
                                                           </div>
                                                           <Row>

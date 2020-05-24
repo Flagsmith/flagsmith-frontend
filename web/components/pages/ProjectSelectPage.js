@@ -97,7 +97,7 @@ const ProjectSelectPage = class extends Component {
                                           items={projects}
                                           renderRow={({ id, name, environments }, i) => (
                                               <Link
-                                                key={id} className="list-item"
+                                                key={id} className="list-item clickable"
                                                 id={`project-select-${i}`}
                                                 to={`/project/${id}/environment/${environments && environments[0]
                                                     ? `${environments[0].api_key}/features` : 'create'
