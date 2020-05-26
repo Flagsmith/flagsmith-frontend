@@ -4,17 +4,14 @@ services:
   bullettrain:
     build:
       context: .
-      target: development
-      dockerfile: Dockerfile.dev
-    command: npm run dev
+    command: npm run start
     environment:
       - API_URL=http://localhost:8000/api/v1/
       - ASSET_URL=http://localhost:8080/
     ports:
       - '8080:8080'
     volumes:
-      - .:/srv/bt
-      - frontend_node_modules:/srv/bt/node_modules
+      - chat_node_modules:/srv/chat/node_modules
 
 volumes:
-  frontend_node_modules:
+  chat_node_modules:
