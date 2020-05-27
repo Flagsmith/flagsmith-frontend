@@ -119,7 +119,7 @@ const SegmentsPage = class extends Component {
                                                     <p>
                                                         Create and manage groups of users with similar traits. Segments can be used to override features within the features page for any environment.
                                                         {' '}
-                                                        <a target="_blank" className="link-dark" href="https://docs.bullet-train.io/permissions/">Learn about Segments.</a>
+                                                        <ButtonLink target="_blank" href="https://docs.bullet-train.io/permissions/">Learn about Segments.</ButtonLink>
                                                     </p>
                                                 </Flex>
                                                 {this.createSegmentPermission(perm => (
@@ -153,11 +153,11 @@ const SegmentsPage = class extends Component {
                                                             onClick={() => this.editSegment(segments[i])}
                                                           >
                                                               <Row>
-                                                                  <a href="#">
+                                                                 <ButtonLink>
                                                                       <span data-test={`segment-${i}-name`}>
                                                                           {name}
                                                                       </span>
-                                                                  </a>
+                                                                 </ButtonLink>
                                                               </Row>
                                                               <div className="list-item-footer faint">
                                                                     Created
