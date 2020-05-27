@@ -208,16 +208,16 @@ const EnvironmentSettingsPage = class extends Component {
                                                                 }} space className="list-item clickable cursor-pointer"
                                                                 key={webhook.id}
                                                               >
-                                                                  <Flex>
-                                                                      <a href="#">
+                                                                  <div>
+                                                                      <ButtonLink>
                                                                           {webhook.url}
-                                                                      </a>
+                                                                      </ButtonLink>
                                                                       <div className="list-item-footer faint">
                                                                           Created
                                                                           {' '}
                                                                           {moment(webhook.created_date).format('DD/MMM/YYYY')}
                                                                       </div>
-                                                                  </Flex>
+                                                                  </div>
                                                                   <Row>
                                                                       <Switch checked={webhook.enabled}/>
                                                                       <button
