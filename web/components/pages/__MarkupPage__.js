@@ -190,6 +190,10 @@ export default class ExampleOne extends Component {
                                 Panel content
                             </Panel>
 
+                            <Panel className="panel--grey mb-5" title="Panel Grey">
+                                Panel content
+                            </Panel>
+
                         </FormGroup>
 
                         <FormGroup>
