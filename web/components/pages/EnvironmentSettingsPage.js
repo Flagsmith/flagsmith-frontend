@@ -128,7 +128,7 @@ const EnvironmentSettingsPage = class extends Component {
                                     <div>
                                         <div className="panel--grey">
                                             <FormGroup>
-                                                <h5>Environment Name</h5>
+                                                <h3>Environment Name</h3>
                                                 <form onSubmit={this.saveEnv}>
                                                     <Row>
                                                         <Column className="m-l-0">

@@ -185,9 +185,9 @@ export default class EditPermissions extends PureComponent {
       // const { props } = this;
       return (
           <div className="mt-5">
-              <h5>
+              <h3>
                 Manage Permissions
-              </h5>
+              </h3>
               <p>
                   Bullet Train lets you manage fine-grained permissions for your projects and environments.
                   {' '}
@@ -201,11 +201,11 @@ export default class EditPermissions extends PureComponent {
                                   {isLoading && <div className="centered-container"><Loader/></div>}
                                   {!isLoading && (
                                   <div>
-                                      <FormGroup className="panel--grey">
+                                      <FormGroup className="panel no-pad panel--nested">
                                           <PanelSearch
                                             id="org-members-list"
                                             title="Members"
-                                            className="no-pad"
+                                            className="panel--transparent"
                                             items={users}
                                             renderRow={({ id, first_name, last_name, email, role }) => (
                                                 <Row
