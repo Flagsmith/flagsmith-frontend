@@ -71,7 +71,7 @@ const CreateEnvironmentPage = class extends Component {
                                                 {error && <Error error={error}/>}
                                                 <div className="text-right">
                                                     {permission ? (
-                                                        <Button id="create-env-btn" disabled={isSaving || !name}>
+                                                        <Button id="create-env-btn" className="mt-3" disabled={isSaving || !name}>
                                                             {isSaving ? 'Creating' : 'Create Environment'}
                                                         </Button>
                                                     ) : (

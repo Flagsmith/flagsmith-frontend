@@ -47,7 +47,7 @@ export default class TheComponent extends PureComponent {
                         renderSearchWithNoResults
                         id="users-list"
                         title="Groups"
-                        className="no-pad"
+                        className="panel--transparent"
                         icon="ion-md-people"
                         items={userGroups}
                         paging={userGroupsPaging}
@@ -95,7 +95,7 @@ export default class TheComponent extends PureComponent {
                             </Row>
                         )}
                         renderNoResults={(
-                            <FormGroup className="text-center">
+                            <FormGroup className="text-center pb-4">
                                       You have no groups in your organisation.
                             </FormGroup>
                 )}
