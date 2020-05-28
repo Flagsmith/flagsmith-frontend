@@ -65,13 +65,13 @@ export default class Rule extends PureComponent {
                     <div>
                         <Row noWrap>
                             {isLastRule ? (
-                                <Button
+                                <ButtonLink
                                   data-test={`${this.props['data-test']}-or`}
-                                  type="button" onClick={this.addRule} className="btn btn--anchor"
+                                  type="button" onClick={this.addRule}
                                   style={{ width: 40 }}
                                 >
-                                    OR
-                                </Button>
+                                    Or
+                                </ButtonLink>
                             ) : (
                                 <div style={{ width: 40 }} />
                             )}

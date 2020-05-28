@@ -146,7 +146,7 @@ const CreateSegment = class extends Component {
                     >
 
                         <ButtonOutline data-test="add-rule" type="button">
-                            ADD RULE
+                            Add Rule
                         </ButtonOutline>
                     </div>
                 </div>

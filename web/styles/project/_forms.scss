@@ -1,6 +1,5 @@
 .or-divider {
     color: #ccc;
-    text-transform: uppercase;
     font-weight: 400;
     font-size: 0.8em;
     line-height: 2em;
@@ -31,7 +30,7 @@
 
     input.input{
         border:1px solid #e4e9ee !important;
-        border-radius: $border-radius;
+        border-radius: $border-radius-default;
         text-indent: 15px;
         height:$input-height;
         &--wide{
