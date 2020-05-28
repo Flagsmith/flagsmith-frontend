@@ -49,7 +49,7 @@ const CreateProject = class extends Component {
                         />
                         {error && <Error error={error}/>}
                         <div className="text-right">
-                            <Button data-test="create-project-btn" id="create-project-btn" disabled={isSaving || !name}>
+                            <Button data-test="create-project-btn" className="mt-3" id="create-project-btn" disabled={isSaving || !name}>
                                 {isSaving ? 'Creating' : 'Create Project'}
                             </Button>
                         </div>

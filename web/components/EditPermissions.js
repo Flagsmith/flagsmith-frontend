@@ -201,7 +201,7 @@ export default class EditPermissions extends PureComponent {
                                   {isLoading && <div className="centered-container"><Loader/></div>}
                                   {!isLoading && (
                                   <div>
-                                      <FormGroup className="panel no-pad panel--nested">
+                                      <FormGroup className="panel no-pad pl-2 pr-2 panel--nested">
                                           <PanelSearch
                                             id="org-members-list"
                                             title="Members"
