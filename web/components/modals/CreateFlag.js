@@ -165,7 +165,7 @@ const CreateFlag = class extends Component {
                                     <span onClick={this.close} className="icon close ion-md-close"/>
                                 )}
 
-                                <FormGroup className="mb-4">
+                                <FormGroup className={isEdit ? 'mb-4 mr-3 ml-3' : 'mb-4'}>
                                     <InputGroup
                                       ref={e => this.input = e}
                                       data-test="featureID"
@@ -179,6 +179,7 @@ const CreateFlag = class extends Component {
                                       isValid={name && name.length}
                                       type="text" title={isEdit ? 'ID' : 'ID*'}
                                       placeholder="E.g. header_size"
+                                      // className={isEdit ? "mr-5" : ''}
                                     />
                                 </FormGroup>
                                 {type == 'CONFIG' ? (
@@ -195,7 +196,7 @@ const CreateFlag = class extends Component {
                                         />
                                     </FormGroup>
                                 ) : (
-                                    <FormGroup className="mb-4">
+                                    <FormGroup className={isEdit ? 'mb-4 mr-3 ml-3' : 'mb-4'}>
                                         <div>
                                             <label>{enabledString}</label>
                                         </div>
@@ -207,7 +208,7 @@ const CreateFlag = class extends Component {
                                     </FormGroup>
                                 )}
 
-                                <FormGroup className="mb-4">
+                                <FormGroup className={isEdit ? 'mb-4 mr-3 ml-3' : 'mb-4'} >
                                     <InputGroup
                                       value={description}
                                       data-test="featureDesc"
@@ -226,7 +227,7 @@ const CreateFlag = class extends Component {
                                 <Permission level="project" permission="ADMIN" id={this.props.projectId}>
                                     {({ permission: projectAdmin }) => projectAdmin && (
 
-                                    <FormGroup className="mb-4">
+                                    <FormGroup className="mb-4 mr-3 ml-3">
                                         <Panel
                                           icon="ion-ios-settings"
                                           title={(
@@ -254,7 +255,7 @@ const CreateFlag = class extends Component {
                                 {
                                     !identity
                                     && isEdit && (
-                                    <FormGroup>
+                                    <FormGroup className="mb-4 mr-3 ml-3">
                                         <PanelSearch
                                           id="users-list"
                                           title={(
@@ -314,7 +315,7 @@ const CreateFlag = class extends Component {
                                     )
                                 }
                                 {error && <Error error={error}/>}
-                                <div className={isEdit ? 'footer' : ''}>
+                                <div className={isEdit ? 'side-modal__footer pr-5' : ''}>
                                     {isEdit && (
                                     <div className="mb-3">
                                         {identity ? (

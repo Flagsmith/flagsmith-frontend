@@ -81,7 +81,16 @@ $side-width: 66%;
             transform: translate(0%, 0%) !important;
         }
     }
-    .footer {
+    //.footer {
+    //    position: fixed;
+    //    bottom: 0;
+    //    left: 0;
+    //    right: 0;
+    //    padding: 20px;
+    //    height:130px;
+    //    background-color: white;
+    //}
+    &__footer {
         position: fixed;
         bottom: 0;
         left: 0;
@@ -122,4 +131,12 @@ $side-width: 66%;
         }
     }
 
+}
+
+@media (min-height: 850px) and (max-height: 1500px) {
+    .side-modal {
+        &__footer {
+           height: 300px;
+        }
+    }
 }
