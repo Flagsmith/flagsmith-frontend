@@ -33,7 +33,7 @@ module.exports = {
             .clearValue('[name="password"]')
             .setValue('[name="password"]', 'abc123')
             .clearValue('[name="email"]')
-            .setValue('[name="email"]', 'example@example.com')
+            .setValue('[name="email"]', 'example1234567@example.com')
             .click('button[name="signup-btn"]');
 
         browser.expect.element('#error-alert').to.be.visible;
@@ -44,7 +44,7 @@ module.exports = {
             .clearValue('[name="password"]')
             .setValue('[name="password"]', '12345678')
             .clearValue('[name="email"]')
-            .setValue('[name="email"]', 'example@example.com')
+            .setValue('[name="email"]', 'example1234567@example.com')
             .click('button[name="signup-btn"]');
 
         browser.expect.element('#error-alert').to.be.visible;
@@ -53,7 +53,7 @@ module.exports = {
     'Registration should fail with password too common error': function (browser) {
         fillOutForm(browser)
             .clearValue('[name="email"]')
-            .setValue('[name="email"]', 'example@example.com')
+            .setValue('[name="email"]', 'example1234567@example.com')
 
             .clearValue('[name="password"]')
             .setValue('[name="password"]', 'abcd1234')
