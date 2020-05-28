@@ -252,7 +252,7 @@ export default class EditPermissions extends PureComponent {
                       </OrganisationProvider>
                   </TabItem>
                   <TabItem tabLabel="Groups">
-                      <FormGroup className="panel--grey">
+                      <FormGroup className="panel no-pad pl-2 pr-2 panel--nested">
                           <UserGroupList orgId={AccountStore.getOrganisation().id} onClick={group => this.editGroupPermissions(group)}/>
                       </FormGroup>
                   </TabItem>
