@@ -201,13 +201,13 @@ const HomePage = class extends React.Component {
                                                       id="password"
                                                     />
                                                     <div className="form-cta">
-                                                        <button
-                                                          id="login-btn"
-                                                          disabled={isLoading || isSaving}
-                                                          className="btn full-width" type="submit"
-                                                        >
-                                                            Login
-                                                        </button>
+
+                                                        <Button
+                                                            id="login-btn"
+                                                            disabled={isLoading || isSaving}
+                                                            type="submit"
+                                                            className="mt-3 full-width">Login</Button>
+
                                                         <div>
                                                             <Link to={`/signup${redirect}`} className="float-left">
                                                                 <ButtonLink className="pt-4 pb-3 mt-2" buttonText=" Not got an account?" />
@@ -395,7 +395,7 @@ const HomePage = class extends React.Component {
                                                       data-test="signup-btn"
                                                       name="signup-btn"
                                                       disabled={isLoading || isSaving}
-                                                      className="full-width"
+                                                      className="full-width mt-3"
                                                       type="submit"
                                                     >
                                                         Sign Up

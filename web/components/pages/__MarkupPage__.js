@@ -177,8 +177,6 @@ export default class ExampleOne extends Component {
                               }}
                             />
                         </FormGroup>
-
-
                     </section>
 
                     <section className="pt-5 pb-3">
