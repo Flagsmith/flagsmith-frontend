@@ -177,8 +177,6 @@ export default class ExampleOne extends Component {
                               }}
                             />
                         </FormGroup>
-
-
                     </section>
 
                     <section className="pt-5 pb-3">
@@ -187,6 +185,10 @@ export default class ExampleOne extends Component {
                         <FormGroup>
                             <h3>Panel</h3>
                             <Panel title="Panel" className="mb-5" >
+                                Panel content
+                            </Panel>
+
+                            <Panel className="panel--grey mb-5" title="Panel Grey">
                                 Panel content
                             </Panel>
 
