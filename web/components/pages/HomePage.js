@@ -172,7 +172,7 @@ const HomePage = class extends React.Component {
                                                       onChange={(e) => {
                                                           this.setState({ email: Utils.safeParseEventValue(e) });
                                                       }}
-                                                      className="input-default full-width"
+                                                      className="input-default full-width mb-3 "
                                                       type="text"
                                                       name="email" id="email"
                                                     />
@@ -194,20 +194,20 @@ const HomePage = class extends React.Component {
                                                       onChange={(e) => {
                                                           this.setState({ password: Utils.safeParseEventValue(e) });
                                                       }}
-                                                      className="input-default full-width"
+                                                      className="input-default full-width mb-3"
                                                       type="password"
                                                       name="password"
                                                       data-test="password"
                                                       id="password"
                                                     />
                                                     <div className="form-cta">
-                                                        <button
-                                                          id="login-btn"
-                                                          disabled={isLoading || isSaving}
-                                                          className="btn full-width" type="submit"
-                                                        >
-                                                            Login
-                                                        </button>
+
+                                                        <Button
+                                                            id="login-btn"
+                                                            disabled={isLoading || isSaving}
+                                                            type="submit"
+                                                            className="mt-3 full-width">Login</Button>
+
                                                         <div>
                                                             <Link to={`/signup${redirect}`} className="float-left">
                                                                 <ButtonLink className="pt-4 pb-3 mt-2" buttonText=" Not got an account?" />
@@ -299,7 +299,7 @@ const HomePage = class extends React.Component {
                                                   data-test="firstName"
                                                   inputProps={{
                                                       name: 'firstName',
-                                                      className: 'full-width',
+                                                      className: 'full-width mb-3',
                                                       error: error && error.first_name,
                                                   }}
                                                   onChange={(e) => {
@@ -314,7 +314,7 @@ const HomePage = class extends React.Component {
                                                   data-test="lastName"
                                                   inputProps={{
                                                       name: 'lastName',
-                                                      className: 'full-width',
+                                                      className: 'full-width mb-3',
                                                       error: error && error.last_name,
                                                   }}
                                                   onChange={(e) => {
@@ -330,7 +330,7 @@ const HomePage = class extends React.Component {
                                                       data-test="companyName"
                                                       inputProps={{
                                                           name: 'companyName',
-                                                          className: 'full-width',
+                                                          className: 'full-width mb-3',
                                                       }}
                                                       onChange={(e) => {
                                                           this.setState({ organisation_name: Utils.safeParseEventValue(e) });
@@ -354,7 +354,7 @@ const HomePage = class extends React.Component {
                                                   data-test="email"
                                                   inputProps={{
                                                       name: 'email',
-                                                      className: 'full-width',
+                                                      className: 'full-width mb-3',
                                                       error: error && error.email,
                                                   }}
                                                   onChange={(e) => {
@@ -379,7 +379,7 @@ const HomePage = class extends React.Component {
                                                   data-test="password"
                                                   inputProps={{
                                                       name: 'password',
-                                                      className: 'full-width',
+                                                      className: 'full-width mb-3',
                                                       error: error && error.password,
                                                   }}
                                                   onChange={(e) => {
@@ -395,7 +395,7 @@ const HomePage = class extends React.Component {
                                                       data-test="signup-btn"
                                                       name="signup-btn"
                                                       disabled={isLoading || isSaving}
-                                                      className="full-width"
+                                                      className="full-width mt-3"
                                                       type="submit"
                                                     >
                                                         Sign Up

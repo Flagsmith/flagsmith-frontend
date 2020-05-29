@@ -57,7 +57,7 @@ const ConfirmRemoveFeature = class extends Component {
                             <Button
                               id="confirm-remove-feature-btn"
                               disabled={this.state.challenge != url}
-                              className="btn btn-primary"
+                              className="mt-3"
                             >
                                 Confirm changes
 
