@@ -21,8 +21,6 @@ COPY --from=development --chown=root:root /srv/bt/node_modules ./node_modules
 COPY . .
 
 ENV ENV prod
-RUN npm run env
-RUN npm run bundle
 
 EXPOSE 8080
-CMD [ "npm", "run", "start" ]
+CMD [ "./bin/docker/run-docker.sh" ]
