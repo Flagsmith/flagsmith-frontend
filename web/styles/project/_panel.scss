@@ -1,10 +1,7 @@
 .panel{
     border-radius:$border-radius-default;
-
-    //a{
-    //    color:#373a3c;
-    //}
-
+    box-shadow: $card-default;
+    border:1px solid #d6dbe0;
     input[type="text"] {
         background:#fff;
         opacity:1;
@@ -20,6 +17,24 @@
         padding:20px;
         
     }
+    &--transparent {
+        border: none;
+        background-color: transparent;
+        box-shadow: none;
+        //padding: 20px;
+        .panel-heading {
+            background-color: transparent;
+        }
+    }
+    &--nested {
+        border-top-left-radius: 0 !important;
+        border-top-right-radius: 0 !important;
+    }
+    
+    &--no-shadow {
+        box-shadow: none;
+    }
+    
     &__segments-achievements {
             border: 1px solid $bt-brand-primary !important;
 
@@ -38,8 +53,9 @@
 
 .plan{
     background:#fff;
-    border-radius: 4px;
-    box-shadow:rgba(75, 75, 75, 0.11) 0 1px 6px, rgba(75, 75, 75, 0.11) 0 1px 4px;
+    border-radius: $border-radius-default;
+    box-shadow: $card-default;
+    border:1px solid #d6dbe0;
     padding:10px;
     color:#5a5e63;
 
