@@ -5,7 +5,7 @@ services:
     build:
       context: .
       target: development
-      dockerfile: Dockerfile.dev
+      dockerfile: Dockerfile
     command: npm run dev
     environment:
       - API_URL=http://localhost:8000/api/v1/

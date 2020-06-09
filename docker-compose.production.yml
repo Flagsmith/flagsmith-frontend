@@ -4,14 +4,13 @@ services:
   bullettrain:
     build:
       context: .
-    command: npm run start
     environment:
       - API_URL=http://localhost:8000/api/v1/
       - ASSET_URL=http://localhost:8080/
     ports:
       - '8080:8080'
     volumes:
-      - chat_node_modules:/srv/chat/node_modules
+      - bt_node_modules:/srv/bt/node_modules
 
 volumes:
-  chat_node_modules:
+  bt_node_modules:

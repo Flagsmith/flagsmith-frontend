@@ -7,6 +7,7 @@ import each from 'lodash/each';
 import map from 'lodash/map';
 import filter from 'lodash/filter';
 import find from 'lodash/find';
+import orderBy from 'lodash/orderBy';
 import partial from 'lodash/partial';
 import cloneDeep from 'lodash/cloneDeep';
 import findIndex from 'lodash/findIndex';
@@ -27,7 +28,7 @@ window.isMobile = isMobile || $(window).width() <= 576;
 window.bulletTrain = bulletTrain;
 window.moment = require('moment/min/moment.min');
 
-window._ = { each, sortBy, filter, find, partial, findIndex, range, map, cloneDeep, keyBy, throttle, every, get };
+window._ = { each, sortBy, orderBy, filter, find, partial, findIndex, range, map, cloneDeep, keyBy, throttle, every, get };
 
 window.React = require('react');
 window.ReactDOM = require('react-dom');

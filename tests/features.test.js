@@ -60,11 +60,11 @@ module.exports = {
         browser
             .waitForElementNotPresent('#confirm-remove-feature-modal')
             .pause(200) // Additional wait here as it seems rc-switch can be unresponsive for a while
-            .waitAndClick(byId('feature-switch-1-off'))
+            .waitAndClick(byId('feature-switch-0-off'))
             .waitForElementPresent('#confirm-toggle-feature-modal')
             .waitAndClick('#confirm-toggle-feature-btn')
             .waitForElementNotPresent('#confirm-toggle-feature-modal')
-            .waitForElementVisible(byId('feature-switch-1-on'));
+            .waitForElementVisible(byId('feature-switch-0-on'));
     },
     '[Features Tests] - Try feature out': function (browser) {
         browser.waitForElementNotPresent('#confirm-toggle-feature-modal')
@@ -89,15 +89,15 @@ module.exports = {
     },
     '[Features Tests] - Change feature value to number': function (browser) {
         browser
-            .waitAndClick(byId('feature-item-0'))
+            .waitAndClick(byId('feature-item-1'))
             .waitForElementPresent('#create-feature-modal')
             .waitForElementVisible('[name="featureValue"]')
             .clearValue('[name="featureValue"]')
             .setValue('[name="featureValue"]', '12')
             .click('#update-feature-btn')
             .waitForElementNotPresent('#create-feature-modal')
-            .waitForElementVisible(byId('feature-value-0'))
-            .expect.element(byId('feature-value-0')).text.to.equal('12');
+            .waitForElementVisible(byId('feature-value-1'))
+            .expect.element(byId('feature-value-1')).text.to.equal('12');
     },
     '[Features Tests] - Try feature out should return numeric value': function (browser) {
         browser
@@ -127,15 +127,15 @@ module.exports = {
     },
     '[Features Tests] - Change feature value to boolean': function (browser) {
         browser
-            .waitAndClick(byId('feature-item-0'))
+            .waitAndClick(byId('feature-item-1'))
             .waitForElementPresent('#create-feature-modal')
             .waitForElementVisible('[name="featureValue"]')
             .clearValue('[name="featureValue"]')
             .setValue('[name="featureValue"]', 'false')
             .click('#update-feature-btn')
             .waitForElementNotPresent('#create-feature-modal')
-            .waitForElementVisible(byId('feature-value-0'))
-            .expect.element(byId('feature-value-0')).text.to.equal('false');
+            .waitForElementVisible(byId('feature-value-1'))
+            .expect.element(byId('feature-value-1')).text.to.equal('false');
     },
     '[Features Tests] - Try feature out should return boolean value': function (browser) {
         browser
@@ -169,6 +169,6 @@ module.exports = {
             .waitForElementVisible(byId('switch-environment-production-active'));
     },
     '[Features Tests] - Feature should be off under different environment': function (browser) {
-        browser.waitForElementVisible(byId('feature-switch-1-off'));
+        browser.waitForElementVisible(byId('feature-switch-0-off'));
     },
 };
