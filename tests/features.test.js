@@ -169,6 +169,6 @@ module.exports = {
             .waitForElementVisible(byId('switch-environment-production-active'));
     },
     '[Features Tests] - Feature should be off under different environment': function (browser) {
-        browser.waitForElementVisible(byId('feature-switch-1-off'));
+        browser.waitForElementVisible(byId('feature-switch-0-off'));
     },
 };
