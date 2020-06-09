@@ -21,7 +21,7 @@ const Popover = class extends React.Component {
         const classNames = cn({
             popover: true,
             in: this.state.isActive,
-        }, this.props.className);
+        }, this.props.contentClassName, this.props.className);
 
         return (
             <FocusMonitor
@@ -32,7 +32,7 @@ const Popover = class extends React.Component {
                 <div className={this.props.className}>
                     {this.props.renderTitle(this.toggle, this.state.isActive)}
                     <div className="popover-inner">
-                        <div className={`${classNames} popover-bt`}>
+                        <div className={`${classNames}`}>
                             {this.props.children(this.toggle)}
                         </div>
                     </div>
