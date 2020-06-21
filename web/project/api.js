@@ -108,7 +108,9 @@ global.API = {
         if (window.$crisp) {
             $crisp.push(['set', 'user:email', id]);
             $crisp.push(['set', 'user:nickname', `${user.first_name} ${user.last_name}`]);
-            $crisp.push(['set', 'user:company', orgs]);
+            if (orgs) {
+                $crisp.push(['set', 'user:company', orgs]);
+            }
         }
     },
     register(email, firstName, lastName) {
