@@ -99,18 +99,22 @@ global.API = {
         bulletTrain.setTrait('email', id);
     },
     identify(id, user = {}) {
-        const orgs = (user && user.organisations && _.map(user.organisations, o => `${o.name} #${o.id}(${o.role})[${o.num_seats}]`).join(',')) || '';
-        if (Project.mixpanel) {
-            mixpanel.identify(id);
-        }
-        bulletTrain.identify(id);
-        bulletTrain.setTrait('email', id);
-        if (window.$crisp) {
-            $crisp.push(['set', 'user:email', id]);
-            $crisp.push(['set', 'user:nickname', `${user.first_name} ${user.last_name}`]);
-            if (orgs) {
-                $crisp.push(['set', 'user:company', orgs]);
+        try {
+            const orgs = (user && user.organisations && _.map(user.organisations, o => `${o.name} #${o.id}(${o.role})[${o.num_seats}]`).join(',')) || '';
+            if (Project.mixpanel) {
+                mixpanel.identify(id);
             }
+            bulletTrain.identify(id);
+            bulletTrain.setTrait('email', id);
+            if (window.$crisp) {
+                $crisp.push(['set', 'user:email', id]);
+                $crisp.push(['set', 'user:nickname', `${user.first_name} ${user.last_name}`]);
+                if (orgs) {
+                    $crisp.push(['set', 'user:company', orgs]);
+                }
+            }
+        } catch (e) {
+
         }
     },
     register(email, firstName, lastName) {
