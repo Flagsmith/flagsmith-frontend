@@ -114,7 +114,7 @@ global.API = {
                 }
             }
         } catch (e) {
-
+            console.error('Error identifying', e);
         }
     },
     register(email, firstName, lastName) {
