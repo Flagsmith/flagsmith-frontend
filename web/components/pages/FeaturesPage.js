@@ -4,6 +4,7 @@ import CreateFlagModal from '../modals/CreateFlag';
 import ConfirmToggleFeature from '../modals/ConfirmToggleFeature';
 import TryIt from '../TryIt';
 import ConfirmRemoveFeature from '../modals/ConfirmRemoveFeature';
+import AddEditTags from '../AddEditTags';
 
 const FeaturesPage = class extends Component {
     static displayName = 'FeaturesPage';
@@ -41,7 +42,7 @@ const FeaturesPage = class extends Component {
           router={this.context.router}
           environmentId={this.props.match.params.environmentId}
           projectId={this.props.match.params.projectId}
-        />, null, { className: 'alert fade expand' });
+        />, null, { className: 'side-modal fade' });
     };
 
 

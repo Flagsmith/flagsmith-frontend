@@ -64,11 +64,12 @@ a, .btn, button{
         background: white;
         border: 2px solid $bt-brand-primary !important;
         color: $bt-brand-primary;
+        line-height: 42px;
         &:hover {
             background-color: white;
         }
     }
-    
+
     &--link {
         font-family: $font-family;
         background: transparent;

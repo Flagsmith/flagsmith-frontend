@@ -34,6 +34,31 @@ const AppActions = Object.assign({}, require('./base/_app-actions'), {
         });
     },
 
+    getTags(projectId) {
+        Dispatcher.handleViewAction({
+            actionType: Actions.GET_TAGS,
+            projectId,
+        });
+    },
+
+    updateTag(projectId, data, onComplete) {
+        Dispatcher.handleViewAction({
+            actionType: Actions.UPDATE_TAG,
+            projectId,
+            data,
+            onComplete
+        });
+    },
+
+    createTag(projectId, data, onComplete) {
+        Dispatcher.handleViewAction({
+            actionType: Actions.CREATE_TAG,
+            projectId,
+            data,
+            onComplete
+        });
+    },
+
     getGroups(orgId) {
         Dispatcher.handleViewAction({
             actionType: Actions.GET_GROUPS,

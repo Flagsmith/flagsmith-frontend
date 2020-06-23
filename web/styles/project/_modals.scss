@@ -21,7 +21,7 @@
     .modal-body{
         .input-container{
             input.input{
-                border:1px solid #2cd6ca!important;
+                border:1px solid #2cd6ca;
                 //border-radius:25px;
                 color:#2e2e2e;
 
@@ -131,4 +131,36 @@ $side-width: 66%;
         }
     }
 
+}
+
+.inline-modal {
+    position: absolute;
+    background: white;
+    border-radius: 4px;
+    z-index: 1;
+    box-shadow:rgba(75, 75, 75, 0.11) 0px 1px 6px 0px, rgba(75, 75, 75, 0.11) 0px 1px 4px 0px;
+    border: 1px solid $input-border-color;
+    .modal-close-btn {
+        color: $body-text;
+    }
+    &__title {
+        line-height: 40px;
+        border-bottom: 1px solid $input-border-color;
+    }
+}
+
+.inline-modal--tags {
+    width: 350px;
+    input.input {
+        border: 1px solid $input-border-color !important;
+    }
+}
+
+.modal-back-btn {
+    color: $body-text;
+    position: absolute;
+    left:10px;
+    top:0;
+    background-color: transparent !important;
+    border: none !important;
 }
