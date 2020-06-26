@@ -1,3 +1,22 @@
+.aside {
+	&__projects-sidebar {
+		width: 80px;
+		overflow-y: auto;
+		display: flex;
+	}
+	&__wrapper {
+		height: 100%;
+	}
+	&__main-content {
+	background-color: #2D3F53;
+	}
+
+}
+
+
+
+
+
 .aside-body {
 	padding-left: $aside-width;
 	//padding-bottom: 44px;
@@ -5,7 +24,6 @@
 		padding-left: 0;
 	}
 }
-
 
 $animation-duration: 350ms;
 $animation-timing-function: ease-in-out;
