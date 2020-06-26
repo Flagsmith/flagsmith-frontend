@@ -46,7 +46,7 @@ const Aside = class extends Component {
 
                     <React.Fragment>
 
-                        <Flex
+                        <div
                           className={`aside ${this.props.className || ''}`} style={!asideIsVisible ? {
                               width: 0,
                               overflow: 'hidden',
@@ -60,29 +60,41 @@ const Aside = class extends Component {
                             )}
 
 
-                            <div className="row aside__wrapper">
-                            <div
-                              className={`aside__projects-sidebar ${this.props.className || ''}`}
-                            >
-                                <div className="brand-container text-center">
-                                    <Link to="/projects">
-                                        <div>
+                            <div className="row ml-0 mr-0 aside__wrapper">
+                                <div
+                                  className={`aside__projects-sidebar ${this.props.className || ''}`}
+                                >
+
+                                    <div className="flex-row justify-content-center">
+                                        <div className="flex-column">
+                                            <Link to={'/'}>
                                             <img
-                                                title="Bullet Train" height={54}
-                                                src="/images/bullet-train-1-mark.svg"
-                                                className="brand"
+                                              title="Bullet Train"
+                                              src="/images/bullet-train-1-mark.svg"
+                                              className="aside__logo"
                                             />
+                                            </Link>
                                         </div>
-                                    </Link>
+                                        <div className="flex-column">
+                                            <div className="aside__projects-item">
+                                                <div className="flex-row justify-content-center">
+                                                    <div className="flex-column">
+                                                        <Button>
+                                                    S
+                                                        </Button>
+                                                    </div>
+                                                    <div className="flex-column">
+                                                        <p className="aside__projects-item-title">SSG Website</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 </div>
 
-                                <div className="flex-row">
-                                    vertical content here
-                                </div>
-                            </div>
-
-                            {(isLoading || isLoadingOrg) && <Loader/>}
-                            {!isLoading && !isLoadingOrg && (
+                                {(isLoading || isLoadingOrg) && <Loader/>}
+                                {!isLoading && !isLoadingOrg && (
                                 <React.Fragment>
                                     <div className="aside__main-content" style={{ 'overflow-y': 'auto' }}>
                                         <div className="project-nav">
@@ -174,9 +186,9 @@ const Aside = class extends Component {
                                         </div>
                                     </div>
                                 </React.Fragment>
-                            )}
+                                )}
                             </div>
-                        </Flex>
+                        </div>
                     </React.Fragment>
                 )}
             </ProjectProvider>

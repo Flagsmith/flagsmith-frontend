@@ -1,14 +1,55 @@
+
+body {
+	line-height: inherit !important;
+}
+
 .aside {
 	&__projects-sidebar {
 		width: 80px;
 		overflow-y: auto;
+		overflow-x: hidden;
+		background-color: #22354A;
+		justify-content: center;
+	}
+	&__projects-list {
+	
+	}
+	&__projects-list-container {
+		background-color: blue;
 		display: flex;
+	}
+	&__projects-list-item {
+		background-color: pink;
+
+	}
+	&__projects-item {
+		//background-color: yellow;
+		justify-content: center;
+		display: flex;
+		align-self: self-start;
+		margin-bottom: 1em;
+		text-align: center;
+		&-title {
+			color: white;
+			font-family: $font-family-header;
+			font-size: 11px;
+			line-height: 1.3;
+			margin-top: 1em;
+		}
 	}
 	&__wrapper {
 		height: 100%;
 	}
 	&__main-content {
 	background-color: #2D3F53;
+		width: 250px;
+	}
+	&__logo {
+		//background-color: red;
+		width: 50px;
+		display: flex;
+		align-self: self-start;
+		margin-bottom: 2em;
 	}
 
 }
@@ -70,7 +111,7 @@ $animation-timing-function: ease-in-out;
 	animation-name: asideIn;
 	animation-duration: $animation-duration;
 	animation-timing-function: $animation-timing-function;
-	width: $aside-width;
+	//width: $aside-width;
 	left: 0;
 	top: 0;
 	bottom: 0;
