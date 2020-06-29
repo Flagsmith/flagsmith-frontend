@@ -245,14 +245,22 @@ const CreateFlag = class extends Component {
                                               </Tooltip>
                                             )}
                                         >
-                                            <SegmentOverrides
-                                              projectId={this.props.projectId}
-                                              environmentId={this.props.environmentId}
-                                              type={type}
-                                              value={this.props.segmentOverrides}
-                                              segments={this.props.segments}
-                                              onChange={this.props.updateSegments}
-                                            />
+                                            {this.props.segmentOverrides ? (
+                                                <SegmentOverrides
+                                                  feature={projectFlag.id}
+                                                  projectId={this.props.projectId}
+                                                  environmentId={this.props.environmentId}
+                                                  type={type}
+                                                  value={this.props.segmentOverrides}
+                                                  segments={this.props.segments}
+                                                  onChange={this.props.updateSegments}
+                                                />
+                                            ) : (
+                                                <div className="text-center">
+                                                    <Loader/>
+                                                </div>
+                                            )}
+
                                         </Panel>
                                     </FormGroup>
                                     )}

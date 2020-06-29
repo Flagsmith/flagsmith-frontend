@@ -50,7 +50,7 @@ Code example:
                     <div className="tabbed">
                         <Tabs value={this.state.tab} onChange={tab => this.setState({ tab })}>
                             {_.map(this.props.snippets, (s, key) => (
-                                <TabItem tabLabel={key}>
+                                <TabItem key={key} tabLabel={key}>
                                     <div className="hljs-container">
                                         <Highlight className={Constants.codeHelp.keys[key]}>
                                             {s}

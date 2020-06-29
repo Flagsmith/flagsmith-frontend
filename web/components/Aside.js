@@ -61,7 +61,7 @@ const Aside = class extends Component {
                         </div>
                         {(isLoading || isLoadingOrg) && <Loader/>}
                         {!isLoading && !isLoadingOrg && (
-                        <Flex style={{ 'overflow-y': 'auto' }}>
+                        <Flex style={{ 'overflowY': 'auto' }}>
                             <div className="project-nav">
                                 <Row className="project-nav__item--header">
                                     <span className="flex-1">Projects</span>
