@@ -4,6 +4,7 @@ import CreateFlagModal from '../modals/CreateFlag';
 import ConfirmToggleFeature from '../modals/ConfirmToggleFeature';
 import TryIt from '../TryIt';
 import ConfirmRemoveFeature from '../modals/ConfirmRemoveFeature';
+import AddEditTags from '../AddEditTags';
 
 const FeaturesPage = class extends Component {
     static displayName = 'FeaturesPage';
@@ -41,7 +42,7 @@ const FeaturesPage = class extends Component {
           router={this.context.router}
           environmentId={this.props.match.params.environmentId}
           projectId={this.props.match.params.projectId}
-        />, null, { className: 'alert fade expand' });
+        />, null, { className: 'side-modal fade' });
     };
 
 
@@ -141,7 +142,7 @@ const FeaturesPage = class extends Component {
                                                         View and manage
                                                         {' '}
                                                         <Tooltip
-                                                          title={<ButtonLink buttonText={'feature flags'} />}
+                                                          title={<ButtonLink buttonText="feature flags" />}
                                                           place="right"
                                                         >
                                                             {Constants.strings.FEATURE_FLAG_DESCRIPTION}
@@ -151,7 +152,7 @@ const FeaturesPage = class extends Component {
                                                         {' '}
                                                         {' '}
                                                         <Tooltip
-                                                          title={<ButtonLink buttonText={'remote config'} />}
+                                                          title={<ButtonLink buttonText="remote config" />}
                                                           place="right"
                                                         >
                                                             {Constants.strings.REMOTE_CONFIG_DESCRIPTION}
@@ -183,6 +184,10 @@ const FeaturesPage = class extends Component {
                                                           id="features-list"
                                                           icon="ion-ios-rocket"
                                                           title="Features"
+                                                          sorting={[
+                                                              { label: 'Name', value: 'name', order: 'asc', default: true },
+                                                              { label: 'Created Date', value: 'created_date', order: 'asc' },
+                                                          ]}
                                                           items={projectFlags}
                                                           renderRow={(projectFlag, i) => {
                                                               const { name, id, enabled, created_date, type } = projectFlag;

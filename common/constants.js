@@ -17,6 +17,18 @@ const keywords = {
 };
 
 const Constants = {
+    tagColours: [
+        '#3d4db6',
+        '#ea5a45',
+        '#f1d502',
+        '#60bd4e',
+        '#fe5505',
+        '#1492f4',
+        '#14c0f4',
+        '#c277e0',
+        '#039587',
+        '#344562',
+    ],
     defaultRule: {
         property: '',
         operator: 'EQUAL',

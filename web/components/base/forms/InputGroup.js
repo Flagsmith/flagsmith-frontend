@@ -20,7 +20,7 @@ const FormGroup = class extends Component {
         const id = Utils.GUID();
         const { inputProps } = this.props;
         return (
-            <div className={this.props.className + "form-group"}>
+            <div className={`${this.props.className}form-group`}>
                 <label htmlFor={id} className="cols-sm-2 control-label">{props.title}</label>
                 {inputProps && inputProps.error && (
                     <span>
@@ -32,8 +32,9 @@ const FormGroup = class extends Component {
                 )}
 
                 <div>
-                    <div>
-                        {
+                    {this.props.component ? this.props.component : (
+                        <div>
+                            {
                             this.props.textarea ? (
                                 <textarea
                                   ref={c => this.input = c} {...props.inputProps} isValid={props.isValid}
@@ -54,8 +55,8 @@ const FormGroup = class extends Component {
                                 />
                             )
                         }
-
-                    </div>
+                        </div>
+                    )}
                 </div>
             </div>
         );

@@ -155,7 +155,7 @@ const Confirm = class extends React.Component {
       return (
           <Provider onClose={this.props.onNo} ref="modal" type="confirm">
               <div
-                tabIndex="-1" className="modal alert fade expand" role="dialog"
+                tabIndex="-1" className="modal alert modal-confirm fade expand" role="dialog"
                 aria-hidden="true"
               >
                   <div className="modal-dialog">

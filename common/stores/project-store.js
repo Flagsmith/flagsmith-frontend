@@ -13,7 +13,7 @@ const controller = {
                 data.get(`${Project.api}projects/${id}/`),
                 data.get(`${Project.api}environments/?project=${id}`).catch(() => []),
             ]).then(([project, environments]) => {
-                store.model = Object.assign(project, { environments: _.sortBy(environments.results, "name") });
+                store.model = Object.assign(project, { environments: _.sortBy(environments.results, 'name') });
                 if (project.organisation !== OrganisationStore.id) {
                     AppActions.selectOrganisation(project.organisation);
                     AppActions.getOrganisation(project.organisation);
@@ -80,6 +80,10 @@ var store = Object.assign({}, BaseStore, {
     getEnvs: () => store.model && store.model.environments,
     getEnvironment: api_key => store.model && _.find(store.model.environments, { api_key }),
     getFlags: () => store.model && store.model.flags,
+    getEnvironmentIdFromKey: (api_key) => {
+        const env = _.find(store.model.environments, { api_key });
+        return env && env.id;
+    },
 });
 
 

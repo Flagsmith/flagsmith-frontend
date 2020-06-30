@@ -122,6 +122,51 @@ const Aside = class extends Component {
                                             />
                                         </div>
                                         <div className="flex flex-1"/>
+                        )}
+                        <div className="brand-container text-center">
+                            <Link to="/projects">
+                                <div>
+                                    <img
+                                      title="Bullet Train" height={54}
+                                      src="/images/bullet-train-1-mark.svg"
+                                      className="brand"
+                                    />
+                                </div>
+                            </Link>
+                        </div>
+                        {(isLoading || isLoadingOrg) && <Loader/>}
+                        {!isLoading && !isLoadingOrg && (
+                        <Flex style={{ 'overflowY': 'auto' }}>
+                            <div className="project-nav">
+                                <Row className="project-nav__item--header">
+                                    <span className="flex-1">Projects</span>
+                                    <Link
+                                      id="create-project-link"
+                                      to="/projects" className="project-nav__button project-nav__button--cta" state={{ create: true }}
+                                    >
+                                        <img className="project-nav__icon" src="/images/plus-button--white.svg" alt="New" />
+                                    </Link>
+                                </Row>
+                                <ProjectSelect
+                                  projectId={this.props.projectId}
+                                  environmentId={this.props.environmentId}
+                                  clearableValue={false}
+                                  onChange={(project) => {
+                                      AppActions.getProject(project.id);
+                                      if (project.environments[0]) {
+                                          this.context.router.history.push(`/project/${project.id}/environment/${project.environments[0].api_key}/features`);
+                                      } else {
+                                          this.context.router.history.push(`/project/${project.id}/environment/create`);
+                                      }
+                                      AsyncStorage.setItem('lastEnv', JSON.stringify({
+                                          orgId: AccountStore.getOrganisation().id,
+                                          projectId: project.id,
+                                          environmentId: project.environments[0].api_key,
+                                      }));
+                                  }}
+                                />
+                            </div>
+                            <div className="flex flex-1" />
 
                                         <div>
                                             {hasFeature('demo_feature') && (

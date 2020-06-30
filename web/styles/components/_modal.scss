@@ -49,3 +49,7 @@
   background-color: transparent !important;
   border: none !important;
 }
+
+.modal.modal-confirm {
+  z-index: 200000000000;
+}

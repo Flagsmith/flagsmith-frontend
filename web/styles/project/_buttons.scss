@@ -64,10 +64,12 @@ a, .btn, button{
         background: white;
         border: 2px solid $bt-brand-primary !important;
         color: $bt-brand-primary;
+        line-height: 42px;
         &:hover {
             background-color: white;
         }
     }
+
     &--project {
         background: $bt-brand-grey;
         color: white;

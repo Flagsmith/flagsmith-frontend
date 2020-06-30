@@ -5,6 +5,7 @@ import TabItem from '../base/forms/TabItem';
 import withSegmentOverrides from '../../../common/providers/withSegmentOverrides';
 import data from '../../../common/data/base/_data';
 import SegmentOverrides from '../SegmentOverrides';
+import AddEditTags from '../AddEditTags';
 
 const CreateFlag = class extends Component {
     static displayName = 'CreateFlag'
@@ -130,7 +131,7 @@ const CreateFlag = class extends Component {
                               }}
                             >
                                 {!isEdit && !identity && (
-                                    <FormGroup className="mb-4">
+                                    <FormGroup className="mb-4 ml-3">
                                         <label>Feature type</label>
                                         <Tabs
                                           className="pill" value={this.state.tab}
@@ -161,11 +162,9 @@ const CreateFlag = class extends Component {
                                     </FormGroup>
                                 )}
 
-                                {isEdit && (
-                                    <span onClick={this.close} className="icon close ion-md-close"/>
-                                )}
+                                <span onClick={this.close} className="icon close ion-md-close"/>
 
-                                <FormGroup className={isEdit ? 'mb-4 mr-3 ml-3' : 'mb-4'}>
+                                <FormGroup className="mb-4 mr-3 ml-3">
                                     <InputGroup
                                       ref={e => this.input = e}
                                       data-test="featureID"
@@ -183,7 +182,7 @@ const CreateFlag = class extends Component {
                                     />
                                 </FormGroup>
                                 {type == 'CONFIG' ? (
-                                    <FormGroup className="mb-4">
+                                    <FormGroup className="ml-3 mb-4 mr-3">
                                         <InputGroup
                                           textarea
                                           value={initial_value}
@@ -196,7 +195,7 @@ const CreateFlag = class extends Component {
                                         />
                                     </FormGroup>
                                 ) : (
-                                    <FormGroup className={isEdit ? 'mb-4 mr-3 ml-3' : 'mb-4'}>
+                                    <FormGroup className="mb-4 mr-3 ml-3">
                                         <div>
                                             <label>{enabledString}</label>
                                         </div>
@@ -207,8 +206,15 @@ const CreateFlag = class extends Component {
                                         />
                                     </FormGroup>
                                 )}
-
-                                <FormGroup className={isEdit ? 'mb-4 mr-3 ml-3' : 'mb-4'} >
+                                {hasFeature('tags') && (
+                                <FormGroup className="mb-4 mr-3 ml-3" >
+                                    <InputGroup
+                                      title="Tags (optional)"
+                                      component={<AddEditTags projectId={this.props.projectId} value={this.state.tags} onChange={tags => this.setState({ tags })}/>}
+                                    />
+                                </FormGroup>
+                                )}
+                                <FormGroup className="mb-4 mr-3 ml-3" >
                                     <InputGroup
                                       value={description}
                                       data-test="featureDesc"
@@ -239,14 +245,22 @@ const CreateFlag = class extends Component {
                                               </Tooltip>
                                             )}
                                         >
-                                            <SegmentOverrides
-                                              projectId={this.props.projectId}
-                                              environmentId={this.props.environmentId}
-                                              type={type}
-                                              value={this.props.segmentOverrides}
-                                              segments={this.props.segments}
-                                              onChange={this.props.updateSegments}
-                                            />
+                                            {this.props.segmentOverrides ? (
+                                                <SegmentOverrides
+                                                  feature={projectFlag.id}
+                                                  projectId={this.props.projectId}
+                                                  environmentId={this.props.environmentId}
+                                                  type={type}
+                                                  value={this.props.segmentOverrides}
+                                                  segments={this.props.segments}
+                                                  onChange={this.props.updateSegments}
+                                                />
+                                            ) : (
+                                                <div className="text-center">
+                                                    <Loader/>
+                                                </div>
+                                            )}
+
                                         </Panel>
                                     </FormGroup>
                                     )}
@@ -315,8 +329,7 @@ const CreateFlag = class extends Component {
                                     )
                                 }
                                 {error && <Error error={error}/>}
-                                <div className={isEdit ? 'side-modal__footer pr-5' : ''}>
-                                    {isEdit && (
+                                <div className="side-modal__footer pr-5">
                                     <div className="mb-3">
                                         {identity ? (
                                             <p className="text-right">
@@ -333,7 +346,7 @@ const CreateFlag = class extends Component {
                                                     }
                                                 </strong>
                                             </p>
-                                        ) : (
+                                        ) : isEdit ? (
                                             <p className="text-right">
                                                 This will update the feature value for the environment
                                                 {' '}
@@ -343,10 +356,13 @@ const CreateFlag = class extends Component {
                                                     }
                                                 </strong>
                                             </p>
+                                        ) : (
+                                            <p className="text-right">
+                                              This will create the feature for <strong>all environments</strong>, you can edit this feature per environment once the feature is created.
+                                            </p>
                                         )}
 
                                     </div>
-                                    )}
                                     <div className="text-right">
                                         {isEdit ? (
                                             <Button data-test="update-feature-btn" id="update-feature-btn" disabled={isSaving || !name}>

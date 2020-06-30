@@ -167,6 +167,7 @@ const CreateSegment = class extends Component {
                               inputProps={{
                                   className: 'full-width',
                                   name: 'segmentID',
+                                  readOnly: isEdit
                               }}
                               value={name}
                               onChange={e => this.setState({ name: Format.enumeration.set(Utils.safeParseEventValue(e)).toLowerCase() })}
