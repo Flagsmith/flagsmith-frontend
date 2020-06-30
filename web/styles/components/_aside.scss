@@ -17,14 +17,17 @@ body {
     &__projects-list {
 
     }
+    
+    &__popover {
+ 
+        left: 120px;
+    }
 
     &__projects-list-container {
-        background-color: blue;
         display: flex;
     }
 
     &__projects-list-item {
-        background-color: pink;
 
     }
 
@@ -66,10 +69,16 @@ body {
         color: $bt-brand-primary;
         font-family: $font-family-header;
         font-size: 14px;
+        &:hover {
+            color: darken($bt-brand-primary, 10);
+        }
     }
 
     &__link-icon {
         color: $bt-brand-primary;
+        &:hover {
+            color: darken($bt-brand-primary, 10);
+        }
     }
 
     &__project-title {
@@ -92,7 +101,8 @@ body {
     }
 	&__environments-wrapper {
 		height: 55vh;
-		overflow-y: scroll;
+		overflow-y: auto;
+        @include customScroll;
     }
     &__environment-list-item {
         color: white;

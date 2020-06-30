@@ -95,6 +95,17 @@ a, .btn, button{
             box-shadow: none;
         }
     }
+    &--neutral {
+        background-color: transparent;
+        padding: 0;
+        text-align: left;
+        height: auto;
+        width: 100%;
+        &:hover {
+            background-color: transparent;
+            box-shadow: none;
+        }
+    }
     
     &--link {
         font-family: $font-family;

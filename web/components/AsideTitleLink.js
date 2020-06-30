@@ -1,4 +1,5 @@
 import { PureComponent } from 'react';
+
 const cn = require('classnames');
 
 const AsideTitleLink = class extends PureComponent {
@@ -6,22 +7,12 @@ const AsideTitleLink = class extends PureComponent {
 
     render() {
         return (
-            <Row className={`pb-3 ${this.props.className || ''}`}>
-                <Flex>
-                    <Link
-                        to="/projects"
-                        className=""
-                    >
+            <Button className="btn--neutral" onClick={this.props.onClick}>
+                <div className="flex-row space">
                     <span className="aside__link-text">{this.props.title}</span>
-                    </Link>
-                </Flex>
-                <Link
-                    to="/projects"
-                    className=""
-                >
-                <span className={`flex-column aside__link-icon pull-right ${this.props.iconClassName || ''}`} />
-                </Link>
-            </Row>
+                    <span className={`aside__link-icon ${this.props.iconClassName || ''}`} />
+                </div>
+            </Button>
         );
     }
 };

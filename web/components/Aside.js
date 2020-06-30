@@ -4,6 +4,7 @@ import ProjectSelect from './ProjectSelect';
 import AsideProjectButton from './AsideProjectButton';
 import AsideTitleLink from './AsideTitleLink';
 import Collapsible from './Collapsible';
+import Popover from './base/Popover';
 
 const Aside = class extends Component {
     static displayName = 'Aside';
@@ -112,9 +113,40 @@ const Aside = class extends Component {
 
                                                     <div className="pl-4 pr-4 pt-4">
 
+                                                        <Popover
+                                                            className="aside__popover"
+                                                            contentClassName="popover-bt"
+                                                            renderTitle={toggle => (
 
-                                                        <AsideTitleLink title="My Organisation"
-                                                                        iconClassName="ion-ios-arrow-up"/>
+                                                                <AsideTitleLink title="My Organisation"
+                                                                                onClick={toggle}
+                                                                                iconClassName="ion-ios-arrow-down"/>
+                                                            )}
+                                                        >
+                                                            {toggle => (
+                                                                <div className="popover-inner__content">
+
+                                                                    <div>
+                                                                        <Link
+                                                                            id="create-org-link" onClick={toggle}
+                                                                            to="/create"
+                                                                        >
+                                                                            Create Organisation
+                                                                        </Link>
+                                                                    </div>
+
+                                                                    <a
+                                                                        id="logout-link" href="#"
+                                                                        onClick={AppActions.logout}
+                                                                        to="exampleone"
+                                                                    >
+                                                                        Logout
+                                                                    </a>
+                                                                </div>
+                                                            )}
+                                                        </Popover>
+
+
 
                                                         <h1 className="aside__project-title mb-4">SSG Website</h1>
 
@@ -163,33 +195,6 @@ const Aside = class extends Component {
 
                                                         </Collapsible>
 
-                                                        <Collapsible className="pl-4" title="Production">
-
-                                                            <ul className="aside__environment-nav list-unstyled">
-                                                                <li className="aside__environment-list-item active">
-                                                                    <img src="/images/icons/aside/features.svg"
-                                                                         className="aside__environment-list-item--icon"/>
-                                                                    Features
-                                                                </li>
-                                                                <li className="aside__environment-list-item">
-                                                                    <img src="/images/icons/aside/users.svg"
-                                                                         className="aside__environment-list-item--icon"/>
-                                                                    Users
-                                                                </li>
-                                                                <li className="aside__environment-list-item">
-                                                                    <img src="/images/icons/aside/segments.svg"
-                                                                         className="aside__environment-list-item--icon"/>
-                                                                    Segments
-                                                                </li>
-                                                                <li className="aside__environment-list-item">
-                                                                    <img
-                                                                        src="/images/icons/aside/environment-settings.svg"
-                                                                        className="aside__environment-list-item--icon"/>
-                                                                    Environment Settings
-                                                                </li>
-                                                            </ul>
-
-                                                        </Collapsible>
 
                                                     </div>
 
@@ -252,6 +257,18 @@ const Aside = class extends Component {
                                                                 Organisation Settings
                                                             </NavLink>
                                                         )}
+
+                                                        <NavLink
+                                                            id="logout-link" href="#"
+                                                            to="exampleone"
+                                                            activeClassName="active"
+                                                            className="aside__footer-link"
+
+                                                        >
+                                                            <img src="/images/icons/aside/audit-log.svg"
+                                                                 className="aside__footer-link--icon"/>
+                                                            Logout
+                                                        </NavLink>
 
                                                         {/*{hasFeature('edit_account') && (*/}
                                                         {/*    <NavLink*/}

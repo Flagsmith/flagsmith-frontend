@@ -86,6 +86,13 @@ p{
     }
 }
 
+.text-no-decoration {
+    text-decoration: none;
+    &:hover {
+        text-decoration: none;
+    }
+}
+
 .large-para{
     font-size:1.25rem;
 }
