@@ -53,6 +53,27 @@ body {
 		align-self: self-start;
 		margin-bottom: 2em;
 	}
+	&__link-text {
+		color: $bt-brand-primary;
+		font-family: $font-family-header;
+		font-size: 14px;
+	}
+	&__link-icon {
+		color: $bt-brand-primary;
+	}
+	&__project-title {
+		color: white;
+		font-size: 24px;
+	}
+	&__nav-item {
+		color: white;
+		font-family: $font-family;
+	}
+	&__nav-item-icon {
+		margin-right: .75em;
+		width: 21px;
+	}
+	
 
 }
 

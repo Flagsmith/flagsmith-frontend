@@ -85,6 +85,17 @@ a, .btn, button{
         }
     }
     
+    &--transparent {
+        background-color: transparent;
+        height: 38px;
+        padding: 0 16px;
+        line-height: inherit;
+        &:hover {
+            background-color: lighten($bt-brand-secondary, 10);
+            box-shadow: none;
+        }
+    }
+    
     &--link {
         font-family: $font-family;
         background: transparent;
