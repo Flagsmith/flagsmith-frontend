@@ -17,7 +17,7 @@ a, .btn, button{
 
 .btn, button.btn{
     outline: none !important;
-    background: #1c9997;
+    background: $bt-dark-green-alt;
     transition: $button-transition;
     border-radius: $border-radius-default !important;
     color:#fff;
@@ -66,6 +66,20 @@ a, .btn, button{
         color: $bt-brand-primary;
         &:hover {
             background-color: white;
+        }
+    }
+    &--project {
+        background: $bt-brand-grey;
+        color: white;
+        height: 38px;
+        padding: 0 16px;
+        line-height: inherit;
+        &:hover {
+            background-color: darken($bt-brand-grey, 10);
+        }
+        &.active {
+            background: $bt-dark-green-alt;
+            box-shadow: 0 6px 13px 0 rgba(43,227,214,0.10);
         }
     }
     

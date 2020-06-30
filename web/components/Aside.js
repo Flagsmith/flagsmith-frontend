@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import propTypes from 'prop-types';
 import ProjectSelect from './ProjectSelect';
+import AsideProjectButton from './AsideProjectButton';
 
 const Aside = class extends Component {
 	static displayName = 'Aside';
@@ -75,20 +76,10 @@ const Aside = class extends Component {
                                             />
                                             </Link>
                                         </div>
-                                        <div className="flex-column">
-                                            <div className="aside__projects-item">
-                                                <div className="flex-row justify-content-center">
-                                                    <div className="flex-column">
-                                                        <Button>
-                                                    S
-                                                        </Button>
-                                                    </div>
-                                                    <div className="flex-column">
-                                                        <p className="aside__projects-item-title">SSG Website</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <AsideProjectButton className="active" name="SSG Website"/>
+
+                                        <AsideProjectButton name="Hoxton Mix Website"/>
+
                                     </div>
 
                                 </div>

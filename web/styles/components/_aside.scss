@@ -1,3 +1,4 @@
+@import "../mixins/custom-scrollbar";
 
 body {
 	line-height: inherit !important;
@@ -6,10 +7,11 @@ body {
 .aside {
 	&__projects-sidebar {
 		width: 80px;
-		overflow-y: auto;
-		overflow-x: hidden;
 		background-color: #22354A;
 		justify-content: center;
+		overflow-y: auto;
+		height: 100%;
+		@include customScroll;
 	}
 	&__projects-list {
 	

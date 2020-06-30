@@ -74,3 +74,11 @@ export const ButtonLink = class extends PureComponent {
         );
     }
 };
+
+export const ButtonProject = class extends PureComponent {
+    static displayName = 'ButtonProject';
+
+    render() {
+        return <Button {...this.props} className={`btn--project ${this.props.className || ''}`}/>;
+    }
+};
