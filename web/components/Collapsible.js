@@ -20,13 +20,13 @@ const Collapsible = class extends PureComponent {
 
     render() {
         return (
-            <div className="collapsible">
+            <div className={`collapsible ${this.props.className || ''}`}>
                 <div onClick={(e)=>this.togglePanel(e)} className="collapsible__header">
-                    <div className="flex-row space">
-                        {this.props.title}
+                    <div className="flex-row">
                         {this.state.open ? (
-                            <span className={`flex-column ion-ios-arrow-up aside__link-icon pull-right ${this.props.iconClassName || ''}`} />
-                        ) : <span className={`flex-column ion-ios-arrow-down aside__link-icon pull-right ${this.props.iconClassName || ''}`} />}
+                            <img className="mr-2" src="/images/icons/aside/caret-down.svg" />
+                        ) :  <img className="mr-2" src="/images/icons/aside/caret-up.svg" />}
+                        {this.props.title}
                     </div>
                 </div>
                 {this.state.open ? (

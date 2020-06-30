@@ -1,11 +1,11 @@
 .collapsible {
     &__header{
         cursor: pointer;
-        padding: 15px;
+        font-family: $font-family-header;
         color: white;
+        margin-bottom: .25em;
     }
     &__content{
-        padding: 15px;
-        color: white;
+
     }
 }
