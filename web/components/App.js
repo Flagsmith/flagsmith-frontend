@@ -237,6 +237,7 @@ Click here to Sign
                                                                         <Link
                                                                           id="create-org-link" onClick={toggle}
                                                                           to="/create"
+                                                                          className="popover-bt__list-item"
                                                                         >
                                                                         Create Organisation
                                                                         </Link>
@@ -246,6 +247,7 @@ Click here to Sign
                                                                       id="logout-link" href="#"
                                                                       onClick={AppActions.logout}
                                                                       to="exampleone"
+                                                                      className="popover-bt__list-item"
                                                                     >
 Logout
                                                                     </a>

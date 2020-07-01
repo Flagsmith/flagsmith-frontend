@@ -17,11 +17,6 @@ body {
     &__projects-list {
 
     }
-    
-    &__popover {
-        left: 120px;
-    }
-
     &__projects-list-container {
         display: flex;
     }
@@ -104,6 +99,9 @@ body {
         &:hover {
             color: darken($bt-brand-primary, 10);
         }
+        &--white {
+            color: white;
+        }
     }
 
     &__project-title {
@@ -153,9 +151,11 @@ body {
 		padding-bottom: 1em;
         width: 75%;
     }
+    &__popover {
+        left: 78px;
+    }
 
 }
-
 
 .aside-body {
     padding-left: $aside-width;

@@ -1,5 +1,5 @@
 .popover-bt{
-    border-top:8px solid #2cd6ca;
+    border-top:8px solid white;
     border-radius: $border-radius-default;
     overflow:visible;
 
@@ -12,20 +12,24 @@
         height: 0;
         border-left: 15px solid transparent;
         border-right: 15px solid transparent;
-        border-bottom: 16px solid #2cd6ca;
+        border-bottom: 16px solid white;
     }
 
     &.aside-select{
         padding-bottom:0;
     }
-
-    a{
-        color:#000;
-        font-weight:100;
-    }
-
-    .list-item{
-        padding:5px 5px 5px 10px;
+    
+    &__list-item {
+        text-align: center;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        padding: .75em;
+        font-family: $font-family-header;
+        color: #22354A !important;
+        &:hover {
+            background-color: $list-item-striped-background;
+        }
     }
 }
 

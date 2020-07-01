@@ -131,22 +131,31 @@ const Aside = class extends Component {
                                                             {toggle => (
                                                                 <div className="popover-inner__content">
 
-                                                                    <div>
+                                                                    <a
+                                                                        className="popover-bt__list-item"
+                                                                    >
+                                                                        Organisation 1
+                                                                    </a>
+
+                                                                    <a
+                                                                        className="popover-bt__list-item"
+                                                                    >
+                                                                        Organisation 2
+                                                                    </a>
+
+                                                                    <div className="pl-3 pr-3 mt-2">
                                                                         <Link
                                                                           id="create-org-link" onClick={toggle}
                                                                           to="/create"
                                                                         >
-                                                                            Create Organisation
+                                                                            <Button>
+
+                                                                            Create Organisation <span className="aside__link-icon--white ion-md-add"/>
+
+                                                                            </Button>
                                                                         </Link>
                                                                     </div>
 
-                                                                    <a
-                                                                      id="logout-link" href="#"
-                                                                      onClick={AppActions.logout}
-                                                                      to="exampleone"
-                                                                    >
-                                                                        Logout
-                                                                    </a>
                                                                 </div>
                                                             )}
                                                         </Popover>
@@ -174,9 +183,9 @@ const Aside = class extends Component {
 
                                                     <div className="aside__environments-wrapper">
 
-                                                        <Collapsible className="pl-4" title="Develop">
+                                                        <Collapsible className="active" title="Develop">
 
-                                                            <ul className="aside__environment-nav list-unstyled">
+                                                            <ul className="aside__environment-nav list-unstyled mb-0">
                                                                 <li className="aside__environment-list-item active">
                                                                     <img
                                                                       src="/images/icons/aside/features.svg"
@@ -209,31 +218,71 @@ const Aside = class extends Component {
 
                                                         </Collapsible>
 
+                                                        <Collapsible title="Develop">
+
+                                                            <ul className="aside__environment-nav list-unstyled mb-0">
+                                                                <li className="aside__environment-list-item active">
+                                                                    <img
+                                                                        src="/images/icons/aside/features.svg"
+                                                                        className="aside__environment-list-item--icon"
+                                                                    />
+                                                                    Features
+                                                                </li>
+                                                                <li className="aside__environment-list-item">
+                                                                    <img
+                                                                        src="/images/icons/aside/users.svg"
+                                                                        className="aside__environment-list-item--icon"
+                                                                    />
+                                                                    Users
+                                                                </li>
+                                                                <li className="aside__environment-list-item">
+                                                                    <img
+                                                                        src="/images/icons/aside/segments.svg"
+                                                                        className="aside__environment-list-item--icon"
+                                                                    />
+                                                                    Segments
+                                                                </li>
+                                                                <li className="aside__environment-list-item">
+                                                                    <img
+                                                                        src="/images/icons/aside/environment-settings.svg"
+                                                                        className="aside__environment-list-item--icon"
+                                                                    />
+                                                                    Environment Settings
+                                                                </li>
+                                                            </ul>
+
+                                                        </Collapsible>
+
+
+
+
 
                                                     </div>
 
-                                                    {/* <div className="project-nav"> */}
+                                                    {/* <div className="project-nav" style={{position: 'relative', bottom: '25em'}}> */}
 
-                                                    {/*    <ProjectSelect */}
-                                                    {/*      projectId={this.props.projectId} */}
-                                                    {/*      environmentId={this.props.environmentId} */}
-                                                    {/*      clearableValue={false} */}
-                                                    {/*      onChange={(project) => { */}
-                                                    {/*          AppActions.getProject(project.id); */}
-                                                    {/*          if (project.environments[0]) { */}
-                                                    {/*              this.context.router.history.push(`/project/${project.id}/environment/${project.environments[0].api_key}/features`); */}
-                                                    {/*          } else { */}
-                                                    {/*              this.context.router.history.push(`/project/${project.id}/environment/create`); */}
-                                                    {/*          } */}
-                                                    {/*          AsyncStorage.setItem('lastEnv', JSON.stringify({ */}
-                                                    {/*              orgId: AccountStore.getOrganisation().id, */}
-                                                    {/*              projectId: project.id, */}
-                                                    {/*              environmentId: project.environments[0].api_key, */}
-                                                    {/*          })); */}
-                                                    {/*      }} */}
-                                                    {/*    /> */}
+                                                    {/*   <ProjectSelect */}
+                                                    {/*     projectId={this.props.projectId} */}
+                                                    {/*     environmentId={this.props.environmentId} */}
+                                                    {/*     clearableValue={false} */}
+                                                    {/*     onChange={(project) => { */}
+                                                    {/*         AppActions.getProject(project.id); */}
+                                                    {/*         if (project.environments[0]) { */}
+                                                    {/*             this.context.router.history.push(`/project/${project.id}/environment/${project.environments[0].api_key}/features`); */}
+                                                    {/*         } else { */}
+                                                    {/*             this.context.router.history.push(`/project/${project.id}/environment/create`); */}
+                                                    {/*         } */}
+                                                    {/*         AsyncStorage.setItem('lastEnv', JSON.stringify({ */}
+                                                    {/*             orgId: AccountStore.getOrganisation().id, */}
+                                                    {/*             projectId: project.id, */}
+                                                    {/*             environmentId: project.environments[0].api_key, */}
+                                                    {/*         })); */}
+                                                    {/*     }} */}
+                                                    {/*   /> */}
                                                     {/* </div> */}
-                                                    {/* <div className="flex flex-1"/> */}
+
+
+                                                    <div className="flex flex-1"/>
 
                                                     <div className="aside__footer">
                                                         {hasFeature('demo_feature') && (
