@@ -1,15 +1,16 @@
 nav.navbar {
-    box-shadow:none;
     //background:$aside-bg;
     margin-bottom: 0;
-    -webkit-box-shadow: 0px 5px 2px -2px rgba(0,0,0,0.25);
-    -moz-box-shadow: 0px 5px 2px -2px rgba(0,0,0,0.25);
-    box-shadow: 0px 5px 2px -2px rgba(0,0,0,0.25);
+
     height: 60px;
-    color: white;
+ 
 
     &.dark-header{
         background:#22354a;
+        -webkit-box-shadow: 0px 5px 2px -2px rgba(0,0,0,0.25);
+        -moz-box-shadow: 0px 5px 2px -2px rgba(0,0,0,0.25);
+        box-shadow: 0px 5px 2px -2px rgba(0,0,0,0.25);
+        color: white;
     }
 
     &-homepage {
