@@ -14,7 +14,7 @@ const EnvironmentSelect = class extends Component {
         return (
             <ProjectProvider id={this.props.id}>
                 {({ isLoading, project }) => (
-                    <div>
+                    <div className={`fade ${project && project.environments && !!project.environments.length && 'in'}`}>
                         <ul id="env-list" className="project-list list-unstyled">
                             {project && project.environments && project.environments.map(environment => this.props.renderRow(environment,
                                 () => {

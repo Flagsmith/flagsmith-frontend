@@ -18,10 +18,14 @@ const ProjectSelect = class extends Component {
                 {({ isLoading, projects }) => (
                     <>
                         {
-                            projects && projects.map(project => this.props.renderRow(project,
-                                () => {
-                                    this.props.onChange && this.props.onChange(project);
-                                }))
+                            <div className={`fade ${projects && !!projects.length && 'in'}`}>
+                                {projects && !!projects.length
+                                    && projects.map(project => this.props.renderRow(project,
+                                        () => {
+                                            this.props.onChange && this.props.onChange(project);
+                                        }))
+                                }
+                            </div>
                         }
                     </>
                 )}
