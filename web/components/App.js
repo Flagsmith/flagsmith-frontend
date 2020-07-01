@@ -244,15 +244,29 @@ Click here to Sign
                                                                       }}
                                                                     />
                                                                     )}
-                                                                    <div>
+                                                                    {/*<div>*/}
+                                                                    {/*    <Link*/}
+                                                                    {/*      id="create-org-link" onClick={toggle}*/}
+                                                                    {/*      to="/create"*/}
+                                                                    {/*      className="popover-bt__list-item"*/}
+                                                                    {/*    >*/}
+                                                                    {/*    Create Organisation*/}
+                                                                    {/*    </Link>*/}
+                                                                    {/*</div>*/}
+
+                                                                    <div className="pl-3 pr-3 mt-2 mb-2">
                                                                         <Link
-                                                                          id="create-org-link" onClick={toggle}
-                                                                          to="/create"
-                                                                          className="popover-bt__list-item"
+                                                                            id="create-org-link" onClick={toggle}
+                                                                            to="/create"
                                                                         >
-                                                                        Create Organisation
+                                                                            <Button>
+
+                                                                                Create Organisation <span className="aside__link-icon--white ion-md-add"/>
+
+                                                                            </Button>
                                                                         </Link>
                                                                     </div>
+
 
                                                                     <a
                                                                       id="logout-link" href="#"

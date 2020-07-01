@@ -18,7 +18,7 @@
     &.aside-select{
         padding-bottom:0;
     }
-    
+
     &__list-item {
         text-align: center;
         width: 100%;
@@ -33,19 +33,6 @@
     }
 }
 
-.org-nav{
-    .popover-bt{
-        top:25px;
-
-        a{
-            padding:0;
-
-            &:first-of-type{
-                padding-top:0!important;
-            }
-        }
-    }
-}
 
 .btn-container{
     padding:10px;
