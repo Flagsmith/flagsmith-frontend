@@ -19,7 +19,6 @@ body {
     }
     
     &__popover {
- 
         left: 120px;
     }
 
@@ -58,11 +57,37 @@ body {
     }
 
     &__logo {
-        //background-color: red;
         width: 50px;
         display: flex;
         align-self: self-start;
         margin-bottom: 2em;
+    }
+    
+    &__nav-item {
+        color: white;
+        padding: .5em .35em .5em 1.5em;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        &.active {
+            color: $bt-brand-primary;
+            text-decoration: none;
+            background-color: $bt-brand-secondary;
+            box-shadow: inset 4px 0 0 $bt-brand-primary;
+            .aside__nav-item--icon {
+                path {
+                    fill: $bt-brand-primary !important;
+                }
+            }
+        }
+        &:hover {
+            background-color: $bt-brand-secondary;
+            text-decoration: none;
+        }
+        &--icon {
+            width: 15px;
+            margin-right: .75em;
+        }
     }
 
     &__link-text {
@@ -85,15 +110,10 @@ body {
         color: white;
         font-size: 24px;
     }
-
-    &__nav-item {
-        color: white;
-        font-family: $font-family;
-    }
-
+    
     &__nav-item-icon {
         margin-right: .75em;
-        width: 21px;
+        width: 15px;
     }
 
     &__environment-nav {
@@ -131,19 +151,8 @@ body {
         position: absolute;
         bottom: 0;
 		padding-bottom: 1em;
+        width: 75%;
     }
-
-    &__footer-link {
-		color: white;
-		padding: .35em .35em .35em .85em;
-		cursor: pointer;
-		display: block;
-        &--icon {
-            width: 15px;
-            margin-right: .75em;
-        }
-    }
-
 
 }
 
@@ -281,7 +290,7 @@ $animation-timing-function: ease-in-out;
 
     .toggle {
         position: absolute;
-        left: 15px;
+        left: 30px;
         top: 15px;
 
         > .icon {
@@ -361,5 +370,17 @@ $animation-timing-function: ease-in-out;
 
     &.yellow {
         background-color: #FFFF00;
+    }
+}
+
+@include media-breakpoint-down(xs) {
+    .aside {
+        &__projects-sidebar {
+            position: relative;
+            top: 3em;
+        }
+        &__main-content {
+            width: auto;
+        }
     }
 }

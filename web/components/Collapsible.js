@@ -25,7 +25,7 @@ const Collapsible = class extends PureComponent {
                     <div className="flex-row">
                         {this.state.open ? (
                             <img className="mr-2" src="/images/icons/aside/caret-down.svg" />
-                        ) :  <img className="mr-2" src="/images/icons/aside/caret-up.svg" />}
+                        ) :  <img className="mr-2" src="/images/icons/aside/caret-right.svg" />}
                         {this.props.title}
                     </div>
                 </div>
