@@ -5,6 +5,7 @@ body {
 }
 
 .aside {
+    z-index: 99999 !important;
     &__projects-sidebar {
         width: 80px;
         background-color: #22354A;

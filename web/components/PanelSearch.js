@@ -84,6 +84,7 @@ const PanelSearch = class extends Component {
                                       <div className="popover-inner__content">
                                           {this.props.sorting.map(sortOption => (
                                               <a
+                                                  className="popover-bt__list-item"
                                                 href="#" onClick={(e) => {
                                                     this.onSort(e, sortOption);
                                                     toggle();

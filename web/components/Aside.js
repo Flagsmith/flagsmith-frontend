@@ -123,51 +123,6 @@ const Aside = class extends Component {
                                                 <div className="aside__main-content" style={{ 'overflowY': 'auto' }}>
 
                                                     <div className="pl-4 pr-4 pt-4">
-
-                                                         <Popover
-                                                          className="aside__popover"
-                                                          contentClassName="popover-bt"
-                                                          renderTitle={toggle => (
-
-                                                              <AsideTitleLink
-                                                                title="My Organisation"
-                                                                onClick={toggle}
-                                                                iconClassName="ion-ios-arrow-down"
-                                                              />
-                                                          )}
-                                                         >
-                                                            {toggle => (
-                                                                <div className="popover-inner__content">
-
-                                                                    <a
-                                                                        className="popover-bt__list-item"
-                                                                    >
-                                                                        Organisation 1
-                                                                    </a>
-
-                                                                    <a
-                                                                        className="popover-bt__list-item"
-                                                                    >
-                                                                        Organisation 2
-                                                                    </a>
-
-                                                                    <div className="pl-3 pr-3 mt-2">
-                                                                        <Link
-                                                                          id="create-org-link" onClick={toggle}
-                                                                          to="/create"
-                                                                        >
-                                                                            <Button>
-
-                                                                            Create Organisation <span className="aside__link-icon--white ion-md-add"/>
-
-                                                                            </Button>
-                                                                        </Link>
-                                                                    </div>
-
-                                                                </div>
-                                                            )}
-                                                         </Popover>
-
                                                         <h1 className="aside__project-title">SSG Website</h1>
                                                     </div>
 
@@ -264,27 +219,27 @@ const Aside = class extends Component {
 
                                                     </div>
 
-                                                     {/*<div className="project-nav" style={{position: 'relative', bottom: '25em'}}>*/}
+                                                    {/*<div className="project-nav" style={{ position: 'relative', bottom: '25em' }}>*/}
 
-                                                     {/*  <ProjectSelect*/}
-                                                     {/*    projectId={this.props.projectId}*/}
-                                                     {/*    environmentId={this.props.environmentId}*/}
-                                                     {/*    clearableValue={false}*/}
-                                                     {/*    onChange={(project) => {*/}
-                                                     {/*        AppActions.getProject(project.id);*/}
-                                                     {/*        if (project.environments[0]) {*/}
-                                                     {/*            this.context.router.history.push(`/project/${project.id}/environment/${project.environments[0].api_key}/features`);*/}
-                                                     {/*        } else {*/}
-                                                     {/*            this.context.router.history.push(`/project/${project.id}/environment/create`);*/}
-                                                     {/*        }*/}
-                                                     {/*        AsyncStorage.setItem('lastEnv', JSON.stringify({*/}
-                                                     {/*            orgId: AccountStore.getOrganisation().id,*/}
-                                                     {/*            projectId: project.id,*/}
-                                                     {/*            environmentId: project.environments[0].api_key,*/}
-                                                     {/*        }));*/}
-                                                     {/*    }}*/}
-                                                     {/*  />*/}
-                                                     {/*</div>*/}
+                                                    {/*    <ProjectSelect*/}
+                                                    {/*      projectId={this.props.projectId}*/}
+                                                    {/*      environmentId={this.props.environmentId}*/}
+                                                    {/*      clearableValue={false}*/}
+                                                    {/*      onChange={(project) => {*/}
+                                                    {/*          AppActions.getProject(project.id);*/}
+                                                    {/*          if (project.environments[0]) {*/}
+                                                    {/*              this.context.router.history.push(`/project/${project.id}/environment/${project.environments[0].api_key}/features`);*/}
+                                                    {/*          } else {*/}
+                                                    {/*              this.context.router.history.push(`/project/${project.id}/environment/create`);*/}
+                                                    {/*          }*/}
+                                                    {/*          AsyncStorage.setItem('lastEnv', JSON.stringify({*/}
+                                                    {/*              orgId: AccountStore.getOrganisation().id,*/}
+                                                    {/*              projectId: project.id,*/}
+                                                    {/*              environmentId: project.environments[0].api_key,*/}
+                                                    {/*          }));*/}
+                                                    {/*      }}*/}
+                                                    {/*    />*/}
+                                                    {/*</div>*/}
 
 
                                                     <div className="flex flex-1"/>

@@ -274,7 +274,8 @@ Click here to Sign
                                                                       to="exampleone"
                                                                       className="popover-bt__list-item"
                                                                     >
-Logout
+                                                                        <img src="/images/icons/aside/logout-dark.svg" className="mr-2" />
+                                                                        Logout
                                                                     </a>
                                                                 </div>
                                                             )}
