@@ -116,7 +116,7 @@ class TheComponent extends PureComponent {
                               {error}
                           </ErrorMessage>
                           )}
-                          <div className="text-right">
+                          <div className="text-right mt-2">
                               <Button type="submit" disabled={isSaving || !first_name || !last_name}>
                         Save Details
                               </Button>
@@ -176,9 +176,9 @@ class TheComponent extends PureComponent {
                               {passwordError}
                           </ErrorMessage>
                           )}
-                          <div className="text-right">
+                          <div className="text-right mt-2">
                               <Button type="submit" disabled={isSaving || !new_password2 || !new_password1 || !current_password || (new_password1 !== new_password2)}>
-                        Save Password
+                                Save Password
                               </Button>
                           </div>
                       </form>
