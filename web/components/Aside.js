@@ -264,27 +264,27 @@ const Aside = class extends Component {
 
                                                     </div>
 
-                                                    {/* <div className="project-nav" style={{position: 'relative', bottom: '25em'}}> */}
+                                                     {/*<div className="project-nav" style={{position: 'relative', bottom: '25em'}}>*/}
 
-                                                    {/*   <ProjectSelect */}
-                                                    {/*     projectId={this.props.projectId} */}
-                                                    {/*     environmentId={this.props.environmentId} */}
-                                                    {/*     clearableValue={false} */}
-                                                    {/*     onChange={(project) => { */}
-                                                    {/*         AppActions.getProject(project.id); */}
-                                                    {/*         if (project.environments[0]) { */}
-                                                    {/*             this.context.router.history.push(`/project/${project.id}/environment/${project.environments[0].api_key}/features`); */}
-                                                    {/*         } else { */}
-                                                    {/*             this.context.router.history.push(`/project/${project.id}/environment/create`); */}
-                                                    {/*         } */}
-                                                    {/*         AsyncStorage.setItem('lastEnv', JSON.stringify({ */}
-                                                    {/*             orgId: AccountStore.getOrganisation().id, */}
-                                                    {/*             projectId: project.id, */}
-                                                    {/*             environmentId: project.environments[0].api_key, */}
-                                                    {/*         })); */}
-                                                    {/*     }} */}
-                                                    {/*   /> */}
-                                                    {/* </div> */}
+                                                     {/*  <ProjectSelect*/}
+                                                     {/*    projectId={this.props.projectId}*/}
+                                                     {/*    environmentId={this.props.environmentId}*/}
+                                                     {/*    clearableValue={false}*/}
+                                                     {/*    onChange={(project) => {*/}
+                                                     {/*        AppActions.getProject(project.id);*/}
+                                                     {/*        if (project.environments[0]) {*/}
+                                                     {/*            this.context.router.history.push(`/project/${project.id}/environment/${project.environments[0].api_key}/features`);*/}
+                                                     {/*        } else {*/}
+                                                     {/*            this.context.router.history.push(`/project/${project.id}/environment/create`);*/}
+                                                     {/*        }*/}
+                                                     {/*        AsyncStorage.setItem('lastEnv', JSON.stringify({*/}
+                                                     {/*            orgId: AccountStore.getOrganisation().id,*/}
+                                                     {/*            projectId: project.id,*/}
+                                                     {/*            environmentId: project.environments[0].api_key,*/}
+                                                     {/*        }));*/}
+                                                     {/*    }}*/}
+                                                     {/*  />*/}
+                                                     {/*</div>*/}
 
 
                                                     <div className="flex flex-1"/>

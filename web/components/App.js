@@ -174,7 +174,7 @@ Click here to Sign
                             <div className={pageHasAside ? `aside-body${isMobile && !asideIsVisible ? '-full-width' : ''}` : ''}>
                                 {(!isHomepage && !pageHasAside || !asideIsVisible || !isMobile) && (
                                     <nav
-                                      className={`navbar navbar-fixed-top ${pageHasAside && asideIsVisible ? ' navbar-aside' : ''}${isLegal ? 'navbar-aside dark-header ' : ''}${isDark ? ' dark-header ' : ''}${this.state.myClassName ? this.state.myClassName : ''}`}
+                                      className={`navbar navbar-fixed-top ${pageHasAside && asideIsVisible ? ' navbar-aside' : ''}${isLegal ? 'navbar-aside dark-header ' : ''}${isDark ? ' ' : ''}${this.state.myClassName ? this.state.myClassName : ''}`}
                                     >
                                         <Row space>
                                             <div className="navbar-left">
@@ -206,12 +206,23 @@ Click here to Sign
                                             </div>
                                             <div className="navbar-right">
                                                 {user ? (
-                                                    <div className="flex-column org-nav">
+                                                    <React.Fragment>
+                                                        <nav className="my-2 my-md-0">
+                                                            <a className="nav-link p-2" href="#">
+                                                                <img className="mr-2" src="/images/icons/aside/documentation.svg"/>
+                                                                Documentation
+                                                            </a>
+                                                            <a className="nav-link p-2" href="#">
+                                                                <img className="mr-2" src="/images/icons/aside/user.svg"/>
+                                                                Account Settings</a>
+                                                        </nav>
+
+                                                        <div className="flex-column org-nav">
                                                         <Popover
                                                           className="popover-right"
                                                           contentClassName="popover-bt"
                                                           renderTitle={toggle => (
-                                                              <a id="org-menu" onClick={toggle}>
+                                                              <a className="nav-link" id="org-menu" onClick={toggle}>
                                                                   {organisation ? organisation.name : ''}
                                                                   <div
                                                                     className="flex-column ion ion-ios-arrow-down"
@@ -255,6 +266,7 @@ Logout
                                                             )}
                                                         </Popover>
                                                     </div>
+                                                    </React.Fragment>
                                                 ) : (
                                                     <div />
                                                 )}
