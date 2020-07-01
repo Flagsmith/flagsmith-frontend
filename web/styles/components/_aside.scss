@@ -58,7 +58,7 @@ body {
         align-self: self-start;
         margin-bottom: 2em;
     }
-    
+
     &__nav-item {
         color: white;
         padding: .5em .35em .5em 1.5em;
@@ -109,7 +109,7 @@ body {
         color: white;
         font-size: 24px;
     }
-    
+
     &__nav-item-icon {
         margin-right: .75em;
         width: 15px;
@@ -124,6 +124,7 @@ body {
         @include customScroll;
     }
     &__environment-list-item {
+        display: block;
         color: white;
         padding: .35em .35em .35em .85em;
         opacity: 0.5;

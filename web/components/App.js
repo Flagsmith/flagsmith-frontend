@@ -208,79 +208,78 @@ Click here to Sign
                                                 {user ? (
                                                     <React.Fragment>
                                                         <nav className="my-2 my-md-0">
-                                                            <a className="nav-link p-2" href="#">
+                                                            <a
+                                                              href="https://docs.bullet-train.io" target="_blank" className="nav-link p-2"
+                                                              href="#"
+                                                            >
                                                                 <img className="mr-2" src="/images/icons/aside/documentation.svg"/>
                                                                 Documentation
                                                             </a>
-                                                            <a className="nav-link p-2" href="#">
+                                                            <NavLink
+                                                              id="account-settings-link"
+                                                              activeClassName="active"
+                                                              className="nav-link p-2"
+                                                              to={`/project/${projectId}/environment/${environmentId}/account-settings`}
+                                                            >
                                                                 <img className="mr-2" src="/images/icons/aside/user.svg"/>
-                                                                Account Settings</a>
+                                                                Account Settings
+                                                            </NavLink>
                                                         </nav>
 
                                                         <div className="flex-column org-nav">
-                                                        <Popover
-                                                          className="popover-right"
-                                                          contentClassName="popover-bt"
-                                                          renderTitle={toggle => (
-                                                              <a className="nav-link" id="org-menu" onClick={toggle}>
-                                                                  {organisation ? organisation.name : ''}
-                                                                  <div
-                                                                    className="flex-column ion ion-ios-arrow-down"
-                                                                  />
-                                                              </a>
-                                                          )}
-                                                        >
-                                                            {toggle => (
-                                                                <div className="popover-inner__content">
+                                                            <Popover
+                                                              className="popover-right"
+                                                              contentClassName="popover-bt"
+                                                              renderTitle={toggle => (
+                                                                  <a className="nav-link" id="org-menu" onClick={toggle}>
+                                                                      {organisation ? organisation.name : ''}
+                                                                      <div
+                                                                        className="flex-column ion ion-ios-arrow-down"
+                                                                      />
+                                                                  </a>
+                                                              )}
+                                                            >
+                                                                {toggle => (
+                                                                    <div className="popover-inner__content">
 
-                                                                    {organisation && (
-                                                                    <OrganisationSelect
-                                                                      clearableValue={false}
-                                                                      onChange={(organisation) => {
-                                                                          toggle();
-                                                                          AppActions.selectOrganisation(organisation.id);
-                                                                          AppActions.getOrganisation(organisation.id);
-                                                                          this.context.router.history.push('/projects');
-                                                                      }}
-                                                                    />
-                                                                    )}
-                                                                    {/*<div>*/}
-                                                                    {/*    <Link*/}
-                                                                    {/*      id="create-org-link" onClick={toggle}*/}
-                                                                    {/*      to="/create"*/}
-                                                                    {/*      className="popover-bt__list-item"*/}
-                                                                    {/*    >*/}
-                                                                    {/*    Create Organisation*/}
-                                                                    {/*    </Link>*/}
-                                                                    {/*</div>*/}
+                                                                        {organisation && (
+                                                                        <OrganisationSelect
+                                                                          clearableValue={false}
+                                                                          onChange={(organisation) => {
+                                                                              toggle();
+                                                                              AppActions.selectOrganisation(organisation.id);
+                                                                              AppActions.getOrganisation(organisation.id);
+                                                                              this.context.router.history.push('/projects');
+                                                                          }}
+                                                                        />
+                                                                        )}
 
-                                                                    <div className="pl-3 pr-3 mt-2 mb-2">
-                                                                        <Link
-                                                                            id="create-org-link" onClick={toggle}
-                                                                            to="/create"
-                                                                        >
-                                                                            <Button>
+
+                                                                        <div className="pl-3 pr-3 mt-2 mb-2">
+                                                                            <Link
+                                                                              id="create-org-link" onClick={toggle}
+                                                                              to="/create"
+                                                                            >
+                                                                                <Button>
 
                                                                                 Create Organisation <span className="aside__link-icon--white ion-md-add"/>
 
-                                                                            </Button>
-                                                                        </Link>
-                                                                    </div>
+                                                                                </Button>
+                                                                            </Link>
+                                                                        </div>
 
-
-                                                                    <a
-                                                                      id="logout-link" href="#"
-                                                                      onClick={AppActions.logout}
-                                                                      to="exampleone"
-                                                                      className="popover-bt__list-item"
-                                                                    >
-                                                                        <img src="/images/icons/aside/logout-dark.svg" className="mr-2" />
+                                                                        <a
+                                                                          id="logout-link" href="#"
+                                                                          onClick={AppActions.logout}
+                                                                          className="popover-bt__list-item"
+                                                                        >
+                                                                            <img src="/images/icons/aside/logout-dark.svg" className="mr-2" />
                                                                         Logout
-                                                                    </a>
-                                                                </div>
-                                                            )}
-                                                        </Popover>
-                                                    </div>
+                                                                        </a>
+                                                                    </div>
+                                                                )}
+                                                            </Popover>
+                                                        </div>
                                                     </React.Fragment>
                                                 ) : (
                                                     <div />

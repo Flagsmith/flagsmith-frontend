@@ -1,4 +1,5 @@
 import { PureComponent } from 'react';
+
 const cn = require('classnames');
 
 const Collapsible = class extends PureComponent {
@@ -6,30 +7,28 @@ const Collapsible = class extends PureComponent {
 
     static propTypes = {};
 
-    constructor(props){
-        super(props);
-        this.state = {
-            open: false
-        }
-        this.togglePanel = this.togglePanel.bind(this);
-    }
-
-    togglePanel(e){
-        this.setState({ open: !this.state.open })
-    }
-
     render() {
         return (
-            <div className={`collapsible ${this.props.className || ''}`}>
-                <div onClick={(e)=>this.togglePanel(e)} className="collapsible__header">
+            <div
+              onClick={this.props.onClick}
+              data-test={this.props['data-test']}
+              className={cn(
+                  'collapsible',
+                  this.props.className,
+                  {
+                      active: this.props.active,
+                  },
+              )}
+            >
+                <div onClick={e => this.togglePanel(e)} className="collapsible__header">
                     <div className="flex-row">
-                        {this.state.open ? (
+                        {this.props.active ? (
                             <img className="mr-2" src="/images/icons/aside/caret-down.svg" />
-                        ) :  <img className="mr-2" src="/images/icons/aside/caret-right.svg" />}
+                        ) : <img className="mr-2" src="/images/icons/aside/caret-right.svg" />}
                         {this.props.title}
                     </div>
                 </div>
-                {this.state.open ? (
+                {this.props.active ? (
                     <div className="collapsible__content">
                         {this.props.children}
                     </div>

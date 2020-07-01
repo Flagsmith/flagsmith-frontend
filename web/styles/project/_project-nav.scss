@@ -24,6 +24,9 @@ nav.navbar {
             margin-left: 1em;
             color: $bt-brand-secondary;
             font-family: $font-family;
+            &.active {
+                font-weight: 600;
+            }
             img {
                 width: 13px;
             }

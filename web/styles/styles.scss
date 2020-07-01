@@ -113,8 +113,8 @@ h1, h2, h3 {
     font-weight: 300;
 }
 
-label {
-    font-weight: 400;
+.no-pointer {
+    pointer-events: none !important;
 }
 
 input:disabled {
