@@ -183,40 +183,40 @@ const Aside = class extends Component {
 
                                                     <div className="aside__environments-wrapper">
 
-                                                        <Collapsible className="active" title="Develop">
+                                                        {/*<Collapsible className="active" title="Develop">*/}
 
-                                                            <ul className="aside__environment-nav list-unstyled mb-0">
-                                                                <li className="aside__environment-list-item active">
-                                                                    <img
-                                                                      src="/images/icons/aside/features.svg"
-                                                                      className="aside__environment-list-item--icon"
-                                                                    />
-                                                                    Features
-                                                                </li>
-                                                                <li className="aside__environment-list-item">
-                                                                    <img
-                                                                      src="/images/icons/aside/users.svg"
-                                                                      className="aside__environment-list-item--icon"
-                                                                    />
-                                                                    Users
-                                                                </li>
-                                                                <li className="aside__environment-list-item">
-                                                                    <img
-                                                                      src="/images/icons/aside/segments.svg"
-                                                                      className="aside__environment-list-item--icon"
-                                                                    />
-                                                                    Segments
-                                                                </li>
-                                                                <li className="aside__environment-list-item">
-                                                                    <img
-                                                                      src="/images/icons/aside/environment-settings.svg"
-                                                                      className="aside__environment-list-item--icon"
-                                                                    />
-                                                                    Environment Settings
-                                                                </li>
-                                                            </ul>
+                                                        {/*    <ul className="aside__environment-nav list-unstyled mb-0">*/}
+                                                        {/*        <li className="aside__environment-list-item active">*/}
+                                                        {/*            <img*/}
+                                                        {/*              src="/images/icons/aside/features.svg"*/}
+                                                        {/*              className="aside__environment-list-item--icon"*/}
+                                                        {/*            />*/}
+                                                        {/*            Features*/}
+                                                        {/*        </li>*/}
+                                                        {/*        <li className="aside__environment-list-item">*/}
+                                                        {/*            <img*/}
+                                                        {/*              src="/images/icons/aside/users.svg"*/}
+                                                        {/*              className="aside__environment-list-item--icon"*/}
+                                                        {/*            />*/}
+                                                        {/*            Users*/}
+                                                        {/*        </li>*/}
+                                                        {/*        <li className="aside__environment-list-item">*/}
+                                                        {/*            <img*/}
+                                                        {/*              src="/images/icons/aside/segments.svg"*/}
+                                                        {/*              className="aside__environment-list-item--icon"*/}
+                                                        {/*            />*/}
+                                                        {/*            Segments*/}
+                                                        {/*        </li>*/}
+                                                        {/*        <li className="aside__environment-list-item">*/}
+                                                        {/*            <img*/}
+                                                        {/*              src="/images/icons/aside/environment-settings.svg"*/}
+                                                        {/*              className="aside__environment-list-item--icon"*/}
+                                                        {/*            />*/}
+                                                        {/*            Environment Settings*/}
+                                                        {/*        </li>*/}
+                                                        {/*    </ul>*/}
 
-                                                        </Collapsible>
+                                                        {/*</Collapsible>*/}
 
                                                         <Collapsible title="Develop">
 
