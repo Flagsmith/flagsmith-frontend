@@ -10,7 +10,12 @@ const AsideTitleLink = class extends PureComponent {
             <Button className="btn--neutral" onClick={this.props.onClick}>
                 <div className="flex-row space">
                     <span className="aside__link-text">{this.props.title}</span>
-                    <span className={`aside__link-icon ${this.props.iconClassName || ''}`} />
+                    <Tooltip
+                        title={<span className={`aside__link-icon ${this.props.iconClassName || ''}`} />}
+                        place="top"
+                    >
+                        Create Environment
+                    </Tooltip>
                 </div>
             </Button>
         );

@@ -82,24 +82,32 @@ const Aside = class extends Component {
                                                         />
                                                     </Link>
                                                 </div>
-                                                <AsideProjectButton className="active" name="SSG Website"/>
 
-                                                <AsideProjectButton name="Hoxton Mix Website"/>
+                                                <AsideProjectButton className="active" name="SSG Website" projectLetter="S"/>
+
+                                                <AsideProjectButton name="Hoxton Mix Website" projectLetter="H"/>
 
                                                 <div className="flex-column">
                                                     <div className="aside__projects-item">
                                                         <div className="flex-row justify-content-center">
                                                             <div className="flex-column">
 
-                                                                <Button className="btn--transparent">
-                                                                    <Link
-                                                                      id="create-project-link"
-                                                                      to="/projects"
-                                                                      state={{ create: true }}
-                                                                    >
-                                                                        <img src="/images/icons/plus-white.svg"/>
-                                                                    </Link>
-                                                                </Button>
+                                                                <Tooltip
+                                                                  title={(
+                                                                      <Button className="btn--transparent">
+                                                                          <Link
+                                                                            id="create-project-link"
+                                                                            to="/projects"
+                                                                            state={{ create: true }}
+                                                                          >
+                                                                              <img src="/images/icons/plus-white.svg"/>
+                                                                          </Link>
+                                                                      </Button>
+)}
+                                                                  place="right"
+                                                                >
+                                                                    Create Project
+                                                                </Tooltip>
 
                                                             </div>
                                                         </div>
@@ -116,49 +124,49 @@ const Aside = class extends Component {
 
                                                     <div className="pl-4 pr-4 pt-4">
 
-                                                        <Popover
-                                                          className="aside__popover"
-                                                          contentClassName="popover-bt"
-                                                          renderTitle={toggle => (
+                                                        {/* <Popover */}
+                                                        {/*  className="aside__popover" */}
+                                                        {/*  contentClassName="popover-bt" */}
+                                                        {/*  renderTitle={toggle => ( */}
 
-                                                              <AsideTitleLink
-                                                                title="My Organisation"
-                                                                onClick={toggle}
-                                                                iconClassName="ion-ios-arrow-down"
-                                                              />
-                                                          )}
-                                                        >
-                                                            {toggle => (
-                                                                <div className="popover-inner__content">
+                                                        {/*      <AsideTitleLink */}
+                                                        {/*        title="My Organisation" */}
+                                                        {/*        onClick={toggle} */}
+                                                        {/*        iconClassName="ion-ios-arrow-down" */}
+                                                        {/*      /> */}
+                                                        {/*  )} */}
+                                                        {/* > */}
+                                                        {/*    {toggle => ( */}
+                                                        {/*        <div className="popover-inner__content"> */}
 
-                                                                    <a
-                                                                        className="popover-bt__list-item"
-                                                                    >
-                                                                        Organisation 1
-                                                                    </a>
+                                                        {/*            <a */}
+                                                        {/*                className="popover-bt__list-item" */}
+                                                        {/*            > */}
+                                                        {/*                Organisation 1 */}
+                                                        {/*            </a> */}
 
-                                                                    <a
-                                                                        className="popover-bt__list-item"
-                                                                    >
-                                                                        Organisation 2
-                                                                    </a>
+                                                        {/*            <a */}
+                                                        {/*                className="popover-bt__list-item" */}
+                                                        {/*            > */}
+                                                        {/*                Organisation 2 */}
+                                                        {/*            </a> */}
 
-                                                                    <div className="pl-3 pr-3 mt-2">
-                                                                        <Link
-                                                                          id="create-org-link" onClick={toggle}
-                                                                          to="/create"
-                                                                        >
-                                                                            <Button>
+                                                        {/*            <div className="pl-3 pr-3 mt-2"> */}
+                                                        {/*                <Link */}
+                                                        {/*                  id="create-org-link" onClick={toggle} */}
+                                                        {/*                  to="/create" */}
+                                                        {/*                > */}
+                                                        {/*                    <Button> */}
 
-                                                                            Create Organisation <span className="aside__link-icon--white ion-md-add"/>
+                                                        {/*                    Create Organisation <span className="aside__link-icon--white ion-md-add"/> */}
 
-                                                                            </Button>
-                                                                        </Link>
-                                                                    </div>
+                                                        {/*                    </Button> */}
+                                                        {/*                </Link> */}
+                                                        {/*            </div> */}
 
-                                                                </div>
-                                                            )}
-                                                        </Popover>
+                                                        {/*        </div> */}
+                                                        {/*    )} */}
+                                                        {/* </Popover> */}
 
                                                         <h1 className="aside__project-title">SSG Website</h1>
                                                     </div>
@@ -183,69 +191,34 @@ const Aside = class extends Component {
 
                                                     <div className="aside__environments-wrapper">
 
-                                                        {/*<Collapsible className="active" title="Develop">*/}
-
-                                                        {/*    <ul className="aside__environment-nav list-unstyled mb-0">*/}
-                                                        {/*        <li className="aside__environment-list-item active">*/}
-                                                        {/*            <img*/}
-                                                        {/*              src="/images/icons/aside/features.svg"*/}
-                                                        {/*              className="aside__environment-list-item--icon"*/}
-                                                        {/*            />*/}
-                                                        {/*            Features*/}
-                                                        {/*        </li>*/}
-                                                        {/*        <li className="aside__environment-list-item">*/}
-                                                        {/*            <img*/}
-                                                        {/*              src="/images/icons/aside/users.svg"*/}
-                                                        {/*              className="aside__environment-list-item--icon"*/}
-                                                        {/*            />*/}
-                                                        {/*            Users*/}
-                                                        {/*        </li>*/}
-                                                        {/*        <li className="aside__environment-list-item">*/}
-                                                        {/*            <img*/}
-                                                        {/*              src="/images/icons/aside/segments.svg"*/}
-                                                        {/*              className="aside__environment-list-item--icon"*/}
-                                                        {/*            />*/}
-                                                        {/*            Segments*/}
-                                                        {/*        </li>*/}
-                                                        {/*        <li className="aside__environment-list-item">*/}
-                                                        {/*            <img*/}
-                                                        {/*              src="/images/icons/aside/environment-settings.svg"*/}
-                                                        {/*              className="aside__environment-list-item--icon"*/}
-                                                        {/*            />*/}
-                                                        {/*            Environment Settings*/}
-                                                        {/*        </li>*/}
-                                                        {/*    </ul>*/}
-
-                                                        {/*</Collapsible>*/}
-
-                                                        <Collapsible title="Develop">
+                                                        <Collapsible className="active" title="Develop">
 
                                                             <ul className="aside__environment-nav list-unstyled mb-0">
                                                                 <li className="aside__environment-list-item active">
                                                                     <img
-                                                                        src="/images/icons/aside/features.svg"
-                                                                        className="aside__environment-list-item--icon"
+                                                                      src="/images/icons/aside/features.svg"
+                                                                      className="aside__environment-list-item--icon"
                                                                     />
                                                                     Features
                                                                 </li>
                                                                 <li className="aside__environment-list-item">
                                                                     <img
-                                                                        src="/images/icons/aside/users.svg"
-                                                                        className="aside__environment-list-item--icon"
+                                                                      src="/images/icons/aside/users.svg"
+                                                                      className="aside__environment-list-item--icon"
                                                                     />
                                                                     Users
                                                                 </li>
                                                                 <li className="aside__environment-list-item">
                                                                     <img
-                                                                        src="/images/icons/aside/segments.svg"
-                                                                        className="aside__environment-list-item--icon"
+                                                                      src="/images/icons/aside/segments.svg"
+                                                                      className="aside__environment-list-item--icon"
                                                                     />
                                                                     Segments
                                                                 </li>
                                                                 <li className="aside__environment-list-item">
                                                                     <img
-                                                                        src="/images/icons/aside/environment-settings.svg"
-                                                                        className="aside__environment-list-item--icon"
+                                                                      src="/images/icons/aside/environment-settings.svg"
+                                                                      className="aside__environment-list-item--icon"
                                                                     />
                                                                     Environment Settings
                                                                 </li>
@@ -253,8 +226,40 @@ const Aside = class extends Component {
 
                                                         </Collapsible>
 
+                                                        <Collapsible title="Develop">
 
+                                                            <ul className="aside__environment-nav list-unstyled mb-0">
+                                                                <li className="aside__environment-list-item active">
+                                                                    <img
+                                                                      src="/images/icons/aside/features.svg"
+                                                                      className="aside__environment-list-item--icon"
+                                                                    />
+                                                                    Features
+                                                                </li>
+                                                                <li className="aside__environment-list-item">
+                                                                    <img
+                                                                      src="/images/icons/aside/users.svg"
+                                                                      className="aside__environment-list-item--icon"
+                                                                    />
+                                                                    Users
+                                                                </li>
+                                                                <li className="aside__environment-list-item">
+                                                                    <img
+                                                                      src="/images/icons/aside/segments.svg"
+                                                                      className="aside__environment-list-item--icon"
+                                                                    />
+                                                                    Segments
+                                                                </li>
+                                                                <li className="aside__environment-list-item">
+                                                                    <img
+                                                                      src="/images/icons/aside/environment-settings.svg"
+                                                                      className="aside__environment-list-item--icon"
+                                                                    />
+                                                                    Environment Settings
+                                                                </li>
+                                                            </ul>
 
+                                                        </Collapsible>
 
 
                                                     </div>

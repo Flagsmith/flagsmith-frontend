@@ -9,12 +9,15 @@ const AsideProjectButton = class extends PureComponent {
                 <div className="aside__projects-item">
                     <div className="flex-row justify-content-center">
                         <div className="flex-column">
-                            <ButtonProject className={this.props.className}>
-                                S
-                            </ButtonProject>
+                            <Tooltip
+                                title={<ButtonProject className={this.props.className}>{this.props.projectLetter}</ButtonProject>}
+                                place="right"
+                            >
+                                {this.props.name}
+                            </Tooltip>
                         </div>
                         <div className="flex-column">
-                            <p className="aside__projects-item-title">{this.props.name || 'SSG Website'}</p>
+                            <p className="aside__projects-item-title">{this.props.name}</p>
                         </div>
                     </div>
                 </div>
