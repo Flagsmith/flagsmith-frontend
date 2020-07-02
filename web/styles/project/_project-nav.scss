@@ -1,5 +1,11 @@
 nav.navbar {
     background-color: white;
+    .nav-link {
+        margin-left: 1em;
+        &.active {
+            font-family: $font-family-header !important;
+        }
+    }
     &.dark-header{
         background:#22354a;
         -webkit-box-shadow: 0px 5px 2px -2px rgba(0,0,0,0.25);
@@ -8,6 +14,13 @@ nav.navbar {
         color: white;
         .nav-link {
             color: white !important;
+        }
+    }
+    &.light-header{
+        background-color: white;
+        box-shadow: none;
+        .nav-link {
+            color: $bt-brand-secondary !important;
         }
     }
     
@@ -21,9 +34,6 @@ nav.navbar {
             margin-left: 1em;
             color: $bt-brand-secondary;
             font-family: $font-family;
-            &.active {
-                font-family: $font-family-header;
-            }
             img {
                 width: 13px;
             }

@@ -179,7 +179,7 @@ Click here to Sign
                             <div className={pageHasAside ? `aside-body${isMobile && !asideIsVisible ? '-full-width' : ''}` : ''}>
                                 {(!isHomepage && !pageHasAside || !asideIsVisible || !isMobile) && (
                                     <nav
-                                      className={`navbar navbar-fixed-top ${pageHasAside && asideIsVisible ? ' navbar-aside' : ''}${isLegal ? 'navbar-aside dark-header ' : ''}${isDark ? ' ' : ''}${this.state.myClassName ? this.state.myClassName : ''}`}
+                                      className={`navbar navbar-fixed-top ${pageHasAside && asideIsVisible ? ' navbar-aside light-header' : ''}${isLegal ? 'navbar-aside dark-header ' : ''}${isDark ? ' dark-header ' : ''}${this.state.myClassName ? this.state.myClassName : ''}`}
                                     >
                                         <Row space>
                                             <div className="navbar-left">
