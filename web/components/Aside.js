@@ -75,6 +75,34 @@ const Aside = class extends Component {
                                                     className="aside__logo"
                                                   />
                                               </div>
+
+                                              <div className="flex-column">
+                                                  <div className="aside__projects-item">
+                                                      <div className="flex-row justify-content-center">
+                                                          <div className="flex-column">
+
+                                                              <Tooltip
+                                                                  title={(
+                                                                      <Button className="btn--transparent">
+                                                                          <Link
+                                                                              id="create-project-link"
+                                                                              to="/projects"
+                                                                              state={{ create: true }}
+                                                                          >
+                                                                              <img src="/images/icons/plus-white.svg"/>
+                                                                          </Link>
+                                                                      </Button>
+                                                                  )}
+                                                                  place="right"
+                                                              >
+                                                                  Create Project
+                                                              </Tooltip>
+
+                                                          </div>
+                                                      </div>
+                                                  </div>
+                                              </div>
+
                                               <ProjectSelect
                                                 renderRow={(project, onClick) => (
                                                     <AsideProjectButton
