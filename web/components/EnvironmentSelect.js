@@ -14,7 +14,9 @@ const EnvironmentSelect = class extends Component {
         return (
             <ProjectProvider id={this.props.id}>
                 {({ isLoading, project }) => (
-                    <div className={`fade ${project && project.environments && !!project.environments.length && 'in'}`}>
+                    <div className={`fade ${isLoading ? '' : 'in'}`}>
+
+                        {!isLoading && (
                         <ul id="env-list" className="project-list list-unstyled">
                             {project && project.environments && project.environments.map(environment => this.props.renderRow(environment,
                                 () => {
@@ -22,8 +24,10 @@ const EnvironmentSelect = class extends Component {
                                         this.props.onChange && this.props.onChange(environment.api_key);
                                     }
                                 }))
-                            }
+                              }
                         </ul>
+                        )}
+
                     </div>
                 )}
             </ProjectProvider>
