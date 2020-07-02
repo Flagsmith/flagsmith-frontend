@@ -48,7 +48,7 @@ body {
     }
 
     &__main-content {
-        background-color: #2D3F53;
+        background-color: $bt-brand-secondary-light;
         width: 250px;
     }
 
@@ -161,6 +161,7 @@ body {
     }
 
     &__footer {
+        background-color: $bt-brand-secondary-light;
         position: absolute;
         bottom: 0;
 		padding-bottom: 1em;
@@ -396,6 +397,14 @@ $animation-timing-function: ease-in-out;
         }
         &__main-content {
             width: auto;
+        }
+    }
+}
+
+@media (max-height: 576px) {
+    .aside {
+        &__environments-wrapper {
+            height: 300px;
         }
     }
 }
