@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import propTypes from 'prop-types';
+import NavLink from 'react-router-dom/NavLink';
 import ProjectSelect from './ProjectSelect';
 import AsideProjectButton from './AsideProjectButton';
 import AsideTitleLink from './AsideTitleLink';
@@ -157,15 +158,21 @@ const Aside = class extends Component {
                                                   </Permission>
                                                   <Permission level="project" permission="CREATE_ENVIRONMENT" id={this.props.projectId}>
                                                       {({ permission, isLoading }) => permission && (
-
-                                                          <AsideTitleLink
-                                                            tooltip="Create Environment"
+                                                      <div className="pl-4 pr-4">
+                                                          <NavLink
                                                             id="create-env-link"
+                                                            className="aside-link"
                                                             to={`/project/${this.props.projectId}/environment/create`}
-                                                            className="mt-4 hello" title="Environments"
-                                                            iconClassName="ion-md-add"
-                                                          />
-
+                                                            exact
+                                                          >
+                                                              <AsideTitleLink
+                                                                tooltip="Create Environment"
+                                                                className="mt-4"
+                                                                title="Environments"
+                                                                iconClassName="ion-md-add"
+                                                              />
+                                                          </NavLink>
+                                                      </div>
                                                       )}
 
                                                   </Permission>
