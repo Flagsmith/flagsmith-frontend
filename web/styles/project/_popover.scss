@@ -25,10 +25,12 @@
         display: flex;
         justify-content: center;
         padding: .75em;
-        font-family: $font-family-header;
+        font-family: $font-family;
         color: #22354A !important;
+        border-bottom: 1px solid $input-border-color;
         &:hover {
             background-color: $list-item-striped-background;
+            text-decoration: none;
         }
     }
 }

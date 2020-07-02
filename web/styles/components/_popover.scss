@@ -30,7 +30,8 @@
 	position: absolute !important;
 	left: 10px;
 	&__content {
-		border-radius: $border-radius-default;
+		border-bottom-left-radius: $border-radius-default;
+		border-bottom-right-radius: $border-radius-default;
 		overflow: hidden;
 	}
 }
