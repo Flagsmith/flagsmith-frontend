@@ -147,7 +147,7 @@ const Aside = class extends Component {
                                                         id="project-settings-link"
                                                         activeClassName="active"
                                                         className="aside__nav-item"
-                                                        to={`/project/${this.props.projectId}/environment/${this.props.environmentId}/project-settings`}
+                                                        to={`/project/${this.props.projectId}/settings`}
                                                       >
                                                           <ProjectSettingsIcon className="aside__nav-item--icon"/>
                                                           Project Settings

@@ -131,9 +131,14 @@ const App = class extends Component {
             exact: false,
             strict: false,
         });
-        const projectId = _.get(match, 'params.projectId');
+        const match2 = matchPath(pathname, {
+            path: '/project/:projectId',
+            exact: false,
+            strict: false,
+        });
+        const projectId = _.get(match, 'params.projectId') || _.get(match2, 'params.projectId');
         const environmentId = _.get(match, 'params.environmentId');
-        const pageHasAside = environmentId;
+        const pageHasAside = environmentId || projectId;
         const isHomepage = pathname == '/' || pathname == '/login';
         const isLegal = pathname == '/legal/tos' || pathname == '/legal/sla' || pathname == '/legal/privacy-policy';
         const isDark = /* pathname.indexOf('/blog') !== -1 */ true;
