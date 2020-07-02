@@ -69,31 +69,33 @@ const Aside = class extends Component {
                                       >
                                           <div className="flex-row justify-content-center">
                                               <div className="flex-column">
-                                                  <img
-                                                    title="Bullet Train"
-                                                    src="/images/bullet-train-1-mark.svg"
-                                                    className="aside__logo"
-                                                  />
+                                                  <Link to="/projects">
+                                                      <img
+                                                        title="Bullet Train"
+                                                        src="/images/bullet-train-1-mark.svg"
+                                                        className="aside__logo"
+                                                      />
+                                                  </Link>
                                               </div>
 
                                               <div className="flex-column">
                                                   <div className="aside__projects-item">
                                                       <div className="flex-row justify-content-center">
-                                                          <div className="flex-column">
+                                                          <div className="flex-column mb-3">
 
                                                               <Tooltip
-                                                                  title={(
-                                                                      <Button className="btn--transparent">
-                                                                          <Link
-                                                                              id="create-project-link"
-                                                                              to="/projects"
-                                                                              state={{ create: true }}
-                                                                          >
-                                                                              <img src="/images/icons/plus-white.svg"/>
-                                                                          </Link>
-                                                                      </Button>
+                                                                title={(
+                                                                    <Button className="btn--transparent">
+                                                                        <Link
+                                                                          id="create-project-link"
+                                                                          to="/projects"
+                                                                          state={{ create: true }}
+                                                                        >
+                                                                            <img src="/images/icons/plus-white.svg"/>
+                                                                        </Link>
+                                                                    </Button>
                                                                   )}
-                                                                  place="right"
+                                                                place="right"
                                                               >
                                                                   Create Project
                                                               </Tooltip>
@@ -155,15 +157,15 @@ const Aside = class extends Component {
                                                   </Permission>
                                                   <Permission level="project" permission="CREATE_ENVIRONMENT" id={this.props.projectId}>
                                                       {({ permission, isLoading }) => permission && (
-                                                      <div className="pl-4 pr-4">
+
                                                           <AsideTitleLink
                                                             tooltip="Create Environment"
                                                             id="create-env-link"
                                                             to={`/project/${this.props.projectId}/environment/create`}
-                                                            className="mt-4" title="Environments"
+                                                            className="mt-4 hello" title="Environments"
                                                             iconClassName="ion-md-add"
                                                           />
-                                                      </div>
+
                                                       )}
 
                                                   </Permission>
@@ -207,19 +209,6 @@ const Aside = class extends Component {
                                                                                         Users
                                                                                     </NavLink>
                                                                                     )}
-                                                                                    {environmentAdmin && (
-                                                                                    <NavLink
-                                                                                      id="env-settings-link"
-                                                                                      className="aside__environment-list-item"
-                                                                                      to={`/project/${project.id}/environment/${environment.api_key}/settings`}
-                                                                                    >
-                                                                                        <img
-                                                                                          src="/images/icons/aside/environment-settings.svg"
-                                                                                          className="aside__environment-list-item--icon"
-                                                                                        />
-                                                                                        Environment Settings
-                                                                                    </NavLink>
-                                                                                    )}
                                                                                     <Permission level="project" permission="ADMIN" id={this.props.projectId}>
                                                                                         {({ permission: projectAdmin, isLoading }) => projectAdmin && (
                                                                                         <NavLink
@@ -236,6 +225,19 @@ const Aside = class extends Component {
                                                                                         </NavLink>
                                                                                         )}
                                                                                     </Permission>
+                                                                                    {environmentAdmin && (
+                                                                                        <NavLink
+                                                                                          id="env-settings-link"
+                                                                                          className="aside__environment-list-item"
+                                                                                          to={`/project/${project.id}/environment/${environment.api_key}/settings`}
+                                                                                        >
+                                                                                            <img
+                                                                                              src="/images/icons/aside/environment-settings.svg"
+                                                                                              className="aside__environment-list-item--icon"
+                                                                                            />
+                                                                                            Settings
+                                                                                        </NavLink>
+                                                                                    )}
                                                                                 </div>
                                                                             ))}
                                                                     </Permission>
@@ -289,7 +291,7 @@ const Aside = class extends Component {
                                                         to={`/project/${this.props.projectId}/environment/${this.props.environmentId}/organisation-settings`}
                                                       >
                                                           <OrgSettingsIcon className="aside__nav-item--icon"/>
-                                                          Organisation Settings
+                                                          Organisation
                                                       </NavLink>
                                                       )}
 

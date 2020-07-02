@@ -85,6 +85,13 @@ body {
             margin-right: .75em;
         }
     }
+    #create-env-link {
+        &.active {
+            .aside__title-wrapper {
+                background-color: red;
+            }
+        }
+    }
 
     &__link-text {
         color: $bt-brand-primary;
@@ -129,7 +136,6 @@ body {
         padding: .35em .35em .35em .85em;
         opacity: 0.5;
         cursor: pointer;
-
         &.active {
             border-top-left-radius: 8px;
             border-bottom-left-radius: 8px;
@@ -139,6 +145,10 @@ body {
 
         &:hover {
             opacity: 1;
+            text-decoration: none;
+        }
+        &:focus {
+            text-decoration: none;
         }
 
         &--icon {
