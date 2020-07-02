@@ -34,16 +34,9 @@ module.exports = {
             .waitForElementVisible(byId('user-feature-switch-1-off'));
     },
     '[Users Tests] - Add trait for user': function (browser) {
-        browser
-            .waitAndClick('#add-trait')
-            .waitForElementPresent('#create-trait-modal')
-            .waitForElementVisible('[name="traitID"]')
-            .setValue('[name="traitID"]', 'color')
-            .setValue('[name="traitValue"]', 'red')
-            .click('#create-trait-btn')
-            .waitForElementNotPresent('#create-trait-modal')
-            .waitForElementVisible(byId('user-trait-value-0'));
-        browser.expect.element(byId('user-trait-value-0')).text.to.equal('"red"');
+        testHelpers.createTrait(browser, 0, 'color', 'red');
+        testHelpers.createTrait(browser, 1, 'age', 18);
+        testHelpers.createTrait(browser, 2, 'isMale', true);
     },
     '[Users Tests] - Edit trait for user': function (browser) {
         browser
