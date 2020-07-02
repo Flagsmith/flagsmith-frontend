@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import propTypes from 'prop-types';
+import NavLink from 'react-router-dom/NavLink';
 import ProjectSelect from './ProjectSelect';
 import AsideProjectButton from './AsideProjectButton';
 import AsideTitleLink from './AsideTitleLink';
@@ -82,18 +83,18 @@ const Aside = class extends Component {
                                                           <div className="flex-column">
 
                                                               <Tooltip
-                                                                  title={(
-                                                                      <Button className="btn--transparent">
-                                                                          <Link
-                                                                              id="create-project-link"
-                                                                              to="/projects"
-                                                                              state={{ create: true }}
-                                                                          >
-                                                                              <img src="/images/icons/plus-white.svg"/>
-                                                                          </Link>
-                                                                      </Button>
+                                                                title={(
+                                                                    <Button className="btn--transparent">
+                                                                        <Link
+                                                                          id="create-project-link"
+                                                                          to="/projects"
+                                                                          state={{ create: true }}
+                                                                        >
+                                                                            <img src="/images/icons/plus-white.svg"/>
+                                                                        </Link>
+                                                                    </Button>
                                                                   )}
-                                                                  place="right"
+                                                                place="right"
                                                               >
                                                                   Create Project
                                                               </Tooltip>
@@ -156,13 +157,19 @@ const Aside = class extends Component {
                                                   <Permission level="project" permission="CREATE_ENVIRONMENT" id={this.props.projectId}>
                                                       {({ permission, isLoading }) => permission && (
                                                       <div className="pl-4 pr-4">
-                                                          <AsideTitleLink
-                                                            tooltip="Create Environment"
+                                                          <NavLink
                                                             id="create-env-link"
+                                                            className="aside-link"
                                                             to={`/project/${this.props.projectId}/environment/create`}
-                                                            className="mt-4" title="Environments"
-                                                            iconClassName="ion-md-add"
-                                                          />
+                                                            exact
+                                                          >
+                                                              <AsideTitleLink
+                                                                tooltip="Create Environment"
+                                                                className="mt-4"
+                                                                title="Environments"
+                                                                iconClassName="ion-md-add"
+                                                              />
+                                                          </NavLink>
                                                       </div>
                                                       )}
 

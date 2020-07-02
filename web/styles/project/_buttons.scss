@@ -84,7 +84,7 @@ a, .btn, button{
             box-shadow: 0 6px 13px 0 rgba(43,227,214,0.10);
         }
     }
-    
+
     &--transparent {
         background-color: transparent;
         height: 38px;
@@ -106,7 +106,7 @@ a, .btn, button{
             box-shadow: none;
         }
     }
-    
+
     &--link {
         font-family: $font-family;
         background: transparent;
@@ -245,4 +245,9 @@ a, .btn, button{
             background-color: red;
         }
     }
+}
+
+
+.aside-link.active {
+    background: $bt-brand-secondary;
 }
