@@ -50,7 +50,15 @@ module.exports = {
             .waitForElementVisible(byId('user-trait-value-0'));
         browser.expect.element(byId('user-trait-value-0')).text.to.equal('1');
     },
-    '[Users Tests] - Delete trait for user': function (browser) {
+    '[Users Tests] - Delete traits for user': function (browser) {
+        browser
+            .waitAndClick(byId('delete-user-trait-2'))
+            .waitAndClick('#confirm-btn-yes')
+            .waitForElementNotPresent(byId('user-trait-2'));
+        browser
+            .waitAndClick(byId('delete-user-trait-1'))
+            .waitAndClick('#confirm-btn-yes')
+            .waitForElementNotPresent(byId('user-trait-1'));
         browser
             .waitAndClick(byId('delete-user-trait-0'))
             .waitAndClick('#confirm-btn-yes')
