@@ -85,18 +85,22 @@ body {
             margin-right: .75em;
         }
     }
-    #create-env-link {
+
+    &__header-link {
         &.active {
             .aside__title-wrapper {
-                background-color: red;
+                background-color: $bt-brand-secondary;
+                box-shadow: inset 4px 0 0 $bt-brand-primary;
             }
         }
+    
     }
 
     &__link-text {
         color: $bt-brand-primary;
         font-family: $font-family-header;
         font-size: 14px;
+        padding-left: 2em;
         &:hover {
             color: darken($bt-brand-primary, 10);
         }
@@ -104,6 +108,7 @@ body {
 
     &__link-icon {
         color: $bt-brand-primary;
+        padding-right: 1em;
         &:hover {
             color: darken($bt-brand-primary, 10);
         }

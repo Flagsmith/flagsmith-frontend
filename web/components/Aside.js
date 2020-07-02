@@ -158,10 +158,10 @@ const Aside = class extends Component {
                                                   </Permission>
                                                   <Permission level="project" permission="CREATE_ENVIRONMENT" id={this.props.projectId}>
                                                       {({ permission, isLoading }) => permission && (
-                                                      <div className="pl-4 pr-4">
+
                                                           <NavLink
                                                             id="create-env-link"
-                                                            className="aside-link"
+                                                            className="aside__header-link"
                                                             to={`/project/${this.props.projectId}/environment/create`}
                                                             exact
                                                           >
@@ -172,7 +172,7 @@ const Aside = class extends Component {
                                                                 iconClassName="ion-md-add"
                                                               />
                                                           </NavLink>
-                                                      </div>
+
                                                       )}
 
                                                   </Permission>
