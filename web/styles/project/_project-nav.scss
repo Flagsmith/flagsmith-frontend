@@ -10,16 +10,13 @@ nav.navbar {
             color: white !important;
         }
     }
-
-
-
-
-
+    
     .navbar-right {
         float: right;
         > * {
             display: inline-block;
         }
+        
         .nav-link {
             margin-left: 1em;
             color: $bt-brand-secondary;
@@ -298,6 +295,15 @@ color:#fff;
             .brand {
                 width: 175px;
             }
+        }
+    }
+}
+
+
+@include media-breakpoint-down(xs) {
+    .nav {
+        &__links {
+            font-size: .65em;
         }
     }
 }

@@ -15,7 +15,7 @@
         background: $bt-navy-light;
         border-radius: 20px;
         &:hover {
-            background: darken($bt-brand-secondary, 10);
+            background: lighten($bt-brand-secondary, 5);
         }
     }
 }

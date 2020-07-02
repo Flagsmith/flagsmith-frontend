@@ -56,7 +56,7 @@ const Aside = class extends Component {
                                 className={`aside ${this.props.className || ''}`} style={!asideIsVisible ? {
                                     width: 0,
                                     overflow: 'hidden',
-                                } : isMobile ? { width: '100vw' } : {}}
+                                } : isMobile ? { width: '90vw' } : {}}
                               >
                                   {isMobile && (
                                   <div role="button" className="clickable toggle" onClick={toggleAside}>
