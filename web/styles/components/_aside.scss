@@ -93,7 +93,11 @@ body {
                 box-shadow: inset 4px 0 0 $bt-brand-primary;
             }
         }
-    
+        &:hover {
+            .aside__link-text, .aside__link-icon {
+                color: darken($bt-brand-primary, 10);
+            }
+        }
     }
 
     &__link-text {
@@ -101,17 +105,11 @@ body {
         font-family: $font-family-header;
         font-size: 14px;
         padding-left: 2em;
-        &:hover {
-            color: darken($bt-brand-primary, 10);
-        }
     }
 
     &__link-icon {
         color: $bt-brand-primary;
         padding-right: 1em;
-        &:hover {
-            color: darken($bt-brand-primary, 10);
-        }
         &--white {
             color: white;
         }
