@@ -327,7 +327,7 @@ const UserPage = class extends Component {
                                                                               {name}
                                                                           </span>
                                                                       </Row>
-                                                                      <div className="list-item-footer faint">
+                                                                      <div className="list-item-footer faint mt-2">
                                                                           {description ? <div>{description}<br/></div> : ''}
                                                                             Created
                                                                           {' '}
