@@ -73,7 +73,11 @@ a, .btn, button{
     &--project {
         background: $bt-brand-grey;
         color: white;
+        width: 38px;
         height: 38px;
+        justify-content: center;
+        align-items: center;
+        display: flex;
         padding: 0 16px;
         line-height: inherit;
         &:hover {
