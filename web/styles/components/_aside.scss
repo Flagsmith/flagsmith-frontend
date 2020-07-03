@@ -1,11 +1,7 @@
 @import "../mixins/custom-scrollbar";
 
-body {
-    line-height: inherit !important;
-}
-
 .aside {
-    //z-index: 99999 !important;
+    z-index: 99999 !important;
     &__projects-sidebar {
         width: 80px;
         background-color: #22354A;
@@ -85,18 +81,32 @@ body {
             margin-right: .75em;
         }
     }
-
+    &__title-wrapper {
+        padding: 1em 0;
+        text-decoration: none;
+        &:hover {
+            .aside__link-text {
+                text-decoration: none;
+            }
+        }
+    }
     &__header-link {
+        text-decoration: none;
         &.active {
             .aside__title-wrapper {
                 background-color: $bt-brand-secondary;
                 box-shadow: inset 4px 0 0 $bt-brand-primary;
+                text-decoration: none !important;
             }
         }
         &:hover {
             .aside__link-text, .aside__link-icon {
                 color: darken($bt-brand-primary, 10);
             }
+            text-decoration: none !important;
+        }
+        &:focus {
+            text-decoration: none !important;
         }
     }
 
