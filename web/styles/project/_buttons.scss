@@ -91,7 +91,11 @@ a, .btn, button{
 
     &--transparent {
         background-color: transparent;
+        justify-content: center;
+        align-items: center;
+        display: flex;
         height: 38px;
+        width: 38px;
         padding: 0 16px;
         line-height: inherit;
         &:hover {

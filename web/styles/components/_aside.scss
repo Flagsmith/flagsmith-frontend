@@ -53,6 +53,7 @@
         display: flex;
         align-self: self-start;
         margin-bottom: 1em;
+        margin-top: .75em;
     }
 
     &__nav-item {
@@ -243,9 +244,7 @@ $animation-timing-function: ease-in-out;
     height: 100%;
     background: $aside-bg;
     z-index: 2;
-    -webkit-box-shadow: 5px 0px 2px -2px rgba(0, 0, 0, 0.25);
-    -moz-box-shadow: 5px 0px 2px -2px rgba(0, 0, 0, 0.25);
-    box-shadow: 5px 0px 2px -2px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 6px 13px 0 rgba(34,53,74,.75);
 
     .brand-container {
         .flex-row {
