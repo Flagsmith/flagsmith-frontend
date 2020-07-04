@@ -132,6 +132,7 @@ module.exports = {
             .waitForElementVisible('[name="featureValue"]')
             .clearValue('[name="featureValue"]')
             .setValue('[name="featureValue"]', 'false')
+            .pause(50)
             .click('#update-feature-btn')
             .waitForElementNotPresent('#create-feature-modal')
             .waitForElementVisible(byId('feature-value-1'))
