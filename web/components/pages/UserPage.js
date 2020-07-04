@@ -5,6 +5,12 @@ import CreateFlagModal from '../modals/CreateFlag';
 import CreateTraitModal from '../modals/CreateTrait';
 import TryIt from '../TryIt';
 
+const returnIfDefined = (value, value2) => {
+    if (value === null || value === undefined) {
+        return value2;
+    }
+    return value;
+};
 const UserPage = class extends Component {
     static displayName = 'UserPage'
 
@@ -17,7 +23,22 @@ const UserPage = class extends Component {
         AppActions.getIdentity(this.props.match.params.environmentId, this.props.match.params.id);
         AppActions.getIdentitySegments(this.props.match.params.projectId, this.props.match.params.id);
         AppActions.getFeatures(this.props.match.params.projectId, this.props.match.params.environmentId);
+        this.getActualFlags();
         API.trackPage(Constants.pages.USER);
+    }
+
+    onSave = () => {
+        this.getActualFlags();
+    }
+
+    getActualFlags = () => {
+        const url = `${Project.api}identities/?identifier=${this.props.match.params.identity}`;
+        fetch(url, {
+            headers: { 'X-Environment-Key': this.props.match.params.environmentId },
+        }).then(res => res.json()).then((res) => {
+            this.setState({ actualFlags: _.keyBy(res.flags, v => v.feature.name) });
+        }).catch((err) => {
+        });
     }
 
     onTraitSaved = () => {
@@ -27,6 +48,7 @@ const UserPage = class extends Component {
     confirmToggle = (projectFlag, environmentFlag, cb) => {
         openModal('Toggle Feature', <ConfirmToggleFeature
           identity={this.props.match.params.id}
+          identityName={this.props.match.params.identity}
           environmentId={this.props.match.params.environmentId}
           projectFlag={projectFlag}
           environmentFlag={environmentFlag}
@@ -39,6 +61,7 @@ const UserPage = class extends Component {
         openModal('Edit User Feature', <CreateFlagModal
           isEdit
           identity={this.props.match.params.id}
+          identityName={this.props.match.params.identity}
           environmentId={this.props.match.params.environmentId}
           projectId={this.props.match.params.projectId}
           projectFlag={projectFlag}
@@ -53,6 +76,7 @@ const UserPage = class extends Component {
           isEdit={false}
           onSave={this.onTraitSaved}
           identity={this.props.match.params.id}
+          identityName={this.props.match.params.identity}
           environmentId={this.props.match.params.environmentId}
           projectId={this.props.match.params.projectId}
         />);
@@ -65,14 +89,15 @@ const UserPage = class extends Component {
           {...trait}
           onSave={this.onTraitSaved}
           identity={this.props.match.params.id}
+          identityName={this.props.match.params.identity}
           environmentId={this.props.match.params.environmentId}
           projectId={this.props.match.params.projectId}
         />);
     };
 
-    confirmRemove = (projectFlag, cb) => {
+    confirmRemove = (projectFlag, cb, identity) => {
         openModal('Reset User Feature', <ConfirmRemoveFeature
-          identity={this.props.match.params.id}
+          identity={identity}
           environmentId={this.props.match.params.environmentId}
           projectFlag={projectFlag}
           cb={cb}
@@ -93,6 +118,7 @@ const UserPage = class extends Component {
 
     render() {
         const { hasFeature } = this.props;
+        const { actualFlags } = this.state;
         return (
             <div className="app-container">
                 <IdentityProvider onSave={this.onSave}>
@@ -121,11 +147,23 @@ const UserPage = class extends Component {
                                                   items={projectFlags}
                                                   renderRow={({ name, id, enabled, created_date, feature, type }, i) => {
                                                       const identityFlag = identityFlags[id];
-                                                      const featureIsDifferent = identityFlag.identity;
-                                                      const values = Object.assign({}, environmentFlags[id], identityFlag || {});
+                                                      const environmentFlag = environmentFlags[id];
+                                                      const hasUserOverride = identityFlag.identity;
+                                                      const flagEnabled = hasUserOverride
+                                                          ? identityFlag.enabled
+                                                          : environmentFlag.enabled; // show default value s
+                                                      const flagValue = hasUserOverride ? identityFlag.feature_state_value
+                                                          : environmentFlag.feature_state_value;
+
+                                                      const actualEnabled = actualFlags && actualFlags[name].enabled;
+                                                      const actualValue = actualFlags && actualFlags[name].feature_state_value;
+                                                      const flagEnabledDifferent = hasUserOverride ? false
+                                                          : actualEnabled !== flagEnabled;
+                                                      const flagValueDifferent = hasUserOverride ? false : actualValue !== flagValue;
+                                                      const flagDifferent = flagEnabledDifferent || flagValueDifferent;
                                                       return (
                                                           <Row
-                                                            className="list-item clickable" key={id} space
+                                                            className={`list-item clickable ${flagDifferent && 'flag-different'}`} key={id} space
                                                             data-test={`user-feature-${i}`}
                                                           >
                                                               <div
@@ -133,11 +171,11 @@ const UserPage = class extends Component {
                                                                 className="flex flex-1"
                                                               >
                                                                   <Row>
-                                                                        <ButtonLink>
+                                                                      <ButtonLink>
                                                                           {name}
-                                                                        </ButtonLink>
+                                                                      </ButtonLink>
                                                                   </Row>
-                                                                  {featureIsDifferent ? (
+                                                                  {hasUserOverride ? (
                                                                       <Row className="chip">
                                                                           <span>
                                                                                 Overriding defaults
@@ -151,36 +189,52 @@ const UserPage = class extends Component {
                                                                       </Row>
 
                                                                   ) : (
-                                                                      <div className="list-item-footer faint">
-                                                                            Using environment defaults
-                                                                      </div>
+                                                                      flagEnabledDifferent ? (
+                                                                          <span className="flex-row chip">
+                                                                              <span>
+                                                                                      This flag is being overriden by segments and would normally be <strong>{flagEnabled ? 'on' : 'off'}</strong> for this user
+                                                                              </span>
+                                                                              <span
+                                                                                className="chip-icon icon ion-md-information"
+                                                                              />
+                                                                          </span>
+                                                                      ) : (
+                                                                          <div className="list-item-footer">
+                                                                              <span className="faint">
+                                                                                Using environment defaults
+                                                                              </span>
+                                                                          </div>
+                                                                      )
                                                                   )}
                                                               </div>
                                                               <Row>
                                                                   <Column>
                                                                       {type == 'FLAG' ? (
-                                                                          <Switch
-                                                                            data-test={`user-feature-switch-${i}${(identityFlags[id] ? identityFlags[id].enabled : environmentFlags[id].enabled) ? '-on' : '-off'}`}
-                                                                            checked={identityFlags[id] ? identityFlags[id].enabled : environmentFlags[id].enabled}
-                                                                            onChange={() => this.confirmToggle(_.find(projectFlags, { id }), environmentFlags[id], (environments) => {
-                                                                                toggleFlag({
-                                                                                    environmentId: this.props.match.params.environmentId,
-                                                                                    identity: this.props.match.params.id,
-                                                                                    projectFlag: { id },
-                                                                                    environmentFlag: environmentFlags[id],
-                                                                                    identityFlag,
-                                                                                });
-                                                                            })}
-                                                                          />
+                                                                          <div>
+                                                                              <Switch
+                                                                                data-test={`user-feature-switch-${i}${(identityFlags[id] ? identityFlags[id].enabled : environmentFlags[id].enabled) ? '-on' : '-off'}`}
+                                                                                checked={actualEnabled}
+                                                                                onChange={() => this.confirmToggle(_.find(projectFlags, { id }), environmentFlags[id], (environments) => {
+                                                                                    toggleFlag({
+                                                                                        environmentId: this.props.match.params.environmentId,
+                                                                                        identity: this.props.match.params.id,
+                                                                                        projectFlag: { id },
+                                                                                        environmentFlag: environmentFlags[id],
+                                                                                        identityFlag,
+                                                                                    });
+                                                                                })}
+                                                                              />
+                                                                          </div>
+
                                                                       ) : (
                                                                           <FeatureValue
                                                                             data-test={`user-feature-value-${i}`}
-                                                                            value={`${values.feature_state_value}`}
+                                                                            value={`${flagValue}`}
                                                                           />
                                                                       )}
 
                                                                   </Column>
-                                                                  {featureIsDifferent && (
+                                                                  {hasUserOverride && (
                                                                   <Column>
                                                                       <Button
                                                                         onClick={() => this.confirmRemove(_.find(projectFlags, { id }), () => {
@@ -189,7 +243,7 @@ const UserPage = class extends Component {
                                                                                 identity: this.props.match.params.id,
                                                                                 identityFlag,
                                                                             });
-                                                                        })}
+                                                                        }, identity.identity.identifier)}
                                                                       >
                                                                                 Reset
                                                                       </Button>
@@ -231,7 +285,11 @@ const UserPage = class extends Component {
                                                   icon="ion-ios-person"
                                                   title="Traits"
                                                   items={traits}
-                                                  acti
+                                                  renderFooter={() => (
+                                                      <FormGroup className="text-center mb-2">
+                                                          <Button id="add-trait" onClick={this.createTrait}>Add new trait</Button>
+                                                      </FormGroup>
+                                                  )}
                                                   renderRow={({ id, trait_value, trait_key }, i) => (
                                                       <Row
                                                         className="list-item clickable" key={trait_key}
@@ -278,32 +336,16 @@ const UserPage = class extends Component {
                                                         title="Traits"
                                                         className="text-center"
                                                       >
-                                                            This user has no traits.
+                                                          This user has no traits.
+                                                          <FormGroup className="text-center mb-0 mt-2">
+                                                              <Button id="add-trait" onClick={this.createTrait}>Add new trait</Button>
+                                                          </FormGroup>
                                                       </Panel>
                                                     )}
                                                   filterRow={({ trait_key }, search) => trait_key.toLowerCase().indexOf(search) > -1}
                                                 />
                                             </FormGroup>
-                                            <FormGroup className="text-center">
-                                                <Button id="add-trait" onClick={this.createTrait}>Add new trait</Button>
-                                            </FormGroup>
-                                        </FormGroup>
-                                    </div>
-                                    <div className="col-md-12">
-                                        <FormGroup>
-                                            <CodeHelp
-                                              title="Managing user traits and segments"
-                                              snippets={Constants.codeHelp.USER_TRAITS(this.props.match.params.environmentId, this.props.match.params.id)}
-                                            />
-                                        </FormGroup>
-                                        <FormGroup>
-                                            <TryIt
-                                              title="Check to see what features and traits are coming back for this user"
-                                              environmentId={this.props.match.params.environmentId}
-                                              userId={(identity && identity.identity.identifier) || this.props.match.params.id}
-                                            />
-                                        </FormGroup>
-                                        {hasFeature('identity_segments') && (
+                                            {hasFeature('identity_segments') && (
                                             <IdentitySegmentsProvider>
                                                 {({ isLoading: segmentsLoading, segments }) => (segmentsLoading ? <div className="text-center"><Loader/></div> : (
                                                     <FormGroup>
@@ -329,29 +371,45 @@ const UserPage = class extends Component {
                                                                       </Row>
                                                                       <div className="list-item-footer faint mt-2">
                                                                           {description ? <div>{description}<br/></div> : ''}
-                                                                            Created
+                                                                        Created
                                                                           {' '}
                                                                           {moment(created_date).format('DD/MMM/YYYY')}
                                                                       </div>
                                                                   </div>
                                                               </Row>
                                                           )
-                                                            }
+                                                          }
                                                           renderNoResults={(
                                                               <Panel
                                                                 icon="ion-ios-globe"
                                                                 title="Segments"
                                                                 className="text-center"
                                                               >
-                                                                    This user is not part of any segment.
+                                                                This user is not part of any segment.
                                                               </Panel>
-                                                            )}
+                                                          )}
                                                           filterRow={({ name }, search) => name.toLowerCase().indexOf(search) > -1}
                                                         />
                                                     </FormGroup>
                                                 ))}
                                             </IdentitySegmentsProvider>
-                                        )}
+                                            )}
+                                        </FormGroup>
+                                    </div>
+                                    <div className="col-md-12 mt-2">
+                                        <FormGroup>
+                                            <CodeHelp
+                                              title="Managing user traits and segments"
+                                              snippets={Constants.codeHelp.USER_TRAITS(this.props.match.params.environmentId, this.props.match.params.id)}
+                                            />
+                                        </FormGroup>
+                                        <FormGroup>
+                                            <TryIt
+                                              title="Check to see what features and traits are coming back for this user"
+                                              environmentId={this.props.match.params.environmentId}
+                                              userId={(identity && identity.identity.identifier) || this.props.match.params.id}
+                                            />
+                                        </FormGroup>
                                     </div>
                                 </div>
                             </div>

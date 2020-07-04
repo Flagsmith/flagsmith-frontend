@@ -66,6 +66,7 @@ const PanelSearch = class extends Component {
               className={this.props.className}
               title={this.props.title}
               icon={this.props.icon}
+              renderFooter={this.props.renderFooter}
               action={this.props.filterRow || this.props.sorting ? (
                   <Row>
                       {!!this.props.sorting && (

@@ -137,8 +137,9 @@ a, .btn, button{
     &--anchor {
         box-shadow: none;
         background: white;
-        padding: 5px 10px;
+        padding: 0px 10px;
         height: 34px;
+        line-height: 34px;
         &:hover {
             box-shadow: none;
             background: white;

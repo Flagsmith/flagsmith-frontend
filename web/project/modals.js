@@ -1,4 +1,5 @@
 import { render } from 'react-dom';
+import React from 'react';
 
 const Provider = class extends React.Component {
     componentDidMount() {
@@ -66,31 +67,36 @@ const Modal = class extends React.Component {
         return this.props.footer || '';
     }
 
-    render() {
-        return (
-            <Provider ref="modal">
-                <div
-                  tabIndex="-1" className={`modal ${this.props.className ? this.props.className : ''}`} role="dialog"
-                  aria-hidden="true"
-                >
-                    <div className={`modal-dialog ${this.props.large ? 'modal-lg' : ''}`}>
-                        <div className="modal-content">
-                            <div className="modal-header">
-                                {this.header()}
-                                {isMobile && (
-                                <button onClick={() => this.refs.modal.close()} className="modal-close-btn">
-                                    <span className="icon ion-md-close"/>
-                                </button>
-                                )}
-                            </div>
-                            <div className="modal-body">{this.body()}</div>
-                            <div className="modal-footer">{this.footer()}</div>
-                        </div>
-                    </div>
-                </div>
-            </Provider>
-        );
-    }
+  close = () => {
+      closeModal();
+  }
+
+  render() {
+      return (
+          <Provider ref="modal">
+              <div
+                tabIndex="-1" className={`modal ${this.props.className ? this.props.className : 'alert fade expand'}`} role="dialog"
+                aria-hidden="true"
+              >
+                  <div className={`modal-dialog ${this.props.large ? 'modal-lg' : ''}`}>
+                      <div className="modal-content">
+                          <div className="modal-header">
+                              {this.header()}
+                              {isMobile && (
+                              <button onClick={() => this.refs.modal.close()} className="modal-close-btn">
+                                  <span className="icon ion-md-close"/>
+                              </button>
+                              )}
+                          </div>
+                          <span onClick={this.close} className="icon close ion-md-close"/>
+                          <div className="modal-body">{this.body()}</div>
+                          <div className="modal-footer">{this.footer()}</div>
+                      </div>
+                  </div>
+              </div>
+          </Provider>
+      );
+  }
 };
 
 Modal.propTypes = {

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import CreateProjectModal from '../modals/CreateProject';
-import EditOrganisationModal from '../modals/EditOrganisation';
 
 const ProjectSelectPage = class extends Component {
     static displayName = 'ProjectSelectPage';
@@ -21,10 +20,6 @@ const ProjectSelectPage = class extends Component {
         if (state && state.create) {
             this.newProject();
         }
-    };
-
-    editOrganisation = () => {
-        openModal('Edit Organisation', <EditOrganisationModal/>);
     };
 
     newProject = () => {

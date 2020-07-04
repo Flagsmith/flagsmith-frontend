@@ -8,11 +8,13 @@
     .modal-header{
         background: #2ba9a7;
         color:#fff!important;
+        h1,h2,h3,h4,h5 {
+            color:#fff!important;
+        }
         font-weight: bold;
         font-family: $headings-font-family;
         border-radius: 4px 4px 0 0;
-        font-size: 18px;
-        line-height: 18px;
+        font-size: 1.75rem;
         letter-spacing: 0.8px;
         -webkit-font-smoothing:antialiased;
         text-transform: capitalize;
@@ -22,7 +24,6 @@
         .input-container{
             input.input{
                 border:1px solid #2cd6ca;
-                //border-radius:25px;
                 color:#2e2e2e;
 
                 &::placeholder{
@@ -36,6 +37,16 @@
         }
     }
 }
+.modal-dialog {
+    .close {
+        cursor: pointer;
+        color: white;
+        position: absolute;
+        top: 18px;
+        right: 20px;
+    }
+}
+
 $side-width: 66%;
 .side-modal {
     overflow-y: hidden!important;

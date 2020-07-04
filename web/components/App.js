@@ -224,7 +224,7 @@ Click here to Sign
                                                               id="account-settings-link"
                                                               activeClassName="active"
                                                               className="nav-link p-2"
-                                                              to={`/project/${projectId}/environment/${environmentId}/account-settings`}
+                                                              to={projectId ? `/project/${projectId}/environment/${environmentId}/account` : '/account'}
                                                             >
                                                                 <img className="mr-2" src="/images/icons/aside/user.svg"/>
                                                                 Account Settings
