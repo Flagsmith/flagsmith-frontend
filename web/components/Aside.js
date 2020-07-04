@@ -10,6 +10,7 @@ import ProjectSettingsIcon from './svg/ProjectSettingsIcon';
 import AuditLogIcon from './svg/AuditLogIcon';
 import OrgSettingsIcon from './svg/OrgSettingsIcon';
 import EnvironmentSelect from './EnvironmentSelect';
+import CreateProjectModal from './modals/CreateProject';
 
 const Aside = class extends Component {
   static displayName = 'Aside';
@@ -42,6 +43,14 @@ const Aside = class extends Component {
 
   toggleNav = () => {
       this.setState({ visible: !this.state.visible });
+  };
+
+
+  newProject = () => {
+    openModal('Create  Project', <CreateProjectModal onSave={({ projectId, environmentId }) => {
+      this.context.router.history.push(`/project/${projectId}/environment/${environmentId}/features?new=true`);
+    }}
+    />);
   };
 
   render() {
@@ -86,14 +95,14 @@ const Aside = class extends Component {
 
                                                               <Tooltip
                                                                 title={(
-                                                                    <Button className="btn--transparent">
-                                                                        <Link
+                                                                    <Button onClick={this.newProject} className="btn--transparent">
+                                                                        <a
                                                                           id="create-project-link"
                                                                           to="/projects"
                                                                           state={{ create: true }}
                                                                         >
                                                                             <img src="/images/icons/plus-white.svg"/>
-                                                                        </Link>
+                                                                        </a>
                                                                     </Button>
                                                                   )}
                                                                 place="right"
