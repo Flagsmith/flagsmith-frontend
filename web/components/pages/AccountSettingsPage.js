@@ -86,6 +86,21 @@ class TheComponent extends PureComponent {
                   <div className="col-md-6">
                       <form className="mb-5" onSubmit={this.save}>
                           <InputGroup
+                            className="mt-2"
+                            title="Email Address"
+                            data-test="firstName"
+                            inputProps={{
+                                className: 'full-width',
+                                name: 'groupName',
+                                readOnly: true,
+                            }}
+                            value={email}
+                            onChange={e => this.setState({ first_name: Utils.safeParseEventValue(e) })}
+                            type="text"
+                            name="Email Address"
+                          />
+                          <InputGroup
+                            className="mt-2"
                             title="First Name"
                             data-test="firstName"
                             inputProps={{
@@ -99,6 +114,7 @@ class TheComponent extends PureComponent {
                             name="First Name*"
                           />
                           <InputGroup
+                            className="mt-2"
                             title="Last Name"
                             data-test="lastName"
                             inputProps={{
@@ -133,6 +149,7 @@ class TheComponent extends PureComponent {
                   <div className="col-md-6">
                       <form className="mb-5" onSubmit={this.savePassword}>
                           <InputGroup
+                            className="mt-2"
                             title="Current Password"
                             data-test="currentPassword"
                             inputProps={{
@@ -146,6 +163,7 @@ class TheComponent extends PureComponent {
                             name="Current Password*"
                           />
                           <InputGroup
+                            className="mt-2"
                             title="New Password"
                             data-test="newPassword"
                             inputProps={{
@@ -159,6 +177,7 @@ class TheComponent extends PureComponent {
                             name="New Password*"
                           />
                           <InputGroup
+                            className="mt-2"
                             title="Confirm New Password"
                             data-test="newPassword"
                             inputProps={{

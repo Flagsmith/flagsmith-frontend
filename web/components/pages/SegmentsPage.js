@@ -153,11 +153,11 @@ const SegmentsPage = class extends Component {
                                                             onClick={() => this.editSegment(segments[i])}
                                                           >
                                                               <Row>
-                                                                 <ButtonLink>
+                                                                  <ButtonLink>
                                                                       <span data-test={`segment-${i}-name`}>
                                                                           {name}
                                                                       </span>
-                                                                 </ButtonLink>
+                                                                  </ButtonLink>
                                                               </Row>
                                                               <div className="list-item-footer faint">
                                                                     Created
@@ -202,8 +202,11 @@ const SegmentsPage = class extends Component {
                                                     <p>
                                                         You can create a segment that targets
                                                         {' '}
-                                                        <ButtonLink href="https://docs.bullet-train.io/managing-identities/#identity-traits"
-                                                                    target="new">User Traits</ButtonLink>
+                                                        <ButtonLink
+                                                          href="https://docs.bullet-train.io/managing-identities/#identity-traits"
+                                                          target="new"
+                                                        >User Traits
+                                                        </ButtonLink>
                                                         .
                                                         As user's traits are updated they will automatically be added to
                                                         the segments based on the rules you create. <ButtonLink href="https://docs.bullet-train.io/managing-segments/">Check out the documentation on Segments</ButtonLink>.
@@ -228,6 +231,12 @@ const SegmentsPage = class extends Component {
 
                                 </div>
                             )}
+                            <FormGroup>
+                                <CodeHelp
+                                  title="Managing user traits and segments"
+                                  snippets={Constants.codeHelp.USER_TRAITS(this.props.match.params.environmentId, this.props.match.params.id)}
+                                />
+                            </FormGroup>
                         </div>
                     )}
                 </SegmentListProvider>
