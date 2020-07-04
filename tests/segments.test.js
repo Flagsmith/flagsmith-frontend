@@ -12,7 +12,6 @@ module.exports = {
     '[Segments Tests] - Create Segment': function (browser) {
         browser.waitAndClick('#segments-link')
             .pause(200)
-            .waitAndClick(byId('show-create-segment-btn'));
 
         // (=== 18 || === 19) && (> 17 || < 19) && (!=20) && (<=18) && (>=18)
         // Rule 1- Age === 18 || Age === 19
@@ -61,6 +60,28 @@ module.exports = {
                 name: 'age',
                 operator: 'GREATER_THAN_INCLUSIVE',
                 value: 18,
+            },
+        ]);
+
+        testHelpers.createSegment(browser, 1, 'segment_1', [
+            {
+                name: 'trait',
+                operator: 'EQUAL',
+                value: '1',
+            },
+        ]);
+        testHelpers.createSegment(browser, 2, 'segment_2', [
+            {
+                name: 'trait',
+                operator: 'EQUAL',
+                value: '2',
+            },
+        ]);;
+        testHelpers.createSegment(browser, 3, 'segment_3', [
+            {
+                name: 'trait',
+                operator: 'EQUAL',
+                value: '3',
             },
         ]);
     },

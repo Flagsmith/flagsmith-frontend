@@ -14,8 +14,8 @@ const arrayMove = (array, from, to) => {
     return array;
 };
 
-const SortableItem = SortableElement(({ disabled, value: v, type, confirmRemove, toggle, setValue }) => (
-    <div style={{ zIndex: 9999999999 }} className="panel mb-2">
+const SortableItem = SortableElement(({ disabled, value: v, onSortEnd, index, type, confirmRemove, toggle, setValue }) => (
+    <div style={{ zIndex: 9999999999 }} className="panel panel--draggable mb-2">
         <Row className="panel-content" space>
             <div
               className="flex flex-1 text-left"
@@ -42,6 +42,17 @@ const SortableItem = SortableElement(({ disabled, value: v, type, confirmRemove,
                         />
                     )}
                 </Column>
+
+                {E2E && (
+                <input
+                  data-test={`sort-${index}`}
+                  onChange={(e) => {
+                      onSortEnd({ oldIndex: index, newIndex: parseInt(Utils.safeParseEventValue(e)) });
+                  }}
+                  type="text"
+                />
+                )}
+
                 <button
                   disabled={disabled}
                   id="remove-feature"
@@ -55,10 +66,11 @@ const SortableItem = SortableElement(({ disabled, value: v, type, confirmRemove,
     </div>
 ));
 
-const SortableList = SortableContainer(({ disabled, items, type, confirmRemove, toggle, setValue }) => (
+const SortableList = SortableContainer(({ disabled, onSortEnd, items, type, confirmRemove, toggle, setValue }) => (
     <div>
         {items.map((value, index) => (
             <SortableItem
+              onSortEnd={onSortEnd}
               disabled={disabled}
               key={value.segment.name}
               index={index}
@@ -194,6 +206,9 @@ class TheComponent extends Component {
                                     </Column>
                                 )}
                             </Row>
+                            <div className="mb-4 text-left faint">
+                                Prioritise a segment override by dragging it to the top of the list.
+                            </div>
                             {value && (
                             <SortableList
                               disabled={isLoading}

@@ -49,6 +49,8 @@ const testHelpers = {
         const byId = testHelpers.byTestID;
         const setSegmentRule = testHelpers.setSegmentRule;
 
+        browser
+            .waitAndClick(byId('show-create-segment-btn'));
         browser.waitAndSet(byId('segmentID'), id);
         _.each(rules, (rule, ruleIndex) => {
             if (ruleIndex > 0) {
