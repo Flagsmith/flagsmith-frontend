@@ -18,6 +18,16 @@
     &.aside-select{
         padding-bottom:0;
     }
+    
+    &__title {
+        display: flex;
+        justify-content: center;
+        padding: .75em;
+        font-family: $font-family-header;
+        text-align: center;
+        color: $bt-brand-secondary;
+        border-bottom: 1px solid $input-border-color;
+    }
 
     &__list-item {
         text-align: center;

@@ -213,10 +213,8 @@ Click here to Sign
                                                 {user ? (
                                                     <React.Fragment>
                                                         <nav className="my-2 my-md-0 nav__links">
-                                                            <a
-                                                              href="https://docs.bullet-train.io" target="_blank" className="nav-link p-2"
-                                                              href="#"
-                                                            >
+                                                            <a href="https://docs.bullet-train.io"
+                                                                target="_blank" className="nav-link p-2">
                                                                 <img className="mr-2" src="/images/icons/aside/documentation.svg"/>
                                                                 Documentation
                                                             </a>
@@ -246,7 +244,7 @@ Click here to Sign
                                                             >
                                                                 {toggle => (
                                                                     <div className="popover-inner__content">
-
+                                                                        <span className="popover-bt__title">Organisations</span>
                                                                         {organisation && (
                                                                         <OrganisationSelect
                                                                           clearableValue={false}
