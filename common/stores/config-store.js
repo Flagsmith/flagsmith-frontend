@@ -35,7 +35,7 @@ store.dispatcherIndex = Dispatcher.register(store, (payload) => {
 bulletTrain.init({
     environmentID: Project.bulletTrain,
     onChange: controller.loaded,
-    api: Project.api
+    api: Project.bulletTrainClientAPI,
 });
 
 controller.store = store;
