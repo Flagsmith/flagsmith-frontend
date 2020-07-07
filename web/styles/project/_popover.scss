@@ -1,49 +1,90 @@
-.popover-bt{
-    border-top:8px solid white;
-    border-radius: $border-radius-default;
-    overflow:visible;
+@import "../mixins/box-shadow-mixin";
+@import "../mixins/transition-mixin";
 
-    &:before{
-        content:"";
-        position: absolute;
-        top:-18px;
-        right:20px;
-        width: 0;
-        height: 0;
-        border-left: 15px solid transparent;
-        border-right: 15px solid transparent;
-        border-bottom: 16px solid white;
-    }
-
-    &.aside-select{
-        padding-bottom:0;
+.popover {
+    @include transition(all 300ms ease);
+    border: none;
+    background-color: white;
+    z-index: 2000;
+    width: auto;
+    transform-origin: top;
+    position: absolute;
+    overflow: hidden;
+    transform: scaleY(0);
+    opacity: 0;
+    min-width: 200px;
+    
+    &.in {
+        @include box-shadow();
+        transform: scaleY(1);
+        height: auto;
+        opacity: 1;
     }
     
-    &__title {
-        display: flex;
-        justify-content: center;
-        padding: .75em;
-        font-family: $font-family-header;
-        text-align: center;
-        color: $bt-brand-secondary;
-        border-bottom: 1px solid $input-border-color;
-    }
-
-    &__list-item {
-        text-align: center;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        padding: .75em;
-        font-family: $font-family;
-        color: #22354A !important;
-        border-bottom: 1px solid $input-border-color;
-        &:hover {
-            background-color: $list-item-striped-background;
-            text-decoration: none;
+    &-bt {
+        border-top: 8px solid white;
+        border-radius: $border-radius-default;
+        overflow: visible;
+        
+        &:before {
+            content: "";
+            position: absolute;
+            top: -18px;
+            right: 20px;
+            width: 0;
+            height: 0;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-bottom: 16px solid white;
+        }
+        
+        &.aside-select {
+            padding-bottom: 0;
+        }
+        
+        &__title {
+            display: flex;
+            justify-content: center;
+            padding: .75em;
+            font-family: $font-family-header;
+            text-align: center;
+            color: $bt-brand-secondary;
+            border-bottom: 1px solid $input-border-color;
+        }
+        
+        &__list-item {
+            text-align: center;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            padding: .75em;
+            font-family: $font-family;
+            color: #22354A !important;
+            border-bottom: 1px solid $input-border-color;
+            
+            &:hover {
+                background-color: $list-item-striped-background;
+                text-decoration: none;
+            }
         }
     }
 }
+
+.popover-right .popover-inner {
+    left: auto;
+    right: 40px;
+}
+
+.popover-inner {
+    position: absolute !important;
+    left: 10px;
+    &__content {
+        border-bottom-left-radius: $border-radius-default;
+        border-bottom-right-radius: $border-radius-default;
+        overflow: hidden;
+    }
+}
+
 
 
 .btn-container{
