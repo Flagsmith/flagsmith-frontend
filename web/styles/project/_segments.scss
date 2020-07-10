@@ -16,32 +16,3 @@
   }
 }
 
-.create-segment-modal {
-  .modal-dialog {
-    width: 76å0px !important;
-    max-width: 760px !important;
-  }
-}
-
-.user-stats {
-  &__value {
-    font-size: 2.5em;
-    font-weight: 400;
-    //color: $bt-navy-light;
-  }
-}
-
-.segments-form-example {
-  background: url(/images/screen-bg.svg) no-repeat;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
-
-.segment-achievements {
-  &__text {
-    display: inline-block;
-    font-weight: 100 !important;
-  }
-}

@@ -32,7 +32,7 @@ const ProjectSelectPage = class extends Component {
     render() {
         const isAdmin = AccountStore.isAdmin();
         return (
-            <div data-test="project-select-page" id="project-select-page" className="app-container container">
+            <div data-test="project-select-page" id="project-select-page" className="app-container container pt-5">
                 <OrganisationProvider>
                     {({ isLoading, name, projects, users }) => (
                         <div>

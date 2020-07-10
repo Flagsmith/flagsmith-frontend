@@ -36,10 +36,6 @@
     url('/fonts/ProximaNova-BoldIt.svg#ProximaNova-BoldIt') format('svg');
 }
 
-
-
-
-
 h1,h2,h3,h4,h5,h6{
     color: $header-color;
     font-family: $font-family-header;
@@ -108,16 +104,5 @@ p{
     }
     &--on {
         color: $bt-brand-primary;
-    }
-}
-
-
-.features-page {
-    h1,h2,h3,h4,h5,h6{
-        font-weight:bold!important;
-        font-family: $font-family-header;
-    }
-    p {
-        font-weight: 400;
     }
 }
