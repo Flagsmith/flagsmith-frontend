@@ -1,6 +1,6 @@
 const _ = require('lodash');
 
-
+const byId = id => `[data-test="${id}"]`;
 const testHelpers = {
     logout: (browser) => {
         browser
@@ -9,11 +9,10 @@ const testHelpers = {
             .click('#org-menu')
             .waitForElementVisible('#logout-link')
             .pause(200) // Allows the dropdown to fade in
-            .click('#logout-link');
-
-        browser.expect.element(testHelpers.byTestID('email')).to.be.visible;
+            .click('#logout-link')
+            .expect.element(testHelpers.byTestID('email')).to.be.visible;
     },
-    byTestID: id => `[data-test="${id}"]`,
+    byTestID: byId,
     login: async (browser, url, email, password) => {
         browser.url(url)
             .pause(200) // Allows the dropdown to fade in
@@ -31,8 +30,80 @@ const testHelpers = {
         }
         browser.waitAndSet(testHelpers.byTestID(`rule-${ruleIndex}-value-${orIndex}`), value);
     },
+    deleteFeature(browser, index, name) {
+        browser
+            .waitForElementNotPresent('#create-feature-modal')
+            .waitAndClick(byId(`remove-feature-btn-${index}`))
+            .waitForElementPresent('#confirm-remove-feature-modal')
+            .waitForElementVisible('[name="confirm-feature-name"]')
+            .setValue('[name="confirm-feature-name"]', name)
+            .click('#confirm-remove-feature-btn')
+            .waitForElementNotPresent('#confirm-remove-feature-modal')
+            .waitForElementNotPresent(byId(`remove-feature-btn-${index}`));
+    },
+    deleteTrait(browser, index) {
+        browser.waitAndClick(byId(`delete-user-trait-${index}`))
+            .waitAndClick('#confirm-btn-yes')
+            .waitForElementNotPresent(byId(`user-trait-${index}`));
+    },
+    toggleFeature(browser, index, toValue) {
+        browser
+            .waitForElementNotPresent('#confirm-remove-feature-modal')
+            .pause(200) // Additional wait here as it seems rc-switch can be unresponsive for a while
+            .waitAndClick(byId(`feature-switch-${index}${toValue ? '-off' : 'on'}`))
+            .waitForElementPresent('#confirm-toggle-feature-modal')
+            .waitAndClick('#confirm-toggle-feature-btn')
+            .waitForElementNotPresent('#confirm-toggle-feature-modal')
+            .waitForElementVisible(byId(`feature-switch-${index}${toValue ? '-on' : 'off'}`));
+    },
+    createRemoteConfig(browser, index, name, value, description = 'description') {
+        const expectedValue = typeof value === 'string' ? `"${value}"` : `${value}`;
+        testHelpers.gotoFeatures(browser);
+        browser
+            .waitForElementNotPresent('#create-feature-modal')
+            .waitAndClick('#show-create-feature-btn');
+        browser.waitAndClick(byId('btn-select-remote-config'))
+            .setValue(byId('featureID'), name)
+            .setValue(byId('featureValue'), value)
+            .setValue(byId('featureDesc'), description)
+            .click(byId('create-feature-btn'))
+            .waitForElementNotPresent('#create-feature-modal')
+            .waitForElementVisible(byId(`feature-value-${index}`))
+            .expect.element(byId(`feature-value-${index}`)).text.to.equal(expectedValue);
+    },
+    createFeature(browser, index, name, value, description = 'description') {
+        browser
+            .waitForElementNotPresent('#create-feature-modal')
+            .click('#show-create-feature-btn')
+            .waitForElementVisible('[name="featureID"]')
+            .setValue('[name="featureID"]', name)
+            .setValue('[name="featureDesc"]', description);
+
+        if (value) {
+            browser.click(byId('toggle-feature-button'));
+        }
+
+        browser.click('#create-feature-btn')
+            .waitForElementVisible(byId(`feature-item-${index}`));
+    },
+    gotoSegments(browser) {
+        browser.waitAndClick('#segments-link')
+            .pause(50);
+    },
+    gotoTraits(browser) {
+        browser
+            .waitAndClick('#users-link')
+            .waitAndClick(byId('user-item-0'))
+            .waitForElementVisible('#add-trait')
+            .pause(50);
+    },
+    gotoFeatures(browser) {
+        browser
+            .waitAndClick('#features-link')
+            .waitForElementVisible('#show-create-feature-btn')
+            .pause(50);
+    },
     createTrait(browser, index, id, value) {
-        const byId = testHelpers.byTestID;
         browser
             .waitAndClick('#add-trait')
             .waitForElementPresent('#create-trait-modal')
@@ -46,7 +117,6 @@ const testHelpers = {
         browser.expect.element(byId(`user-trait-value-${index}`)).text.to.equal(expectedValue);
     },
     createSegment: (browser, index, id, rules) => {
-        const byId = testHelpers.byTestID;
         const setSegmentRule = testHelpers.setSegmentRule;
 
         browser

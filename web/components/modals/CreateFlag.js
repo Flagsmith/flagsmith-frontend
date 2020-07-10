@@ -198,6 +198,7 @@ const CreateFlag = class extends Component {
                                             <label>{enabledString}</label>
                                         </div>
                                         <Switch
+                                          data-test="toggle-feature-button"
                                           defaultChecked={default_enabled}
                                           checked={default_enabled}
                                           onChange={default_enabled => this.setState({ default_enabled })}

@@ -10,8 +10,7 @@ const setSegmentRule = helpers.setSegmentRule;
 module.exports = {
     // // Age == 18 || Age == 19
     '[Segments Tests] - Create Segment': function (browser) {
-        browser.waitAndClick('#segments-link')
-            .pause(200)
+        testHelpers.gotoSegments(browser);
 
         // (=== 18 || === 19) && (> 17 || < 19) && (!=20) && (<=18) && (>=18)
         // Rule 1- Age === 18 || Age === 19
@@ -76,7 +75,7 @@ module.exports = {
                 operator: 'EQUAL',
                 value: '2',
             },
-        ]);;
+        ]);
         testHelpers.createSegment(browser, 3, 'segment_3', [
             {
                 name: 'trait',
@@ -86,25 +85,14 @@ module.exports = {
         ]);
     },
     '[Segments Tests] - Add segment trait for user': function (browser) {
-        browser
-            .waitAndClick('#users-link')
-            .waitAndClick(byId('user-item-0'))
-            .waitAndClick('#add-trait')
-            .waitForElementVisible('[name="traitID"]')
-            .setValue('[name="traitID"]', 'age')
-            .setValue('[name="traitValue"]', '18')
-            .click('#create-trait-btn')
-            .waitForElementNotPresent('#create-trait-btn')
-            .waitForElementVisible(byId('user-trait-value-0'));
-        browser.expect.element(byId('user-trait-value-0')).text.to.equal('18');
+        testHelpers.gotoTraits(browser);
+        testHelpers.createTrait(browser, 0, 'age', 18);
     },
     '[Segments Tests] - Check user now belongs to segment': function (browser) {
         browser.waitForElementVisible(byId('segment-0-name'));
         browser.expect.element(byId('segment-0-name')).text.to.equal('18_or_19');
     },
     '[Segments Tests] - Delete segment trait for user': function (browser) {
-        browser.waitAndClick(byId('delete-user-trait-0'))
-            .waitAndClick('#confirm-btn-yes')
-            .waitForElementNotPresent(byId('user-trait-0'));
+        testHelpers.deleteTrait(browser, 0);
     },
 };

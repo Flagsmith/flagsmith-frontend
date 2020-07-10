@@ -7,64 +7,17 @@ const byId = helpers.byTestID;
 module.exports = {
     // FEATURES
     '[Features Tests] - Create feature': function (browser) {
-        browser.waitAndClick('#features-link')
-            .pause(200)
-            .waitAndClick(byId('show-create-feature-btn'))
-            .waitAndClick(byId('btn-select-remote-config'))
-            .setValue(byId('featureID'), 'header_size')
-            .setValue(byId('featureValue'), 'big')
-            .setValue(byId('featureDesc'), 'This determines what size the header is')
-            .click(byId('create-feature-btn'))
-            .waitForElementNotPresent('#create-feature-modal')
-            .waitAndClick(byId('feature-item-0'))
-            .waitForElementVisible('#update-feature-btn')
-            .assertValue('[name="featureID"]', 'header_size')
-            .assertValue('[name="featureValue"]', 'big')
-            .assertValue('[name="featureDesc"]', 'This determines what size the header is')
-            .click('#update-feature-btn')
-            .waitForElementNotPresent('#create-feature-modal')
-            .expect.element(byId('feature-value-0')).text.to.equal('"big"');
+        testHelpers.createRemoteConfig(browser, 0, 'header_size', 'big');
     },
     '[Features Tests] - Create feature 2': function (browser) {
-        browser
-            .waitForElementNotPresent('#create-feature-modal')
-            .click('#show-create-feature-btn')
-            .waitForElementVisible('[name="featureID"]')
-            .setValue('[name="featureID"]', 'header_enabled')
-            .setValue('[name="featureDesc"]', 'This determines whether header is shown')
-            .click('#create-feature-btn')
-            .waitForElementVisible(byId('feature-item-1'));
+        testHelpers.createFeature(browser, 1, 'header_enabled', false);
     },
-    '[Features Tests] - Create feature 3': function (browser) {
-        browser
-            .waitForElementNotPresent('#create-feature-modal')
-            .waitAndClick('#show-create-feature-btn')
-            .waitForElementVisible('[name="featureID"]')
-            .setValue('[name="featureID"]', 'short_life_feature')
-            .setValue('[name="featureDesc"]', 'This feature is pointless')
-            .click('#create-feature-btn')
-            .waitForElementVisible(byId('feature-item-2'));
-    },
-    '[Features Tests] - Delete feature 3': function (browser) {
-        browser
-            .waitForElementNotPresent('#create-feature-modal')
-            .waitAndClick(byId('remove-feature-btn-2'))
-            .waitForElementPresent('#confirm-remove-feature-modal')
-            .waitForElementVisible('[name="confirm-feature-name"]')
-            .setValue('[name="confirm-feature-name"]', 'short_life_feature')
-            .click('#confirm-remove-feature-btn')
-            .waitForElementNotPresent('#confirm-remove-feature-modal')
-            .waitForElementNotPresent(byId('remove-feature-btn-2'));
+    '[Features Tests] - Create feature 3 and remove it': function (browser) {
+        testHelpers.createFeature(browser, 2, 'short_life_feature', false);
+        testHelpers.deleteFeature(browser, 2, 'short_life_feature');
     },
     '[Features Tests] - Toggle feature on': function (browser) {
-        browser
-            .waitForElementNotPresent('#confirm-remove-feature-modal')
-            .pause(200) // Additional wait here as it seems rc-switch can be unresponsive for a while
-            .waitAndClick(byId('feature-switch-0-off'))
-            .waitForElementPresent('#confirm-toggle-feature-modal')
-            .waitAndClick('#confirm-toggle-feature-btn')
-            .waitForElementNotPresent('#confirm-toggle-feature-modal')
-            .waitForElementVisible(byId('feature-switch-0-on'));
+        testHelpers.toggleFeature(browser, 0, true);
     },
     '[Features Tests] - Try feature out': function (browser) {
         browser.waitForElementNotPresent('#confirm-toggle-feature-modal')
