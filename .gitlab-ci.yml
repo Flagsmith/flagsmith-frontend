@@ -8,7 +8,7 @@ cache:
     - node_modules/
 
 test:
-    image: selenium/node-chrome:3.141.59
+    image: minddocdev/node-java-chrome-e2e
     stage: test
     script:
         - npm i
