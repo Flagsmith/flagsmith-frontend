@@ -138,6 +138,7 @@ $animation-timing-function: ease-in-out;
         }
     }
     &__header-link {
+        display: block;
         text-decoration: none;
         &.active {
             .aside__title-wrapper {
@@ -229,7 +230,7 @@ $animation-timing-function: ease-in-out;
     }
     &-body {
         padding-left: $aside-width;
-    
+
         &-full-width {
             padding-left: 0;
         }
@@ -238,7 +239,7 @@ $animation-timing-function: ease-in-out;
         position: absolute;
         left: 30px;
         top: 15px;
-        
+
         > .icon {
             color: white;
             font-size: 1.5rem;

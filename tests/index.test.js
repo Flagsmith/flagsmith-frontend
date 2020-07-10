@@ -151,9 +151,9 @@ module.exports = Object.assign(
     },
 
     require('./initialise.test'), // Register as the demo user
-    require('./features.test'), // Features tests
-    require('./segments.test'), // Segments tests
-    require('./users.test'), // Users tests
+    // require('./features.test'), // Features tests
+    // require('./segments.test'), // Segments tests
+    // require('./users.test'), // Users tests
     require('./project.test'), // Project/environment tests
     require('./initial-cleanup.test'), // Cleanup initialisation
     require('./invite.test'), // Invite user tests

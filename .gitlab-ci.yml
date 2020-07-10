@@ -8,7 +8,7 @@ cache:
     - node_modules/
 
 test:
-    image: solidstategroup/node-java-chrome:1.0
+    image: selenium/node-chrome:3.141.59
     stage: test
     script:
         - npm i
