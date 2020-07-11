@@ -11,8 +11,8 @@ test:
     image: kylessg/bullet-train-nightwatch:1.0
     stage: test
     script:
-        - google-chrome -v
-        - node --version
+        - google-chrome --version
+        - node -v
         - npm i
         - if [ $CI_COMMIT_REF_NAME == "staging" ]; then export ENV=staging; echo 'Setting env to' $ENV; npm run env; fi;
         - if [ $CI_COMMIT_REF_NAME == "develop" ]; then export ENV=dev; echo 'Setting env to' $ENV; npm run env; fi;
