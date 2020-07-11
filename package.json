@@ -15,8 +15,8 @@
     "bundledev": "node node_modules/.bin/webpack -p --progress --config ./webpack/webpack.config.dev.js"
   },
   "engines": {
-    "node": "10.x",
-    "npm": "6.4.1"
+    "node": "12.x",
+    "npm": "6.13.4"
   },
   "dependencies": {
     "@babel/core": "7.1.2",
