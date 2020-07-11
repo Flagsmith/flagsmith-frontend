@@ -8,7 +8,7 @@ cache:
     - node_modules/
 
 test:
-    image: minddocdev/node-java-chrome-e2e
+    image: kylessg/bullet-train-nightwatch:1.0
     stage: test
     script:
         - google-chrome --version
