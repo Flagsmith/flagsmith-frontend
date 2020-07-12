@@ -22,10 +22,15 @@ export default (WrappedComponent) => {
             });
         }
 
+
+        isSelected = tag => this.props.value && this.props.value.includes(tag.id)
+
+
         render() {
             return (
                 <WrappedComponent
                   ref="wrappedComponent"
+                  isSelected={this.isSelected}
                   {...this.props}
                   {...this.state}
                 />

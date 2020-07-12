@@ -6,6 +6,7 @@ import withSegmentOverrides from '../../../common/providers/withSegmentOverrides
 import data from '../../../common/data/base/_data';
 import SegmentOverrides from '../SegmentOverrides';
 import AddEditTags from '../AddEditTags';
+import TagList from '../TagList';
 
 const CreateFlag = class extends Component {
     static displayName = 'CreateFlag'
@@ -125,6 +126,7 @@ const CreateFlag = class extends Component {
                               id="create-feature-modal"
                               className="mt-4"
                               onSubmit={(e) => {
+                                  e.stopPropagation();
                                   e.preventDefault();
                                   const func = isEdit ? editFlag : createFlag;
                                   this.save(func, isSaving);
@@ -359,7 +361,7 @@ const CreateFlag = class extends Component {
                                     <div className="text-right mb-2">
                                         {isEdit ? (
                                             <Button data-test="update-feature-btn" id="update-feature-btn" disabled={isSaving || !name}>
-                                                {isSaving ? 'Creating' : 'Update Feature'}
+                                                {isSaving ? 'Updating' : 'Update Feature'}
                                             </Button>
                                         ) : (
                                             <Button data-test="create-feature-btn" id="create-feature-btn" disabled={isSaving || !name}>

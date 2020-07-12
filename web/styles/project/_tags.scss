@@ -1,4 +1,5 @@
 .tag {
+    line-height: 18px;
     border-radius: $border-radius-default;
     color: white;
     font-weight: bold;
@@ -24,5 +25,16 @@
     -webkit-user-select: none;
     &:last-child {
 
+    }
+}
+
+.inline-tags {
+    .btn {
+        height: 34px;
+        line-height: 31px;
+        padding: 0 12px;
+    }
+    .tag {
+        display: inline-block;
     }
 }
