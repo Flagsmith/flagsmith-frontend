@@ -32,12 +32,14 @@ const ConfirmToggleFeature = class extends Component {
                             {' '}
                             for
                             <br/>
-                            <strong>{project.name} → {_.find(project.environments, { api_key: this.props.environmentId }).name}</strong>
+                            <strong>{_.find(project.environments, { api_key: this.props.environmentId }).name}</strong>
                             {identity && (
                                 <span>
                                     {' '}
                                     user
-                                    <strong>{this.props.identity}</strong>
+                                    {' '}
+                                    <strong>{this.props.identityName}.</strong>
+                                    {' Any segment overrides for this feature will now be ignored.'}
                                 </span>
                             )}
                         </p>

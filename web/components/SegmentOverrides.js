@@ -137,7 +137,7 @@ class TheComponent extends Component {
                                     segmentOptions
                                 }
                               styles={{
-                                  control: (base) => ({
+                                  control: base => ({
                                       ...base,
                                       '&:hover': { borderColor: '#2cd6ca' },
                                       border: '1px solid #2cd6ca',

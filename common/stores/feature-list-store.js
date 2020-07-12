@@ -19,9 +19,9 @@ const controller = {
                     keyedEnvironmentFeatures: environmentFeatures.results && _.keyBy(environmentFeatures.results, 'feature'),
                 };
                 store.loaded();
-            }).catch(e => {
+            }).catch((e) => {
                 document.location.href = '/404?entity=environment';
-                API.ajaxHandler(store, e)
+                API.ajaxHandler(store, e);
             });
         }
     },

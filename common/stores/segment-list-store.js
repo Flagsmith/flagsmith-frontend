@@ -25,11 +25,11 @@ const controller = {
             .then((res) => {
                 data.get(`${Project.api}projects/${projectId}/segments/`)
                     .then((res) => {
-                        store.model = res.results;
+                        store.model = _.sortBy(res.results, r => r.name);
                         store.loaded();
                         store.saved();
                     });
-            }).catch((e) => API.ajaxHandler(store, e));
+            }).catch(e => API.ajaxHandler(store, e));
     },
     editSegment(projectId, _data) {
         data.put(`${Project.api}projects/${projectId}/segments/${_data.id}/`, {

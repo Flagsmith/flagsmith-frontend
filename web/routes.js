@@ -62,12 +62,14 @@ export default (
             <Route path="/oauth/:type" exact component={HomePage}/>
             <Route path="/project/:projectId/environment/:environmentId/settings" exact component={EnvironmentSettingsPage}/>
             <Route path="/project/:projectId/environment/:environmentId/users" exact component={UsersPage}/>
-            <Route path="/project/:projectId/environment/:environmentId/users/:id" exact component={UserPage}/>
+            <Route path="/project/:projectId/environment/:environmentId/users/:identity/:id" exact component={UserPage}/>
             <Route path="/project/:projectId/environment/create" exact component={CreateEnvironmentPage}/>
             <Route path="/project/:projectId/environment/:environmentId/project-settings" exact component={ProjectSettingsPage}/>
+            <Route path="/project/:projectId/settings" exact component={ProjectSettingsPage}/>
             <Route path="/project/:projectId/environment/:environmentId/segments" exact component={SegmentsPage}/>
             <Route path="/project/:projectId/environment/:environmentId/organisation-settings" exact component={OrganisationSettingsPage}/>
-            <Route path="/project/:projectId/environment/:environmentId/account-settings" exact component={AccountSettingsPage}/>
+            <Route path="/project/:projectId/environment/:environmentId/account" exact component={AccountSettingsPage}/>
+            <Route path="/account" exact component={AccountSettingsPage}/>
             <Route path="/project/:projectId/environment/:environmentId/audit-log" exact component={AuditLogPage}/>
             <Route path="/create" exact component={CreateOrganisationPage}/>
             <Route component={NotFoundPage}/>

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import CreateProjectModal from '../modals/CreateProject';
-import EditOrganisationModal from '../modals/EditOrganisation';
 import InviteUsersModal from '../modals/InviteUsers';
 import UserGroupList from '../UserGroupList';
 import ConfirmRemoveOrganisation from '../modals/ConfirmRemoveOrganisation';
@@ -48,10 +47,6 @@ const OrganisationSettingsPage = class extends Component {
         if (AccountStore.getOrganisationRole() !== 'ADMIN') {
             this.context.router.history.replace('/projects');
         }
-    };
-
-    editOrganisation = () => {
-        openModal('Edit Organisation', <EditOrganisationModal/>);
     };
 
     newProject = () => {
@@ -174,7 +169,7 @@ const OrganisationSettingsPage = class extends Component {
                     isSaving,
                     user,
                     organisation,
-                }, { createOrganisation, selectOrganisation, editOrganisation, deleteOrganisation }) => (
+                }, { createOrganisation, selectOrganisation, deleteOrganisation }) => (
                     <div className="app-container container">
                         <FormGroup>
                             <div className="margin-bottom">

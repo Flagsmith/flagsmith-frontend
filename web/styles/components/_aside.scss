@@ -1,192 +1,266 @@
-.aside-body {
-	padding-left: $aside-width;
-	//padding-bottom: 44px;
-	&-full-width {
-		padding-left: 0;
-	}
-}
-
+@import "../mixins/custom-scrollbar";
 
 $animation-duration: 350ms;
 $animation-timing-function: ease-in-out;
 
 @mixin keyframes($animationName) {
-	@-webkit-keyframes #{$animationName} {
-		@content;
-	}
-	@-moz-keyframes #{$animationName} {
-		@content;
-	}
-	@-o-keyframes #{$animationName} {
-		@content;
-	}
-	@keyframes #{$animationName} {
-		@content;
-	}
+    @-webkit-keyframes #{$animationName} {
+        @content;
+    }
+    @-moz-keyframes #{$animationName} {
+        @content;
+    }
+    @-o-keyframes #{$animationName} {
+        @content;
+    }
+    @keyframes #{$animationName} {
+        @content;
+    }
 }
 
 @include keyframes(asideIn) {
-	0% {
-		left: -$aside-width
-	}
-	100% {
-		left: 0
-	}
+    0% {
+        left: -$aside-width
+    }
+    100% {
+        left: 0
+    }
 }
 
 
 @include keyframes(navAsideIn) {
-	0% {
-		left: 0
-	}
-	100% {
-		left: $aside-width
-	}
+    0% {
+        left: 0
+    }
+    100% {
+        left: $aside-width
+    }
 }
 
 .aside {
-	//&.footer {
-	//	height: calc(100% - (30px + 1.2em * 1.5)) // 15px padding top/bottom + font size * line height of footer bar
-	//}
-	position: fixed;
-	animation-name: asideIn;
-	animation-duration: $animation-duration;
-	animation-timing-function: $animation-timing-function;
-	width: $aside-width;
-	left: 0;
-	top: 0;
-	bottom: 0;
-	height: 100%;
-	background: $aside-bg;
-	z-index: 2;
-	-webkit-box-shadow: 5px 0px 2px -2px rgba(0,0,0,0.25);
-	-moz-box-shadow: 5px 0px 2px -2px rgba(0,0,0,0.25);
-	box-shadow: 5px 0px 2px -2px rgba(0,0,0,0.25);
+    z-index: 99999 !important;
+    position: fixed;
+    animation-name: asideIn;
+    animation-duration: $animation-duration;
+    animation-timing-function: $animation-timing-function;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    height: 100%;
+    background: $aside-bg;
+    box-shadow: 0 6px 13px 0 rgba(34,53,74,.75);
+    &__projects-sidebar {
+        width: 80px;
+        background-color: #22354A;
+        justify-content: center;
+        overflow-y: auto;
+        height: 100%;
+        @include customScroll;
+    }
 
-	.brand-container {
-		.flex-row {
-			justify-content: center;
-			img {
-				margin-left: -5px; //hack for now until we have a better logo
-			}
-		}
-		height: 60px;
-		line-height: 60px;
-		background: $aside-bg-brand;
-		a {
-			font-weight: 200;
-			font-size: 1em;
-			font-family: $font-family, sans-serif;
-			padding-left: 0;
-			color: $aside-brand-color;
-		}
-	}
-	//a {
-	//	padding-left: 20px;
-	//	display: block;
-	//	height: 44px;
-	//	color: $aside-link-color;
-	//
-	//}
-	.breadcrumb {
-		color:rgba(255,255,255,0.75);
-		&.active {
-			color: white;
-		}
-	}
-	.breadcrumb-icon {
-		color: white;
-		margin-right: $input-padding-x/2;
-		margin-left: $input-padding-x/2;
-	}
-	.links {
-		line-height: 44px;
-		.active {
-			color:$aside-link-active;
-			background-color:$aside-link-bg-active;
-		}
-		a {
-			background-color: $aside-link-bg;
-			padding-left: 1em;
-		}
-		a:hover, a:focus{
-			background-color: $aside-link-bg-hover;
-			text-decoration: none;
-		}
-		.link-header {
-			color: white;
-			padding: 20px 20px 0;
-		}
-	}
-	.toggle {
-		position: absolute;
-		left: 15px;
-		top: 15px;
-		>.icon {
-			color:white;
-			font-size: 1.5rem;
-		}
-	}
+    &__projects-list {
+
+    }
+    &__projects-list-container {
+        display: flex;
+    }
+
+    &__projects-list-item {
+
+    }
+
+    &__projects-item {
+        justify-content: center;
+        display: flex;
+        align-self: self-start;
+        margin-bottom: 1em;
+        text-align: center;
+
+        &-title {
+            color: white;
+            font-family: $font-family-header;
+            font-size: 11px;
+            line-height: 1.3;
+            margin-top: 1em;
+        }
+    }
+
+    &__wrapper {
+        height: 100%;
+    }
+
+    &__main-content {
+        background-color: $bt-brand-secondary-light;
+        width: 250px;
+    }
+
+    &__logo {
+        width: 50px;
+        display: flex;
+        align-self: self-start;
+        margin-bottom: 1em;
+        margin-top: .75em;
+    }
+
+    &__nav-item {
+        color: white;
+        padding: .5em .35em .5em 1.5em;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        &.active {
+            color: $bt-brand-primary;
+            text-decoration: none;
+            background-color: $bt-brand-secondary;
+            box-shadow: inset 4px 0 0 $bt-brand-primary;
+            .aside__nav-item--icon {
+                path {
+                    fill: $bt-brand-primary !important;
+                }
+            }
+        }
+        &:hover {
+            background-color: $bt-brand-secondary;
+            text-decoration: none;
+        }
+        &--icon {
+            width: 15px;
+            margin-right: .75em;
+        }
+    }
+    &__title-wrapper {
+        padding: 1em 0;
+        text-decoration: none;
+        &:hover {
+            .aside__link-text {
+                text-decoration: none;
+            }
+        }
+    }
+    &__header-link {
+        display: block;
+        text-decoration: none;
+        &.active {
+            .aside__title-wrapper {
+                background-color: $bt-brand-secondary;
+                box-shadow: inset 4px 0 0 $bt-brand-primary;
+                text-decoration: none !important;
+            }
+        }
+        &:hover {
+            .aside__link-text, .aside__link-icon {
+                color: darken($bt-brand-primary, 10);
+            }
+            text-decoration: none !important;
+        }
+        &:focus {
+            text-decoration: none !important;
+        }
+    }
+
+    &__link-text {
+        color: $bt-brand-primary;
+        font-family: $font-family-header;
+        font-size: 14px;
+        padding-left: 2em;
+    }
+
+    &__link-icon {
+        color: $bt-brand-primary;
+        padding-right: 1em;
+        &--white {
+            color: white;
+        }
+    }
+
+    &__project-title {
+        color: white;
+        font-size: 24px;
+    }
+
+    &__nav-item-icon {
+        margin-right: .75em;
+        width: 15px;
+    }
+
+    &__environment-nav {
+
+    }
+	&__environments-wrapper {
+		height: 55vh;
+		overflow-y: auto;
+        @include customScroll;
+    }
+    &__environment-list-item {
+        display: block;
+        color: white;
+        padding: .35em .35em .35em .85em;
+        opacity: 0.5;
+        cursor: pointer;
+        &.active {
+            border-top-left-radius: 8px;
+            border-bottom-left-radius: 8px;
+            background-color: $bt-dark-green-alt;
+            opacity: 1;
+        }
+
+        &:hover {
+            opacity: 1;
+            text-decoration: none;
+        }
+        &:focus {
+            text-decoration: none;
+        }
+
+        &--icon {
+            width: 15px;
+            margin-right: .75em;
+        }
+    }
+
+    &__footer {
+        background-color: $bt-brand-secondary-light;
+        position: absolute;
+        bottom: 0;
+		padding-bottom: 1em;
+        width: 75%;
+    }
+    &__popover {
+        left: 78px;
+    }
+    &-body {
+        padding-left: $aside-width;
+
+        &-full-width {
+            padding-left: 0;
+        }
+    }
+    .toggle {
+        position: absolute;
+        left: 30px;
+        top: 15px;
+
+        > .icon {
+            color: white;
+            font-size: 1.5rem;
+        }
+    }
+
 }
 
-.navbar-aside {
-	left: $aside-width;
-	animation-name: navAsideIn;
-	animation-duration: $animation-duration;
-	animation-timing-function: $animation-timing-function;
+@include media-breakpoint-down(xs) {
+    .aside {
+        &__projects-sidebar {
+            position: relative;
+            top: 3em;
+        }
+    }
 }
 
-.aside-select {
-	background-color: $aside-bg-alt;
-	padding: 10px 0px;
-	color: white;
-	h3 {
-		background-color: $panel-heading-bg;
-		text-align: center;
-		font-size: 1.5em;
-		padding: 10px;
-	}
-	.faint {
-		color: rgba(0,0,0,.4);
-		font-size: 1em;
-		&--white {
-			color: rgba(255, 255, 255, .4);
-		}
-	}
-	.popover-inner {
-		width: 200px;
-		left: 0px;
-		margin-top: 10px;
-		.popover {
-			padding-top: 0;
-			min-width: 250px;
-		}
-	}
-	&--project {
-		background-color: $aside-bg-project;
-	}
-}
-
-.dot {
-	width:8px;
-	height:8px;
-	border-radius:4px;
-	margin-right: 20px;
-	margin-bottom: 3px;
-	display: inline-block;
-	&.green {
-		background-color: #41cec7;
-	}
-	&.orange {
-		background-color: #fb9d43;
-	}
-	&.red {
-		background-color: #f94f73;
-	}
-	&.purple {
-		background-color: #a28af9;
-	}
-	&.yellow {
-		background-color: #FFFF00;
-	}
+@media (max-height: 576px) {
+    .aside {
+        &__environments-wrapper {
+            height: 300px;
+        }
+    }
 }

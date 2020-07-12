@@ -72,6 +72,12 @@ bold,strong {
     }
 }
 
+.chip .feature-value-container {
+    border-radius: 0;
+    padding: 2px 5px;
+    border-radius: 8px;
+}
+
 .feature-value-container {
     font-size: 0.8em;
     background: #23364a;
@@ -113,8 +119,8 @@ h1, h2, h3 {
     font-weight: 300;
 }
 
-label {
-    font-weight: 400;
+.no-pointer {
+    pointer-events: none !important;
 }
 
 input:disabled {

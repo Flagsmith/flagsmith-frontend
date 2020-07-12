@@ -8,9 +8,11 @@ cache:
     - node_modules/
 
 test:
-    image: solidstategroup/node-java-chrome:1.0
+    image: kylessg/bullet-train-nightwatch:1.0
     stage: test
     script:
+        - google-chrome --version
+        - node -v
         - npm i
         - if [ $CI_COMMIT_REF_NAME == "staging" ]; then export ENV=staging; echo 'Setting env to' $ENV; npm run env; fi;
         - if [ $CI_COMMIT_REF_NAME == "develop" ]; then export ENV=dev; echo 'Setting env to' $ENV; npm run env; fi;
@@ -22,7 +24,7 @@ test:
         - develop
 
 deploymaster:
-    image: solidstategroup/gitlabci-node-gcloud:1.1
+    image: kylessg/bullet-train-gcloud:1.0
     stage: deploy
     script:
         - npm i
@@ -37,7 +39,7 @@ deploymaster:
         - master
 
 deploystaging:
-  image: solidstategroup/gitlabci-node-gcloud:1.1
+  image: kylessg/bullet-train-gcloud:1.0
   stage: deploy
   script:
     - npm i
@@ -52,7 +54,7 @@ deploystaging:
     - staging
 
 deploydevelop:
-    image: solidstategroup/gitlabci-node-gcloud:1.1
+    image: kylessg/bullet-train-gcloud:1.0
     stage: deploy
     script:
         - npm i

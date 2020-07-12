@@ -19,6 +19,7 @@ const Panel = class extends PureComponent {
                 </div>
                 <div className="panel-content">
                     {this.props.children}
+                    {this.props.renderFooter && this.props.renderFooter()}
                 </div>
             </div>
         );

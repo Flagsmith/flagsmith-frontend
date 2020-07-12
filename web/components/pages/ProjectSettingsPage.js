@@ -64,7 +64,8 @@ const ProjectSettingsPage = class extends Component {
                                                 <Column className="m-l-0">
                                                     <Input
                                                       ref={e => this.input = e}
-                                                      value={this.state.name || project.name}
+                                                      defaultValue={project.name}
+                                                      value={this.state.name}
                                                       inputClassName="input input--wide"
                                                       name="proj-name"
                                                       onChange={e => this.setState({ name: Utils.safeParseEventValue(e) })}

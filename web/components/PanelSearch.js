@@ -66,6 +66,7 @@ const PanelSearch = class extends Component {
               className={this.props.className}
               title={this.props.title}
               icon={this.props.icon}
+              renderFooter={this.props.renderFooter}
               action={this.props.filterRow || this.props.sorting ? (
                   <Row>
                       {!!this.props.sorting && (
@@ -84,6 +85,7 @@ const PanelSearch = class extends Component {
                                       <div className="popover-inner__content">
                                           {this.props.sorting.map(sortOption => (
                                               <a
+                                                  className="popover-bt__list-item"
                                                 href="#" onClick={(e) => {
                                                     this.onSort(e, sortOption);
                                                     toggle();

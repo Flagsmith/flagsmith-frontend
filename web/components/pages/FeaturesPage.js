@@ -242,7 +242,6 @@ const FeaturesPage = class extends Component {
                                                                                   <Column>
                                                                                       <button
                                                                                         disabled={!removeFeaturePermission}
-                                                                                        id="remove-feature"
                                                                                         onClick={() => this.confirmRemove(projectFlag, () => {
                                                                                             removeFlag(this.props.match.params.projectId, projectFlag);
                                                                                         })}

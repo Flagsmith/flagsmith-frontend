@@ -1,4 +1,5 @@
 @import "../variables";
+
 a, .btn, button{
     outline:none;
 
@@ -17,7 +18,7 @@ a, .btn, button{
 
 .btn, button.btn{
     outline: none !important;
-    background: #1c9997;
+    background: $bt-dark-green-alt;
     transition: $button-transition;
     border-radius: $border-radius-default !important;
     color:#fff;
@@ -70,6 +71,51 @@ a, .btn, button{
         }
     }
 
+    &--project {
+        background: $bt-brand-grey;
+        color: white;
+        width: 38px;
+        height: 38px;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        padding: 0 16px;
+        line-height: inherit;
+        &:hover {
+            background-color: darken($bt-brand-grey, 10);
+        }
+        &.active {
+            background: $bt-dark-green-alt;
+            box-shadow: 0 6px 13px 0 rgba(43,227,214,0.10);
+        }
+    }
+
+    &--transparent {
+        background-color: transparent;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        height: 38px;
+        width: 38px;
+        padding: 0 16px;
+        line-height: inherit;
+        &:hover {
+            background-color: lighten($bt-brand-secondary, 10);
+            box-shadow: none;
+        }
+    }
+    &--neutral {
+        background-color: transparent;
+        padding: 0;
+        text-align: left;
+        height: auto;
+        width: 100%;
+        &:hover {
+            background-color: transparent;
+            box-shadow: none;
+        }
+    }
+
     &--link {
         font-family: $font-family;
         background: transparent;
@@ -96,8 +142,9 @@ a, .btn, button{
     &--anchor {
         box-shadow: none;
         background: white;
-        padding: 5px 10px;
+        padding: 0px 10px;
         height: 34px;
+        line-height: 34px;
         &:hover {
             box-shadow: none;
             background: white;
@@ -201,6 +248,76 @@ a, .btn, button{
 }
 
 
+$remove-btn-size: 24px;
+$add-btn-size: 34px;
+.btn.btn-remove {
+    line-height: $remove-btn-size;
+    height: $remove-btn-size;
+    padding: 0;
+    width: $remove-btn-size;
+    align-items: center;
+    text-align: center;
+    color: #929292;
+    background-color: #f7f7f7;
+    &:hover {
+        background-color: #aaa;
+        color: #929292;
+    }
+    font-size: 1em;
+    span {
+        line-height: $remove-btn-size;
+    }
+}
+
+.btn.btn-add {
+    line-height: $add-btn-size;
+    height: $add-btn-size;
+    padding: 0;
+    width: $add-btn-size;
+    align-items: center;
+    text-align: center;
+    color: #929292;
+    background-color: #f7f7f7;
+    &:hover {
+        background-color: #eaeaea;
+        color: #929292;
+    }
+    font-size: 1em;
+    span {
+        line-height: $add-btn-size;
+    }
+}
+
+.btn-link {
+    box-shadow: none !important;
+    line-height: 44px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.btn-link:hover {
+    color: $btn-primary-bg;
+    background-color: transparent !important;
+    text-decoration: none;
+}
+
+.btn-white {
+    background-color: white !important;
+    color: $body-color !important;
+}
+
+.btn-white:hover {
+    background-color: #f9f9f9 !important;
+    text-decoration: none;
+}
+
+.btn-link-secondary {
+    color: $link-color-secondary;
+}
+
+
+
+
 @include media-breakpoint-down(sm) {
     .btn {
         &__md-full {
@@ -209,3 +326,5 @@ a, .btn, button{
         }
     }
 }
+
+

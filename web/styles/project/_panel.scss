@@ -1,4 +1,15 @@
 .panel{
+    &--draggable {
+        cursor: move;
+        .panel-content {
+            @include transition(background 500ms ease-in-out);
+        }
+        &:hover {
+            .panel-content {
+                background: #f9f9f9 !important;
+            }
+        }
+    }
     border-radius:$border-radius-default;
     box-shadow: $card-default;
     border:1px solid #d6dbe0;
@@ -15,7 +26,7 @@
         //border:1px solid #d6dbe0;
         //box-shadow: $card-default;
         padding:20px;
-        
+
     }
     &--transparent {
         border: none;
@@ -30,11 +41,11 @@
         border-top-left-radius: 0 !important;
         border-top-right-radius: 0 !important;
     }
-    
+
     &--no-shadow {
         box-shadow: none;
     }
-    
+
     &__segments-achievements {
             border: 1px solid $bt-brand-primary !important;
 
