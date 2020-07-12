@@ -129,7 +129,7 @@ const HomePage = class extends React.Component {
                                                     <h3>Sign in</h3>
                                                     {!!oauths.length && (
                                                     <p>
-                                                          Log in to your account with one of these services. test
+                                                          Log in to your account with one of these services.
                                                     </p>
                                                     )}
 
