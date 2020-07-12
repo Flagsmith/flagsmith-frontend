@@ -94,7 +94,7 @@ If you have any questions about our projects you can email <a href="mailto:proje
 
 We use Bullet Train to manage features we rollout, if you are using your own bullet train environment (i.e. by editing project_x.js-> bulletTrain) then you will need to have a replica of our flags.
 
-A list of the flags and remote config we're currently using in production can be found here https://gist.github.com/kyle-ssg/4c65b4185d0fe3ae35f73244de5e2fef.
+A list of the flags and remote config we're currently using in production can be found here https://gist.github.com/kyle-ssg/55f3b869c28bdd13c02c6688bc76c67f.
 
 
 ## Useful links
