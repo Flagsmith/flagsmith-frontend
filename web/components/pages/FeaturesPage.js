@@ -248,7 +248,7 @@ const FeaturesPage = class extends Component {
                                                                                       this.context.router.history.push(`/project/${projectId}/environment/${environmentId}/audit-log?env=${environmentId}&search=${projectFlag.name}`);
                                                                                   }}
                                                                                   className="btn btn--with-icon"
-                                                                                  data-test={`remove-feature-btn-${i}`}
+                                                                                  data-test={`feature-history-${i}`}
                                                                                 >
                                                                                     <HistoryIcon/>
                                                                                 </button>
