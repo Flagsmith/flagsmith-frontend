@@ -5,7 +5,6 @@ const OrganisationStore = require('../stores/organisation-store');
 const controller = {
 
     getPermissions: (id, level) => {
-        console.log(id, level);
         if (store.model[level] && store.model[level][id]) {
             return;
         }

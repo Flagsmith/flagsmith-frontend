@@ -5,7 +5,7 @@ const AsideProjectButton = class extends PureComponent {
 
     render() {
         return (
-            <div data-test={this.props["data-test"]} onClick={this.props.onClick} className="flex-column">
+            <div data-test={this.props["data-test"]} onClick={this.props.onClick}>
                 <div className="aside__projects-item">
                     <div className="flex-row justify-content-center">
                         <div className="flex-column">

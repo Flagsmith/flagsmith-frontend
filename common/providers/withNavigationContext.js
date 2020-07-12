@@ -22,7 +22,6 @@ export default (WrappedComponent) => {
             const before = JSON.stringify(this.state);
             const after = JSON.stringify(selection);
             if (before !== after) {
-                console.log('STATE IS', selection);
                 this.setState(selection);
             }
         }
