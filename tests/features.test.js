@@ -45,6 +45,7 @@ module.exports = {
             .waitAndClick(byId('feature-item-1'))
             .waitForElementPresent('#create-feature-modal')
             .waitForElementVisible('[name="featureValue"]')
+            .pause(200)
             .clearValue('[name="featureValue"]')
             .pause(50)
             .setValue('[name="featureValue"]', '12')
@@ -85,6 +86,7 @@ module.exports = {
             .waitAndClick(byId('feature-item-1'))
             .waitForElementPresent('#create-feature-modal')
             .waitForElementVisible('[name="featureValue"]')
+            .pause(200)
             .clearValue('[name="featureValue"]')
             .pause(50)
             .setValue('[name="featureValue"]', 'false')
@@ -129,7 +131,7 @@ module.exports = {
         browser.waitForElementVisible(byId('feature-switch-0-off'));
     },
     '[Features Tests] - Clear down features': function (browser) {
-      testHelpers.deleteFeature(browser, 1, 'header_size');
-      testHelpers.deleteFeature(browser, 0, 'header_enabled');
+        testHelpers.deleteFeature(browser, 1, 'header_size');
+        testHelpers.deleteFeature(browser, 0, 'header_enabled');
     },
 };
