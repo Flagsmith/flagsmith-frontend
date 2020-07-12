@@ -8,5 +8,6 @@ module.exports = {
         sentry: process.env.SENTRY,
         api: process.env.API_URL,
         assetURL: process.env.ASSET_URL,
+        bulletTrainClientAPI: process.env.BULLET_TRAIN_CLIENT_API,
     }),
 };
