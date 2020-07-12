@@ -15,7 +15,7 @@ const arrayMove = (array, from, to) => {
 };
 
 const SortableItem = SortableElement(({ disabled, value: v, onSortEnd, index, type, confirmRemove, toggle, setValue }) => (
-    <div style={{ zIndex: 9999999999 }} className="panel panel--draggable mb-2">
+    <div data-test={`segment-override-${index}`} style={{ zIndex: 9999999999 }} className="panel panel--draggable mb-2">
         <Row className="panel-content" space>
             <div
               className="flex flex-1 text-left"
@@ -36,7 +36,7 @@ const SortableItem = SortableElement(({ disabled, value: v, onSortEnd, index, ty
                         <textarea
                           disabled={disabled}
                           value={v.value}
-                          data-test="featureValue"
+                          data-test={`segment-override-value-${index}`}
                           onChange={e => setValue(Utils.getTypedValue(Utils.safeParseEventValue(e)))}
                           placeholder="Value e.g. 'big' "
                         />
@@ -97,15 +97,15 @@ class TheComponent extends Component {
     }
 
     addItem = () => {
-        const value = (this.props.value || []).map(val => ({ ...val, priority: val.priority + 1 }));
+        const value = (this.props.value || []).map(val => ({ ...val, priority: val.priority }));
         this.setState({ isLoading: true });
         _data.post(`${Project.api}features/feature-segments/`, {
             feature: this.props.feature,
             segment: this.state.selectedSegment.value,
             environment: ProjectStore.getEnvironmentIdFromKey(this.props.environmentId),
-            priority: value.length + 1,
+            priority: value.length,
         }).then((res) => {
-            this.props.onChange([res].concat(value).map((v, i) => ({ ...v, priority: i + 1 })));
+            this.props.onChange([res].concat(value).map((v, i) => ({ ...v, priority: i })));
             this.setState({
                 selectedSegment: null,
                 isLoading: false,
@@ -127,7 +127,7 @@ class TheComponent extends Component {
                     .then((res) => {
                         this.props.onChange(_.filter(this.props.value, (v, index) => index !== i).map((v, i) => ({
                             ...v,
-                            priority: i + 1,
+                            priority: i,
                         })));
                         this.setState({ isLoading: false });
                     });
@@ -149,7 +149,7 @@ class TheComponent extends Component {
         this.props.onChange(arrayMove(this.props.value, oldIndex, newIndex)
             .map((v, i) => ({
                 ...v,
-                priority: i + 1,
+                priority: i,
             })));
     };
 

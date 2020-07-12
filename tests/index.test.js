@@ -28,7 +28,7 @@ const formatCommit = function () {
 
 const sendSuccess = function () {
     if (SLACK_TOKEN) {
-        console.log("SENDING SLACK MESSAGE")
+        console.log('SENDING SLACK MESSAGE');
         return slackMessage(`Tests Passed!${formatCommit()}`, E2E_SLACK_CHANNEL_NAME);
     }
     return Promise.resolve();
@@ -46,7 +46,7 @@ const clearDown = function (browser, done) {
         }
     }
     if (token) {
-        console.log(`${Project.api}e2etests/teardown/`, token.trim())
+        console.log(`${Project.api}e2etests/teardown/`, token.trim());
         fetch(`${Project.api}e2etests/teardown/`, {
             method: 'POST',
             headers: {
@@ -153,10 +153,11 @@ module.exports = Object.assign(
     require('./initialise.test'), // Register as the demo user
     // require('./features.test'), // Features tests
     // require('./segments.test'), // Segments tests
+    require('./segement-priorities.test'), // Segments tests
     // require('./users.test'), // Users tests
-    require('./project.test'), // Project/environment tests
-    require('./initial-cleanup.test'), // Cleanup initialisation
-    require('./invite.test'), // Invite user tests
-    require('./register-fail.test'), // Registration failure tests
-    require('./login-fail.test'), // Login failure tests
+    // require('./project.test'), // Project/environment tests
+    // require('./initial-cleanup.test'), // Cleanup initialisation
+    // require('./invite.test'), // Invite user tests
+    // require('./register-fail.test'), // Registration failure tests
+    // require('./login-fail.test'), // Login failure tests
 );

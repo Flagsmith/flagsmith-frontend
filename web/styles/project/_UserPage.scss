@@ -3,4 +3,11 @@
     background-color: $bt-brand-orange !important;
     border-color: $bt-brand-orange !important;
   }
+  .feature-value {
+    .feature-value-container {
+      .quot,.feature-value {
+        color: $bt-brand-orange !important;
+      }
+    }
+  }
 }

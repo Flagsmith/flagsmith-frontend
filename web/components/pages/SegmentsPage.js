@@ -168,7 +168,7 @@ const SegmentsPage = class extends Component {
                                                           <Row>
                                                               <Column>
                                                                   <button
-                                                                    id="remove-feature"
+                                                                    data-test={`remove-segment-btn-${i}`}
                                                                     onClick={() => this.confirmRemove(segments[i], () => {
                                                                         removeSegment(this.props.match.params.projectId, segments[i].id);
                                                                     })}

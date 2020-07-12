@@ -46,6 +46,15 @@ const testHelpers = {
             .waitAndClick('#confirm-btn-yes')
             .waitForElementNotPresent(byId(`user-trait-${index}`));
     },
+    deleteSegment(browser, index, name) {
+        browser.waitAndClick(byId(`remove-segment-btn-${index}`))
+            .waitForElementVisible('#confirm-remove-segment-modal')
+            .waitForElementVisible('[name="confirm-segment-name"]')
+            .setValue('[name="confirm-segment-name"]', name)
+            .click('#confirm-remove-segment-btn')
+            .waitForElementNotPresent('#confirm-segment-feature-modal')
+            .waitForElementNotPresent(byId(`remove-segment-btn-${index}`));
+    },
     toggleFeature(browser, index, toValue) {
         browser
             .waitForElementNotPresent('#confirm-remove-feature-modal')
@@ -71,6 +80,10 @@ const testHelpers = {
             .waitForElementVisible(byId(`feature-value-${index}`))
             .expect.element(byId(`feature-value-${index}`)).text.to.equal(expectedValue);
     },
+    viewFeature(browser, index) {
+        browser.waitAndClick(byId(`feature-item-${index}`))
+            .waitForElementVisible('#create-feature-modal');
+    },
     createFeature(browser, index, name, value, description = 'description') {
         browser
             .waitForElementNotPresent('#create-feature-modal')
@@ -85,6 +98,11 @@ const testHelpers = {
 
         browser.click('#create-feature-btn')
             .waitForElementVisible(byId(`feature-item-${index}`));
+    },
+    saveFeature(browser) {
+        browser.pause(500);
+        browser.click('#update-feature-btn')
+            .waitForElementNotPresent('#create-feature-modal');
     },
     gotoSegments(browser) {
         browser.waitAndClick('#segments-link')
@@ -103,6 +121,10 @@ const testHelpers = {
             .waitForElementVisible('#show-create-feature-btn')
             .pause(50);
     },
+    gotoFeature(browser, index) {
+        browser.click(byId(`feature-item-${index}`))
+            .waitForElementPresent('#create-feature-modal');
+    },
     createTrait(browser, index, id, value) {
         browser
             .waitAndClick('#add-trait')
@@ -115,6 +137,28 @@ const testHelpers = {
             .waitForElementVisible(byId(`user-trait-value-${index}`));
         const expectedValue = typeof value === 'string' ? `"${value}"` : `${value}`;
         browser.expect.element(byId(`user-trait-value-${index}`)).text.to.equal(expectedValue);
+    },
+    addSegmentOverride: (browser, index, value, selectionIndex = 0) => {
+        browser.waitAndClick(byId(`select-segment-option-${selectionIndex}`));
+        browser.waitForElementVisible(byId(`segment-override-${0}`));
+        browser.pause(100);
+        if (value) {
+            browser.waitAndClick(`${byId(`segment-override-${0}`)} [role="switch"]`);
+        }
+        browser.pause(100);
+    },
+    goToUser(browser, index) {
+        browser
+            .waitAndClick('#users-link')
+            .waitAndClick(byId(`user-item-${index}`));
+    },
+    addSegmentOverrideConfig: (browser, index, value, selectionIndex = 0) => {
+        browser.waitAndClick(byId(`select-segment-option-${selectionIndex}`));
+        browser.waitForElementVisible(byId(`segment-override-value-${index}`));
+        browser.waitAndSet(byId(`segment-override-value-${0}`), value);
+    },
+    setSegmentOverrideIndex: (browser, index, newIndex) => {
+        browser.setValue(byId(`sort-${index}`), `${newIndex}`);
     },
     createSegment: (browser, index, id, rules) => {
         const setSegmentRule = testHelpers.setSegmentRule;

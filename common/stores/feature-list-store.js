@@ -102,7 +102,10 @@ const controller = {
 
         const segmentOverridesRequest = segmentOverrides
             ? Promise.all([
-                data.post(`${Project.api}features/feature-segments/update-priorities/`, segmentOverrides),
+                data.post(`${Project.api}features/feature-segments/update-priorities/`, segmentOverrides.map((override, index) => ({
+                    ...override,
+                    priority: index,
+                }))),
                 segmentOverrides.map(override => data.put(`${Project.api}features/feature-segments/${override.id}/`, {
                     ...override,
                     feature: projectFlag.id,

@@ -157,9 +157,9 @@ const UserPage = class extends Component {
 
                                                       const actualEnabled = actualFlags && actualFlags[name].enabled;
                                                       const actualValue = actualFlags && actualFlags[name].feature_state_value;
-                                                      const flagEnabledDifferent = hasUserOverride ? false
-                                                          : actualEnabled !== flagEnabled;
-                                                      const flagValueDifferent = hasUserOverride ? false : actualValue !== flagValue;
+                                                      const flagEnabledDifferent = type && 'FLAG' && (hasUserOverride ? false
+                                                          : actualEnabled !== flagEnabled);
+                                                      const flagValueDifferent = type !== 'FLAG' && (hasUserOverride ? false : actualValue !== flagValue);
                                                       const flagDifferent = flagEnabledDifferent || flagValueDifferent;
                                                       return (
                                                           <Row
@@ -190,9 +190,21 @@ const UserPage = class extends Component {
 
                                                                   ) : (
                                                                       flagEnabledDifferent ? (
-                                                                          <span className="flex-row chip">
+                                                                          <span data-test={`feature-override-${i}`} className="flex-row chip">
                                                                               <span>
                                                                                       This flag is being overriden by segments and would normally be <strong>{flagEnabled ? 'on' : 'off'}</strong> for this user
+                                                                              </span>
+                                                                              <span
+                                                                                className="chip-icon icon ion-md-information"
+                                                                              />
+                                                                          </span>
+                                                                      ) : flagValueDifferent ? (
+                                                                          <span data-test={`feature-override-${i}`} className="flex-row chip">
+                                                                              <span>
+                                                                                This flag is being overriden by segments and would normally be <FeatureValue
+                                                                                  data-test={`user-feature-original-value-${i}`}
+                                                                                  value={`${flagValue}`}
+                                                                                /> for this user
                                                                               </span>
                                                                               <span
                                                                                 className="chip-icon icon ion-md-information"
@@ -227,10 +239,12 @@ const UserPage = class extends Component {
                                                                           </div>
 
                                                                       ) : (
-                                                                          <FeatureValue
-                                                                            data-test={`user-feature-value-${i}`}
-                                                                            value={`${flagValue}`}
-                                                                          />
+                                                                          <div className="feature-value">
+                                                                              <FeatureValue
+                                                                                data-test={`user-feature-value-${i}`}
+                                                                                value={`${actualValue}`}
+                                                                              />
+                                                                          </div>
                                                                       )}
 
                                                                   </Column>

@@ -61,28 +61,6 @@ module.exports = {
                 value: 18,
             },
         ]);
-
-        testHelpers.createSegment(browser, 1, 'segment_1', [
-            {
-                name: 'trait',
-                operator: 'EQUAL',
-                value: '1',
-            },
-        ]);
-        testHelpers.createSegment(browser, 2, 'segment_2', [
-            {
-                name: 'trait',
-                operator: 'EQUAL',
-                value: '2',
-            },
-        ]);
-        testHelpers.createSegment(browser, 3, 'segment_3', [
-            {
-                name: 'trait',
-                operator: 'EQUAL',
-                value: '3',
-            },
-        ]);
     },
     '[Segments Tests] - Add segment trait for user': function (browser) {
         testHelpers.gotoTraits(browser);
@@ -94,5 +72,9 @@ module.exports = {
     },
     '[Segments Tests] - Delete segment trait for user': function (browser) {
         testHelpers.deleteTrait(browser, 0);
+    },
+    '[Segments Tests] - Delete segment': function (browser) {
+        testHelpers.gotoSegments(browser);
+        testHelpers.deleteSegment(browser, 0, '18_or_19');
     },
 };
