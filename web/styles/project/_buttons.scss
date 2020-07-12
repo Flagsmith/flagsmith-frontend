@@ -85,7 +85,7 @@ a, .btn, button{
             background-color: darken($bt-brand-grey, 10);
         }
         &.active {
-            background: $bt-dark-green-alt;
+            background: $bt-dark-green-alt !important;
             box-shadow: 0 6px 13px 0 rgba(43,227,214,0.10);
         }
     }

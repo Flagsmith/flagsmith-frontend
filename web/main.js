@@ -63,7 +63,7 @@ setTimeout(() => {
       || document.location.pathname.indexOf('/invite') !== -1
       || document.location.pathname.indexOf('/projects') !== -1)
     && !AccountStore.getUser()) {
-        browserHistory.push(`/?redirect=${encodeURIComponent(document.location.pathname)}`);
+        browserHistory.push(`/?redirect=${encodeURIComponent(document.location.pathname + (document.location.search || ''))}`);
     }
 
     ReactDOM.render(
