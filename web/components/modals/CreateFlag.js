@@ -230,7 +230,7 @@ const CreateFlag = class extends Component {
                                       placeholder="e.g. 'This determines what size the header is' "
                                     />
                                 </FormGroup>
-                                {hasFeature('segments') && !identity && isEdit && (
+                                {!identity && isEdit && (
                                 <Permission level="project" permission="ADMIN" id={this.props.projectId}>
                                     {({ permission: projectAdmin }) => projectAdmin && (
 

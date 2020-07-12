@@ -20,11 +20,9 @@ const Permission = class extends Component {
   }
 
   componentDidMount() {
-      if (this.props.hasFeature('fine_permissions')) {
-          const isLoading = !PermissionsStore.getPermissions(this.props.id, this.props.level) || !Object.keys(PermissionsStore.getPermissions(this.props.id, this.props.level)).length;
-          if (isLoading) {
-              AppActions.getPermissions(this.props.id, this.props.level);
-          }
+      const isLoading = !PermissionsStore.getPermissions(this.props.id, this.props.level) || !Object.keys(PermissionsStore.getPermissions(this.props.id, this.props.level)).length;
+      if (isLoading) {
+          AppActions.getPermissions(this.props.id, this.props.level);
       }
       this.listenTo(PermissionsStore, 'change', () => {
           this.forceUpdate();
@@ -32,9 +30,7 @@ const Permission = class extends Component {
   }
 
   render() {
-      if (!this.props.hasFeature('fine_permissions')) {
-          return this.props.children({ permission: true });
-      }
+      return this.props.children({ permission: true });
       const permission = PermissionsStore.getPermission(this.props.id, this.props.level, this.props.permission);
       const isLoading = !PermissionsStore.getPermissions(this.props.id, this.props.level) || !Object.keys(PermissionsStore.getPermissions(this.props.id, this.props.level)).length;
       return this.props.children({ permission, isLoading }) || <div/>;
