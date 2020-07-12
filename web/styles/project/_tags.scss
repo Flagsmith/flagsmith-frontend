@@ -36,5 +36,9 @@
     }
     .tag {
         display: inline-block;
+        min-width: 80px;
+        .flex-row {
+            justify-content: center;
+        }
     }
 }
