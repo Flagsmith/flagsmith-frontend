@@ -20,6 +20,15 @@
 		align-items: center;
 		border-radius: 50%;
 		color: $input-placeholder-color;
-		background: darken($input-placeholder-color, 25);
+		background: darken($input-placeholder-color, 10);
+	}
+	&--active {
+		color: white;
+		background: $bt-dark-green-alt;
+		font-weight: bold;
+		.chip-icon {
+			color: white;
+			background: darken($bt-dark-green-alt, 5);
+		}
 	}
 }

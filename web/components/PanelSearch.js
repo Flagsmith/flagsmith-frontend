@@ -28,9 +28,10 @@ const PanelSearch = class extends Component {
     }
 
     filter() {
-        const { search } = this.state;
+        const search = this.props.search || this.state.search || "";
+        const filter = this.props.filter;
         const { items, filterRow } = this.props;
-        if (filterRow && search) {
+        if (filterRow && (search||filter)) {
             return this.sort(_.filter(items, i => filterRow(i, search.toLowerCase())));
         }
         return this.sort(items);
@@ -56,10 +57,12 @@ const PanelSearch = class extends Component {
     }
 
     render() {
-        const { search, sortBy, sortOrder } = this.state;
+        const { sortBy, sortOrder } = this.state;
         const { title, items, renderRow, renderNoResults, paging, goToPage, isLoading, sorting } = this.props;
         const filteredItems = this.filter(items);
         const currentSort = _.find(sorting, { value: sortBy });
+
+        const search = this.props.search || this.state.search;
 
         return (!search && (!filteredItems || !filteredItems.length)) && !this.props.renderSearchWithNoResults ? renderNoResults : (
             <Panel
@@ -85,7 +88,7 @@ const PanelSearch = class extends Component {
                                       <div className="popover-inner__content">
                                           {this.props.sorting.map(sortOption => (
                                               <a
-                                                  className="popover-bt__list-item"
+                                                className="popover-bt__list-item"
                                                 href="#" onClick={(e) => {
                                                     this.onSort(e, sortOption);
                                                     toggle();
@@ -114,6 +117,7 @@ const PanelSearch = class extends Component {
                           <Row onClick={() => this.input.focus()}>
                               <input
                                 ref={c => this.input = c}
+                                onBlur={this.props.onBlur}
                                 onChange={e => (this.props.onChange ? this.props.onChange(e) : this.setState({ search: Utils.safeParseEventValue(e) }))}
                                 type="text"
                                 value={this.props.search || search}

@@ -50,7 +50,7 @@ $animation-timing-function: ease-in-out;
     background: $aside-bg;
     box-shadow: 0 6px 13px 0 rgba(34,53,74,.75);
     &__projects-sidebar {
-        width: 80px;
+        width: 100px;
         background-color: #22354A;
         justify-content: center;
         overflow-y: auto;
@@ -223,7 +223,7 @@ $animation-timing-function: ease-in-out;
         position: absolute;
         bottom: 0;
 		padding-bottom: 1em;
-        width: 75%;
+        width: 250px;
     }
     &__popover {
         left: 78px;

@@ -4,6 +4,7 @@ import Select from 'react-select';
 import Button, { ButtonSecondary, ButtonWhite, ButtonLink, ButtonOutline, ButtonProject } from '../components/base/forms/Button';
 import RemoveIcon from '../components/RemoveIcon';
 import Paging from '../components/Paging';
+import ToggleChip from '../components/ToggleChip';
 
 
 window.Project = require('../../common/project');
@@ -90,6 +91,7 @@ window.Loader = class extends PureComponent {
 window.Tooltip = require('../components/Toolip');
 
 global.hot = hot;
+global.ToggleChip = ToggleChip;
 global.RemoveIcon = RemoveIcon;
 global.Select = class extends PureComponent {
     static displayName = 'Select';

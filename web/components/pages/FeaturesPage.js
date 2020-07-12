@@ -5,6 +5,7 @@ import ConfirmToggleFeature from '../modals/ConfirmToggleFeature';
 import TryIt from '../TryIt';
 import ConfirmRemoveFeature from '../modals/ConfirmRemoveFeature';
 import AddEditTags from '../AddEditTags';
+import HistoryIcon from '../HistoryIcon';
 
 const FeaturesPage = class extends Component {
     static displayName = 'FeaturesPage';
@@ -237,19 +238,45 @@ const FeaturesPage = class extends Component {
                                                                                   </Column>
                                                                               ))
                                                                             }
+
+                                                                          {AccountStore.getOrganisationRole() === 'ADMIN' && (
+                                                                          <Tooltip
+                                                                            html
+                                                                            title={(
+                                                                                <button
+                                                                                  onClick={() => {
+                                                                                      this.context.router.history.push(`/project/${projectId}/environment/${environmentId}/audit-log?env=${environmentId}&search=${projectFlag.name}`);
+                                                                                  }}
+                                                                                  className="btn btn--with-icon"
+                                                                                  data-test={`remove-feature-btn-${i}`}
+                                                                                >
+                                                                                    <HistoryIcon/>
+                                                                                </button>
+                                                                              )}
+                                                                          >
+                                                                            Feature history
+                                                                          </Tooltip>
+                                                                          )}
                                                                           <Permission level="project" permission="DELETE_FEATURE" id={this.props.match.params.projectId}>
                                                                               {({ permission: removeFeaturePermission }) => this.renderWithPermission(removeFeaturePermission, Constants.projectPermissions('Delete Feature'), (
                                                                                   <Column>
-                                                                                      <button
-                                                                                        disabled={!removeFeaturePermission}
-                                                                                        onClick={() => this.confirmRemove(projectFlag, () => {
-                                                                                            removeFlag(this.props.match.params.projectId, projectFlag);
-                                                                                        })}
-                                                                                        className="btn btn--with-icon"
-                                                                                        data-test={`remove-feature-btn-${i}`}
+                                                                                      <Tooltip
+                                                                                        html
+                                                                                        title={(
+                                                                                            <button
+                                                                                              disabled={!removeFeaturePermission}
+                                                                                              onClick={() => this.confirmRemove(projectFlag, () => {
+                                                                                                  removeFlag(this.props.match.params.projectId, projectFlag);
+                                                                                              })}
+                                                                                              className="btn btn--with-icon"
+                                                                                              data-test={`remove-feature-btn-${i}`}
+                                                                                            >
+                                                                                                <RemoveIcon/>
+                                                                                            </button>
+                                                                                        )}
                                                                                       >
-                                                                                          <RemoveIcon/>
-                                                                                      </button>
+                                                                                      Remove feature
+                                                                                      </Tooltip>
                                                                                   </Column>
                                                                               ))}
                                                                           </Permission>

@@ -68,7 +68,6 @@ const HomePage = class extends React.Component {
         const isInvite = document.location.href.indexOf('invite') != -1;
         const isSignup = (isInvite && document.location.href.indexOf('login') === -1) || document.location.href.indexOf('signup') != -1;
 
-        console.log(this.props);
         const oauths = [];
         if (this.props.getValue('oauth_github')) {
             oauths.push((

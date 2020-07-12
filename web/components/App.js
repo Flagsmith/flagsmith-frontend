@@ -121,11 +121,9 @@ const App = class extends Component {
     }
 
     render() {
-        console.log(this.context.router);
         const { hasFeature, getValue, match: { params }, location } = this.props;
         const pathname = location.pathname;
         const { asideIsVisible } = this.state;
-        console.log(this.props);
         const match = matchPath(pathname, {
             path: '/project/:projectId/environment/:environmentId',
             exact: false,

@@ -71,6 +71,7 @@ export default (
             <Route path="/project/:projectId/environment/:environmentId/account" exact component={AccountSettingsPage}/>
             <Route path="/account" exact component={AccountSettingsPage}/>
             <Route path="/project/:projectId/environment/:environmentId/audit-log" exact component={AuditLogPage}/>
+            <Route path="/project/:projectId/audit-log" exact component={AuditLogPage}/>
             <Route path="/create" exact component={CreateOrganisationPage}/>
             <Route component={NotFoundPage}/>
         </Switch>

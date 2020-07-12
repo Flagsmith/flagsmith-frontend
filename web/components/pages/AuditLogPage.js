@@ -1,10 +1,18 @@
 import React, { Component } from 'react';
+import cx from 'classnames';
 import ConfigProvider from '../../../common/providers/ConfigProvider';
+import ToggleChip from '../ToggleChip';
 
 const AuditLogPage = class extends Component {
     static displayName = 'AuditLogPage'
 
-    state = {};
+    state = {
+        search: Utils.fromParam().search,
+    };
+
+    static contextTypes = {
+        router: propTypes.object.isRequired,
+    };
 
     componentDidMount() {
         AppActions.getAuditLog();
@@ -18,8 +26,16 @@ const AuditLogPage = class extends Component {
     }
 
     filterRow = (logMessage, search) => {
+        const { env } = Utils.fromParam();
         const stringToSearch = `${logMessage.log} ${logMessage.author ? logMessage.author.first_name : ''} ${logMessage.author ? logMessage.author.last_name : ''} ${logMessage.author ? logMessage.author.email : ''} ${moment(logMessage.created_date).format('L LTS')}`;
-        return stringToSearch.toLowerCase().indexOf(search.toLowerCase()) !== -1;
+        let envPassed = true;
+        if (env) {
+            if (logMessage.environment && logMessage.environment.api_key !== env) {
+                envPassed = false;
+            }
+        }
+
+        return envPassed && stringToSearch.toLowerCase().indexOf(search.toLowerCase()) !== -1;
     }
 
     renderRow = ({ created_date, log, author }) => (
@@ -40,8 +56,33 @@ const AuditLogPage = class extends Component {
         </Row>
     )
 
+    toggleEnv = (env) => {
+        const filters = Utils.fromParam();
+        if (filters.env && filters.env === env.api_key) {
+            delete filters.env;
+        } else {
+            filters.env = env.api_key;
+        }
+        this.context.router.history.replace(`${document.location.pathname}?${Utils.toParam(filters)}`);
+    }
+
+    filterSearch =(e) => {
+        this.setState({ search: Utils.safeParseEventValue(e) });
+    }
+
+    saveSearch =(e) => {
+        const filters = Utils.fromParam();
+        filters.search = this.state.search;
+        if (!filters.search) {
+            delete filters.search;
+        }
+        this.context.router.history.replace(`${document.location.pathname}?${Utils.toParam(filters)}`);
+    }
+
     render() {
         const { environmentId } = this.props.match.params;
+        const { state: { search } } = this;
+        const { env: envFilter } = Utils.fromParam();
 
         return (
             <div className="app-container container">
@@ -59,13 +100,31 @@ const AuditLogPage = class extends Component {
                                         {isLoading && <div className="centered-container"><Loader/></div>}
                                         {!isLoading && (
                                             <div className="audit">
+                                                <div className="font-weight-bold mb-2">
+                                                    Filter by environments:
+                                                </div>
+                                                <ProjectProvider>
+                                                    {({ project }) => (
+                                                        <Row>
+                                                            {project && project.environments && project.environments.map(env => (
+                                                                <ToggleChip active={envFilter === env.api_key} onClick={() => this.toggleEnv(env)} className="mr-2 mb-4">
+                                                                    {env.name}
+                                                                </ToggleChip>
+                                                            ))}
+                                                        </Row>
+                                                    )}
+                                                </ProjectProvider>
                                                 <FormGroup>
                                                     <PanelSearch
+                                                      onBlur={this.saveSearch}
                                                       id="messages-list"
                                                       title="Log entries"
                                                       className="no-pad"
                                                       icon="ion-md-browsers"
                                                       items={auditLog}
+                                                      search={search}
+                                                      filter={envFilter}
+                                                      onChange={this.filterSearch}
                                                       paging={auditLogPaging}
                                                       goToPage={page => AppActions.getAuditLogPage(environmentId, `${Project.api}audit/?page=${page}`)}
                                                       renderRow={this.renderRow}
