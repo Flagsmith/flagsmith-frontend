@@ -1,6 +1,7 @@
 .app-container {
-    margin-top: 6em;
+    margin-top: 4em;
     margin-bottom: 70px;
+    padding-left: 2em;
     -webkit-transition: all 0.3s ease;
     -moz-transition: all 0.3s ease;
     transition: all 0.3s ease;
@@ -10,6 +11,7 @@
     min-height: 100vh;
     align-items: center;
     display: flex;
+    justify-content: center;
     &__grey {
         background-color: #f1f1f1;
     }

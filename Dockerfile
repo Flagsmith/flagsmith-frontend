@@ -1,4 +1,4 @@
-FROM node:10.16.3 AS development
+FROM node:12 AS development
 
 RUN mkdir /srv/bt && chown node:node /srv/bt
 
@@ -12,7 +12,7 @@ RUN npm install --quiet
 
 
 
-FROM node:10.16.3-slim AS production
+FROM node:12-slim AS production
 
 WORKDIR /srv/bt
 

@@ -114,8 +114,8 @@ const HomePage = class extends React.Component {
         return (
             <AccountProvider onLogout={this.onLogout} onLogin={this.onLogin}>
                 {({ isLoading, isSaving, error }, { register }) => (
-                    <div className="fullscreen-container fullscreen-container__grey">
-                        <div className="sign-up offset-lg-4 col-lg-4 col-md-8 offset-md-2" id="sign-up">
+                    <div className="fullscreen-container fullscreen-container__grey justify-content-center">
+                        <div className="col-md-6 mt-5" id="sign-up">
                             {!isSignup ? (
                                 <Card>
                                     <AccountProvider>

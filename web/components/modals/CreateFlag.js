@@ -109,7 +109,7 @@ const CreateFlag = class extends Component {
 
     render() {
         const { name, initial_value, default_enabled, featureType, type, description } = this.state;
-        const { isEdit, hasFeature, projectFlag, environmentFlag, identity } = this.props;
+        const { isEdit, hasFeature, projectFlag, environmentFlag, identity, identityName } = this.props;
         const Provider = identity ? IdentityProvider : FeatureListProvider;
         const valueString = isEdit ? 'Value' : 'Initial value';
         const enabledString = isEdit ? 'Enabled' : 'Enabled by default';
@@ -162,8 +162,6 @@ const CreateFlag = class extends Component {
                                     </FormGroup>
                                 )}
 
-                                <span onClick={this.close} className="icon close ion-md-close"/>
-
                                 <FormGroup className="mb-4 mr-3 ml-3">
                                     <InputGroup
                                       ref={e => this.input = e}
@@ -200,6 +198,7 @@ const CreateFlag = class extends Component {
                                             <label>{enabledString}</label>
                                         </div>
                                         <Switch
+                                          data-test="toggle-feature-button"
                                           defaultChecked={default_enabled}
                                           checked={default_enabled}
                                           onChange={default_enabled => this.setState({ default_enabled })}
@@ -283,7 +282,7 @@ const CreateFlag = class extends Component {
                                               <Row
                                                 onClick={() => {
                                                     this.close();
-                                                    this.props.router.history.push(`/project/${this.props.projectId}/environment/${this.props.environmentId}/users/${identity.id}`);
+                                                    this.props.router.history.push(`/project/${this.props.projectId}/environment/${this.props.environmentId}/users/${identity.identifier}/${identity.id}`);
                                                 }} space className="list-item cursor-pointer"
                                                 key={id}
                                               >
@@ -321,22 +320,24 @@ const CreateFlag = class extends Component {
                                     )
                                 }
                                 {error && <Error error={error}/>}
-                                <div className="side-modal__footer pr-5">
+                                <div className={identity ? 'pr-3' : 'side-modal__footer pr-5'}>
                                     <div className="mb-3">
                                         {identity ? (
                                             <p className="text-right">
                                                 This will update the feature value for the
                                                 user
                                                 {' '}
-                                                <strong>{identity}</strong>
+                                                <strong>{identityName}</strong>
                                                 {' '}
                                                 in
                                                 <strong>
                                                     {' '}
                                                     {
                                                         _.find(project.environments, { api_key: this.props.environmentId }).name
-                                                    }
+                                                    }.
                                                 </strong>
+                                                <br/>
+                                                {'Any segment overrides for this feature will now be ignored.'}
                                             </p>
                                         ) : isEdit ? (
                                             <p className="text-right">
@@ -355,7 +356,7 @@ const CreateFlag = class extends Component {
                                         )}
 
                                     </div>
-                                    <div className="text-right">
+                                    <div className="text-right mb-2">
                                         {isEdit ? (
                                             <Button data-test="update-feature-btn" id="update-feature-btn" disabled={isSaving || !name}>
                                                 {isSaving ? 'Creating' : 'Update Feature'}

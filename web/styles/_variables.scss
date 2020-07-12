@@ -2,17 +2,20 @@
 
 $font-family: "ProximaNova-Regular", serif;
 $font-family-header: 'ProximaNova-Bold', serif;
+$font-family-medium: 'ProximaNova-BoldIt', serif;
 
 // COLORS
 $header-color: #1c2b3d;
 $bt-brand-primary: #2cd6ca;
 $bt-brand-secondary: #22354a;
+$bt-brand-secondary-light: #2D3F53;
 $bt-dark-green-alt:#1c9997;
 $bt-dark-green: #14635d;
 $bt-navy-light: #384f68;
 $bt-brand-orange: #fb9d43;
 $bt-brand-red: #ff9aaf;
 $bt-brand-purple: #a28af9;
+$bt-brand-grey: #949BA5;
 $google: #c53d23;
 $github: #eeefee;
 $body-text: #5a5e63;
@@ -125,7 +128,7 @@ $aside-link-bg-hover:#384f68;
 $aside-link-bg-active:#384f68;
 $aside-link-color:#fff;
 $aside-link-active:#fff;
-$aside-width:250px;
+$aside-width:330px;
 
 //Toast
 $toast-bg:rgba(0,0,0,.9);

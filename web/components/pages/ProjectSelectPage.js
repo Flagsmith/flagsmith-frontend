@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import CreateProjectModal from '../modals/CreateProject';
-import EditOrganisationModal from '../modals/EditOrganisation';
 
 const ProjectSelectPage = class extends Component {
     static displayName = 'ProjectSelectPage';
@@ -23,10 +22,6 @@ const ProjectSelectPage = class extends Component {
         }
     };
 
-    editOrganisation = () => {
-        openModal('Edit Organisation', <EditOrganisationModal/>);
-    };
-
     newProject = () => {
         openModal('Create  Project', <CreateProjectModal onSave={({ projectId, environmentId }) => {
             this.context.router.history.push(`/project/${projectId}/environment/${environmentId}/features?new=true`);
@@ -37,7 +32,7 @@ const ProjectSelectPage = class extends Component {
     render() {
         const isAdmin = AccountStore.isAdmin();
         return (
-            <div data-test="project-select-page" id="project-select-page" className="app-container container">
+            <div data-test="project-select-page" id="project-select-page" className="app-container container pt-5">
                 <OrganisationProvider>
                     {({ isLoading, name, projects, users }) => (
                         <div>

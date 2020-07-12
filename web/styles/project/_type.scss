@@ -27,7 +27,14 @@
 }
 
 
-
+@font-face {
+    font-family: 'ProximaNova-BoldIt';
+    src: url('/fonts/ProximaNova-BoldIt.eot?') format('eot'),
+    url('/fonts/ProximaNova-BoldIt.otf')  format('opentype'),
+    url('/fonts/ProximaNova-BoldIt.woff') format('woff'),
+    url('/fonts/ProximaNova-BoldIt.ttf')  format('truetype'),
+    url('/fonts/ProximaNova-BoldIt.svg#ProximaNova-BoldIt') format('svg');
+}
 
 h1,h2,h3,h4,h5,h6{
     color: $header-color;
@@ -64,6 +71,7 @@ p{
     color: #22354a;
     opacity: 0.85;
     font-family: $font-family;
+    line-height: 1.5;
 }
 
 .text {
@@ -72,6 +80,13 @@ p{
         &:hover {
             color: lighten($bt-dark-green-alt, 10)
         }
+    }
+}
+
+.text-no-decoration {
+    text-decoration: none;
+    &:hover {
+        text-decoration: none;
     }
 }
 
@@ -89,16 +104,5 @@ p{
     }
     &--on {
         color: $bt-brand-primary;
-    }
-}
-
-
-.features-page {
-    h1,h2,h3,h4,h5,h6{
-        font-weight:bold!important;
-        font-family: $font-family-header, sans-serif;
-    }
-    p {
-        font-weight: 400;
     }
 }

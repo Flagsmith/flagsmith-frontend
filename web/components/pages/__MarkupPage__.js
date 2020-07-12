@@ -106,6 +106,9 @@ export default class ExampleOne extends Component {
                             <Button className="btn btn--with-icon" icon="/images/icon-play.svg">
                               Button with icon
                             </Button>
+
+                            <ButtonProject>S</ButtonProject>
+
                         </FormGroup>
 
                     </section>

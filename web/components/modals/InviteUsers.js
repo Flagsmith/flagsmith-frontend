@@ -98,14 +98,17 @@ const InviteUsers = class extends Component {
                                 </Row>
                             ))}
 
-                            <Button
-                              id="btn-add-invite"
-                              disabled={isSaving}
-                              type="button"
-                              onClick={() => this.setState({ invites: this.state.invites.concat([{}]) })}
-                            >
-                                {isSaving ? 'Sending' : 'Invite additional member'}
-                            </Button>
+                            <div className="text-center mt-2">
+                                <Button
+                                  id="btn-add-invite"
+                                  disabled={isSaving}
+                                  type="button"
+                                  onClick={() => this.setState({ invites: this.state.invites.concat([{}]) })}
+                                >
+                                    {isSaving ? 'Sending' : 'Invite additional member'}
+                                </Button>
+                            </div>
+
 
                             <p className="mt-5">
                                 Users without administrator privileges will need to be invited to individual projects.

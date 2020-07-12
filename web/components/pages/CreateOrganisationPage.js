@@ -38,7 +38,6 @@ export default class ExampleOne extends Component {
             <div id="create-org-page" className="container app-container">
                 <h3>
                     Create your organisation
-
                 </h3>
                 <p>
                     Organisations allow you to manage multiple projects within a team.
@@ -58,10 +57,9 @@ export default class ExampleOne extends Component {
                               placeholder="E.g. ACME Ltd"
                               onChange={e => this.setState({ name: Utils.safeParseEventValue(e) })}
                             />
-                            <div className="text-right">
+                            <div className="text-right mt-2">
                                 <Button disabled={isSaving || !this.state.name} id="create-org-btn">
                                     Create
-
                                 </Button>
                             </div>
                         </form>

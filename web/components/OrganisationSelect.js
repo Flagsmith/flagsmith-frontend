@@ -16,6 +16,7 @@ const OrganisationSelect = class extends Component {
                 {user && user.organisations && user.organisations.map(organisation => (
                     <div key={organisation.id}>
                         <a
+													className="popover-bt__list-item"
                           href="#" onClick={() => {
 								    this.props.onChange && this.props.onChange(organisation);
                           }}

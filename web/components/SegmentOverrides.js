@@ -1,7 +1,16 @@
 // import propTypes from 'prop-types';
 import React, { Component } from 'react';
 import { SortableContainer, SortableElement } from 'react-sortable-hoc';
-import arrayMove from 'array-move';
+
+const arrayMoveMutate = (array, from, to) => {
+    array.splice(to < 0 ? array.length + to : to, 0, array.splice(from, 1)[0]);
+};
+
+const arrayMove = (array, from, to) => {
+    array = array.slice();
+    arrayMoveMutate(array, from, to);
+    return array;
+};
 
 const SortableItem = SortableElement(({ value: v, type, confirmRemove, toggle, setValue }) => (
     <div style={{ zIndex: 9999999999 }} className="panel mb-2">
@@ -128,7 +137,7 @@ class TheComponent extends Component {
                                     segmentOptions
                                 }
                               styles={{
-                                  control: (base) => ({
+                                  control: base => ({
                                       ...base,
                                       '&:hover': { borderColor: '#2cd6ca' },
                                       border: '1px solid #2cd6ca',

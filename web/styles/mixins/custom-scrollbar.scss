@@ -1,0 +1,21 @@
+@mixin customScroll {
+    /* width */
+    &::-webkit-scrollbar {
+        height: 10px;
+        margin: 10px;
+        width: 10px;
+    }
+    /* Track */
+    &::-webkit-scrollbar-track {
+        background: $bt-brand-secondary;
+        border-radius: 20px;
+    }
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+        background: $bt-navy-light;
+        border-radius: 20px;
+        &:hover {
+            background: lighten($bt-brand-secondary, 5);
+        }
+    }
+}

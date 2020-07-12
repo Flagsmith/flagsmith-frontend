@@ -36,7 +36,7 @@ const ConfirmRemoveFeature = class extends Component {
                                 <strong>{projectFlag.name}</strong>
                                 {' '}
                                 for to the environment defaults
-                                for
+                                for the user
                                 {' '}
                                 <strong>{identity}</strong>
                             </p>
@@ -65,7 +65,7 @@ const ConfirmRemoveFeature = class extends Component {
                           onChange={e => this.setState({ challenge: Utils.safeParseEventValue(e) })}
                         />
 
-                        <FormGroup className="text-right">
+                        <FormGroup className="text-right mt-2">
                             <Button
                               id="confirm-remove-feature-btn"
                               disabled={this.state.challenge != projectFlag.name}
