@@ -216,6 +216,11 @@ Click here to Sign
                                                                 <img className="mr-2" src="/images/icons/aside/documentation.svg"/>
                                                                 Documentation
                                                             </a>
+                                                            <a href="https://product-hub.io/roadmap/5d81f2406180537538d99f28"
+                                                               target="_blank" className="nav-link p-2">
+                                                                <img className="mr-2" src="/images/icons/aside/roadmap.svg"/>
+                                                                Product Roadmap
+                                                            </a>
                                                             <NavLink
                                                               id="account-settings-link"
                                                               activeClassName="active"
