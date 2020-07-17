@@ -171,7 +171,7 @@ const UserPage = class extends Component {
 
                                                       const actualEnabled = actualFlags && actualFlags[name].enabled;
                                                       const actualValue = actualFlags && actualFlags[name].feature_state_value;
-                                                      const flagEnabledDifferent = type && 'FLAG' && (hasUserOverride ? false
+                                                      const flagEnabledDifferent = type === 'FLAG' && (hasUserOverride ? false
                                                           : actualEnabled !== flagEnabled);
                                                       const flagValueDifferent = type !== 'FLAG' && (hasUserOverride ? false : actualValue !== flagValue);
                                                       const flagDifferent = flagEnabledDifferent || flagValueDifferent;
