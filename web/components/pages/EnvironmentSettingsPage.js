@@ -22,9 +22,7 @@ const EnvironmentSettingsPage = class extends Component {
 
     componentDidMount = () => {
         API.trackPage(Constants.pages.ENVIRONMENT_SETTINGS);
-        if (this.props.hasFeature('webhooks')) {
-            this.props.getWebhooks();
-        }
+        this.props.getWebhooks();
     };
 
     onSave = () => {
@@ -168,94 +166,92 @@ const EnvironmentSettingsPage = class extends Component {
                                         <FormGroup className="mt-1">
                                             <EditPermissions id={this.props.match.params.environmentId} level="environment"/>
                                         </FormGroup>
-                                            {this.props.hasFeature('webhooks') && (
-                                                <FormGroup className="m-y-3">
-                                                    <Row className="mb-3" space>
-                                                        <div className="col-md-8 pl-0">
-                                                            <h3 className="m-b-0">Feature Webhooks</h3>
-                                                            <p>
+                                        <FormGroup className="m-y-3">
+                                            <Row className="mb-3" space>
+                                                <div className="col-md-8 pl-0">
+                                                    <h3 className="m-b-0">Feature Webhooks</h3>
+                                                    <p>
                                                             Feature webhooks let you know when features have changed, you can configure 1 or more feature webhooks per environment.
-                                                                {' '}
-                                                                <ButtonLink href="https://docs.bullet-train.io/system-administration/">Learn about feature webhooks.</ButtonLink>
-                                                            </p>
-                                                        </div>
-                                                        <div className="col-md-4 pr-0">
-                                                            <Button className="float-right" onClick={this.createWebhook}>
+                                                        {' '}
+                                                        <ButtonLink href="https://docs.bullet-train.io/system-administration/">Learn about feature webhooks.</ButtonLink>
+                                                    </p>
+                                                </div>
+                                                <div className="col-md-4 pr-0">
+                                                    <Button className="float-right" onClick={this.createWebhook}>
                                                         Create feature webhook
-                                                            </Button>
-                                                        </div>
-                                                    </Row>
-                                                    {webhooksLoading && !webhooks ? (
-                                                        <Loader/>
-                                                    ) : (
-                                                        <PanelSearch
-                                                          id="webhook-list"
-                                                          title={(
-                                                              <Tooltip
-                                                                title={<h6 className="mb-0">Webhooks <span className="icon ion-ios-information-circle"/></h6>}
-                                                                place="right"
-                                                              >
-                                                                  {Constants.strings.WEBHOOKS_DESCRIPTION}
-                                                              </Tooltip>
+                                                    </Button>
+                                                </div>
+                                            </Row>
+                                            {webhooksLoading && !webhooks ? (
+                                                <Loader/>
+                                            ) : (
+                                                <PanelSearch
+                                                  id="webhook-list"
+                                                  title={(
+                                                      <Tooltip
+                                                        title={<h6 className="mb-0">Webhooks <span className="icon ion-ios-information-circle"/></h6>}
+                                                        place="right"
+                                                      >
+                                                          {Constants.strings.WEBHOOKS_DESCRIPTION}
+                                                      </Tooltip>
                                                     )}
-                                                          className="no-pad"
-                                                          icon="ion-md-cloud"
-                                                          items={webhooks}
-                                                          renderRow={webhook => (
-                                                              <Row
-                                                                onClick={() => {
-                                                                    this.editWebhook(webhook);
-                                                                }} space className="list-item clickable cursor-pointer"
-                                                                key={webhook.id}
-                                                              >
-                                                                  <div>
-                                                                      <ButtonLink>
-                                                                          {webhook.url}
-                                                                      </ButtonLink>
-                                                                      <div className="list-item-footer faint">
+                                                  className="no-pad"
+                                                  icon="ion-md-cloud"
+                                                  items={webhooks}
+                                                  renderRow={webhook => (
+                                                      <Row
+                                                        onClick={() => {
+                                                            this.editWebhook(webhook);
+                                                        }} space className="list-item clickable cursor-pointer"
+                                                        key={webhook.id}
+                                                      >
+                                                          <div>
+                                                              <ButtonLink>
+                                                                  {webhook.url}
+                                                              </ButtonLink>
+                                                              <div className="list-item-footer faint">
                                                                           Created
-                                                                          {' '}
-                                                                          {moment(webhook.created_date).format('DD/MMM/YYYY')}
-                                                                      </div>
-                                                                  </div>
-                                                                  <Row>
-                                                                      <Switch checked={webhook.enabled}/>
-                                                                      <button
-                                                                        id="delete-invite"
-                                                                        type="button"
-                                                                        onClick={(e) => {
-                                                                            e.stopPropagation();
-                                                                            e.preventDefault();
-                                                                            this.deleteWebhook(webhook);
-                                                                        }}
-                                                                        className="btn btn--with-icon ml-auto btn--remove"
-                                                                      >
-                                                                          <RemoveIcon/>
-                                                                      </button>
-                                                                  </Row>
-                                                              </Row>
-                                                          )}
-                                                          renderNoResults={(
-                                                              <Panel
-                                                                id="users-list"
-                                                                icon="ion-md-cloud"
-                                                                title={(
-                                                                    <Tooltip
-                                                                      title={<h6 className="mb-0">Webhooks <span className="icon ion-ios-information-circle"/></h6>}
-                                                                      place="right"
-                                                                    >
-                                                                        {Constants.strings.WEBHOOKS_DESCRIPTION}
-                                                                    </Tooltip>
-                                                        )}
+                                                                  {' '}
+                                                                  {moment(webhook.created_date).format('DD/MMM/YYYY')}
+                                                              </div>
+                                                          </div>
+                                                          <Row>
+                                                              <Switch checked={webhook.enabled}/>
+                                                              <button
+                                                                id="delete-invite"
+                                                                type="button"
+                                                                onClick={(e) => {
+                                                                    e.stopPropagation();
+                                                                    e.preventDefault();
+                                                                    this.deleteWebhook(webhook);
+                                                                }}
+                                                                className="btn btn--with-icon ml-auto btn--remove"
                                                               >
+                                                                  <RemoveIcon/>
+                                                              </button>
+                                                          </Row>
+                                                      </Row>
+                                                  )}
+                                                  renderNoResults={(
+                                                      <Panel
+                                                        id="users-list"
+                                                        icon="ion-md-cloud"
+                                                        title={(
+                                                            <Tooltip
+                                                              title={<h6 className="mb-0">Webhooks <span className="icon ion-ios-information-circle"/></h6>}
+                                                              place="right"
+                                                            >
+                                                                {Constants.strings.WEBHOOKS_DESCRIPTION}
+                                                            </Tooltip>
+                                                        )}
+                                                      >
                                                           You currently have no webhooks configured for this environment.
-                                                              </Panel>
+                                                      </Panel>
                                                     )}
-                                                          isLoading={this.props.webhookLoading}
-                                                        />
-                                                    )}
-                                                </FormGroup>
+                                                  isLoading={this.props.webhookLoading}
+                                                />
                                             )}
+                                        </FormGroup>
 
                                         <FormGroup className="m-y-3">
                                             <Row>

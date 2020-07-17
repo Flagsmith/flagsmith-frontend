@@ -90,6 +90,7 @@ const controller = {
         if (environmentFlag) {
             prom = data.put(`${Project.api}environments/${environmentId}/featurestates/${environmentFlag.id}/`, Object.assign({}, environmentFlag, {
                 feature_state_value: flag.initial_value,
+                hide_from_client: flag.hide_from_client,
                 enabled: flag.default_enabled,
             }));
         } else {

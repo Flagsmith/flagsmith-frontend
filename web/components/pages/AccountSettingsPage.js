@@ -213,9 +213,7 @@ class TheComponent extends PureComponent {
                       </p>
                   </div>
                   <div className="col-md-6">
-                      {this.props.hasFeature('2_factor') && (
                       <TwoFactor/>
-                      ) }
                   </div>
               </div>
           </div>

@@ -4,7 +4,31 @@ import color from 'color';
 import cx from 'classnames';
 import withTags from '../../common/providers/withTags';
 import InlineModal from './InlineModal';
+import TagList from './TagList';
 
+class TagValues extends PureComponent {
+  static displayName = 'TheComponent';
+
+  static propTypes = {
+  };
+
+  render() {
+      const { props: { tags } } = this;
+      return (
+          <>
+              {tags && tags.map(tag => this.props.isSelected(tag) && (
+              <Tag
+                className="px-2 py-2 mr-2"
+                tag={tag}
+              />
+              ))}
+              <Button onClick={this.props.onAdd} type="button" className="btn--outline">
+              Add Tag
+              </Button>
+          </>
+      );
+  }
+}
 class Tag extends PureComponent {
   static displayName = 'TheComponent';
 
@@ -27,9 +51,9 @@ class Tag extends PureComponent {
       const { props: { onClick, tag, selected, className } } = this;
       return (
           <div
-            onClick={() => onClick(tag)}
-            onMouseEnter={this.toggleHover}
-            onMouseLeave={this.toggleHover}
+            onClick={onClick ? () => onClick(tag) : null}
+            onMouseEnter={onClick ? this.toggleHover : null}
+            onMouseLeave={onClick ? this.toggleHover : null}
             style={{ backgroundColor: this.state.hover ? color(tag.colour).darken(0.1) : tag.colour }}
             className={cx('tag', className)}
           >
@@ -61,6 +85,10 @@ class _CreateEditTag extends PureComponent {
       tag: this.props.tag ? { ...this.props.tag } : {},
   }
 
+  componentDidMount() {
+      this.input && this.input.focus();
+  }
+
   update = (index, e) => {
       this.setState({
           tag: {
@@ -71,6 +99,8 @@ class _CreateEditTag extends PureComponent {
   }
 
   save = () => {
+      const disabled = this.props.tagsSaving || !this.state.tag.colour || !this.state.tag.label;
+      if (disabled) return;
       const isEdit = !!this.state.tag.id;
       const func = isEdit ? AppActions.updateTag : AppActions.createTag;
       func(this.props.projectId, this.state.tag, (tag) => {
@@ -79,12 +109,20 @@ class _CreateEditTag extends PureComponent {
       });
   }
 
+  onKeyDown = (e) => {
+      if (e.key === 'Enter') {
+          this.save();
+      }
+  }
+
   render() {
       const isEdit = !!this.state.tag.id;
       return (
           <div>
               <InputGroup
-                inputProps={{ name: 'create-tag-name', className: 'full-width mb-2' }}
+                value={this.state.tag.label}
+                ref={input => this.input = input}
+                inputProps={{ name: 'create-tag-name', className: 'full-width mb-2', onKeyDown: this.onKeyDown }}
                 title="Name"
                 onChange={e => this.update('label', e)}
               />
@@ -108,8 +146,8 @@ class _CreateEditTag extends PureComponent {
 )}
               />
               <div className="text-center">
-                  <Button type="button" onClick={this.save} disabled={this.props.tagsSaving || !this.state.tag.colour || !this.state.tag.label}>
-                      {isEdit ? 'Edit Tag' : 'Create Tag' }
+                  <Button onClick={this.save} type="button" disabled={this.props.tagsSaving || !this.state.tag.colour || !this.state.tag.label}>
+                      {isEdit ? 'Save Tag' : 'Create Tag' }
                   </Button>
               </div>
           </div>
@@ -150,16 +188,21 @@ class TheComponent extends PureComponent {
       return tags;
   }
 
-  isSelected = tag => this.props.value && this.props.value.includes(tag.id)
-
   selectTag = (tag) => {
       const value = this.props.value || [];
-      const isSelected = this.isSelected(tag);
+      const isSelected = this.props.isSelected(tag);
       if (isSelected) {
           this.props.onChange(_.filter(value, id => id !== tag.id));
       } else {
           this.props.onChange(value.concat([tag.id]));
       }
+  }
+
+  editTag = (tag) => {
+      this.setState({
+          tag,
+          tab: 'EDIT',
+      });
   }
 
   render() {
@@ -171,9 +214,10 @@ class TheComponent extends PureComponent {
       const filteredTags = projectTags && this.filter(projectTags);
       return (
           <div>
-              <Button onClick={this.toggle} type="button" className="btn--outline">
-                    Add Tag
-              </Button>
+              <div className="inline-tags mt-2">
+                  <TagValues onAdd={this.toggle} tags={projectTags} isSelected={this.props.isSelected} value={this.props.value}/>
+              </div>
+
               <InlineModal
                 title="Tags"
                 isOpen={this.state.isOpen}
@@ -184,7 +228,10 @@ class TheComponent extends PureComponent {
               >
                   {this.state.tab === 'SELECT' && (
                   <div>
-                      <Input value={this.state.filter} onChange={this.setFilter} className="full-width mb-2" placeholder="Search tags..."/>
+                      <Input
+                        value={this.state.filter} onChange={this.setFilter} className="full-width mb-2"
+                        placeholder="Search tags..."
+                      />
                       {tagsLoading && !projectTags && (
                       <div className="text-center">
                           <Loader/>
@@ -196,11 +243,11 @@ class TheComponent extends PureComponent {
                                   <Row>
                                       <Flex>
                                           <Tag
-                                            className="px-2 py-2" onClick={this.selectTag} selected={this.isSelected(tag)}
+                                            className="px-2 py-2" onClick={this.selectTag} selected={this.props.isSelected(tag)}
                                             tag={tag}
                                           />
                                       </Flex>
-                                      <div className="ml-2 px-2 py-2">
+                                      <div onClick={() => this.editTag(tag)} className="ml-2 px-2 py-2 clickable">
                                           <span className="icon ion-md-settings"/>
                                       </div>
 
@@ -222,7 +269,7 @@ class TheComponent extends PureComponent {
 
                       </div>
                       <div className="text-center pt-2">
-                          <Button onClick={() => this.setState({ tab: 'CREATE', filter:'' })} type="button">
+                          <Button onClick={() => this.setState({ tab: 'CREATE', filter: '' })} type="button">
                         Create a New Tag
                           </Button>
                       </div>
@@ -239,7 +286,7 @@ class TheComponent extends PureComponent {
                   {
                   this.state.tab === 'EDIT' && (
                   <CreateEditTag
-                    projectId={this.props.projectId} tag={this.state.tab} onComplete={(tag) => {
+                    projectId={this.props.projectId} tag={this.state.tag} onComplete={(tag) => {
                         this.selectTag(tag);
                         this.setState({ tab: 'SELECT' });
                     }}

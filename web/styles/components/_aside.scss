@@ -70,11 +70,19 @@ $animation-timing-function: ease-in-out;
     }
 
     &__projects-item {
+        flex-direction: column;
         justify-content: center;
         display: flex;
         align-self: self-start;
         margin-bottom: 1em;
         text-align: center;
+
+        &:hover {
+            .btn--project {
+                @extend .btn:hover;
+                @extend .btn--project:hover;
+            }
+        }
 
         &-title {
             color: white;
@@ -82,6 +90,11 @@ $animation-timing-function: ease-in-out;
             font-size: 11px;
             line-height: 1.3;
             margin-top: 1em;
+            display: -webkit-box;
+            overflow: hidden;
+            -webkit-line-clamp: 2; /* number of lines to show */
+            -webkit-box-orient: vertical;
+            width: 76px;
         }
     }
 

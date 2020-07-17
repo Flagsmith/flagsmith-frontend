@@ -24,21 +24,7 @@ const OrganisationSettingsPage = class extends Component {
             manageSubscriptionLoaded: true,
         };
         AppActions.getOrganisation(AccountStore.getOrganisation().id);
-        // todo could be a provider
-        const org = AccountStore.getOrganisation();
-        if (props.hasFeature('manage_chargbee') && org.subscription) {
-            this.state.manageSubscriptionLoaded = false;
-            data.get(`${Project.api}organisations/${org.id}/portal-url/`)
-                .then((res) => {
-                    this.setState({
-                        manageSubscriptionLoaded: true,
-                        chargebeeURL: res.url,
-                    });
-                });
-        }
-        if (this.props.hasFeature('audit_webhooks')) {
-            this.props.getWebhooks();
-        }
+        this.props.getWebhooks();
     }
 
     componentDidMount = () => {
@@ -432,7 +418,6 @@ const OrganisationSettingsPage = class extends Component {
                                 </OrganisationProvider>
                             </div>
                         </FormGroup>
-                        {this.props.hasFeature('audit_webhooks') && (
                         <div className="col-md-12">
 
                             <FormGroup className="m-y-3">
@@ -445,7 +430,7 @@ const OrganisationSettingsPage = class extends Component {
                                 <p>
                                   Audit webhooks let you know when audit logs occur, you can configure 1 or more audit webhooks per organisation.
                                     {' '}
-                                   <ButtonLink href="https://docs.bullet-train.io/system-administration/">Learn about audit webhooks.</ButtonLink>
+                                    <ButtonLink href="https://docs.bullet-train.io/system-administration/">Learn about audit webhooks.</ButtonLink>
                                 </p>
                                 {webhooksLoading && !webhooks ? (
                                     <Loader/>
@@ -486,10 +471,10 @@ const OrganisationSettingsPage = class extends Component {
                                                     id="delete-invite"
                                                     type="button"
                                                     onClick={(e) => {
-                                                          e.stopPropagation();
-                                                          e.preventDefault();
-                                                          this.deleteWebhook(webhook);
-                                                      }}
+                                                        e.stopPropagation();
+                                                        e.preventDefault();
+                                                        this.deleteWebhook(webhook);
+                                                    }}
                                                     className="btn btn--with-icon ml-auto btn--remove"
                                                   >
                                                       <RemoveIcon/>
@@ -518,7 +503,6 @@ const OrganisationSettingsPage = class extends Component {
                                 )}
                             </FormGroup>
                         </div>
-                        )}
                         <FormGroup className="mt-5">
                             <Row>
                                 <Column className="d-flex pl-3">

@@ -4,6 +4,7 @@ import ConfirmRemoveFeature from '../modals/ConfirmRemoveFeature';
 import CreateFlagModal from '../modals/CreateFlag';
 import CreateTraitModal from '../modals/CreateTrait';
 import TryIt from '../TryIt';
+import CreateSegmentModal from '../modals/CreateSegment';
 
 const returnIfDefined = (value, value2) => {
     if (value === null || value === undefined) {
@@ -30,6 +31,19 @@ const UserPage = class extends Component {
     onSave = () => {
         this.getActualFlags();
     }
+
+
+    editSegment = (segment) => {
+        API.trackEvent(Constants.events.VIEW_SEGMENT);
+        openModal('Edit Segment', <CreateSegmentModal
+          segment={segment}
+          isEdit
+          environmentId={this.props.match.params.environmentId}
+          projectId={this.props.match.params.projectId}
+          projectFlag={segment}
+        />, null, { className: 'alert fade expand create-segment-modal' });
+    };
+
 
     getActualFlags = () => {
         const url = `${Project.api}identities/?identifier=${this.props.match.params.identity}`;
@@ -371,7 +385,8 @@ const UserPage = class extends Component {
                                                           items={segments || []}
                                                           renderRow={({ name, id, enabled, created_date, type, description }, i) => (
                                                               <Row
-                                                                className="list-item"
+                                                                onClick={() => this.editSegment(segments[i])}
+                                                                className="list-item clickable"
                                                                 space
                                                                 key={i}
                                                               >
@@ -379,9 +394,12 @@ const UserPage = class extends Component {
                                                                     className="flex flex-1"
                                                                   >
                                                                       <Row>
-                                                                          <span data-test={`segment-${i}-name`} className="bold-link">
-                                                                              {name}
-                                                                          </span>
+                                                                          <ButtonLink
+                                                                            onClick={() => this.editSegment(segments[i])}>
+                                                                              <span data-test={`segment-${i}-name`} className="bold-link">
+                                                                                  {name}
+                                                                              </span>
+                                                                          </ButtonLink>
                                                                       </Row>
                                                                       <div className="list-item-footer faint mt-2">
                                                                           {description ? <div>{description}<br/></div> : ''}

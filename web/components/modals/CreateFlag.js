@@ -6,6 +6,7 @@ import withSegmentOverrides from '../../../common/providers/withSegmentOverrides
 import data from '../../../common/data/base/_data';
 import SegmentOverrides from '../SegmentOverrides';
 import AddEditTags from '../AddEditTags';
+import TagList from '../TagList';
 
 const CreateFlag = class extends Component {
     static displayName = 'CreateFlag'
@@ -16,7 +17,7 @@ const CreateFlag = class extends Component {
 
     constructor(props, context) {
         super(props, context);
-        const { name, feature_state_value, description, enabled, type } = this.props.isEdit ? Utils.getFlagValue(this.props.projectFlag, this.props.environmentFlag, this.props.identityFlag)
+        const { name, feature_state_value, description, enabled, hide_from_client, type } = this.props.isEdit ? Utils.getFlagValue(this.props.projectFlag, this.props.environmentFlag, this.props.identityFlag)
             : {
                 type: 'FLAG',
             };
@@ -28,6 +29,7 @@ const CreateFlag = class extends Component {
             type,
             tab: !type || type == 'FLAG' ? 0 : 1,
             default_enabled: enabled,
+            hide_from_client,
             name,
             initial_value: Utils.getTypedValue(feature_state_value),
             description,
@@ -84,7 +86,7 @@ const CreateFlag = class extends Component {
 
     save = (func, isSaving) => {
         const { projectFlag, segmentOverrides, environmentFlag, identity, identityFlag, environmentId } = this.props;
-        const { name, initial_value, description, type, default_enabled } = this.state;
+        const { name, initial_value, description, type, default_enabled, hide_from_client } = this.state;
         if (identity) {
             !isSaving && name && func({
                 identity,
@@ -102,13 +104,14 @@ const CreateFlag = class extends Component {
                 type,
                 initial_value,
                 default_enabled,
+                hide_from_client,
                 description,
             }, projectFlag, environmentFlag, segmentOverrides);
         }
     }
 
     render() {
-        const { name, initial_value, default_enabled, featureType, type, description } = this.state;
+        const { name, initial_value, hide_from_client, default_enabled, featureType, type, description } = this.state;
         const { isEdit, hasFeature, projectFlag, environmentFlag, identity, identityName } = this.props;
         const Provider = identity ? IdentityProvider : FeatureListProvider;
         const valueString = isEdit ? 'Value' : 'Initial value';
@@ -125,6 +128,7 @@ const CreateFlag = class extends Component {
                               id="create-feature-modal"
                               className="mt-4"
                               onSubmit={(e) => {
+                                  e.stopPropagation();
                                   e.preventDefault();
                                   const func = isEdit ? editFlag : createFlag;
                                   this.save(func, isSaving);
@@ -184,6 +188,7 @@ const CreateFlag = class extends Component {
                                         <InputGroup
                                           textarea
                                           value={initial_value}
+                                          disabled={hide_from_client}
                                           data-test="featureValue"
                                           inputProps={{ name: 'featureValue', className: 'full-width' }}
                                           onChange={e => this.setState({ initial_value: Utils.getTypedValue(Utils.safeParseEventValue(e)) })}
@@ -200,7 +205,8 @@ const CreateFlag = class extends Component {
                                         <Switch
                                           data-test="toggle-feature-button"
                                           defaultChecked={default_enabled}
-                                          checked={default_enabled}
+                                          disabled={hide_from_client}
+                                          checked={!hide_from_client && default_enabled}
                                           onChange={default_enabled => this.setState({ default_enabled })}
                                         />
                                     </FormGroup>
@@ -228,7 +234,27 @@ const CreateFlag = class extends Component {
                                       placeholder="e.g. 'This determines what size the header is' "
                                     />
                                 </FormGroup>
-                                {hasFeature('segments') && !identity && isEdit && (
+
+
+                                {!identity && hasFeature('hide_flag') && (
+                                  <FormGroup className="mb-4 mr-3 ml-3">
+                                      <Tooltip
+                                        title={<label className="cols-sm-2 control-label">Hide from SDKs <span className="icon ion-ios-information-circle"/></label>}
+                                        place="right"
+                                      >
+                                          {Constants.strings.HIDE_FROM_SDKS_DESCRIPTION}
+                                      </Tooltip>
+                                      <div>
+                                          <Switch
+                                            data-test="toggle-feature-button"
+                                            defaultChecked={hide_from_client}
+                                            checked={hide_from_client}
+                                            onChange={hide_from_client => this.setState({ hide_from_client })}
+                                          />
+                                      </div>
+                                  </FormGroup>
+                                )}
+                                {!identity && isEdit && (
                                 <Permission level="project" permission="ADMIN" id={this.props.projectId}>
                                     {({ permission: projectAdmin }) => projectAdmin && (
 
@@ -327,6 +353,7 @@ const CreateFlag = class extends Component {
                                     </FormGroup>
                                     )
                                 }
+
                                 {error && <Error error={error}/>}
                                 <div className={identity ? 'pr-3' : 'side-modal__footer pr-5'}>
                                     <div className="mb-3">
@@ -367,7 +394,7 @@ const CreateFlag = class extends Component {
                                     <div className="text-right mb-2">
                                         {isEdit ? (
                                             <Button data-test="update-feature-btn" id="update-feature-btn" disabled={isSaving || !name}>
-                                                {isSaving ? 'Creating' : 'Update Feature'}
+                                                {isSaving ? 'Updating' : 'Update Feature'}
                                             </Button>
                                         ) : (
                                             <Button data-test="create-feature-btn" id="create-feature-btn" disabled={isSaving || !name}>
