@@ -100,6 +100,7 @@ const Constants = {
         'USERS': 'Users Page',
     },
     strings: {
+        HIDE_FROM_SDKS_DESCRIPTION: 'Enable this if you want to prevent the Bullet Train API from returning this feature regardless of if it is enabled. Use this if you don\'t want users to see that a feature name whilst it is in development.',
         SEGMENT_OVERRIDES_DESCRIPTION: 'Set different values for your feature based on what segments users are in.',
         IDENTITY_OVERRIDES_DESCRIPTION: 'See which identities have specific overridden values for this feature.',
         REMOTE_CONFIG_DESCRIPTION: 'A feature that you can turn configure per environment or user. E.g. a font size for a banner or an environment variable for a server.',
