@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import EditIdentityModal from './UserPage';
 import CreateUserModal from '../modals/CreateUser';
+import EnvironmentTraitsProvider from '../../../common/providers/EnvironmentTraitsProvider';
+import RemoveIcon from '../RemoveIcon';
 
 const UsersPage = class extends Component {
     static displayName = 'UsersPage'
@@ -46,6 +48,13 @@ const UsersPage = class extends Component {
           environmentId={this.props.match.params.environmentId}
         />, null, { className: 'alert fade expand' });
     }
+
+    deleteTrait = (id, func) => {
+        openConfirm(<h3>Delete Invite</h3>, <p>
+            Are you sure you want to delete the trait <strong>{id}</strong> for all users in this environment?
+        </p>, func);
+    }
+
 
     render() {
         const { projectId, environmentId } = this.props.match.params;
@@ -154,8 +163,48 @@ const UsersPage = class extends Component {
                                               isLoading={isLoading}
                                             />
                                         </FormGroup>
+
+                                        {hasFeature('environment_traits') && (
+                                        <EnvironmentTraitsProvider environmentId={environmentId}>
+                                            {({ isLoading, error, traits, deleteTrait, isDeleting }) => (
+                                                <div>
+                                                    <p className="mt-4">
+                                                        View and delete common traits you've created for users in this environment.
+                                                    </p>
+                                                    <PanelSearch
+                                                      renderSearchWithNoResults
+                                                      id="users-list"
+                                                      title="User Traits"
+                                                      className="no-pad"
+                                                      filterRow={(item, search) => item.toLowerCase().includes(search.toLowerCase())}
+                                                      icon="ion-ios-person"
+                                                      items={traits}
+                                                      isLoading={isLoading}
+                                                      renderRow={(trait, index) => (
+                                                          <Row
+                                                            space className="list-item" key={trait}
+                                                            data-test={`user-item-${index}`}
+                                                          >
+                                                              <ButtonLink>
+                                                                  {trait}
+                                                              </ButtonLink>
+                                                              <button
+                                                                id="remove-trait"
+                                                                className="btn btn--with-icon"
+                                                                type="button"
+                                                                onClick={() => this.deleteTrait(trait, () => deleteTrait(trait))}
+                                                              >
+                                                                  <RemoveIcon/>
+                                                              </button>
+                                                          </Row>
+                                                      )}
+                                                    />
+                                                </div>
+                                            )}
+                                        </EnvironmentTraitsProvider>
+                                        )}
                                         <FormGroup>
-                                            <p className="faint">
+                                            <p className="faint mt-4">
                                                 Users are created for your environment automatically when calling
                                                 identify/get flags
                                                 from any of the SDKs.
@@ -178,7 +227,6 @@ const UsersPage = class extends Component {
 
                             </IdentityListProvider>
                         </FormGroup>
-
                     </div>
                 </div>
             </div>
