@@ -149,7 +149,7 @@ const PanelSearch = class extends Component {
                         >
                             {({ index, style }) => (
                                 <div style={style}>
-                                    {this.props.renderRow(filteredItems[index])}
+                                    {this.props.renderRow(filteredItems[index],index)}
                                 </div>
                             )}
                         </List>
