@@ -34,6 +34,8 @@ const sendSuccess = function () {
     return Promise.resolve();
 };
 const clearDown = function (browser, done) {
+    done();
+    return
     let token;
     if (process.env[`E2E_TEST_TOKEN_${Project.env.toUpperCase()}`]) {
         token = process.env[`E2E_TEST_TOKEN_${Project.env.toUpperCase()}`];
@@ -156,7 +158,7 @@ module.exports = Object.assign(
     require('./segement-priorities.test'), // Segments tests
     require('./users.test'), // Users tests
     require('./project.test'), // Project/environment tests
-    require('./initial-cleanup.test'), // Cleanup initialisation
+    // require('./initial-cleanup.test'), // Cleanup initialisation
     require('./invite.test'), // Invite user tests
     require('./register-fail.test'), // Registration failure tests
     require('./login-fail.test'), // Login failure tests
