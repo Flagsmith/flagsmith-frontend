@@ -156,6 +156,7 @@ const UserPage = class extends Component {
                                                 <PanelSearch
                                                   id="user-features-list"
                                                   className="no-pad"
+                                                  itemHeight={65}
                                                   icon="ion-ios-rocket"
                                                   title="Features"
                                                   items={projectFlags}
@@ -311,6 +312,7 @@ const UserPage = class extends Component {
                                                   id="user-traits-list"
                                                   className="no-pad"
                                                   icon="ion-ios-person"
+                                                  itemHeight={65}
                                                   title="Traits"
                                                   items={traits}
                                                   renderFooter={() => (
