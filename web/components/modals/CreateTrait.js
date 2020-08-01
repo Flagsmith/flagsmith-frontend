@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import Highlight from '../Highlight';
+import Constants from '../../../common/constants';
+
+const TRAITS_ID_MAXLENGTH = Constants.forms.maxLength.TRAITS_ID;
 
 const CreateTrait = class extends Component {
     static displayName = 'CreateTrait'
@@ -62,6 +65,7 @@ const CreateTrait = class extends Component {
                                           readOnly: isEdit,
                                           className: 'full-width',
                                           name: 'traitID',
+                                          maxLength: TRAITS_ID_MAXLENGTH,
                                       }}
                                       value={trait_key}
                                       onChange={e => this.setState({ trait_key: Format.enumeration.set(Utils.safeParseEventValue(e)).toLowerCase() })}

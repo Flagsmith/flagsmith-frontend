@@ -3,6 +3,9 @@ import engine from 'bullet-train-rules-engine';
 import Rule from './Rule';
 import Highlight from '../Highlight';
 import SegmentStore from '../../../common/stores/segment-list-store';
+import Constants from '../../../common/constants';
+
+const SEGMENT_ID_MAXLENGTH = Constants.forms.maxLength.SEGMENT_ID;
 
 const CreateSegment = class extends Component {
     static displayName = 'CreateSegment'
@@ -167,7 +170,8 @@ const CreateSegment = class extends Component {
                               inputProps={{
                                   className: 'full-width',
                                   name: 'segmentID',
-                                  readOnly: isEdit
+                                  readOnly: isEdit,
+                                  maxLength: SEGMENT_ID_MAXLENGTH
                               }}
                               value={name}
                               onChange={e => this.setState({ name: Format.enumeration.set(Utils.safeParseEventValue(e)).toLowerCase() })}
