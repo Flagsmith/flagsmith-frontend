@@ -31,9 +31,9 @@ const Constants = {
     ],
     forms: {
         maxLength: {
-            "FEATURE_ID" : 256,
-            "SEGMENT_ID" : 256,
-            "TRAITS_ID" : 256
+            "FEATURE_ID" : 150,
+            "SEGMENT_ID" : 150,
+            "TRAITS_ID" : 150
         },
     },
     defaultRule: {
