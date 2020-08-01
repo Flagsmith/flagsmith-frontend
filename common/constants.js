@@ -29,6 +29,13 @@ const Constants = {
         '#039587',
         '#344562',
     ],
+    forms: {
+        maxLength: {
+            "FEATURE_ID" : 150,
+            "SEGMENT_ID" : 150,
+            "TRAITS_ID" : 150
+        },
+    },
     defaultRule: {
         property: '',
         operator: 'EQUAL',
@@ -159,7 +166,7 @@ const Constants = {
             'Node JS': require('./code-help/install/install-node')(keywords),
             'Java': require('./code-help/install/install-java')(keywords),
             '.NET': require('./code-help/install/install-dotnet')(keywords),
-        },
+        }, 
     },
     simulate: {},
     roles: {
