@@ -88,6 +88,18 @@ const AccountProvider = class extends Component {
 
     render() {
         const { isLoading, isSaving, user, organisation, organisations, error } = this.state;
+        if (isLoading) {
+            return (
+                <div style={{
+                    position: 'absolute',
+                    top: '35%',
+                    width: '100%',
+                    textAlign: 'center',
+                }}>
+                    <Loader />
+                </div>
+            );
+        }
         return (
             this.props.children({
                 isLoading,
