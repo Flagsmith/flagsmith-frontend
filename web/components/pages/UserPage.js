@@ -156,6 +156,7 @@ const UserPage = class extends Component {
                                                 <PanelSearch
                                                   id="user-features-list"
                                                   className="no-pad"
+                                                  itemHeight={65}
                                                   icon="ion-ios-rocket"
                                                   title="Features"
                                                   items={projectFlags}
@@ -171,7 +172,7 @@ const UserPage = class extends Component {
 
                                                       const actualEnabled = actualFlags && actualFlags[name].enabled;
                                                       const actualValue = actualFlags && actualFlags[name].feature_state_value;
-                                                      const flagEnabledDifferent = type && 'FLAG' && (hasUserOverride ? false
+                                                      const flagEnabledDifferent = type === 'FLAG' && (hasUserOverride ? false
                                                           : actualEnabled !== flagEnabled);
                                                       const flagValueDifferent = type !== 'FLAG' && (hasUserOverride ? false : actualValue !== flagValue);
                                                       const flagDifferent = flagEnabledDifferent || flagValueDifferent;
@@ -311,6 +312,7 @@ const UserPage = class extends Component {
                                                   id="user-traits-list"
                                                   className="no-pad"
                                                   icon="ion-ios-person"
+                                                  itemHeight={65}
                                                   title="Traits"
                                                   items={traits}
                                                   renderFooter={() => (

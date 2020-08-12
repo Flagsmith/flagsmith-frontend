@@ -14,6 +14,8 @@ module.exports = {
         testHelpers.login(browser, url, email, password);
     },
     '[Invite Tests] - Create organisation': function (browser) {
+        testHelpers.waitLoggedIn(browser);
+        browser.url(`${url}/create`);
         browser.waitForElementVisible('#create-org-page');
 
         browser
@@ -54,10 +56,10 @@ module.exports = {
     },
     '[Invite Tests] - Delete user 2': function (browser) {
         browser
-            .click('#org-invites-list div.list-item:nth-child(2) #delete-invite')
+            .click(`${byId('pending-invite-1')} #delete-invite`)
             .waitForElementVisible('#confirm-btn-yes')
             .click('#confirm-btn-yes')
-            .waitForElementNotPresent('#org-invites-list div.list-item:nth-child(2)');
+            .waitForElementNotPresent(byId('pending-invite-1'));
     },
     '[Invite Tests] - Accept invite': function (browser) {
         let inviteUrl;

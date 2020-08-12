@@ -102,6 +102,9 @@ bold,strong {
     cursor: pointer;
 }
 
+body,html {
+    height: 100%;
+}
 body {
     background: #fff;
     font-family: $font-family;
