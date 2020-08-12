@@ -278,8 +278,12 @@ const OrganisationSettingsPage = class extends Component {
                                                           title="Members"
                                                           className="no-pad"
                                                           items={users}
-                                                          renderRow={({ id, first_name, last_name, email, role }) => (
-                                                              <Row space className="list-item" key={id}>
+                                                          itemHeight={65}
+                                                          renderRow={({ id, first_name, last_name, email, role },i) => (
+                                                              <Row
+                                                                data-test={`user-${i}`}
+
+                                                                space className="list-item" key={id}>
                                                                   <div>
                                                                       {`${first_name} ${last_name}`}
                                                                       {' '}
@@ -339,6 +343,7 @@ const OrganisationSettingsPage = class extends Component {
                                                     {invites && invites.length ? (
                                                         <FormGroup className="margin-top">
                                                             <PanelSearch
+                                                              itemHeight={65}
                                                               id="org-invites-list"
                                                               title="Invites Pending"
                                                               className="no-pad"
