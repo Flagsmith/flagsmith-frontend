@@ -32,8 +32,6 @@ const controller = {
             .then(res => Promise.all([
                 data.get(`${Project.api}projects/${projectId}/features/`),
                 data.get(`${Project.api}environments/${environmentId}/featurestates/`),
-                segmentOverrides
-                    ? data.post(`${Project.api}projects/${projectId}/features/${res.id}/segments/`, segmentOverrides) : Promise.resolve(),
             ]).then(([features, environmentFeatures]) => {
                 store.model = {
                     features: features.results,
@@ -104,7 +102,14 @@ const controller = {
         }
 
         const segmentOverridesRequest = segmentOverrides
-            ? data.post(`${Project.api}projects/${projectId}/features/${projectFlag.id}/segments/`, segmentOverrides) : Promise.resolve();
+            ? data.post(`${Project.api}features/feature-segments/update-priorities/`, segmentOverrides.map((override, index) => ({
+                id: override.id,
+                priority: index,
+            }))).then(() => Promise.all(segmentOverrides.map(override => data.put(`${Project.api}features/feature-segments/${override.id}/`, {
+                ...override,
+                feature: projectFlag.id,
+                value: override.value || '',
+            })))) : Promise.resolve();
 
 
         Promise.all([prom, segmentOverridesRequest]).then(([res, segmentRes]) => {

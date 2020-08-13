@@ -130,4 +130,8 @@ module.exports = {
     '[Features Tests] - Feature should be off under different environment': function (browser) {
         browser.waitForElementVisible(byId('feature-switch-0-off'));
     },
+    '[Features Tests] - Clear down features': function (browser) {
+        testHelpers.deleteFeature(browser, 1, 'header_size');
+        testHelpers.deleteFeature(browser, 0, 'header_enabled');
+    },
 };
