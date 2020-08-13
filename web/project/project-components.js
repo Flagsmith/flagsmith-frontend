@@ -64,6 +64,7 @@ window.Loader = class extends PureComponent {
   render() {
       return (
           <svg
+            className="loader"
             version="1.1" id="loader-1" x="0px"
             y="0px"
             width="40px" height="40px" viewBox="0 0 50 50"

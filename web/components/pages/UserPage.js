@@ -156,7 +156,7 @@ const UserPage = class extends Component {
                                                 <PanelSearch
                                                   id="user-features-list"
                                                   className="no-pad"
-                                                  itemHeight={65}
+                                                  itemHeight={70}
                                                   icon="ion-ios-rocket"
                                                   title="Features"
                                                   items={projectFlags}
@@ -384,6 +384,7 @@ const UserPage = class extends Component {
                                                           className="no-pad"
                                                           icon="ion-ios-globe"
                                                           title="Segments"
+                                                          itemHeight={70}
                                                           items={segments || []}
                                                           renderRow={({ name, id, enabled, created_date, type, description }, i) => (
                                                               <Row
