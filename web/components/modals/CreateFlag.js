@@ -7,6 +7,9 @@ import data from '../../../common/data/base/_data';
 import SegmentOverrides from '../SegmentOverrides';
 import AddEditTags from '../AddEditTags';
 import TagList from '../TagList';
+import Constants from '../../../common/constants';
+
+const FEATURE_ID_MAXLENGTH = Constants.forms.maxLength.FEATURE_ID;
 
 const CreateFlag = class extends Component {
     static displayName = 'CreateFlag'
@@ -116,7 +119,7 @@ const CreateFlag = class extends Component {
         const Provider = identity ? IdentityProvider : FeatureListProvider;
         const valueString = isEdit ? 'Value' : 'Initial value';
         const enabledString = isEdit ? 'Enabled' : 'Enabled by default';
-
+       
         return (
             <ProjectProvider
               id={this.props.projectId}
@@ -165,7 +168,6 @@ const CreateFlag = class extends Component {
                                         </Tabs>
                                     </FormGroup>
                                 )}
-
                                 <FormGroup className="mb-4 mr-3 ml-3">
                                     <InputGroup
                                       ref={e => this.input = e}
@@ -174,6 +176,7 @@ const CreateFlag = class extends Component {
                                           readOnly: isEdit,
                                           className: 'full-width',
                                           name: 'featureID',
+                                          maxLength: FEATURE_ID_MAXLENGTH,
                                       }}
                                       value={name}
                                       onChange={e => this.setState({ name: Format.enumeration.set(Utils.safeParseEventValue(e)).toLowerCase() })}

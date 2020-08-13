@@ -157,7 +157,7 @@ export default class FeaturessExampleView extends Component {
                                         <p className="code">// User traits</p>
                                         <pre>
                                             <span className="code code--green">
-                                        bulletTrain.identify("user_12601"});
+                                        bulletTrain.identify("user_12601");
                                             </span>
                                         </pre>
                                         <pre>

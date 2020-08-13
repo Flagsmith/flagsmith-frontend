@@ -1,6 +1,6 @@
 {
   "name": "bullet-train-frontend",
-  "version": "1.3.0",
+  "version": "2.2.3",
   "description": "The frontend application for Bullet Train",
   "main": "index.js",
   "scripts": {
