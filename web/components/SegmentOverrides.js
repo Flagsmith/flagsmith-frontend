@@ -1,6 +1,8 @@
 // import propTypes from 'prop-types';
 import React, { Component } from 'react';
 import { SortableContainer, SortableElement } from 'react-sortable-hoc';
+import _data from '../../common/data/base/_data';
+import ProjectStore from '../../common/stores/project-store';
 
 const arrayMoveMutate = (array, from, to) => {
     array.splice(to < 0 ? array.length + to : to, 0, array.splice(from, 1)[0]);
@@ -12,8 +14,8 @@ const arrayMove = (array, from, to) => {
     return array;
 };
 
-const SortableItem = SortableElement(({ value: v, type, confirmRemove, toggle, setValue }) => (
-    <div style={{ zIndex: 9999999999 }} className="panel mb-2">
+const SortableItem = SortableElement(({ disabled, value: v, onSortEnd, index, type, confirmRemove, toggle, setValue }) => (
+    <div data-test={`segment-override-${index}`} style={{ zIndex: 9999999999 }} className="panel panel--draggable mb-2">
         <Row className="panel-content" space>
             <div
               className="flex flex-1 text-left"
@@ -26,19 +28,33 @@ const SortableItem = SortableElement(({ value: v, type, confirmRemove, toggle, s
                 <Column>
                     {type === 'FLAG' ? (
                         <Switch
+                          disabled={disabled}
                           checked={v.enabled}
                           onChange={toggle}
                         />
                     ) : (
                         <textarea
+                          disabled={disabled}
                           value={v.value}
-                          data-test="featureValue"
+                          data-test={`segment-override-value-${index}`}
                           onChange={e => setValue(Utils.getTypedValue(Utils.safeParseEventValue(e)))}
                           placeholder="Value e.g. 'big' "
                         />
                     )}
                 </Column>
+
+                {E2E && (
+                <input
+                  data-test={`sort-${index}`}
+                  onChange={(e) => {
+                      onSortEnd({ oldIndex: index, newIndex: parseInt(Utils.safeParseEventValue(e)) });
+                  }}
+                  type="text"
+                />
+                )}
+
                 <button
+                  disabled={disabled}
                   id="remove-feature"
                   onClick={confirmRemove}
                   className="btn btn--with-icon"
@@ -50,10 +66,12 @@ const SortableItem = SortableElement(({ value: v, type, confirmRemove, toggle, s
     </div>
 ));
 
-const SortableList = SortableContainer(({ items, type, confirmRemove, toggle, setValue }) => (
+const SortableList = SortableContainer(({ disabled, onSortEnd, items, type, confirmRemove, toggle, setValue }) => (
     <div>
         {items.map((value, index) => (
             <SortableItem
+              onSortEnd={onSortEnd}
+              disabled={disabled}
               key={value.segment.name}
               index={index}
               value={value}
@@ -79,22 +97,42 @@ class TheComponent extends Component {
     }
 
     addItem = () => {
-        const value = (this.props.value || []).map(val => ({ ...val, priority: val.priority + 1 }));
-        this.props.onChange([{
+        const value = (this.props.value || []).map(val => ({ ...val, priority: val.priority }));
+        this.setState({ isLoading: true });
+        _data.post(`${Project.api}features/feature-segments/`, {
+            feature: this.props.feature,
             segment: this.state.selectedSegment.value,
-            enabled: true,
-            value: '',
-        }].concat(value).map((v, i) => ({ ...v, priority: i + 1 })));
-        this.setState({
-            selectedSegment: null,
+            environment: ProjectStore.getEnvironmentIdFromKey(this.props.environmentId),
+            priority: value.length,
+        }).then((res) => {
+            this.props.onChange([res].concat(value).map((v, i) => ({ ...v, priority: i })));
+            this.setState({
+                selectedSegment: null,
+                isLoading: false,
+            });
         });
     }
 
     confirmRemove = (i) => {
-        this.props.onChange(_.filter(this.props.value, (v, index) => index !== i).map((v, i) => ({
-            ...v,
-            priority: i + 1,
-        })));
+        this.setState({ isLoading: true });
+        openConfirm(
+            <h3>Delete Segment Override</h3>,
+            <p>
+                {'Are you sure you want to delete this segment override?'}
+                <strong>{name}</strong>
+                {'?'}
+            </p>,
+            () => {
+                _data.delete(`${Project.api}features/feature-segments/${this.props.value[i].id}/`)
+                    .then((res) => {
+                        this.props.onChange(_.filter(this.props.value, (v, index) => index !== i).map((v, i) => ({
+                            ...v,
+                            priority: i,
+                        })));
+                        this.setState({ isLoading: false });
+                    });
+            },
+        );
     }
 
     setValue = (i, value) => {
@@ -111,12 +149,12 @@ class TheComponent extends Component {
         this.props.onChange(arrayMove(this.props.value, oldIndex, newIndex)
             .map((v, i) => ({
                 ...v,
-                priority: i + 1,
+                priority: i,
             })));
     };
 
     render() {
-        const { props: { value, segments } } = this;
+        const { state: { isLoading }, props: { value, segments } } = this;
         const segmentOptions = _.filter(
             segments, segment => !value || !_.find(value, v => v.segment === segment.id),
         )
@@ -147,7 +185,7 @@ class TheComponent extends Component {
                         </Flex>
                     )}
                     {value && !!value.length && (
-                        <div className="mt-4 overflow-visible">
+                        <div style={isLoading ? { opacity: 0.5 } : null} className="mt-4 overflow-visible">
                             <Row className="mb-2">
                                 <div
                                   className="flex flex-1 text-left"
@@ -168,8 +206,12 @@ class TheComponent extends Component {
                                     </Column>
                                 )}
                             </Row>
+                            <div className="mb-4 text-left faint">
+                                Prioritise a segment override by dragging it to the top of the list.
+                            </div>
                             {value && (
                             <SortableList
+                              disabled={isLoading}
                               type={this.props.type}
                               confirmRemove={this.confirmRemove}
                               toggle={this.toggle}
@@ -177,7 +219,7 @@ class TheComponent extends Component {
                               items={value.map(v => (
                                   {
                                       ...v,
-                                      segment: _.find(segments, { id: v.segment }),
+                                      segment: _.find(segments, { id: v.segment }) || {},
                                   }
                               ))}
                               onSortEnd={this.onSortEnd}

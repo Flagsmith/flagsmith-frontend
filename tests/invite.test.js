@@ -14,6 +14,8 @@ module.exports = {
         testHelpers.login(browser, url, email, password);
     },
     '[Invite Tests] - Create organisation': function (browser) {
+        testHelpers.waitLoggedIn(browser);
+        browser.url(`${url}/create`);
         browser.waitForElementVisible('#create-org-page');
 
         browser

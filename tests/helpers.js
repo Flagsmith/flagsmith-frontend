@@ -22,6 +22,9 @@ const testHelpers = {
             .waitForElementVisible('#login-btn')
             .click('#login-btn');
     },
+    waitLoggedIn: async (browser) => {
+        browser.waitForElementNotPresent('#login-btn');
+    },
     setSegmentRule(browser, ruleIndex, orIndex, name, operator, value) {
         browser.waitAndSet(testHelpers.byTestID(`rule-${ruleIndex}-property-${orIndex}`), name);
         if (operator) {
