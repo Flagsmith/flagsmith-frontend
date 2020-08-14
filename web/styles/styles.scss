@@ -98,6 +98,27 @@ bold,strong {
     }
 }
 
+.maintenance {
+    background: #23364a;
+    h1 {
+        font-weight: 400;
+        color: rgba(255,255,255,0.5);
+        font-size: 2em;
+        font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+    a {
+        color: #6896ba;
+    }
+    color: white;
+    font-size: 1.25em;
+    line-height: 44px;
+    .small {
+        margin-top: 44px;
+        color: white;
+        font-size: 0.8em;
+    }
+}
+
 .clickable {
     cursor: pointer;
 }
