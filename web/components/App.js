@@ -52,9 +52,6 @@ const App = class extends Component {
     }
 
     onLogin = () => {
-        if (this.props.hasFeature('maintenance') || this.props.error) {
-            return;
-        }
         let { redirect } = Utils.fromParam();
         const invite = API.getInvite();
         if (invite) {
@@ -147,8 +144,10 @@ const App = class extends Component {
         const isDark = /* pathname.indexOf('/blog') !== -1 */ true;
 
         const redirect = Utils.fromParam().redirect ? `?redirect=${Utils.fromParam().redirect}` : '';
-        if (this.props.hasFeature('maintenance') || this.props.error) {
-            return <Maintenance/>;
+        if (Project.maintenance || this.props.error) {
+            return (
+                <Maintenance/>
+            );
         }
         if (this.props.isLoading) {
             return (

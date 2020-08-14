@@ -5,6 +5,7 @@ import App from './components/App'; // App Wrapper
 import HomePage from './components/pages/HomePage';
 import MarkupPage from './components/pages/__MarkupPage__';
 import DemoPage from './components/pages/DemoPage';
+import Maintenance from './components/Maintenance';
 import ProjectSelectPage from './components/pages/ProjectSelectPage';
 import CreateOrganisationPage from './components/pages/CreateOrganisationPage';
 import CreateEnvironmentPage from './components/pages/CreateEnvironmentPage';
@@ -50,6 +51,7 @@ export default (
             <Route path="/open-source" exact component={OpenSourcePage}/>
             <Route path="/features" exact component={FeaturesExamplePage}/>
             <Route path="/projects" exact component={ProjectSelectPage}/>
+            <Route path="/maintenance" exact component={Maintenance}/>
             <Route path="/blog/remote-config-and-feature-flags" exact component={WhatAreFeatureFlagsPage}/>
             <Route path="/blog/01" exact component={WhenFeatureFlagsGoWrong}/>
             <Route path="/blog/02" exact component={SimulateScenarios}/>

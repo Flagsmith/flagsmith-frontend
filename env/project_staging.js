@@ -4,6 +4,7 @@ module.exports = global.Project = {
     bulletTrain: 'ENktaJnfLVbLifybz34JmX', // This is our Bullet Train API key - Bullet Train runs on Bullet Train!
     env: 'staging', // This is used for Sentry tracking
     ga: 'UA-120237963-7', // This is our Google Analytics key
+    maintenance: false, // trigger maintenance mode
     demoAccount: {
         email: 'kyle+bullet-train@solidstategroup.com',
         password: 'demo_account',

@@ -19,11 +19,9 @@ const HomePage = class extends React.Component {
                 <h1>Maintenance</h1>
                 We are currently undergoing some scheduled maintenance of the admin site, this will not affect your application's feature flags.
                 {
-                    document.location.host.includes('bullet-train.io') && (
                       <>
                           {' '}Check <a target="_blank" href="https://twitter.com/getbullettrain">@getbullettrain</a> for updates.
                       </>
-                    )
                 }
 
                 <br/>
