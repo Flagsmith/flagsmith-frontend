@@ -7,6 +7,7 @@ module.exports = {
         mixpanel: process.env.MIXPANEL,
         sentry: process.env.SENTRY,
         api: process.env.API_URL,
+        maintenance: process.env.MAINTENANCE,
         assetURL: process.env.ASSET_URL,
         bulletTrainClientAPI: process.env.BULLET_TRAIN_CLIENT_API,
     }),
