@@ -7,7 +7,8 @@ module.exports = (WrappedComponent) => {
         constructor(props) {
             super(props);
             this.state = {
-                isLoading: ConfigStore.isLoading,
+                isLoading: ConfigStore.model ? ConfigStore.isLoading : true,
+                error: ConfigStore.error,
             };
             ES6Component(this);
         }
@@ -16,12 +17,13 @@ module.exports = (WrappedComponent) => {
             this.listenTo(ConfigStore, 'change', () => {
                 this.setState({
                     isLoading: ConfigStore.isLoading,
+                    error: ConfigStore.error,
                 });
             });
         }
 
         render() {
-            const { isLoading } = this.state;
+            const { isLoading,error } = this.state;
             const { getValue, hasFeature } = bulletTrain;
 
             return (
@@ -29,6 +31,7 @@ module.exports = (WrappedComponent) => {
                   ref="wrappedComponent"
                   isLoading={isLoading}
                   getValue={getValue}
+                  error={error}
                   hasFeature={hasFeature}
                   {...this.props}
                 />
