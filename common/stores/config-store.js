@@ -4,6 +4,10 @@ const controller = {
     get() {
         store.loading();
     },
+    onError() {
+        store.error = true;
+        store.goneABitWest();
+    },
     loaded(oldFlags) { // Occurs whenever flags are changed
         if (!oldFlags) {
             store.loaded();
@@ -36,6 +40,8 @@ bulletTrain.init({
     environmentID: Project.bulletTrain,
     onChange: controller.loaded,
     api: Project.bulletTrainClientAPI,
+}).catch(() => {
+    controller.onError();
 });
 
 controller.store = store;

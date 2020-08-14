@@ -7,6 +7,8 @@ import Feedback from './modals/Feedback';
 import PaymentModal from './modals/Payment';
 import AlertBar from './AlertBar';
 import TwoFactorPrompt from './SimpleTwoFactor/prompt';
+import Maintenance from './Maintenance';
+import AppLoader from './AppLoader';
 
 const App = class extends Component {
     static propTypes = {
@@ -50,6 +52,9 @@ const App = class extends Component {
     }
 
     onLogin = () => {
+        if (this.props.hasFeature('maintenance') || this.props.error) {
+            return;
+        }
         let { redirect } = Utils.fromParam();
         const invite = API.getInvite();
         if (invite) {
@@ -142,6 +147,14 @@ const App = class extends Component {
         const isDark = /* pathname.indexOf('/blog') !== -1 */ true;
 
         const redirect = Utils.fromParam().redirect ? `?redirect=${Utils.fromParam().redirect}` : '';
+        if (this.props.hasFeature('maintenance') || this.props.error) {
+            return <Maintenance/>;
+        }
+        if (this.props.isLoading) {
+            return (
+                <AppLoader/>
+            );
+        }
         return (
             <div>
                 <AccountProvider onNoUser={this.onNoUser} onLogout={this.onLogout} onLogin={this.onLogin}>
@@ -211,13 +224,17 @@ Click here to Sign
                                                 {user ? (
                                                     <React.Fragment>
                                                         <nav className="my-2 my-md-0 nav__links">
-                                                            <a href="https://docs.bullet-train.io"
-                                                                target="_blank" className="nav-link p-2">
+                                                            <a
+                                                              href="https://docs.bullet-train.io"
+                                                              target="_blank" className="nav-link p-2"
+                                                            >
                                                                 <img className="mr-2" src="/images/icons/aside/documentation.svg"/>
                                                                 Documentation
                                                             </a>
-                                                            <a href="https://product-hub.io/roadmap/5d81f2406180537538d99f28"
-                                                               target="_blank" className="nav-link p-2">
+                                                            <a
+                                                              href="https://product-hub.io/roadmap/5d81f2406180537538d99f28"
+                                                              target="_blank" className="nav-link p-2"
+                                                            >
                                                                 <img className="mr-2" src="/images/icons/aside/roadmap.svg"/>
                                                                 Product Roadmap
                                                             </a>

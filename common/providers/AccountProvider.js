@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import AccountStore from '../stores/account-store';
+import AppLoader from '../../web/components/AppLoader';
 
 const AccountProvider = class extends Component {
     static displayName = 'AccountProvider'
@@ -90,14 +91,7 @@ const AccountProvider = class extends Component {
         const { isLoading, isSaving, user, organisation, organisations, error } = this.state;
         if (isLoading) {
             return (
-                <div style={{
-                    position: 'absolute',
-                    top: '35%',
-                    width: '100%',
-                    textAlign: 'center',
-                }}>
-                    <Loader />
-                </div>
+               <AppLoader/>
             );
         }
         return (
