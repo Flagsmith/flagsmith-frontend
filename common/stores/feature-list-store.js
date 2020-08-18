@@ -108,7 +108,7 @@ const controller = {
             }))).then(() => Promise.all(segmentOverrides.map(override => data.put(`${Project.api}features/feature-segments/${override.id}/`, {
                 ...override,
                 feature: projectFlag.id,
-                value: override.value || '',
+                value: override.value == null || typeof override.value === 'undefined' ? '' : override.value,
             })))) : Promise.resolve();
 
 
