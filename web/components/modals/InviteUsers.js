@@ -71,13 +71,13 @@ const InviteUsers = class extends Component {
                                           placeholder="E-mail address"
                                         />
                                     </Flex>
-                                    <Flex>
+                                    <Flex style={{top: 6, position: 'relative'}}>
                                         <Select
                                           data-test="select-role"
                                           placeholder="Select a role"
                                           value={invite.role}
                                           onChange={role => this.onChange(index, 'role', role)}
-                                          className="pt-3 pl-2"
+                                          className="pl-2"
                                           options={_.map(Constants.roles, (label, value) => ({ value, label }))}
                                         />
                                     </Flex>
@@ -99,18 +99,20 @@ const InviteUsers = class extends Component {
                             ))}
 
                             <div className="text-center mt-2">
-                                <Button
+                                <ButtonLink
                                   id="btn-add-invite"
-                                  disabled={isSaving}
+                                  disabled={isSaving || !this.isValid()}
                                   type="button"
                                   onClick={() => this.setState({ invites: this.state.invites.concat([{}]) })}
                                 >
                                     {isSaving ? 'Sending' : 'Invite additional member'}
-                                </Button>
+                                    <span className="pl-2 icon ion-ios-add"/>
+                                </ButtonLink>
+
                             </div>
 
 
-                            <p className="mt-5">
+                            <p className="mt-3">
                                 Users without administrator privileges will need to be invited to individual projects.
                                 {' '}
                                 <ButtonLink target="_blank" href="https://docs.bullet-train.io/permissions/">Learn about User Roles.</ButtonLink>
