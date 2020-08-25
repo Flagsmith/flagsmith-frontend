@@ -52,7 +52,10 @@ const controller = {
         };
     },
     editFlag(projectId, flag) {
-        data.put(`${Project.api}projects/${projectId}/features/${flag.id}/`, flag)
+        data.put(`${Project.api}projects/${projectId}/features/${flag.id}/`, {
+            ...flag,
+            project: projectId
+        })
             .then((res) => {
                 const index = _.findIndex(store.model.features, { id: flag.id });
                 store.model.features[index] = controller.parseFlag(flag);
