@@ -42,8 +42,10 @@
         cursor: pointer;
         color: white;
         position: absolute;
-        top: 18px;
-        right: 20px;
+        top: 5px;
+        right: 10px;
+        font-size: 30px;
+        padding: 10px;
     }
 }
 
@@ -54,9 +56,8 @@ $side-width: 66%;
         position: absolute;
         top: -40px;
         right: 20px;
-        color: white;
-        font-size: 18px;
         cursor: pointer;
+        font-size: 30px;
     }
     .modal-body {
         padding: 0;

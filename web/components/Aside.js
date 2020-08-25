@@ -47,10 +47,10 @@ const Aside = class extends Component {
 
 
   newProject = () => {
-    openModal('Create  Project', <CreateProjectModal onSave={({ projectId, environmentId }) => {
-      this.context.router.history.push(`/project/${projectId}/environment/${environmentId}/features?new=true`);
-    }}
-    />);
+      openModal('Create  Project', <CreateProjectModal onSave={({ projectId, environmentId }) => {
+          this.context.router.history.push(`/project/${projectId}/environment/${environmentId}/features?new=true`);
+      }}
+      />);
   };
 
   render() {
@@ -280,10 +280,10 @@ const Aside = class extends Component {
                                                       {hasFeature('demo_feature') && (
                                                       <a
                                                         style={{ color: getValue('demo_link_color') || 'white' }}
-                                                        className="link--footer active"
+                                                        className="aside__nav-item"
                                                         href="https://docs.bullet-train.io"
                                                       >
-                                                          <i className="icon mr-2 ion-ios-star"/>
+                                                          <i className="icon mr-2 ion-ios-star aside__nav-item--icon"/>
                                                           Super cool demo feature!
                                                       </a>
                                                       )}

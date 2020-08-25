@@ -243,7 +243,7 @@ $animation-timing-function: ease-in-out;
     }
     &-body {
         padding-left: $aside-width;
-
+        margin: 0 3em;
         &-full-width {
             padding-left: 0;
         }

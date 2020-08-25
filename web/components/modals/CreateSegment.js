@@ -198,6 +198,7 @@ const CreateSegment = class extends Component {
 
                         <div className="form-group ">
                             <label className="cols-sm-2 control-label">Include users when</label>
+                            <p>Trait names are case sensitive</p>
                             {
                                 rulesEl
                             }

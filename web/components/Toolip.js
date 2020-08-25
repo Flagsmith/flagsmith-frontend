@@ -14,7 +14,10 @@ const Tooltip = class extends React.Component {
           id={this.id} place={this.props.place || 'top'} type="dark"
           effect="solid"
         >
-            {this.props.children}
+            <div className="flex-row">
+                <span className="icon--tooltip ion-ios-information-circle pr-2"/>
+                {this.props.children}
+            </div>
         </ReactTooltip>
     </span>
 	    );

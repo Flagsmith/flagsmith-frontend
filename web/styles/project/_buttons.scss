@@ -316,6 +316,12 @@ $add-btn-size: 34px;
     color: $link-color-secondary;
 }
 
+#btn-add-invite {
+    &:hover {
+        background-color: transparent;
+    }
+}
+
 
 
 
