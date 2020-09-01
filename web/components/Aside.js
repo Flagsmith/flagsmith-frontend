@@ -65,7 +65,7 @@ const Aside = class extends Component {
                                 className={`aside ${this.props.className || ''}`} style={!asideIsVisible ? {
                                     width: 0,
                                     overflow: 'hidden',
-                                } : isMobile ? { width: '90vw' } : {}}
+                                } : isMobile ? { } : {}}
                               >
                                   {isMobile && (
                                   <div role="button" className="clickable toggle" onClick={toggleAside}>
@@ -310,6 +310,23 @@ const Aside = class extends Component {
                                                           Organisation
                                                       </NavLink>
                                                       )}
+
+                                                      <a
+                                                          href="https://docs.bullet-train.io"
+                                                          target="_blank"
+                                                          className="aside__nav-item hidden-sm-up"
+                                                      >
+                                                          <img className="mr-2" src="/images/icons/aside/documentation-white.svg"/>
+                                                          Documentation
+                                                      </a>
+
+                                                      <a
+                                                          href="https://product-hub.io/roadmap/5d81f2406180537538d99f28"
+                                                          target="_blank" className="aside__nav-item hidden-sm-up"
+                                                      >
+                                                          <img width={15} className="mr-2" src="/images/icons/aside/features.svg"/>
+                                                          Product Roadmap
+                                                      </a>
 
                                                       <a
                                                         id="logout-link" href="#"

@@ -313,7 +313,7 @@ color:#fff;
 @include media-breakpoint-down(xs) {
     .nav {
         &__links {
-            font-size: .65em;
+            display: none;
         }
     }
 }
