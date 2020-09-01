@@ -87,8 +87,8 @@ const Modal = class extends React.Component {
                                   <span className="icon ion-md-close"/>
                               </button>
                               )}
+                              <span onClick={this.close} className="icon close ion-md-close"/>
                           </div>
-                          <span onClick={this.close} className="icon close ion-md-close"/>
                           <div className="modal-body">{this.body()}</div>
                           <div className="modal-footer">{this.footer()}</div>
                       </div>
