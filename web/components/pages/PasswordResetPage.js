@@ -90,7 +90,7 @@ const PasswordResetPage = class extends Component {
                             <div>
                                 {error ? (
                                     <div>
-                                        <h3>
+                                        <h3 className="pt-5">
                                             Oops
                                         </h3>
                                         <p className="alert alert-danger">
