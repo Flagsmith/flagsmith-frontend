@@ -270,6 +270,10 @@ $animation-timing-function: ease-in-out;
             position: relative;
             top: 3em;
         }
+        &__footer {
+            padding-top: .5em;
+            padding-bottom: .5em;
+        }
     }
 }
 
