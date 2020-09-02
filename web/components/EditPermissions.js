@@ -229,7 +229,10 @@ export default class EditPermissions extends PureComponent {
                                                             {'Organisation administrators have all permissions enabled.<br/>To change the role of this user, visit Organisation Settings.'}
                                                         </Tooltip>
                                                     ) : (
-                                                        <ion style={{ fontSize: 24 }} className="icon--green ion ion-md-settings"/>
+                                                        <div className="flex-row">
+                                                            <span className="mr-3">Regular User</span>
+                                                            <ion style={{ fontSize: 24 }} className="icon--green ion ion-md-settings"/>
+                                                        </div>
                                                     )}
                                                 </Row>
                                             )}
