@@ -154,11 +154,11 @@ $side-width: 66%;
     box-shadow:rgba(75, 75, 75, 0.11) 0px 1px 6px 0px, rgba(75, 75, 75, 0.11) 0px 1px 4px 0px;
     border: 1px solid $input-border-color;
     .modal-close-btn {
-        color: $body-text;
+        color: $bt-brand-primary;
     }
     &__title {
+        font-family: ProximaNova-Bold;
         line-height: 40px;
-        border-bottom: 1px solid $input-border-color;
     }
 }
 
@@ -170,7 +170,7 @@ $side-width: 66%;
 }
 
 .modal-back-btn {
-    color: $body-text;
+    color: $bt-brand-primary;
     position: absolute;
     left:10px;
     top:0;

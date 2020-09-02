@@ -215,7 +215,10 @@ class TheComponent extends PureComponent {
       return (
           <div>
               <div className="inline-tags mt-2">
-                  <TagValues onAdd={this.toggle} tags={projectTags} isSelected={this.props.isSelected} value={this.props.value}/>
+                  <TagValues
+                    onAdd={this.toggle} tags={projectTags} isSelected={this.props.isSelected}
+                    value={this.props.value}
+                  />
               </div>
 
               <InlineModal
@@ -248,12 +251,20 @@ class TheComponent extends PureComponent {
                                           />
                                       </Flex>
                                       <div onClick={() => this.editTag(tag)} className="ml-2 px-2 py-2 clickable">
-                                          <span className="icon ion-md-settings"/>
+                                          <span className="icon icon--green ion-md-settings"/>
                                       </div>
 
                                   </Row>
                               </div>
                           ))}
+                          <div className="text-center mb-2 mt-2">
+                              <ButtonLink
+                                buttonText=" Create a New Tag" onClick={() => this.setState({ tab: 'CREATE', filter: '' })}
+                                type="button"
+                              >
+                                  <span className="ml-3 icon ion-md-add"/>
+                              </ButtonLink>
+                          </div>
                           {projectTags && projectTags.length && !filteredTags.length ? (
                               <div className="text-center">
                           No results for "<strong>{this.state.filter}</strong>"
@@ -268,9 +279,9 @@ class TheComponent extends PureComponent {
                       }
 
                       </div>
-                      <div className="text-center pt-2">
-                          <Button onClick={() => this.setState({ tab: 'CREATE', filter: '' })} type="button">
-                        Create a New Tag
+                      <div className="text-right pt-2">
+                          <Button onClick={this.props.onClose} type="button">
+                        OK
                           </Button>
                       </div>
                   </div>
