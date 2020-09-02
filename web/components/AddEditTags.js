@@ -257,7 +257,7 @@ class TheComponent extends PureComponent {
                                   </Row>
                               </div>
                           ))}
-                          <div className="text-center mb-2 mt-2">
+                          <div className="text-center mb-2 mt-3">
                               <ButtonLink
                                 buttonText=" Create a New Tag" onClick={() => this.setState({ tab: 'CREATE', filter: '' })}
                                 type="button"
