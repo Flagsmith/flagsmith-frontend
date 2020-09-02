@@ -328,6 +328,16 @@ const Aside = class extends Component {
                                                           Product Roadmap
                                                       </a>
 
+                                                      {/*todo: need to add correct link here*/}
+                                                      <NavLink
+                                                          id="account-settings-link"
+                                                          className="aside__nav-item hidden-sm-up"
+                                                          to={`/project/${this.props.projectId}/environment/${this.props.environmentId}/organisation-settings`}
+                                                      >
+                                                          <img width={15} className="mr-2" src="/images/icons/aside/user-white.svg"/>
+                                                          Account Settings
+                                                      </NavLink>
+
                                                       <a
                                                         id="logout-link" href="#"
                                                         onClick={AppActions.logout}
