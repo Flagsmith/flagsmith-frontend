@@ -191,7 +191,7 @@ const FeaturesPage = class extends Component {
                                                           ]}
                                                           items={projectFlags}
                                                           renderRow={(projectFlag, i) => {
-                                                              const { name, id, enabled, created_date, type } = projectFlag;
+                                                              const { name, id, enabled, created_date, description, type } = projectFlag;
                                                               return (
                                                                   <Row
                                                                     className={permission ? 'list-item clickable' : 'list-item'} key={id} space
@@ -208,9 +208,7 @@ const FeaturesPage = class extends Component {
                                                                               <Column/>
                                                                           </Row>
                                                                           <div className="list-item-footer faint">
-                                                                          Created
-                                                                              {' '}
-                                                                              {moment(created_date).format('DD/MMM/YYYY')}
+                                                                              {description}
                                                                           </div>
                                                                       </div>
                                                                       <Row>
