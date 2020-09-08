@@ -210,7 +210,7 @@ const OrganisationSettingsPage = class extends Component {
                                             ) : (
                                                 <button
                                                   type="button" className="btn btn-primary text-center ml-auto mt-2 mb-2"
-                                                  onClick={() => openModal(null, <PaymentModal
+                                                  onClick={() => openModal('Payment Plans', <PaymentModal
                                                     viewOnly={false}
                                                   />, null, { large: true })}
                                                 >

@@ -243,15 +243,18 @@ $animation-timing-function: ease-in-out;
     }
     &-body {
         padding-left: $aside-width;
-        margin: 0 3em;
+        margin: 0 1.5em;
         &-full-width {
             padding-left: 0;
         }
     }
     .toggle {
+        //position: absolute;
+        //left: 30px;
+        //top: 15px;
         position: absolute;
-        left: 30px;
-        top: 15px;
+        left: 20px;
+        top: 10px;
 
         > .icon {
             color: white;
@@ -266,6 +269,10 @@ $animation-timing-function: ease-in-out;
         &__projects-sidebar {
             position: relative;
             top: 3em;
+        }
+        &__footer {
+            padding-top: .5em;
+            padding-bottom: .5em;
         }
     }
 }

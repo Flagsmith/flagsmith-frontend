@@ -36,7 +36,7 @@ export default class ExampleOne extends Component {
     render() {
         return (
             <div id="create-org-page" className="container app-container">
-                <h3>
+                <h3 className="pt-5">
                     Create your organisation
                 </h3>
                 <p>

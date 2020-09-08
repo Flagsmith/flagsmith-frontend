@@ -222,7 +222,7 @@ Click here to Sign
                                             <div className="navbar-right">
                                                 {user ? (
                                                     <React.Fragment>
-                                                        <nav className="my-2 my-md-0 nav__links">
+                                                        <nav className="my-2 my-md-0 hidden-xs-down">
                                                             <a
                                                               href="https://docs.bullet-train.io"
                                                               target="_blank" className="nav-link p-2"

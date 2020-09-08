@@ -125,7 +125,7 @@ const InviteUsers = class extends Component {
                                   onClick={() => AppActions.inviteUsers(invites)}
                                   type="submit"
                                 >
-                                    {isSaving ? 'Sending' : 'Send Invite(s)'}
+                                    {isSaving ? 'Sending' : 'Send Invitation'}
                                 </Button>
                             </div>
                         </form>

@@ -10,7 +10,7 @@ const ComingSoon = class extends Component {
     render() {
         return (
             <div className="app-container container">
-                <h3>Oops!</h3>
+                <h3 className="pt-5">Oops!</h3>
                 <p>
                   It looks like you do not have permission to view this {Utils.fromParam().entity || 'page'}. Please contact a member with administrator privileges.
                 </p>

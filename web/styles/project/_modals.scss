@@ -18,6 +18,7 @@
         letter-spacing: 0.8px;
         -webkit-font-smoothing:antialiased;
         text-transform: capitalize;
+        padding: 10px 15px;
     }
 
     .modal-body{
@@ -41,11 +42,11 @@
     .close {
         cursor: pointer;
         color: white;
-        position: absolute;
-        top: 5px;
-        right: 10px;
+        position: relative;
+        right: 0;
         font-size: 30px;
-        padding: 10px;
+        padding: 0 10px;
+        float: right;
     }
 }
 
