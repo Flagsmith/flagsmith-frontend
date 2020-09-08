@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-expressions */
 /* eslint-disable func-names */
-const inviteEmail = 'bullet-train@mailnesia.com';
+const inviteEmail = 'bullet-train@mailinator.com';
 const email = 'nightwatch@solidstategroup.com';
 const password = 'str0ngp4ssw0rd!';
 const url = `http://localhost:${process.env.PORT || 8080}`;
@@ -64,27 +64,24 @@ module.exports = {
     '[Invite Tests] - Accept invite': function (browser) {
         let inviteUrl;
         browser
-            .pause(20000)
-            .url('http://mailnesia.com/mailbox/bullet-train')
-            .pause(200)
-            .refresh()
-            .waitForElementVisible('.email')
+            .url('https://mailinator.com/v3/#/#inboxpane')
+            .waitForElementVisible('#inbox_field')
+            .setValue('#inbox_field', ['bullet-train', browser.Keys.ENTER])
             .useXpath()
-            .waitForElementVisible(`//*[contains(text(), '${`Bullet Train Org${append}`}')]`)
-            .click(`//*[contains(text(), '${`Bullet Train Org${append}`}')]`)
+            .waitForElementVisible(`//tbody/tr/td/a[contains(text(),"${`Bullet Train Org${append}`}")]`, 60000)
+            .click(`//tbody/tr/td/a[contains(text(),"${`Bullet Train Org${append}`}")]`)
             .useCss()
-            .waitForElementVisible('.pill-content')
-            .getText('.pill-content', (res) => {
+            .waitForElementVisible('#msg_body')
+            .pause(1000) // TODO revise this. currently necessary as the msg_body does not appear to show text immediately leading to an empty result
+            .frame('msg_body')
+            .getText('body', (res) => {
                 console.log(res.value);
                 inviteUrl = res.value.match(/(https?[^.]*)/g)[0];
                 console.log('Invite URL:', inviteUrl);
 
                 browser
                     .back()
-                    .back()
-                    .pause(500)
-                    .refresh();
-
+                    .back();
 
                 testHelpers.logout(browser);
                 testHelpers.login(browser, url, inviteEmail, 'nightwatch');
