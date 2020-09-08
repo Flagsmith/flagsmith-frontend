@@ -327,12 +327,10 @@ const Aside = class extends Component {
                                                           <img width={15} className="mr-2" src="/images/icons/aside/features.svg"/>
                                                           Product Roadmap
                                                       </a>
-
-                                                      {/*todo: need to add correct link here*/}
-                                                      <NavLink
+                                                     <NavLink
                                                           id="account-settings-link"
                                                           className="aside__nav-item hidden-sm-up"
-                                                          to={`/project/${this.props.projectId}/environment/${this.props.environmentId}/organisation-settings`}
+                                                          to={`/project/${this.props.projectId}/environment/${this.props.environmentId}/account`}
                                                       >
                                                           <img width={15} className="mr-2" src="/images/icons/aside/user-white.svg"/>
                                                           Account Settings
