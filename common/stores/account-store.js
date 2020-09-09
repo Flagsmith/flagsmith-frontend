@@ -249,7 +249,7 @@ const controller = {
     },
 
     setUser(user) {
-        if (!store.model && user) {
+        if (user) {
             store.model = user;
             store.organisation = user && user.organisations && user.organisations[0];
             AsyncStorage.setItem('user', JSON.stringify(store.model));
