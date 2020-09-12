@@ -259,6 +259,7 @@ const Aside = class extends Component {
                                                                     </Permission>
                                                                 </Collapsible>
                                                             )}
+                                                            projectId={this.props.projectId}
                                                             environmentId={this.props.environmentId}
                                                             clearableValue={false}
                                                             onChange={(environment) => {

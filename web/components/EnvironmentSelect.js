@@ -12,7 +12,7 @@ const EnvironmentSelect = class extends Component {
         const { hasFeature } = this.props;
 
         return (
-            <ProjectProvider id={this.props.id}>
+            <ProjectProvider id={this.props.projectId}>
                 {({ isLoading, project }) => (
                     <div className={`fade ${isLoading ? '' : 'in'}`}>
 
