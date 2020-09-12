@@ -3,6 +3,7 @@ const expect = require('chai').expect;
 const helpers = require('./helpers');
 
 const byId = helpers.byTestID;
+const url = `http://localhost:${process.env.PORT || 8080}`;
 
 module.exports = {
     '[Project Tests] - Create environment': function (browser) {
@@ -29,6 +30,8 @@ module.exports = {
             .waitForElementVisible("[name='confirm-env-name']")
             .setValue("[name='confirm-env-name']", 'StagingInternal')
             .click('#confirm-delete-env-btn')
+            .waitForElementVisible(byId('features-page'));
+        browser.url(`${url}/projects`)
             .waitForElementVisible('#project-select-page');
     },
     '[Project Tests] - View project': function (browser) {

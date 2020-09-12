@@ -48,7 +48,12 @@ const EnvironmentSettingsPage = class extends Component {
     };
 
     onRemoveEnvironment = () => {
-        this.context.router.history.replace('/projects');
+        const envs = ProjectStore.getEnvs();
+        if (envs && envs.length) {
+            this.context.router.history.replace(`/project/${this.props.match.params.projectId}/environment` + `/${envs[0].api_key}/features`);
+        } else {
+            this.context.router.history.replace(`/project/${this.props.match.params.projectId}/environment/create`);
+        }
     };
 
     saveEnv = (e) => {
