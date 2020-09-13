@@ -90,6 +90,8 @@ const sendFailure = (browser, done, request, error) => {
 let testsFailed;
 
 const exitTests = (browser, done) => {
+    if (process.env.BRK)
+        return
     browser.end();
     done();
     server.kill('SIGINT');
@@ -110,7 +112,7 @@ module.exports = Object.assign(
             }
             server = fork('./server');
             server.on('message', () => {
-                clearDown(browser, done);
+                clearDown(browser, process.env.PAUSE ? null : done);
             });
         },
         afterEach: (browser, done) => {
@@ -151,13 +153,14 @@ module.exports = Object.assign(
     },
 
     require('./initialise.test'), // Register as the demo user
-    require('./features.test'), // Features tests
+    // require('./features.test'), // Features tests
     require('./segments.test'), // Segments tests
     require('./segement-priorities.test'), // Segments tests
-    require('./users.test'), // Users tests
-    require('./project.test'), // Project/environment tests
-    require('./initial-cleanup.test'), // Cleanup initialisation
-    require('./invite.test'), // Invite user tests
-    require('./register-fail.test'), // Registration failure tests
-    require('./login-fail.test'), // Login failure tests
+    // require('./users.test'), // Users tests
+    // require('./project.test'), // Project/environment tests
+    // require('./initial-cleanup.test'), // Cleanup initialisation
+    // require('./invite.test'), // Invite user tests
+    // require('./register-fail.test'), // Registration failure tests
+    // require('./login-fail.test'), // Login failure tests
 );
+

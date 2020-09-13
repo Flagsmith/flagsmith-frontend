@@ -23,20 +23,20 @@ test:
         - staging
         - develop
 
-deploymaster:
-    image: kylessg/bullet-train-gcloud:1.0
-    stage: deploy
-    script:
-        - npm i
-        - export ENV=prod; npm run env
-        - npm run dotenv
-        - npm run bundle
-        - echo $DEPLOY_KEY_FILE_PROD > /tmp/$CI_PIPELINE_ID.json
-        - gcloud auth activate-service-account --key-file /tmp/$CI_PIPELINE_ID.json
-        - gcloud config set project bullet-train-front-end-prod
-        - gcloud app deploy
-    only:
-        - master
+#deploymaster:
+#    image: kylessg/bullet-train-gcloud:1.0
+#    stage: deploy
+#    script:
+#        - npm i
+#        - export ENV=prod; npm run env
+#        - npm run dotenv
+#        - npm run bundle
+#        - echo $DEPLOY_KEY_FILE_PROD > /tmp/$CI_PIPELINE_ID.json
+#        - gcloud auth activate-service-account --key-file /tmp/$CI_PIPELINE_ID.json
+#        - gcloud config set project bullet-train-front-end-prod
+#        - gcloud app deploy
+#    only:
+#        - master
 
 deploystaging:
   image: kylessg/bullet-train-gcloud:1.0
