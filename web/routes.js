@@ -15,15 +15,8 @@ import FlagsPage from './components/pages/FeaturesPage';
 import SegmentsPage from './components/pages/SegmentsPage';
 import OrganisationSettingsPage from './components/pages/OrganisationSettingsPage';
 import AccountSettingsPage from './components/pages/AccountSettingsPage';
-import ComingSoon from './components/pages/ComingSoonPage';
 import NotFoundErrorPage from './components/pages/NotFoundErrorPage';
 import ProjectSettingsPage from './components/pages/ProjectSettingsPage';
-import WhatAreFeatureFlagsPage from './components/pages/WhatAreFeatureFlagsPage';
-import WhenFeatureFlagsGoWrong from './components/pages/blog/WhenFeatureFlagsGoWrong';
-import SimulateScenarios from './components/pages/blog/SimulateScenarios';
-import HowToUseFeatureFlags from './components/pages/blog/HowToUseFeatureFlags';
-import HackingOurE2E from './components/pages/blog/HackingOurE2E';
-import SevenReasons from './components/pages/blog/SevenReasons';
 import PasswordResetPage from './components/pages/PasswordResetPage';
 import EnvironmentSettingsPage from './components/pages/EnvironmentSettingsPage';
 import InvitePage from './components/pages/InvitePage';
@@ -52,12 +45,6 @@ export default (
             <Route path="/features" exact component={FeaturesExamplePage}/>
             <Route path="/projects" exact component={ProjectSelectPage}/>
             <Route path="/maintenance" exact component={Maintenance}/>
-            <Route path="/blog/remote-config-and-feature-flags" exact component={WhatAreFeatureFlagsPage}/>
-            <Route path="/blog/01" exact component={WhenFeatureFlagsGoWrong}/>
-            <Route path="/blog/02" exact component={SimulateScenarios}/>
-            <Route path="/blog/03" exact component={HowToUseFeatureFlags}/>
-            <Route path="/blog/04" exact component={HackingOurE2E}/>
-            <Route path="/blog/05" exact component={SevenReasons}/>
             <Route path="/password-reset/confirm/:uid/:token/" exact component={PasswordResetPage}/>
             <Route path="/project/:projectId/environment/:environmentId/features" exact component={FlagsPage}/>
             <Route path="/invite/:id" exact component={InvitePage}/>

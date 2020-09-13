@@ -1,10 +1,8 @@
 import React from 'react';
-import lazyframe from 'lazyframe';
 import ForgotPasswordModal from '../ForgotPasswordModal';
 import Hero from '../Hero';
 import Footer from '../Footer';
 import Popover from '../base/Popover';
-import 'lazyframe/dist/lazyframe.css';
 import PricingPanel from '../PricingPanel';
 import Card from '../Card';
 import { ButtonWhite, ButtonLink } from '../base/forms/Button';
@@ -24,8 +22,6 @@ const HomePage = class extends React.Component {
     }
 
     componentDidMount() {
-        lazyframe('.lazyframe');
-
         if (document.location.href.includes('oauth')) {
             const parts = location.href.split('oauth/');
             const params = parts[1];
