@@ -53,7 +53,7 @@ const FeatureListProvider = class extends Component {
 
     editFlag = (projectId, environmentId, flag, projectFlag, environmentFlag, segmentOverrides) => {
         AppActions.editEnvironmentFlag(projectId, environmentId, flag, projectFlag, environmentFlag, segmentOverrides);
-        if (flag.description != projectFlag.description) {
+        if (flag.description !== projectFlag.description || flag.tags !== projectFlag.tags) {
             AppActions.editFlag(projectId, Object.assign({}, projectFlag, flag));
         }
     };

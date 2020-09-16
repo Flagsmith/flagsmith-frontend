@@ -71,7 +71,7 @@ const CreateTrait = class extends Component {
                                       onChange={e => this.setState({ trait_key: Format.enumeration.set(Utils.safeParseEventValue(e)).toLowerCase() })}
                                       isValid={trait_key && trait_key.length}
                                       type="text" title={isEdit ? 'Trait ID' : 'Trait ID*'}
-                                      placeholder="E.g. favourite_colour"
+                                      placeholder="E.g. favourite_color"
                                     />
                                 </FormGroup>
                                 <FormGroup className="mb-3">

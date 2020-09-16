@@ -43,6 +43,7 @@ const controller = {
             .catch(e => API.ajaxHandler(store, e));
     },
     parseFlag(flag) {
+        debugger
         return {
             ...flag,
             feature_segments: flag.feature_segments && flag.feature_segments.map(fs => ({
@@ -52,6 +53,7 @@ const controller = {
         };
     },
     editFlag(projectId, flag) {
+        debugger
         data.put(`${Project.api}projects/${projectId}/features/${flag.id}/`, {
             ...flag,
             project: projectId

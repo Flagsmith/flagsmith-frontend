@@ -30,6 +30,9 @@
 
     input.input{
         border:1px solid $input-border-color;
+        &:read-only {
+            border-color: #f1f1f1;
+        }
         border-radius: $border-radius-default;
         text-indent: 15px;
         height:$input-height;

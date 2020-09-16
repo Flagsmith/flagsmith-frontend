@@ -151,7 +151,11 @@ const App = class extends Component {
         }
         if (this.props.isLoading) {
             return (
-                <AppLoader/>
+                <AccountProvider onNoUser={this.onNoUser} onLogout={this.onLogout} onLogin={this.onLogin}>
+                    {() => (
+                        <AppLoader/>
+                    )}
+                </AccountProvider>
             );
         }
         return (

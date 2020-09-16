@@ -69,23 +69,23 @@ export default class ExampleOne extends Component {
                     </section>
 
                     <section className="pt-5 pb-3">
-                        <h2 className="mb-3">Colour</h2>
+                        <h2 className="mb-3">color</h2>
 
                         <h4>Brand</h4>
-                        <div className="colour-block colour-block--brand-primary"/>
-                        <div className="colour-block colour-block--brand-dark-green"/>
-                        <div className="colour-block colour-block--brand-secondary"/>
+                        <div className="color-block color-block--brand-primary"/>
+                        <div className="color-block color-block--brand-dark-green"/>
+                        <div className="color-block color-block--brand-secondary"/>
 
                         <h4>Gradients</h4>
 
-                        <div className="colour-block colour-block--brand-primary-gradient"/>
+                        <div className="color-block color-block--brand-primary-gradient"/>
 
                         <h4>Utility</h4>
 
-                        <div className="colour-block colour-block--brand-orange"/>
-                        <div className="colour-block colour-block--brand-purple"/>
-                        <div className="colour-block colour-block--brand-red"/>
-                        <div className="colour-block colour-block--brand-pink"/>
+                        <div className="color-block color-block--brand-orange"/>
+                        <div className="color-block color-block--brand-purple"/>
+                        <div className="color-block color-block--brand-red"/>
+                        <div className="color-block color-block--brand-pink"/>
 
 
                     </section>

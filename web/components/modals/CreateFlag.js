@@ -20,7 +20,7 @@ const CreateFlag = class extends Component {
 
     constructor(props, context) {
         super(props, context);
-        const { name, feature_state_value, description, enabled, hide_from_client, type } = this.props.isEdit ? Utils.getFlagValue(this.props.projectFlag, this.props.environmentFlag, this.props.identityFlag)
+        const { name, feature_state_value, description, tags,  enabled, hide_from_client, type } = this.props.isEdit ? Utils.getFlagValue(this.props.projectFlag, this.props.environmentFlag, this.props.identityFlag)
             : {
                 type: 'FLAG',
             };
@@ -34,6 +34,7 @@ const CreateFlag = class extends Component {
             default_enabled: enabled,
             hide_from_client,
             name,
+            tags,
             initial_value: Utils.getTypedValue(feature_state_value),
             description,
             allowEditDescription,
@@ -107,6 +108,7 @@ const CreateFlag = class extends Component {
                 type,
                 initial_value,
                 default_enabled,
+                tags: this.state.tags,
                 hide_from_client,
                 description,
             }, projectFlag, environmentFlag, segmentOverrides);
@@ -119,7 +121,7 @@ const CreateFlag = class extends Component {
         const Provider = identity ? IdentityProvider : FeatureListProvider;
         const valueString = isEdit ? 'Value' : 'Initial value';
         const enabledString = isEdit ? 'Enabled' : 'Enabled by default';
-       
+
         return (
             <ProjectProvider
               id={this.props.projectId}
@@ -214,11 +216,16 @@ const CreateFlag = class extends Component {
                                         />
                                     </FormGroup>
                                 )}
-                                {hasFeature('tags') && (
+                                {hasFeature('tags') && (!identity || this.state.tags) && (
                                 <FormGroup className="mb-4 mr-3 ml-3" >
                                     <InputGroup
-                                      title="Tags (optional)"
-                                      component={<AddEditTags projectId={this.props.projectId} value={this.state.tags} onChange={tags => this.setState({ tags })}/>}
+                                      title={identity ? 'Tags' : 'Tags (optional)'}
+                                      component={(
+                                          <AddEditTags
+                                            readOnly={!!identity} projectId={this.props.projectId} value={this.state.tags}
+                                            onChange={tags => this.setState({ tags })}
+                                          />
+)}
                                     />
                                 </FormGroup>
                                 )}
@@ -233,29 +240,29 @@ const CreateFlag = class extends Component {
                                       }}
                                       onChange={e => this.setState({ description: Utils.safeParseEventValue(e) })}
                                       isValid={name && name.length}
-                                      type="text" title="Description (optional)"
+                                      type="text" title={identity ? 'Description' : 'Description (optional)'}
                                       placeholder="e.g. 'This determines what size the header is' "
                                     />
                                 </FormGroup>
 
 
                                 {!identity && hasFeature('hide_flag') && (
-                                  <FormGroup className="mb-4 mr-3 ml-3">
-                                      <Tooltip
-                                        title={<label className="cols-sm-2 control-label">Hide from SDKs <span className="icon ion-ios-information-circle"/></label>}
-                                        place="right"
-                                      >
-                                          {Constants.strings.HIDE_FROM_SDKS_DESCRIPTION}
-                                      </Tooltip>
-                                      <div>
-                                          <Switch
-                                            data-test="toggle-feature-button"
-                                            defaultChecked={hide_from_client}
-                                            checked={hide_from_client}
-                                            onChange={hide_from_client => this.setState({ hide_from_client })}
-                                          />
-                                      </div>
-                                  </FormGroup>
+                                <FormGroup className="mb-4 mr-3 ml-3">
+                                    <Tooltip
+                                      title={<label className="cols-sm-2 control-label">Hide from SDKs <span className="icon ion-ios-information-circle"/></label>}
+                                      place="right"
+                                    >
+                                        {Constants.strings.HIDE_FROM_SDKS_DESCRIPTION}
+                                    </Tooltip>
+                                    <div>
+                                        <Switch
+                                          data-test="toggle-feature-button"
+                                          defaultChecked={hide_from_client}
+                                          checked={hide_from_client}
+                                          onChange={hide_from_client => this.setState({ hide_from_client })}
+                                        />
+                                    </div>
+                                </FormGroup>
                                 )}
                                 {!identity && isEdit && (
                                 <Permission level="project" permission="ADMIN" id={this.props.projectId}>

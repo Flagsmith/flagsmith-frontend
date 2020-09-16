@@ -46,7 +46,7 @@ const AppActions = Object.assign({}, require('./base/_app-actions'), {
             actionType: Actions.UPDATE_TAG,
             projectId,
             data,
-            onComplete
+            onComplete,
         });
     },
 
@@ -55,7 +55,16 @@ const AppActions = Object.assign({}, require('./base/_app-actions'), {
             actionType: Actions.CREATE_TAG,
             projectId,
             data,
-            onComplete
+            onComplete,
+        });
+    },
+
+    deleteTag(projectId, data, onComplete) {
+        Dispatcher.handleViewAction({
+            actionType: Actions.DELETE_TAG,
+            projectId,
+            data,
+            onComplete,
         });
     },
 

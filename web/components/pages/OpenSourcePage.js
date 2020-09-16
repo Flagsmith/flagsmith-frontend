@@ -51,7 +51,7 @@ export default class OpenSourcePage extends Component {
                                             <p className="m-0">
 Python REST API for Bullet-Train.
                                             </p>
-                                            <div className="colour-block colour-block--small colour-block--python"/>
+                                            <div className="color-block color-block--small color-block--python"/>
                                             <small className="technology-name">Python</small>
                                         </div>
                                     </div>
@@ -64,7 +64,7 @@ Python REST API for Bullet-Train.
                                             <p className="m-0">
 Website and mobile app for Bullet Train.
                                             </p>
-                                            <div className="colour-block colour-block--small colour-block--javascript"/>
+                                            <div className="color-block color-block--small color-block--javascript"/>
                                             <small className="technology-name">JavaScript</small>
                                         </div>
                                     </div>
@@ -88,7 +88,7 @@ This is the documentation repository for the Docs of Bullet Train.
                                             <p className="m-0">
 A collection of integrations to Bullet Train in a number of different frameworks.
                                             </p>
-                                            <div className="colour-block colour-block--small colour-block--typescript"/>
+                                            <div className="color-block color-block--small color-block--typescript"/>
                                             <small className="technology-name">TypeScript</small>
                                         </div>
                                     </div>
@@ -101,7 +101,7 @@ A collection of integrations to Bullet Train in a number of different frameworks
                                             <p className="m-0">
 Evaluate objects against a set of JSON rules supporting nested ALL, NONE and ANY predicates with standard operators.
                                             </p>
-                                            <div className="colour-block colour-block--small colour-block--javascript"/>
+                                            <div className="color-block color-block--small color-block--javascript"/>
                                             <small className="technology-name">JavaScript</small>
                                         </div>
                                     </div>
@@ -126,7 +126,7 @@ Evaluate objects against a set of JSON rules supporting nested ALL, NONE and ANY
                                             <p className="m-0">
 Javascript/React/React Native client.
                                             </p>
-                                            <div className="colour-block colour-block--small colour-block--javascript"/>
+                                            <div className="color-block color-block--small color-block--javascript"/>
                                             <small className="technology-name">JavaScript</small>
                                         </div>
                                     </div>
@@ -138,7 +138,7 @@ Javascript/React/React Native client.
                                             <p className="m-0">
 Node.js client.
                                             </p>
-                                            <div className="colour-block colour-block--small colour-block--javascript"/>
+                                            <div className="color-block color-block--small color-block--javascript"/>
                                             <small className="technology-name">JavaScript</small>
                                         </div>
                                     </div>
@@ -151,7 +151,7 @@ Node.js client.
                                             <p className="m-0">
 .NET Standard client.
                                             </p>
-                                            <div className="colour-block colour-block--small colour-block--c"/>
+                                            <div className="color-block color-block--small color-block--c"/>
                                             <small className="technology-name">C#</small>
                                         </div>
                                     </div>
@@ -164,7 +164,7 @@ Node.js client.
                                             <p className="m-0">
 Ruby client.
                                             </p>
-                                            <div className="colour-block colour-block--small colour-block--ruby"/>
+                                            <div className="color-block color-block--small color-block--ruby"/>
                                             <small className="technology-name">Ruby</small>
                                         </div>
                                     </div>
@@ -177,7 +177,7 @@ Ruby client.
                                             <p className="m-0">
 Python client.
                                             </p>
-                                            <div className="colour-block colour-block--small colour-block--python"/>
+                                            <div className="color-block color-block--small color-block--python"/>
                                             <small className="technology-name">Python</small>
                                         </div>
                                     </div>
@@ -190,7 +190,7 @@ Python client.
                                             <p className="m-0">
 Java/Android client.
                                             </p>
-                                            <div className="colour-block colour-block--small colour-block--java"/>
+                                            <div className="color-block color-block--small color-block--java"/>
                                             <small className="technology-name">Java</small>
                                         </div>
                                     </div>
@@ -203,7 +203,7 @@ Java/Android client.
                                             <p className="m-0">
 iOS/Swift client.
                                             </p>
-                                            <div className="colour-block colour-block--small colour-block--java"/>
+                                            <div className="color-block color-block--small color-block--java"/>
                                             <small className="technology-name">iOS/Swift</small>
                                         </div>
                                     </div>

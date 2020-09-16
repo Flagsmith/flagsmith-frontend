@@ -17,7 +17,7 @@ const keywords = {
 };
 
 const Constants = {
-    tagColours: [
+    tagColors: [
         '#3d4db6',
         '#ea5a45',
         '#f1d502',
@@ -167,7 +167,7 @@ const Constants = {
             'Node JS': require('./code-help/install/install-node')(keywords),
             'Java': require('./code-help/install/install-java')(keywords),
             '.NET': require('./code-help/install/install-dotnet')(keywords),
-        }, 
+        },
     },
     simulate: {},
     roles: {
