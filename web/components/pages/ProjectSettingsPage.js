@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import ConfirmRemoveProject from '../modals/ConfirmRemoveProject';
+import ConfirmHideFlags from '../modals/ConfirmHideFlags';
 import EditPermissions from '../EditPermissions';
+import Switch from '../Switch';
 
 const ProjectSettingsPage = class extends Component {
     static displayName = 'ProjectSettingsPage'
@@ -42,6 +44,19 @@ const ProjectSettingsPage = class extends Component {
         />);
     };
 
+    toggleHideDisabledFlags = (project, editProject) => {
+        openModal('Hide Disabled Flags', <ConfirmHideFlags
+          project={project}
+          value={!!project.hide_disabled_flags}
+          cb={() => {
+              editProject({
+                  ...project,
+                  hide_disabled_flags: !project.hide_disabled_flags,
+              });
+          }}
+        />);
+    };
+
     render() {
         const { name } = this.state;
         return (
@@ -49,8 +64,7 @@ const ProjectSettingsPage = class extends Component {
                 <ProjectProvider id={this.props.match.params.projectId} onRemove={this.onRemove} onSave={this.onSave}>
                     {({ isLoading, isSaving, editProject, deleteProject, project }) => (
                         <div>
-                            {isLoading && <div className="centered-container"><Loader/></div>}
-                            {!isLoading && (
+                            {(
                                 <div className="panel--grey">
                                     <FormGroup>
 
@@ -82,7 +96,26 @@ const ProjectSettingsPage = class extends Component {
                                     </FormGroup>
                                 </div>
                             )}
+
                             <EditPermissions id={this.props.match.params.projectId} level="project"/>
+
+                            {this.props.hasFeature('hide_all_disabled_flags') && (
+                            <FormGroup className="mt-4">
+                                <h5>Hide disabled flags from SDKs</h5>
+                                <div className="row">
+
+                                    <div className="col-md-10">
+                                        <p>
+                                              To prevent letting your users know about your upcoming features and to cut down on payload, enabling this will prevent the API from returning features that are disabled.
+                                        </p>
+                                    </div>
+                                    <div className="col-md-2 text-right">
+                                        <Switch disabled={isSaving} onChange={() => this.toggleHideDisabledFlags(project, editProject)} checked={project.hide_disabled_flags}/>
+                                    </div>
+                                </div>
+                            </FormGroup>
+                            )}
+
                             <FormGroup className="m-y-3">
                                 <Row>
                                     <Column className="d-flex">
@@ -92,7 +125,6 @@ const ProjectSettingsPage = class extends Component {
                                         </h5>
                                         <p>
                                             This project will be deleted permanently
-
                                         </p>
                                     </Column>
                                     <Button

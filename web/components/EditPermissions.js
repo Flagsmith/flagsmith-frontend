@@ -198,8 +198,8 @@ export default class EditPermissions extends PureComponent {
                       <OrganisationProvider>
                           {({ isLoading, name, projects, usage, users, invites }) => (
                               <div>
-                                  {isLoading && <div className="centered-container"><Loader/></div>}
-                                  {!isLoading && (
+                                  {isLoading && (!users || !users.length) && <div className="centered-container"><Loader/></div>}
+                                  {(users && users.length) && (
                                   <div>
                                       <FormGroup className="panel no-pad pl-2 pr-2 panel--nested">
                                           <PanelSearch
