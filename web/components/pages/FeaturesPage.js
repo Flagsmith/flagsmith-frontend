@@ -194,24 +194,24 @@ const FeaturesPage = class extends Component {
                                                               const { name, id, enabled, created_date, description, type } = projectFlag;
                                                               return (
                                                                   <Row
+                                                                    style={{ flexWrap: 'nowrap' }}
                                                                     className={permission ? 'list-item clickable' : 'list-item'} key={id} space
                                                                     data-test={`feature-item-${i}`}
                                                                   >
-                                                                      <div
-                                                                        className="flex flex-1"
+                                                                      <Flex
+                                                                        style={{overflow:"hidden"}}
                                                                         onClick={() => permission && this.editFlag(projectFlag, environmentFlags[id])}
                                                                       >
-                                                                          <Row>
+                                                                          <div>
                                                                               <ButtonLink>
                                                                                   {name}
                                                                               </ButtonLink>
-                                                                              <Column/>
-                                                                          </Row>
+                                                                          </div>
                                                                           <div className="list-item-footer faint">
                                                                               {description}
                                                                           </div>
-                                                                      </div>
-                                                                      <Row>
+                                                                      </Flex>
+                                                                      <Row style={{ width: 200, justifyContent:"flex-end" }}>
                                                                           {
                                                                               this.renderWithPermission(permission, Constants.environmentPermissions('Admin'), (
 
