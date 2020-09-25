@@ -8,6 +8,7 @@ module.exports = Object.assign({}, require('./base/_utils'), {
                 name: projectFlag.name,
                 type: projectFlag.type,
                 feature_state_value: projectFlag.initial_value,
+                tags: projectFlag.tags,
                 enabled: false,
                 hide_from_client: false,
                 description: projectFlag.description,
@@ -26,6 +27,7 @@ module.exports = Object.assign({}, require('./base/_utils'), {
         return {
             type: projectFlag.type,
             name: projectFlag.name,
+            tags: projectFlag.tags,
             hide_from_client: environmentFlag.hide_from_client,
             feature_state_value: environmentFlag.feature_state_value,
             enabled: environmentFlag.enabled,
