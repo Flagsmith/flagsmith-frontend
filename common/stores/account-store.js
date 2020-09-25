@@ -252,6 +252,19 @@ const controller = {
         if (user) {
             store.model = user;
             store.organisation = user && user.organisations && user.organisations[0];
+
+
+            if (Project.delighted) {
+                delighted.survey({
+                    email: store.model.email, // customer email (optional)
+                    name: `${store.model.first_name} ${store.model.last_name}`, // customer name (optional)
+                    createdAt: store.organisation && store.organisation.created_date, // time subscribed (optional)
+                    properties: { // extra context (optional)
+                        company: store.organisation && store.organisation.name,
+                    },
+                });
+            }
+
             AsyncStorage.setItem('user', JSON.stringify(store.model));
             if (!store.isDemo) {
                 API.alias(user.email);

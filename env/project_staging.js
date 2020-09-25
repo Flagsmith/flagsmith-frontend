@@ -5,6 +5,7 @@ module.exports = global.Project = {
     env: 'staging', // This is used for Sentry tracking
     ga: 'UA-120237963-7', // This is our Google Analytics key
     maintenance: false, // trigger maintenance mode
+    delighted: true, // determines whether to shw delighted feedback widget
     demoAccount: {
         email: 'kyle+bullet-train@solidstategroup.com',
         password: 'demo_account',
