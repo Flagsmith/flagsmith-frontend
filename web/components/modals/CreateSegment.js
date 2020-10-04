@@ -116,7 +116,7 @@ const CreateSegment = class extends Component {
 
     render() {
         const { name, description, rules, isSaving, error } = this.state;
-        const { getValue, isEdit, identity } = this.props;
+        const { getValue, isEdit, identity, readOnly } = this.props;
 
         const rulesEl = (
             <div className="panel--grey overflow-visible">
@@ -132,6 +132,7 @@ const CreateSegment = class extends Component {
                                     </Row>
                                 )}
                                 <Rule
+                                  readOnly={readOnly}
                                   data-test={`rule-${i}`}
                                   rule={rule}
                                   operators={
@@ -143,15 +144,16 @@ const CreateSegment = class extends Component {
                             </div>
                         ))}
                     </FormGroup>
+                    {!readOnly && (
                     <div
                       onClick={this.addRule} style={{ marginTop: 20 }}
                       className="text-center"
                     >
-
                         <ButtonOutline data-test="add-rule" type="button">
-                            Add Rule
+                              Add Rule
                         </ButtonOutline>
                     </div>
+                    )}
                 </div>
             </div>
         );
@@ -171,7 +173,7 @@ const CreateSegment = class extends Component {
                                   className: 'full-width',
                                   name: 'segmentID',
                                   readOnly: isEdit,
-                                  maxLength: SEGMENT_ID_MAXLENGTH
+                                  maxLength: SEGMENT_ID_MAXLENGTH,
                               }}
                               value={name}
                               onChange={e => this.setState({ name: Format.enumeration.set(Utils.safeParseEventValue(e)).toLowerCase() })}
@@ -208,24 +210,43 @@ const CreateSegment = class extends Component {
                         && <div className="alert alert-danger">Error creating segment, please ensure you have entered a trait and value for each rule.</div>
                         }
 
-                        <div className="text-right">
-                            {isEdit ? (
-                                <Button
-                                  type="submit" data-test="update-segment" id="update-feature-btn"
-                                  disabled={isSaving || !name}
-                                >
-                                    {isSaving ? 'Creating' : 'Update Segment'}
-                                </Button>
-                            ) : (
-                                <Button
-                                  type="submit" data-test="create-segment" disabled
-                                  id="create-feature-btn"
-                                  disabled={isSaving || !name}
-                                >
-                                    {isSaving ? 'Creating' : 'Create Segment'}
-                                </Button>
+                        {this.props.readOnly ? (
+                            <div className="text-right">
+                                <Tooltip
+                                  html
+                                  title={(
+                                      <Button
+                                        disabled data-test="show-create-feature-btn" id="show-create-feature-btn"
+                                      >
+                                  Update Segment
+                                      </Button>
                             )}
-                        </div>
+                                  place="left"
+                                >
+                                    {Constants.projectPermissions('Admin')}
+                                </Tooltip>
+                            </div>
+                        ) : (
+                            <div className="text-right">
+                                {isEdit ? (
+                                    <Button
+                                      type="submit" data-test="update-segment" id="update-feature-btn"
+                                      disabled={isSaving || !name}
+                                    >
+                                        {isSaving ? 'Creating' : 'Update Segment'}
+                                    </Button>
+                                ) : (
+                                    <Button
+                                      type="submit" data-test="create-segment" disabled
+                                      id="create-feature-btn"
+                                      disabled={isSaving || !name}
+                                    >
+                                        {isSaving ? 'Creating' : 'Create Segment'}
+                                    </Button>
+                                )}
+                            </div>
+                        )}
+
                     </form>
                 ) : (
                     <div>

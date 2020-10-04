@@ -29,6 +29,7 @@ export default class Rule extends PureComponent {
                                 <Tooltip
                                   title={(
                                       <Input
+                                        readOnly={this.props.readOnly}
                                         data-test={`${this.props['data-test']}-property-${i}`}
                                         className="input-container--flat full-width"
                                         value={`${rule.property}`}
@@ -42,16 +43,19 @@ export default class Rule extends PureComponent {
                                     {Constants.strings.USER_PROPERTY_DESCRIPTION}
                                 </Tooltip>
                             </Flex>
-                            <Flex value={30} className="px-1">
-                                <Select
-                                  data-test={`${this.props['data-test']}-operator-${i}`}
-                                  value={rule.operator && _.find(operators, { value: rule.operator })}
-                                  onChange={value => this.setRuleProperty(i, 'operator', value)}
-                                  options={operators}
-                                />
+                            <Flex value={30} className="px-1 text-center">
+                                {this.props.readOnly ? _.find(operators, { value: rule.operator }).label : (
+                                    <Select
+                                      data-test={`${this.props['data-test']}-operator-${i}`}
+                                      value={rule.operator && _.find(operators, { value: rule.operator })}
+                                      onChange={value => this.setRuleProperty(i, 'operator', value)}
+                                      options={operators}
+                                    />
+                                )}
                             </Flex>
                             <Flex value={15} className="px-1">
                                 <Input
+                                  readOnly={this.props.readOnly}
                                   data-test={`${this.props['data-test']}-value-${i}`}
                                   className="input-container--flat full-width"
                                   value={`${rule.value}`}
@@ -64,7 +68,7 @@ export default class Rule extends PureComponent {
                     </Flex>
                     <div>
                         <Row noWrap>
-                            {isLastRule ? (
+                            {isLastRule && !this.props.readOnly ? (
                                 <ButtonLink
                                   data-test={`${this.props['data-test']}-or`}
                                   type="button" onClick={this.addRule}

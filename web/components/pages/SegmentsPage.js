@@ -45,11 +45,12 @@ const SegmentsPage = class extends Component {
     };
 
 
-    editSegment = (segment) => {
+    editSegment = (segment, readOnly) => {
         API.trackEvent(Constants.events.VIEW_SEGMENT);
         openModal('Edit Segment', <CreateSegmentModal
           segment={segment}
           isEdit
+          readOnly={readOnly}
           environmentId={this.props.match.params.environmentId}
           projectId={this.props.match.params.projectId}
           projectFlag={segment}
@@ -105,141 +106,160 @@ const SegmentsPage = class extends Component {
         const { projectId, environmentId } = this.props.match.params;
         return (
             <div data-test="segments-page" id="segments-page" className="app-container container">
-                <SegmentListProvider onSave={this.onSave} onError={this.onError}>
-                    {({ isLoading, segments }, { removeSegment }) => (
-                        <div className="segments-page">
-                            {isLoading && <div className="centered-container"><Loader/></div>}
-                            {!isLoading && (
-                                <div>
-                                    {segments && segments.length ? (
-                                        <div>
-                                            <Row>
-                                                <Flex>
-                                                    <h3>Segments</h3>
-                                                    <p>
+                <Permission level="project" permission="ADMIN" id={this.props.projectId}>
+                    {({ permission, isLoading }) => (
+                        <SegmentListProvider onSave={this.onSave} onError={this.onError}>
+                            {({ isLoading, segments }, { removeSegment }) => (
+                                <div className="segments-page">
+                                    {isLoading && <div className="centered-container"><Loader/></div>}
+                                    {!isLoading && (
+                                    <div>
+                                        {segments && segments.length ? (
+                                            <div>
+                                                <Row>
+                                                    <Flex>
+                                                        <h3>Segments</h3>
+                                                        <p>
                                                         Create and manage groups of users with similar traits. Segments can be used to override features within the features page for any environment.
-                                                        {' '}
-                                                        <ButtonLink target="_blank" href="https://docs.bullet-train.io/permissions/">Learn about Segments.</ButtonLink>
-                                                    </p>
-                                                </Flex>
-                                                {this.createSegmentPermission(perm => (
+                                                            {' '}
+                                                            <ButtonLink target="_blank" href="https://docs.bullet-train.io/permissions/">Learn about Segments.</ButtonLink>
+                                                        </p>
+                                                    </Flex>
                                                     <FormGroup className="float-right">
                                                         <div className="text-right">
-                                                            <Button
-                                                              disabled={!perm}
-                                                              className="btn-lg btn-primary"
-                                                              id="show-create-segment-btn"
-                                                              data-test="show-create-segment-btn"
-                                                              onClick={this.newSegment}
-                                                            >
-                                                                  Create Segment
-                                                            </Button>
+                                                            {permission ? (
+                                                                <Button
+                                                                  className="btn-lg btn-primary"
+                                                                  id="show-create-segment-btn"
+                                                                  data-test="show-create-segment-btn"
+                                                                  onClick={this.newSegment}
+                                                                >
+                                                                    Create Segment
+                                                                </Button>
+                                                            ) : (
+                                                                <Tooltip
+                                                                  html
+                                                                  title={(
+                                                                      <Button
+                                                                        disabled data-test="show-create-feature-btn" id="show-create-feature-btn"
+                                                                        onClick={this.newUser}
+                                                                      >
+                                                                          Create Segment
+                                                                      </Button>
+                                                                    )}
+                                                                  place="right"
+                                                                >
+                                                                    {Constants.projectPermissions('Admin')}
+                                                                </Tooltip>
+                                                            )}
                                                         </div>
                                                     </FormGroup>
-                                                ))}
-                                            </Row>
+                                                </Row>
 
-                                            <FormGroup>
-                                                <PanelSearch
-                                                  className="no-pad"
-                                                  id="segment-list"
-                                                  icon="ion-ios-globe"
-                                                  title="Segments"
-                                                  items={segments}
-                                                  renderRow={({ name, id, enabled, created_date, type }, i) => (
-                                                      <Row className="list-item clickable" key={id} space>
-                                                          <div
-                                                            className="flex flex-1"
-                                                            onClick={() => this.editSegment(segments[i])}
-                                                          >
-                                                              <Row>
-                                                                  <ButtonLink>
-                                                                      <span data-test={`segment-${i}-name`}>
-                                                                          {name}
-                                                                      </span>
-                                                                  </ButtonLink>
-                                                              </Row>
-                                                              <div className="list-item-footer faint">
+                                                <FormGroup>
+                                                    <PanelSearch
+                                                      className="no-pad"
+                                                      id="segment-list"
+                                                      icon="ion-ios-globe"
+                                                      title="Segments"
+                                                      items={segments}
+                                                      renderRow={({ name, id, enabled, created_date, type }, i) => (
+                                                          <Row className="list-item clickable" key={id} space>
+                                                              <div
+                                                                className="flex flex-1"
+                                                                onClick={() => this.editSegment(segments[i], !permission)}
+                                                              >
+                                                                  <Row>
+                                                                      <ButtonLink>
+                                                                          <span data-test={`segment-${i}-name`}>
+                                                                              {name}
+                                                                          </span>
+                                                                      </ButtonLink>
+                                                                  </Row>
+                                                                  <div className="list-item-footer faint">
                                                                     Created
-                                                                  {' '}
-                                                                  {moment(created_date).format('DD/MMM/YYYY')}
+                                                                      {' '}
+                                                                      {moment(created_date).format('DD/MMM/YYYY')}
+                                                                  </div>
                                                               </div>
-                                                          </div>
-                                                          <Row>
-                                                              <Column>
-                                                                  <button
-                                                                    data-test={`remove-segment-btn-${i}`}
-                                                                    onClick={() => this.confirmRemove(segments[i], () => {
-                                                                        removeSegment(this.props.match.params.projectId, segments[i].id);
-                                                                    })}
-                                                                    className="btn btn--with-icon"
-                                                                  >
-                                                                      <RemoveIcon/>
-                                                                  </button>
-                                                              </Column>
+                                                              <Row>
+                                                                  <Column>
+                                                                      <button
+                                                                        disabled={!permission}
+                                                                        data-test={`remove-segment-btn-${i}`}
+                                                                        onClick={() => this.confirmRemove(segments[i], () => {
+                                                                            removeSegment(this.props.match.params.projectId, segments[i].id);
+                                                                        })}
+                                                                        className="btn btn--with-icon"
+                                                                      >
+                                                                          <RemoveIcon/>
+                                                                      </button>
+                                                                  </Column>
+                                                              </Row>
                                                           </Row>
-                                                      </Row>
-                                                  )}
-                                                  renderNoResults={(
-                                                      <div className="text-center"/>
+                                                      )}
+                                                      renderNoResults={(
+                                                          <div className="text-center"/>
                                                     )}
-                                                  filterRow={({ name }, search) => name.toLowerCase().indexOf(search) > -1}
-                                                />
-                                            </FormGroup>
+                                                      filterRow={({ name }, search) => name.toLowerCase().indexOf(search) > -1}
+                                                    />
+                                                </FormGroup>
 
-                                            <FormGroup>
-                                                <CodeHelp
-                                                  title="Using segments"
-                                                  snippets={Constants.codeHelp.SEGMENTS(environmentId)}
-                                                />
-                                            </FormGroup>
-                                        </div>
-                                    ) : (
-                                        <div>
-                                            <h3>Target groups of users with segments.</h3>
-                                            <FormGroup>
-                                                <Panel icon="ion-ios-globe" title="1. creating a segment">
-                                                    <p>
+                                                <FormGroup>
+                                                    <CodeHelp
+                                                      title="Using segments"
+                                                      snippets={Constants.codeHelp.SEGMENTS(environmentId)}
+                                                    />
+                                                </FormGroup>
+                                            </div>
+                                        ) : (
+                                            <div>
+                                                <h3>Target groups of users with segments.</h3>
+                                                <FormGroup>
+                                                    <Panel icon="ion-ios-globe" title="1. creating a segment">
+                                                        <p>
                                                         You can create a segment that targets
-                                                        {' '}
-                                                        <ButtonLink
-                                                          href="https://docs.bullet-train.io/managing-identities/#identity-traits"
-                                                          target="new"
-                                                        >User Traits
-                                                        </ButtonLink>
+                                                            {' '}
+                                                            <ButtonLink
+                                                              href="https://docs.bullet-train.io/managing-identities/#identity-traits"
+                                                              target="new"
+                                                            >User Traits
+                                                            </ButtonLink>
                                                         .
                                                         As user's traits are updated they will automatically be added to
                                                         the segments based on the rules you create. <ButtonLink href="https://docs.bullet-train.io/managing-segments/">Check out the documentation on Segments</ButtonLink>.
-                                                    </p>
-                                                </Panel>
-                                            </FormGroup>
-                                            {this.createSegmentPermission(perm => (
-                                                <FormGroup className="text-center">
-                                                    <Button
-                                                      disabled={!perm}
-                                                      className="btn-lg btn-primary" id="show-create-segment-btn" data-test="show-create-segment-btn"
-                                                      onClick={this.newSegment}
-                                                    >
-                                                        <span className="icon ion-ios-globe"/>
-                                                        {' '}
-                                                    Create your first Segment
-                                                    </Button>
+                                                        </p>
+                                                    </Panel>
                                                 </FormGroup>
-                                            ))}
-                                        </div>
-                                    )}
+                                                {this.createSegmentPermission(perm => (
+                                                    <FormGroup className="text-center">
+                                                        <Button
+                                                          disabled={!perm}
+                                                          className="btn-lg btn-primary" id="show-create-segment-btn" data-test="show-create-segment-btn"
+                                                          onClick={this.newSegment}
+                                                        >
+                                                            <span className="icon ion-ios-globe"/>
+                                                            {' '}
+                                                    Create your first Segment
+                                                        </Button>
+                                                    </FormGroup>
+                                                ))}
+                                            </div>
+                                        )}
 
+                                    </div>
+                                    )}
+                                    <FormGroup>
+                                        <CodeHelp
+                                          title="Managing user traits and segments"
+                                          snippets={Constants.codeHelp.USER_TRAITS(this.props.match.params.environmentId, this.props.match.params.id)}
+                                        />
+                                    </FormGroup>
                                 </div>
                             )}
-                            <FormGroup>
-                                <CodeHelp
-                                  title="Managing user traits and segments"
-                                  snippets={Constants.codeHelp.USER_TRAITS(this.props.match.params.environmentId, this.props.match.params.id)}
-                                />
-                            </FormGroup>
-                        </div>
+                        </SegmentListProvider>
                     )}
-                </SegmentListProvider>
+                </Permission>
             </div>
         );
     }
