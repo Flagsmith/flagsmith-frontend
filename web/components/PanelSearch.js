@@ -20,6 +20,12 @@ const PanelSearch = class extends Component {
         isLoading: OptionalBool,
     }
 
+    handleResize = () => {
+        this.forceUpdate();
+    }
+
+    throttledResize = _.throttle(this.handleResize, 200)
+
     constructor(props, context) {
         super(props, context);
         const defaultSortingOption = _.find(_.get(props, 'sorting', []), { default: true });
@@ -28,6 +34,15 @@ const PanelSearch = class extends Component {
             sortOrder: defaultSortingOption ? defaultSortingOption.order : null,
         };
     }
+
+    componentDidMount() {
+        window.addEventListener('resize', this.throttledResize);
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.throttledResize);
+    }
+
 
     filter() {
         const search = this.props.search || this.state.search || '';
