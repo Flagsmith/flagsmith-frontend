@@ -191,6 +191,11 @@ const OrganisationSettingsPage = class extends Component {
                                             <h3 className="m-b-0">{Utils.getPlanName(_.get(organisation, 'subscription.plan')) ? Utils.getPlanName(_.get(organisation, 'subscription.plan')) : 'Free'}</h3>
                                         </div>
                                         <div>
+                                            {organisation.subscription && (
+                                            <a className="btn btn-primary mr-2" href="https://bullettrain.chargebeeportal.com/" target="_blank">
+                                                  Manage Invoices
+                                            </a>
+                                            )}
                                             { organisation.subscription ? (
                                                 <button
                                                   disabled={!this.state.manageSubscriptionLoaded}
@@ -199,7 +204,7 @@ const OrganisationSettingsPage = class extends Component {
                                                       if (this.state.chargebeeURL) {
                                                           window.location = this.state.chargebeeURL;
                                                       } else {
-                                                          openModal(null, <PaymentModal
+                                                          openModal('Payment plans', <PaymentModal
                                                             viewOnly={false}
                                                           />, null, { large: true });
                                                       }
@@ -279,11 +284,12 @@ const OrganisationSettingsPage = class extends Component {
                                                           className="no-pad"
                                                           items={users}
                                                           itemHeight={65}
-                                                          renderRow={({ id, first_name, last_name, email, role },i) => (
+                                                          renderRow={({ id, first_name, last_name, email, role }, i) => (
                                                               <Row
                                                                 data-test={`user-${i}`}
 
-                                                                space className="list-item" key={id}>
+                                                                space className="list-item" key={id}
+                                                              >
                                                                   <div>
                                                                       {`${first_name} ${last_name}`}
                                                                       {' '}

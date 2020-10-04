@@ -38,7 +38,7 @@ const PaymentModal = class extends Component {
                             <div style={{ backgroundColor: 'white' }}>
                                 <div className="col-md-12">
                                     <div className="flex-row row-center">
-                                        <div className="col-md-3 pricing-panel">
+                                        <div className="col-md-4 pricing-panel">
                                             <div className="panel panel-default">
                                                 <div className="panel-content">
                                                     <p className="featured"/>
@@ -85,7 +85,7 @@ Team Members
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="col-md-3 pricing-panel">
+                                        <div className="col-md-4 pricing-panel">
                                             <div className="panel panel-default">
                                                 <div className="panel-content">
                                                     <p className="featured">Most Popular</p>
@@ -135,7 +135,7 @@ Team Members
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="col-md-3 pricing-panel">
+                                        <div className="col-md-4 pricing-panel">
                                             <div className="panel panel-default">
                                                 <div className="panel-content">
                                                     <p className="featured"/>
