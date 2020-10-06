@@ -106,7 +106,7 @@ const SegmentsPage = class extends Component {
         const { projectId, environmentId } = this.props.match.params;
         return (
             <div data-test="segments-page" id="segments-page" className="app-container container">
-                <Permission level="project" permission="ADMIN" id={this.props.projectId}>
+                <Permission level="project" permission="ADMIN" id={projectId}>
                     {({ permission, isLoading }) => (
                         <SegmentListProvider onSave={this.onSave} onError={this.onError}>
                             {({ isLoading, segments }, { removeSegment }) => (
