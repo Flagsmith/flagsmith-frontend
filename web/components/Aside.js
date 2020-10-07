@@ -48,6 +48,7 @@ const Aside = class extends Component {
 
   newProject = () => {
       openModal('Create  Project', <CreateProjectModal onSave={({ projectId, environmentId }) => {
+          AppActions.getProject(projectId);
           this.context.router.history.push(`/project/${projectId}/environment/${environmentId}/features?new=true`);
       }}
       />);
