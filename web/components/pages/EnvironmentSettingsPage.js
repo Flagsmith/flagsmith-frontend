@@ -258,16 +258,16 @@ const EnvironmentSettingsPage = class extends Component {
                                             )}
                                         </FormGroup>
 
-                                        <FormGroup className="m-y-3">
-                                            <Row>
-                                                <Column className="d-flex">
-                                                    <strong>
-                                                        Delete Environment
-                                                    </strong>
+
+                                        <FormGroup className="mt-4">
+                                            <h5>Delete Environment</h5>
+                                            <div className="row">
+                                                <div className="col-md-10">
                                                     <p>
-                                                        This project will be deleted permanently
+                                                        This environment will be permanently deleted. 
                                                     </p>
-                                                </Column>
+                                                </div>
+                                                <div className="col-md-2 text-right">
                                                 <Button
                                                   id="delete-env-btn"
                                                   onClick={() => this.confirmRemove(_.find(project.environments, { api_key: this.props.match.params.environmentId }), () => {
@@ -277,7 +277,8 @@ const EnvironmentSettingsPage = class extends Component {
                                                 >
                                                     <RemoveIcon/>
                                                 </Button>
-                                            </Row>
+                                                </div>
+                                            </div>
                                         </FormGroup>
                                     </div>
 
