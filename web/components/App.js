@@ -69,7 +69,7 @@ const App = class extends Component {
             return;
         }
 
-        if (!AccountStore.getOrganisation() && document.location.href.indexOf('invite') == -1) { // If user has no organisation redirect to /create
+        if (!AccountStore.getOrganisation() && !invite) { // If user has no organisation redirect to /create
             this.context.router.history.replace(`/create${query}`);
             return;
         }
