@@ -167,7 +167,7 @@ const SegmentsPage = class extends Component {
                                                           <Row className="list-item clickable" key={id} space>
                                                               <div
                                                                 className="flex flex-1"
-                                                                onClick={() => this.editSegment(segments[i], !permission)}
+                                                                onClick={() => this.editSegment(_.find(segments,{id}), !permission)}
                                                               >
                                                                   <Row>
                                                                       <ButtonLink>
