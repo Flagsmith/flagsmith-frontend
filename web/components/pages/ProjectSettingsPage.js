@@ -103,7 +103,6 @@ const ProjectSettingsPage = class extends Component {
                             <FormGroup className="mt-4">
                                 <h5>Hide disabled flags from SDKs</h5>
                                 <div className="row">
-
                                     <div className="col-md-10">
                                         <p>
                                               To prevent letting your users know about your upcoming features and to cut down on payload, enabling this will prevent the API from returning features that are disabled.
@@ -116,17 +115,15 @@ const ProjectSettingsPage = class extends Component {
                             </FormGroup>
                             )}
 
-                            <FormGroup className="m-y-3">
-                                <Row>
-                                    <Column className="d-flex">
-                                        <h5>
-                                            Delete Project
-
-                                        </h5>
+                            <FormGroup className="mt-4">
+                                <h5>Delete Project</h5>
+                                <div className="row">
+                                    <div className="col-md-10">
                                         <p>
-                                            This project will be deleted permanently
+                                        This project will be deleted permanently
                                         </p>
-                                    </Column>
+                                    </div>
+                                    <div className="col-md-2 text-right">
                                     <Button
                                       onClick={() => this.confirmRemove(project, () => {
                                           deleteProject(this.props.match.params.projectId);
@@ -135,8 +132,8 @@ const ProjectSettingsPage = class extends Component {
                                     >
                                         <RemoveIcon/>
                                     </Button>
-                                </Row>
-
+                                    </div>
+                                </div>
                             </FormGroup>
                         </div>
                     )}
