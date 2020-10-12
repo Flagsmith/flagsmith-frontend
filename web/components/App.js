@@ -238,7 +238,8 @@ Click here to Sign
                                                                   />, null, { large: true });
                                                               }}
                                                             >
-                                                                  Manage payment plan
+                                                                <img className="mr-2" src="/images/icons/arrow-up.svg"/>
+                                                                Upgrade
                                                             </a>
                                                             )}
                                                             <a
@@ -246,14 +247,14 @@ Click here to Sign
                                                               target="_blank" className="nav-link p-2"
                                                             >
                                                                 <img className="mr-2" src="/images/icons/aside/documentation.svg"/>
-                                                                Documentation
+                                                                Docs
                                                             </a>
                                                             <a
                                                               href="https://product-hub.io/roadmap/5d81f2406180537538d99f28"
                                                               target="_blank" className="nav-link p-2"
                                                             >
                                                                 <img className="mr-2" src="/images/icons/aside/roadmap.svg"/>
-                                                                Product Roadmap
+                                                                Roadmap
                                                             </a>
                                                             <NavLink
                                                               id="account-settings-link"
@@ -262,7 +263,7 @@ Click here to Sign
                                                               to={projectId ? `/project/${projectId}/environment/${environmentId}/account` : '/account'}
                                                             >
                                                                 <img className="mr-2" src="/images/icons/aside/user.svg"/>
-                                                                Account Settings
+                                                                Account
                                                             </NavLink>
                                                         </nav>
 
