@@ -111,10 +111,6 @@ class EditPermissionsModal extends Component {
                                     title="Permissions"
                                     className="no-pad"
                                     items={permissions}
-                                    filterRow={(p, search) => {
-                                        const strToSearch = Format.enumeration.get(p.key);
-                                        return strToSearch.toLowerCase().indexOf(search.toLowerCase()) !== -1;
-                                    }}
                                     renderRow={p => (
                                         <div key={p.key} style={this.admin() ? { opacity: 0.5 } : null} className="list-item">
                                             <Row>

@@ -1,4 +1,8 @@
 .__react_component_tooltip {
     font-family: $font-family-header !important;
     text-transform: none !important;
+    i {
+        font-style: normal;
+        color:$bt-brand-primary !important;
+    }
 }

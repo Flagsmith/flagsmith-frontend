@@ -69,7 +69,7 @@ const App = class extends Component {
             return;
         }
 
-        if (!AccountStore.getOrganisation() && document.location.href.indexOf('invite') == -1) { // If user has no organisation redirect to /create
+        if (!AccountStore.getOrganisation() && !invite) { // If user has no organisation redirect to /create
             this.context.router.history.replace(`/create${query}`);
             return;
         }
@@ -227,6 +227,20 @@ Click here to Sign
                                                 {user ? (
                                                     <React.Fragment>
                                                         <nav className="my-2 my-md-0 hidden-xs-down">
+                                                            {organisation && !organisation.subscription && (
+                                                            <a
+                                                              href="#"
+                                                              disabled={!this.state.manageSubscriptionLoaded}
+                                                              className="cursor-pointer nav-link p-2"
+                                                              onClick={() => {
+                                                                  openModal('Payment plans', <PaymentModal
+                                                                    viewOnly={false}
+                                                                  />, null, { large: true });
+                                                              }}
+                                                            >
+                                                                  Manage payment plan
+                                                            </a>
+                                                            )}
                                                             <a
                                                               href="https://docs.bullet-train.io"
                                                               target="_blank" className="nav-link p-2"

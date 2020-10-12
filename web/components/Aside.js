@@ -48,6 +48,7 @@ const Aside = class extends Component {
 
   newProject = () => {
       openModal('Create  Project', <CreateProjectModal onSave={({ projectId, environmentId }) => {
+          AppActions.getProject(projectId);
           this.context.router.history.push(`/project/${projectId}/environment/${environmentId}/features?new=true`);
       }}
       />);
@@ -211,7 +212,6 @@ const Aside = class extends Component {
                                                                                         />
                                                                                         Features
                                                                                     </NavLink>
-                                                                                    {environmentAdmin && (
                                                                                     <NavLink
                                                                                       id="users-link"
                                                                                       className="aside__environment-list-item"
@@ -224,23 +224,18 @@ const Aside = class extends Component {
                                                                                         />
                                                                                         Users
                                                                                     </NavLink>
-                                                                                    )}
-                                                                                    <Permission level="project" permission="ADMIN" id={this.props.projectId}>
-                                                                                        {({ permission: projectAdmin, isLoading }) => projectAdmin && (
-                                                                                        <NavLink
-                                                                                          to={`/project/${project.id}/environment/${this.props.environmentId}/segments`}
+                                                                                    <NavLink
+                                                                                      to={`/project/${project.id}/environment/${this.props.environmentId}/segments`}
 
-                                                                                          id="segments-link"
-                                                                                          className="aside__environment-list-item"
-                                                                                        >
-                                                                                            <img
-                                                                                              src="/images/icons/aside/segments.svg"
-                                                                                              className="aside__environment-list-item--icon"
-                                                                                            />
-                                                                                            Segments
-                                                                                        </NavLink>
-                                                                                        )}
-                                                                                    </Permission>
+                                                                                      id="segments-link"
+                                                                                      className="aside__environment-list-item"
+                                                                                    >
+                                                                                      <img
+                                                                                        src="/images/icons/aside/segments.svg"
+                                                                                        className="aside__environment-list-item--icon"
+                                                                                      />
+                                                                                      Segments
+                                                                                    </NavLink>
                                                                                     {environmentAdmin && (
                                                                                         <NavLink
                                                                                           id="env-settings-link"

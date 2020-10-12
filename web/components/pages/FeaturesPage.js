@@ -106,12 +106,10 @@ const FeaturesPage = class extends Component {
             el
         ) : (
             <Tooltip
-              title={el}
+              title={<div>{el}</div>}
               place="right"
               html
-            >
-                {name}
-            </Tooltip>
+            >{name}</Tooltip>
         );
     }
 
@@ -214,8 +212,6 @@ const FeaturesPage = class extends Component {
                                                                       <Row style={{ width: 200, justifyContent:"flex-end" }}>
                                                                           {
                                                                               this.renderWithPermission(permission, Constants.environmentPermissions('Admin'), (
-
-
                                                                                   <Column>
                                                                                       {type === 'FLAG' ? (
                                                                                           <Switch

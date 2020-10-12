@@ -30,7 +30,6 @@ const Permission = class extends Component {
   }
 
   render() {
-      return this.props.children({ permission: true });
       const permission = PermissionsStore.getPermission(this.props.id, this.props.level, this.props.permission);
       const isLoading = !PermissionsStore.getPermissions(this.props.id, this.props.level) || !Object.keys(PermissionsStore.getPermissions(this.props.id, this.props.level)).length;
       return this.props.children({ permission, isLoading }) || <div/>;

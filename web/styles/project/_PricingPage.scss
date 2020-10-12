@@ -10,6 +10,7 @@
 
 	.panel{
 		overflow:hidden;
+		min-height: 100%;
 	}
 	.panel-content{
 		background-size:contain;
@@ -66,7 +67,8 @@
 	padding:8px 30px 10px;
 	display: block;
 	text-align: center;
-
+	line-height: 40px;
+	padding: 0;
 	&.blue{
 		background:#22354a;
 		color:#fff !important;

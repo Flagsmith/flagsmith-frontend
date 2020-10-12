@@ -20,7 +20,7 @@ const Collapsible = class extends PureComponent {
                   },
               )}
             >
-                <div onClick={e => this.togglePanel(e)} className="collapsible__header">
+                <div className="collapsible__header">
                     <div className="flex-row">
                         {this.props.active ? (
                             <img className="mr-2" src="/images/icons/aside/caret-down.svg" />
