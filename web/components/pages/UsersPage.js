@@ -70,7 +70,7 @@ const UsersPage = class extends Component {
                                             <h3>Users</h3>
                                             <p>
                                                 View and manage features states for individual users. This will override individual default
-                                                feature settings for your selected environment. 
+                                                feature settings for your selected environment.
                                                 {' '}
                                                 <ButtonLink target="_blank" href="https://docs.bullet-train.io/managing-identities/">Learn more.</ButtonLink>
                                             </p>
@@ -158,9 +158,9 @@ const UsersPage = class extends Component {
                                                     </Row>
                                                   )}
                                                   renderNoResults={(
-                                                      <FormGroup className="text-center">
+                                                      <div>
                                                         You have no users in your project{this.state.search ? <span> for <strong>"{this.state.search}"</strong></span> : ''}.
-                                                      </FormGroup>
+                                                      </div>
                                                 )}
                                                   filterRow={(flag, search) => flag.identifier && flag.identifier.indexOf(search) != -1}
                                                   onChange={(e) => {

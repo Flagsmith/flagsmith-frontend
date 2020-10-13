@@ -56,7 +56,7 @@ export default class TheComponent extends PureComponent {
                         goToPage={page => AppActions.getGroupsPage(this.props.orgId, `${Project.api}organisations/${this.props.orgId}/groups/?page=${page}`)}
                         renderRow={({ id, name, users }, index) => (
                             <Row
-                              space className="list-item" key={id}
+                              space className="list-item clickable" key={id}
                               data-test={`user-item-${index}`}
                             >
                                 <Flex
@@ -68,7 +68,6 @@ export default class TheComponent extends PureComponent {
                                       }
                                   }}
 
-                                  className="clickable"
                                 >
                                     {name}
                                     <div className="list-item-footer faint">

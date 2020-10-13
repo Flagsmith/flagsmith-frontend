@@ -198,50 +198,53 @@ export default class EditPermissions extends PureComponent {
                                   {(users && users.length) && (
                                   <div>
                                       <FormGroup className="panel no-pad pl-2 pr-2 panel--nested">
-                                          <PanelSearch
-                                            id="org-members-list"
-                                            title="Members"
-                                            className="panel--transparent"
-                                            items={users}
-                                            renderRow={({ id, first_name, last_name, email, role }) => (
-                                                <Row
-                                                  onClick={() => {
-                                                      if (role !== 'ADMIN') {
-                                                          this.editUserPermissions({ id, first_name, last_name, email, role });
-                                                      }
-                                                  }} space className={`list-item${role === 'ADMIN' ? '' : ' clickable'}`}
-                                                  key={id}
-                                                >
+                                          <div className={this.props.tabClassName}>
+                                              <PanelSearch
+                                                id="org-members-list"
+                                                title="Members"
+                                                className="panel--transparent"
+                                                items={users}
+                                                renderRow={({ id, first_name, last_name, email, role }) => (
+                                                    <Row
+                                                      onClick={() => {
+                                                          if (role !== 'ADMIN') {
+                                                              this.editUserPermissions({ id, first_name, last_name, email, role });
+                                                          }
+                                                      }} space className={`list-item${role === 'ADMIN' ? '' : ' clickable'}`}
+                                                      key={id}
+                                                    >
+                                                        <div>
+                                                            {`${first_name} ${last_name}`}
+                                                            {' '}
+                                                            {id == AccountStore.getUserId() && '(You)'}
+                                                            <div className="list-item-footer faint">
+                                                                {email}
+                                                            </div>
+                                                        </div>
+                                                        {role === 'ADMIN' ? (
+                                                            <Tooltip html title="Organisation Administrator">
+                                                                {'Organisation administrators have all permissions enabled.<br/>To change the role of this user, visit Organisation Settings.'}
+                                                            </Tooltip>
+                                                        ) : (
+                                                            <div className="flex-row">
+                                                                <span className="mr-3">Regular User</span>
+                                                                <ion style={{ fontSize: 24 }} className="icon--green ion ion-md-settings"/>
+                                                            </div>
+                                                        )}
+                                                    </Row>
+                                                )}
+                                                renderNoResults={(
                                                     <div>
-                                                        {`${first_name} ${last_name}`}
-                                                        {' '}
-                                                        {id == AccountStore.getUserId() && '(You)'}
-                                                        <div className="list-item-footer faint">
-                                                            {email}
-                                                        </div>
+                                                You have no users in this organisation.
                                                     </div>
-                                                    {role === 'ADMIN' ? (
-                                                        <Tooltip html title="Organisation Administrator">
-                                                            {'Organisation administrators have all permissions enabled.<br/>To change the role of this user, visit Organisation Settings.'}
-                                                        </Tooltip>
-                                                    ) : (
-                                                        <div className="flex-row">
-                                                            <span className="mr-3">Regular User</span>
-                                                            <ion style={{ fontSize: 24 }} className="icon--green ion ion-md-settings"/>
-                                                        </div>
-                                                    )}
-                                                </Row>
                                             )}
-                                            renderNoResults={(
-                                                <div>
-                              You have no users in this organisation.
-                                                </div>
-                          )}
-                                            filterRow={(item, search) => {
-                                                const strToSearch = `${item.first_name} ${item.last_name} ${item.email}`;
-                                                return strToSearch.toLowerCase().indexOf(search.toLowerCase()) !== -1;
-                                            }}
-                                          />
+                                                filterRow={(item, search) => {
+                                                    const strToSearch = `${item.first_name} ${item.last_name} ${item.email}`;
+                                                    return strToSearch.toLowerCase().indexOf(search.toLowerCase()) !== -1;
+                                                }}
+                                              />
+                                          </div>
+
                                           <div id="select-portal"/>
                                       </FormGroup>
                                   </div>
@@ -252,7 +255,9 @@ export default class EditPermissions extends PureComponent {
                   </TabItem>
                   <TabItem tabLabel="Groups">
                       <FormGroup className="panel no-pad pl-2 pr-2 panel--nested">
-                          <UserGroupList orgId={AccountStore.getOrganisation().id} onClick={group => this.editGroupPermissions(group)}/>
+                          <div className={this.props.tabClassName}>
+                              <UserGroupList orgId={AccountStore.getOrganisation().id} onClick={group => this.editGroupPermissions(group)}/>
+                          </div>
                       </FormGroup>
                   </TabItem>
               </Tabs>

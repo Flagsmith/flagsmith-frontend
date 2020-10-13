@@ -96,8 +96,7 @@ const ProjectSettingsPage = class extends Component {
                                     </FormGroup>
                                 </div>
                             )}
-
-                            <EditPermissions id={this.props.match.params.projectId} level="project"/>
+                            <EditPermissions tabClassName="flat-panel" id={this.props.match.params.projectId} level="project"/>
 
                             {this.props.hasFeature('hide_all_disabled_flags') && (
                             <FormGroup className="mt-4">
