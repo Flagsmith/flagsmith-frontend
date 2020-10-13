@@ -46,8 +46,9 @@ export default class TheComponent extends PureComponent {
                       <PanelSearch
                         renderSearchWithNoResults
                         id="users-list"
-                        title="Groups"
+                        title={this.props.noTitle ? '' : 'Groups'}
                         className="no-pad"
+                        itemHeight={54}
                         icon="ion-md-people"
                         items={userGroups}
                         paging={userGroupsPaging}
@@ -86,8 +87,8 @@ export default class TheComponent extends PureComponent {
                                             <RemoveIcon/>
                                         </button>
                                     </Column>
-                                ): (
-                                  <ion style={{ fontSize: 24 }} className="icon--green ion ion-md-settings"/>
+                                ) : (
+                                    <ion style={{ fontSize: 24 }} className="icon--green ion ion-md-settings"/>
 
                                 )}
 

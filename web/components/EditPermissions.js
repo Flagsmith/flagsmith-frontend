@@ -201,7 +201,7 @@ export default class EditPermissions extends PureComponent {
                                           <div className={this.props.tabClassName}>
                                               <PanelSearch
                                                 id="org-members-list"
-                                                title="Members"
+                                                title=""
                                                 className="panel--transparent"
                                                 items={users}
                                                 renderRow={({ id, first_name, last_name, email, role }) => (
@@ -256,7 +256,7 @@ export default class EditPermissions extends PureComponent {
                   <TabItem tabLabel="Groups">
                       <FormGroup className="panel no-pad pl-2 pr-2 panel--nested">
                           <div className={this.props.tabClassName}>
-                              <UserGroupList orgId={AccountStore.getOrganisation().id} onClick={group => this.editGroupPermissions(group)}/>
+                              <UserGroupList noTitle orgId={AccountStore.getOrganisation().id} onClick={group => this.editGroupPermissions(group)}/>
                           </div>
                       </FormGroup>
                   </TabItem>
