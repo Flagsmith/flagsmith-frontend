@@ -47,7 +47,7 @@ export default class TheComponent extends PureComponent {
                         renderSearchWithNoResults
                         id="users-list"
                         title="Groups"
-                        className="panel--transparent"
+                        className="no-pad"
                         icon="ion-md-people"
                         items={userGroups}
                         paging={userGroupsPaging}

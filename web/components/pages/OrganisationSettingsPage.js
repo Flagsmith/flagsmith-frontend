@@ -149,6 +149,8 @@ const OrganisationSettingsPage = class extends Component {
         const { props: { webhooks, webhooksLoading } } = this;
 
         return (
+            <div className="app-container container">
+
             <AccountProvider onSave={this.onSave} onRemove={this.onRemove}>
                 {({
                     isLoading,
@@ -156,7 +158,7 @@ const OrganisationSettingsPage = class extends Component {
                     user,
                     organisation,
                 }, { createOrganisation, selectOrganisation, deleteOrganisation }) => (
-                    <div className="app-container container">
+                    <div>
                         <FormGroup>
                             <div className="margin-bottom">
                                 <div className="panel--grey" style={{ marginTop: '3em' }}>
@@ -232,48 +234,44 @@ const OrganisationSettingsPage = class extends Component {
                                 <OrganisationProvider>
                                     {({ isLoading, name, projects, usage, users, invites }) => (
                                         <div>
-
-                                            <div className="col-md-12">
-                                                <div className="flex-row header--icon">
-                                                    <h5>Your usage</h5>
-                                                </div>
-                                                {!isLoading && usage != null && (
-                                                <div>
-                                                    <p>
-                                                        {'You have made '}
-                                                        <strong>{`${Utils.numberWithCommas(usage)}`}</strong>
-                                                        {' requests over the past 30 days.'}
-                                                    </p>
-                                                </div>
-                                                )}
-
-                                                <Row space className="mt-5">
-                                                    <h5>Team members</h5>
-                                                    <Button
-                                                      className="mr-2"
-                                                      id="btn-invite" onClick={() => openModal('Invite Users',
-                                                          <InviteUsersModal/>)}
-                                                      type="button"
-                                                    >
-                                                        Invite members
-                                                    </Button>
-                                                </Row>
-                                                {organisation.num_seats && (
-                                                    <p>
-                                                        {'You are currently using '}
-                                                        <strong className={organisation.num_seats > (_.get(organisation, 'subscription.max_seats') || 1) ? 'text-danger' : ''}>
-                                                            {`${organisation.num_seats} / ${_.get(organisation, 'subscription.max_seats') || 1}`}
-                                                        </strong>
-                                                        {` seat${organisation.num_seats === 1 ? '' : 's'}. `}
-                                                        <br/>
-                                                        <br/>
-                                                        Users without an admin role will need to have their permissions managed per project and environment.
-                                                        {' '}
-                                                        <ButtonLink href="https://docs.bullet-train.io/permissions/">Learn about User Roles.</ButtonLink>
-                                                    </p>
-                                                )}
+                                            <div className="flex-row header--icon">
+                                                <h3>Your usage</h3>
                                             </div>
-                                            <div className="ml-3 mr-3">
+                                            {!isLoading && usage != null && (
+                                            <div>
+                                                <p>
+                                                    {'You have made '}
+                                                    <strong>{`${Utils.numberWithCommas(usage)}`}</strong>
+                                                    {' requests over the past 30 days.'}
+                                                </p>
+                                            </div>
+                                            )}
+                                            <Row space className="mt-5">
+                                                <h3 className="m-b-0">Team Members</h3>
+                                                <Button
+                                                    className="mr-2"
+                                                    id="btn-invite" onClick={() => openModal('Invite Users',
+                                                        <InviteUsersModal/>)}
+                                                    type="button"
+                                                >
+                                                    Invite members
+                                                </Button>
+                                            </Row>
+                                            {organisation.num_seats && (
+                                                <p>
+                                                    {'You are currently using '}
+                                                    <strong className={organisation.num_seats > (_.get(organisation, 'subscription.max_seats') || 1) ? 'text-danger' : ''}>
+                                                        {`${organisation.num_seats} / ${_.get(organisation, 'subscription.max_seats') || 1}`}
+                                                    </strong>
+                                                    {` seat${organisation.num_seats === 1 ? '' : 's'}. `}
+                                                    <br/>
+                                                    <br/>
+                                                    Users without an admin role will need to have their permissions managed per project and environment.
+                                                    {' '}
+                                                    <ButtonLink href="https://docs.bullet-train.io/permissions/">Learn about User Roles.</ButtonLink>
+                                                </p>
+                                            )}
+                                            <div>
                                                 {isLoading && <div className="centered-container"><Loader/></div>}
                                                 {!isLoading && (
                                                 <div>
@@ -287,7 +285,6 @@ const OrganisationSettingsPage = class extends Component {
                                                           renderRow={({ id, first_name, last_name, email, role }, i) => (
                                                               <Row
                                                                 data-test={`user-${i}`}
-
                                                                 space className="list-item" key={id}
                                                               >
                                                                   <div>
@@ -337,7 +334,7 @@ const OrganisationSettingsPage = class extends Component {
                                                               <div>
                                                                   You have no users in this organisation.
                                                               </div>
-)}
+                                                              )}
                                                           filterRow={(item, search) => {
                                                               const strToSearch = `${item.first_name} ${item.last_name} ${item.email}`;
                                                               return strToSearch.toLowerCase().indexOf(search.toLowerCase()) !== -1;
@@ -407,7 +404,7 @@ const OrganisationSettingsPage = class extends Component {
 
                                                     <div>
                                                         <Row space className="mt-5">
-                                                            <h5>User groups</h5>
+                                                            <h3 className="m-b-0">User Groups</h3>
                                                             <Button
                                                               className="mr-2"
                                                               id="btn-invite" onClick={() => openModal('Create Group',
@@ -429,97 +426,94 @@ const OrganisationSettingsPage = class extends Component {
                                 </OrganisationProvider>
                             </div>
                         </FormGroup>
-                        <div className="col-md-12">
-
-                            <FormGroup className="m-y-3">
-                                <Row className="mb-3" space>
-                                    <h3 className="m-b-0">Audit webhooks</h3>
-                                    <Button onClick={this.createWebhook}>
-                                      Create audit webhook
-                                    </Button>
-                                </Row>
-                                <p>
-                                  Audit webhooks let you know when audit logs occur, you can configure 1 or more audit webhooks per organisation.
-                                    {' '}
-                                    <ButtonLink href="https://docs.bullet-train.io/system-administration/">Learn about audit webhooks.</ButtonLink>
-                                </p>
-                                {webhooksLoading && !webhooks ? (
-                                    <Loader/>
-                                ) : (
-                                    <PanelSearch
-                                      id="webhook-list"
-                                      title={(
-                                          <Tooltip
-                                            title={<h6 className="mb-0">Webhooks <span className="icon ion-ios-information-circle"/></h6>}
-                                            place="right"
-                                          >
-                                              {Constants.strings.WEBHOOKS_DESCRIPTION}
-                                          </Tooltip>
-                                  )}
-                                      className="no-pad"
-                                      icon="ion-md-cloud"
-                                      items={webhooks}
-                                      renderRow={webhook => (
-                                          <Row
-                                            onClick={() => {
-                                                this.editWebhook(webhook);
-                                            }} space className="list-item clickable cursor-pointer"
-                                            key={webhook.id}
-                                          >
-                                              <Flex>
-                                                  <a href="#">
-                                                      {webhook.url}
-                                                  </a>
-                                                  <div className="list-item-footer faint">
+                        <FormGroup className="m-y-3">
+                            <Row className="mb-3" space>
+                                <h3 className="m-b-0">Audit Webhooks</h3>
+                                <Button onClick={this.createWebhook}>
+                                    Create audit webhook
+                                </Button>
+                            </Row>
+                            <p>
+                                Audit webhooks let you know when audit logs occur, you can configure 1 or more audit webhooks per organisation.
+                                {' '}
+                                <ButtonLink href="https://docs.bullet-train.io/system-administration/">Learn about audit webhooks.</ButtonLink>
+                            </p>
+                            {webhooksLoading && !webhooks ? (
+                                <Loader/>
+                            ) : (
+                                <PanelSearch
+                                    id="webhook-list"
+                                    title={(
+                                        <Tooltip
+                                        title={<h6 className="mb-0">Webhooks <span className="icon ion-ios-information-circle"/></h6>}
+                                        place="right"
+                                        >
+                                            {Constants.strings.WEBHOOKS_DESCRIPTION}
+                                        </Tooltip>
+                                    )}
+                                    className="no-pad"
+                                    icon="ion-md-cloud"
+                                    items={webhooks}
+                                    renderRow={webhook => (
+                                        <Row
+                                        onClick={() => {
+                                            this.editWebhook(webhook);
+                                        }} space className="list-item clickable cursor-pointer"
+                                        key={webhook.id}
+                                        >
+                                        <div>
+                                            <ButtonLink>
+                                                {webhook.url}
+                                            </ButtonLink>
+                                            <div className="list-item-footer faint">
                                                 Created
-                                                      {' '}
-                                                      {moment(webhook.created_date).format('DD/MMM/YYYY')}
-                                                  </div>
-                                              </Flex>
-                                              <Row>
-                                                  <Switch checked={webhook.enabled}/>
-                                                  <button
-                                                    id="delete-invite"
-                                                    type="button"
-                                                    onClick={(e) => {
-                                                        e.stopPropagation();
-                                                        e.preventDefault();
-                                                        this.deleteWebhook(webhook);
-                                                    }}
-                                                    className="btn btn--with-icon ml-auto btn--remove"
-                                                  >
-                                                      <RemoveIcon/>
-                                                  </button>
-                                              </Row>
-                                          </Row>
-                                      )}
-                                      renderNoResults={(
-                                          <Panel
-                                            id="users-list"
-                                            icon="ion-md-cloud"
-                                            title={(
-                                                <Tooltip
-                                                  title={<h6 className="mb-0">Webhooks <span className="icon ion-ios-information-circle"/></h6>}
-                                                  place="right"
+                                                {' '}
+                                                {moment(webhook.created_date).format('DD/MMM/YYYY')}
+                                            </div>
+                                        </div>
+                                            <Row>
+                                                <Switch checked={webhook.enabled}/>
+                                                <button
+                                                id="delete-invite"
+                                                type="button"
+                                                onClick={(e) => {
+                                                    e.stopPropagation();
+                                                    e.preventDefault();
+                                                    this.deleteWebhook(webhook);
+                                                }}
+                                                className="btn btn--with-icon ml-auto btn--remove"
                                                 >
-                                                    {Constants.strings.AUDIT_WEBHOOKS_DESCRIPTION}
-                                                </Tooltip>
-                                      )}
-                                          >
-                                        You currently have no webhooks configured for this organisation.
-                                          </Panel>
-                                  )}
-                                      isLoading={this.props.webhookLoading}
-                                    />
+                                                    <RemoveIcon/>
+                                                </button>
+                                            </Row>
+                                        </Row>
+                                    )}
+                                    renderNoResults={(
+                                        <Panel
+                                        id="users-list"
+                                        icon="ion-md-cloud"
+                                        title={(
+                                            <Tooltip
+                                                title={<h6 className="mb-0">Webhooks <span className="icon ion-ios-information-circle"/></h6>}
+                                                place="right"
+                                            >
+                                                {Constants.strings.AUDIT_WEBHOOKS_DESCRIPTION}
+                                            </Tooltip>
+                                    )}
+                                        >
+                                    You currently have no webhooks configured for this organisation.
+                                        </Panel>
                                 )}
-                            </FormGroup>
-                        </div>
+                                    isLoading={this.props.webhookLoading}
+                                />
+                            )}
+                        </FormGroup>
                         <FormGroup className="mt-5">
                             <Row>
-                                <Column className="d-flex pl-3">
-                                    <h6>Delete Organisation</h6>
+                                <Column>
+                                    <h3>Delete Organisation</h3>
                                     <p>
-                                        This organisation will be deleted permanently along with all projects & features.
+                                        This organisation will be  permanently deleted, along with all projects and features.
                                     </p>
                                 </Column>
                                 <Button
@@ -536,6 +530,7 @@ const OrganisationSettingsPage = class extends Component {
                     </div>
                 )}
             </AccountProvider>
+            </div>
         );
     }
 };

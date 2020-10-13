@@ -176,7 +176,7 @@ const EnvironmentSettingsPage = class extends Component {
                                                 <div className="col-md-8 pl-0">
                                                     <h3 className="m-b-0">Feature Webhooks</h3>
                                                     <p>
-                                                            Feature webhooks let you know when features have changed, you can configure 1 or more feature webhooks per environment.
+                                                            Feature webhooks let you know when features have changed. You can configure 1 or more Feature Webhooks per Environment.
                                                         {' '}
                                                         <ButtonLink href="https://docs.bullet-train.io/system-administration/">Learn about feature webhooks.</ButtonLink>
                                                     </p>
@@ -215,7 +215,7 @@ const EnvironmentSettingsPage = class extends Component {
                                                                   {webhook.url}
                                                               </ButtonLink>
                                                               <div className="list-item-footer faint">
-                                                                          Created
+                                                                  Created
                                                                   {' '}
                                                                   {moment(webhook.created_date).format('DD/MMM/YYYY')}
                                                               </div>
@@ -250,7 +250,7 @@ const EnvironmentSettingsPage = class extends Component {
                                                             </Tooltip>
                                                         )}
                                                       >
-                                                          You currently have no webhooks configured for this environment.
+                                                          You currently have no Feature Webhooks configured for this Environment.
                                                       </Panel>
                                                     )}
                                                   isLoading={this.props.webhookLoading}
@@ -258,16 +258,16 @@ const EnvironmentSettingsPage = class extends Component {
                                             )}
                                         </FormGroup>
 
-
-                                        <FormGroup className="mt-4">
-                                            <h5>Delete Environment</h5>
-                                            <div className="row">
-                                                <div className="col-md-10">
+                                        <FormGroup className="m-y-3">
+                                            <Row>
+                                                <Column className="d-flex">
+                                                    <h3>
+                                                        Delete Environment
+                                                    </h3>
                                                     <p>
-                                                        This environment will be permanently deleted. 
+                                                        This environment will be permanently deleted.
                                                     </p>
-                                                </div>
-                                                <div className="col-md-2 text-right">
+                                                </Column>
                                                 <Button
                                                   id="delete-env-btn"
                                                   onClick={() => this.confirmRemove(_.find(project.environments, { api_key: this.props.match.params.environmentId }), () => {
@@ -277,8 +277,7 @@ const EnvironmentSettingsPage = class extends Component {
                                                 >
                                                     <RemoveIcon/>
                                                 </Button>
-                                                </div>
-                                            </div>
+                                            </Row>
                                         </FormGroup>
                                     </div>
 
