@@ -46,8 +46,9 @@ export default class TheComponent extends PureComponent {
                       <PanelSearch
                         renderSearchWithNoResults
                         id="users-list"
-                        title="Groups"
-                        className="panel--transparent"
+                        title={this.props.noTitle ? '' : 'Groups'}
+                        className="no-pad"
+                        itemHeight={54}
                         icon="ion-md-people"
                         items={userGroups}
                         paging={userGroupsPaging}
@@ -56,7 +57,7 @@ export default class TheComponent extends PureComponent {
                         goToPage={page => AppActions.getGroupsPage(this.props.orgId, `${Project.api}organisations/${this.props.orgId}/groups/?page=${page}`)}
                         renderRow={({ id, name, users }, index) => (
                             <Row
-                              space className="list-item" key={id}
+                              space className="list-item clickable" key={id}
                               data-test={`user-item-${index}`}
                             >
                                 <Flex
@@ -68,7 +69,6 @@ export default class TheComponent extends PureComponent {
                                       }
                                   }}
 
-                                  className="clickable"
                                 >
                                     {name}
                                     <div className="list-item-footer faint">
@@ -87,8 +87,8 @@ export default class TheComponent extends PureComponent {
                                             <RemoveIcon/>
                                         </button>
                                     </Column>
-                                ): (
-                                  <ion style={{ fontSize: 24 }} className="icon--green ion ion-md-settings"/>
+                                ) : (
+                                    <ion style={{ fontSize: 24 }} className="icon--green ion ion-md-settings"/>
 
                                 )}
 

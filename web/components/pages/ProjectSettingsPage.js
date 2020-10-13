@@ -96,12 +96,11 @@ const ProjectSettingsPage = class extends Component {
                                     </FormGroup>
                                 </div>
                             )}
-
-                            <EditPermissions id={this.props.match.params.projectId} level="project"/>
+                            <EditPermissions tabClassName="flat-panel" id={this.props.match.params.projectId} level="project"/>
 
                             {this.props.hasFeature('hide_all_disabled_flags') && (
                             <FormGroup className="mt-4">
-                                <h5>Hide disabled flags from SDKs</h5>
+                                <h3>Hide disabled flags from SDKs</h3>
                                 <div className="row">
                                     <div className="col-md-10">
                                         <p>
@@ -116,11 +115,11 @@ const ProjectSettingsPage = class extends Component {
                             )}
 
                             <FormGroup className="mt-4">
-                                <h5>Delete Project</h5>
+                                <h3>Delete Project</h3>
                                 <div className="row">
                                     <div className="col-md-10">
                                         <p>
-                                        This project will be deleted permanently
+                                        This project will be permanently deleted.
                                         </p>
                                     </div>
                                     <div className="col-md-2 text-right">

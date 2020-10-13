@@ -6,8 +6,26 @@
 		text-decoration: none !important;
 	}
 }
+.flat-panel {
+	.panel {
+		box-shadow: none;
+		border: none;
+		.panel-heading {
+			background-color: transparent;
+			.panel-icon {
+				display: none;
+			}
+		}
+	}
+
+}
 
 .panel {
+
+	.no-results {
+		text-align: center;
+		line-height: 44px;
+	}
 	width: 100%;
 	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 	border-radius: $border-radius-default;
@@ -30,7 +48,7 @@
 		background-color: $panel-heading-bg;
 		text-transform: capitalize;
 		color: $panel-heading-color;
-		
+
 
 	}
 
