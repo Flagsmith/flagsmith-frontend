@@ -55,44 +55,46 @@ const UsersPage = class extends Component {
         </p>, func);
     }
 
-
     render() {
         const { projectId, environmentId } = this.props.match.params;
         const { hasFeature, getValue } = this.props;
         return (
             <div className="app-container container">
-
                 <Permission level="environment" permission="ADMIN" id={environmentId}>
                     {({ permission }) => (
                         <div>
                             <div>
                                 <Row>
-
-                                    <div className="col-md-9 pl-0">
-                                        <h3>Users</h3>
-                                        <p>
-                                    View and manage features states for individual users. This will override individual default
-                                    feature
-                                    settings for your selected environment.
-                                        </p>
-                                    </div>
+                                    <Flex>
+                                        <div>
+                                            <h3>Users</h3>
+                                            <p>
+                                                View and manage features states for individual users. This will override individual default
+                                                feature settings for your selected environment.
+                                                {' '}
+                                                <ButtonLink target="_blank" href="https://docs.bullet-train.io/managing-identities/">Learn more.</ButtonLink>
+                                            </p>
+                                        </div>
+                                    </Flex>
                                     {permission ? (
+                                        <FormGroup className="float-right">
                                         <Button
                                           className="float-right" data-test="show-create-feature-btn" id="show-create-feature-btn"
                                           onClick={this.newUser}
                                         >
-                                      Create Users
+                                            Create Users
                                         </Button>
+                                        </FormGroup>
                                     ) : (
                                         <Tooltip
                                           html
                                           title={(
-                                              <Button
-                                                disabled data-test="show-create-feature-btn" id="show-create-feature-btn"
-                                                onClick={this.newUser}
-                                              >
-                                            Create Users
-                                              </Button>
+                                                <Button
+                                                    disabled data-test="show-create-feature-btn" id="show-create-feature-btn"
+                                                    onClick={this.newUser}
+                                                >
+                                                    Create Users
+                                                </Button>
                                             )}
                                           place="right"
                                         >
@@ -156,9 +158,9 @@ const UsersPage = class extends Component {
                                                     </Row>
                                                   )}
                                                   renderNoResults={(
-                                                      <FormGroup className="text-center">
+                                                      <div>
                                                         You have no users in your project{this.state.search ? <span> for <strong>"{this.state.search}"</strong></span> : ''}.
-                                                      </FormGroup>
+                                                      </div>
                                                 )}
                                                   filterRow={(flag, search) => flag.identifier && flag.identifier.indexOf(search) != -1}
                                                   onChange={(e) => {

@@ -170,21 +170,28 @@ const PanelSearch = class extends Component {
                                 </div>
                             )}
                         </List>
-                    ) : (renderNoResults && !search) ? renderNoResults : (
-                        <Column>
-                            <div>
-                                {'No results '}
-                                {search && (
-                                <span>
-                                      for
-                                    <strong>
-                                        {` "${search}"`}
-                                    </strong>
-                                </span>
-                                )}
+                    )
+                        : (
+                            <div className="no-results">
+                                {
+                              (renderNoResults && !search) ? renderNoResults : (
+                                  <Column>
+                                      <div>
+                                          {'No results '}
+                                          {search && (
+                                          <span>
+                                              for
+                                              <strong>
+                                                  {` "${search}"`}
+                                              </strong>
+                                          </span>
+                                          )}
+                                      </div>
+                                  </Column>
+                              )}
                             </div>
-                        </Column>
-                    )}
+                        )
+                    }
 
                 </div>
                 {!!paging && filteredItems && filteredItems.length > 10 && (
