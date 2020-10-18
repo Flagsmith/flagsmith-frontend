@@ -1,13 +1,13 @@
 const BaseStore = require('./base/_store');
 const data = require('../data/base/_data');
 
-const PAGE_SIZE = 999;
+const PAGE_SIZE = 100;
 
 const controller = {
     getIdentities: (envId, page) => {
         store.loading();
         store.envId = envId;
-        const endpoint = (page && `${page}${store.search ? `&q=${store.search}` : ''}`) || `${Project.api}environments/${envId}/identities/${store.search ? `?q=${store.search}` : ''}`;
+        const endpoint = (page && `${page}${store.search ? `&q=${store.search}&page_size=${PAGE_SIZE}` : `&page_size=${PAGE_SIZE}`}`) || `${Project.api}environments/${envId}/identities/${store.search ? `?q=${store.search}&page_size=${PAGE_SIZE}` : `?page_size=${PAGE_SIZE}`}`;
         data.get(endpoint)
             .then((res) => {
                 store.model = res && res.results;
