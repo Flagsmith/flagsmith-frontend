@@ -28,6 +28,8 @@ const controller = {
                     return controller.onLogin();
                 }
                 API.trackEvent(Constants.events.CREATE_ORGANISATION);
+                API.trackEvent(Constants.events.CREATE_FIRST_ORGANISATION);
+
 
                 return data.post(`${Project.api}organisations/`, { name: organisation_name })
                     .then(() => controller.onLogin())
@@ -230,6 +232,9 @@ const controller = {
 
     createOrganisation: (name) => {
         store.saving();
+        if (!AccountStore.model.organisations || !AccountStore.model.organisations.length) {
+            API.trackEvent(Constants.events.CREATE_FIRST_ORGANISATION);
+        }
         API.trackEvent(Constants.events.CREATE_ORGANISATION);
         if (API.getReferrer()) {
             // eslint-disable-next-line camelcase

@@ -30,6 +30,9 @@ global.API = {
     },
     trackEvent(data) {
         if (Project.ga) {
+            if (Project.logAnalytics) {
+                console.log('ANALYTICS EVENT', data);
+            }
             if (!data) {
                 console.error('Passed null event data');
             }
