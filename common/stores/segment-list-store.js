@@ -1,4 +1,5 @@
 const BaseStore = require('./base/_store');
+const OrganisationStore = require('./organisation-store');
 const data = require('../data/base/_data');
 
 
@@ -17,6 +18,9 @@ const controller = {
     },
     createSegment(projectId, _data) {
         store.saving();
+        if (AccountStore.model.organisations.length === 1 && OrganisationStore.model.projects.length === 1 && (!store.model || !store.model.length)) {
+            API.trackEvent(Constants.events.CREATE_FIRST_SEGMENT);
+        }
         API.trackEvent(Constants.events.CREATE_SEGMENT);
         data.post(`${Project.api}projects/${projectId}/segments/`, {
             ..._data,

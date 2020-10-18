@@ -1,4 +1,5 @@
 const BaseStore = require('./base/_store');
+const OrganisationStore = require('./organisation-store');
 const data = require('../data/base/_data');
 
 
@@ -28,6 +29,9 @@ const controller = {
     createFlag(projectId, environmentId, flag, segmentOverrides) {
         store.saving();
         API.trackEvent(Constants.events.CREATE_FEATURE);
+        if (AccountStore.model.organisations.length === 1 && OrganisationStore.model.projects.length === 1 && (!store.model.features || !store.model.features.length)) {
+            API.trackEvent(Constants.events.CREATE_FIRST_FEATURE);
+        }
         data.post(`${Project.api}projects/${projectId}/features/`, Object.assign({}, flag, { project: projectId }))
             .then(res => Promise.all([
                 data.get(`${Project.api}projects/${projectId}/features/`),
@@ -54,7 +58,7 @@ const controller = {
     editFlag(projectId, flag) {
         data.put(`${Project.api}projects/${projectId}/features/${flag.id}/`, {
             ...flag,
-            project: projectId
+            project: projectId,
         })
             .then((res) => {
                 const index = _.findIndex(store.model.features, { id: flag.id });

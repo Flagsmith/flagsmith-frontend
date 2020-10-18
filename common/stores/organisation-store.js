@@ -55,6 +55,9 @@ const controller = {
             environment: res.id,
             identifier: `${envName}_user_123456`,
         }).then(() => res);
+        if (AccountStore.model.organisations.length === 1 && (!store.model.projects || !store.model.projects.length)) {
+            API.trackEvent(Constants.events.CREATE_FIRST_PROJECT);
+        }
         API.trackEvent(Constants.events.CREATE_PROJECT);
         data.post(`${Project.api}projects/`, { name, organisation: store.id })
             .then((project) => {
