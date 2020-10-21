@@ -396,7 +396,7 @@ const FeaturesPage = class extends Component {
                                                         >
                                                             Users
                                                             page
-                                                        </Link>
+                                                        </Link>.
                                                         <p className="faint">
                                                             EXAMPLE: You're working on a new messaging feature for your
                                                             app but

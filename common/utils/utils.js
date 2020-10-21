@@ -81,6 +81,10 @@ module.exports = Object.assign({}, require('./base/_utils'), {
                 return 'Startup';
             case 'scale-up':
                 return 'Scale-Up';
+            case 'startup-v2':
+                return 'Startup';
+            case 'scale-up-v2':
+                return 'Scale-Up';
         }
     },
 });
