@@ -391,6 +391,7 @@ const FeaturesPage = class extends Component {
                                                         example user for you which you can see in the
                                                         {' '}
                                                         <Link
+                                                          className="btn--link"
                                                           to={`/project/${projectId}/environment/${environmentId}/users`}
                                                         >
                                                             Users
