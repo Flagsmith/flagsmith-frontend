@@ -83,6 +83,7 @@ Team Members
                                                         <li><p>3rd Party Integrations</p></li>
                                                         <li><p>A/B and MVT Testing</p></li>
                                                         <li><p>Email Technical Support</p></li>
+                                                        <li><p>Online Ts and Cs</p></li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -135,6 +136,7 @@ Team Members
                                                     <li><p>Priority Email Technical Support</p></li>
                                                     <li><p>User Roles and Permissions</p></li>
                                                     <li><p>2FA and SAML Authentication</p></li>
+                                                    <li><p>Online Ts and Cs</p></li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -142,7 +144,7 @@ Team Members
                                         <div className="col-md-4 pricing-panel">
                                             <div className="panel panel-default">
                                                 <div className="panel-content">
-                                                    <p className="featured"/>
+                                                    <p className="featured">Optional On-Prem Install</p>
                                                     <p className="pricing-price">Enterprise</p>
                                                     <img
                                                       src="/images/cubes.svg" alt="Enterprise icon"
@@ -165,7 +167,7 @@ Team Members
                                                     <ul className="pricing-features">
                                                     <li>
                                                         <p>
-                                                            <strong>Unlimited</strong> requests per month
+                                                            <strong>5,000,000 +</strong> requests per month
                                                         </p>
                                                     </li>
                                                     <li>
