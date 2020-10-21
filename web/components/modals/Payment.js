@@ -120,13 +120,7 @@ Team Members
                                                                 requests per month
                                                         </p>
                                                         </li>
-                                                        <li>
-                                                            <p>
-                                                            <strong>5</strong>
-                                                            {' '}
-                                                            Team Members - extra seats at <strong>$25 per seat</strong>
-                                                        </p>
-                                                    </li>
+                                                    <li><p><strong>5</strong>{' '}Team Members</p></li>
                                                     <li><p>Unlimited Projects</p></li>
                                                     <li><p>Unlimited Environments</p></li>
                                                     <li><p>Unlimited Feature Flags</p></li>
