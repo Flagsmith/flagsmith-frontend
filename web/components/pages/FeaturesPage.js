@@ -209,7 +209,7 @@ const FeaturesPage = class extends Component {
                                                                               {description}
                                                                           </div>
                                                                       </Flex>
-                                                                      <Row style={{ width: 200, justifyContent:"flex-end" }}>
+                                                                      <Row style={{ width: 300, justifyContent:"flex-end" }}>
                                                                           {
                                                                               this.renderWithPermission(permission, Constants.environmentPermissions('Admin'), (
                                                                                   <Column>
