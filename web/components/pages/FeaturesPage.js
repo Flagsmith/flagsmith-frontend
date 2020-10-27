@@ -109,7 +109,8 @@ const FeaturesPage = class extends Component {
               title={<div>{el}</div>}
               place="right"
               html
-            >{name}</Tooltip>
+            >{name}
+            </Tooltip>
         );
     }
 
@@ -196,8 +197,9 @@ const FeaturesPage = class extends Component {
                                                                     className={permission ? 'list-item clickable' : 'list-item'} key={id} space
                                                                     data-test={`feature-item-${i}`}
                                                                   >
-                                                                      <Flex
-                                                                        style={{overflow:"hidden"}}
+                                                                      <div
+                                                                        style={{ overflow: 'hidden' }}
+                                                                        className="flex flex-1"
                                                                         onClick={() => permission && this.editFlag(projectFlag, environmentFlags[id])}
                                                                       >
                                                                           <div>
@@ -208,8 +210,8 @@ const FeaturesPage = class extends Component {
                                                                           <div className="list-item-footer faint">
                                                                               {description}
                                                                           </div>
-                                                                      </Flex>
-                                                                      <Row style={{ width: 200, justifyContent:"flex-end" }}>
+                                                                      </div>
+                                                                      <Row>
                                                                           {
                                                                               this.renderWithPermission(permission, Constants.environmentPermissions('Admin'), (
                                                                                   <Column>
