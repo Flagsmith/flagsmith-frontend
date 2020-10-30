@@ -161,7 +161,7 @@ const UserPage = class extends Component {
                                                   title="Features"
                                                   items={projectFlags}
                                                   renderRow={({ name, id, enabled, created_date, feature, type }, i) => {
-                                                      const identityFlag = identityFlags[id];
+                                                      const identityFlag = identityFlags[id] || {};
                                                       const environmentFlag = environmentFlags[id];
                                                       const hasUserOverride = identityFlag.identity;
                                                       const flagEnabled = hasUserOverride
@@ -170,8 +170,8 @@ const UserPage = class extends Component {
                                                       const flagValue = hasUserOverride ? identityFlag.feature_state_value
                                                           : environmentFlag.feature_state_value;
 
-                                                      const actualEnabled = actualFlags && actualFlags[name].enabled;
-                                                      const actualValue = actualFlags && actualFlags[name].feature_state_value;
+                                                      const actualEnabled = (actualFlags && !!actualFlags && actualFlags[name] && actualFlags[name].enabled) || false;
+                                                      const actualValue = !!actualFlags && actualFlags[name] && actualFlags[name].feature_state_value;
                                                       const flagEnabledDifferent = type === 'FLAG' && (hasUserOverride ? false
                                                           : actualEnabled !== flagEnabled);
                                                       const flagValueDifferent = type !== 'FLAG' && (hasUserOverride ? false : actualValue !== flagValue);
@@ -398,7 +398,8 @@ const UserPage = class extends Component {
                                                                   >
                                                                       <Row>
                                                                           <ButtonLink
-                                                                            onClick={() => this.editSegment(segments[i])}>
+                                                                            onClick={() => this.editSegment(segments[i])}
+                                                                          >
                                                                               <span data-test={`segment-${i}-name`} className="bold-link">
                                                                                   {name}
                                                                               </span>
