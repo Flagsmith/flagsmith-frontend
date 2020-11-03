@@ -4,9 +4,8 @@ import color from 'color';
 import cx from 'classnames';
 import withTags from '../../common/providers/withTags';
 import InlineModal from './InlineModal';
-import TagList from './TagList';
 
-class TagValues extends PureComponent {
+export class TagValues extends PureComponent {
   static displayName = 'TheComponent';
 
   static propTypes = {
@@ -33,7 +32,7 @@ class TagValues extends PureComponent {
       );
   }
 }
-class Tag extends PureComponent {
+export class Tag extends PureComponent {
   static displayName = 'TheComponent';
 
   state = {
@@ -51,6 +50,14 @@ class Tag extends PureComponent {
 
   toggleHover =() => this.setState({ hover: !this.state.hover })
 
+  getColor = () => {
+      const { props: { deselectedColor, tag, selected } } = this;
+      if (selected) {
+          return tag.color;
+      }
+      return deselectedColor || tag.color;
+  }
+
   render() {
       const { props: { onClick, tag, selected, className } } = this;
       return (
@@ -58,13 +65,13 @@ class Tag extends PureComponent {
             onClick={onClick ? () => onClick(tag) : null}
             onMouseEnter={onClick ? this.toggleHover : null}
             onMouseLeave={onClick ? this.toggleHover : null}
-            style={{ backgroundColor: this.state.hover ? color(tag.color).darken(0.1) : tag.color }}
-            className={cx('tag', className)}
+            style={{ backgroundColor: this.state.hover ? color(this.getColor()).darken(0.1) : this.getColor() }}
+            className={cx('tag', { selected,hideNames: this.props.hideNames }, className)}
           >
               <div>
                   {tag.label ? (
                       <Row space>
-                          {tag.label}
+                          {this.props.hideNames ? "":tag.label}
                           {selected && (
                           <span className="icon ion-md-checkmark"/>
                           )}

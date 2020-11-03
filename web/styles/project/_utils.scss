@@ -23,7 +23,9 @@
 .hidden {
     display: none;
 }
-
+.relative {
+    position: relative !important;
+}
 .float-left{
     float:left;
 }

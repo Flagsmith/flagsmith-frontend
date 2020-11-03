@@ -154,7 +154,7 @@ const PanelSearch = class extends Component {
                     />
                 )}
                 <div id={this.props.id} className="search-list" style={isLoading ? { opacity: 0.5 } : {}}>
-
+                    {this.props.header}
                     {filteredItems && filteredItems.length ? (
                         <List
                           className="List"

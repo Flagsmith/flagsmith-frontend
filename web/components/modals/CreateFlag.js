@@ -6,7 +6,6 @@ import withSegmentOverrides from '../../../common/providers/withSegmentOverrides
 import data from '../../../common/data/base/_data';
 import SegmentOverrides from '../SegmentOverrides';
 import AddEditTags from '../AddEditTags';
-import TagList from '../TagList';
 import Constants from '../../../common/constants';
 
 const FEATURE_ID_MAXLENGTH = Constants.forms.maxLength.FEATURE_ID;

@@ -4,8 +4,10 @@ import CreateFlagModal from '../modals/CreateFlag';
 import ConfirmToggleFeature from '../modals/ConfirmToggleFeature';
 import TryIt from '../TryIt';
 import ConfirmRemoveFeature from '../modals/ConfirmRemoveFeature';
-import AddEditTags from '../AddEditTags';
+import TagSelect from '../TagSelect';
 import HistoryIcon from '../HistoryIcon';
+import TagValues from '../TagValues';
+import withAuditWebhooks from '../../../common/providers/withAuditWebhooks';
 
 const FeaturesPage = class extends Component {
     static displayName = 'FeaturesPage';
@@ -16,7 +18,9 @@ const FeaturesPage = class extends Component {
 
     constructor(props, context) {
         super(props, context);
-        this.state = {};
+        this.state = {
+            tags: [],
+        };
         AppActions.getFeatures(this.props.match.params.projectId, this.props.match.params.environmentId);
     }
 
@@ -31,6 +35,7 @@ const FeaturesPage = class extends Component {
     componentDidMount = () => {
         API.trackPage(Constants.pages.FEATURES);
         const { match: { params } } = this.props;
+        AppActions.getTags(params.projectId);
         AsyncStorage.setItem('lastEnv', JSON.stringify({
             orgId: AccountStore.getOrganisation().id,
             projectId: params.projectId,
@@ -123,6 +128,13 @@ const FeaturesPage = class extends Component {
         }
     }
 
+    filter = (flags) => {
+        if (this.state.tags.length) {
+            return _.filter(flags, flag => _.intersection(flag.tags || [], this.state.tags).length) || [];
+        }
+        return flags;
+    }
+
     render() {
         const { projectId, environmentId } = this.props.match.params;
         return (
@@ -184,11 +196,15 @@ const FeaturesPage = class extends Component {
                                                           id="features-list"
                                                           icon="ion-ios-rocket"
                                                           title="Features"
+                                                          renderSearchWithNoResults
                                                           sorting={[
                                                               { label: 'Name', value: 'name', order: 'asc', default: true },
                                                               { label: 'Created Date', value: 'created_date', order: 'asc' },
                                                           ]}
-                                                          items={projectFlags}
+                                                          items={this.filter(projectFlags, this.state.tags)}
+                                                          header={this.props.hasFeature("tags") && (
+                                                              <TagSelect projectId={projectId} value={this.state.tags} onChange={tags => this.setState({ tags })}/>
+                                                          )}
                                                           renderRow={(projectFlag, i) => {
                                                               const { name, id, enabled, created_date, description, type } = projectFlag;
                                                               return (
@@ -208,7 +224,14 @@ const FeaturesPage = class extends Component {
                                                                               </ButtonLink>
                                                                           </div>
                                                                           <div className="list-item-footer faint">
-                                                                              {description}
+                                                                              <Row>
+                                                                                  {this.props.hasFeature("tags") && (
+                                                                                    <TagValues projectId={projectId} value={projectFlag.tags}/>
+                                                                                  )}
+                                                                                  <div>
+                                                                                      {description || "No description"}
+                                                                                  </div>
+                                                                              </Row>
                                                                           </div>
                                                                       </div>
                                                                       <Row>
@@ -280,18 +303,6 @@ const FeaturesPage = class extends Component {
                                                                   </Row>
                                                               );
                                                           }}
-                                                          renderNoResults={(
-                                                              <div className="text-center">
-                                                                  {/* <FormGroup> */}
-                                                                  {/* <button onClick={this.newFlag} */}
-                                                                  {/* className={"btn btn-primary btn-lg"} */}
-                                                                  {/* id="showCreateFeatureBtn"> */}
-                                                                  {/* <span className="icon ion-ios-rocket"/> */}
-                                                                  {/* Create your first feature */}
-                                                                  {/* </button> */}
-                                                                  {/* </FormGroup> */}
-                                                              </div>
-                                                        )}
                                                           filterRow={({ name }, search) => name.toLowerCase().indexOf(search) > -1}
                                                         />
                                                     </FormGroup>
@@ -435,4 +446,4 @@ const FeaturesPage = class extends Component {
 
 FeaturesPage.propTypes = {};
 
-module.exports = hot(module)(FeaturesPage);
+module.exports = hot(module)(ConfigProvider(FeaturesPage));
