@@ -8,6 +8,7 @@ import PaymentModal from './modals/Payment';
 import AlertBar from './AlertBar';
 import TwoFactorPrompt from './SimpleTwoFactor/prompt';
 import Maintenance from './Maintenance';
+import Blocked from './Blocked';
 import AppLoader from './AppLoader';
 
 const App = class extends Component {
@@ -144,6 +145,10 @@ const App = class extends Component {
         const isDark = /* pathname.indexOf('/blog') !== -1 */ true;
 
         const redirect = Utils.fromParam().redirect ? `?redirect=${Utils.fromParam().redirect}` : '';
+
+        if (AccountStore.getOrganisation() && (AccountStore.getOrganisation().block_access_to_admin)) {
+            return <Blocked/>;
+        }
         if (Project.maintenance || this.props.error) {
             return (
                 <Maintenance/>
