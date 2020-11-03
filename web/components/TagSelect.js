@@ -18,7 +18,7 @@ class TagSelect extends PureComponent {
     render() {
         const projectTags = (this.props.tags && this.props.tags[this.props.projectId]) || [];
         return (
-            <Row className="tag-filter mx-2 mt-2">
+            <Row className="tag-filter mx-2 mt-3">
                 <div className="ml-1">
                     <Row>
                         {projectTags.map(tag => (
