@@ -219,7 +219,7 @@ const HomePage = class extends React.Component {
                                                 </fieldset>
                                                 {error && (
                                                     <div id="error-alert" className="alert mt-3 alert-danger">
-                                                        Please check your details and try again
+                                                        {typeof AccountStore.error === 'string' ? AccountStore.error : "Please check your details and try again"}
                                                     </div>
                                                 )}
 
@@ -271,7 +271,7 @@ const HomePage = class extends React.Component {
                                             && (
                                                 <FormGroup>
                                                     <div id="error-alert" className="alert alert-danger">
-                                                        Please check your details and try again
+                                                        {typeof AccountStore.error === 'string' ? AccountStore.error : "Please check your details and try again"}
                                                     </div>
                                                 </FormGroup>
                                             )
