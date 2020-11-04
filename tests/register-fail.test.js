@@ -7,7 +7,6 @@ const fillOutForm = browser => browser
     .waitForElementVisible('[name="firstName"]') // wait for the sign up fields to show
     .setValue('[name="firstName"]', 'Bullet')
     .setValue('[name="lastName"]', 'Train')
-    .setValue('[name="companyName"]', 'Bullet Train Ltd')
     .setValue('[name="email"]', email)
     .setValue('[name="password"]', password);
 
