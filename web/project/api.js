@@ -23,7 +23,7 @@ global.API = {
                 try {
                     err = JSON.parse(error)
                 } catch (e){}
-                store.error = error;
+                store.error = err;
                 store.goneABitWest();
             }
         }).catch((e) => {
