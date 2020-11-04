@@ -1,12 +1,13 @@
 // import propTypes from 'prop-types';
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import Button from '../base/forms/Button';
 import ErrorMessage from '../ErrorMessage';
 import _data from '../../../common/data/base/_data';
 import ConfigProvider from '../../../common/providers/ConfigProvider';
 import TwoFactor from '../TwoFactor';
+import PaymentModal from '../modals/Payment';
 
-class TheComponent extends PureComponent {
+class TheComponent extends Component {
   static displayName = 'TheComponent';
 
   static propTypes = {};
@@ -73,6 +74,7 @@ class TheComponent extends PureComponent {
           passwordError,
           email,
       } } = this;
+      const has2fPermission = !this.props.hasFeature('plan_based_access') || Utils.getPlansPermission(AccountStore.getPlans(), '2FA');
       return (
           <div className="app-container container">
               <h3>
@@ -206,14 +208,26 @@ class TheComponent extends PureComponent {
               )}
               <div className="row">
                   <div className="col-md-4 col-lg-3 col-sm-12">
-
                       <h5>Two-Factor Authentication</h5>
                       <p>
-                      Increase your account's security by enabling Two-Factor Authentication (2FA)
+                      Increase your account's security by enabling Two-Factor Authentication (2FA).
                       </p>
                   </div>
                   <div className="col-md-6">
-                      <TwoFactor/>
+                      {has2fPermission ? <TwoFactor/> : (
+                          <div className="text-right">
+                              <button
+                                type="button" className="btn btn-primary text-center ml-auto mt-2 mb-2"
+                                onClick={() => {
+                                    openModal('Payment plans', <PaymentModal
+                                      viewOnly={false}
+                                    />, null, { large: true });
+                                }}
+                              >
+                                Manage payment plan
+                              </button>
+                          </div>
+                      )}
                   </div>
               </div>
           </div>

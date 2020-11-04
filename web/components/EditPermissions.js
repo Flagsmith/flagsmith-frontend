@@ -8,7 +8,7 @@ import _data from '../../common/data/base/_data';
 import UserGroupList from './UserGroupList';
 // import propTypes from 'prop-types';
 
-class EditPermissionsModal extends Component {
+class _EditPermissionsModal extends Component {
   static displayName = 'EditPermissionsModal';
 
   static propTypes = {};
@@ -86,6 +86,8 @@ class EditPermissionsModal extends Component {
           },
       } = this;
       const isAdmin = this.admin();
+      const hasRbacPermission = !this.props.hasFeature('plan_based_access') || Utils.getPlansPermission(AccountStore.getPlans(), 'RBAC');
+
       return (
           <AvailablePermissionsProvider level={level}>
               {(props) => {
@@ -100,10 +102,13 @@ class EditPermissionsModal extends Component {
                                               Administrator
                                           </bold>
                                           <div className="list-item-footer faint">
-                                              This will grant all of the following permissions.
+                                              {
+                                              hasRbacPermission ? 'This will grant all of the following permissions.'
+                                                  : 'Please upgrade your account to enable role based access.'
+                                            }
                                           </div>
                                       </Flex>
-                                      <Switch onChange={this.toggleAdmin} checked={isAdmin}/>
+                                      <Switch disabled={!hasRbacPermission} onChange={this.toggleAdmin} checked={isAdmin}/>
                                   </Row>
                               </div>
                               <div className="panel--grey">
@@ -122,7 +127,7 @@ class EditPermissionsModal extends Component {
                                                         {p.description}
                                                     </div>
                                                 </Flex>
-                                                <Switch onChange={() => this.togglePermission(p.key)} disabled={this.admin()} checked={this.hasPermission(p.key)}/>
+                                                <Switch onChange={() => this.togglePermission(p.key)} disabled={this.admin() || !hasRbacPermission} checked={this.hasPermission(p.key)}/>
                                             </Row>
                                         </div>
                                     )}
@@ -135,7 +140,7 @@ class EditPermissionsModal extends Component {
                               <div className="text-right">
                                   <Button
                                     onClick={this.save} data-test="update-feature-btn" id="update-feature-btn"
-                                    disabled={isSaving}
+                                    disabled={isSaving || !hasRbacPermission}
                                   >
                                       {isSaving ? 'Saving' : 'Save'}
                                   </Button>
@@ -147,6 +152,9 @@ class EditPermissionsModal extends Component {
       );
   }
 }
+
+const EditPermissionsModal = ConfigProvider(_EditPermissionsModal);
+
 export default class EditPermissions extends PureComponent {
   static displayName = 'EditPermissions';
 

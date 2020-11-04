@@ -44,6 +44,8 @@ const InviteUsers = class extends Component {
 
     render() {
         const { invites } = this.state;
+        const hasRbacPermission = !this.props.hasFeature('plan_based_access') || Utils.getPlansPermission(AccountStore.getPlans(), 'RBAC');
+
         return (
             <OrganisationProvider
               onSave={this.close}
@@ -71,14 +73,18 @@ const InviteUsers = class extends Component {
                                           placeholder="E-mail address"
                                         />
                                     </Flex>
-                                    <Flex style={{top: 6, position: 'relative'}}>
+                                    <Flex style={{ top: 6, position: 'relative' }}>
                                         <Select
                                           data-test="select-role"
                                           placeholder="Select a role"
                                           value={invite.role}
                                           onChange={role => this.onChange(index, 'role', role)}
                                           className="pl-2"
-                                          options={_.map(Constants.roles, (label, value) => ({ value, label }))}
+                                          options={_.map(Constants.roles, (label, value) => ({ value,
+                                              label:
+                                              value !== 'ADMIN' && !hasRbacPermission ? `${label} - Please upgrade for role based access` : label,
+                                              isDisabled: value !== 'ADMIN' && !hasRbacPermission,
+                                          }))}
                                         />
                                     </Flex>
                                     {invites.length > 1 ? (
@@ -140,4 +146,4 @@ const InviteUsers = class extends Component {
 
 InviteUsers.propTypes = {};
 
-module.exports = InviteUsers;
+module.exports = ConfigProvider(InviteUsers);

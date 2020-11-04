@@ -73,18 +73,62 @@ module.exports = Object.assign({}, require('./base/_utils'), {
         Utils.scrollToElement('.signup-form');
     },
 
+    getPlansPermission: (plans, permission) => {
+        if (!plans || !plans.length) {
+            return false;
+        }
+        const found = _.find(
+            plans.map(plan => Utils.getPlanPermission(plan, permission)),
+            perm => !!perm,
+        );
+        return !!found;
+    },
+    getPlanPermission: (plan, permission) => {
+        let valid = true;
+        if (!plan) {
+            return false;
+        }
+        const date = AccountStore.getDate();
+        const cutOff = moment('03-11-20', 'DD-MM-YY');
+        if (date && moment(date).valueOf() < cutOff.valueOf()) {
+            return true;
+        }
+        switch (permission) {
+            case '2FA': {
+                valid = !plan.includes('side-project');
+                break;
+            }
+            case 'RBAC': {
+                valid = !plan.includes('side-project');
+                break;
+            }
+            default:
+                valid = true;
+                break;
+        }
+        return valid;
+    },
+
     getPlanName: (plan) => {
         switch (plan) {
             case 'side-project':
+            case 'side-project-annual':
                 return 'Side Project';
             case 'startup':
+            case 'startup-annual':
+            case 'startup-v2':
+            case 'startup-v2-annual':
                 return 'Startup';
             case 'scale-up':
-                return 'Scale-Up';
-            case 'startup-v2':
-                return 'Startup';
+            case 'scale-up-annual':
             case 'scale-up-v2':
+            case 'scale-up-v2-annual':
                 return 'Scale-Up';
+            case 'enterprise':
+            case 'enterprise-annual':
+                return 'Enterprise';
+            default:
+                return 'Free';
         }
     },
 });
