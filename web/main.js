@@ -48,7 +48,8 @@ function hashLinkScroll() {
 // Render the React application to the DOM
 const res = require('js-cookie').get('t');
 
-if (res) {
+const isInvite = document.location.href.includes('invite');
+if (res && !isInvite) {
     AppActions.setToken(res);
 }
 

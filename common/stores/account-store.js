@@ -24,25 +24,28 @@ const controller = {
                 if (API.getReferrer()) {
                     API.trackEvent(Constants.events.REFERRER_REGISTERED(API.getReferrer().utm_source));
                 }
-                if (isInvite) {
-                    return controller.onLogin();
-                }
-                API.trackEvent(Constants.events.CREATE_ORGANISATION);
-                API.trackEvent(Constants.events.CREATE_FIRST_ORGANISATION);
+
+                store.isSaving = false;
+                return controller.onLogin();
+
+                // if (isInvite) {
+                // }
+                // API.trackEvent(Constants.events.CREATE_ORGANISATION);
+                // API.trackEvent(Constants.events.CREATE_FIRST_ORGANISATION);
 
 
-                return data.post(`${Project.api}organisations/`, { name: organisation_name })
-                    .then(() => controller.onLogin())
-                    .then(() => {
-                        if (API.getReferrer()) {
-                        // eslint-disable-next-line camelcase
-                            postEvent(`New Organisation ${organisation_name} from ${API.getReferrer().utm_source}`);
-                            API.trackEvent(Constants.events.REFERRER_CONVERSION(API.getReferrer().utm_source));
-                        } else {
-                        // eslint-disable-next-line camelcase
-                            postEvent(`New Organisation ${organisation_name}`);
-                        }
-                    });
+                // return data.post(`${Project.api}organisations/`, { name: organisation_name })
+                //     .then(() => controller.onLogin())
+                //     .then(() => {
+                //         if (API.getReferrer()) {
+                //         // eslint-disable-next-line camelcase
+                //             postEvent(`New Organisation ${organisation_name} from ${API.getReferrer().utm_source}`);
+                //             API.trackEvent(Constants.events.REFERRER_CONVERSION(API.getReferrer().utm_source));
+                //         } else {
+                //         // eslint-disable-next-line camelcase
+                //             postEvent(`New Organisation ${organisation_name}`);
+                //         }
+                //     });
             })
             .catch(e => API.ajaxHandler(store, e));
     },

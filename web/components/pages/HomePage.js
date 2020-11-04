@@ -238,7 +238,6 @@ const HomePage = class extends React.Component {
                                               register({
                                                   email,
                                                   password,
-                                                  organisation_name,
                                                   first_name,
                                                   last_name,
                                               },
@@ -319,22 +318,6 @@ const HomePage = class extends React.Component {
                                                   type="text"
                                                   name="lastName" id="lastName"
                                                 />
-                                                {!isInvite && (
-                                                    <InputGroup
-                                                      title="Organisation name"
-                                                      data-test="companyName"
-                                                      inputProps={{
-                                                          name: 'companyName',
-                                                          className: 'full-width mb-3',
-                                                      }}
-                                                      onChange={(e) => {
-                                                          this.setState({ organisation_name: Utils.safeParseEventValue(e) });
-                                                      }}
-                                                      className="input-default full-width"
-                                                      type="text"
-                                                      name="companyName" id="organisation"
-                                                    />
-                                                )}
 
                                                 {error && error.email ? (
                                                     <span
