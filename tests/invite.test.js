@@ -78,16 +78,14 @@ module.exports = {
                 console.log(res.value);
                 inviteUrl = res.value.match(/(https?[^.]*)/g)[0];
                 console.log('Invite URL:', inviteUrl);
-
-                browser
-                    .back()
-                    .back();
-
-                testHelpers.logout(browser);
-                testHelpers.login(browser, url, inviteEmail, 'nightwatch');
-
-                browser.waitForElementVisible('#org-menu');
-                browser.url(inviteUrl);
+                browser.url(inviteUrl)
+                    .pause(200) // Allows the dropdown to fade in
+                    .waitAndClick('#existing-member-btn')
+                    .waitForElementVisible('#login-btn')
+                    .setValue('[name="email"]', inviteEmail)
+                    .setValue('[name="password"]', 'nightwatch')
+                    .waitForElementVisible('#login-btn')
+                    .click('#login-btn');
                 browser
                     .useXpath()
                     .waitForElementPresent(`//div[contains(@class, "org-nav")]//a[contains(text(),"${`Bullet Train Org${append}`}")]`);
