@@ -17,8 +17,12 @@ global.API = {
             return;
         }
 
-        res.json().then((error) => {
+        res.text().then((error) => {
             if (store) {
+                let err = error;
+                try {
+                    err = JSON.parse(error)
+                } catch (e){}
                 store.error = error;
                 store.goneABitWest();
             }
