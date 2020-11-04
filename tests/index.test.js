@@ -45,8 +45,6 @@ const clearDown = function (browser, done) {
             console.log('No tokens.json found for teardown. Either set E2E_TEST_TOKEN in your environment or create the file in /tests');
         }
     }
-    done();
-    return
     if (token) {
         console.log(`${Project.api}e2etests/teardown/`, token.trim());
         fetch(`${Project.api}e2etests/teardown/`, {
@@ -154,14 +152,14 @@ module.exports = Object.assign(
         },
     },
 
-    // require('./initialise.test'), // Register as the demo user
-    // require('./features.test'), // Features tests
-    // require('./segments.test'), // Segments tests
-    // require('./segement-priorities.test'), // Segments tests
-    // require('./users.test'), // Users tests
-    // require('./project.test'), // Project/environment tests
-    // require('./initial-cleanup.test'), // Cleanup initialisation
-    // require('./invite.test'), // Invite user tests
+    require('./initialise.test'), // Register as the demo user
+    require('./features.test'), // Features tests
+    require('./segments.test'), // Segments tests
+    require('./segement-priorities.test'), // Segments tests
+    require('./users.test'), // Users tests
+    require('./project.test'), // Project/environment tests
+    require('./initial-cleanup.test'), // Cleanup initialisation
+    require('./invite.test'), // Invite user tests
     require('./register-fail.test'), // Registration failure tests
     require('./login-fail.test'), // Login failure tests
 );
