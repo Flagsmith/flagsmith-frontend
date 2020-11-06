@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Select from 'react-select';
 
 const EnvironmentSelect = class extends Component {
     static displayName = 'EnvironmentSelect'
@@ -9,27 +10,25 @@ const EnvironmentSelect = class extends Component {
     }
 
     render() {
-        const { hasFeature } = this.props;
-
         return (
             <ProjectProvider id={this.props.projectId}>
-                {({ isLoading, project }) => (
-                    <div className={`fade ${isLoading ? '' : 'in'}`}>
-
-                        {!isLoading && (
-                        <ul id="env-list" className="project-list list-unstyled">
-                            {project && project.environments && project.environments.map(environment => this.props.renderRow(environment,
-                                () => {
-                                    if (this.props.environmentId !== environment.api_key) {
-                                        this.props.onChange && this.props.onChange(environment.api_key);
-                                    }
-                                }))
-                              }
-                        </ul>
-                        )}
-
-                    </div>
-                )}
+                {({ isLoading, project }) => {
+                    const selectedEnv = this.props.value && _.find(project.environments, { api_key: this.props.value });
+                    return (
+                        <div>
+                            <Select
+                              onChange={env => this.props.onChange(env.value)}
+                              options={project.environments.map(env => ({ label: env.name, value: env.api_key }))}
+                              value={selectedEnv ? {
+                                  label: selectedEnv.name,
+                                  value: selectedEnv.api_key,
+                              } : {
+                                  label: 'Please select an environment',
+                              }}
+                            />
+                        </div>
+                    );
+                }}
             </ProjectProvider>
         );
     }
@@ -37,4 +36,4 @@ const EnvironmentSelect = class extends Component {
 
 EnvironmentSelect.propTypes = {};
 
-module.exports = ConfigProvider(EnvironmentSelect);
+module.exports = EnvironmentSelect;

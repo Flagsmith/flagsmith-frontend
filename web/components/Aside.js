@@ -9,7 +9,7 @@ import Popover from './base/Popover';
 import ProjectSettingsIcon from './svg/ProjectSettingsIcon';
 import AuditLogIcon from './svg/AuditLogIcon';
 import OrgSettingsIcon from './svg/OrgSettingsIcon';
-import EnvironmentSelect from './EnvironmentSelect';
+import EnvironmentDropdown from './EnvironmentDropdown';
 import CreateProjectModal from './modals/CreateProject';
 
 const Aside = class extends Component {
@@ -56,6 +56,8 @@ const Aside = class extends Component {
 
   render() {
       const { hasFeature, getValue, toggleAside, asideIsVisible } = this.props;
+      let integrations = this.props.getValue('integrations') || '[]';
+      integrations = JSON.parse(integrations);
       return (
           <OrganisationProvider>
               {({ isLoading: isLoadingOrg, projects }) => (
@@ -190,7 +192,7 @@ const Aside = class extends Component {
 
                                                   {(
                                                       <div className="aside__environments-wrapper">
-                                                          <EnvironmentSelect
+                                                          <EnvironmentDropdown
                                                             renderRow={(environment, onClick) => (
                                                                 <Collapsible
                                                                   data-test={`switch-environment-${environment.name.toLowerCase()}${this.props.environmentId === (`${environment.api_key}`) ? '-active' : ''}`}
@@ -230,10 +232,10 @@ const Aside = class extends Component {
                                                                                       id="segments-link"
                                                                                       className="aside__environment-list-item"
                                                                                     >
-                                                                                      <img
-                                                                                        src="/images/icons/aside/segments.svg"
-                                                                                        className="aside__environment-list-item--icon"
-                                                                                      />
+                                                                                        <img
+                                                                                          src="/images/icons/aside/segments.svg"
+                                                                                          className="aside__environment-list-item--icon"
+                                                                                        />
                                                                                       Segments
                                                                                     </NavLink>
                                                                                     {environmentAdmin && (
@@ -294,6 +296,27 @@ const Aside = class extends Component {
                                                           Audit Log
                                                       </NavLink>
                                                       )}
+                                                      {!!integrations.length && (
+                                                      <Permission level="project" permission="CREATE_ENVIRONMENT" id={this.props.projectId}>
+                                                          {({ permission, isLoading }) => permission && (
+                                                          <NavLink
+                                                            id="create-env-link"
+                                                            className="aside__header-link"
+                                                            to={`/project/${this.props.projectId}/integrations`}
+                                                            exact
+                                                          >
+                                                              <a
+                                                                className="aside__nav-item"
+                                                                href="#"
+                                                              >
+                                                                  <i className="icon mr-2 ion-ios-apps aside__nav-item--icon"/>
+                                                              Integrations
+                                                              </a>
+                                                          </NavLink>
+
+                                                          )}
+                                                      </Permission>
+                                                      )}
 
                                                       {AccountStore.getOrganisationRole() === 'ADMIN' && (
                                                       <NavLink
@@ -308,25 +331,25 @@ const Aside = class extends Component {
                                                       )}
 
                                                       <a
-                                                          href="https://docs.bullet-train.io"
-                                                          target="_blank"
-                                                          className="aside__nav-item hidden-sm-up"
+                                                        href="https://docs.bullet-train.io"
+                                                        target="_blank"
+                                                        className="aside__nav-item hidden-sm-up"
                                                       >
                                                           <img className="mr-2" src="/images/icons/aside/documentation-white.svg"/>
                                                           Documentation
                                                       </a>
 
                                                       <a
-                                                          href="https://product-hub.io/roadmap/5d81f2406180537538d99f28"
-                                                          target="_blank" className="aside__nav-item hidden-sm-up"
+                                                        href="https://product-hub.io/roadmap/5d81f2406180537538d99f28"
+                                                        target="_blank" className="aside__nav-item hidden-sm-up"
                                                       >
                                                           <img width={15} className="mr-2" src="/images/icons/aside/features.svg"/>
                                                           Product Roadmap
                                                       </a>
-                                                     <NavLink
-                                                          id="account-settings-link"
-                                                          className="aside__nav-item hidden-sm-up"
-                                                          to={`/project/${this.props.projectId}/environment/${this.props.environmentId}/account`}
+                                                      <NavLink
+                                                        id="account-settings-link"
+                                                        className="aside__nav-item hidden-sm-up"
+                                                        to={`/project/${this.props.projectId}/environment/${this.props.environmentId}/account`}
                                                       >
                                                           <img width={15} className="mr-2" src="/images/icons/aside/user-white.svg"/>
                                                           Account Settings
