@@ -1,21 +1,49 @@
 import React, { Component } from 'react';
 import EnvironmentSelect from '../EnvironmentSelect';
+import _data from '../../../common/data/base/_data';
 
 const CreateEditIntegration = class extends Component {
     static displayName = 'CreateEditIntegration'
 
     constructor(props, context) {
         super(props, context);
-        this.state = { data: {} };
+        this.state = { data: this.props.data || {} };
     }
 
 
     update = (key, e) => {
-        this.setState({ [key]: Utils.safeParseEventValue(e) });
+        this.setState({ data: {
+            ...this.state.data,
+            [key]: Utils.safeParseEventValue(e),
+        },
+        });
+    }
+
+    onComplete() {
+        closeModal();
+        this.props.onComplete && this.props.onComplete();
     }
 
     submit = (e) => {
         Utils.preventDefault(e);
+        if (this.state.isLoading) {
+            return;
+        }
+        this.setState({ isLoading: true });
+        if (this.props.data) {
+            _data.put(`${Project.api}projects/${this.props.projectId}/integrations/${this.props.id}/`, this.state.data)
+                .then(this.onComplete).catch(this.onError);
+        } else {
+            _data.post(`${Project.api}projects/${this.props.projectId}/integrations/`, this.state.data)
+                .then(this.onComplete).catch(this.onError);
+        }
+    }
+
+    onError = () => {
+        this.setState({
+            error: true,
+            isLoading: false,
+        });
     }
 
     render() {
@@ -49,7 +77,7 @@ const CreateEditIntegration = class extends Component {
                   </>
                 ))}
                 <div className="text-right">
-                    <Button type="submit">
+                    <Button disabled={this.state.isLoading} type="submit">
                         Save
                     </Button>
                 </div>
