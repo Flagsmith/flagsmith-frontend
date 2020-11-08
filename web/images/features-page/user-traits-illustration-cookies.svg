@@ -12,8 +12,8 @@
             <use xlink:href="#path-1"></use>
         </mask>
         <linearGradient x1="0%" y1="50%" x2="100%" y2="50%" id="linearGradient-5">
-            <stop stop-color="#2CA69D" offset="0%"></stop>
-            <stop stop-color="#2BE3D6" offset="100%"></stop>
+            <stop stop-color="#6633ff" offset="0%"></stop>
+            <stop stop-color="#6633ff" offset="100%"></stop>
         </linearGradient>
         <path d="M17.0822235,2.97422775 C20.8591517,6.7398655 20.8591517,12.8408761 17.0844232,16.6065138 C13.307495,20.3699696 7.18602165,20.3699696 3.41129319,16.6065138 C-0.363435269,12.8408761 -0.363435269,6.7398655 3.41129319,2.97422775 C7.18602165,-0.789228043 13.307495,-0.789228043 17.0822235,2.97422775 Z" id="path-6"></path>
         <filter x="-243.1%" y="-207.5%" width="586.2%" height="587.6%" filterUnits="objectBoundingBox" id="filter-7">
@@ -30,7 +30,7 @@
                         <mask id="mask-3" fill="white">
                             <use xlink:href="#path-1"></use>
                         </mask>
-                        <g id="cookie-solid-bg" stroke="#2BE3D6" mask="url(#mask-2)" stroke-width="2.6" stroke-dasharray="6.5">
+                        <g id="cookie-solid-bg" stroke="#6633ff" mask="url(#mask-2)" stroke-width="2.6" stroke-dasharray="6.5">
                             <use mask="url(#mask-4)" xlink:href="#path-1"></use>
                         </g>
                         <g id="cookie" mask="url(#mask-3)">

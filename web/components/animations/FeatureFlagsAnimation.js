@@ -23,8 +23,8 @@ export default class FeatureFlagsAnimation extends Component {
             loop: true,
             delay: 1000,
             easing: 'linear',
-            stroke: '#2BE3D6',
-            fill: '#2BE3D6',
+            stroke: '#6633ff',
+            fill: '#6633ff',
         });
 
         anime({
@@ -45,7 +45,7 @@ export default class FeatureFlagsAnimation extends Component {
             fill: 'red',
             delay: 1000,
             easing: 'linear',
-            stroke: '#2BE3D6',
+            stroke: '#6633ff',
         });
     }
 
@@ -129,14 +129,14 @@ export default class FeatureFlagsAnimation extends Component {
                           id="linearGradient-5"
                         >
                             <stop stopColor="#56F3ED" offset="0%"/>
-                            <stop stopColor="#2BE3D6" offset="100%"/>
+                            <stop stopColor="#6633ff" offset="100%"/>
                         </linearGradient>
                         <linearGradient
                           x1="0%" y1="50%" x2="100%"
                           y2="50%" id="linearGradient-6"
                         >
-                            <stop stopColor="#2CA69D" offset="0%"/>
-                            <stop stopColor="#2BE3D6" offset="100%"/>
+                            <stop stopColor="#6633ff" offset="0%"/>
+                            <stop stopColor="#6633ff" offset="100%"/>
                         </linearGradient>
                         <linearGradient
                           x1="50%"
@@ -225,7 +225,7 @@ export default class FeatureFlagsAnimation extends Component {
                                             />
                                             <ellipse
                                               id="Oval"
-                                              fill="#2BE3D6"
+                                              fill="#6633ff"
                                               fillRule="nonzero"
                                               mask="url(#mask-3)"
                                               cx={24.2375856}
@@ -235,7 +235,7 @@ export default class FeatureFlagsAnimation extends Component {
                                             />
                                             <ellipse
                                               id="Oval"
-                                              fill="#2BE3D6"
+                                              fill="#6633ff"
                                               fillRule="nonzero"
                                               mask="url(#mask-3)"
                                               cx={53.3226884}
@@ -245,7 +245,7 @@ export default class FeatureFlagsAnimation extends Component {
                                             />
                                             <ellipse
                                               id="Oval"
-                                              fill="#2BE3D6"
+                                              fill="#6633ff"
                                               fillRule="nonzero"
                                               mask="url(#mask-3)"
                                               cx={82.4077911}
@@ -264,7 +264,7 @@ export default class FeatureFlagsAnimation extends Component {
                                         <g
                                           id="frame"
                                           transform="translate(14.343750, 67.626880)"
-                                          stroke="#2BE3D6"
+                                          stroke="#6633ff"
                                           strokeWidth={2}
                                         >
                                             <rect
@@ -292,7 +292,7 @@ export default class FeatureFlagsAnimation extends Component {
                                             >
                                                 <rect
                                                   id="Rectangle-2"
-                                                  stroke="#2BE3D6"
+                                                  stroke="#6633ff"
                                                   strokeWidth={2}
                                                   fill="#22354A"
                                                   x={1}
@@ -307,7 +307,7 @@ export default class FeatureFlagsAnimation extends Component {
                                                   fontSize={14.5230469}
                                                   fontWeight="bold"
                                                   letterSpacing={-0.223431624}
-                                                  fill="#2BE3D6"
+                                                  fill="#6633ff"
                                                 >
                                                     <tspan x={52.3125} y={24.1600094}>
                                                         {'Add coupon'}
@@ -361,10 +361,10 @@ export default class FeatureFlagsAnimation extends Component {
                                                         >
                                                             <polygon
                                                               id="Path"
-                                                              fill="#2BE3D6"
+                                                              fill="#6633ff"
                                                               points="1.14080915 9.32183004 0.240322723 8.40713264 8.49514667 0.246550194 9.39566484 1.1612476"
                                                             />
-                                                            <g id="Path" stroke="#2BE3D6">
+                                                            <g id="Path" stroke="#6633ff">
                                                                 <path
                                                                   d="M3.7865876,2.23415441 C3.7865876,3.07859518 3.09272335,3.76438765 2.2379625,3.76438765 C1.3837921,3.76438765 0.690581807,3.07859518 0.690581807,2.23415441 C0.690581807,1.38903301 1.3837921,0.703927521 2.2379625,0.703927521 C3.09272335,0.703927521 3.7865876,1.38903301 3.7865876,2.23415441 Z"
                                                                 />
@@ -372,7 +372,7 @@ export default class FeatureFlagsAnimation extends Component {
                                                             <g
                                                               transform="translate(5.206188, 5.152365)"
                                                               id="Path"
-                                                              stroke="#2BE3D6"
+                                                              stroke="#6633ff"
                                                             >
                                                                 <path
                                                                   d="M3.73921764,2.18185472 C3.73921764,3.02635275 3.0478676,3.71270498 2.1924528,3.71270498 C1.3382824,3.71270498 0.644449901,3.02635275 0.644449901,2.18185472 C0.644449901,1.33741395 1.3382824,0.65230846 2.1924528,0.65230846 C3.0478676,0.65230846 3.73921764,1.33741395 3.73921764,2.18185472 Z"
@@ -382,7 +382,7 @@ export default class FeatureFlagsAnimation extends Component {
                                                         <g
                                                           id="Group"
                                                           transform="translate(7.428342, 12.849107)"
-                                                          fill="#2BE3D6"
+                                                          fill="#6633ff"
                                                         >
                                                             <polygon
                                                               id="Path"
@@ -458,7 +458,7 @@ export default class FeatureFlagsAnimation extends Component {
                                         <g
                                           id="Headphones"
                                           transform="translate(89.000000, 199.000000)"
-                                          fill="#2BE3D6"
+                                          fill="#6633ff"
                                           fillRule="nonzero"
                                         >
                                             <path

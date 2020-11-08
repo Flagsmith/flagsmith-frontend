@@ -141,7 +141,7 @@ export default class NotFoundView extends Component {
                               y2="60.184%"
                               id="prefix__i"
                             >
-                                <stop stopColor="#2CA69D" offset="0%" />
+                                <stop stopColor="#6633ff" offset="0%" />
                                 <stop stopColor="#1F7E77" offset="100%" />
                             </linearGradient>
                             <circle
@@ -265,7 +265,7 @@ export default class NotFoundView extends Component {
                                 <g>
                                     <use fill="#000" filter="url(#prefix__j)" xlinkHref="#prefix__k" />
                                     <use
-                                      stroke="#2BE3D6"
+                                      stroke="#6633ff"
                                       strokeWidth={2}
                                       fill="#22354A"
                                       xlinkHref="#prefix__k"

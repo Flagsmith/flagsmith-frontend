@@ -46,7 +46,7 @@
 }
 
 .featured{
-	color: #2cd6ca;
+	color: $bt-brand-secondary;
 	text-transform: uppercase;
 	font-size: 14px;
 	font-weight: bold;
@@ -59,7 +59,7 @@
 .pricing-cta{
 	width:80%;
 	min-width: 170px;
-	background:#2cd6ca;
+	background:$bt-brand-secondary;
 	margin:0 auto;
 	height:40px;
 	border-radius: 25px;

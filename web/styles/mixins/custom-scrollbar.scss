@@ -7,15 +7,15 @@
     }
     /* Track */
     &::-webkit-scrollbar-track {
-        background: $bt-brand-secondary;
+        background: $bt-scrollbar-track;
         border-radius: 20px;
     }
     /* Handle */
     &::-webkit-scrollbar-thumb {
-        background: $bt-navy-light;
+        background: $bt-scrollbar-thumb;
         border-radius: 20px;
         &:hover {
-            background: lighten($bt-brand-secondary, 5);
+            background: $bt-scrollbar-thumb-hover;
         }
     }
 }

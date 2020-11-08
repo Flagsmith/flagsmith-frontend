@@ -11,6 +11,16 @@ import AuditLogIcon from './svg/AuditLogIcon';
 import OrgSettingsIcon from './svg/OrgSettingsIcon';
 import EnvironmentSelect from './EnvironmentSelect';
 import CreateProjectModal from './modals/CreateProject';
+import LogoutIcon from './svg/LogoutIcon';
+import UserSettingsIcon from './svg/UserSettingsIcon';
+import DocumentationIcon from './svg/DocumentationIcon';
+import ProductRoadmapIcon from './svg/ProductRoadmapIcon';
+import NavIconSmall from './svg/NavIconSmall';
+import PlusIcon from './svg/PlusIcon';
+import FeaturesIcon from './svg/FeaturesIcon';
+import UsersIcon from './svg/UsersIcon';
+import SegmentsIcon from './svg/SegmentsIcon';
+import EnvironmentSettingsIcon from './svg/EnvironmentSettingsIcon';
 
 const Aside = class extends Component {
   static displayName = 'Aside';
@@ -81,9 +91,7 @@ const Aside = class extends Component {
                                           <div className="flex-row justify-content-center">
                                               <div className="flex-column">
                                                   <Link to="/projects">
-                                                      <img
-                                                        title="Bullet Train"
-                                                        src="/images/bullet-train-1-mark.svg"
+                                                      <NavIconSmall
                                                         className="aside__logo"
                                                       />
                                                   </Link>
@@ -102,7 +110,7 @@ const Aside = class extends Component {
                                                                           to="/projects"
                                                                           state={{ create: true }}
                                                                         >
-                                                                            <img src="/images/icons/plus-white.svg"/>
+                                                                            <PlusIcon width={15}/>
                                                                         </a>
                                                                     </Button>
                                                                   )}
@@ -206,10 +214,7 @@ const Aside = class extends Component {
                                                                                       id="features-link"
                                                                                       to={`/project/${project.id}/environment/${environment.api_key}/features`}
                                                                                     >
-                                                                                        <img
-                                                                                          src="/images/icons/aside/features.svg"
-                                                                                          className="aside__environment-list-item--icon"
-                                                                                        />
+                                                                                        <FeaturesIcon className="aside__environment-list-item--icon"/>
                                                                                         Features
                                                                                     </NavLink>
                                                                                     <NavLink
@@ -218,8 +223,7 @@ const Aside = class extends Component {
                                                                                       exact
                                                                                       to={`/project/${project.id}/environment/${environment.api_key}/users`}
                                                                                     >
-                                                                                        <img
-                                                                                          src="/images/icons/aside/users.svg"
+                                                                                        <UsersIcon
                                                                                           className="aside__environment-list-item--icon"
                                                                                         />
                                                                                         Users
@@ -230,10 +234,7 @@ const Aside = class extends Component {
                                                                                       id="segments-link"
                                                                                       className="aside__environment-list-item"
                                                                                     >
-                                                                                      <img
-                                                                                        src="/images/icons/aside/segments.svg"
-                                                                                        className="aside__environment-list-item--icon"
-                                                                                      />
+                                                                                        <SegmentsIcon className="aside__environment-list-item--icon"/>
                                                                                       Segments
                                                                                     </NavLink>
                                                                                     {environmentAdmin && (
@@ -242,10 +243,7 @@ const Aside = class extends Component {
                                                                                           className="aside__environment-list-item"
                                                                                           to={`/project/${project.id}/environment/${environment.api_key}/settings`}
                                                                                         >
-                                                                                            <img
-                                                                                              src="/images/icons/aside/environment-settings.svg"
-                                                                                              className="aside__environment-list-item--icon"
-                                                                                            />
+                                                                                            <EnvironmentSettingsIcon className="aside__environment-list-item--icon"/>
                                                                                             Settings
                                                                                         </NavLink>
                                                                                     )}
@@ -308,27 +306,27 @@ const Aside = class extends Component {
                                                       )}
 
                                                       <a
-                                                          href="https://docs.bullet-train.io"
-                                                          target="_blank"
-                                                          className="aside__nav-item hidden-sm-up"
+                                                        href="https://docs.bullet-train.io"
+                                                        target="_blank"
+                                                        className="aside__nav-item hidden-sm-up"
                                                       >
-                                                          <img className="mr-2" src="/images/icons/aside/documentation-white.svg"/>
+                                                          <DocumentationIcon className="aside__nav-item--icon"/>
                                                           Documentation
                                                       </a>
 
                                                       <a
-                                                          href="https://product-hub.io/roadmap/5d81f2406180537538d99f28"
-                                                          target="_blank" className="aside__nav-item hidden-sm-up"
+                                                        href="https://product-hub.io/roadmap/5d81f2406180537538d99f28"
+                                                        target="_blank" className="aside__nav-item hidden-sm-up"
                                                       >
-                                                          <img width={15} className="mr-2" src="/images/icons/aside/features.svg"/>
+                                                          <ProductRoadmapIcon className="aside__nav-item--icon"/>
                                                           Product Roadmap
                                                       </a>
-                                                     <NavLink
-                                                          id="account-settings-link"
-                                                          className="aside__nav-item hidden-sm-up"
-                                                          to={`/project/${this.props.projectId}/environment/${this.props.environmentId}/account`}
+                                                      <NavLink
+                                                        id="account-settings-link"
+                                                        className="aside__nav-item hidden-sm-up"
+                                                        to={`/project/${this.props.projectId}/environment/${this.props.environmentId}/account`}
                                                       >
-                                                          <img width={15} className="mr-2" src="/images/icons/aside/user-white.svg"/>
+                                                          <UserSettingsIcon className="aside__nav-item--icon"/>
                                                           Account Settings
                                                       </NavLink>
 
@@ -338,11 +336,8 @@ const Aside = class extends Component {
                                                         activeClassName="active"
                                                         className="aside__nav-item"
                                                       >
-                                                          <img
-                                                            src="/images/icons/aside/logout.svg"
-                                                            className="aside__nav-item--icon"
-                                                          />
-                                                          Logout
+                                                          <LogoutIcon className="aside__nav-item--icon"/>
+                                                        Logout
                                                       </a>
                                                   </div>
                                               </div>

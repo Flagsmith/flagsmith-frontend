@@ -15,7 +15,7 @@
                     <polygon id="Line" fill="#C2D1D9" fill-rule="nonzero" points="23.3945312 28.9335938 24.3945312 28.9335938 24.3945312 381.191985 23.3945312 381.191985"></polygon>
                     <g id="#3" transform="translate(0.000000, 352.000000)">
                         <g id="#1">
-                            <circle id="Oval-3" stroke="#2BE3D6" stroke-width="2" fill="#22354A" cx="25" cy="25" r="24"></circle>
+                            <circle id="Oval-3" stroke="#6633ff" stroke-width="2" fill="#22354A" cx="25" cy="25" r="24"></circle>
                             <g id="Group">
                                 <mask id="mask-2" fill="white">
                                     <use xlink:href="#path-1"></use>
@@ -30,7 +30,7 @@
                     </g>
                     <g id="#2" transform="translate(0.000000, 176.000000)">
                         <g id="#1">
-                            <circle id="Oval-3" stroke="#2BE3D6" stroke-width="2" fill="#22354A" cx="25" cy="25" r="24"></circle>
+                            <circle id="Oval-3" stroke="#6633ff" stroke-width="2" fill="#22354A" cx="25" cy="25" r="24"></circle>
                             <g id="Group">
                                 <mask id="mask-4" fill="white">
                                     <use xlink:href="#path-3"></use>
@@ -45,7 +45,7 @@
                     </g>
                     <g id="#1"></g>
                     <g id="#1">
-                        <circle id="Oval-3" stroke="#2BE3D6" stroke-width="2" fill="#22354A" cx="25" cy="25" r="24"></circle>
+                        <circle id="Oval-3" stroke="#6633ff" stroke-width="2" fill="#22354A" cx="25" cy="25" r="24"></circle>
                         <g id="Group">
                             <mask id="mask-6" fill="white">
                                 <use xlink:href="#path-5"></use>

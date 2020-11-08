@@ -13,9 +13,6 @@ const AsideTitleLink = class extends PureComponent {
                     <div id={this.props.id} className="flex-row space aside__title-wrapper">
                         <span className="aside__link-text">{this.props.title}</span>
                         <span className={`aside__link-icon ${this.props.iconClassName || ''}`} />
-
-
-
                     </div>
                 }
                 place="top"

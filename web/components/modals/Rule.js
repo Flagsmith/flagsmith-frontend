@@ -31,7 +31,7 @@ export default class Rule extends PureComponent {
                                       <Input
                                         readOnly={this.props.readOnly}
                                         data-test={`${this.props['data-test']}-property-${i}`}
-                                        className="input-container--flat full-width"
+                                        className="input-container full-width"
                                         value={`${rule.property}`}
                                         placeholder={rule.operator && rule.operator === 'PERCENTAGE_SPLIT' ? 'Trait (N/A)' : 'Trait *'}
                                         onChange={e => this.setRuleProperty(i, 'property', { value: Utils.safeParseEventValue(e) })}

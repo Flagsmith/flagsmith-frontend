@@ -198,7 +198,7 @@ Click here to Sign
                             <div className={pageHasAside ? `aside-body${isMobile && !asideIsVisible ? '-full-width' : ''}` : ''}>
                                 {(!isHomepage && !pageHasAside || !asideIsVisible || !isMobile) && (
                                     <nav
-                                      className={`navbar navbar-fixed-top ${pageHasAside && asideIsVisible ? ' light-header' : ''}${isLegal ? ' dark-header ' : ''}${isDark ? ' dark-header ' : ''}${this.state.myClassName ? this.state.myClassName : ''}`}
+                                      className={`navbar`}
                                     >
                                         <Row space>
                                             <div className="navbar-left">
@@ -213,13 +213,13 @@ Click here to Sign
                                                             {isHomepage || isDark ? (
                                                                 <img
                                                                   title="Bullet Train" height={24}
-                                                                  src="/images/bullet-train-1.svg"
+                                                                  src="/images/nav-logo.svg"
                                                                   className="brand" alt="Bullet Train logo"
                                                                 />)
                                                                 : (
                                                                     <img
                                                                       title="Bullet Train" height={24}
-                                                                      src="/images/bullet-train-black.svg"
+                                                                      src="/images/nav-logo.svg"
                                                                       className="brand" alt="Bullet Train logo"
                                                                     />
                                                                 ) }
@@ -228,7 +228,7 @@ Click here to Sign
                                                     )}
                                                 </div>
                                             </div>
-                                            <div className="navbar-right">
+                                            <Row className="navbar-right">
                                                 {user ? (
                                                     <React.Fragment>
                                                         <nav className="my-2 my-md-0 hidden-xs-down">
@@ -258,7 +258,7 @@ Click here to Sign
                                                               href="https://product-hub.io/roadmap/5d81f2406180537538d99f28"
                                                               target="_blank" className="nav-link p-2"
                                                             >
-                                                                <img className="mr-2" src="/images/icons/aside/roadmap.svg"/>
+                                                                <img height={21} className="mr-2" src="/images/icons/aside/roadmap.svg"/>
                                                                 Roadmap
                                                             </a>
                                                             <NavLink
@@ -278,10 +278,12 @@ Click here to Sign
                                                               contentClassName="popover-bt"
                                                               renderTitle={toggle => (
                                                                   <a className="nav-link" id="org-menu" onClick={toggle}>
-                                                                      {organisation ? organisation.name : ''}
-                                                                      <div
-                                                                        className="flex-column ion ion-ios-arrow-down"
-                                                                      />
+                                                                      <span className="nav-link-featured relative">
+                                                                          {organisation ? organisation.name : ''}
+                                                                          <span
+                                                                            className="flex-column ion ion-ios-arrow-down"
+                                                                          />
+                                                                      </span>
                                                                   </a>
                                                               )}
                                                             >
@@ -331,7 +333,7 @@ Click here to Sign
                                                     <div />
                                                 )}
 
-                                            </div>
+                                            </Row>
                                         </Row>
                                     </nav>
                                 )}

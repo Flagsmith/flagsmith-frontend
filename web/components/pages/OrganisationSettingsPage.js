@@ -185,7 +185,7 @@ const OrganisationSettingsPage = class extends Component {
                                         <div className="plan plan--current flex-row m-t-2">
                                             <div className="plan__prefix">
                                                 <img
-                                                  src="/images/bullet-train-1-mark.png" className="plan__prefix__image"
+                                                  src="/images/nav-logo.svg" className="plan__prefix__image"
                                                   alt="BT"
                                                 />
                                             </div>

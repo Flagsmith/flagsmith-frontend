@@ -42,7 +42,7 @@ export default class RemoteConfigAnimation extends Component {
             easing: 'easeInOutCubic',
             duration: 4000,
             loop: true,
-            fill: '#2BE3D6',
+            fill: '#6633ff',
         });
     }
 
@@ -61,22 +61,22 @@ export default class RemoteConfigAnimation extends Component {
                           x1="100%" y1="50%" x2="0%"
                           y2="50%" id="linearGradient-3"
                         >
-                            <stop stopColor="#2CA69D" offset="0%" />
-                            <stop stopColor="#2BE3D6" offset="100%" />
+                            <stop stopColor="#6633ff" offset="0%" />
+                            <stop stopColor="#6633ff" offset="100%" />
                         </linearGradient>
                         <linearGradient
                           x1="100%" y1="50%" x2="0%"
                           y2="50%" id="linearGradient-4"
                         >
-                            <stop stopColor="#2CA69D" offset="0%" />
-                            <stop stopColor="#2BE3D6" offset="100%" />
+                            <stop stopColor="#6633ff" offset="0%" />
+                            <stop stopColor="#6633ff" offset="100%" />
                         </linearGradient>
                         <linearGradient
                           x1="100%" y1="50%" x2="0%"
                           y2="50%" id="linearGradient-5"
                         >
-                            <stop stopColor="#2CA69D" offset="0%" />
-                            <stop stopColor="#2BE3D6" offset="100%" />
+                            <stop stopColor="#6633ff" offset="0%" />
+                            <stop stopColor="#6633ff" offset="100%" />
                         </linearGradient>
                         <filter
                           x="-29.8%"
@@ -175,7 +175,7 @@ export default class RemoteConfigAnimation extends Component {
                                         />
                                         <ellipse
                                           id="Oval3"
-                                          fill="#2BE3D6"
+                                          fill="#6633ff"
                                           cx={13.6849315}
                                           cy={10.9533469}
                                           rx={5.4739726}
@@ -183,7 +183,7 @@ export default class RemoteConfigAnimation extends Component {
                                         />
                                         <ellipse
                                           id="Oval2"
-                                          fill="#2BE3D6"
+                                          fill="#6633ff"
                                           cx={30.1068493}
                                           cy={11.2576065}
                                           rx={5.4739726}
@@ -191,7 +191,7 @@ export default class RemoteConfigAnimation extends Component {
                                         />
                                         <ellipse
                                           id="Oval1"
-                                          fill="#2BE3D6"
+                                          fill="#6633ff"
                                           cx={46.5287671}
                                           cy={11.5618661}
                                           rx={5.4739726}

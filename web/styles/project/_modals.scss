@@ -6,12 +6,13 @@
         border: none;
     }
     .modal-header{
-        background: #2ba9a7;
-        color:#fff!important;
+        background: $modal-header-background;
+        color:$modal-header-color!important;
         h1,h2,h3,h4,h5 {
+            font-weight: 500;
             color:#fff!important;
         }
-        font-weight: bold;
+        font-weight: 500;
         font-family: $headings-font-family;
         border-radius: 4px 4px 0 0;
         font-size: 1.75rem;
@@ -20,31 +21,11 @@
         text-transform: capitalize;
         padding: 10px 15px;
     }
-
-    .modal-body{
-        .input-container{
-            input.input{
-                border:1px solid #2cd6ca;
-                &:read-only {
-                    border-color: #f1f1f1;
-                }
-                color:#2e2e2e;
-
-                &::placeholder{
-                    color:#2e2e2e;
-                    opacity:0.5;
-                }
-            }
-            &.invalid>input {
-                border-color: $alert-danger-border!important;
-            }
-        }
-    }
 }
 .modal-dialog {
     .close {
         cursor: pointer;
-        color: white;
+        color: $modal-header-color;
         position: relative;
         right: 0;
         font-size: 30px;
@@ -77,7 +58,6 @@ $side-width: 66%;
     .modal-header {
         border-radius: 0;
         text-align: left;
-        font-weight: bold;
     }
     .modal-dialog {
         box-shadow:rgba(75, 75, 75, 0.11) 0px 1px 6px 0px, rgba(75, 75, 75, 0.11) 0px 1px 4px 0px;
@@ -231,7 +211,7 @@ $side-width: 66%;
 }
 
 .modal-close-btn {
-    color: white;
+    color: $modal-header-color;
     position: absolute;
     right: 10px;
     background-color: transparent !important;

@@ -9,9 +9,9 @@
                 <g id="Group-6" transform="translate(0.000000, 33.000000)">
                     <g id="screen-bg">
                         <rect id="Rectangle" fill="#F7F7F7" fill-rule="nonzero" x="0" y="0" width="657" height="444"></rect>
-                        <ellipse id="Oval" fill="#2BE3D6" fill-rule="nonzero" cx="20.25" cy="16.2109533" rx="8.1" ry="8.10547667"></ellipse>
-                        <ellipse id="Oval" fill="#2BE3D6" fill-rule="nonzero" cx="44.55" cy="16.6612576" rx="8.1" ry="8.10547667"></ellipse>
-                        <ellipse id="Oval" fill="#2BE3D6" fill-rule="nonzero" cx="68.85" cy="17.1115619" rx="8.1" ry="8.10547667"></ellipse>
+                        <ellipse id="Oval" fill="#6633ff" fill-rule="nonzero" cx="20.25" cy="16.2109533" rx="8.1" ry="8.10547667"></ellipse>
+                        <ellipse id="Oval" fill="#6633ff" fill-rule="nonzero" cx="44.55" cy="16.6612576" rx="8.1" ry="8.10547667"></ellipse>
+                        <ellipse id="Oval" fill="#6633ff" fill-rule="nonzero" cx="68.85" cy="17.1115619" rx="8.1" ry="8.10547667"></ellipse>
                         <path d="M0,32.4750966 L657,32.4750966" id="Path" stroke="#22354A" stroke-width="1.8" opacity="0.496512277"></path>
                     </g>
                 </g>

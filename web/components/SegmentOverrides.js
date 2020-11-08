@@ -177,8 +177,8 @@ class TheComponent extends Component {
                               styles={{
                                   control: base => ({
                                       ...base,
-                                      '&:hover': { borderColor: '#2cd6ca' },
-                                      border: '1px solid #2cd6ca',
+                                      '&:hover': { borderColor: '$bt-brand-secondary' },
+                                      border: '1px solid $bt-brand-secondary',
                                   }),
                               }}
                             />

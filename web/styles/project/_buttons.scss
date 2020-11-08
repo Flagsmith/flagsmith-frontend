@@ -1,5 +1,6 @@
 @import "../variables";
-
+$google: #c53d23;
+$github: #eeefee;
 a, .btn, button{
     outline:none;
 
@@ -9,6 +10,12 @@ a, .btn, button{
 }
 
 .btn-primary {
+    &:hover {
+        background-color: $bt-brand-secondary-hover;
+    }
+    &:active {
+        background-color: $bt-brand-secondary-active;
+    }
     a {
         &:hover {
             text-decoration: none !important;
@@ -18,7 +25,7 @@ a, .btn, button{
 
 .btn, button.btn{
     outline: none !important;
-    background: $bt-dark-green-alt;
+    background: $bt-brand-secondary;
     transition: $button-transition;
     border-radius: $border-radius-default !important;
     color:#fff;
@@ -33,7 +40,7 @@ a, .btn, button{
     height:$input-height;
     //box-shadow:0 0 5px rgba(0,0,0,0.2);
     &:hover, &:disabled:hover {
-        background: #29aaa8;
+        background: $bt-brand-secondary-hover;
     }
     &:hover {
         box-shadow:0 0 10px rgba(0,0,0,0.5);
@@ -64,30 +71,12 @@ a, .btn, button{
         background: white;
         border: 2px solid $bt-brand-primary !important;
         color: $bt-brand-primary;
-        line-height: 42px;
+        line-height: 37px;
         &:hover {
             background-color: white;
         }
     }
 
-    &--project {
-        background: $bt-brand-grey;
-        color: white;
-        width: 38px;
-        height: 38px;
-        justify-content: center;
-        align-items: center;
-        display: flex;
-        padding: 0 16px;
-        line-height: inherit;
-        &:hover {
-            background-color: darken($bt-brand-grey, 10);
-        }
-        &.active {
-            background: $bt-dark-green-alt !important;
-            box-shadow: 0 6px 13px 0 rgba(43,227,214,0.10);
-        }
-    }
 
     &--transparent {
         background-color: transparent;
@@ -116,9 +105,10 @@ a, .btn, button{
     }
 
     &--link {
+        vertical-align: baseline;
         font-family: $font-family;
         background: transparent;
-        color: $bt-dark-green-alt;
+        color: $header-color;
         //text-decoration: underline;
         border: none;
         box-shadow: none;
@@ -127,9 +117,9 @@ a, .btn, button{
         font-size: 16px;
         text-transform: inherit;
         line-height: 0px;
-        font-weight: 600;
+        font-weight: bold;
         &:hover, &:focus  {
-            color: darken($bt-dark-green-alt, 10);
+            color: darken($bt-brand-primary, 10);
             background: transparent;
             text-decoration: underline;
             border: none;
@@ -162,7 +152,7 @@ a, .btn, button{
     }
     &--with-icon{
         background:none;
-        color:#2cd6ca;
+        color:$bt-brand-secondary;
         box-shadow: none;
         height:auto;
         line-height: 1;
@@ -170,7 +160,7 @@ a, .btn, button{
 
         &:hover, &:focus {
             background:none !important;
-            color:darken($bt-brand-primary, 10) !important;
+            color:darken($bt-brand-secondary, 10) !important;
             box-shadow: none !important;
         }
     }
@@ -289,6 +279,8 @@ $add-btn-size: 34px;
 }
 
 .btn-link {
+    vertical-align: auto;
+    font-weight: 500;
     box-shadow: none !important;
     line-height: 44px;
     padding-left: 10px;
@@ -296,7 +288,7 @@ $add-btn-size: 34px;
 }
 
 .btn-link:hover {
-    color: $btn-primary-bg;
+    color: $bt-brand-primary-dark;
     background-color: transparent !important;
     text-decoration: none;
 }
@@ -312,7 +304,7 @@ $add-btn-size: 34px;
 }
 
 .btn-link-secondary {
-    color: $link-color-secondary;
+    color: $bt-brand-primary;
 }
 
 #btn-add-invite {
@@ -334,7 +326,7 @@ $add-btn-size: 34px;
             margin-right: 12px;
         }
     }
-    
+
 }
 
 

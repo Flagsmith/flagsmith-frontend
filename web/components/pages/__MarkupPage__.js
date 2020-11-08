@@ -73,19 +73,7 @@ export default class ExampleOne extends Component {
 
                         <h4>Brand</h4>
                         <div className="color-block color-block--brand-primary"/>
-                        <div className="color-block color-block--brand-dark-green"/>
                         <div className="color-block color-block--brand-secondary"/>
-
-                        <h4>Gradients</h4>
-
-                        <div className="color-block color-block--brand-primary-gradient"/>
-
-                        <h4>Utility</h4>
-
-                        <div className="color-block color-block--brand-orange"/>
-                        <div className="color-block color-block--brand-purple"/>
-                        <div className="color-block color-block--brand-red"/>
-                        <div className="color-block color-block--brand-pink"/>
 
 
                     </section>
@@ -173,8 +161,8 @@ export default class ExampleOne extends Component {
                               styles={{
                                   control: (base, state) => ({
                                       ...base,
-                                      '&:hover': { borderColor: '#2cd6ca' }, // border style on hover
-                                      border: '1px solid #2cd6ca', // default border color
+                                      '&:hover': { borderColor: '$bt-brand-secondary' }, // border style on hover
+                                      border: '1px solid $bt-brand-secondary', // default border color
                                       boxShadow: 'none', // no box-shadow
                                   }),
                               }}

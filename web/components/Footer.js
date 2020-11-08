@@ -15,7 +15,7 @@ const Footer = class extends React.Component {
               <div className="container">
                   <div className="row footer__homepage-content pt-5">
                       <div className="col-md-4">
-                          <img src="/images/bullet-train-1.svg" width={166} alt="Bullet Train Logo"
+                          <img src="/images/nav-logo.svg" width={166} alt="Bullet Train Logo"
 className="img-responsive"/>
                           <div className="service-status">
                               <a href="https://status.bullet-train.io/">

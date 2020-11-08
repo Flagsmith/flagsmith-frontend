@@ -33,7 +33,7 @@
             <feColorMatrix values="0 0 0 0 0.133333333   0 0 0 0 0.207843137   0 0 0 0 0.290196078  0 0 0 1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
         </filter>
         <linearGradient x1="50%" y1="60.1840049%" x2="95.625558%" y2="60.1840049%" id="linearGradient-9">
-            <stop stop-color="#2CA69D" offset="0%"></stop>
+            <stop stop-color="#6633ff" offset="0%"></stop>
             <stop stop-color="#1F7E77" offset="100%"></stop>
         </linearGradient>
         <circle id="path-10" cx="138.45625" cy="22.50625" r="8"></circle>
@@ -86,7 +86,7 @@
                 <rect id="Rectangle" stroke="url(#linearGradient-9)" stroke-width="2" fill="#22354A" x="113" y="14" width="33" height="17" rx="8.5"></rect>
                 <g id="Oval">
                     <use fill="black" fill-opacity="1" filter="url(#filter-11)" xlink:href="#path-10"></use>
-                    <use stroke="#2BE3D6" stroke-width="2" fill="#22354A" fill-rule="evenodd" xlink:href="#path-10"></use>
+                    <use stroke="#6633ff" stroke-width="2" fill="#22354A" fill-rule="evenodd" xlink:href="#path-10"></use>
                 </g>
             </g>
         </g>

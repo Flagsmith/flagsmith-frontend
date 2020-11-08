@@ -24,11 +24,11 @@
 	}
 	&--active {
 		color: white;
-		background: $bt-dark-green-alt;
+		background: $bt-brand-primary;
 		font-weight: bold;
 		.chip-icon {
 			color: white;
-			background: darken($bt-dark-green-alt, 5);
+			background: darken($bt-brand-primary, 5);
 		}
 	}
 }

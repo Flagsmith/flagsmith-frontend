@@ -144,7 +144,7 @@ const Confirm = class extends React.Component {
                   </Column>
                   <Column>
                       <a
-                        hretf="#"
+                        href="#"
                         className="btn-link btn-link-secondary"
                         id="confirm-btn-yes"
                         onClick={this.onYes}

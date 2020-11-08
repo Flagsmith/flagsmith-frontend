@@ -84,7 +84,7 @@ Team Members
                                     <div className="panel-content">
                                         <p className="featured">Most Popular</p>
                                         <p className="pricing-price">Scale-Up</p>
-                                        <img src="/images/layers2.svg" alt="Scale-up icon" className="pricing-icon"/>
+                                        <img src="/images/pricing-scale-up.svg" alt="Scale-up icon" className="pricing-icon"/>
                                         <p className="pricing-type">$99</p>
                                         <p className="text-small text-center">billed monthly</p>
                                         <Link to={`/${redirect}#sign-up`} className="pricing-cta blue" onClick={Utils.scrollToSignUp}>Sign up</Link>

@@ -110,7 +110,7 @@ const HomePage = class extends React.Component {
             <AccountProvider onLogout={this.onLogout} onLogin={this.onLogin}>
                 {({ isLoading, isSaving, error }, { register }) => (
                     <div className="fullscreen-container fullscreen-container__grey justify-content-center">
-                        <div className="col-md-6 mt-5" id="sign-up">
+                        <div className="col-md-4 mt-5" id="sign-up">
                             {!isSignup ? (
                                 <Card>
                                     <AccountProvider>
@@ -201,7 +201,7 @@ const HomePage = class extends React.Component {
                                                             id="login-btn"
                                                             disabled={isLoading || isSaving}
                                                             type="submit"
-                                                            className="mt-3 full-width">Login</Button>
+                                                            className="mt-3 px-4">Login</Button>
 
                                                         <div>
                                                             <Link to={`/signup${redirect}`} className="float-left">
@@ -385,12 +385,12 @@ const HomePage = class extends React.Component {
                                                   name="password"
                                                   id="password"
                                                 />
-                                                <div className="form-cta">
+                                                <div classNam e="form-cta">
                                                     <Button
                                                       data-test="signup-btn"
                                                       name="signup-btn"
                                                       disabled={isLoading || isSaving}
-                                                      className="full-width mt-3"
+                                                      className="px-4 mt-3"
                                                       type="submit"
                                                     >
                                                         Sign Up

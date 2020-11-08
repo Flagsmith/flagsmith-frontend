@@ -1,76 +1,92 @@
-//MARGIN AND PADDING
-
-$font-family: "ProximaNova-Regular", sans-serif;
-$font-family-header: 'ProximaNova-Bold', sans-serif;
-$font-family-medium: 'ProximaNova-BoldIt', sans-serif;
+//Fonts
+$font-family: "OpenSans", sans-serif;
+$font-family-header: 'OpenSans', sans-serif;
 
 // COLORS
-$header-color: #1c2b3d;
-$bt-brand-primary: #2cd6ca;
-$bt-brand-secondary: #22354a;
-$bt-brand-secondary-light: #2D3F53;
-$bt-dark-green-alt:#1c9997;
-$bt-dark-green: #14635d;
-$bt-navy-light: #384f68;
-$bt-brand-orange: #fb9d43;
-$bt-brand-red: #ff9aaf;
-$bt-brand-purple: #a28af9;
-$bt-brand-grey: #949BA5;
-$google: #c53d23;
-$github: #eeefee;
-$body-text: #5a5e63;
-$body-text-faint: #989ca1;
-$bt-primary-gradient: linear-gradient(#2cd6ca, #48A69D);
 
-$brand-secondary: rgb(255,152,0);
-$alert-danger-bg: rgb(248, 105, 121);
-$alert-danger-border: rgb(248, 105, 121);
+$brand-primary: #6633ff;
+$bt-brand-primary-dark: #17103a;
+$bt-brand-primary-dark-desaturated: #17103a;
+$bt-brand-primary-dark-desaturated-light: #2d2451;
+
+$bt-brand-primary: #6633ff;
+$bt-brand-primary-light: lighten($bt-brand-primary,0.3);
+$bt-brand-primary-lighter: lighten($bt-brand-primary,0.7);
+$bt-brand-faint: #f3ecff;
+$bt-brand-faint-alt: #fcfaff;
+$bt-brand-faint-hover: #eee7f6;
+
+
+$bt-brand-secondary: #f27157;
+$bt-brand-secondary-light: #f6a999;
+$bt-brand-secondary-hover: #e3674d;
+$bt-brand-secondary-active: #e3674d;
+
+$brand-tertiary: #FBF4D5;
+
+$bt-brand-red: #f2576e;
+
+//Body
+$body-text: #525162;
+$link-color: $body-text;
+$body-text-faint: #716E86; // e.g. list sub titles
+$header-color: #242039; // for headers and labels
+
+//Navbar
+$nav-link-color: $header-color; // navbar link
+$nav-link-color-hover: $bt-brand-primary; //
+$nav-link-color-active: $bt-brand-primary;
+$navbar-height: 5rem;
+$navbar-background: transparent;
+
+// Input
+$bt-input-border: lighten($bt-brand-primary, 30);
+$bt-input-border-active: $bt-brand-primary;
+$bt-input-background: $bt-brand-faint-alt;
+
+
+
+
+$alert-danger-bg: $bt-brand-red;
+$alert-danger-border: $bt-brand-red;
 $alert-danger-text: rgb(255, 255, 255);
 
-$body-bg: #f9f9f9;
-$list-item-striped-background: #f3f6f6;
-$navbar-background: 'transparent';
+$body-bg: $bt-brand-faint-alt;
 
 
-// Card Styles
-
-$card-default: 0 6px 13px 0 rgba(34,53,74,0.10);
-
-
+$bt-gradient-text: $body-text;
+$bt-gradient-start: $bt-brand-faint-alt;
+$bt-gradient-end: #fff;
 
 
 //Nav
-$navbar-light-color:                 #333 !default;
-$navbar-light-hover-color: #000;
-$navbar-light-active-color:          #000;
-$navbar-light-disabled-color:        #333;
 
 // BORDER RADIUS
-$border-radius-default: 8px;
 $default-border-radius: 8px;
+$btn-border-radius: 8px;
 
 // INPUT
 $input-border-radius: 0px;
-$input-height: 44px;
+$input-height: 40px;
 $input-line-height: 25px;
 $input-font-size: inherit;
-$input-font-weight: 200;
+$input-font-weight: 400;
 $input-border-color: rgb(224, 224, 224);
 $input-placeholder-color: rgb(224, 224, 224);
-$input-border-highlight-color: rgb(0, 188, 212);
+$input-border-highlight-color: $bt-brand-primary-light;
 
 $pagination-color: #333;
 
+// Code help e.g. installing the SDK
+$btn-code-button-background-hover: $bt-brand-faint;
+$btn-code-button-background: $bt-brand-faint;
+$btn-code-button-color: $body-text;
+$btn-code-button-color-alt: $bt-brand-secondary;
+
+
 //BUTTONS
-$btn-border-radius: 8px;
-$btn-height: 41px;
+$btn-height: 44px;
 $btn-secondary-bg: rgb(240, 240, 240);
-$btn-primary-bg: #009de2;
-$btn-primary-color-hover: white;
-$btn-primary-bg-hover: #008fd0;
-$btn-primary-light-bg: #61d0de;
-$link-color: #fff;
-$link-color-secondary: rgb(90, 90 , 90);
 $btn-default-color: white;
 $hover-bg: rgb(240, 240, 240);
 $hover-color: inherits;
@@ -83,19 +99,22 @@ $panel-heading-color: #919aa6;
 $panel-heading-border: 1px solid #f1f1f1;
 
 //
-$panel-icon-color: #36a39c;
+$panel-icon-color: $bt-brand-primary;
 $panel-icon-border-color: #ddd;
 $panel-icon-background-color: #fff;
 
 
 //Panel Dark
-$panel-alt-heading-bg: #36a39c;
+$panel-alt-heading-bg: #fff;
 $panel-alt-heading-color: #fff;
 
 //TABS
-$tab-inactive-color: #5a5e63;
-$tab-active-color: #36a39c;
-$tab-line-color: #36a39c;
+$tab-inactive-color: $body-text;
+$tab-active-background: darken($bt-brand-faint-alt,5);
+$tab-line-color: $bt-brand-secondary;
+
+$tab-active-color: $header-color;
+$tab-inactive-background: $bt-brand-faint;
 
 //SCAFFOLDING
 $mobile-portrait: 320px;
@@ -109,29 +128,64 @@ $input-padding-y: 1rem !default;
 
 //MODALS
 $modal-backdrop-bg: rgba(0, 0, 0, 0.870588);
+$modal-header-background: $bt-brand-faint-alt;
+
+$modal-header-color: $header-color;
 $modal-header-border-width: 0;
-
+$border-radius-default: 8px;
 //TRANSITIONS
-$button-transition: all 400ms cubic-bezier(0.23, 1, 0.32, 1);
+$button-transition: background-color 400ms cubic-bezier(0.23, 1, 0.32, 1);
 //Hero
-$hero-bg:#22354a;
-$hero-bg-dark:darken(#22354a,5);
+$hero-bg:white;
 
-//Aside
-$aside-bg:#22354a;
-$aside-bg-alt: #2cd6ca;
-$aside-bg-brand:#22354a;
-$aside-bg-project: #14635d;
-$aside-brand-color:#fff;
-$aside-link-bg:#283d56;
-$aside-link-bg-hover:#384f68;
-$aside-link-bg-active:#384f68;
-$aside-link-color:#fff;
-$aside-link-active:#fff;
-$aside-width:330px;
-
-//Toast
 $toast-bg:rgba(0,0,0,.9);
 $toast-color:white;
 
-$bold: bold;
+$bold: 400;
+
+$card-default: 0 6px 13px 0 rgba(34,53,74,0.10);
+
+//Aside
+$aside-width:330px;
+
+
+$aside-link:$bt-brand-faint;
+$aside-link-color:$bt-brand-primary;
+$bt-switch-active:$bt-brand-primary-dark-desaturated-light;
+$aside-nav-collapse:darken($bt-brand-primary-dark-desaturated-light,5);
+$aside-link-alt:$brand-tertiary;
+$aside-link-color-active:#fff;
+
+
+
+$aside-box-shadow: none;
+
+
+
+// backgrounds
+$aside-bg:$bt-brand-primary-dark-desaturated-light;  // left aside menu
+$aside-left-bg:darken($bt-brand-primary-dark-desaturated-light,5); // main aside menu
+// project link
+$aside-project-link-color: $bt-brand-primary;
+$aside-project-link: $bt-brand-faint;
+// project link active
+$aside-project-link-active:$brand-tertiary;
+$aside-project-link-color-active:$body-text;
+
+// Environment link
+$aside-nav-color:#fff;
+$aside-nav-hover:#fff;
+
+// Active environment link
+$aside-nav-active:$brand-tertiary;
+$aside-nav-active-color:$body-text;
+
+
+
+$aside-project-link-active-box-shadow: none;
+$aside-nav-collapse-border:$brand-tertiary;
+
+// Aside scrollbar
+$bt-scrollbar-track: rgba(243,236,255,0.1);
+$bt-scrollbar-thumb: rgba(243, 236, 255, 0.2);
+$bt-scrollbar-thumb-hover: rgba(243,236,255,0.6);

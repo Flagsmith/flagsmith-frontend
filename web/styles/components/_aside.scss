@@ -47,11 +47,10 @@ $animation-timing-function: ease-in-out;
     top: 0;
     bottom: 0;
     height: 100%;
-    background: $aside-bg;
-    box-shadow: 0 6px 13px 0 rgba(34,53,74,.75);
+    box-shadow:  $aside-box-shadow;
     &__projects-sidebar {
         width: 100px;
-        background-color: #22354A;
+        background-color: $aside-left-bg;
         justify-content: center;
         overflow-y: auto;
         height: 100%;
@@ -68,7 +67,25 @@ $animation-timing-function: ease-in-out;
     &__projects-list-item {
 
     }
-
+    .btn--project {
+        width: 38px;
+        height: 38px;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        padding: 0 16px;
+        line-height: inherit;
+        &:hover {
+            color: white;
+        }
+        background:  $aside-project-link !important;
+        color: $aside-project-link-color !important;
+        &.active {
+            color: $aside-project-link-color-active !important;
+            background: $aside-project-link-active !important;
+            box-shadow: $aside-project-link-active-box-shadow;
+        }
+    }
     &__projects-item {
         flex-direction: column;
         justify-content: center;
@@ -103,12 +120,12 @@ $animation-timing-function: ease-in-out;
     }
 
     &__main-content {
-        background-color: $bt-brand-secondary-light;
+        background-color: $aside-bg;
         width: 250px;
     }
 
     &__logo {
-        width: 50px;
+        width: 44px;
         display: flex;
         align-self: self-start;
         margin-bottom: 1em;
@@ -116,24 +133,23 @@ $animation-timing-function: ease-in-out;
     }
 
     &__nav-item {
-        color: white;
+        color: $aside-nav-color;
         padding: .5em .35em .5em 1.5em;
         cursor: pointer;
         display: flex;
         align-items: center;
-        &.active {
-            color: $bt-brand-primary;
+        &.active, &.active:hover {
+            background-color: $aside-nav-active;
+            color: $aside-nav-active-color;
             text-decoration: none;
-            background-color: $bt-brand-secondary;
-            box-shadow: inset 4px 0 0 $bt-brand-primary;
             .aside__nav-item--icon {
                 path {
-                    fill: $bt-brand-primary !important;
+                    fill: $aside-nav-active-color !important;
                 }
             }
         }
+
         &:hover {
-            background-color: $bt-brand-secondary;
             text-decoration: none;
         }
         &--icon {
@@ -150,21 +166,18 @@ $animation-timing-function: ease-in-out;
             }
         }
     }
-    &__header-link {
+    .aside__header-link {
         display: block;
         text-decoration: none;
-        &.active {
+        &.active, &.active:hover {
             .aside__title-wrapper {
-                background-color: $bt-brand-secondary;
-                box-shadow: inset 4px 0 0 $bt-brand-primary;
+                background-color: $aside-nav-active;
+                color: $aside-nav-active-color;
+                path {
+                    fill: $aside-nav-active-color;
+                }
                 text-decoration: none !important;
             }
-        }
-        &:hover {
-            .aside__link-text, .aside__link-icon {
-                color: darken($bt-brand-primary, 10);
-            }
-            text-decoration: none !important;
         }
         &:focus {
             text-decoration: none !important;
@@ -172,14 +185,15 @@ $animation-timing-function: ease-in-out;
     }
 
     &__link-text {
-        color: $bt-brand-primary;
+        color: $aside-link-alt;
         font-family: $font-family-header;
+        font-weight: 500;
         font-size: 14px;
         padding-left: 2em;
     }
 
     &__link-icon {
-        color: $bt-brand-primary;
+        color: $aside-link-alt;
         padding-right: 1em;
         &--white {
             color: white;
@@ -189,6 +203,11 @@ $animation-timing-function: ease-in-out;
     &__project-title {
         color: white;
         font-size: 24px;
+    }
+
+    .collapsible.active {
+        background-color: $aside-nav-collapse;
+        box-shadow: inset 4px 0 0 $aside-nav-collapse-border;
     }
 
     &__nav-item-icon {
@@ -210,14 +229,19 @@ $animation-timing-function: ease-in-out;
         padding: .5em .35em .5em .85em;
         opacity: 0.5;
         cursor: pointer;
-        &.active {
+        &.active, &.active:hover {
             border-top-left-radius: 8px;
             border-bottom-left-radius: 8px;
-            background-color: $bt-dark-green-alt;
+            background-color: $aside-nav-active;
+            color: $aside-nav-active-color;
+            path {
+                fill: $aside-nav-active-color;
+            }
             opacity: 1;
         }
 
         &:hover {
+            color: $aside-nav-hover;
             opacity: 1;
             text-decoration: none;
         }
@@ -232,7 +256,7 @@ $animation-timing-function: ease-in-out;
     }
 
     &__footer {
-        background-color: $bt-brand-secondary-light;
+        background-color: $aside-bg;
         position: absolute;
         bottom: 0;
 		padding-bottom: 1em;

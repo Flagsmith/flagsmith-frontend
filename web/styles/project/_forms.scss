@@ -25,17 +25,22 @@
         border-bottom: 1px solid #ccc;
     }
 }
+
 .input-container{
     height:$input-height;
 
     input.input{
-        border:1px solid $input-border-color;
-        &:read-only {
-            border-color: #f1f1f1;
+        border:1px solid $bt-input-border!important;
+        background-color: $bt-input-background !important;
+        @include transition(all 200ms);
+        &:focus {
+            border:1px solid $bt-input-border-active!important;
         }
         border-radius: $border-radius-default;
+        color:$body-text;
         text-indent: 15px;
-        height:$input-height;
+        height:100%;
+
         &--wide{
             min-width:300px;
         }
@@ -52,7 +57,8 @@
 }
 
 label {
-    font-weight: 600;
+    color: $header-color;
+    font-weight: 500;
 }
 
 .hljs, .hljs-header {
@@ -71,11 +77,11 @@ label {
     justify-content: center;
     align-self: center;
     &__icon {
-        color: $bt-brand-orange;
+        color: $bt-brand-secondary;
         font-size: 2em;
     }
     &__text {
-        color: $bt-brand-orange;
+        color: $bt-brand-secondary;
         font-weight: bold;
     }
 }

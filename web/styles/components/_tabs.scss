@@ -3,7 +3,7 @@
 .tabs-nav {
 	display: flex;
 	flex-direction: row;
-	background-color: #f1f1f1;
+	background-color: $bt-brand-faint-alt;
 	border-top-left-radius: $border-radius-default;
 	border-top-right-radius: $border-radius-default;
 	.tab-text {
@@ -19,8 +19,7 @@
 			border-top-right-radius: $border-radius-default !important;
 		}
 		flex:1;
-		background-color: transparent;
-		background: transparent;
+		background-color: $tab-inactive-background;
 		color: #000;
 		&:hover {
 			background: #eaeaea;
@@ -32,7 +31,8 @@
 		}
 		min-height: 34px;
 		&.tab-active {
-			background: #36a39c;
+			background: $tab-active-background;
+			color: $tab-active-color;
 		}
 	}
 }

@@ -1,5 +1,5 @@
 .app-container {
-    margin-top: 5em;
+    margin-top: 1em;
     margin-bottom: 70px;
     padding-left: 2em;
     -webkit-transition: all 0.3s ease;
@@ -13,6 +13,6 @@
     display: flex;
     justify-content: center;
     &__grey {
-        background-color: #f1f1f1;
+        background-color: $bt-brand-faint-alt;
     }
 }

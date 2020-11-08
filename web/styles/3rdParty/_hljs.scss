@@ -33,7 +33,7 @@
   display: block;
   overflow-x: auto;
   padding: 0.5em;
-  background: #23364a;
+  background: $bt-brand-primary-dark-desaturated-light;
   border-radius: 15px;
   margin-bottom: 32px;
   &.no-pad {
@@ -63,18 +63,18 @@
 }
 
 :hover > .hljs-header {
-  background-color: #223b4e;
+  background-color: $btn-code-button-background-hover;
 }
 
 .hljs-header {
   font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  background-color: #23364a;
+  background-color: $btn-code-button-background;
   @include transition(all .2s ease-in-out);
-  color: #f1f1f1;
+  color: $btn-code-button-color;
   display: inline-block;
   height: 34px;
   line-height: 34px;
-  font-weight: 200;
+  font-weight: bold;
   font-size: .8em;
   padding-left: 10px;
   padding-right: 10px;
@@ -82,7 +82,7 @@
   margin-right: 5px;
   margin-bottom: $input-padding-y/2;
   .hljs-description {
-    color: #ee863b;
+    color: $btn-code-button-color-alt;
   }
 
 }

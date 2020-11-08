@@ -4,14 +4,16 @@
 	padding-right: $input-padding-x;
 	padding-top: 10px;
 	padding-bottom: 10px;
-	transition: all .2s ease-in;
-
 	&:hover {
 		text-decoration: none;
 	}
-	a:hover {
-		text-decoration: none !important;
-	}
+	transition: all .2s ease-in;
+		.btn--link {
+			color: $body-text;
+
+		}
+
+
 
 	.subtitle {
 		font-size: 0.8em;
@@ -19,6 +21,10 @@
 	&.clickable:hover {
 		background: $card-default;
 		box-shadow: $card-default;
+		.btn--link {
+			color: $bt-brand-primary;
+			text-decoration: none !important;
+		}
 	}
 }
 

@@ -122,7 +122,7 @@ const UsersPage = class extends Component {
                                                   goToPage={page => AppActions.getIdentitiesPage(environmentId, `${Project.api}environments/${environmentId}/identities/?page=${page}`)}
                                                   renderRow={({ id, identifier }, index) => permission ? (
                                                       <Row
-                                                        space className="list-item" key={id}
+                                                        space className="list-item clickable" key={id}
                                                         data-test={`user-item-${index}`}
                                                       >
                                                           <Flex>

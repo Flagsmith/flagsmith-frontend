@@ -13,19 +13,19 @@
     transform: scaleY(0);
     opacity: 0;
     min-width: 200px;
-    
+
     &.in {
         @include box-shadow();
         transform: scaleY(1);
         height: auto;
         opacity: 1;
     }
-    
+
     &-bt {
         border-top: 8px solid white;
         border-radius: $border-radius-default;
         overflow: visible;
-        
+
         &:before {
             content: "";
             position: absolute;
@@ -37,21 +37,22 @@
             border-right: 15px solid transparent;
             border-bottom: 16px solid white;
         }
-        
+
         &.aside-select {
             padding-bottom: 0;
         }
-        
+
         &__title {
             display: flex;
             justify-content: center;
             padding: .75em;
             font-family: $font-family-header;
             text-align: center;
-            color: $bt-brand-secondary;
+            font-weight: 500;
+            color: $header-color;
             border-bottom: 1px solid $input-border-color;
         }
-        
+
         &__list-item {
             text-align: center;
             width: 100%;
@@ -59,11 +60,12 @@
             justify-content: center;
             padding: .75em;
             font-family: $font-family;
-            color: #22354A !important;
+            color: $body-text;
             border-bottom: 1px solid $input-border-color;
-            
+
             &:hover {
-                background-color: $list-item-striped-background;
+                color: $bt-brand-primary;
+                background-color: $bt-brand-faint-alt;
                 text-decoration: none;
             }
         }
@@ -72,7 +74,11 @@
 
 .popover-right .popover-inner {
     left: auto;
-    right: 40px;
+    right: 266px;
+    top: 60px;
+    .popover {
+        width: 250px;
+    }
 }
 
 .popover-inner {
@@ -95,12 +101,11 @@
 
         &:hover{
             color:#fff;
-            background:darken(#2cd6ca,5);
+            background:darken($bt-brand-secondary,5);
         }
     }
 }
 
 .popover a {
-    color: #000;
-    font-weight: 100;
+    font-weight: 400;
 }

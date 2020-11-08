@@ -137,8 +137,8 @@ $switch-width: 60px;
   outline: none;
 }
 .rc-switch-checked {
-  border: 1px solid #36475b;
-  background-color: #465d71;
+  border: 1px solid $bt-switch-active;
+  background-color: $bt-switch-active;
 }
 .rc-switch-checked .rc-switch-inner {
   left: 6px;
