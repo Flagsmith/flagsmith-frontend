@@ -1,6 +1,7 @@
 .navbar {
     padding: 0.5rem;
-
+    padding-left: 2em;
+    padding-right: 2em;
     background-color: $navbar-background;
     //background: linear-gradient(to right, $bt-brand-secondary-light, #1d2d3e);
     &.homepage {
@@ -9,6 +10,14 @@
         right:0;
     }
     z-index: 10;
+    svg {
+        height: 18px;
+        max-width: 21px;
+        margin-right: 5px;
+        path {
+            fill: $bt-brand-primary;
+        }
+    }
 }
 
 @media screen and (min-width: 768px) and (max-width: 991px) {

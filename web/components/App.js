@@ -10,6 +10,10 @@ import TwoFactorPrompt from './SimpleTwoFactor/prompt';
 import Maintenance from './Maintenance';
 import Blocked from './Blocked';
 import AppLoader from './AppLoader';
+import UserSettingsIcon from './svg/UserSettingsIcon';
+import ProductRoadmapIcon from './svg/ProductRoadmapIcon';
+import DocumentationIcon from './svg/DocumentationIcon';
+import ArrowUpIcon from './svg/ArrowUpIcon';
 
 const App = class extends Component {
     static propTypes = {
@@ -229,7 +233,7 @@ Click here to Sign
                                                                   />, null, { large: true });
                                                               }}
                                                             >
-                                                                <img className="mr-2" src="/images/icons/arrow-up.svg"/>
+                                                                <ArrowUpIcon/>
                                                                 Upgrade
                                                             </a>
                                                             )}
@@ -237,14 +241,14 @@ Click here to Sign
                                                               href="https://docs.bullet-train.io"
                                                               target="_blank" className="nav-link p-2"
                                                             >
-                                                                <img className="mr-2" src="/images/icons/aside/documentation.svg"/>
+                                                                <DocumentationIcon/>
                                                                 Docs
                                                             </a>
                                                             <a
                                                               href="https://product-hub.io/roadmap/5d81f2406180537538d99f28"
                                                               target="_blank" className="nav-link p-2"
                                                             >
-                                                                <img height={21} className="mr-2" src="/images/icons/aside/roadmap.svg"/>
+                                                                <ProductRoadmapIcon/>
                                                                 Roadmap
                                                             </a>
                                                             <NavLink
@@ -253,7 +257,7 @@ Click here to Sign
                                                               className="nav-link p-2"
                                                               to={projectId ? `/project/${projectId}/environment/${environmentId}/account` : '/account'}
                                                             >
-                                                                <img className="mr-2" src="/images/icons/aside/user.svg"/>
+                                                                <UserSettingsIcon/>
                                                                 Account
                                                             </NavLink>
                                                         </nav>
