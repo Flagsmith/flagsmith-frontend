@@ -83,7 +83,6 @@ $btn-code-button-background: $bt-brand-faint;
 $btn-code-button-color: $body-text;
 $btn-code-button-color-alt: $bt-brand-secondary;
 
-$bt-code-background: #2b273c;
 
 //BUTTONS
 $btn-height: 44px;
@@ -146,26 +145,31 @@ $bold: 400;
 
 $card-default: 0 6px 13px 0 rgba(34,53,74,0.10);
 
+$bt-code-background: #2b273c;
+
+$bt-switch-active:$bt-code-background;
+
+
 //Aside
 $aside-width:330px;
+$aside-base: $bt-brand-primary-dark-desaturated-light;
+
+// ShadowsZ
+$aside-box-shadow: 0 6px 13px 0 rgba(45,36,81,.75); // Box shadow right menu
+$aside-project-link-active-box-shadow: none;
 
 
+// Project select
 $aside-link:$bt-brand-faint;
 $aside-link-color:$bt-brand-primary;
-$bt-switch-active:$bt-brand-primary-dark-desaturated-light;
-$aside-nav-collapse:darken($bt-brand-primary-dark-desaturated-light,5);
 $aside-link-alt:$brand-tertiary;
 $aside-link-color-active:#fff;
 
+// Backgrounds
+$aside-bg:$aside-base;  // left aside menu
+$aside-left-bg:darken($aside-base,5); // main aside menu
+$aside-nav-collapse:darken($aside-base,5); // selected environment background
 
-
-$aside-box-shadow: none;
-
-
-
-// backgrounds
-$aside-bg:$bt-brand-primary-dark-desaturated-light;  // left aside menu
-$aside-left-bg:darken($bt-brand-primary-dark-desaturated-light,5); // main aside menu
 // project link
 $aside-project-link-color: $bt-brand-primary;
 $aside-project-link: $bt-brand-faint;
@@ -183,7 +187,6 @@ $aside-nav-active-color:$body-text;
 
 
 
-$aside-project-link-active-box-shadow: none;
 $aside-nav-collapse-border:$brand-tertiary;
 
 // Aside scrollbar
