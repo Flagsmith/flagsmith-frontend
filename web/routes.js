@@ -23,7 +23,6 @@ import InvitePage from './components/pages/InvitePage';
 import NotFoundPage from './components/pages/NotFoundPage';
 import PricingPage from './components/pages/PricingPage';
 import TermsPoliciesPage from './components/pages/TermsPoliciesPage';
-import OpenSourcePage from './components/pages/OpenSourcePage';
 import AuditLogPage from './components/pages/AuditLogPage';
 
 export default (
@@ -40,7 +39,6 @@ export default (
             <Route path="/pricing" exact component={PricingPage}/>
             <Route path="/legal/:section" exact component={TermsPoliciesPage}/>
             <Route path="/legal" exact component={TermsPoliciesPage}/>
-            <Route path="/open-source" exact component={OpenSourcePage}/>
             <Route path="/projects" exact component={ProjectSelectPage}/>
             <Route path="/maintenance" exact component={Maintenance}/>
             <Route path="/password-reset/confirm/:uid/:token/" exact component={PasswordResetPage}/>

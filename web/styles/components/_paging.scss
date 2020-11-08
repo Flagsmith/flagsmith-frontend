@@ -13,7 +13,7 @@
 		&:hover {
 			color: $body-text;
 			box-shadow: none;
-			background: transparent;
+			background: transparent !important;
 		}
 	}
 	justify-content: center;
@@ -22,12 +22,12 @@
 		border-radius:34px;
 		margin-left: 10px;
 		margin-right: 10px;
+		font-weight: 500;
 		&:hover {
-			color: #2f9991;
+			color: $bt-brand-primary;
 		}
 		&.active {
-			color: #2f9991;
-			font-weight: bold;
+			color: $bt-brand-primary;
 		}
 	}
 }

@@ -15,7 +15,7 @@ const Footer = class extends React.Component {
               <div className="container">
                   <div className="row footer__homepage-content pt-5">
                       <div className="col-md-4">
-                          <img src="/images/nav-logo.svg" width={166} alt="Bullet Train Logo"
+                          <img src="/images/nav-logo.svg" width={166} alt="Flagsmith Logo"
 className="img-responsive"/>
                           <div className="service-status">
                               <a href="https://status.bullet-train.io/">
@@ -23,13 +23,13 @@ className="img-responsive"/>
                                       ? (
                                           <div>
                                               <span className="dot green" />
-                                              Bullet Train services are operational
+                                              Flagsmith services are operational
                                           </div>
                                       )
                                       : (
                                           <div>
                                               <span className="dot orange" />
-                                              Bullet Train services are experiencing problems. Click
+                                              Flagsmith services are experiencing problems. Click
                                               {' '}
                                               <a href="https://cachet.dokku1.solidstategroup.com/">here</a>
                                               {' '}

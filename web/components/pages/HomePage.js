@@ -1,12 +1,7 @@
 import React from 'react';
 import ForgotPasswordModal from '../ForgotPasswordModal';
-import Hero from '../Hero';
-import Footer from '../Footer';
-import Popover from '../base/Popover';
-import PricingPanel from '../PricingPanel';
 import Card from '../Card';
-import { ButtonWhite, ButtonLink } from '../base/forms/Button';
-import CreateFlagModal from '../modals/CreateFlag';
+import { ButtonLink } from '../base/forms/Button';
 import { Google } from '../../project/auth';
 
 const HomePage = class extends React.Component {

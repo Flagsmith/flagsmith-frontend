@@ -212,15 +212,15 @@ Click here to Sign
                                                         <a href={user ? '/projects' : 'https://bullet-train.io'}>
                                                             {isHomepage || isDark ? (
                                                                 <img
-                                                                  title="Bullet Train" height={24}
+                                                                  title="Flagsmith" height={24}
                                                                   src="/images/nav-logo.svg"
-                                                                  className="brand" alt="Bullet Train logo"
+                                                                  className="brand" alt="Flagsmith logo"
                                                                 />)
                                                                 : (
                                                                     <img
-                                                                      title="Bullet Train" height={24}
+                                                                      title="Flagsmith" height={24}
                                                                       src="/images/nav-logo.svg"
-                                                                      className="brand" alt="Bullet Train logo"
+                                                                      className="brand" alt="Flagsmith logo"
                                                                     />
                                                                 ) }
                                                         </a>

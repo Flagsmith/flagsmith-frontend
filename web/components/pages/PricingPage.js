@@ -37,7 +37,7 @@ const PricingPage = class extends React.Component {
                         <div className="panel panel-default panel-grey">
                             <p className="question">So how does this all work?</p>
                             <p className="answer">
-                                First off, you're free to host Bullet Train yourself, free of charge. We're open source,
+                                First off, you're free to host Flagsmith yourself, free of charge. We're open source,
                                 and totally fine with you doing that.
                             </p>
                             <p className="answer">

@@ -1,7 +1,7 @@
 import { PureComponent } from 'react';
 import { hot } from 'react-hot-loader';
 import Select from 'react-select';
-import Button, { ButtonSecondary, ButtonWhite, ButtonLink, ButtonOutline, ButtonProject } from '../components/base/forms/Button';
+import Button, { ButtonLink, ButtonOutline, ButtonProject } from '../components/base/forms/Button';
 import RemoveIcon from '../components/RemoveIcon';
 import Paging from '../components/Paging';
 import ToggleChip from '../components/ToggleChip';
@@ -40,9 +40,7 @@ window.Column = require('../components/base/grid/Column');
 window.Input = require('../components/base/forms/Input');
 
 window.Button = Button;
-window.ButtonSecondary = ButtonSecondary;
 window.ButtonOutline = ButtonOutline;
-window.ButtonWhite = ButtonWhite;
 window.ButtonLink = ButtonLink;
 window.ButtonProject = ButtonProject;
 window.Panel = require('../components/base/grid/Panel');

@@ -1,12 +1,14 @@
-[<img alt="Feature Flag, Remote Config and A/B Testing platform, Bullet Train" width="100%" src="./hero.png"/>](https://bullet-train.io/)
+[<img alt="Feature Flag, Remote Config and A/B Testing platform, Flagsmith" width="100%" src="./hero.png"/>](https://bullet-train.io/)
 
 [![Donate](https://liberapay.com/assets/widgets/donate.svg)](https://liberapay.com/Bullet-Train/donate)
 
-# Bullet Train Frontend
+Bullet Train is now Flagsmith read about it [here](https://www.bullet-train.io/blog/rebrand). 
 
-The frontend application for [https://bullet-train.io/](https://www.bullet-train.io/). Bullet Train allows you to manage feature flags and remote config across multiple projects, environments and organisations.
+# Flagsmith Frontend
 
-This project connects to the [Bullet Train API](https://github.com/BulletTrainHQ/Bullet-Train-API).
+The frontend application for [https://bullet-train.io/](https://www.bullet-train.io/). Flagsmith allows you to manage feature flags and remote config across multiple projects, environments and organisations.
+
+This project connects to the [Flagsmith API](https://github.com/BulletTrainHQ/Bullet-Train-API).
 
 ## Getting Started
 
@@ -57,7 +59,7 @@ You can override each variable individually or add more by editing [environment.
 Current variables used between [environment.js](./environment.js) and [common/project.js](./common/project.js):
 
 - API_URL: The API to hit for requests 
-- BULLET_TRAIN: The bullet train project we use to manage features
+- BULLET_TRAIN: The flagsmith project we use to manage features
 - GA: Google analytics key
 - CRISP_CHAT: Chat widget key
 - MIXPANEL: Mixpanel analytics key
@@ -90,9 +92,9 @@ If you encounter a bug or feature request we would like to hear about it. Before
 
 If you have any questions about our projects you can email <a href="mailto:projects@solidstategroup.com">projects@solidstategroup.com</a>.
 
-## Running locally against your own Bullet Train API instance
+## Running locally against your own Flagsmith API instance
 
-We use Bullet Train to manage features we rollout, if you are using your own bullet train environment (i.e. by editing project_x.js-> bulletTrain) then you will need to have a replica of our flags.
+We use Bullet Train to manage features we rollout, if you are using your own flagsmith environment (i.e. by editing project_x.js-> bulletTrain) then you will need to have a replica of our flags.
 
 A list of the flags and remote config we're currently using in production can be found here https://gist.github.com/kyle-ssg/55f3b869c28bdd13c02c6688bc76c67f.
 

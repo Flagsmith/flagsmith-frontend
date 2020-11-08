@@ -193,7 +193,7 @@ export default class EditPermissions extends PureComponent {
                 Manage Permissions
               </h3>
               <p>
-                  Bullet Train lets you manage fine-grained permissions for your projects and environments.
+                  Flagsmith lets you manage fine-grained permissions for your projects and environments.
                   {' '}
                   <ButtonLink href="https://docs.bullet-train.io/permissions/">Learn about User Roles.</ButtonLink>
               </p>

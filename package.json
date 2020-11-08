@@ -1,7 +1,7 @@
 {
-  "name": "bullet-train-frontend",
+  "name": "flagsmith-frontend",
   "version": "2.2.3",
-  "description": "The frontend application for Bullet Train",
+  "description": "The frontend application for Flagsmith",
   "main": "index.js",
   "scripts": {
     "kill": "kill -9 $(lsof -ti tcp:4444)",

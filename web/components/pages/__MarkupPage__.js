@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router';
-import { ButtonSecondary, ButtonWhite, ButtonLink } from '../base/forms/Button';
+import { ButtonLink } from '../base/forms/Button';
 import Tabs from '../base/forms/Tabs';
 import TabItem from '../base/forms/TabItem';
 import PricingPanel from '../PricingPanel';
@@ -82,10 +81,6 @@ export default class ExampleOne extends Component {
                         <h2>Buttons</h2>
                         <FormGroup>
                             <Button className="mr-3">Primary</Button>
-
-                            <ButtonSecondary className="mr-3">Secondary</ButtonSecondary>
-
-                            <ButtonWhite className="mr-3">White</ButtonWhite>
 
                             <ButtonOutline className="mr-3">Outline</ButtonOutline>
 
