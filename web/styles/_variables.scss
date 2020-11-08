@@ -149,15 +149,20 @@ $bold: 400;
 $card-default: 0 6px 13px 0 rgba(34,53,74,0.10);
 
 
+$aside-base-background: $bt-brand-primary-dark-desaturated-light; //backgrounds
 
+
+
+
+
+
+$aside-logo: $bt-brand-primary;
 //Aside
 $aside-width:330px;
-$aside-base: $bt-brand-primary-dark-desaturated-light;
 
-// ShadowsZ
+// Shadows
 $aside-box-shadow: 0 6px 13px 0 rgba(45,36,81,.75); // Box shadow right menu
 $aside-project-link-active-box-shadow: none;
-
 
 // Project select
 $aside-link:$bt-brand-faint;
@@ -166,9 +171,9 @@ $aside-link-alt:$brand-tertiary;
 $aside-link-color-active:#fff;
 
 // Backgrounds
-$aside-bg:$aside-base;  // left aside menu
-$aside-left-bg:darken($aside-base,5); // main aside menu
-$aside-nav-collapse:darken($aside-base,5); // selected environment background
+$aside-bg:$aside-base-background;  // left aside menu
+$aside-left-bg:darken($aside-base-background,5); // main aside menu
+$aside-nav-collapse:darken($aside-base-background,5); // selected environment background
 
 // project link
 $aside-project-link-color: $bt-brand-primary;

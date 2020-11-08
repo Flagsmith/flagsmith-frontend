@@ -57,16 +57,10 @@ $animation-timing-function: ease-in-out;
         @include customScroll;
     }
 
-    &__projects-list {
-
-    }
     &__projects-list-container {
         display: flex;
     }
 
-    &__projects-list-item {
-
-    }
     .btn--project {
         width: 38px;
         height: 38px;
@@ -151,6 +145,10 @@ $animation-timing-function: ease-in-out;
 
         &:hover {
             text-decoration: none;
+            color: $aside-nav-hover;
+            path {
+                color: $aside-nav-hover;
+            }
         }
         &--icon {
             width: 15px;
@@ -201,7 +199,7 @@ $animation-timing-function: ease-in-out;
     }
 
     &__project-title {
-        color: white;
+        color: $aside-nav-color;
         font-size: 24px;
     }
 
@@ -286,6 +284,11 @@ $animation-timing-function: ease-in-out;
         }
     }
 
+    &__logo {
+        path {
+         fill: $aside-logo;
+        }
+    }
 }
 
 @include media-breakpoint-down(xs) {
