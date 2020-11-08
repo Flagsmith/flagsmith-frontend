@@ -56,6 +56,14 @@
     }
 }
 
+.panel-card {
+    box-shadow: none;
+    border: 1px solid darken($bt-brand-faint-alt, 2);
+    .panel-content {
+        background-color: $bt-brand-faint-alt;
+    }
+}
+
 .card-link-wrapper {
     display: flex;
     justify-content: center;

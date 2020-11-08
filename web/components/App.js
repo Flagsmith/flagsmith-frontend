@@ -140,12 +140,7 @@ const App = class extends Component {
         const projectId = _.get(match, 'params.projectId') || _.get(match2, 'params.projectId');
         const environmentId = _.get(match, 'params.environmentId');
         const pageHasAside = environmentId || projectId;
-        const isHomepage = pathname == '/' || pathname == '/login';
-        const isLegal = pathname == '/legal/tos' || pathname == '/legal/sla' || pathname == '/legal/privacy-policy';
-        const isDark = /* pathname.indexOf('/blog') !== -1 */ true;
-
-        const redirect = Utils.fromParam().redirect ? `?redirect=${Utils.fromParam().redirect}` : '';
-
+        const isHomepage = pathname == '/' || pathname == '/login' || pathname == '/signup' || pathname.includes('/invite');
         if (AccountStore.getOrganisation() && (AccountStore.getOrganisation().block_access_to_admin)) {
             return <Blocked/>;
         }
@@ -196,7 +191,7 @@ Click here to Sign
                             </AlertBar>
                             )}
                             <div className={pageHasAside ? `aside-body${isMobile && !asideIsVisible ? '-full-width' : ''}` : ''}>
-                                {(!isHomepage && !pageHasAside || !asideIsVisible || !isMobile) && (
+                                {!isHomepage && (!pageHasAside || !asideIsVisible || !isMobile) && (
                                     <nav
                                       className={`navbar`}
                                     >
@@ -208,23 +203,14 @@ Click here to Sign
                                                         <span className="icon ion-md-menu"/>
                                                     </div>
                                                     )}
-                                                    {!projectId && (isLegal ? null : (
+                                                    {!projectId &&  (
                                                         <a href={user ? '/projects' : 'https://bullet-train.io'}>
-                                                            {isHomepage || isDark ? (
-                                                                <img
-                                                                  title="Flagsmith" height={24}
-                                                                  src="/images/nav-logo.svg"
-                                                                  className="brand" alt="Flagsmith logo"
-                                                                />)
-                                                                : (
-                                                                    <img
-                                                                      title="Flagsmith" height={24}
-                                                                      src="/images/nav-logo.svg"
-                                                                      className="brand" alt="Flagsmith logo"
-                                                                    />
-                                                                ) }
+                                                            <img
+                                                              title="Flagsmith" height={24}
+                                                              src="/images/nav-logo.svg"
+                                                              className="brand" alt="Flagsmith logo"
+                                                            />
                                                         </a>
-                                                    )
                                                     )}
                                                 </div>
                                             </div>

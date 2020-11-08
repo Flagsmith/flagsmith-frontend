@@ -3,6 +3,7 @@ import ForgotPasswordModal from '../ForgotPasswordModal';
 import Card from '../Card';
 import { ButtonLink } from '../base/forms/Button';
 import { Google } from '../../project/auth';
+import NavIconSmall from '../svg/NavIconSmall';
 
 const HomePage = class extends React.Component {
     static contextTypes = {
@@ -102,37 +103,60 @@ const HomePage = class extends React.Component {
             ));
         }
         return (
-            <AccountProvider onLogout={this.onLogout} onLogin={this.onLogin}>
-                {({ isLoading, isSaving, error }, { register }) => (
-                    <div className="fullscreen-container fullscreen-container__grey justify-content-center">
-                        <div className="col-md-4 mt-5" id="sign-up">
-                            {!isSignup ? (
-                                <Card>
-                                    <AccountProvider>
-                                        {({ isLoading, isSaving, error }, { login }) => (
-                                            <form
-                                              id="form" name="form" onSubmit={(e) => {
+          <>
+              <AccountProvider onLogout={this.onLogout} onLogin={this.onLogin}>
+                  {({ isLoading, isSaving, error }, { register }) => (
+                      <div style={{ flexDirection: 'column' }} className="fullscreen-container fullscreen-container justify-content-center">
+                          <div className="mb-4">
+                              <NavIconSmall className="signup-icon" />
+                          </div>
+                          <div className="text-center mb-4">
+                              {isSignup ? (
+                              <>
+                                  <h3>It's free to get started.</h3>
+                                  {!isInvite && (
+                                  <>
+                                      <p className="mb-0">We have a 100% free for life plan for smaller projects.</p>
+                                      <ButtonLink
+                                        className="pt-3 pb-3"
+                                        buttonText="Check out our Pricing"
+                                        href="https://bullet-train.io/pricing"
+                                        target="_blank"
+                                      />
+                                  </>
+                                  )}
+                              </>
+                              ) : (
+                            <>
+                                <h3>Sign in to Flagsmith</h3>
+                                {!!oauths.length && (
+                                <p>
+                                      Log in to your account with one of these services.
+                                </p>
+                                )}
+                            </>
+                              )}
+
+                          </div>
+
+                          <div className="signup-form" id="sign-up">
+                              {!isSignup ? (
+                                  <Card>
+                                      <AccountProvider>
+                                          {({ isLoading, isSaving, error }, { login }) => (
+                                              <form
+                                                id="form" name="form" onSubmit={(e) => {
                                                   Utils.preventDefault(e);
                                                   login({ email, password });
                                               }}
-                                            >
-                                                <div className="form-intro text-center">
-                                                    <h3>Sign in</h3>
-                                                    {!!oauths.length && (
-                                                    <p>
-                                                          Log in to your account with one of these services.
-                                                    </p>
-                                                    )}
-
-                                                </div>
-
-                                                {!!oauths.length && (
+                                              >
+                                                  {!!oauths.length && (
                                                 <Row style={{ justifyContent: 'center' }}>
                                                     {oauths}
                                                 </Row>
                                                 )}
 
-                                                {isInvite
+                                                  {isInvite
                                                 && (
                                                 <div className="notification flex-row">
                                                     <span
@@ -142,7 +166,7 @@ const HomePage = class extends React.Component {
                                                 </div>
                                                 )
                                                 }
-                                                <fieldset id="details">
+                                                  <fieldset id="details">
                                                     {error && error.email ? (
                                                         <span
                                                           id="email-error"
@@ -193,10 +217,12 @@ const HomePage = class extends React.Component {
                                                     <div className="form-cta">
 
                                                         <Button
-                                                            id="login-btn"
-                                                            disabled={isLoading || isSaving}
-                                                            type="submit"
-                                                            className="mt-3 px-4">Login</Button>
+                                                          id="login-btn"
+                                                          disabled={isLoading || isSaving}
+                                                          type="submit"
+                                                          className="mt-3 px-4 full-width"
+                                                        >Login
+                                                        </Button>
 
                                                         <div>
                                                             <Link to={`/signup${redirect}`} className="float-left">
@@ -212,22 +238,22 @@ const HomePage = class extends React.Component {
                                                         </div>
                                                     </div>
                                                 </fieldset>
-                                                {error && (
+                                                  {error && (
                                                     <div id="error-alert" className="alert mt-3 alert-danger">
-                                                        {typeof AccountStore.error === 'string' ? AccountStore.error : "Please check your details and try again"}
+                                                        {typeof AccountStore.error === 'string' ? AccountStore.error : 'Please check your details and try again'}
                                                     </div>
                                                 )}
 
-                                            </form>
-                                        )}
-                                    </AccountProvider>
-                                </Card>
-                            ) : (
-                                <React.Fragment>
+                                              </form>
+                                          )}
+                                      </AccountProvider>
+                                  </Card>
+                              ) : (
+                                  <React.Fragment>
 
-                                    <Card>
-                                        <form
-                                          id="form" name="form" onSubmit={(e) => {
+                                      <Card>
+                                          <form
+                                            id="form" name="form" onSubmit={(e) => {
                                               Utils.preventDefault(e);
                                               const isInvite = document.location.href.indexOf('invite') != -1;
                                               register({
@@ -239,39 +265,24 @@ const HomePage = class extends React.Component {
                                               },
                                               isInvite);
                                           }}
-                                        >
+                                          >
 
-                                            <div className="form-intro text-center">
-                                                <h3>It's free to get started.</h3>
-                                                {!isInvite && (
-                                                    <React.Fragment>
-                                                        <p className="mb-0">We have a 100% free for life plan for smaller projects.</p>
-                                                        <ButtonLink
-                                                          className="pt-3 pb-3"
-                                                          buttonText="Check out our Pricing"
-                                                          href="https://bullet-train.io/pricing"
-                                                          target="_blank"
-                                                        />
-                                                    </React.Fragment>
-                                                )}
-                                            </div>
-
-                                            {!!oauths.length && (
+                                              {!!oauths.length && (
                                                 <Row style={{ justifyContent: 'center' }}>
                                                     {oauths}
                                                 </Row>
                                             )}
 
-                                            {error
+                                              {error
                                             && (
                                                 <FormGroup>
                                                     <div id="error-alert" className="alert alert-danger">
-                                                        {typeof AccountStore.error === 'string' ? AccountStore.error : "Please check your details and try again"}
+                                                        {typeof AccountStore.error === 'string' ? AccountStore.error : 'Please check your details and try again'}
                                                     </div>
                                                 </FormGroup>
                                             )
                                             }
-                                            {isInvite
+                                              {isInvite
                                             && (
                                                 <div className="notification flex-row">
                                                     <span
@@ -283,7 +294,7 @@ const HomePage = class extends React.Component {
                                                 </div>
                                             )
                                             }
-                                            <fieldset id="details" className="">
+                                              <fieldset id="details" className="">
                                                 <InputGroup
                                                   title="First Name"
                                                   data-test="firstName"
@@ -385,28 +396,30 @@ const HomePage = class extends React.Component {
                                                       data-test="signup-btn"
                                                       name="signup-btn"
                                                       disabled={isLoading || isSaving}
-                                                      className="px-4 mt-3"
+                                                      className="px-4 mt-3 full-width"
                                                       type="submit"
                                                     >
                                                         Sign Up
                                                     </Button>
                                                     <Link id="existing-member-btn" to={`/login${redirect}`}>
                                                         <ButtonLink
-                                                            className="mt-4 pb-3 pt-2"
-                                                            buttonText="Already a member?"
+                                                          className="mt-4 pb-3 pt-2"
+                                                          buttonText="Already a member?"
                                                         />
                                                     </Link>
                                                 </div>
                                             </fieldset>
-                                        </form>
-                                    </Card>
+                                          </form>
+                                      </Card>
 
-                                </React.Fragment>
-                            )}
-                        </div>
-                    </div>
-                )}
-            </AccountProvider>
+                                  </React.Fragment>
+                              )}
+                          </div>
+                      </div>
+                  )}
+              </AccountProvider>
+
+              </>
         );
     }
 };

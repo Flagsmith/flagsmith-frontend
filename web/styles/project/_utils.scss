@@ -76,6 +76,16 @@
     margin-right: auto!important;
 }
 
+.signup-form {
+    width: 400px;
+}
+
+.signup-icon {
+    width: 64px;
+    path {
+        fill: $bt-brand-primary;
+    }
+}
 
 .align-start {
     align-items: flex-start;
