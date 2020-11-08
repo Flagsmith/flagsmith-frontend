@@ -33,7 +33,7 @@ $body-text-faint: #716E86; // e.g. list sub titles
 $header-color: #242039; // for headers and labels
 
 //Navbar
-$nav-link-color: $header-color; // navbar link
+$nav-link-color: #242039; // navbar link
 $nav-link-color-hover: $bt-brand-primary; //
 $nav-link-color-active: $bt-brand-primary;
 $navbar-height: 5rem;
@@ -83,6 +83,7 @@ $btn-code-button-background: $bt-brand-faint;
 $btn-code-button-color: $body-text;
 $btn-code-button-color-alt: $bt-brand-secondary;
 
+$bt-code-background: #2b273c;
 
 //BUTTONS
 $btn-height: 44px;
