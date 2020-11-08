@@ -53,16 +53,17 @@
     }
     .nav-link-featured {
         border-radius: $btn-border-radius;
-        background-color: $bt-brand-faint;
+        background-color: $bt-brand-faint-alt;
         &:hover {
             background-color: $bt-brand-faint-hover;
         }
         .ion {
             position: relative;
             top: 2px;
-            right: -5px;
+            right: -10px;
+            color: $bt-brand-primary;
         }
-        color: $bt-brand-primary;
+        color: $header-color;
         padding: 5px 20px;
         -moz-transition:    opacity 200ms;
         -o-transition:      opacity 200ms;

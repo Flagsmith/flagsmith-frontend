@@ -48,9 +48,10 @@ $animation-timing-function: ease-in-out;
     bottom: 0;
     height: 100%;
     box-shadow:  $aside-box-shadow;
+    background-color: $aside-left-bg;
+
     &__projects-sidebar {
         width: 100px;
-        background-color: $aside-left-bg;
         justify-content: center;
         overflow-y: auto;
         height: 100%;
@@ -272,10 +273,9 @@ $animation-timing-function: ease-in-out;
     }
     .toggle {
         //position: absolute;
-        //left: 30px;
         //top: 15px;
         position: absolute;
-        left: 20px;
+        left: 40px;
         top: 10px;
 
         > .icon {
