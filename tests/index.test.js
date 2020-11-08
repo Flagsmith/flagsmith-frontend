@@ -45,8 +45,6 @@ const clearDown = function (browser, done) {
             console.log('No tokens.json found for teardown. Either set E2E_TEST_TOKEN in your environment or create the file in /tests');
         }
     }
-    done();
-    return
     if (token) {
         console.log(`${Project.api}e2etests/teardown/`, token.trim());
         fetch(`${Project.api}e2etests/teardown/`, {
