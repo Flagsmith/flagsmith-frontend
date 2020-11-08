@@ -58,6 +58,8 @@ $bt-gradient-text: $body-text;
 $bt-gradient-start: $bt-brand-faint-alt;
 $bt-gradient-end: #fff;
 
+$bt-code-background: #2b273c;
+$bt-switch-active:$bt-code-background;
 
 //Nav
 
@@ -78,9 +80,9 @@ $input-border-highlight-color: $bt-brand-primary-light;
 $pagination-color: #333;
 
 // Code help e.g. installing the SDK
-$btn-code-button-background-hover: $bt-brand-faint;
-$btn-code-button-background: $bt-brand-faint;
-$btn-code-button-color: $body-text;
+$btn-code-button-background-hover: lighten($bt-brand-primary-dark-desaturated-light,5);
+$btn-code-button-background: $bt-brand-primary-dark-desaturated-light;
+$btn-code-button-color: white;
 $btn-code-button-color-alt: $bt-brand-secondary;
 
 
@@ -110,11 +112,12 @@ $panel-alt-heading-color: #fff;
 
 //TABS
 $tab-inactive-color: $body-text;
-$tab-active-background: darken($bt-brand-faint-alt,5);
+$tab-active-background: $bt-brand-faint;
+$tab-inactive-background: $bt-brand-faint;
+
 $tab-line-color: $bt-brand-secondary;
 
 $tab-active-color: $header-color;
-$tab-inactive-background: $bt-brand-faint;
 
 //SCAFFOLDING
 $mobile-portrait: 320px;
@@ -145,9 +148,6 @@ $bold: 400;
 
 $card-default: 0 6px 13px 0 rgba(34,53,74,0.10);
 
-$bt-code-background: #2b273c;
-
-$bt-switch-active:$bt-code-background;
 
 
 //Aside

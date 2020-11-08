@@ -20,9 +20,10 @@
 		}
 		flex:1;
 		background-color: $tab-inactive-background;
-		color: #000;
+		color: $tab-inactive-color;
 		&:hover {
-			background: #eaeaea;
+			color: $tab-active-color;
+			background-color: $tab-inactive-background;
 			box-shadow: none;
 		}
 		&:active {
