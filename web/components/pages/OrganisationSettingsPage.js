@@ -353,7 +353,7 @@ const OrganisationSettingsPage = class extends Component {
                                                         {invites && invites.length ? (
                                                             <FormGroup className="margin-top">
                                                                 <PanelSearch
-                                                                  itemHeight={65}
+                                                                  itemHeight={70}
                                                                   id="org-invites-list"
                                                                   title="Invites Pending"
                                                                   className="no-pad"

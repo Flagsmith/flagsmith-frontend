@@ -48,7 +48,7 @@ export default class TheComponent extends PureComponent {
                         id="users-list"
                         title={this.props.noTitle ? '' : 'Groups'}
                         className="no-pad"
-                        itemHeight={54}
+                        itemHeight={64}
                         icon="ion-md-people"
                         items={userGroups}
                         paging={userGroupsPaging}
@@ -70,9 +70,11 @@ export default class TheComponent extends PureComponent {
                                   }}
 
                                 >
-                                  <strong>
-                                    {name}
-                                  </strong>
+                                  <div>
+                                    <ButtonLink>
+                                      {name}
+                                    </ButtonLink>
+                                  </div>
                                     <div className="list-item-footer faint">
                                         {users.length}{users.length == 1 ? ' Member' : ' Members'}
                                     </div>
