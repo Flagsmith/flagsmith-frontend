@@ -104,13 +104,13 @@ const Aside = class extends Component {
 
                                                               <Tooltip
                                                                 title={(
-                                                                    <Button onClick={this.newProject} className="btn--transparent">
+                                                                    <Button onClick={this.newProject} className="btn--transparent aside__add-btn">
                                                                         <a
                                                                           id="create-project-link"
                                                                           to="/projects"
                                                                           state={{ create: true }}
                                                                         >
-                                                                            <PlusIcon width={15}/>
+                                                                            <PlusIcon width={18}/>
                                                                         </a>
                                                                     </Button>
                                                                   )}

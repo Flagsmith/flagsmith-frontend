@@ -69,6 +69,8 @@
 .hljs-header {
   font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   background-color: $btn-code-button-background;
+  border: 1px solid $btn-code-button-border;
+  overflow: hidden;
   @include transition(all .2s ease-in-out);
   color: $btn-code-button-color;
   display: inline-block;
@@ -78,7 +80,7 @@
   font-size: .8em;
   padding-left: 10px;
   padding-right: 10px;
-  border-radius: 15px;
+  border-radius: $border-radius-default;
   margin-right: 5px;
   margin-bottom: $input-padding-y/2;
   .hljs-description {

@@ -12,7 +12,7 @@ const AsideProjectButton = class extends PureComponent {
                         <ButtonProject className={this.props.className}>{this.props.projectLetter}</ButtonProject>
                     </div>
                     <div className="flex-column">
-                        <p className="aside__projects-item-title">{truncated}</p>
+                        <p className={`aside__projects-item-title ${this.props.className}`}>{truncated}</p>
                     </div>
                 </div>
             </div>

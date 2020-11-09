@@ -164,7 +164,7 @@ const PanelSearch = class extends Component {
                         >
                             {({ index, style }) => (
                                 <div style={style}>
-                                    <div style={{ height: (this.props.itemHeight || 60) }}>
+                                    <div style={{ height: (this.props.itemHeight || 60), overflow:'hidden' }}>
                                         {this.props.renderRow(filteredItems[index], index)}
                                     </div>
                                 </div>

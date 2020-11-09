@@ -22,12 +22,12 @@ $bt-brand-secondary-light: #f6a999;
 $bt-brand-secondary-hover: #e3674d;
 $bt-brand-secondary-active: #e3674d;
 
-$brand-tertiary: #FBF4D5;
+$bt-brand-tertiary: #FBF4D5;
 
 $bt-brand-red: #f2576e;
 
 //Body
-$body-text: #525162;
+$body-text: #43424f;
 $bt-link-color: $body-text;
 $body-text-faint: #716E86; // e.g. list sub titles
 $header-color: #242039; // for headers and labels
@@ -61,6 +61,15 @@ $bt-gradient-end: #fff;
 $bt-code-background: #2b273c;
 $bt-switch-active:$bt-code-background;
 
+
+// Code help e.g. installing the SDK
+$btn-code-button-background-hover: darken($bt-brand-faint,2);
+$btn-code-button-background: $bt-brand-faint;
+$btn-code-button-border: $bt-brand-faint;
+$btn-code-button-color: $header-color;
+$btn-code-button-color-alt: $bt-brand-primary;
+
+
 //Nav
 
 // BORDER RADIUS
@@ -79,11 +88,7 @@ $input-border-highlight-color: $bt-brand-primary-light;
 
 $pagination-color: #333;
 
-// Code help e.g. installing the SDK
-$btn-code-button-background-hover: lighten($bt-brand-primary-dark-desaturated-light,5);
-$btn-code-button-background: $bt-brand-primary-dark-desaturated-light;
-$btn-code-button-color: white;
-$btn-code-button-color-alt: $bt-brand-secondary;
+
 
 
 //BUTTONS
@@ -115,7 +120,7 @@ $tab-inactive-color: $body-text;
 $tab-active-background: $bt-brand-faint;
 $tab-inactive-background: $bt-brand-faint;
 
-$tab-line-color: $bt-brand-secondary;
+$tab-line-color: $bt-brand-primary;
 
 $tab-active-color: $header-color;
 
@@ -149,50 +154,52 @@ $bold: 400;
 $card-default: 0 6px 13px 0 rgba(34,53,74,0.10);
 
 
-$aside-base-background: $bt-brand-primary-dark-desaturated-light; //backgrounds
-
-
-
-
-
-
+$aside-base-background: $bt-brand-faint-alt;
 $aside-logo: $bt-brand-primary;
+// active project and environment
+$aside-base-highlight: $bt-brand-primary;
+$aside-base-highlight-color: white;
+// active project and environment
+$aside-base-link: darken($bt-brand-faint-alt,10);
+$aside-base-link-color: $bt-brand-primary;
+// Environment link
+$aside-nav-color:$body-text;
+$aside-nav-inactive-color:transparentize($body-text, 0.25);
+$aside-nav-inactive-hover-color:transparentize($header-color, 0.25);
+$aside-nav-hover:$header-color;
+// Background of other links e.g. acreate environment/organisation
+$aside-link-alt-color:$bt-brand-secondary;
+$aside-add-color:$body-text;
+
+
+
+
 //Aside
 $aside-width:330px;
 
 // Shadows
-$aside-box-shadow: 0 6px 13px 0 rgba(45,36,81,.75); // Box shadow right menu
+$aside-box-shadow: 0 6px 13px 0 transparentize($bt-brand-primary-dark-desaturated-light,.75); // Box shadow right menu
 $aside-project-link-active-box-shadow: none;
 
-// Project select
-$aside-link:$bt-brand-faint;
-$aside-link-color:$bt-brand-primary;
-$aside-link-alt:$brand-tertiary;
-$aside-link-color-active:#fff;
 
 // Backgrounds
 $aside-bg:$aside-base-background;  // left aside menu
-$aside-left-bg:darken($aside-base-background,5); // main aside menu
-$aside-nav-collapse:darken($aside-base-background,5); // selected environment background
+$aside-left-bg:darken($aside-base-background,2); // main aside menu
+$aside-nav-collapse:darken($aside-base-background,2); // selected environment background
 
 // project link
-$aside-project-link-color: $bt-brand-primary;
-$aside-project-link: $bt-brand-faint;
+$aside-project-link-color: $aside-base-link-color;
+$aside-project-link: $aside-base-link;
 // project link active
-$aside-project-link-active:$brand-tertiary;
-$aside-project-link-color-active:$body-text;
+$aside-project-link-active:$aside-base-highlight;
+$aside-project-link-color-active:$aside-base-highlight-color;
 
-// Environment link
-$aside-nav-color:#fff;
-$aside-nav-hover:#fff;
 
 // Active environment link
-$aside-nav-active:$brand-tertiary;
-$aside-nav-active-color:$body-text;
+$aside-nav-active:$aside-base-highlight;
+$aside-nav-active-color:$aside-base-highlight-color;
+$aside-nav-collapse-border:$aside-base-highlight;
 
-
-
-$aside-nav-collapse-border:$brand-tertiary;
 
 // Aside scrollbar
 $bt-scrollbar-track: rgba(243,236,255,0.1);

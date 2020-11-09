@@ -1,4 +1,6 @@
 import { PureComponent } from 'react';
+import CaretDownIcon from './svg/CaretDownIcon';
+import CaretRightIcon from './svg/CaretRightIcon';
 
 const cn = require('classnames');
 
@@ -23,8 +25,8 @@ const Collapsible = class extends PureComponent {
                 <div className="collapsible__header">
                     <div className="flex-row">
                         {this.props.active ? (
-                            <img className="mr-2" src="/images/icons/aside/caret-down.svg" />
-                        ) : <img className="mr-2" src="/images/icons/aside/caret-right.svg" />}
+                            <CaretDownIcon className="mr-2" />
+                        ) : <CaretRightIcon className="mr-2" />}
                         {this.props.title}
                     </div>
                 </div>

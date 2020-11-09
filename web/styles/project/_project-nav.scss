@@ -1,7 +1,4 @@
 .navbar {
-    padding: 0.5rem;
-    padding-left: 2em;
-    padding-right: 2em;
     background-color: $navbar-background;
     //background: linear-gradient(to right, $bt-brand-secondary-light, #1d2d3e);
     &.homepage {
@@ -28,6 +25,11 @@
 .navbar-brand img {
     margin-bottom: 6px;
     margin-right: 20px;
+}
+.org-nav {
+    .nav-link {
+        margin-right: 0;
+    }
 }
 .nav-link  {
     img {

@@ -70,7 +70,9 @@ export default class TheComponent extends PureComponent {
                                   }}
 
                                 >
+                                  <strong>
                                     {name}
+                                  </strong>
                                     <div className="list-item-footer faint">
                                         {users.length}{users.length == 1 ? ' Member' : ' Members'}
                                     </div>

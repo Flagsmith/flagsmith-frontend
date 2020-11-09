@@ -262,7 +262,7 @@ Click here to Sign
                                                             </NavLink>
                                                         </nav>
 
-                                                        <div className="flex-column org-nav">
+                                                        <div className="org-nav">
                                                             <Popover
                                                               className="popover-right"
                                                               contentClassName="popover-bt"
@@ -300,7 +300,7 @@ Click here to Sign
                                                                             >
                                                                                 <Button>
 
-                                                                                Create Organisation <span className="aside__link-icon--white ion-md-add"/>
+                                                                                Create Organisation <span className="ion-md-add"/>
 
                                                                                 </Button>
                                                                             </Link>

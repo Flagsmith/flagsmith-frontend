@@ -205,7 +205,7 @@ const SegmentsPage = class extends Component {
                                                     />
                                                 </FormGroup>
 
-                                                <FormGroup>
+                                                <FormGroup className="mt-4">
                                                     <CodeHelp
                                                       title="Using segments"
                                                       snippets={Constants.codeHelp.SEGMENTS(environmentId)}

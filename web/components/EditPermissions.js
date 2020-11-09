@@ -222,7 +222,9 @@ export default class EditPermissions extends PureComponent {
                                                       key={id}
                                                     >
                                                         <div>
+                                                          <strong>
                                                             {`${first_name} ${last_name}`}
+                                                          </strong>
                                                             {' '}
                                                             {id == AccountStore.getUserId() && '(You)'}
                                                             <div className="list-item-footer faint">
