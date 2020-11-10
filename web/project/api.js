@@ -127,6 +127,7 @@ global.API = {
         }
     },
     alias(id) {
+        if (id === Project.excludeAnalytics) return
         if (Project.mixpanel) {
             mixpanel.alias(id);
         }
@@ -134,6 +135,7 @@ global.API = {
         bulletTrain.setTrait('email', id);
     },
     identify(id, user = {}) {
+        if (id === Project.excludeAnalytics) return;
         try {
             const orgs = (user && user.organisations && _.map(user.organisations, o => `${o.name} #${o.id}(${o.role})[${o.num_seats}]`).join(',')) || '';
             if (Project.mixpanel) {
@@ -163,6 +165,7 @@ global.API = {
         }
     },
     register(email, firstName, lastName) {
+        if (email === Project.excludeAnalytics) return;
         if (Project.mixpanel) {
             mixpanel.register({
                 'Email': email,

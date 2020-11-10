@@ -5,6 +5,7 @@ module.exports = global.Project = {
     env: 'prod', // This is used for Sentry tracking
     ga: 'UA-120237963-1', // This is our Google Analytics key
     sentry: 'https://11c8828dc24041b0a875e324b0380769@sentry.io/1320942',
+    excludeAnalytics: "nightwatch@solidstategroup.com",
     maintenance: false, // trigger maintenance mode
     cookieDomain: '.bullet-train.io',
     delighted: true, // determines whether to shw delighted feedback widget
