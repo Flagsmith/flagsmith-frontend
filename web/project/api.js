@@ -72,7 +72,9 @@ global.API = {
     },
     postEvent(event, tag) {
         if (!AccountStore.getUser()) return;
-        return data.post('/api/event', { tag, event: `${event}(${AccountStore.getUser().email} ${AccountStore.getUser().first_name} ${AccountStore.getUser().last_name})` });
+        const organisation = AccountStore.getOrganisation();
+        const name = organisation && organisation.name ? ` - ${organisation.name}` : '';
+        return data.post('/api/event', { tag, event: `${event}(${AccountStore.getUser().email} ${AccountStore.getUser().first_name} ${AccountStore.getUser().last_name})${name}` });
     },
     getReferrer() {
         const r = require('js-cookie').get('r');

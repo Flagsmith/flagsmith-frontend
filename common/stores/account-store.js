@@ -17,16 +17,12 @@ const controller = {
             .then((res) => {
                 data.setToken(res.key);
                 API.trackEvent(Constants.events.REGISTER);
-                API.postEvent('Hi', 'registrations');
                 if (API.getReferrer()) {
                     API.trackEvent(Constants.events.REFERRER_REGISTERED(API.getReferrer().utm_source));
                 }
                 if (isInvite) {
                     return controller.onLogin();
                 }
-                API.trackEvent(Constants.events.CREATE_ORGANISATION);
-                API.trackEvent(Constants.events.CREATE_FIRST_ORGANISATION);
-
 
                 return data.post(`${Project.api}organisations/`, { name: organisation_name })
                     .then(() => controller.onLogin())
@@ -39,6 +35,9 @@ const controller = {
                         // eslint-disable-next-line camelcase
                             API.postEvent(`New Organisation ${organisation_name}`);
                         }
+                        API.postEvent('Hi', 'registrations');
+                        API.trackEvent(Constants.events.CREATE_ORGANISATION);
+                        API.trackEvent(Constants.events.CREATE_FIRST_ORGANISATION);
                     });
             })
             .catch(e => API.ajaxHandler(store, e));
