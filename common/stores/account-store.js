@@ -138,9 +138,13 @@ const controller = {
             .then((res) => {
                 store.savedId = res.id;
                 store.model.organisations.push(res);
-                API.trackEvent(Constants.events.ACCEPT_INVITE(res.name));
-                AsyncStorage.setItem('user', JSON.stringify(store.model));
-                store.saved();
+                const ev = Constants.events.ACCEPT_INVITE(res.name);
+                API.postEvent(ev.event + (ev.extra ? ` ${ev.extra}` : ''), 'first_events')
+                    .catch(() => {})
+                    .finally(() => {
+                        AsyncStorage.setItem('user', JSON.stringify(store.model));
+                        store.saved();
+                    });
             })
             .catch((e) => {
                 API.ajaxHandler(store, e);
