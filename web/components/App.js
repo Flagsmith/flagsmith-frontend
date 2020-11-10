@@ -14,6 +14,7 @@ import UserSettingsIcon from './svg/UserSettingsIcon';
 import ProductRoadmapIcon from './svg/ProductRoadmapIcon';
 import DocumentationIcon from './svg/DocumentationIcon';
 import ArrowUpIcon from './svg/ArrowUpIcon';
+import RebrandBanner from './RebrandBanner';
 
 const App = class extends Component {
     static propTypes = {
@@ -338,6 +339,7 @@ Click here to Sign
                                 )}
                                 {isMobile && pageHasAside && asideIsVisible ? null : this.props.children}
                             </div>
+                            <RebrandBanner/>
                         </div>
                     ))}
                 </AccountProvider>

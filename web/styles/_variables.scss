@@ -63,11 +63,11 @@ $bt-switch-active:$bt-code-background;
 
 
 // Code help e.g. installing the SDK
-$btn-code-button-background-hover: darken($bt-brand-faint,2);
-$btn-code-button-background: $bt-brand-faint;
-$btn-code-button-border: $bt-brand-faint;
+$btn-code-button-background-hover: darken($bt-brand-faint-alt,2);
+$btn-code-button-background: $bt-brand-faint-alt;
+$btn-code-button-border: $bt-brand-faint-alt;
 $btn-code-button-color: $header-color;
-$btn-code-button-color-alt: $bt-brand-primary;
+$btn-code-button-color-alt: $bt-brand-secondary;
 
 
 //Nav
@@ -161,7 +161,7 @@ $aside-base-highlight: $bt-brand-primary;
 $aside-base-highlight-color: white;
 // active project and environment
 $aside-base-link: darken($bt-brand-faint-alt,10);
-$aside-base-link-color: $bt-brand-primary;
+$aside-base-link-color: $bt-brand-secondary;
 // Environment link
 $aside-nav-color:$body-text;
 $aside-nav-inactive-color:transparentize($body-text, 0.25);

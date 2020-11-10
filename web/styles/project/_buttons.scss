@@ -77,6 +77,11 @@ a, .btn, button{
         }
     }
 
+    &--small {
+            height: 32px;
+        line-height: 32px;
+    }
+
 
     &--transparent {
         background-color: transparent;

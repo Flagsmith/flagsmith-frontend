@@ -225,3 +225,22 @@ hr {
     }
 
 }
+
+.bottom-banner {
+    position: fixed;
+    left: $aside-width+20px;
+    bottom: 20px;
+    margin: auto;
+    height: 44px;
+    line-height: 44px;
+    right: 0;
+    text-align: center;
+    .inner {
+        padding-left: 10px;
+        padding-right: 10px;
+        height: 44px;
+        background-color: white;
+        display: inline-block;
+        box-shadow: rgba(75, 75, 75, 0.21) 0px 1px 6px, rgba(75, 75, 75, 0.21) 0px 1px 4px;
+    }
+}
