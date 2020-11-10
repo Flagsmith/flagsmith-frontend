@@ -2,7 +2,7 @@
 
 [![Donate](https://liberapay.com/assets/widgets/donate.svg)](https://liberapay.com/Bullet-Train/donate)
 
-Bullet Train is now Flagsmith read about it [here](https://www.bullet-train.io/blog/rebrand). 
+Bullet Train is now Flagsmith read about it [here](https://flagsmith.com/blog/rebrand). 
 
 # Flagsmith Frontend
 
