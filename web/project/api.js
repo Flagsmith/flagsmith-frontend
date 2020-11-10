@@ -1,3 +1,5 @@
+import data from '../../common/data/base/_data';
+
 global.API = {
     ajaxHandler(store, res) {
         switch (res.status) {
@@ -21,8 +23,8 @@ global.API = {
             if (store) {
                 let err = error;
                 try {
-                    err = JSON.parse(error)
-                } catch (e){}
+                    err = JSON.parse(error);
+                } catch (e) {}
                 store.error = err;
                 store.goneABitWest();
             }
@@ -44,6 +46,9 @@ global.API = {
             if (!data || !data.category || !data.event) {
                 console.error('Invalid event provided', data);
             }
+            if (data.category === 'First') {
+                API.postEvent(data.event + (data.extra ? ` ${data.extra}` : ''), 'first_events');
+            }
             ga('send', {
                 hitType: 'event',
                 eventCategory: data.category,
@@ -64,6 +69,10 @@ global.API = {
                 category: data.category,
             });
         }
+    },
+    postEvent(event, tag) {
+        if (!AccountStore.getUser()) return;
+        return data.post('/api/event', { tag, event: `${event}(${AccountStore.getUser().email} ${AccountStore.getUser().first_name} ${AccountStore.getUser().last_name})` });
     },
     getReferrer() {
         const r = require('js-cookie').get('r');

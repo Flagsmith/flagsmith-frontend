@@ -4,10 +4,6 @@ import ConfigStore from './config-store';
 const BaseStore = require('./base/_store');
 const data = require('../data/base/_data');
 
-const postEvent = (event) => {
-    if (!AccountStore.getUser()) return;
-    return data.post('/api/event', { event: `${event}(${AccountStore.getUser().email} ${AccountStore.getUser().first_name} ${AccountStore.getUser().last_name})` });
-};
 const controller = {
     register: ({ email, password, first_name, last_name, organisation_name = 'Default Organisation' }, isInvite) => {
         store.saving();
@@ -21,6 +17,7 @@ const controller = {
             .then((res) => {
                 data.setToken(res.key);
                 API.trackEvent(Constants.events.REGISTER);
+                API.postEvent('Hi', 'registrations');
                 if (API.getReferrer()) {
                     API.trackEvent(Constants.events.REFERRER_REGISTERED(API.getReferrer().utm_source));
                 }
@@ -36,11 +33,11 @@ const controller = {
                     .then(() => {
                         if (API.getReferrer()) {
                         // eslint-disable-next-line camelcase
-                            postEvent(`New Organisation ${organisation_name} from ${API.getReferrer().utm_source}`);
+                            API.postEvent(`New Organisation ${organisation_name} from ${API.getReferrer().utm_source}`);
                             API.trackEvent(Constants.events.REFERRER_CONVERSION(API.getReferrer().utm_source));
                         } else {
                         // eslint-disable-next-line camelcase
-                            postEvent(`New Organisation ${organisation_name}`);
+                            API.postEvent(`New Organisation ${organisation_name}`);
                         }
                     });
             })
@@ -142,6 +139,7 @@ const controller = {
             .then((res) => {
                 store.savedId = res.id;
                 store.model.organisations.push(res);
+                API.trackEvent(Constants.events.ACCEPT_INVITE(res.name));
                 AsyncStorage.setItem('user', JSON.stringify(store.model));
                 store.saved();
             })
@@ -238,11 +236,11 @@ const controller = {
         API.trackEvent(Constants.events.CREATE_ORGANISATION);
         if (API.getReferrer()) {
             // eslint-disable-next-line camelcase
-            postEvent(`New Organisation ${name} from ${`${API.getReferrer()}`}`);
+            API.postEvent(`New Organisation ${name} from ${`${API.getReferrer().utm_source}`}`);
             API.trackEvent(Constants.events.REFERRER_CONVERSION(API.getReferrer().utm_source));
         } else {
             // eslint-disable-next-line camelcase
-            postEvent(`New Organisation ${name}`);
+            API.postEvent(`New Organisation ${name}`);
         }
         data.post(`${Project.api}organisations/`, { name })
             .then((res) => {
