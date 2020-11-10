@@ -119,7 +119,7 @@ global.API = {
         }
 
         if (Project.mixpanel) {
-            mixpanel.track('Page View', {
+            mixpanel.track(`Page View${title}`, {
                 title,
                 location: document.location.href,
                 page: document.location.pathname,
@@ -138,6 +138,16 @@ global.API = {
             const orgs = (user && user.organisations && _.map(user.organisations, o => `${o.name} #${o.id}(${o.role})[${o.num_seats}]`).join(',')) || '';
             if (Project.mixpanel) {
                 mixpanel.identify(id);
+                const plans = AccountStore.getPlans();
+
+                mixpanel.people.set({
+                    '$email': id, // only reserved properties need the $
+                    'USER_ID': id, // use human-readable names
+                    '$first_name': user.first_name,
+                    '$last_name': user.last_name,
+                    'plan': plans && plans.join(','),
+                    orgs,
+                });
             }
             bulletTrain.identify(id);
             bulletTrain.setTrait('email', id);
