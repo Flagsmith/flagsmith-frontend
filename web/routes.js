@@ -11,6 +11,7 @@ import CreateOrganisationPage from './components/pages/CreateOrganisationPage';
 import CreateEnvironmentPage from './components/pages/CreateEnvironmentPage';
 import UsersPage from './components/pages/UsersPage';
 import UserPage from './components/pages/UserPage';
+import IntegrationsPage from './components/pages/IntegrationsPage';
 import FlagsPage from './components/pages/FeaturesPage';
 import SegmentsPage from './components/pages/SegmentsPage';
 import OrganisationSettingsPage from './components/pages/OrganisationSettingsPage';
@@ -46,6 +47,7 @@ export default (
             <Route path="/invite/:id" exact component={InvitePage}/>
             <Route path="/oauth/:type" exact component={HomePage}/>
             <Route path="/project/:projectId/environment/:environmentId/settings" exact component={EnvironmentSettingsPage}/>
+            <Route path="/project/:projectId/integrations" exact component={IntegrationsPage}/>
             <Route path="/project/:projectId/environment/:environmentId/users" exact component={UsersPage}/>
             <Route path="/project/:projectId/environment/:environmentId/users/:identity/:id" exact component={UserPage}/>
             <Route path="/project/:projectId/environment/create" exact component={CreateEnvironmentPage}/>

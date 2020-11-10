@@ -11,10 +11,12 @@ module.exports = {
         browser.url(url)
             .waitAndSet(byId('firstName'), 'Bullet') // visit the url
             .setValue(byId('lastName'), 'Train')
-            .setValue(byId('companyName'), 'Bullet Train Ltd')
             .setValue(byId('email'), email)
             .setValue(byId('password'), password)
             .click(byId('signup-btn'))
+            .waitForElementVisible('#create-org-page', 10000)
+            .setValue('[name="orgName"]', 'Bullet Train Ltd')
+            .click('#create-org-btn')
             .waitForElementVisible(byId('project-select-page'), 10000);
     },
     '[Initialise Tests] - Create project': function (browser) {

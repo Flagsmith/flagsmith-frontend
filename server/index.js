@@ -56,14 +56,16 @@ app.post('/api/event', (req, res) => {
     res.json({ });
     try {
         const body = req.body;
-        if (process.env.SLACK_TOKEN && process.env.EVENTS_SLACK_CHANNEL && postToSlack && !body.event.includes('Bullet Train')) {
+        const channel = body.tag ? `infra_${body.tag.replace(/ /g, '').toLowerCase()}` : process.env.EVENTS_SLACK_CHANNEL;
+
+        if (process.env.SLACK_TOKEN && channel && postToSlack && !body.event.includes('Bullet Train')) {
             const match = body.event.match(/([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})/);
             let url = '';
             if (match && match[0]) {
                 const urlMatch = match[0].split('@')[1];
                 url = ` https://www.similarweb.com/website/${urlMatch}`;
             }
-            slackClient(body.event + url, process.env.EVENTS_SLACK_CHANNEL);
+            slackClient(body.event + url, channel);
         }
     } catch (e) {
 

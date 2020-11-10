@@ -4,10 +4,6 @@ import ConfigStore from './config-store';
 const BaseStore = require('./base/_store');
 const data = require('../data/base/_data');
 
-const postEvent = (event) => {
-    if (!AccountStore.getUser()) return;
-    return data.post('/api/event', { event: `${event}(${AccountStore.getUser().email} ${AccountStore.getUser().first_name} ${AccountStore.getUser().last_name})` });
-};
 const controller = {
     register: ({ email, password, first_name, last_name, organisation_name = 'Default Organisation' }, isInvite) => {
         store.saving();
@@ -24,25 +20,9 @@ const controller = {
                 if (API.getReferrer()) {
                     API.trackEvent(Constants.events.REFERRER_REGISTERED(API.getReferrer().utm_source));
                 }
-                if (isInvite) {
-                    return controller.onLogin();
-                }
-                API.trackEvent(Constants.events.CREATE_ORGANISATION);
-                API.trackEvent(Constants.events.CREATE_FIRST_ORGANISATION);
 
-
-                return data.post(`${Project.api}organisations/`, { name: organisation_name })
-                    .then(() => controller.onLogin())
-                    .then(() => {
-                        if (API.getReferrer()) {
-                        // eslint-disable-next-line camelcase
-                            postEvent(`New Organisation ${organisation_name} from ${API.getReferrer().utm_source}`);
-                            API.trackEvent(Constants.events.REFERRER_CONVERSION(API.getReferrer().utm_source));
-                        } else {
-                        // eslint-disable-next-line camelcase
-                            postEvent(`New Organisation ${organisation_name}`);
-                        }
-                    });
+                store.isSaving = false;
+                return controller.onLogin();
             })
             .catch(e => API.ajaxHandler(store, e));
     },
@@ -131,7 +111,7 @@ const controller = {
     },
     onLogin: (skipCaching) => {
         if (!skipCaching) {
-            require('js-cookie').set('t', data.token);
+            API.setCookie('t', data.token);
         }
         return controller.getOrganisations();
     },
@@ -142,8 +122,13 @@ const controller = {
             .then((res) => {
                 store.savedId = res.id;
                 store.model.organisations.push(res);
-                AsyncStorage.setItem('user', JSON.stringify(store.model));
-                store.saved();
+                const ev = Constants.events.ACCEPT_INVITE(res.name);
+                API.postEvent(ev.event + (ev.extra ? ` ${ev.extra}` : ''), 'first_events')
+                    .catch(() => {})
+                    .finally(() => {
+                        AsyncStorage.setItem('user', JSON.stringify(store.model));
+                        store.saved();
+                    });
             })
             .catch((e) => {
                 API.ajaxHandler(store, e);
@@ -238,11 +223,11 @@ const controller = {
         API.trackEvent(Constants.events.CREATE_ORGANISATION);
         if (API.getReferrer()) {
             // eslint-disable-next-line camelcase
-            postEvent(`New Organisation ${name} from ${`${API.getReferrer()}`}`);
+            API.postEvent(`New Organisation ${name} from ${`${API.getReferrer().utm_source}`}`);
             API.trackEvent(Constants.events.REFERRER_CONVERSION(API.getReferrer().utm_source));
         } else {
             // eslint-disable-next-line camelcase
-            postEvent(`New Organisation ${name}`);
+            API.postEvent(`New Organisation ${name}`);
         }
         data.post(`${Project.api}organisations/`, { name })
             .then((res) => {
@@ -279,7 +264,7 @@ const controller = {
         } else if (!user) {
             store.ephemeral_token = null;
             AsyncStorage.clear();
-            require('js-cookie').set('t', '');
+            API.setCookie('t', '');
             data.setToken(null);
             store.isDemo = false;
             store.model = user;
@@ -306,6 +291,11 @@ const controller = {
                 const idx = _.findIndex(store.model.organisations, { id: store.organisation.id });
                 if (idx !== -1) {
                     store.model.organisations[idx] = res;
+                    try {
+                        if (res && res.subscription && res.subscription.plan) {
+                            API.postEvent(res.subscription.plan, 'chargebee');
+                        }
+                    } catch (e) {}
                     store.organisation = res;
                 }
                 store.saved();

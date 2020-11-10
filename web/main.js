@@ -9,6 +9,7 @@ import ToastMessages from './project/toast';
 import routes from './routes';
 
 import AccountStore from '../common/stores/account-store';
+import data from '../common/data/base/_data';
 
 window.Project = require('../common/project');
 
@@ -27,7 +28,7 @@ const rootElement = document.getElementById('app');
 const params = Utils.fromParam();
 
 if (params.token) {
-    require('js-cookie').set('t', params.token);
+    API.setCookie('t', params.token);
     document.location = document.location.origin;
 }
 
@@ -46,9 +47,24 @@ function hashLinkScroll() {
 }
 
 // Render the React application to the DOM
-const res = require('js-cookie').get('t');
+const res = API.getCookie('t');
 
-if (res) {
+const event = API.getEvent();
+if (event) {
+    try {
+        data.post('/api/event', JSON.parse(event))
+            .catch(() => {})
+            .finally(() => {
+                API.setEvent('');
+            });
+    } catch (e) {
+
+    }
+}
+
+
+const isInvite = document.location.href.includes('invite');
+if (res && !isInvite) {
     AppActions.setToken(res);
 }
 

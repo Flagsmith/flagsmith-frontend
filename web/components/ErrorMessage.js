@@ -6,10 +6,10 @@ export default class ErrorMessage extends PureComponent {
   static displayName = 'ErrorMessage';
 
   render() {
-      return (
+      return this.props.error? (
           <div className="alert alert-danger">
               {this.props.error}
           </div>
-      );
+      ) : null;
   }
 }

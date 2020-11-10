@@ -21,6 +21,12 @@
 }
 
 .panel {
+
+	&.no-pad {
+		.panel-content{
+			padding: 0;
+		}
+	}
 	.no-results {
 		text-align: center;
 		line-height: 44px;
@@ -33,6 +39,7 @@
 			color: $panel-heading-color;
 			margin: 0;
 		}
+
 		font-weight: 500;
 		font-size: 1em;
 		border-top-right-radius: 8px;
