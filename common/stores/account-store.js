@@ -307,6 +307,11 @@ const controller = {
                 const idx = _.findIndex(store.model.organisations, { id: store.organisation.id });
                 if (idx !== -1) {
                     store.model.organisations[idx] = res;
+                    try {
+                        if (res && res.subscription && res.subscription.plan) {
+                            API.postEvent(res.subscription.plan, 'chargebee');
+                        }
+                    } catch (e) {}
                     store.organisation = res;
                 }
                 store.saved();
