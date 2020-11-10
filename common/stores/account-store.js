@@ -127,7 +127,7 @@ const controller = {
     },
     onLogin: (skipCaching) => {
         if (!skipCaching) {
-            require('js-cookie').set('t', data.token);
+            API.setCookie('t', data.token);
         }
         return controller.getOrganisations();
     },
@@ -276,7 +276,7 @@ const controller = {
         } else if (!user) {
             store.ephemeral_token = null;
             AsyncStorage.clear();
-            require('js-cookie').set('t', '');
+            API.setCookie('t', '');
             data.setToken(null);
             store.isDemo = false;
             store.model = user;

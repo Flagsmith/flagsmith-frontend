@@ -84,6 +84,23 @@ global.API = {
             return null;
         }
     },
+    getEvent() {
+        return API.getCookie('event');
+    },
+    setEvent(v) {
+        return API.setCookie('event', v);
+    },
+    getCookie(key) {
+        return require('js-cookie').get(key);
+    },
+    setCookie(key, v) {
+        try {
+            require('js-cookie').set(key, v);
+            require('js-cookie').set(key, v, { path: '', domain: Project.cookieDomain });
+        } catch (e) {
+
+        }
+    },
     setInvite(id) {
         const cookie = require('js-cookie');
         cookie.set('invite', id);
