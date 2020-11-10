@@ -8,8 +8,15 @@ const RebrandBanner = class extends React.Component {
       this.state = {};
   }
 
+  dismiss = () => {
+      API.setCookie('rebrand', '1');
+      this.forceUpdate();
+  }
 
   render() {
+      if (API.getCookie('rebrand')) {
+          return null;
+      }
       return (
           <div className="bottom-banner">
               <div className="inner">
