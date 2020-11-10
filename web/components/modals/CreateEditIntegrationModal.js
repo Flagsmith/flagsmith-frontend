@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import EnvironmentSelect from '../EnvironmentSelect';
 import _data from '../../../common/data/base/_data';
+import ErrorMessage from '../ErrorMessage';
 
 const CreateEditIntegration = class extends Component {
     static displayName = 'CreateEditIntegration'
 
     constructor(props, context) {
         super(props, context);
-        this.state = { data: this.props.data || {} };
+        this.state = { data: this.props.data ? { ...this.props.data } : {} };
     }
 
 
@@ -31,18 +32,30 @@ const CreateEditIntegration = class extends Component {
         }
         this.setState({ isLoading: true });
         if (this.props.data) {
-            _data.put(`${Project.api}projects/${this.props.projectId}/integrations/${this.props.id}/`, this.state.data)
+            _data.put(`${Project.api}projects/${this.props.projectId}/integrations/${this.props.id}/${this.props.data.id}`, this.state.data)
                 .then(this.onComplete).catch(this.onError);
         } else {
-            _data.post(`${Project.api}projects/${this.props.projectId}/integrations/`, this.state.data)
+            _data.post(`${Project.api}projects/${this.props.projectId}/integrations/${this.props.id}/`, this.state.data)
                 .then(this.onComplete).catch(this.onError);
         }
     }
 
-    onError = () => {
-        this.setState({
-            error: true,
-            isLoading: false,
+    onError = (res) => {
+        const defaultError = 'There was an error adding your integration, please check the details you have entered';
+        res.text().then((error) => {
+            let err = error;
+            try {
+                err = JSON.parse(error);
+                this.setState({
+                    error: err[0],
+                    isLoading: false,
+                });
+            } catch (e) {}
+        }).catch((e) => {
+            this.setState({
+                error: defaultError,
+                isLoading: false,
+            });
         });
     }
 
@@ -76,6 +89,7 @@ const CreateEditIntegration = class extends Component {
                       />
                   </>
                 ))}
+                <ErrorMessage error={this.state.error}/>
                 <div className="text-right">
                     <Button disabled={this.state.isLoading} type="submit">
                         Save

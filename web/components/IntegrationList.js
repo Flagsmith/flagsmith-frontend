@@ -10,7 +10,9 @@ class Integration extends Component {
     }
 
     render() {
-        const { image, title, description } = this.props.integration;
+        const { image, title, description, perEnvironment } = this.props.integration;
+        const activeIntegrations = this.props.activeIntegrations;
+        const showAdd = !(!perEnvironment && activeIntegrations && activeIntegrations.length);
         return (
             <Panel
               className="no-pad"
@@ -25,18 +27,26 @@ class Integration extends Component {
                               {description}
                           </div>
                       </div>
+                      {showAdd && (
                       <Button
                         className="btn-lg btn-primary ml-4" id="show-create-segment-btn" data-test="show-create-segment-btn"
                         onClick={this.add}
                       >
                           <span className="icon ion-ios-apps"/>
                           {' '}
-                        Add integration
+                          Add integration
                       </Button>
+                      )}
                   </Row>
                 )}
             >
-                <div className="text-center" />
+                <div className="text-center">
+                    {activeIntegrations && activeIntegrations.map((integration) => (
+                        <div onClick={()=>this.props.editIntegration(integration)}>
+                        Hi
+                        </div>
+                    ))}
+                </div>
             </Panel>
         );
     }
@@ -90,7 +100,7 @@ class IntegrationList extends Component {
                               projectId={this.props.projectId}
                               id={i}
                               key={i}
-                              activeIntegration={this.state.activeIntegrations[index]}
+                              activeIntegrations={this.state.activeIntegrations[index]}
                               integration={integrationList[i]}
                             />
                         ))
