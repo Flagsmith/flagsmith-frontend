@@ -1,3 +1,5 @@
+import data from '../../common/data/base/_data';
+
 global.API = {
     ajaxHandler(store, res) {
         switch (res.status) {
@@ -21,8 +23,8 @@ global.API = {
             if (store) {
                 let err = error;
                 try {
-                    err = JSON.parse(error)
-                } catch (e){}
+                    err = JSON.parse(error);
+                } catch (e) {}
                 store.error = err;
                 store.goneABitWest();
             }
@@ -43,6 +45,9 @@ global.API = {
             console.info('track', data);
             if (!data || !data.category || !data.event) {
                 console.error('Invalid event provided', data);
+            }
+            if (data.category === 'First') {
+                API.postEvent(data.event + (data.extra ? ` ${data.extra}` : ''), 'first_events');
             }
             ga('send', {
                 hitType: 'event',
@@ -65,12 +70,35 @@ global.API = {
             });
         }
     },
+    postEvent(event, tag) {
+        if (!AccountStore.getUser()) return;
+        const organisation = AccountStore.getOrganisation();
+        const name = organisation && organisation.name ? ` - ${organisation.name}` : '';
+        return data.post('/api/event', { tag, event: `${event}(${AccountStore.getUser().email} ${AccountStore.getUser().first_name} ${AccountStore.getUser().last_name})${name}` });
+    },
     getReferrer() {
         const r = require('js-cookie').get('r');
         try {
             return JSON.parse(r);
         } catch (e) {
             return null;
+        }
+    },
+    getEvent() {
+        return API.getCookie('event');
+    },
+    setEvent(v) {
+        return API.setCookie('event', v);
+    },
+    getCookie(key) {
+        return require('js-cookie').get(key);
+    },
+    setCookie(key, v) {
+        try {
+            require('js-cookie').set(key, v);
+            require('js-cookie').set(key, v, { path: '', domain: Project.cookieDomain });
+        } catch (e) {
+
         }
     },
     setInvite(id) {
@@ -91,7 +119,7 @@ global.API = {
         }
 
         if (Project.mixpanel) {
-            mixpanel.track('Page View', {
+            mixpanel.track(`Page View  - ${title}`, {
                 title,
                 location: document.location.href,
                 page: document.location.pathname,
@@ -110,6 +138,16 @@ global.API = {
             const orgs = (user && user.organisations && _.map(user.organisations, o => `${o.name} #${o.id}(${o.role})[${o.num_seats}]`).join(',')) || '';
             if (Project.mixpanel) {
                 mixpanel.identify(id);
+                const plans = AccountStore.getPlans();
+
+                mixpanel.people.set({
+                    '$email': id, // only reserved properties need the $
+                    'USER_ID': id, // use human-readable names
+                    '$first_name': user.first_name,
+                    '$last_name': user.last_name,
+                    'plan': plans && plans.join(','),
+                    orgs,
+                });
             }
             bulletTrain.identify(id);
             bulletTrain.setTrait('email', id);

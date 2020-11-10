@@ -31,9 +31,9 @@ const Constants = {
     ],
     forms: {
         maxLength: {
-            "FEATURE_ID" : 150,
-            "SEGMENT_ID" : 150,
-            "TRAITS_ID" : 150
+            'FEATURE_ID': 150,
+            'SEGMENT_ID': 150,
+            'TRAITS_ID': 150,
         },
     },
     defaultRule: {
@@ -66,6 +66,7 @@ const Constants = {
         'EDIT_PROJECT': { 'event': 'Project edited', 'category': 'Project' },
         'EDIT_USER_FEATURE': { 'event': 'User feature edited', 'category': 'Features' },
         'INVITE': { 'event': 'Invite sent', 'category': 'Invite' },
+        'ACCEPT_INVITE': org => ({ 'event': 'Invite accepted', 'category': 'Invite', extra: org }),
         'LOGIN_DEMO': { 'event': 'User demo login', 'category': 'User' },
         'LOGIN': { 'event': 'User login', 'category': 'User' },
         'REGISTER': { 'event': 'User register', 'category': 'User' },
