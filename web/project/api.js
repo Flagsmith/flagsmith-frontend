@@ -119,7 +119,7 @@ global.API = {
         }
 
         if (Project.mixpanel) {
-            mixpanel.track(`Page View${title}`, {
+            mixpanel.track(`Page View  - ${title}`, {
                 title,
                 location: document.location.href,
                 page: document.location.pathname,
