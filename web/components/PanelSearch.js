@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { FixedSizeList as List } from 'react-window';
-import AutoSizer from 'react-virtualized-auto-sizer';
 import Popover from './base/Popover';
 
 const PanelSearch = class extends Component {
@@ -20,12 +18,6 @@ const PanelSearch = class extends Component {
         isLoading: OptionalBool,
     }
 
-    handleResize = () => {
-        this.forceUpdate();
-    }
-
-    throttledResize = _.throttle(this.handleResize, 200)
-
     constructor(props, context) {
         super(props, context);
         const defaultSortingOption = _.find(_.get(props, 'sorting', []), { default: true });
@@ -35,20 +27,11 @@ const PanelSearch = class extends Component {
         };
     }
 
-    componentDidMount() {
-        window.addEventListener('resize', this.throttledResize);
-    }
-
-    componentWillUnmount() {
-        window.removeEventListener('resize', this.throttledResize);
-    }
-
-
     filter() {
-        const search = this.props.search || this.state.search || '';
+        const search = this.props.search || this.state.search || "";
         const filter = this.props.filter;
         const { items, filterRow } = this.props;
-        if (filterRow && (search || filter)) {
+        if (filterRow && (search||filter)) {
             return this.sort(_.filter(items, i => filterRow(i, search.toLowerCase())));
         }
         return this.sort(items);
@@ -154,45 +137,22 @@ const PanelSearch = class extends Component {
                     />
                 )}
                 <div id={this.props.id} className="search-list" style={isLoading ? { opacity: 0.5 } : {}}>
-                    {this.props.header}
-                    {filteredItems && filteredItems.length ? (
-                        <List
-                          className="List"
-                          height={Math.min(filteredItems.length * (this.props.itemHeight || 60), 12 * (this.props.itemHeight || 60))}
-                          itemCount={filteredItems.length}
-                          itemSize={this.props.itemHeight || 60}
-                        >
-                            {({ index, style }) => (
-                                <div style={style}>
-                                    <div style={{ height: (this.props.itemHeight || 60) }}>
-                                        {this.props.renderRow(filteredItems[index], index)}
-                                    </div>
+                    {filteredItems && filteredItems.length
+                        ? filteredItems.map(renderRow) : (renderNoResults && !search) ? renderNoResults : (
+                            <Column>
+                                <div>
+                                    {'No results '}
+                                    {search && (
+                                        <span>
+for
+                                            <strong>
+                                                {` "${search}"`}
+                                            </strong>
+                                        </span>
+                                    )}
                                 </div>
-                            )}
-                        </List>
-                    )
-                        : (
-                            <div className="no-results">
-                                {
-                              (renderNoResults && !search) ? renderNoResults : (
-                                  <Column>
-                                      <div>
-                                          {'No results '}
-                                          {search && (
-                                          <span>
-                                              for
-                                              <strong>
-                                                  {` "${search}"`}
-                                              </strong>
-                                          </span>
-                                          )}
-                                      </div>
-                                  </Column>
-                              )}
-                            </div>
-                        )
-                    }
-
+                            </Column>
+                        )}
                 </div>
                 {!!paging && filteredItems && filteredItems.length > 10 && (
                     <Paging

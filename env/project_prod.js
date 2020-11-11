@@ -7,6 +7,7 @@ module.exports = global.Project = {
     sentry: 'https://11c8828dc24041b0a875e324b0380769@sentry.io/1320942',
     maintenance: false, // trigger maintenance mode
     cookieDomain: '.bullet-train.io',
+    excludeAnalytics: 'nightwatch@solidstategroup.com',
     delighted: true, // determines whether to shw delighted feedback widget
     demoAccount: {
         email: 'kyle+bullet-train@solidstategroup.com',
