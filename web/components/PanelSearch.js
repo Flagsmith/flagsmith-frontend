@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { FixedSizeList as List } from 'react-window';
-import AutoSizer from 'react-virtualized-auto-sizer';
 import Popover from './base/Popover';
 
 const PanelSearch = class extends Component {
@@ -20,12 +18,6 @@ const PanelSearch = class extends Component {
         isLoading: OptionalBool,
     }
 
-    handleResize = () => {
-        this.forceUpdate();
-    }
-
-    throttledResize = _.throttle(this.handleResize, 200)
-
     constructor(props, context) {
         super(props, context);
         const defaultSortingOption = _.find(_.get(props, 'sorting', []), { default: true });
@@ -35,20 +27,11 @@ const PanelSearch = class extends Component {
         };
     }
 
-    componentDidMount() {
-        window.addEventListener('resize', this.throttledResize);
-    }
-
-    componentWillUnmount() {
-        window.removeEventListener('resize', this.throttledResize);
-    }
-
-
     filter() {
-        const search = this.props.search || this.state.search || '';
+        const search = this.props.search || this.state.search || "";
         const filter = this.props.filter;
         const { items, filterRow } = this.props;
-        if (filterRow && (search || filter)) {
+        if (filterRow && (search||filter)) {
             return this.sort(_.filter(items, i => filterRow(i, search.toLowerCase())));
         }
         return this.sort(items);
@@ -82,126 +65,103 @@ const PanelSearch = class extends Component {
         const search = this.props.search || this.state.search;
 
         return (!search && (!filteredItems || !filteredItems.length)) && !this.props.renderSearchWithNoResults ? renderNoResults : (
-            <Panel
-              className={this.props.className}
-              title={this.props.title}
-              icon={this.props.icon}
-              renderFooter={this.props.renderFooter}
-              action={this.props.filterRow || this.props.sorting ? (
-                  <Row>
-                      {!!this.props.sorting && (
-                          <Row className="mr-3 relative">
-                              <Popover
-                                renderTitle={toggle => (
-                                    <a onClick={toggle}>
-                                        <div
-                                          className="flex-column ion ion-md-funnel"
-                                        />
-                                        {currentSort ? currentSort.label : 'Unsorted'}
-                                    </a>
-                                )}
-                              >
-                                  {toggle => (
-                                      <div className="popover-inner__content">
-                                          {this.props.sorting.map(sortOption => (
-                                              <a
-                                                className="popover-bt__list-item"
-                                                href="#" onClick={(e) => {
-                                                    this.onSort(e, sortOption);
-                                                    toggle();
-                                                }}
-                                              >
-                                                  <Row space>
-                                                      <Row className="flex-1">
-                                                          {sortOption.label}
-                                                      </Row>
-                                                      {currentSort && currentSort.value === sortOption.value && (
-                                                      <Row>
-                                                          <div
-                                                            className={`flex-column ion ${sortOrder === 'asc' ? 'ion-ios-arrow-up' : 'ion-ios-arrow-down'}`}
-                                                          />
-                                                      </Row>
-                                                      )}
-                                                  </Row>
-                                              </a>
-                                          ))}
-                                      </div>
-                                  )}
-                              </Popover>
-                          </Row>
-                      )}
-                      {!!this.props.filterRow && (
-                          <Row onClick={() => this.input.focus()}>
-                              <input
-                                ref={c => this.input = c}
-                                onBlur={this.props.onBlur}
-                                onChange={e => (this.props.onChange ? this.props.onChange(e) : this.setState({ search: Utils.safeParseEventValue(e) }))}
-                                type="text"
-                                value={this.props.search || search}
-                                className="pl-4"
-                              />
-                              <span style={{ marginLeft: 10, position: 'absolute' }} className="icon ion-ios-search" />
-                          </Row>
-                      )}
-                  </Row>
-              ) : null}
-            >
-                {!!paging && (
-                    <Paging
-                      paging={paging}
-                      isLoading={isLoading}
-                      goToPage={goToPage}
-                    />
-                )}
-                <div id={this.props.id} className="search-list" style={isLoading ? { opacity: 0.5 } : {}}>
-                    {this.props.header}
-                    {filteredItems && filteredItems.length ? (
-                        <List
-                          className="List"
-                          height={Math.min(filteredItems.length * (this.props.itemHeight || 60), 12 * (this.props.itemHeight || 60))}
-                          itemCount={filteredItems.length}
-                          itemSize={this.props.itemHeight || 60}
+          <Panel
+            className={this.props.className}
+            title={this.props.title}
+            icon={this.props.icon}
+            renderFooter={this.props.renderFooter}
+            action={this.props.filterRow || this.props.sorting ? (
+              <Row>
+                  {!!this.props.sorting && (
+                    <Row className="mr-3 relative">
+                        <Popover
+                          renderTitle={toggle => (
+                            <a onClick={toggle}>
+                                <div
+                                  className="flex-column ion ion-md-funnel"
+                                />
+                                {currentSort ? currentSort.label : 'Unsorted'}
+                            </a>
+                          )}
                         >
-                            {({ index, style }) => (
-                                <div style={style}>
-                                    <div style={{ height: (this.props.itemHeight || 60), overflow:'hidden' }}>
-                                        {this.props.renderRow(filteredItems[index], index)}
-                                    </div>
-                                </div>
+                            {toggle => (
+                              <div className="popover-inner__content">
+                                  {this.props.sorting.map(sortOption => (
+                                    <a
+                                      className="popover-bt__list-item"
+                                      href="#" onClick={(e) => {
+                                        this.onSort(e, sortOption);
+                                        toggle();
+                                    }}
+                                    >
+                                        <Row space>
+                                            <Row className="flex-1">
+                                                {sortOption.label}
+                                            </Row>
+                                            {currentSort && currentSort.value === sortOption.value && (
+                                              <Row>
+                                                  <div
+                                                    className={`flex-column ion ${sortOrder === 'asc' ? 'ion-ios-arrow-up' : 'ion-ios-arrow-down'}`}
+                                                  />
+                                              </Row>
+                                            )}
+                                        </Row>
+                                    </a>
+                                  ))}
+                              </div>
                             )}
-                        </List>
-                    )
-                        : (
-                            <div className="no-results">
-                                {
-                              (renderNoResults && !search) ? renderNoResults : (
-                                  <Column>
-                                      <div>
-                                          {'No results '}
-                                          {search && (
-                                          <span>
-                                              for
-                                              <strong>
-                                                  {` "${search}"`}
-                                              </strong>
-                                          </span>
-                                          )}
-                                      </div>
-                                  </Column>
+                        </Popover>
+                    </Row>
+                  )}
+                  {!!this.props.filterRow && (
+                    <Row onClick={() => this.input.focus()}>
+                        <input
+                          ref={c => this.input = c}
+                          onBlur={this.props.onBlur}
+                          onChange={e => (this.props.onChange ? this.props.onChange(e) : this.setState({ search: Utils.safeParseEventValue(e) }))}
+                          type="text"
+                          value={this.props.search || search}
+                          className="pl-4"
+                        />
+                        <span style={{ marginLeft: 10, position: 'absolute' }} className="icon ion-ios-search" />
+                    </Row>
+                  )}
+              </Row>
+            ) : null}
+          >
+              {!!paging && (
+                <Paging
+                  paging={paging}
+                  isLoading={isLoading}
+                  goToPage={goToPage}
+                />
+              )}
+              <div id={this.props.id} className="search-list" style={isLoading ? { opacity: 0.5 } : {}}>
+                  {filteredItems && filteredItems.length
+                    ? filteredItems.map(renderRow) : (renderNoResults && !search) ? renderNoResults : (
+                      <Column>
+                          <div>
+                              {'No results '}
+                              {search && (
+                                <span>
+                                    for
+                                    <strong>
+                                        {` "${search}"`}
+                                    </strong>
+                                </span>
                               )}
-                            </div>
-                        )
-                    }
-
-                </div>
-                {!!paging && filteredItems && filteredItems.length > 10 && (
-                    <Paging
-                      paging={paging}
-                      isLoading={isLoading}
-                      goToPage={goToPage}
-                    />
-                )}
-            </Panel>
+                          </div>
+                      </Column>
+                    )}
+              </div>
+              {!!paging && filteredItems && filteredItems.length > 10 && (
+                <Paging
+                  paging={paging}
+                  isLoading={isLoading}
+                  goToPage={goToPage}
+                />
+              )}
+          </Panel>
         );
     }
 };
