@@ -146,9 +146,9 @@ a, .btn, button{
         &:hover {
             box-shadow: none;
             background: white;
-            color: darken($bt-brand-primary, 10);
+            color: $bt-link-color-hover;
         }
-        color: $bt-brand-primary;
+        color: $bt-link-color;
     }
 
     &--condensed {
@@ -161,7 +161,12 @@ a, .btn, button{
     }
     &--with-icon{
         background:none;
-        color:$bt-brand-secondary;
+        &.primary {
+            color:$bt-brand-secondary;
+            path {
+                fill:$bt-brand-secondary;
+            }
+        }
         box-shadow: none;
         height:auto;
         line-height: 1;
@@ -170,6 +175,9 @@ a, .btn, button{
         &:hover, &:focus {
             background:none !important;
             color:darken($bt-brand-secondary, 10) !important;
+            path {
+                fill:darken($bt-brand-secondary, 10) !important;
+            }
             box-shadow: none !important;
         }
     }
@@ -180,6 +188,8 @@ a, .btn, button{
         margin-left:5px;
 
         &--small{
+            top: 3px;
+            position: relative;
             height:20px;
         }
     }

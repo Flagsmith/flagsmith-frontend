@@ -70,7 +70,7 @@ const TryIt = class extends Component {
                         <div>
                             <Button
                               id="try-it-btn" disabled={this.state.isLoading} onClick={this.request}
-                              className="btn btn--with-icon"
+                              className="btn btn--with-icon primary"
                             >
                                 {this.state.data ? 'Test again' : 'Run test'}
                                 {' '}

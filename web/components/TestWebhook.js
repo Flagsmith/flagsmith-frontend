@@ -40,7 +40,7 @@ export default class TheComponent extends Component {
               {success && <SuccessMessage message="Your API returned with a successful 200 response."/>}
               <Button
                 id="try-it-btn" disabled={loading} onClick={submit}
-                className="btn btn--with-icon"
+                className="btn btn--with-icon primary"
               >
                   Test your webhook
                   {' '}
