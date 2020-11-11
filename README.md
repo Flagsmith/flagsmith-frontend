@@ -64,7 +64,7 @@ Current variables used between [environment.js](./environment.js) and [common/pr
 - CRISP_CHAT: Chat widget key
 - MIXPANEL: Mixpanel analytics key
 - SENTRY: Sentry key
-- ASSET_URL: Used for replacing local static paths with a cdn, .e.g https://cdn.bullet-train.io
+- ASSET_URL: Used for replacing local static paths with a cdn, .e.g https://cdn.flagsmith.com
 
 ## E2E testing
 
