@@ -1,6 +1,7 @@
 
 import React, { Component } from 'react';
 import _data from '../../common/data/base/_data';
+import ProjectStore from '../../common/stores/project-store';
 
 const CreateEditIntegration = require('./modals/CreateEditIntegrationModal');
 
@@ -15,18 +16,18 @@ class Integration extends Component {
         const showAdd = !(!perEnvironment && activeIntegrations && activeIntegrations.length);
         return (
             <Panel
-              className="no-pad"
+              className="no-pad m-4"
               title={(
                   <Row style={{ flexWrap: 'noWrap' }}>
                       <img height={64} className="mr-4" src={image}/>
-                      <div>
+                      <Flex>
                           <h4>
                               {title}
                           </h4>
                           <div className="subtitle mt-2">
                               {description}
                           </div>
-                      </div>
+                      </Flex>
                       {showAdd && (
                       <Button
                         className="btn-lg btn-primary ml-4" id="show-create-segment-btn" data-test="show-create-segment-btn"
@@ -41,8 +42,8 @@ class Integration extends Component {
                 )}
             >
                 <div className="text-center">
-                    {activeIntegrations && activeIntegrations.map((integration) => (
-                        <div onClick={()=>this.props.editIntegration(integration)}>
+                    {activeIntegrations && activeIntegrations.map(integration => (
+                        <div onClick={() => this.props.editIntegration(integration)}>
                         Hi
                         </div>
                     ))}
@@ -65,13 +66,27 @@ class IntegrationList extends Component {
         Promise.all(this.props.integrations.map((key) => {
             const integration = integrationList[key];
             if (integration) {
+                if (integration.perEnvironment) {
+                    return Promise.all(ProjectStore.getEnvs().map(env => _data.get(`${Project.api}environments/${env.api_key}/integrations/${key}/`)
+                        .catch((e) => {
+
+                        }))).then((res) => {
+                        let allItems = [];
+                        _.each(res, (envIntegrations, index) => {
+                            if (envIntegrations && envIntegrations.length) {
+                                allItems = allItems.concat(envIntegrations.map(int => ({ ...int, environment: ProjectStore.getEnvs()[index].api_key })));
+                            }
+                        });
+                    });
+                }
                 return _data.get(`${Project.api}projects/${this.props.projectId}/integrations/${key}/`)
                     .catch((e) => {
 
                     });
             }
         })).then((res) => {
-            this.setState({ isLoading: false, activeIntegrations: res });
+            console.log(res);
+            this.setState({ isLoading: false, activeIntegrations: _.map(res, item => (!!item && item.length ? item : [])) });
         });
     }
 

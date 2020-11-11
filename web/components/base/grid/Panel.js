@@ -13,7 +13,7 @@ const Panel = class extends PureComponent {
                             {this.props.icon && (
                             <span className="panel-icon"><span className={`icon ${this.props.icon}`}/></span>
                             )}
-                            <div className="m-b-0 title">{this.props.title}</div>
+                            <Flex className="m-b-0 title">{this.props.title}</Flex>
                         </Row>
                         {this.props.action}
                     </Row>
