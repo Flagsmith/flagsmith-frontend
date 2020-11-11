@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import data from '../../common/data/base/_data';
 import ErrorMessage from './ErrorMessage';
 import SuccessMessage from './SuccessMessage';
+import PlayIcon from './svg/PlayIcon';
 
 export default class TheComponent extends Component {
   static displayName = 'TestWebhook';
@@ -43,7 +44,7 @@ export default class TheComponent extends Component {
               >
                   Test your webhook
                   {' '}
-                  <img className="btn__icon btn__icon--small" src="/images/icon-play.svg" alt="Run"/>
+                  <PlayIcon className="btn__icon btn__icon--small" alt="Run"/>
               </Button>
           </div>
       );

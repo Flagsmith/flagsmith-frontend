@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Highlight from './Highlight';
+import PlayIcon from './svg/PlayIcon';
 
 const TryIt = class extends Component {
     static displayName = 'TryIt'
@@ -73,7 +74,7 @@ const TryIt = class extends Component {
                             >
                                 {this.state.data ? 'Test again' : 'Run test'}
                                 {' '}
-                                <img className="btn__icon btn__icon--small" src="/images/icon-play.svg" alt="Run"/>
+                                <PlayIcon className="btn__icon btn__icon--small" alt="Run"/>
                             </Button>
                         </div>
                     </div>

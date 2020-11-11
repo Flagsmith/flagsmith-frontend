@@ -86,9 +86,6 @@ export default class ExampleOne extends Component {
 
                             <ButtonLink href="https://www.google.com/" buttonText="Text Button" />
 
-                            <Button className="btn btn--with-icon" icon="/images/icon-play.svg">
-                              Button with icon
-                            </Button>
 
                             <ButtonProject>S</ButtonProject>
 

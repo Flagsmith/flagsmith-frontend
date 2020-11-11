@@ -14,13 +14,6 @@ const Button = class extends PureComponent {
               className={`btn ${this.props.className || ''}`}
             >
                 {this.props.children}
-                {this.props.icon ? (
-                    <React.Fragment>
-                        <img className="btn__icon btn__icon--small" src={this.props.icon || "/images/icon-play.svg"} alt="Run"/>
-                    </React.Fragment>
-                ) : (
-                    null
-                )}
             </button>
         );
     }

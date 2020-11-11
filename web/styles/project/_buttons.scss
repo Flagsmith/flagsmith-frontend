@@ -128,7 +128,7 @@ a, .btn, button{
         line-height: 0px;
         font-weight: bold;
         &:hover, &:focus  {
-            color: $bt-brand-primary;
+            color: $bt-link-color-hover;
             background: transparent;
             text-decoration: underline;
             border: none;
