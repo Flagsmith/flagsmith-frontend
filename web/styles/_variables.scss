@@ -21,7 +21,7 @@ $bt-brand-faint-hover: #eee7f6;
 
 $bt-brand-tertiary: #f18e7f;
 $bt-brand-secondary: #00a696;
-$bt-brand-secondary-faint: #33a097;
+$bt-brand-secondary-faint: #2d9189;
 $bt-brand-secondary-light: lighten($bt-brand-secondary,40);
 $bt-brand-secondary-hover: darken($bt-brand-secondary, 5);
 $bt-brand-secondary-active: $bt-brand-secondary-hover;
@@ -33,9 +33,9 @@ $bt-brand-red: #f2576e;
 $body-text-faint: #717186;
 $body-text: #43424f;
 $header-color: #38386d; // for headers and labels
-$link-color: $bt-brand-secondary; // for headers and labels
-$bt-link-color: $bt-brand-secondary; // for headers and labels
-$bt-link-color-hover: darken($bt-brand-secondary,10); // for headers and labels
+$link-color: $bt-brand-secondary-faint; // for headers and labels
+$bt-link-color: $bt-brand-secondary-faint; // for headers and labels
+$bt-link-color-hover: darken($bt-brand-secondary-faint,10); // for headers and labels
 
 //Navbar
 $nav-link-color: $header-color; // navbar link
