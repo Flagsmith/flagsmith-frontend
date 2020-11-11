@@ -162,9 +162,9 @@ a, .btn, button{
     &--with-icon{
         background:none;
         &.primary {
-            color:$bt-brand-secondary;
+            color:$bt-brand-primary-dark-desaturated-lighter;
             path {
-                fill:$bt-brand-secondary;
+                fill:$bt-brand-primary-dark-desaturated-lighter;
             }
         }
         box-shadow: none;
