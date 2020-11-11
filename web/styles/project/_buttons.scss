@@ -25,7 +25,7 @@ a, .btn, button{
 
 .btn, button.btn{
     outline: none !important;
-    background: $bt-brand-secondary;
+    background: $bt-brand-primary-dark-desaturated-lighter;
     transition: $button-transition;
     border-radius: $border-radius-default !important;
     color:#fff;
@@ -40,7 +40,7 @@ a, .btn, button{
     height:$input-height;
     //box-shadow:0 0 5px rgba(0,0,0,0.2);
     &:hover, &:disabled:hover {
-        background: $bt-brand-secondary-hover;
+        background: darken($bt-brand-primary-dark-desaturated-lighter,10);
     }
     &:hover {
         box-shadow:0 0 10px rgba(0,0,0,0.5);
@@ -69,8 +69,8 @@ a, .btn, button{
     }
     &--outline{
         background: white;
-        border: 2px solid $bt-brand-primary !important;
-        color: $bt-brand-primary;
+        border: 2px solid $bt-brand-secondary-faint !important;
+        color: $bt-brand-secondary-faint;
         line-height: 37px;
         &:hover {
             background-color: white;
