@@ -92,7 +92,7 @@ export default class TheComponent extends PureComponent {
                                         </button>
                                     </Column>
                                 ) : (
-                                    <ion style={{ fontSize: 24 }} className="icon--green ion ion-md-settings"/>
+                                    <ion style={{ fontSize: 24 }} className="icon--primary ion ion-md-settings"/>
 
                                 )}
 

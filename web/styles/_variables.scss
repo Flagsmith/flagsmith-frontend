@@ -4,33 +4,33 @@ $font-family-header: 'OpenSans', sans-serif;
 
 // COLORS
 
-$brand-primary: #6633ff;
-$bt-brand-primary-dark: #17103a;
-$bt-brand-primary-dark-desaturated: #17103a;
-$bt-brand-primary-dark-desaturated-light: #2d2451;
-
 $bt-brand-primary: #6633ff;
-$bt-brand-primary-light: lighten($bt-brand-primary,0.3);
-$bt-brand-primary-lighter: lighten($bt-brand-primary,0.7);
+$bt-brand-primary-light: lighten($bt-brand-primary,40);
+$bt-brand-primary-lighter: lighten($bt-brand-primary,70);
+
+$bt-brand-primary-dark: #17103a;
+$bt-brand-primary-dark-desaturated: #202040;
+$bt-brand-primary-dark-desaturated-light: #38386d;
+
+
 $bt-brand-faint: #f3ecff;
-$bt-brand-faint-alt: #f5f5fc;
+$bt-brand-faint-alt: #f0f0fa;
 $bt-brand-faint-hover: #eee7f6;
 
 
-$bt-brand-secondary: #f27157;
-$bt-brand-secondary-light: #f6a999;
-$bt-brand-secondary-hover: #e3674d;
-$bt-brand-secondary-active: #e3674d;
+$bt-brand-secondary: #00a696;
+$bt-brand-secondary-light: lighten($bt-brand-secondary,40);
+$bt-brand-secondary-hover: darken($bt-brand-secondary, 5);
+$bt-brand-secondary-active: $bt-brand-secondary-hover;
 
-$bt-brand-tertiary: #FBF4D5;
 
 $bt-brand-red: #f2576e;
 
 //Body
+$body-text-faint: #717186;
 $body-text: #43424f;
-$bt-link-color: $body-text;
-$body-text-faint: #716E86; // e.g. list sub titles
-$header-color: #242039; // for headers and labels
+$header-color: #38386d; // for headers and labels
+$bt-link-color: $body-text; // for headers and labels
 
 //Navbar
 $nav-link-color: $header-color; // navbar link
@@ -59,7 +59,7 @@ $bt-gradient-start: $bt-brand-faint-alt;
 $bt-gradient-end: #fff;
 
 $bt-code-background: #2b273c;
-$bt-switch-active:$bt-code-background;
+$bt-switch-active:$header-color;
 
 
 // Code help e.g. installing the SDK
@@ -102,7 +102,7 @@ $hover-color: inherits;
 $panel-heading-height: 50px;
 $panel-bg: #fff;
 $panel-heading-bg: #f7f7f7;
-$panel-heading-color: #919aa6;
+$panel-heading-color: $header-color;
 $panel-heading-border: 1px solid #f1f1f1;
 
 //
