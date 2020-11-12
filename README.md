@@ -1,4 +1,4 @@
-[<img alt="Feature Flag, Remote Config and A/B Testing platform, Flagsmith" width="100%" src="./hero.png"/>](https://bullet-train.io/)
+[<img alt="Feature Flag, Remote Config and A/B Testing platform, Flagsmith" width="100%" src="./hero.png"/>](https://flagsmith.com/)
 
 [![Donate](https://liberapay.com/assets/widgets/donate.svg)](https://liberapay.com/Bullet-Train/donate)
 
@@ -6,9 +6,9 @@ Bullet Train is now Flagsmith read about it [here](https://flagsmith.com/blog/re
 
 # Flagsmith Frontend
 
-The frontend application for [https://bullet-train.io/](https://www.bullet-train.io/). Flagsmith allows you to manage feature flags and remote config across multiple projects, environments and organisations.
+The frontend application for [https://flagsmith.com/](https://www.flagsmith.com/). Flagsmith allows you to manage feature flags and remote config across multiple projects, environments and organisations.
 
-This project connects to the [Flagsmith API](https://github.com/BulletTrainHQ/Bullet-Train-API).
+This project connects to the [Flagsmith API](https://github.com/Flagsmith/Bullet-Train-API).
 
 ## Getting Started
 
@@ -94,19 +94,19 @@ If you have any questions about our projects you can email <a href="mailto:proje
 
 ## Running locally against your own Flagsmith API instance
 
-We use Bullet Train to manage features we rollout, if you are using your own flagsmith environment (i.e. by editing project_x.js-> bulletTrain) then you will need to have a replica of our flags.
+We use Flagsmith to manage features we rollout, if you are using your own Flagsmith environment (i.e. by editing project_x.js-> bulletTrain) then you will need to have a replica of our flags.
 
 A list of the flags and remote config we're currently using in production can be found here https://gist.github.com/kyle-ssg/55f3b869c28bdd13c02c6688bc76c67f.
 
 
 ## Useful links
 
-[Website](https://bullet-train.io)
+[Website](https://flagsmith.com)
 
 [Product Roadmap](https://product-hub.io/roadmap/5d81f2406180537538d99f28)
 
-[Documentation](https://docs.bullet-train.io/)
+[Documentation](https://docs.flagsmith.com/)
 
-[Code Examples](https://github.com/BulletTrainHQ/bullet-train-docs)
+[Code Examples](https://github.com/Flagsmith/bullet-train-docs)
 
 [Youtube Tutorials](https://www.youtube.com/channel/UCki7GZrOdZZcsV9rAIRchCw)

@@ -195,7 +195,7 @@ export default class EditPermissions extends PureComponent {
               <p>
                   Flagsmith lets you manage fine-grained permissions for your projects and environments.
                   {' '}
-                  <ButtonLink href="https://docs.bullet-train.io/permissions/">Learn about User Roles.</ButtonLink>
+                  <ButtonLink href="https://docs.flagsmith.com/permissions/">Learn about User Roles.</ButtonLink>
               </p>
               <Tabs value={this.state.tab} onChange={tab => this.setState({ tab })}>
                   <TabItem tabLabel="Users">

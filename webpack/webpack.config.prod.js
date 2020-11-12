@@ -42,7 +42,7 @@ module.exports = {
     output: {
         path: path.join(__dirname, '../build/static'),
         filename: '[name].[hash].js',
-        publicPath: url.resolve(process.env.ASSET_URL || Project.assetUrl || 'https://cdn.bullet-train.io', 'static/'),
+        publicPath: url.resolve(process.env.ASSET_URL || Project.assetUrl || 'https://cdn.flagsmith.com', 'static/'),
     },
 
     plugins: require('./plugins')

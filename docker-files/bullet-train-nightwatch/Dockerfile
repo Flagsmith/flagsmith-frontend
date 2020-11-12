@@ -4,7 +4,7 @@
 # image:    bullet-train-nightwatch                                #
 # name:     kylessg/bullet-train-nightwatch                        #
 # desciption: Used for bullet-train e2e tests                      #
-# repo:     https://github.com/BulletTrainHQ/bullet-train-frontend #
+# repo:     https://github.com/Flagsmith/bullet-train-frontend #
 # authors:  kyle-ssg                                               #
 # ---------------------------------------------------------------- #
 

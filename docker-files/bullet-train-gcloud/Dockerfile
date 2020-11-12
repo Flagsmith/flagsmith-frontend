@@ -4,7 +4,7 @@
 # image:    bullet-train-gcloud                                    #
 # name:     kylessg/bullet-train-gcloud                            #
 # desciption: Used to deploy bullet-train to Google App Engine     #
-# repo:     https://github.com/BulletTrainHQ/bullet-train-frontend #
+# repo:     https://github.com/Flagsmith/bullet-train-frontend #
 # authors:  kyle-ssg                                               #
 # ---------------------------------------------------------------- #
 

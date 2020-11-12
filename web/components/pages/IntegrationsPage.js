@@ -38,7 +38,7 @@ const ProjectSettingsPage = class extends Component {
                                 Integrations
                             </h3>
                             <p>
-                                Enhance Bullet Train with your favourite tools. Have any products you want to see us integrate with? Message us and we will be right with you.
+                                Enhance Flagsmith with your favourite tools. Have any products you want to see us integrate with? Message us and we will be right with you.
                             </p>
                             {permission ? (
                                 <div>

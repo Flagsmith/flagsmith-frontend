@@ -67,7 +67,7 @@ const CreateEditIntegration = class extends Component {
             >
                 {this.props.integration.perEnv && (
                   <>
-                      <label>Bullet Train Environment</label>
+                      <label>Flagsmith Environment</label>
                       <EnvironmentSelect value={this.state.api_key} onChange={environment => this.update(environment)}/>
                   </>
                 )}

@@ -42,7 +42,7 @@ className="img-responsive"/>
 
                           <ul className="list-inline">
                               <li className="list-inline-item">
-                                  <a href="https://github.com/BulletTrainHQ" title="GitHub">
+                                  <a href="https://github.com/Flagsmith" title="GitHub">
                                       <span className="icon ion-logo-github"/>
                                   </a>
                               </li>
@@ -57,7 +57,7 @@ className="img-responsive"/>
                           <h6>Product</h6>
                           <ul className=" float-left nav-list">
                               <li><Link to="/demo">Demo</Link></li>
-                              <li><a href="https://docs.bullet-train.io/">Docs</a></li>
+                              <li><a href="https://docs.flagsmith.com/">Docs</a></li>
                               <li><Link to="/pricing#pricing">Pricing</Link></li>
                           </ul>
                       </div>

@@ -120,7 +120,7 @@ const HomePage = class extends React.Component {
                                       <ButtonLink
                                         className="pt-3 pb-3"
                                         buttonText="Check out our Pricing"
-                                        href="https://bullet-train.io/pricing"
+                                        href="https://flagsmith.com/pricing"
                                         target="_blank"
                                       />
                                   </>

@@ -148,7 +148,7 @@ Team Members
                                                     <p className="text-small text-center">for enterprise pricing</p>
                                                     {!viewOnly ? (
                                                         <a
-                                                          href="mailto:enterprise@bullet-train.io"
+                                                          href="mailto:enterprise@flagsmith.com"
                                                           className="pricing-cta blue"
                                                         >
                                                             Contact Us

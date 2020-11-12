@@ -3,15 +3,15 @@ const TermsOfService = props => (
         <div className="container">
             <h2>Terms of Service</h2>
             <p>
-                These Bullet Train terms of service ("agreement") contains the terms for use of the Bullet Train service
-                and is between Solid State Group Ltd ("Bullet Train"), a London based company having a place of business
+                These Flagsmith terms of service ("agreement") contains the terms for use of the Flagsmith service
+                and is between Solid State Group Ltd ("Flagsmith"), a London based company having a place of business
                 at 86-90 Paul St, London, EC2A 4NE and the party agreeing to the terms of this agreement ("customer").
                 By executing an order form that references this agreement, clicking an "accept" or similar button, or
-                otherwise downloading or using the Bullet Train service, the person performing any of the foregoing
+                otherwise downloading or using the Flagsmith service, the person performing any of the foregoing
                 represents that is authorized to do so on behalf of customer and customer agrees to be bound by the
-                terms of this agreement. Customer may not use the Bullet Train service without agreeing to this
-                agreement first. If a written agreement regarding customer's use of the Bullet Train service exists
-                between and has been executed by both Bullet Train and customer, the terms of that written agreement
+                terms of this agreement. Customer may not use the Flagsmith service without agreeing to this
+                agreement first. If a written agreement regarding customer's use of the Flagsmith service exists
+                between and has been executed by both Flagsmith and customer, the terms of that written agreement
                 shall take precedence over this agreement.
             </p>
             <h3>1. Definitions</h3>
@@ -37,13 +37,13 @@ const TermsOfService = props => (
                     <strong>"Customer Data"</strong>
                     {' '}
                     means all electronic data or information submitted by Customer or any of its Affiliates in the
-                    Bullet Train Service.
+                    Flagsmith Service.
                 </li>
                 <li>
                     <strong>"Customer Equipment"</strong>
                     {' '}
                     means Customer's and its Affiliates' computer hardware, software and network infrastructure used to
-                    access the Bullet Train Service.
+                    access the Flagsmith Service.
                 </li>
                 <li>
                     <strong>"Data Protection Laws and Regulations"</strong>
@@ -54,9 +54,8 @@ const TermsOfService = props => (
                 <li>
                     <strong>"Documentation"</strong>
                     {' '}
-                    means the published specifications of the Bullet Train Service, as may be updated or amended from
-                    time to time as necessary due to updates and enhancements, as determined and provided by Bullet
-                    Train to Customer.
+                    means the published specifications of the Flagsmith Service, as may be updated or amended from
+                    time to time as necessary due to updates and enhancements, as determined and provided by Flagsmith to Customer.
                 </li>
                 <li>
                     <strong>"Extension Term"</strong>
@@ -75,32 +74,31 @@ const TermsOfService = props => (
                 <li>
                     <strong>"Initial Term"</strong>
                     {' '}
-                    means the first subscription term period for the Bullet Train Service defined on an Order Form, or
+                    means the first subscription term period for the Flagsmith Service defined on an Order Form, or
                     if no such term period is defined, twelve (12) months, commencing on the date Customer executes such
                     Order Form.
                 </li>
                 <li>
                     <strong>"Order Form"</strong>
                     {' '}
-                    means a paper-based or online ordering document for the Bullet Train Service accepted by Bullet
-                    Train and Customer.
+                    means a paper-based or online ordering document for the Flagsmith Service accepted by Flagsmith and Customer.
                 </li>
                 <li>
-                    <strong>"Bullet Train Service"</strong>
+                    <strong>"Flagsmith Service"</strong>
                     {' '}
-                    means the Bullet Train online, cloud-based feature flag management tool as further described in the
-                    Documentation, including the Bullet Train SDK.
+                    means the Flagsmith online, cloud-based feature flag management tool as further described in the
+                    Documentation, including the Flagsmith SDK.
                 </li>
                 <li>
                     <strong>"SDK"</strong>
                     {' '}
-                    means Bullet Train's software development kit for use with Customer's products in accordance with
+                    means Flagsmith's software development kit for use with Customer's products in accordance with
                     the Documentation.
                 </li>
                 <li>
                     <strong>"Subscription Fees"</strong>
                     {' '}
-                    mean the fees paid by Customer for the right to access and use the Bullet Train Service and receive
+                    mean the fees paid by Customer for the right to access and use the Flagsmith Service and receive
                     standard support during the Term.
                 </li>
                 <li>
@@ -119,80 +117,80 @@ const TermsOfService = props => (
                     <strong>"Users"</strong>
                     {' '}
                     means Customer's and its Affiliates and their respective employees, agents, contractors, service
-                    providers or consultants who are authorized by Customer to use the Bullet Train Service and who have
-                    been supplied user identifications and passwords by Customer or by Bullet Train at Customer's or its
+                    providers or consultants who are authorized by Customer to use the Flagsmith Service and who have
+                    been supplied user identifications and passwords by Customer or by Flagsmith at Customer's or its
                     Affiliates' request.
                 </li>
             </ul>
-            <h3>2. Terms of Bullet Train Service</h3>
+            <h3>2. Terms of Flagsmith Service</h3>
             <p>
-Bullet Train shall make the Bullet Train Service available to Customer and its Affiliates in accordance
+Flagsmith shall make the Flagsmith Service available to Customer and its Affiliates in accordance
                 with this Agreement, and each Order Form mutually entered into and, to the extent not in conflict with
                 this Agreement or an Order Form or the Documentation. Subject to the terms of this Agreement, Bullet
                 Train grants Customer and its Affiliates a world-wide, fully-paid, royalty-free, limited term,
                 non-sublicensable, non-transferable (except as otherwise provided herein), and non-exclusive license to
-                access, use, and download (for the SDK only) the Bullet Train Service solely for its internal business
+                access, use, and download (for the SDK only) the Flagsmith Service solely for its internal business
                 purposes. The license granted hereunder is limited to the maximum number of Users specified in each
                 Order Form and is subject to any additional terms and conditions specified on an Order Form. Any third
-                party component embedded, included or provided by Bullet Train for use with the Bullet Train Service may
-                only be used in conjunction with the Bullet Train Service, and such use is subject to this
+                party component embedded, included or provided by Flagsmith for use with the Flagsmith Service may
+                only be used in conjunction with the Flagsmith Service, and such use is subject to this
                 Agreement.
             </p>
-            <h3>3. Customer Responsabilities Relatings to Use of the Bullet Train Service</h3>
+            <h3>3. Customer Responsabilities Relatings to Use of the Flagsmith Service</h3>
             <ol>
                 <li>
 Customer is responsible for obtaining and maintaining any Customer Equipment and any ancillary
-                    services needed to connect to, access or otherwise use the Bullet Train Service.
+                    services needed to connect to, access or otherwise use the Flagsmith Service.
                 </li>
                 <li>
-Customer agrees to use the Bullet Train Service in compliance with applicable law, and not: (a)
-                    resell, sublicense, lease, time-share or otherwise make the Bullet Train Service available to any
-                    third party other than as contemplated or allowed by this Agreement; or (b) use the Bullet Train
+Customer agrees to use the Flagsmith Service in compliance with applicable law, and not: (a)
+                    resell, sublicense, lease, time-share or otherwise make the Flagsmith Service available to any
+                    third party other than as contemplated or allowed by this Agreement; or (b) use the Flagsmith
                     Service to intentionally send or store infringing or unlawful material or material containing
                     software viruses, worms, Trojan horses or other harmful computer code, files, scripts, agents or
                     programs.
                 </li>
                 <li>
-Customer agrees to not (a) modify, copy or create derivative works of the Bullet Train Service; (b)
-                    reverse engineer the Bullet Train Service; (c) access the Bullet Train Service for the purpose of
+Customer agrees to not (a) modify, copy or create derivative works of the Flagsmith Service; (b)
+                    reverse engineer the Flagsmith Service; (c) access the Flagsmith Service for the purpose of
                     building a competitive product or service; (d) do any "mirroring" or "framing" of any part of the
                     Service, or create Internet links to the Service which include log-in information, user names,
-                    Bullet Train Master Subscription Agreement (Click-through) May 2017 passwords, and/or secure
-                    cookies; (e) use the Bullet Train Service, for purposes of product evaluation, benchmarking or other
-                    comparative analysis intended for publication without Bullet Train's prior written consent; or (f)
-                    provide access to the Bullet Train Service by a known direct competitor of Bullet Train.
+                    Flagsmith Master Subscription Agreement (Click-through) May 2017 passwords, and/or secure
+                    cookies; (e) use the Flagsmith Service, for purposes of product evaluation, benchmarking or other
+                    comparative analysis intended for publication without Flagsmith's prior written consent; or (f)
+                    provide access to the Flagsmith Service by a known direct competitor of Flagsmith.
                 </li>
                 <li>
 In addition, Customer acknowledges that the SDK is subject to the Apache 2.0 license (or successor
-                    version as indicated by Bullet Train).
+                    version as indicated by Flagsmith).
                 </li>
                 <li>
-If customer fails to comply with the obligations set forth in this section 3 Bullet Train shall
-                    inform customer thereof in writing and reserves the right to suspend the Bullet Train service if the
-                    failure is not remedied within five (5) business days. Bullet Train also reserves the right to
-                    throttle or suspend the service if Bullet Train reasonably determines that customer is using the
-                    service in excess of the volumes intended by Bullet Train or such use overloads the services as a
+If customer fails to comply with the obligations set forth in this section 3 Flagsmith shall
+                    inform customer thereof in writing and reserves the right to suspend the Flagsmith service if the
+                    failure is not remedied within five (5) business days. Flagsmith also reserves the right to
+                    throttle or suspend the service if Flagsmith reasonably determines that customer is using the
+                    service in excess of the volumes intended by Flagsmith or such use overloads the services as a
                     whole.
                 </li>
             </ol>
             <h3>4. Ownership</h3>
             <ol>
                 <li>
-As between the parties, Bullet Train shall retain all ownership rights in the Bullet Train Service,
+As between the parties, Flagsmith shall retain all ownership rights in the Flagsmith Service,
                     the technology, software, hardware, products, processes, algorithms, user interfaces and know-how
-                    related to the Bullet Train Service and all work developed or created by Bullet Train during the
-                    course of providing support or the Bullet Train Service to Customer ("Work Product") in each to the
+                    related to the Flagsmith Service and all work developed or created by Flagsmith during the
+                    course of providing support or the Flagsmith Service to Customer ("Work Product") in each to the
                     extent not constituting Customer Information (as defined below). Customer shall have or retain all
                     ownership rights in the Customer Data and all data, text, files, data, output, programs, files,
                     information, or other information material that Customer or its Affiliates provides, develops,
-                    generates, creates, makes available or uses in conjunction with the Bullet Train Service
-                    (collectively, "Customer Information'). As applicable, Bullet Train hereby assigns and will assign
-                    all Customer Information to Customer. No license, right or interest in any Bullet Train or Customer
+                    generates, creates, makes available or uses in conjunction with the Flagsmith Service
+                    (collectively, "Customer Information'). As applicable, Flagsmith hereby assigns and will assign
+                    all Customer Information to Customer. No license, right or interest in any Flagsmith or Customer
                     trademark, copyright, trade name or service mark is granted hereunder.
                 </li>
                 <li>
-Bullet Train shall own any suggestions, enhancement requests, recommendations or other feedback
-                    provided by Customer or its Users relating to the operation of the Bullet Train Service.
+Flagsmith shall own any suggestions, enhancement requests, recommendations or other feedback
+                    provided by Customer or its Users relating to the operation of the Flagsmith Service.
                 </li>
             </ol>
             <h3>5. Fees</h3>
@@ -200,11 +198,11 @@ Bullet Train shall own any suggestions, enhancement requests, recommendations or
                 <li>
 Unless otherwise specified on an Order Form, the Fees (if any) shall be as stated in each Order and
                     shall be payable in advance. In the event Customer issues purchase orders in its normal course of
-                    business, Customer shall provide Bullet Train with a purchase order within five (5) days of the
-                    Effective Date, or if Customer does not provide Bullet Train with such purchase order, Customer
-                    authorizes Bullet Train to accept this Agreement in lieu of a purchase order. In the event Customer
-                    is paying by credit card as indicated in an Order Form, Customer acknowledges that Bullet Train uses
-                    a third-party for the processing of such payments and that Bullet Train's credit card processor will
+                    business, Customer shall provide Flagsmith with a purchase order within five (5) days of the
+                    Effective Date, or if Customer does not provide Flagsmith with such purchase order, Customer
+                    authorizes Flagsmith to accept this Agreement in lieu of a purchase order. In the event Customer
+                    is paying by credit card as indicated in an Order Form, Customer acknowledges that Flagsmith uses
+                    a third-party for the processing of such payments and that Flagsmith's credit card processor will
                     have access to certain information provided by Customer as a result.
                 </li>
                 <li>
@@ -212,14 +210,14 @@ For payments made by credit card, Customer's credit card will be charged at the 
                     is placed and thereafter, at the frequency listed in the Order Form, which will continue until this
                     Agreement is terminated. For all other payment methods, fees shall be due and payable within thirty
                     (30) days of receipt of invoice. Any payment not received from Customer by the due date may result
-                    in suspension of Customer's ability to access the Bullet Train Service until payment is made,
-                    provided that Bullet Train notifies Customer in writing of the delinquency and such delinquency is
+                    in suspension of Customer's ability to access the Flagsmith Service until payment is made,
+                    provided that Flagsmith notifies Customer in writing of the delinquency and such delinquency is
                     not corrected within ten (10) business days.
                 </li>
                 <li>
-Unless otherwise provided, Bullet Train's fees do not include any Taxes, and Customer is responsible
-                    for paying all Taxes arising from its purchases hereunder, excluding Taxes based on Bullet Train's
-                    net income, employees, or property. If Bullet Train has the legal obligation to pay or collect Taxes
+Unless otherwise provided, Flagsmith's fees do not include any Taxes, and Customer is responsible
+                    for paying all Taxes arising from its purchases hereunder, excluding Taxes based on Flagsmith's
+                    net income, employees, or property. If Flagsmith has the legal obligation to pay or collect Taxes
                     for which Customer is responsible, the appropriate amount of such Taxes shall be invoiced to and
                     paid by Customer, unless Customer provides a valid tax exemption certificate authorized by the
                     appropriate taxing authority.
@@ -227,7 +225,7 @@ Unless otherwise provided, Bullet Train's fees do not include any Taxes, and Cus
                 <li>
 The license granted hereunder is limited to the maximum number of Users licensed (where applicable)
                     and any additional terms and conditions specified on an Order Form. In the event Customer exceeds
-                    such usage, Bullet Train may charge Customer for such excess usage.
+                    such usage, Flagsmith may charge Customer for such excess usage.
                 </li>
             </ol>
             <h3>6. Representations and Warranties</h3>
@@ -241,23 +239,23 @@ Each party represents and warrants that it has all necessary right, title and au
                 <li>
 Except as expressly provided herein, neither party nor its licensors or suppliers makes any
                     warranties of any kind, whether implied, statutory or otherwise, including any warranties of
-                    merchantability or fitness for a particular purpose. Bullet Train does not warrant the operation of
-                    the Bullet Train service will be uninterrupted or error-free.
+                    merchantability or fitness for a particular purpose. Flagsmith does not warrant the operation of
+                    the Flagsmith service will be uninterrupted or error-free.
                 </li>
             </ol>
             <h3>7. Indemnification by Customer</h3>
             <p>
-Customer shall defend, indemnify and hold Bullet Train and its Affiliates (collectively, "Bullet Train
+Customer shall defend, indemnify and hold Flagsmith and its Affiliates (collectively, "Flagsmith
                 Group") harmless against any loss, damage or costs (including reasonable attorneys' fees) incurred in
-                connection with Claims made or brought against Bullet Train any member of Bullet Train Group, by a third
-                party alleging that the Customer Data created and stored by Customer in the Bullet Train Service or
-                otherwise provided to Bullet Train in connection with the Agreement (i) violates any applicable law or
+                connection with Claims made or brought against Flagsmith any member of Flagsmith Group, by a third
+                party alleging that the Customer Data created and stored by Customer in the Flagsmith Service or
+                otherwise provided to Flagsmith in connection with the Agreement (i) violates any applicable law or
                 regulation; or (ii) infringes any U.S. patent, copyright or other intellectual property right of a third
-                party. Bullet Train agrees to (a) promptly give written notice of the Claim to Customer (provided that
+                party. Flagsmith agrees to (a) promptly give written notice of the Claim to Customer (provided that
                 the obligations under this Section 7 shall not be reduced by the failure to give such notice except to
                 the extent Customer is materially prejudiced by such failure); (b) give Customer sole control of the
                 defense and settlement of the Claim (provided that Customer may not settle any Claim unless it
-                unconditionally releases Bullet Train of all liability and obligation); and (c) provide to Customer, at
+                unconditionally releases Flagsmith of all liability and obligation); and (c) provide to Customer, at
                 Customer's cost, all reasonable assistance.
             </p>
             <h3>8. Confidentiality</h3>
@@ -265,7 +263,7 @@ Customer shall defend, indemnify and hold Bullet Train and its Affiliates (colle
                 <li>
 As used herein, "Confidential Information" means all confidential and proprietary information of a
                     party ("Disclosing Party") disclosed to the other party ("Receiving Party"), whether orally or in
-                    writing, that is designated as confidential or that reasonably Bullet Train Master Subscription
+                    writing, that is designated as confidential or that reasonably Flagsmith Master Subscription
                     Agreement (Click-through) May 2017 should be understood to be confidential given the nature of the
                     information and the circumstances of disclosure, including the terms and conditions of this
                     Agreement, Customer Data, business and marketing plans, technology and technical information,
@@ -283,11 +281,10 @@ Receiving Party shall not disclose any Confidential Information of Disclosing Pa
                     Disclosing Party's prior written consent. Receiving Party shall protect the confidentiality of
                     Disclosing Party's Confidential Information in the same manner that it protects the confidentiality
                     of its own Confidential Information of like kind (but in no event using less than reasonable care).
-                    Bullet Train represents and warrants that it will maintain the confidentiality of Customer Data and,
+                    Flagsmith represents and warrants that it will maintain the confidentiality of Customer Data and,
                     except as required by applicable law, will not disclose Customer Data to any third party for any
-                    purpose other than to provide the Bullet Train Service and to otherwise improve the Bullet Train
-                    Service. However, Bullet Train may compile aggregate data related to Customer' s usage of the Bullet
-                    Train Service and may use and/or disclose such aggregate data to third parties, to the extent that
+                    purpose other than to provide the Flagsmith Service and to otherwise improve the Flagsmith
+                    Service. However, Flagsmith may compile aggregate data related to Customer' s usage of the Flagsmith Service and may use and/or disclose such aggregate data to third parties, to the extent that
                     Customer is not identified as the source of such data and as long as the data does not reveal the
                     identity, whether directly or indirectly, of any individual, or specific data entered by or relating
                     to any individual. Receiving Party shall promptly notify Disclosing Party if it becomes aware of any
@@ -314,12 +311,12 @@ Upon any termination of this Agreement, the Receiving Party shall continue to ma
                     all materials containing such Confidential Information.
                 </li>
                 <li>
-Bullet Train has in place reasonable security procedures in accordance with industry standards.
-                    Bullet Train will provide the Bullet Train Service in accordance with its standard security policy,
-                    disaster recovery plan, and resilience plan. Bullet Train will also undergo a penetration test
+Flagsmith has in place reasonable security procedures in accordance with industry standards.
+                    Flagsmith will provide the Flagsmith Service in accordance with its standard security policy,
+                    disaster recovery plan, and resilience plan. Flagsmith will also undergo a penetration test
                     performed by a third-party at least twice a year. To the extent Customer Data comprises "personal
                     data" within the meaning of applicable Data Protection Laws and Regulations, it is acknowledged that
-                    Bullet Train is acting on behalf of Customer as Data Processor. As Data Processor, Bullet Train
+                    Flagsmith is acting on behalf of Customer as Data Processor. As Data Processor, Flagsmith
                     shall: a) process Customer Data in accordance with this Agreement, Customer's instructions, and
                     applicable Data Protection Laws and Regulations, b) take and maintain appropriate organizational,
                     administrative, physical and technical safeguards for the protection of the security,
@@ -327,7 +324,7 @@ Bullet Train has in place reasonable security procedures in accordance with indu
                     unauthorized access to or unauthorized alteration, disclosure, destruction or loss of Customer Data,
                     d) not access Customer's User accounts, including Customer Data, except as to respond to service or
                     technical problems or otherwise at Customer's request, and e) take reasonable steps to ensure that
-                    personnel used by Bullet Train to provide the Bullet Train Service are under strict confidentiality
+                    personnel used by Flagsmith to provide the Flagsmith Service are under strict confidentiality
                     provisions and are aware of and are suitably trained in any such technical, organizational and
                     security measures.
                 </li>
@@ -337,7 +334,7 @@ Bullet Train has in place reasonable security procedures in accordance with indu
                 <li>
 Except for the parties' indemnification obligations (the "exclusions"), in no event shall either
                     party's aggregate liability arising out of this agreement, whether in contract, tort or under any
-                    other theory of liability, exceed the fees paid or payable to Bullet Train during the (12) twelve
+                    other theory of liability, exceed the fees paid or payable to Flagsmith during the (12) twelve
                     months prior to when the claim accrued.
                 </li>
                 <li>
@@ -353,7 +350,7 @@ To the maximum extent permitted by law, in no event shall either party or its li
 This Agreement commences on the Effective Date and continues until all Order Forms entered into
                     under this Agreement have expired or been terminated unless terminated as otherwise provided herein.
                     The Initial Term applicable to each Order Form commences upon Customer's execution of such Order
-                    Form and upon expiration of the Initial Term, the Bullet Train Service subscription term applicable
+                    Form and upon expiration of the Initial Term, the Flagsmith Service subscription term applicable
                     to such Order Form shall continue to renew for Extension Terms equal to the term of the most recent
                     Term, unless either party gives notice to the other party of its desire to not renew at least thirty
                     (30) days prior to the end of the then- current Term.
@@ -370,8 +367,8 @@ The parties' rights and obligations under Sections 4, 5, 6.2, 7-19, 10.3, and 11
                     termination of this Agreement.
                 </li>
                 <li>
-Upon the effective date of termination of this Agreement Customer's license to use the Bullet Train
-                    Service will cease. After such 30 day period Bullet Train will have no obligation to maintain any
+Upon the effective date of termination of this Agreement Customer's license to use the Flagsmith
+                    Service will cease. After such 30 day period Flagsmith will have no obligation to maintain any
                     Customer Data.
                 </li>
             </ol>
@@ -379,7 +376,7 @@ Upon the effective date of termination of this Agreement Customer's license to u
             <ol>
                 <li>
 The parties are independent contractors, and no partnership, franchise, joint venture, agency,
-                    fiduciary or employment Bullet Train Master Subscription Agreement (Click-through) May 2017
+                    fiduciary or employment Flagsmith Master Subscription Agreement (Click-through) May 2017
                     relationship between the parties is created hereby. There are no third party beneficiaries to this
                     Agreement.
                 </li>
@@ -398,9 +395,9 @@ To the extent of any conflict between this Agreement and any other Exhibit or do
                 </li>
                 <li>
 Either party may include the other's name or logo in customer or vendor lists in accordance with the
-                    other's standard guidelines. In addition, Bullet Train may refer to Customer's intended use of the
-                    Bullet Train Service in its marketing materials and on its websites as well as in discussions with
-                    Bullet Train customers, prospective customers, and industry and financial analysts.
+                    other's standard guidelines. In addition, Flagsmith may refer to Customer's intended use of the
+                    Flagsmith Service in its marketing materials and on its websites as well as in discussions with
+                    Flagsmith customers, prospective customers, and industry and financial analysts.
                 </li>
                 <li>
 No failure or delay in exercising any right hereunder shall constitute a waiver of such right.
@@ -424,7 +421,7 @@ Neither party may assign any of its rights or obligations hereunder, whether by 
                     Notwithstanding the foregoing, (i) either party may assign this Agreement in its entirety (including
                     all Order Forms hereunder), upon written notice to the other party, to an Affiliate or, to its
                     successor in interest resulting from a merger, reorganization, or sale of all or substantially all
-                    assets or equity not involving a direct competitor of the other party and (ii) Bullet Train may use
+                    assets or equity not involving a direct competitor of the other party and (ii) Flagsmith may use
                     subcontractors in the ordinary course of business. Any attempted assignment in breach of this
                     Section shall be void. This Agreement shall bind and inure to the benefit of the parties, their
                     respective successors and permitted assigns.

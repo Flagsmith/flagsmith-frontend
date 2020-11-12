@@ -51,7 +51,7 @@ const CancelPaymentPlanModal = class extends Component {
         return (
             <div>
                 <div>
-You will continue being able to use Bullet Train till the end of your plan even after cancelling
+You will continue being able to use Flagsmith till the end of your plan even after cancelling
                 </div>
                 <FormGroup>
                     <div>

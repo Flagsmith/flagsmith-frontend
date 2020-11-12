@@ -178,7 +178,7 @@ const EnvironmentSettingsPage = class extends Component {
                                                     <p>
                                                             Feature webhooks let you know when features have changed. You can configure 1 or more Feature Webhooks per Environment.
                                                         {' '}
-                                                        <ButtonLink href="https://docs.bullet-train.io/system-administration/">Learn about feature webhooks.</ButtonLink>
+                                                        <ButtonLink href="https://docs.flagsmith.com/system-administration/">Learn about feature webhooks.</ButtonLink>
                                                     </p>
                                                 </div>
                                                 <div className="col-md-4 pr-0">

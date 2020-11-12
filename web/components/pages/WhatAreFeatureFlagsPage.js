@@ -27,7 +27,7 @@ const WhatAreFeatureFlagsPage = class extends Component {
                                     often they’re pretty important.
                                 </p>
                                 <p>
-                                    With bullet train feature flags can be turned on and off per environment, also you
+                                    With Flagsmith, feature flags can be turned on and off per environment, also you
                                     can enable flags for specific users. For example, this could be used to show
                                     features to your internal team in production or for beta testers.
                                 </p>
@@ -63,7 +63,7 @@ const WhatAreFeatureFlagsPage = class extends Component {
                                     in-app currency sale or even the copy on our homepage.
                                 </p>
                                 <p>
-                                    Similarly with feature flags, Bullet Train lets you configure these per environment
+                                    Similarly with feature flags, Flagsmith lets you configure these per environment
                                     and for specific users. With our upcoming user segments feature, this could be used
                                     to show different messaging or environment variables to power user groups,
                                     mobile/browser specific users and

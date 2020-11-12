@@ -1,10 +1,10 @@
 const keywords = {
-    URL_CLIENT: 'https://cdn.jsdelivr.net/npm/bullet-train-client/lib/index.js',
+    URL_CLIENT: 'https://cdn.jsdelivr.net/npm/flagsmith/lib/index.js',
     LIB_NAME: 'flagsmith',
     LIB_NAME_JAVA: 'BulletTrainClient',
     NPM_CLIENT: 'flagsmith',
     NPM_RN_CLIENT: 'react-native-flagsmith',
-    NPM_NODE_CLIENT: 'bullet-train-nodejs',
+    NPM_NODE_CLIENT: 'flagsmith-nodejs',
     USER_ID: 'user_123456',
     FEATURE_FUNCTION: 'myCoolFeature',
     SEGMENT_NAME: 'superUsers',

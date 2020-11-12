@@ -277,7 +277,7 @@ const Aside = class extends Component {
                                                       <a
                                                         style={{ color: getValue('demo_link_color') || '#43424f' }}
                                                         className="aside__nav-item"
-                                                        href="https://docs.bullet-train.io"
+                                                        href="https://docs.flagsmith.com"
                                                       >
                                                           <i className="icon mr-2 ion-ios-star aside__nav-item--icon"/>
                                                           Super cool demo feature!
@@ -329,7 +329,7 @@ const Aside = class extends Component {
                                                       )}
 
                                                       <a
-                                                        href="https://docs.bullet-train.io"
+                                                        href="https://docs.flagsmith.com"
                                                         target="_blank"
                                                         className="aside__nav-item hidden-sm-up"
                                                       >

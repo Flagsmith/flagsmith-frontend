@@ -209,7 +209,7 @@ Click here to Sign
                                                     </div>
                                                     )}
                                                     {!projectId &&  (
-                                                        <a href={user ? '/projects' : 'https://bullet-train.io'}>
+                                                        <a href={user ? '/projects' : 'https://flagsmith.com'}>
                                                             <img
                                                               title="Flagsmith" height={24}
                                                               src="/images/nav-logo.svg"
@@ -239,7 +239,7 @@ Click here to Sign
                                                             </a>
                                                             )}
                                                             <a
-                                                              href="https://docs.bullet-train.io"
+                                                              href="https://docs.flagsmith.com"
                                                               target="_blank" className="nav-link p-2"
                                                             >
                                                                 <DocumentationIcon/>
