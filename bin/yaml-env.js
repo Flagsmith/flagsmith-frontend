@@ -12,7 +12,7 @@ str += `
 env_variables:
   SLACK_TOKEN: ${process.env.SLACK_TOKEN}
   EVENTS_SLACK_CHANNEL: ${process.env.EVENTS_SLACK_CHANNEL}
-  BULLET_TRAIN: ${process.env.BULLET_TRAIN}
+  FLAGSMITH: ${process.env.FLAGSMITH}
   GA: ${process.env.GA}
   CRISP_CHAT: ${process.env.CRISP_CHAT}
   MIXPANEL: ${process.env.MIXPANEL}

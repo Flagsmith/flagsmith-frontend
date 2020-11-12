@@ -1,7 +1,7 @@
 module.exports = {
     'E2E': process.env.E2E,
     'projectOverrides': JSON.stringify({
-        bulletTrain: process.env.BULLET_TRAIN,
+        flagsmith: process.env.FLAGSMITH,
         ga: process.env.GA,
         crispChat: process.env.CRISP_CHAT,
         mixpanel: process.env.MIXPANEL,
@@ -9,6 +9,6 @@ module.exports = {
         api: process.env.API_URL,
         maintenance: process.env.MAINTENANCE,
         assetURL: process.env.ASSET_URL,
-        bulletTrainClientAPI: process.env.BULLET_TRAIN_CLIENT_API,
+        flagsmithClientAPI: process.env.FLAGSMITH_CLIENT_API,
     }),
 };

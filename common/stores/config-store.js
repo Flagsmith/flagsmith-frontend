@@ -37,9 +37,9 @@ store.dispatcherIndex = Dispatcher.register(store, (payload) => {
 });
 
 bulletTrain.init({
-    environmentID: Project.bulletTrain,
+    environmentID: Project.flagsmith,
     onChange: controller.loaded,
-    api: Project.bulletTrainClientAPI,
+    api: Project.flagsmithClientAPI,
 }).catch(() => {
     controller.onError();
 });

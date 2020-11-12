@@ -59,7 +59,7 @@ You can override each variable individually or add more by editing [environment.
 Current variables used between [environment.js](./environment.js) and [common/project.js](./common/project.js):
 
 - API_URL: The API to hit for requests 
-- BULLET_TRAIN: The flagsmith project we use to manage features
+- FLAGSMITH: The flagsmith project we use to manage features
 - GA: Google analytics key
 - CRISP_CHAT: Chat widget key
 - MIXPANEL: Mixpanel analytics key
