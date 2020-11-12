@@ -15,7 +15,7 @@ test:
         - node -v
         - npm i
         - if [ $CI_COMMIT_REF_NAME == "staging" ]; then export ENV=staging; echo 'Setting env to' $ENV; npm run env; fi;
-        - if [ $CI_COMMIT_REF_NAME == "rebrand" ]; then export ENV=dev; echo 'Setting env to' $ENV; npm run env; fi;
+        - if [ $CI_COMMIT_REF_NAME == "rebrand" ]; then export ENV=staging; echo 'Setting env to' $ENV; npm run env; fi;
         - if [ $CI_COMMIT_REF_NAME == "master" ]; then export ENV=prod; echo 'Setting env to' $ENV; npm run env; fi;
         - npm run test
     only:
