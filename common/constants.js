@@ -1,5 +1,5 @@
 const keywords = {
-    URL_CLIENT: 'https://cdn.jsdelivr.net/npm/flagsmith/lib/index.js',
+    URL_CLIENT: 'https://cdn.jsdelivr.net/npm/flagsmith/index.js',
     LIB_NAME: 'flagsmith',
     LIB_NAME_JAVA: 'BulletTrainClient',
     NPM_CLIENT: 'flagsmith',
