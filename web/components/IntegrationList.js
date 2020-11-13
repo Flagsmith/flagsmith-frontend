@@ -10,6 +10,14 @@ class Integration extends Component {
         this.props.addIntegration(this.props.integration, this.props.id);
     }
 
+    remove =(integration) => {
+        this.props.removeIntegration(integration, this.props.id);
+    }
+
+    edit =(integration) => {
+        this.props.editIntegration(this.props.integration, this.props.id, integration);
+    }
+
     render() {
         const { image, title, description, perEnvironment } = this.props.integration;
         const activeIntegrations = this.props.activeIntegrations;
@@ -41,13 +49,32 @@ class Integration extends Component {
                   </Row>
                 )}
             >
-                <div className="text-center">
-                    {activeIntegrations && activeIntegrations.map(integration => (
-                        <div onClick={() => this.props.editIntegration(integration)}>
-                        Hi
-                        </div>
-                    ))}
-                </div>
+                {activeIntegrations && activeIntegrations.map(integration => (
+                    <div
+                      className="list-item clickable" onClick={() => this.edit(integration)}
+                    >
+                        <Row space>
+                            <Flex>
+                                <CreateEditIntegration readOnly data={integration} integration={this.props.integration} />
+
+                            </Flex>
+                            <Button
+                              onClick={(e) => {
+                                  e.preventDefault();
+                                  e.stopPropagation();
+                                  this.remove(integration);
+                                  return false;
+                              }}
+                              className="btn btn--with-icon btn--condensed reveal--child btn--remove"
+
+                              type="submit"
+                            >
+                                <RemoveIcon/>
+                            </Button>
+                        </Row>
+
+                    </div>
+                ))}
             </Panel>
         );
     }
@@ -63,6 +90,7 @@ class IntegrationList extends Component {
 
     fetch = () => {
         const integrationList = this.props.getValue('integration_data') && JSON.parse(this.props.getValue('integration_data'));
+        this.setState({ isLoading: true });
         Promise.all(this.props.integrations.map((key) => {
             const integration = integrationList[key];
             if (integration) {
@@ -90,9 +118,24 @@ class IntegrationList extends Component {
         });
     }
 
+    removeIntegration =(integration, id) => {
+        openConfirm('Confirm remove integration', 'This will remove your integration from the project, it will no longer recieve data. Are you sure?', () => {
+            _data.delete(`${Project.api}projects/${this.props.projectId}/integrations/${id}/${integration.id}/`)
+                .then(this.fetch).catch(this.onError);
+        });
+    }
+
     addIntegration =(integration, id) => {
         openModal(`${integration.title} Integration`, <CreateEditIntegration
           id={id} integration={integration}
+          projectId={this.props.projectId} onComplete={this.fetch}
+        />);
+    }
+
+    editIntegration =(integration, id, data) => {
+        openModal(`${integration.title} Integration`, <CreateEditIntegration
+          id={id} integration={integration}
+          data={data}
           projectId={this.props.projectId} onComplete={this.fetch}
         />);
     }
@@ -101,17 +144,13 @@ class IntegrationList extends Component {
         const integrationList = this.props.getValue('integration_data') && JSON.parse(this.props.getValue('integration_data'));
         return (
             <div>
-                {this.state.isLoading && !this.state.activeIntegrations && (
-                <div className="text-center">
-                    <Loader/>
-                </div>
-                )}
                 <div>
-                    {this.state.activeIntegrations && (
+                    {this.props.integrations && !this.state.isLoading && this.state.activeIntegrations && integrationList ? (
                         this.props.integrations.map((i, index) => (
                             <Integration
                               addIntegration={this.addIntegration}
                               editIntegration={this.editIntegration}
+                              removeIntegration={this.removeIntegration}
                               projectId={this.props.projectId}
                               id={i}
                               key={i}
@@ -119,6 +158,10 @@ class IntegrationList extends Component {
                               integration={integrationList[i]}
                             />
                         ))
+                    ) : (
+                        <div className="text-center">
+                            <Loader/>
+                        </div>
                     )}
                 </div>
             </div>
