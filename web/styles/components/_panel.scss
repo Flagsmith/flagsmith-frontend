@@ -44,7 +44,8 @@
 		font-size: 1em;
 		border-top-right-radius: 8px;
 		border-top-left-radius: 8px;
-		height: $panel-heading-height;
+		padding-top: 10px;
+		padding-bottom: 10px;
 		flex: 1 1 0%;
 		display: flex;
 		align-items: center;
@@ -55,6 +56,14 @@
 		text-transform: capitalize;
 		color: $panel-heading-color;
 
+		.title {
+			color: $header-color;
+			font-family: $font-family-header;
+			.subtitle {
+				color: $body-text-faint;
+				text-transform: none;
+			}
+		}
 
 	}
 

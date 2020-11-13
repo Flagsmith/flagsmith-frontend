@@ -20,7 +20,7 @@ const CreateEditIntegration = class extends Component {
         });
     }
 
-    onComplete() {
+    onComplete = () => {
         closeModal();
         this.props.onComplete && this.props.onComplete();
     }
@@ -32,7 +32,7 @@ const CreateEditIntegration = class extends Component {
         }
         this.setState({ isLoading: true });
         if (this.props.data) {
-            _data.put(`${Project.api}projects/${this.props.projectId}/integrations/${this.props.id}/${this.props.data.id}`, this.state.data)
+            _data.put(`${Project.api}projects/${this.props.projectId}/integrations/${this.props.id}/${this.props.data.id}/`, this.state.data)
                 .then(this.onComplete).catch(this.onError);
         } else {
             _data.post(`${Project.api}projects/${this.props.projectId}/integrations/${this.props.id}/`, this.state.data)
@@ -41,13 +41,13 @@ const CreateEditIntegration = class extends Component {
     }
 
     onError = (res) => {
-        const defaultError = 'There was an error adding your integration, please check the details you have entered';
+        const defaultError = 'There was an error adding your integration, please the details and try again.';
         res.text().then((error) => {
             let err = error;
             try {
                 err = JSON.parse(error);
                 this.setState({
-                    error: err[0],
+                    error: err[0] || defaultError,
                     isLoading: false,
                 });
             } catch (e) {}
@@ -75,26 +75,40 @@ const CreateEditIntegration = class extends Component {
                   <>
                       <div>
                           <label htmlFor={field.label.replace(/ /g, '')}>
-                              {field.label}
+                              {this.props.readOnly ? (
+                                  <ButtonLink>
+                                      {field.label}
+                                  </ButtonLink>
+                              ) : field.label}
                           </label>
                       </div>
-                      <Input
-                        id={field.label.replace(/ /g, '')}
-                        ref={e => this.input = e}
-                        value={this.state[field.key]}
-                        onChange={e => this.update(field.key, e)}
-                        isValid={!!this.state[field.key]}
-                        type="text"
-                        className="full-width mb-2"
-                      />
+                      {this.props.readOnly ? (
+                          <div className="mb-2">
+                              {this.state.data[field.key]}
+                          </div>
+                      ) : (
+                          <Input
+                            id={field.label.replace(/ /g, '')}
+                            ref={e => this.input = e}
+                            value={this.state.data[field.key]}
+                            onChange={e => this.update(field.key, e)}
+                            isValid={!!this.state.data[field.key]}
+                            type="text"
+                            className="full-width mb-2"
+                          />
+                      )}
+
                   </>
                 ))}
                 <ErrorMessage error={this.state.error}/>
-                <div className="text-right">
-                    <Button disabled={this.state.isLoading} type="submit">
-                        Save
-                    </Button>
-                </div>
+                {!this.props.readOnly && (
+                    <div className="text-right">
+                        <Button disabled={this.state.isLoading} type="submit">
+                          Save
+                        </Button>
+                    </div>
+                )}
+
             </form>
         );
     }

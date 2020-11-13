@@ -40,15 +40,24 @@ const ProjectSettingsPage = class extends Component {
                             <p>
                                 Enhance Flagsmith with your favourite tools. Have any products you want to see us integrate with? Message us and we will be right with you.
                             </p>
-                            {permission ? (
-                                <div>
-                                    <IntegrationList projectId={this.props.match.params.projectId} integrations={integrations}/>
-                                </div>
-                            ) : (
-                                <div>
-                                    { Constants.projectPermissions('Admin') }
-                                </div>
-                            )}
+
+                            <ProjectProvider id={this.props.projectId} onSave={this.onProjectSave}>
+                                {({ isLoading, project }) => (
+                                    <div>
+                                        {permission ? (
+                                            <div>
+                                                {project && project.environments && (
+                                                <IntegrationList projectId={this.props.match.params.projectId} integrations={integrations}/>
+                                                )}
+                                            </div>
+                                        ) : (
+                                            <div>
+                                                { Constants.projectPermissions('Admin') }
+                                            </div>
+                                        )}
+                                    </div>
+                                )}
+                            </ProjectProvider>
                         </div>
                     ))}
                 </Permission>
