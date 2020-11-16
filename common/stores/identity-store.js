@@ -10,12 +10,13 @@ const controller = {
             .then(identity => Promise.all([
                 data.get(`${Project.api}identities/?identifier=${encodeURIComponent(identity.identifier)}`, null, { 'x-environment-key': envId }),
                 Promise.resolve(identity),
+                data.get(`${Project.api}environments/${envId}/identities/${id}/featurestates/`),
             ]))
-            .then(([res, identity]) => {
-                const features = res.flags;
+            .then(([res, identity, flags]) => {
+                const features = flags && flags.results;
                 const traits = res.traits;
                 store.model = store.model || {};
-                store.model.features = features && _.keyBy(features, f => f.feature.id);
+                store.model.features = features && _.keyBy(features, f => f.feature);
                 store.model.traits = traits;
                 store.model.identity = identity;
                 store.loaded();
