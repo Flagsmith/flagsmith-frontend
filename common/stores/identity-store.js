@@ -42,6 +42,15 @@ const controller = {
             store.saved();
         });
     },
+    changeUserFlag({identity, identityFlag, environmentId, payload}) {
+        store.saving();
+        API.trackEvent(Constants.events.TOGGLE_USER_FEATURE);
+
+        const prom = data.put(`${Project.api}environments/${environmentId}/identities/${identity}/featurestates/${identityFlag}/`, Object.assign({}, payload))
+        prom.then((res) => {
+            store.saved();
+        });
+    },
     editTrait({ identity, environmentId, trait: { trait_key, trait_value } }) {
         store.saving();
         data.post(`${Project.api}traits/`, { identity: { identifier: store.model && store.model.identity.identifier }, trait_key, trait_value }, { 'x-environment-key': environmentId })
@@ -116,7 +125,6 @@ store.dispatcherIndex = Dispatcher.register(store, (payload) => {
             controller.saveIdentity(action.id, action.identity);
             break;
         case Actions.TOGGLE_USER_FLAG:
-
             controller.toggleUserFlag({ identity, projectFlag, environmentFlag, identityFlag, environmentId });
             break;
         case Actions.EDIT_USER_FLAG:
@@ -130,6 +138,9 @@ store.dispatcherIndex = Dispatcher.register(store, (payload) => {
             break;
         case Actions.DELETE_IDENTITY_TRAIT:
             controller.deleteIdentityTrait(action.envId, action.identity, action.id);
+            break;
+        case Actions.CHANGE_USER_FLAG:
+            controller.changeUserFlag(action.identity, action.identityFlag, action.environmentId, action.payload);
             break;
         default:
     }

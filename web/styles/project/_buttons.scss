@@ -77,6 +77,16 @@ a, .btn, button{
         }
     }
 
+    &--outline-red{
+        background: white;
+        border: 2px solid $bt-brand-red !important;
+        color: $bt-brand-red;
+        line-height: 37px;
+        &:hover {
+            background-color: white;
+        }
+    }
+
     &--small {
             height: 32px;
         line-height: 32px;
