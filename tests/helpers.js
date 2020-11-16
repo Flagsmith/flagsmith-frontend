@@ -163,6 +163,7 @@ const testHelpers = {
     },
     setSegmentOverrideIndex: (browser, index, newIndex) => {
         browser.setValue(byId(`sort-${index}`), `${newIndex}`);
+        browser.pause(100);
     },
     createSegment: (browser, index, id, rules) => {
         const setSegmentRule = testHelpers.setSegmentRule;

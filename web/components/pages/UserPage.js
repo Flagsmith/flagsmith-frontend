@@ -136,7 +136,7 @@ const UserPage = class extends Component {
         return (
             <div className="app-container">
                 <IdentityProvider onSave={this.onSave}>
-                    {({ isSaving, isLoading, error, environmentFlags, projectFlags, traits, identityFlags, identity }, { toggleFlag, removeFlag, editFlag }) => (isLoading || !identityFlags
+                    {({ isSaving, isLoading, error, environmentFlags, projectFlags, traits, identityFlags, identity }, { toggleFlag, removeFlag, editFlag }) => (isLoading || !identityFlags || !actualFlags || !projectFlags
                         ? <div className="text-center"><Loader/></div> : (
                             <div className="container">
                                 <div className="row">
@@ -193,8 +193,8 @@ const UserPage = class extends Component {
                                                                   {hasUserOverride ? (
                                                                       <Row className="chip">
                                                                           <span>
-                                                                                Overriding defaults
-                                                                                since
+                                                                            Overriding defaults
+                                                                            since
                                                                               {' '}
                                                                               {moment(created_date).format('DD/MMM/YYYY')}
                                                                           </span>
@@ -207,7 +207,7 @@ const UserPage = class extends Component {
                                                                       flagEnabledDifferent ? (
                                                                           <span data-test={`feature-override-${i}`} className="flex-row chip">
                                                                               <span>
-                                                                                      This flag is being overriden by segments and would normally be <strong>{flagEnabled ? 'on' : 'off'}</strong> for this user
+                                                                              This flag is being overriden by segments and would normally be <strong>{flagEnabled ? 'on' : 'off'}</strong> for this user
                                                                               </span>
                                                                               <span
                                                                                 className="chip-icon icon ion-md-information"
@@ -216,10 +216,10 @@ const UserPage = class extends Component {
                                                                       ) : flagValueDifferent ? (
                                                                           <span data-test={`feature-override-${i}`} className="flex-row chip">
                                                                               <span>
-                                                                                This flag is being overriden by segments and would normally be <FeatureValue
-                                                                                  data-test={`user-feature-original-value-${i}`}
-                                                                                  value={`${flagValue}`}
-                                                                                /> for this user
+                                                                              This flag is being overriden by segments and would normally be <FeatureValue
+                                                                                data-test={`user-feature-original-value-${i}`}
+                                                                                value={`${flagValue}`}
+                                                                              /> for this user
                                                                               </span>
                                                                               <span
                                                                                 className="chip-icon icon ion-md-information"
@@ -228,7 +228,7 @@ const UserPage = class extends Component {
                                                                       ) : (
                                                                           <div className="list-item-footer">
                                                                               <span className="faint">
-                                                                                Using environment defaults
+                                                                              Using environment defaults
                                                                               </span>
                                                                           </div>
                                                                       )
@@ -239,26 +239,26 @@ const UserPage = class extends Component {
                                                                       {type == 'FLAG' ? (
                                                                           <div>
                                                                               <Switch
-                                                                                data-test={`user-feature-switch-${i}${(identityFlags[id] ? identityFlags[id].enabled : environmentFlags[id].enabled) ? '-on' : '-off'}`}
+                                                                                data-test={`user-feature-switch-${i}${actualEnabled ? '-on' : '-off'}`}
                                                                                 checked={actualEnabled}
                                                                                 onChange={() => this.confirmToggle(_.find(projectFlags, { id }), environmentFlags[id], (environments) => {
-                                                                                    toggleFlag({
-                                                                                        environmentId: this.props.match.params.environmentId,
-                                                                                        identity: this.props.match.params.id,
-                                                                                        projectFlag: { id },
-                                                                                        environmentFlag: environmentFlags[id],
-                                                                                        identityFlag,
-                                                                                    });
-                                                                                })}
+                                                                                      toggleFlag({
+                                                                                          environmentId: this.props.match.params.environmentId,
+                                                                                          identity: this.props.match.params.id,
+                                                                                          projectFlag: { id },
+                                                                                          environmentFlag: environmentFlags[id],
+                                                                                          identityFlag,
+                                                                                      });
+                                                                                  })}
                                                                               />
                                                                           </div>
 
                                                                       ) : (
                                                                           <div className="feature-value">
                                                                               <FeatureValue
-                                                                                data-test={`user-feature-value-${i}`}
-                                                                                value={`${actualValue}`}
-                                                                              />
+                                                                                  data-test={`user-feature-value-${i}`}
+                                                                                  value={`${actualValue}`}
+                                                                                />
                                                                           </div>
                                                                       )}
 
@@ -274,7 +274,7 @@ const UserPage = class extends Component {
                                                                             });
                                                                         }, identity.identity.identifier)}
                                                                       >
-                                                                                Reset
+                                                                            Reset
                                                                       </Button>
                                                                   </Column>
                                                                   )}
@@ -289,19 +289,19 @@ const UserPage = class extends Component {
                                                         title="Features"
                                                         className="text-center"
                                                       >
-                                                            This user has no features yet.
+                                                          This user has no features yet.
                                                           {' '}
                                                           <br/>
-                                                            When you start
+                                                          When you start
                                                           {' '}
                                                           <Link
                                                             className="dark"
                                                             to={`project/${this.props.match.params.projectId}/environment/${this.props.match.params.environmentId}/features`}
                                                           >
-                                                                creating features
+                                                              creating features
                                                           </Link>
                                                           {' '}
-                                                            for your project you will set them per user here.
+                                                          for your project you will set them per user here.
                                                       </Panel>
                                                     )}
                                                   filterRow={({ name }, search) => name.toLowerCase().indexOf(search) > -1}
