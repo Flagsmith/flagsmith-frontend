@@ -94,7 +94,7 @@ Team Members
                                                     <p className="featured">Most Popular</p>
                                                     <p className="pricing-price">Scale-Up</p>
                                                     <img
-                                                      src="/images/layers2.svg" alt="Scale-up icon"
+                                                      src="/images/pricing-scale-up.svg" alt="Scale-up icon"
                                                       className="pricing-icon"
                                                     />
                                                     <p className="pricing-type">$200</p>
