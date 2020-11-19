@@ -14,7 +14,7 @@ module.exports = global.Project = {
         password: 'demo_account',
     },
     chargebee: {
-        site: 'bullettrain',
+        site: 'flagsmith',
     },
     crispChat: '8857f89e-0eb5-4263-ab49-a293872b6c19',
     mixpanel: '9448f5be8a5555c380e5dd4b7ac2c345',
