@@ -150,7 +150,7 @@ const CreateSegment = class extends Component {
                       className="text-center"
                     >
                         <ButtonOutline data-test="add-rule" type="button">
-                              Add Rule
+                              Add AND Condition
                         </ButtonOutline>
                     </div>
                     )}
