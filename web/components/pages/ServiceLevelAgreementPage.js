@@ -3,19 +3,19 @@ const ServiceLevelAgreement = props => (
         <div className="container">
             <h2>Service Level Agreement</h2>
             <p>
-                This Bullet Train Service Level Agreement (
+                This Flagsmith Service Level Agreement (
                 <b>“SLA”</b>
-                ) between Solid State Group Ltd (
-                <b>"Solid State Group"</b>
+                ) between Flagsmith Ltd (
+                <b>"Flagsmith"</b>
                 ,
                 <b>“us”</b>
                 {' '}
                 or
                 <b>“we”</b>
-                ) and users of the Bullet Train Services (
+                ) and users of the Flagsmith Services (
                 <b>“you”</b>
-                ) governs the use of Bullet Train Services under the provisions of the
-                <Link to="/legal/tos">Bullet Train Terms of Service</Link>
+                ) governs the use of Flagsmith Services under the provisions of the
+                <Link to="/legal/tos">Flagsmith Terms of Service</Link>
                 {' '}
                 (the
                 <b>“Terms”</b>
@@ -25,9 +25,9 @@ const ServiceLevelAgreement = props => (
 
             <ol className="sla-list">
                 <li>
-                    <h5>Bullet Train Service Commitment: 99.95% Uptime</h5>
+                    <h5>Flagsmith Service Commitment: 99.95% Uptime</h5>
                     <p>
-                        Bullet Train will use commercially reasonable efforts to ensure your Bullet Train Services are
+                        Flagsmith will use commercially reasonable efforts to ensure your Flagsmith Services are
                         running in Dedicated Environments available with a Monthly Uptime Percentage of at least 99.95%
                         during any monthly billing cycle (the
                         <b>“Service Commitment”</b>
@@ -44,14 +44,14 @@ A Monthly Uptime Percentage of 99.95% means that we guarantee you will experienc
                     <p>
                         <b>“Maintenance”</b>
                         {' '}
-                        means scheduled Unavailability of Bullet Train Services, as announced by us prior to Bullet
+                        means scheduled Unavailability of Flagsmith Services, as announced by us prior to Bullet
                         Train Services becoming Unavailable.
                     </p>
                     <p>
                         <b>“Monthly Uptime Percentage”</b>
                         {' '}
                         is calculated by subtracting from 100% the percentage of minutes during the month in which
-                        Bullet Train Services were Unavailable. Monthly Uptime Percentage measurements exclude downtime
+                        Flagsmith Services were Unavailable. Monthly Uptime Percentage measurements exclude downtime
                         resulting directly or indirectly from any SLA Exclusion.
                     </p>
                     <p>
@@ -68,14 +68,14 @@ A Monthly Uptime Percentage of 99.95% means that we guarantee you will experienc
                         <b>“Unavailability”</b>
                         {' '}
                         mean, for app services and databases, when your service or database is not running or not
-                        reachable due to Solid State Group's fault. This excludes reasons where the fault lies with
+                        reachable due to Flagsmith's fault. This excludes reasons where the fault lies with
                         Amazon Web Services.
                     </p>
                 </li>
                 <li>
                     <h5>Service Commitments and Service Credits</h5>
                     <p>
-Service Credits are calculated as a percentage of the total charges due on your Bullet Train
+Service Credits are calculated as a percentage of the total charges due on your Flagsmith
                         invoice for the monthly billing cycle in which the Unavailability occurred, applied
                         proportionally to the Services that were Unavailable, in accordance with the schedule below:
                     </p>
@@ -98,7 +98,7 @@ For example, if you have an app container that is Unavailable for 25 minutes, yo
 We will apply any Service Credits only against future payments for the Services otherwise due
                         from you. At our discretion, we may issue the Service Credit to the credit card you used to pay
                         for the billing cycle in which the Unavailability occurred. Service Credits will not entitle you
-                        to any refund or other payment from Solid State Group Ltd. A Service Credit will be applicable
+                        to any refund or other payment from Bullet Train Ltd. A Service Credit will be applicable
                         and issued only if the credit amount for the applicable monthly billing cycle is greater than
                         one dollar ($1 USD). Service Credits may not be transferred or applied to any other account.
                     </p>
@@ -119,7 +119,7 @@ To receive a Service Credit, you must submit a claim by emailing support@solidst
                         after which the incident occurred and must include:
                     </p>
                     <ul>
-                        <li>the words “Bullet Train SLA Credit Request” in the subject line;</li>
+                        <li>the words “Flagsmith SLA Credit Request” in the subject line;</li>
                         <li>the dates and times of each Unavailability incident that you are claiming;</li>
                         <li>the account handle(s); and</li>
                         <li>
@@ -141,7 +141,7 @@ If the Monthly Uptime Percentage of such request is confirmed by us and is less 
                         <li>That results from a suspension or Remedial Action, as described in the Terms;</li>
                         <li>
 Caused by factors outside of our reasonable control, including any force majeure event,
-                            Internet access, or problems beyond the demarcation point of the Bullet Train network;
+                            Internet access, or problems beyond the demarcation point of the Flagsmith network;
                         </li>
                         <li>That results from any actions or inactions of you or any third party;</li>
                         <li>
