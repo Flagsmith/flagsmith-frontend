@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+import { BarChart, ResponsiveContainer, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import CreateProjectModal from '../modals/CreateProject';
 import InviteUsersModal from '../modals/InviteUsers';
 import UserGroupList from '../UserGroupList';
@@ -147,19 +147,18 @@ const OrganisationSettingsPage = class extends Component {
     };
 
     drawChart = data => (
-        <BarChart
-          width={600} height={300} data={data}
-          margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
-        >
-            <CartesianGrid strokeDasharray="3 3"/>
-            <XAxis dataKey="name"/>
-            <YAxis/>
-            <Tooltip/>
-            <Legend />
-            <Bar dataKey="Flags" stackId="a" fill="#8884d8" />
-            <Bar dataKey="Identities" stackId="a" fill="#82ca9d" />
-            <Bar dataKey="Traits" stackId="a" fill="#B22222" />
-        </BarChart>
+        <ResponsiveContainer height={400} width="100%">
+            <BarChart data={data}>
+                <CartesianGrid strokeDasharray="3 5"/>
+                <XAxis allowDataOverflow={false} dataKey="name"/>
+                <YAxis allowDataOverflow={false} />
+                <Tooltip/>
+                <Legend />
+                <Bar dataKey="Flags" stackId="a" fill="#6633ff" />
+                <Bar dataKey="Identities" stackId="a" fill="#00a696" />
+                <Bar dataKey="Traits" stackId="a" fill="#f18e7f" />
+            </BarChart>
+        </ResponsiveContainer>
     );
 
     render() {
@@ -254,14 +253,16 @@ const OrganisationSettingsPage = class extends Component {
                                     <OrganisationProvider>
                                         {({ isLoading, name, projects, usage, users, invites, influx_data }) => (
                                             <div>
-                                                <div className="flex-row header--icon">
-                                                    <h3>API usage</h3>
+                                                <div className="panel--grey">
+                                                    <div className="flex-row header--icon">
+                                                        <h5>API usage</h5>
+                                                    </div>
+                                                    {!isLoading && usage != null && (
+                                                    <div>
+                                                        {this.drawChart(influx_data)}
+                                                    </div>
+                                                    )}
                                                 </div>
-                                                {!isLoading && usage != null && (
-                                                <div>
-                                                {this.drawChart(influx_data)}
-                                                </div>
-                                                )}
                                                 <Row space className="mt-5">
                                                     <h3 className="m-b-0">Team Members</h3>
                                                     <Button
@@ -315,27 +316,27 @@ const OrganisationSettingsPage = class extends Component {
                                                                           <Column>
                                                                               {organisation.role === 'ADMIN' && id !== AccountStore.getUserId() ? (
                                                                                   <div style={{ width: 250 }}>
-                                                                                  <Select
-                                                                                    data-test="select-role"
-                                                                                    placeholder="Select a role"
-                                                                                    styles={{ menuPortal: base => ({ ...base, zIndex: 9999 }) }}
-                                                                                    value={role && { value: role, label: Constants.roles[role] }}
-                                                                                    onChange={e => this.roleChanged(id, Utils.safeParseEventValue(e))}
-                                                                                    className="pl-2"
-                                                                                    options={_.map(Constants.roles, (label, value) => (
-                                                                                        {
-                                                                                            label:
+                                                                                      <Select
+                                                                                        data-test="select-role"
+                                                                                        placeholder="Select a role"
+                                                                                        styles={{ menuPortal: base => ({ ...base, zIndex: 9999 }) }}
+                                                                                        value={role && { value: role, label: Constants.roles[role] }}
+                                                                                        onChange={e => this.roleChanged(id, Utils.safeParseEventValue(e))}
+                                                                                        className="pl-2"
+                                                                                        options={_.map(Constants.roles, (label, value) => (
+                                                                                            {
+                                                                                                label:
                                                                                             value !== 'ADMIN' && !hasRbacPermission ? `${label} - Please upgrade for role based access` : label,
-                                                                                            isDisabled: value !== 'ADMIN' && !hasRbacPermission,
-                                                                                        }
-                                                                                    ))}
-                                                                                    menuPortalTarget={document.body}
-                                                                                    menuPosition="absolute"
-                                                                                    menuPlacement="auto"
-                                                                                  />
-                                                                              </div>
+                                                                                                isDisabled: value !== 'ADMIN' && !hasRbacPermission,
+                                                                                            }
+                                                                                        ))}
+                                                                                        menuPortalTarget={document.body}
+                                                                                        menuPosition="absolute"
+                                                                                        menuPlacement="auto"
+                                                                                      />
+                                                                                  </div>
                                                                               ) : (
-                                                                              <div className="pl-3">{Constants.roles[role] || ''}</div>
+                                                                                  <div className="pl-3">{Constants.roles[role] || ''}</div>
                                                                               )}
                                                                           </Column>
 
@@ -387,34 +388,34 @@ const OrganisationSettingsPage = class extends Component {
                                                                               </div>
                                                                               {invited_by ? (
                                                                                   <div
-                                                                                className="list-item-footer faint"
-                                                                              >
+                                                                                    className="list-item-footer faint"
+                                                                                  >
                                                                                         Invited by
-                                                                                  {' '}
-                                                                                  {invited_by.first_name ? `${invited_by.first_name} ${invited_by.last_name}` : invited_by.email}
-                                                                              </div>
+                                                                                      {' '}
+                                                                                      {invited_by.first_name ? `${invited_by.first_name} ${invited_by.last_name}` : invited_by.email}
+                                                                                  </div>
                                                                               ) : null}
                                                                           </div>
                                                                           <Row>
                                                                               <Column>
                                                                                   <button
-                                                                                id="resend-invite"
-                                                                                type="button"
-                                                                                onClick={() => AppActions.resendInvite(id)}
-                                                                                className="btn btn--anchor"
-                                                                              >
+                                                                                    id="resend-invite"
+                                                                                    type="button"
+                                                                                    onClick={() => AppActions.resendInvite(id)}
+                                                                                    className="btn btn--anchor"
+                                                                                  >
                                                                                         Resend
-                                                                              </button>
+                                                                                  </button>
                                                                               </Column>
                                                                               <Column>
                                                                                   <button
-                                                                                id="delete-invite"
-                                                                                type="button"
-                                                                                onClick={() => this.deleteInvite(id)}
-                                                                                className="btn btn--with-icon ml-auto btn--remove"
-                                                                              >
-                                                                                  <RemoveIcon/>
-                                                                              </button>
+                                                                                    id="delete-invite"
+                                                                                    type="button"
+                                                                                    onClick={() => this.deleteInvite(id)}
+                                                                                    className="btn btn--with-icon ml-auto btn--remove"
+                                                                                  >
+                                                                                      <RemoveIcon/>
+                                                                                  </button>
                                                                               </Column>
                                                                           </Row>
                                                                       </Row>
