@@ -25,7 +25,10 @@ const OrganisationSettingsPage = class extends Component {
             manageSubscriptionLoaded: true,
         };
         AppActions.getOrganisation(AccountStore.getOrganisation().id);
-        AppActions.getInfluxData(AccountStore.getOrganisation().id);
+
+        if (this.props.hasFeature('usage_chart')) {
+            AppActions.getInfluxData(AccountStore.getOrganisation().id);
+        }
 
         this.props.getWebhooks();
     }
@@ -257,11 +260,17 @@ const OrganisationSettingsPage = class extends Component {
                                                     <div className="flex-row header--icon">
                                                         <h5>API usage</h5>
                                                     </div>
-                                                    {!isLoading && usage != null && (
+                                                    {!isLoading && usage != null ? (
                                                     <div>
-                                                        {this.drawChart(influx_data)}
+                                                        {this.props.hasFeature("usage_chart") ? this.drawChart(influx_data) :(
+                                                          <span>
+                                                              {'You have made '}
+                                                              <strong>{`${Utils.numberWithCommas(usage)}`}</strong>
+                                                              {' requests over the past 30 days.'}
+                                                          </span>
+                                                        )}
                                                     </div>
-                                                    )}
+                                                    ) : <div className="text-center"><Loader/></div> }
                                                 </div>
                                                 <Row space className="mt-5">
                                                     <h3 className="m-b-0">Team Members</h3>
