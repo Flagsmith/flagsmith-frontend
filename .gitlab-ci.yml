@@ -21,7 +21,7 @@ test:
     only:
         - master
         - staging
-        - develop
+#        - develop
 
 deploymaster:
     image: kylessg/bullet-train-gcloud:1.0
