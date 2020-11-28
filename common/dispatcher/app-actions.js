@@ -238,6 +238,15 @@ const AppActions = Object.assign({}, require('./base/_app-actions'), {
             ...params,
         });
     },
+    changeUserFlag(identity, identityFlag, environmentId, payload) {
+        Dispatcher.handleViewAction({
+            actionType: Actions.CHANGE_USER_FLAG,
+            identity,
+            identityFlag,
+            environmentId,
+            payload,
+        });
+    },
     selectOrganisation(id) {
         Dispatcher.handleViewAction({
             actionType: Actions.SELECT_ORGANISATION,
