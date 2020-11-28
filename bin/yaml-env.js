@@ -17,6 +17,7 @@ env_variables:
   CRISP_CHAT: ${process.env.CRISP_CHAT}
   MIXPANEL: ${process.env.MIXPANEL}
   API_URL: ${process.env.API_URL}
+  AMPLITUDE: ${process.env.AMPLITUDE}
   MAINTENANCE: ${process.env.MAINTENANCE}
   ASSET_URL: ${process.env.ASSET_URL}
 `;

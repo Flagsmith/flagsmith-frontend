@@ -195,7 +195,7 @@ const OrganisationSettingsPage = class extends Component {
                                             </div>
                                             <div>
                                                 {organisation.subscription && (
-                                                <a className="btn btn-primary mr-2" href="https://bullettrain.chargebeeportal.com/" target="_blank">
+                                                <a className="btn btn-primary mr-2" href="https://flagsmith.chargebeeportal.com/" target="_blank">
                                                   Manage Invoices
                                                 </a>
                                                 )}

@@ -1,3 +1,4 @@
+import amplitude from 'amplitude-js';
 import data from '../../common/data/base/_data';
 
 global.API = {
@@ -127,9 +128,16 @@ global.API = {
         }
     },
     alias(id) {
-        if (id === Project.excludeAnalytics) return
+        if (id === Project.excludeAnalytics) return;
         if (Project.mixpanel) {
             mixpanel.alias(id);
+        }
+
+        if (Project.amplitude) {
+            amplitude.getInstance().setUserId(id);
+            const identify = new amplitude.Identify()
+                .set('email', id);
+            amplitude.getInstance().identify(identify);
         }
         bulletTrain.identify(id);
         bulletTrain.setTrait('email', id);
@@ -150,6 +158,15 @@ global.API = {
                     'plan': plans && plans.join(','),
                     orgs,
                 });
+            }
+
+            if (Project.amplitude) {
+                amplitude.getInstance().setUserId(id);
+                const identify = new amplitude.Identify()
+                    .set('email', id)
+                    .set('name', { 'first': user.first_name, 'last': user.last_name });
+
+                amplitude.getInstance().identify(identify);
             }
             bulletTrain.identify(id);
             bulletTrain.setTrait('email', id);
