@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import CreateProjectModal from '../modals/CreateProject';
 import InviteUsersModal from '../modals/InviteUsers';
 import UserGroupList from '../UserGroupList';
@@ -6,10 +7,10 @@ import ConfirmRemoveOrganisation from '../modals/ConfirmRemoveOrganisation';
 import PaymentModal from '../modals/Payment';
 import CreateGroupModal from '../modals/CreateGroup';
 import CancelPaymentPlanModal from '../modals/CancelPaymentPlan';
-import data from '../../../common/data/base/_data';
 import withAuditWebhooks from '../../../common/providers/withAuditWebhooks';
 import CreateAuditWebhookModal from '../modals/CreateAuditWebhook';
 import ConfirmRemoveAuditWebhook from '../modals/ConfirmRemoveAuditWebhook';
+
 
 const OrganisationSettingsPage = class extends Component {
     static contextTypes = {
@@ -24,6 +25,8 @@ const OrganisationSettingsPage = class extends Component {
             manageSubscriptionLoaded: true,
         };
         AppActions.getOrganisation(AccountStore.getOrganisation().id);
+        AppActions.getInfluxData(AccountStore.getOrganisation().id);
+
         this.props.getWebhooks();
     }
 
@@ -143,6 +146,22 @@ const OrganisationSettingsPage = class extends Component {
         />);
     };
 
+    drawChart = data => (
+        <BarChart
+          width={600} height={300} data={data}
+          margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+        >
+            <CartesianGrid strokeDasharray="3 3"/>
+            <XAxis dataKey="name"/>
+            <YAxis/>
+            <Tooltip/>
+            <Legend />
+            <Bar dataKey="Flags" stackId="a" fill="#8884d8" />
+            <Bar dataKey="Identities" stackId="a" fill="#82ca9d" />
+            <Bar dataKey="Traits" stackId="a" fill="#B22222" />
+        </BarChart>
+    );
+
     render() {
         const { hasFeature, getValue } = this.props;
         const { name, webhook_notification_email } = this.state;
@@ -195,7 +214,7 @@ const OrganisationSettingsPage = class extends Component {
                                             </div>
                                             <div>
                                                 {organisation.subscription && (
-                                                <a className="btn btn-primary mr-2" href="https://bullettrain.chargebeeportal.com/" target="_blank">
+                                                <a className="btn btn-primary mr-2" href="https://flagsmith.chargebeeportal.com/" target="_blank">
                                                   Manage Invoices
                                                 </a>
                                                 )}
@@ -233,18 +252,14 @@ const OrganisationSettingsPage = class extends Component {
                             <FormGroup className="mt-5">
                                 <div>
                                     <OrganisationProvider>
-                                        {({ isLoading, name, projects, usage, users, invites }) => (
+                                        {({ isLoading, name, projects, usage, users, invites, influx_data }) => (
                                             <div>
                                                 <div className="flex-row header--icon">
-                                                    <h3>Your usage</h3>
+                                                    <h3>API usage</h3>
                                                 </div>
                                                 {!isLoading && usage != null && (
                                                 <div>
-                                                    <p>
-                                                        {'You have made '}
-                                                        <strong>{`${Utils.numberWithCommas(usage)}`}</strong>
-                                                        {' requests over the past 30 days.'}
-                                                    </p>
+                                                {this.drawChart(influx_data)}
                                                 </div>
                                                 )}
                                                 <Row space className="mt-5">

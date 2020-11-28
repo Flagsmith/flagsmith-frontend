@@ -19,7 +19,7 @@ const controller = {
                     // eslint-disable-next-line prefer-const
                     let [projects, users, invites] = res;
                     // projects = projects.results;
-                    store.model = { users, invites: invites && invites.results };
+                    store.model = { ...store.model, users, invites: invites && invites.results };
 
                     if (AccountStore.getOrganisationRole(id) === 'ADMIN') {
                         data.get(`${Project.api}organisations/${id}/usage/`).then((usage) => {
@@ -173,6 +173,18 @@ const controller = {
                 toast(`Failed to update this user's role. ${e && e.error ? e.error : 'Please try again later'}`);
             });
     },
+    getInfluxData: (id) => {
+        data.get(`${Project.api}organisations/${id}/influx-data/`)
+            .then((resp) => {
+                API.trackEvent(Constants.events.GET_INFLUX_DATA);
+                store.model.influx_data = resp;
+                store.saved();
+            })
+            .catch((e) => {
+                console.error('Failed to get influx data', e);
+            });
+    },
+
 
 };
 
@@ -190,6 +202,10 @@ var store = Object.assign({}, BaseStore, {
     },
     getUsers: () => store.model && store.model.users,
     getInvites: () => store.model && store.model.invites,
+    getInflux() {
+        return store.model && store.model.influx_data;
+    },
+
 });
 
 
@@ -220,6 +236,9 @@ store.dispatcherIndex = Dispatcher.register(store, (payload) => {
             break;
         case Actions.UPDATE_USER_ROLE:
             controller.updateUserRole(action.id, action.role);
+            break;
+        case Actions.GET_INFLUX_DATA:
+            controller.getInfluxData(action.id);
             break;
         case Actions.LOGOUT:
             store.id = null;

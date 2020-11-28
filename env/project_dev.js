@@ -1,6 +1,6 @@
 module.exports = global.Project = {
-    api: 'https://api-dev.bullet-train.io/api/v1/',
-    flagsmithClientAPI: 'https://api.bullet-train.io/api/v1/',
+    api: 'https://api-dev.flagsmith.com/api/v1/',
+    flagsmithClientAPI: 'https://api.flagsmith.com/api/v1/',
     flagsmith: '8KzETdDeMY7xkqkSkY3Gsg', // This is our Bullet Train API key - Bullet Train runs on Bullet Train!
     debug: false,
     delighted: true, // determines whether to shw delighted feedback widget
@@ -12,7 +12,7 @@ module.exports = global.Project = {
         password: 'demo_account',
     },
     chargebee: {
-        site: 'bullettrain-test',
+        site: 'flagsmith-test',
     },
     crispChat: '8857f89e-0eb5-4263-ab49-a293872b6c19',
     mixpanel: '6143f9ceefb1c67640a0771345e8c095',

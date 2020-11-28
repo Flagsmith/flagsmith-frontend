@@ -93,6 +93,7 @@
     "react-virtualized-auto-sizer": "1.0.2",
     "react-window": "1",
     "sass-loader": "6.0.7",
+    "recharts": "^1.8.5",
     "slackbots": "1.2.0",
     "ssg-node-express": "4.16.4",
     "style-loader": "0.23.1",
