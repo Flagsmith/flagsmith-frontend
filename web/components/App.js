@@ -15,6 +15,7 @@ import ProductRoadmapIcon from './svg/ProductRoadmapIcon';
 import DocumentationIcon from './svg/DocumentationIcon';
 import ArrowUpIcon from './svg/ArrowUpIcon';
 import RebrandBanner from './RebrandBanner';
+import amplitude from 'amplitude-js';
 
 const App = class extends Component {
     static propTypes = {
@@ -146,6 +147,9 @@ const App = class extends Component {
         const environmentId = _.get(match, 'params.environmentId');
         const pageHasAside = environmentId || projectId;
         const isHomepage = pathname == '/' || pathname == '/login' || pathname == '/signup' || pathname.includes('/invite');
+        if (Project.amplitude) {
+            amplitude.getInstance().init(Project.amplitude);
+        }
         if (AccountStore.getOrganisation() && (AccountStore.getOrganisation().block_access_to_admin)) {
             return <Blocked/>;
         }

@@ -10,5 +10,6 @@ module.exports = {
         maintenance: process.env.MAINTENANCE,
         assetURL: process.env.ASSET_URL,
         flagsmithClientAPI: process.env.FLAGSMITH_CLIENT_API,
+        amplitude: process.env.AMPLITUDE,
     }),
 };
