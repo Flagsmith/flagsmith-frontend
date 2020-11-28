@@ -171,7 +171,7 @@ const UsersPage = class extends Component {
                                                 />
                                             </FormGroup>
 
-                                            {hasFeature('environment_traits') && permission && (
+                                            {permission && (
                                             <EnvironmentTraitsProvider environmentId={environmentId}>
                                                 {({ isLoading, error, traits, deleteTrait, isDeleting }) => (
                                                     <div>

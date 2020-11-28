@@ -375,7 +375,6 @@ const UserPage = class extends Component {
                                                   filterRow={({ trait_key }, search) => trait_key.toLowerCase().indexOf(search) > -1}
                                                 />
                                             </FormGroup>
-                                            {hasFeature('identity_segments') && (
                                             <IdentitySegmentsProvider>
                                                 {({ isLoading: segmentsLoading, segments }) => (segmentsLoading ? <div className="text-center"><Loader/></div> : (
                                                     <FormGroup>
@@ -429,7 +428,6 @@ const UserPage = class extends Component {
                                                     </FormGroup>
                                                 ))}
                                             </IdentitySegmentsProvider>
-                                            )}
                                         </FormGroup>
                                     </div>
                                     <div className="col-md-12 mt-2">

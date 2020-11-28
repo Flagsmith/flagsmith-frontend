@@ -202,7 +202,7 @@ const FeaturesPage = class extends Component {
                                                               { label: 'Created Date', value: 'created_date', order: 'asc' },
                                                           ]}
                                                           items={this.filter(projectFlags, this.state.tags)}
-                                                          header={this.props.hasFeature("tags") && (
+                                                          header={(
                                                               <TagSelect projectId={projectId} value={this.state.tags} onChange={tags => this.setState({ tags })}/>
                                                           )}
                                                           renderRow={(projectFlag, i) => {
@@ -225,11 +225,11 @@ const FeaturesPage = class extends Component {
                                                                           </div>
                                                                           <div className="list-item-footer faint">
                                                                               <Row>
-                                                                                  {this.props.hasFeature("tags") && (
-                                                                                    <TagValues projectId={projectId} value={projectFlag.tags}/>
+                                                                                  {(
+                                                                                      <TagValues projectId={projectId} value={projectFlag.tags}/>
                                                                                   )}
                                                                                   <div>
-                                                                                      {description || "No description"}
+                                                                                      {description || 'No description'}
                                                                                   </div>
                                                                               </Row>
                                                                           </div>

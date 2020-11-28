@@ -239,7 +239,7 @@ const CreateFlag = class extends Component {
                                         />
                                     </FormGroup>
                                 )}
-                                {hasFeature('tags') && !identity && this.state.tags && (
+                                {!identity && this.state.tags && (
                                 <FormGroup className="mb-4 mr-3 ml-3" >
                                     <InputGroup
                                       title={identity ? 'Tags' : 'Tags (optional)'}
