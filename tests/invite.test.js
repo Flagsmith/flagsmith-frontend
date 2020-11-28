@@ -65,6 +65,8 @@ module.exports = {
         let inviteUrl;
         browser
             .url('https://mailinator.com/v3/#/#inboxpane')
+            .refresh()
+            .waitAndClick('.cc-dismiss')
             .waitForElementVisible('#inbox_field')
             .setValue('#inbox_field', ['bullet-train', browser.Keys.ENTER])
             .useXpath()
