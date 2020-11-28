@@ -444,6 +444,12 @@ const AppActions = Object.assign({}, require('./base/_app-actions'), {
             hostedPageId,
         });
     },
+    getInfluxData(organisationId) {
+        Dispatcher.handleViewAction({
+            actionType: Actions.GET_INFLUX_DATA,
+            id: organisationId,
+        });
+    },
 });
 
 module.exports = AppActions;
