@@ -1,7 +1,6 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import OrganisationStore from '../stores/organisation-store';
 import AccountStore from '../stores/account-store';
-import data from '../data/base/_data';
 
 const OrganisationProvider = class extends Component {
     static displayName = 'OrganisationProvider'
@@ -27,6 +26,8 @@ const OrganisationProvider = class extends Component {
                 users: OrganisationStore.getUsers(),
                 invites: OrganisationStore.getInvites(),
                 usage: OrganisationStore.getUsage(),
+                influx_data: OrganisationStore.getInflux(),
+
             });
         });
         this.listenTo(OrganisationStore, 'saved', () => {
