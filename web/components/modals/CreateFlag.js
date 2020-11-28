@@ -114,6 +114,30 @@ const CreateFlag = class extends Component {
         }
     }
 
+    disableSegment = (items) => {
+        items.forEach((item) => {
+            item.enabled = false;
+        })
+        this.props.updateSegments(items);
+    }
+
+    disableIdentity = (items) => {
+        const { environmentId } = this.props;
+        items.forEach((item) => {
+            AppActions.changeUserFlag({
+                identityFlag: item.id,
+                identity: item.identity.id,
+                environmentId: environmentId,
+                payload: {
+                    id: item.identity.id,
+                    enabled: false,
+                    value: item.identity.identifier,
+                },
+            });
+        })
+        this.userOverridesPage(1)
+    }
+
     render() {
         const { name, initial_value, hide_from_client, default_enabled, featureType, type, description } = this.state;
         const { isEdit, hasFeature, projectFlag, environmentFlag, identity, identityName } = this.props;
@@ -278,6 +302,11 @@ const CreateFlag = class extends Component {
                                                   {Constants.strings.SEGMENT_OVERRIDES_DESCRIPTION}
                                               </Tooltip>
                                             )}
+                                            action={
+                                                <Button onClick={() => this.disableSegment(this.props.segmentOverrides)} type="button" className="btn--outline-red">
+                                                    Disable
+                                                </Button>
+                                            }
                                         >
                                             {this.props.segmentOverrides ? (
                                                 <SegmentOverrides
@@ -314,6 +343,11 @@ const CreateFlag = class extends Component {
                                                   {Constants.strings.IDENTITY_OVERRIDES_DESCRIPTION}
                                               </Tooltip>
                                           )}
+                                          action={
+                                            <Button onClick={() => this.disableIdentity(this.state.userOverrides)} type="button" className="btn--outline-red">
+                                                Disable
+                                            </Button>
+                                          }
                                           className="no-pad"
                                           icon="ion-md-person"
                                           items={this.state.userOverrides}
