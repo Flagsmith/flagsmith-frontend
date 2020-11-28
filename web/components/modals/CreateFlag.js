@@ -19,7 +19,7 @@ const CreateFlag = class extends Component {
 
     constructor(props, context) {
         super(props, context);
-        const { name, feature_state_value, description, tags,  enabled, hide_from_client, type } = this.props.isEdit ? Utils.getFlagValue(this.props.projectFlag, this.props.environmentFlag, this.props.identityFlag)
+        const { name, feature_state_value, description, tags, enabled, hide_from_client, type } = this.props.isEdit ? Utils.getFlagValue(this.props.projectFlag, this.props.environmentFlag, this.props.identityFlag)
             : {
                 type: 'FLAG',
             };
@@ -117,7 +117,7 @@ const CreateFlag = class extends Component {
     disableSegment = (items) => {
         items.forEach((item) => {
             item.enabled = false;
-        })
+        });
         this.props.updateSegments(items);
     }
 
@@ -127,15 +127,15 @@ const CreateFlag = class extends Component {
             AppActions.changeUserFlag({
                 identityFlag: item.id,
                 identity: item.identity.id,
-                environmentId: environmentId,
+                environmentId,
                 payload: {
                     id: item.identity.id,
                     enabled: false,
                     value: item.identity.identifier,
                 },
             });
-        })
-        this.userOverridesPage(1)
+        });
+        this.userOverridesPage(1);
     }
 
     render() {
@@ -302,10 +302,12 @@ const CreateFlag = class extends Component {
                                                   {Constants.strings.SEGMENT_OVERRIDES_DESCRIPTION}
                                               </Tooltip>
                                             )}
-                                            action={
+                                          action={
+                                                this.props.hasFeature('killswitch') && (
                                                 <Button onClick={() => this.disableSegment(this.props.segmentOverrides)} type="button" className="btn--outline-red">
-                                                    Disable
+                                                      Disable
                                                 </Button>
+                                                )
                                             }
                                         >
                                             {this.props.segmentOverrides ? (
@@ -344,10 +346,11 @@ const CreateFlag = class extends Component {
                                               </Tooltip>
                                           )}
                                           action={
-                                            <Button onClick={() => this.disableIdentity(this.state.userOverrides)} type="button" className="btn--outline-red">
+                                              this.props.hasFeature('killswitch') && (
+                                              <Button onClick={() => this.disableIdentity(this.state.userOverrides)} type="button" className="btn--outline-red">
                                                 Disable
-                                            </Button>
-                                          }
+                                              </Button>
+                                              )}
                                           className="no-pad"
                                           icon="ion-md-person"
                                           items={this.state.userOverrides}
