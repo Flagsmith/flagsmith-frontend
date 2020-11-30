@@ -35,6 +35,12 @@ if (isDev) { // Serve files from src directory and use webpack-dev-server
 app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
 
+// Some infrastructure (e.g. Kubernetes) needs simple healthchecks
+app.get('/health', (req, res) => {
+    console.log('Healthcheck complete');
+    res.send('OK');  
+});
+
 // parse various different custom JSON types as JSON
 app.use(bodyParser.json());
 
