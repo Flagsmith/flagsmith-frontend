@@ -202,7 +202,7 @@ const FeaturesPage = class extends Component {
                                                               { label: 'Created Date', value: 'created_date', order: 'asc' },
                                                           ]}
                                                           items={this.filter(projectFlags, this.state.tags)}
-                                                          header={this.props.hasFeature("tags") && (
+                                                          header={(
                                                               <TagSelect projectId={projectId} value={this.state.tags} onChange={tags => this.setState({ tags })}/>
                                                           )}
                                                           renderRow={(projectFlag, i) => {
