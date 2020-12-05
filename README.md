@@ -94,7 +94,7 @@ If you have any questions about our projects you can email <a href="mailto:proje
 
 ## Running locally against your own Flagsmith API instance
 
-We use Flagsmith to manage features we rollout, if you are using your own Flagsmith environment (i.e. by editing project_x.js-> bulletTrain) then you will need to have a replica of our flags.
+We use Flagsmith to manage features we rollout, if you are using your own Flagsmith environment (i.e. by editing project_x.js-> flagsmith) then you will need to have a replica of our flags.
 
 A list of the flags and remote config we're currently using in production can be found here https://gist.github.com/kyle-ssg/55f3b869c28bdd13c02c6688bc76c67f.
 

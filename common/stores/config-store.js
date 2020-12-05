@@ -14,7 +14,7 @@ const controller = {
         } else {
             store.changed();
         }
-        store.model = bulletTrain.getAllFlags();
+        store.model = flagsmith.getAllFlags();
     },
 };
 
@@ -36,10 +36,11 @@ store.dispatcherIndex = Dispatcher.register(store, (payload) => {
     }
 });
 
-bulletTrain.init({
+flagsmith.init({
     environmentID: Project.flagsmith,
     onChange: controller.loaded,
     api: Project.flagsmithClientAPI,
+    enableAnalytics: true,
 }).catch(() => {
     controller.onError();
 });

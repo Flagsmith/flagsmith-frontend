@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import bulletTrain from 'bullet-train-client';
+import flagsmith from 'flagsmith';
 import ConfigStore from '../stores/config-store';
 
 module.exports = (WrappedComponent) => {
@@ -24,7 +24,7 @@ module.exports = (WrappedComponent) => {
 
         render() {
             const { isLoading,error } = this.state;
-            const { getValue, hasFeature } = bulletTrain;
+            const { getValue, hasFeature } = flagsmith;
 
             return (
                 <WrappedComponent
