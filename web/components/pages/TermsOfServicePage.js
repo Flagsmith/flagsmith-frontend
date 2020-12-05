@@ -4,7 +4,7 @@ const TermsOfService = props => (
             <h2>Terms of Service</h2>
             <p>
                 These Flagsmith terms of service ("agreement") contains the terms for use of the Flagsmith service
-                and is between Solid State Group Ltd ("Flagsmith"), a London based company having a place of business
+                and is between Bullet Train Ltd ("Flagsmith"), a London based company having a place of business
                 at 86-90 Paul St, London, EC2A 4NE and the party agreeing to the terms of this agreement ("customer").
                 By executing an order form that references this agreement, clicking an "accept" or similar button, or
                 otherwise downloading or using the Flagsmith service, the person performing any of the foregoing
