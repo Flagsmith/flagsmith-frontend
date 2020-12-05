@@ -37,6 +37,8 @@ const CreateFlag = class extends Component {
             initial_value: Utils.getTypedValue(feature_state_value),
             description,
             allowEditDescription,
+            enabledIndentity: false,
+            enabledSegment: false,
         };
     }
 
@@ -114,32 +116,68 @@ const CreateFlag = class extends Component {
         }
     }
 
-    disableSegment = (items) => {
+    changeSegment = (items) => {
+        const { enabledSegment } = this.state;
         items.forEach((item) => {
-            item.enabled = false;
+            item.enabled = enabledSegment;
         });
         this.props.updateSegments(items);
+        this.setState({ enabledSegment: !enabledSegment });
     }
 
-    disableIdentity = (items) => {
+    changeIdentity = (items) => {
         const { environmentId } = this.props;
-        items.forEach((item) => {
+        const { enabledIndentity } = this.state;
+
+        Promise.all(items.map(item => new Promise((resolve) => {
             AppActions.changeUserFlag({
                 identityFlag: item.id,
                 identity: item.identity.id,
                 environmentId,
+                onSuccess: resolve,
                 payload: {
                     id: item.identity.id,
-                    enabled: false,
+                    enabled: enabledIndentity,
                     value: item.identity.identifier,
                 },
             });
+        }))).then(() => {
+            this.userOverridesPage(1);
         });
-        this.userOverridesPage(1);
+
+        this.setState({ enabledIndentity: !enabledIndentity });
+    }
+
+    toggleUserFlag = ({ id, feature_state_value, enabled, identity }) => {
+        const { environmentId } = this.props;
+
+        AppActions.changeUserFlag({
+            identityFlag: id,
+            identity: identity.id,
+            environmentId,
+            onSuccess: () => {
+                this.userOverridesPage(1);
+            },
+            payload: {
+                id: identity.id,
+                enabled: !enabled,
+                value: identity.identifier,
+            },
+        });
     }
 
     render() {
-        const { name, initial_value, hide_from_client, default_enabled, featureType, type, description } = this.state;
+        const {
+            name,
+            initial_value,
+            hide_from_client,
+            default_enabled,
+            featureType,
+            type,
+            description,
+            enabledSegment,
+            enabledIndentity,
+        } = this.state;
         const { isEdit, hasFeature, projectFlag, environmentFlag, identity, identityName } = this.props;
         const Provider = identity ? IdentityProvider : FeatureListProvider;
         const valueString = isEdit ? 'Value' : 'Initial value';
@@ -304,8 +342,8 @@ const CreateFlag = class extends Component {
                                             )}
                                           action={
                                                 this.props.hasFeature('killswitch') && (
-                                                <Button onClick={() => this.disableSegment(this.props.segmentOverrides)} type="button" className="btn--outline-red">
-                                                      Disable
+                                                <Button onClick={() => this.changeSegment(this.props.segmentOverrides)} type="button" className={`btn--outline${enabledSegment ? '' : '-red'}`}>
+                                                    {enabledSegment ? 'Enable All' : 'Disable All'}
                                                 </Button>
                                                 )
                                             }
@@ -347,10 +385,11 @@ const CreateFlag = class extends Component {
                                           )}
                                           action={
                                               this.props.hasFeature('killswitch') && (
-                                              <Button onClick={() => this.disableIdentity(this.state.userOverrides)} type="button" className="btn--outline-red">
-                                                Disable
+                                              <Button onClick={() => this.changeIdentity(this.state.userOverrides)} type="button" className={`btn--outline${enabledIndentity ? '' : '-red'}`}>
+                                                  {enabledIndentity ? 'Enable All' : 'Disable All'}
                                               </Button>
-                                              )}
+                                              )
+                                          }
                                           className="no-pad"
                                           icon="ion-md-person"
                                           items={this.state.userOverrides}
@@ -361,8 +400,13 @@ const CreateFlag = class extends Component {
                                           renderRow={({ id, feature_state_value, enabled, identity }) => (
                                               <Row
                                                 onClick={() => {
-                                                    this.close();
-                                                    this.props.router.history.push(`/project/${this.props.projectId}/environment/${this.props.environmentId}/users/${identity.identifier}/${identity.id}`);
+                                                    if (type === 'FLAG') {
+                                                        this.toggleUserFlag({ id, feature_state_value, enabled, identity });
+                                                    } else {
+                                                        // todo: allow for editing from this screen
+                                                        this.close();
+                                                        this.props.router.history.push(`/project/${this.props.projectId}/environment/${this.props.environmentId}/users/${identity.identifier}/${identity.id}`);
+                                                    }
                                                 }} space className="list-item cursor-pointer"
                                                 key={id}
                                               >

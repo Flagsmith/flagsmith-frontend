@@ -1,5 +1,6 @@
 const Actions = Object.assign({}, require('./base/_action-constants'), {
     'ACCEPT_INVITE': 'ACCEPT_INVITE',
+    'CHANGE_USER_FLAG': 'CHANGE_USER_FLAG',
     'CREATE_ENV': 'CREATE_ENV',
     'CREATE_FLAG': 'CREATE_FLAG',
     'CREATE_ORGANISATION': 'CREATE_ORGANISATION',
