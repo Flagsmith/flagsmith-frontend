@@ -1,4 +1,4 @@
-import bulletTrain from 'bullet-train-client'; // Add this line if you're using bulletTrain via npm
+import flagsmith from 'flagsmith'; // Add this line if you're using flagsmith via npm
 
 import 'ionicons/dist/css/ionicons.min.css';
 
@@ -26,7 +26,7 @@ import Project from '../../common/project';
 
 window.isMobile = isMobile || $(window).width() <= 576;
 
-window.bulletTrain = bulletTrain;
+window.flagsmith = flagsmith;
 window.moment = require('moment/min/moment.min');
 
 window._ = { each,intersection, sortBy, orderBy, filter, find, partial, findIndex, range, map, cloneDeep, keyBy, throttle, every, get };

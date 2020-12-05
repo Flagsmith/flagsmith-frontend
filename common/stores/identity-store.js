@@ -43,12 +43,13 @@ const controller = {
             store.saved();
         });
     },
-    changeUserFlag({identity, identityFlag, environmentId, payload}) {
+    changeUserFlag({ identity, identityFlag, environmentId, payload, onSuccess }) {
         store.saving();
         API.trackEvent(Constants.events.TOGGLE_USER_FEATURE);
 
-        const prom = data.put(`${Project.api}environments/${environmentId}/identities/${identity}/featurestates/${identityFlag}/`, Object.assign({}, payload))
+        const prom = data.put(`${Project.api}environments/${environmentId}/identities/${identity}/featurestates/${identityFlag}/`, Object.assign({}, payload));
         prom.then((res) => {
+            if (onSuccess) onSuccess();
             store.saved();
         });
     },
@@ -141,7 +142,7 @@ store.dispatcherIndex = Dispatcher.register(store, (payload) => {
             controller.deleteIdentityTrait(action.envId, action.identity, action.id);
             break;
         case Actions.CHANGE_USER_FLAG:
-            controller.changeUserFlag(action.identity, action.identityFlag, action.environmentId, action.payload);
+            controller.changeUserFlag(action.identity);
             break;
         default:
     }

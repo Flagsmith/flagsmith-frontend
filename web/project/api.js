@@ -139,8 +139,8 @@ global.API = {
                 .set('email', id);
             amplitude.getInstance().identify(identify);
         }
-        bulletTrain.identify(id);
-        bulletTrain.setTrait('email', id);
+        flagsmith.identify(id);
+        flagsmith.setTrait('email', id);
     },
     identify(id, user = {}) {
         if (id === Project.excludeAnalytics) return;
@@ -168,8 +168,8 @@ global.API = {
 
                 amplitude.getInstance().identify(identify);
             }
-            bulletTrain.identify(id);
-            bulletTrain.setTrait('email', id);
+            flagsmith.identify(id);
+            flagsmith.setTrait('email', id);
             if (window.$crisp) {
                 $crisp.push(['set', 'user:email', id]);
                 $crisp.push(['set', 'user:nickname', `${user.first_name} ${user.last_name}`]);
@@ -195,7 +195,7 @@ global.API = {
         if (Project.mixpanel) {
             mixpanel.reset();
         }
-        bulletTrain.logout();
+        flagsmith.logout();
     },
     log() {
         console.log.apply(this, arguments);

@@ -46,7 +46,6 @@ const clearDown = function (browser, done) {
         }
     }
     if (token) {
-        console.log(`${Project.api}e2etests/teardown/`, token.trim());
         fetch(`${Project.api}e2etests/teardown/`, {
             method: 'POST',
             headers: {
