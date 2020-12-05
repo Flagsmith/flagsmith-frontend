@@ -9,6 +9,23 @@ export default class Switch extends PureComponent {
 
   render() {
       // const { props } = this;
+
+      if (E2E) {
+          return (
+              <div style={{ height: '28px', display: 'inline-block' }}>
+                  <button
+                    role="switch"
+                    type="button"
+                    style={{ color: 'black', position: 'relative', pointerEvents: 'all' }}
+                    className={this.props.checked ? 'switch-checked' : 'switch-unchecked'} {...this.props} onClick={() => {
+                        this.props.onChange(!this.props.checked);
+                    }}
+                  >
+                      {this.props.checked ? 'On' : 'Off'}
+                  </button>
+              </div>
+          );
+      }
       return (
           <div style={{ height: '28px', display: 'inline-block', position: 'relative' }}>
               <RCSwitch {...this.props}/>

@@ -5,7 +5,7 @@ const path = require('path');
 
 const SLACK_TOKEN = process.env.SLACK_TOKEN;
 const slackUpload = SLACK_TOKEN && require('./slack-upload.test');
-const slackMessage = SLACK_TOKEN && require('../server/slack-client');
+const slackMessage = false && require('../server/slack-client'); // to enable e2e slack messages change to SLACK_TOKEN && require
 const fork = require('child_process').fork;
 
 process.env.PORT = 8081;
@@ -27,7 +27,7 @@ const formatCommit = function () {
 };
 
 const sendSuccess = function () {
-    if (SLACK_TOKEN) {
+    if (slackMessage) {
         console.log('SENDING SLACK MESSAGE');
         return slackMessage(`Tests Passed!${formatCommit()}`, E2E_SLACK_CHANNEL_NAME);
     }
@@ -73,7 +73,7 @@ const sendFailure = (browser, done, request, error) => {
     const lastError = error && error.value ? JSON.parse(error.value) : 'No last error';
     console.log('Last request:', lastRequest);
     console.log('Last error:', lastError);
-    if (SLACK_TOKEN && E2E_SLACK_CHANNEL) {
+    if (SLACK_TOKEN && E2E_SLACK_CHANNEL && slackMessage) {
         const uri = path.join(__dirname, 'screenshot.png');
         browser.saveScreenshot(uri, () => {
             slackUpload(uri, `E2E for Bullet Train Failed. ${formatCommit()}\n\`\`\`${JSON.stringify({
@@ -90,8 +90,7 @@ const sendFailure = (browser, done, request, error) => {
 let testsFailed;
 
 const exitTests = (browser, done) => {
-    if (process.env.BRK)
-        return
+    if (process.env.BRK) return;
     browser.end();
     done();
     server.kill('SIGINT');
@@ -107,7 +106,7 @@ process.on('SIGINT', () => {
 module.exports = Object.assign(
     {
         before: (browser, done) => {
-            if (SLACK_TOKEN) {
+            if (slackMessage) {
                 slackMessage(`Running tests.${formatCommit()}`, E2E_SLACK_CHANNEL_NAME);
             }
             server = fork('./server');
@@ -163,4 +162,3 @@ module.exports = Object.assign(
     require('./register-fail.test'), // Registration failure tests
     require('./login-fail.test'), // Login failure tests
 );
-
