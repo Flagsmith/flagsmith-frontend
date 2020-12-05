@@ -90,3 +90,10 @@
 .align-start {
     align-items: flex-start;
 }
+
+.transition-none {
+    transition: none !important;
+    .modal-content {
+        transition: none !important;
+    }
+}

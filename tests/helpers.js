@@ -104,7 +104,7 @@ const testHelpers = {
             .waitForElementVisible(byId(`feature-item-${index}`));
     },
     saveFeature(browser) {
-        browser.pause(500);
+        browser.pause(200);
         browser.click('#update-feature-btn')
             .waitForElementNotPresent('#create-feature-modal');
     },
@@ -128,6 +128,7 @@ const testHelpers = {
     gotoFeature(browser, index) {
         browser.click(byId(`feature-item-${index}`))
             .waitForElementPresent('#create-feature-modal');
+        browser.pause(200)
     },
     createTrait(browser, index, id, value) {
         browser
@@ -163,7 +164,7 @@ const testHelpers = {
     },
     setSegmentOverrideIndex: (browser, index, newIndex) => {
         browser.setValue(byId(`sort-${index}`), `${newIndex}`);
-        browser.pause(100);
+        browser.pause(500);
     },
     createSegment: (browser, index, id, rules) => {
         const setSegmentRule = testHelpers.setSegmentRule;

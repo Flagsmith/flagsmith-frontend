@@ -61,7 +61,7 @@ module.exports = {
         browser.expect.element(byId('user-feature-value-1')).text.to.equal('1');
     },
     '[Segments Priority Tests] - Prioritise segment 2': function (browser) {
-        testHelpers.gotoFeatures(browser, 0);
+        testHelpers.gotoFeatures(browser);
         testHelpers.gotoFeature(browser, 0);
         testHelpers.setSegmentOverrideIndex(browser, 1, 0);
         testHelpers.saveFeature(browser);
@@ -73,7 +73,7 @@ module.exports = {
         browser.waitForElementVisible(byId('user-feature-switch-0-off'));
     },
     '[Segments Priority Tests] - Prioritise segment 3': function (browser) {
-        testHelpers.gotoFeatures(browser, 0);
+        testHelpers.gotoFeatures(browser);
         testHelpers.gotoFeature(browser, 0);
         testHelpers.setSegmentOverrideIndex(browser, 2, 0);
         testHelpers.saveFeature(browser);
@@ -83,5 +83,10 @@ module.exports = {
         testHelpers.goToUser(browser, 0);
         browser.expect.element(byId('user-feature-value-1')).text.to.equal('3');
         browser.waitForElementVisible(byId('user-feature-switch-0-on'));
+    },
+    '[Segments Priority Tests] - Clear down features': function (browser) {
+        testHelpers.gotoFeatures(browser);
+        testHelpers.deleteFeature(browser, 1, 'flag');
+        testHelpers.deleteFeature(browser, 0, 'config');
     },
 };
