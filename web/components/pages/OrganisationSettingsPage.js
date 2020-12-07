@@ -334,6 +334,7 @@ const OrganisationSettingsPage = class extends Component {
                                                                                         className="pl-2"
                                                                                         options={_.map(Constants.roles, (label, value) => (
                                                                                             {
+                                                                                                value,
                                                                                                 label:
                                                                                             value !== 'ADMIN' && !hasRbacPermission ? `${label} - Please upgrade for role based access` : label,
                                                                                                 isDisabled: value !== 'ADMIN' && !hasRbacPermission,
