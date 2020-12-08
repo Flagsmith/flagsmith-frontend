@@ -4,10 +4,10 @@ const data = require('../data/base/_data');
 const PAGE_SIZE = 100;
 
 const controller = {
-    getIdentities: (envId, page) => {
+    getIdentities: (envId, page, pageSize) => {
         store.loading();
         store.envId = envId;
-        const endpoint = (page && `${page}${store.search ? `&q=${store.search}&page_size=${PAGE_SIZE}` : `&page_size=${PAGE_SIZE}`}`) || `${Project.api}environments/${envId}/identities/${store.search ? `?q=${store.search}&page_size=${PAGE_SIZE}` : `?page_size=${PAGE_SIZE}`}`;
+        const endpoint = (page && `${page}${store.search ? `&q=${store.search}&page_size=${pageSize || PAGE_SIZE}` : `&page_size=${pageSize || PAGE_SIZE}`}`) || `${Project.api}environments/${envId}/identities/${store.search ? `?q=${store.search}&page_size=${pageSize || PAGE_SIZE}` : `?page_size=${pageSize || PAGE_SIZE}`}`;
         data.get(endpoint)
             .then((res) => {
                 store.model = res && res.results;
@@ -26,9 +26,9 @@ const controller = {
             store.saved();
         }, 2000);
     },
-    searchIdentities: _.throttle((envId, search) => {
+    searchIdentities: _.throttle((envId, search, pageSize) => {
         store.search = search;
-        controller.getIdentities(envId);
+        controller.getIdentities(envId, null, pageSize);
     }, 1000),
     deleteIdentity: (envId, id) => {
         store.saving();
@@ -65,7 +65,7 @@ store.dispatcherIndex = Dispatcher.register(store, (payload) => {
     switch (action.actionType) {
         case Actions.GET_IDENTITIES:
             store.search = '';
-            controller.getIdentities(action.envId);
+            controller.getIdentities(action.envId, null, action.pageSize);
             break;
         case Actions.SAVE_IDENTITY:
             controller.saveIdentity(action.id, action.identity);
@@ -74,7 +74,7 @@ store.dispatcherIndex = Dispatcher.register(store, (payload) => {
             controller.getIdentities(action.envId, action.page);
             break;
         case Actions.SEARCH_IDENTITIES:
-            controller.searchIdentities(action.envId, action.search);
+            controller.searchIdentities(action.envId, action.search, action.pageSize);
             break;
         case Actions.DELETE_IDENTITY:
             controller.deleteIdentity(action.envId, action.id);
