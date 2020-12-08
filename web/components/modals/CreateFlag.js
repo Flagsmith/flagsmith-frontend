@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Highlight from '../Highlight';
 import Tabs from '../base/forms/Tabs';
 import TabItem from '../base/forms/TabItem';
 import withSegmentOverrides from '../../../common/providers/withSegmentOverrides';
@@ -7,6 +6,7 @@ import data from '../../../common/data/base/_data';
 import SegmentOverrides from '../SegmentOverrides';
 import AddEditTags from '../AddEditTags';
 import Constants from '../../../common/constants';
+import _data from '../../../common/data/base/_data';
 
 const FEATURE_ID_MAXLENGTH = Constants.forms.maxLength.FEATURE_ID;
 
@@ -36,6 +36,7 @@ const CreateFlag = class extends Component {
             tags,
             initial_value: Utils.getTypedValue(feature_state_value),
             description,
+            selectedIdentity: null,
             allowEditDescription,
             enabledIndentity: false,
             enabledSegment: false,
@@ -55,6 +56,7 @@ const CreateFlag = class extends Component {
                 this.focusTimeout = null;
             }, 500);
         }
+        AppActions.getIdentities(this.props.environmentId, 3);
     };
 
     componentWillUnmount() {
@@ -164,6 +166,48 @@ const CreateFlag = class extends Component {
                 value: identity.identifier,
             },
         });
+    }
+
+    addItem = () => {
+        const { projectFlag, environmentFlag, environmentId, identity } = this.props;
+        this.setState({ isLoading: true });
+        const selectedIdentity = this.state.selectedIdentity.value;
+        const identities = identity ? identity.identifier : [];
+
+        if (!_.find(identities, v => v.identifier === selectedIdentity)) {
+            _data.post(`${Project.api}environments/${environmentId}/identities/${selectedIdentity}/featurestates/`, {
+                feature: projectFlag.id,
+                enabled: !environmentFlag.enabled,
+                value: environmentFlag.value,
+            }).then((res) => {
+                this.setState({
+                    isLoading: false,
+                    selectedIdentity: null,
+                });
+                this.userOverridesPage(1);
+            })
+                .catch((e) => {
+                    this.setState({ error, isLoading: false });
+                });
+        } else {
+            this.setState({
+                isLoading: false,
+                selectedIdentity: null,
+            });
+        }
+    }
+
+    identityOptions = (identities, value, isLoading) => {
+        if (!value) {
+            return [];
+        }
+        return _.filter(
+            identities, identity => !value || !_.find(value, v => v.identity.identifier === identity.identifier),
+        ).map(({ identifier: label, id: value }) => ({ value, label })).slice(0, 10);
+    }
+
+    onSearchIdentityChange = (e) => {
+        AppActions.searchIdentities(this.props.environmentId, Utils.safeParseEventValue(e), 3);
     }
 
     render() {
@@ -389,14 +433,40 @@ const CreateFlag = class extends Component {
                                                   {enabledIndentity ? 'Enable All' : 'Disable All'}
                                               </Button>
                                               )
-                                          }
-                                          className="no-pad"
+                                            }
                                           icon="ion-md-person"
                                           items={this.state.userOverrides}
                                           paging={this.state.userOverridesPaging}
                                           nextPage={() => this.userOverridesPage(this.state.userOverridesPaging.currentPage + 1)}
                                           prevPage={() => this.userOverridesPage(this.state.userOverridesPaging.currentPage - 1)}
                                           goToPage={page => this.userOverridesPage(page)}
+                                          searchPanel={
+                                              this.props.hasFeature('improved_identity_overrides') && (
+                                              <div className="text-center mt-2 mb-2">
+                                                  <IdentityListProvider>
+                                                      {({ isLoading, identities }) => (
+                                                          <Flex className="text-left">
+                                                              <Select
+                                                                onInputChange={this.onSearchIdentityChange}
+                                                                data-test="select-identity"
+                                                                placeholder="Search"
+                                                                value={this.state.selectedIdentity}
+                                                                onChange={selectedIdentity => this.setState({ selectedIdentity }, this.addItem)}
+                                                                options={this.identityOptions(identities, this.state.userOverrides, isLoading)}
+                                                                styles={{
+                                                                    control: base => ({
+                                                                        ...base,
+                                                                        '&:hover': { borderColor: '$bt-brand-secondary' },
+                                                                        border: '1px solid $bt-brand-secondary',
+                                                                    }),
+                                                                }}
+                                                              />
+                                                          </Flex>
+                                                      )}
+                                                  </IdentityListProvider>
+                                              </div>
+                                              )
+                                          }
                                           renderRow={({ id, feature_state_value, enabled, identity }) => (
                                               <Row
                                                 onClick={() => {
@@ -404,8 +474,6 @@ const CreateFlag = class extends Component {
                                                         this.toggleUserFlag({ id, feature_state_value, enabled, identity });
                                                     } else {
                                                         // todo: allow for editing from this screen
-                                                        this.close();
-                                                        this.props.router.history.push(`/project/${this.props.projectId}/environment/${this.props.environmentId}/users/${identity.identifier}/${identity.id}`);
                                                     }
                                                 }} space className="list-item cursor-pointer"
                                                 key={id}
@@ -421,6 +489,14 @@ const CreateFlag = class extends Component {
                                                       />
                                                   )}
 
+                                                  <a
+                                                    target="_blank"
+                                                    href={`/project/${this.props.projectId}/environment/${this.props.environmentId}/users/${identity.identifier}/${identity.id}`}
+                                                    className="ml-2 btn btn-link btn--link" onClick={() => {
+                                                    }}
+                                                  >
+                                                      View user
+                                                  </a>
                                               </Row>
                                           )}
                                           renderNoResults={(
@@ -435,7 +511,34 @@ const CreateFlag = class extends Component {
                                                     </Tooltip>
                                                   )}
                                               >
-                                                  No identities are overriding this feature.
+                                                  {this.props.hasFeature('improved_identity_overrides') && (
+                                                  <IdentityListProvider>
+                                                      {({ isLoading, identities }) => (
+                                                          <div>
+                                                              <Flex className="text-left">
+                                                                  <Select
+                                                                    data-test="select-identity"
+                                                                    placeholder="Search"
+                                                                    onInputChange={this.onSearchIdentityChange}
+                                                                    value={this.state.selectedIdentity}
+                                                                    onChange={selectedIdentity => this.setState({ selectedIdentity }, this.addItem)}
+                                                                    options={this.identityOptions(identities, this.state.userOverrides, isLoading)}
+                                                                    styles={{
+                                                                        control: base => ({
+                                                                            ...base,
+                                                                            '&:hover': { borderColor: '$bt-brand-secondary' },
+                                                                            border: '1px solid $bt-brand-secondary',
+                                                                        }),
+                                                                    }}
+                                                                  />
+                                                              </Flex>
+                                                              <div className="mt-2">
+                                                                  No identities are overriding this feature.
+                                                              </div>
+                                                          </div>
+                                                      )}
+                                                  </IdentityListProvider>
+                                                  )}
                                               </Panel>
                                               )}
                                           isLoading={!this.state.userOverrides}
