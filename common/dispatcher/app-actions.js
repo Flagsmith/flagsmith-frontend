@@ -274,10 +274,11 @@ const AppActions = Object.assign({}, require('./base/_app-actions'), {
             onError,
         });
     },
-    getIdentities(envId) {
+    getIdentities(envId, pageSize) {
         Dispatcher.handleViewAction({
             actionType: Actions.GET_IDENTITIES,
             envId,
+            pageSize,
         });
     },
     getIdentitiesPage(envId, page) {
@@ -398,11 +399,12 @@ const AppActions = Object.assign({}, require('./base/_app-actions'), {
             id,
         });
     },
-    searchIdentities(envId, search) {
+    searchIdentities(envId, search, pageSize) {
         Dispatcher.handleViewAction({
             actionType: Actions.SEARCH_IDENTITIES,
             envId,
             search,
+            pageSize,
         });
     },
     getAuditLog() {

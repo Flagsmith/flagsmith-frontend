@@ -8,6 +8,7 @@ const PanelSearch = class extends Component {
         title: propTypes.string,
         items: propTypes.any,
         search: OptionalString,
+        searchPanel: OptionalNode,
         renderRow: RequiredFunc,
         renderNoResults: propTypes.any,
         filterRow: OptionalFunc,
@@ -137,6 +138,7 @@ const PanelSearch = class extends Component {
                   goToPage={goToPage}
                 />
               )}
+              {this.props.searchPanel}
               <div id={this.props.id} className="search-list" style={isLoading ? { opacity: 0.5 } : {}}>
                   {this.props.header}
                   {filteredItems && filteredItems.length
