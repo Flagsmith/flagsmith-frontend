@@ -96,8 +96,8 @@ global.API = {
     },
     setCookie(key, v) {
         try {
-            require('js-cookie').set(key, v);
-            require('js-cookie').set(key, v, { path: '', domain: Project.cookieDomain });
+            require('js-cookie').set(key, v, { path: '/' });
+            require('js-cookie').set(key, v, { path: '/', domain: Project.cookieDomain });
         } catch (e) {
 
         }
