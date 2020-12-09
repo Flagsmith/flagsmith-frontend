@@ -383,13 +383,13 @@ const OrganisationSettingsPage = class extends Component {
                                                                   title="Invites Pending"
                                                                   className="no-pad"
                                                                   items={invites}
-                                                                  renderRow={({ id, email, date_created, invited_by }, i) => (
+                                                                  renderRow={({ id, email, date_created, invited_by, link }, i) => (
                                                                       <Row
                                                                         data-test={`pending-invite-${i}`}
                                                                         className="list-item" key={id}
                                                                       >
                                                                           <div className="flex flex-1">
-                                                                              {email}
+                                                                              {email ? email : link}
                                                                               <div className="list-item-footer faint">
                                                                                     Created
                                                                                   {' '}
@@ -407,14 +407,16 @@ const OrganisationSettingsPage = class extends Component {
                                                                           </div>
                                                                           <Row>
                                                                               <Column>
-                                                                                  <button
-                                                                                    id="resend-invite"
-                                                                                    type="button"
-                                                                                    onClick={() => AppActions.resendInvite(id)}
-                                                                                    className="btn btn--anchor"
-                                                                                  >
-                                                                                        Resend
-                                                                                  </button>
+                                                                                  {link ? ' ' : 
+                                                                                    <button
+                                                                                        id="resend-invite"
+                                                                                        type="button"
+                                                                                        onClick={() => AppActions.resendInvite(id)}
+                                                                                        className="btn btn--anchor"
+                                                                                    >
+                                                                                      Resend
+                                                                                    </button>
+                                                                                  }
                                                                               </Column>
                                                                               <Column>
                                                                                   <button

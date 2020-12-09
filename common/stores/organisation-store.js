@@ -123,6 +123,19 @@ const controller = {
             toast(`Failed to send invite(s). ${e && e.error ? e.error : 'Please try again later'}`);
         });
     },
+    generateInviteUser: () => {
+        store.saving();
+        data.post(`${Project.api}organisations/${store.id}/generate_invite/`, {
+            frontend_base_url: `${document.location.origin}/invite/`,
+        }).then((resp) => {
+            store.model.invite_link = resp;
+            store.saved();
+        }).catch((e) => {
+            console.error('Failed to generate invite', e);
+            store.saved();
+            toast(`Failed to generate invite. ${e && e.error ? e.error : 'Please try again later'}`);
+        });
+    },
     deleteInvite: (id) => {
         store.saving();
         data.delete(`${Project.api}organisations/${store.id}/invites/${id}/`)
@@ -205,7 +218,9 @@ var store = Object.assign({}, BaseStore, {
     getInflux() {
         return store.model && store.model.influx_data;
     },
-
+    getInviteLink() {
+        return store.model && store.model.invite_link;
+    },
 });
 
 
@@ -224,6 +239,9 @@ store.dispatcherIndex = Dispatcher.register(store, (payload) => {
             break;
         case Actions.INVITE_USERS:
             controller.inviteUsers(action.invites);
+            break;
+        case Actions.GENERATE_INVITE_USER:
+            controller.generateInviteUser();
             break;
         case Actions.DELETE_INVITE:
             controller.deleteInvite(action.id);
