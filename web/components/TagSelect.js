@@ -24,7 +24,6 @@ class TagSelect extends PureComponent {
                         {projectTags.map(tag => (
                           <div className="mr-1">
                               <Tag
-                                deselectedColor={"#999"}
                                 key={tag.id}
                                 selected={this.isSelected(tag)}
                                 onClick={this.onSelect}
