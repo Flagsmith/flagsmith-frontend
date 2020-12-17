@@ -38,7 +38,7 @@ build-dockerhub:
     - echo $CI_COMMIT_SHA > $CI_PROJECT_DIR/src/CI_COMMIT_SHA
     - echo $IMAGE_TAG > $CI_PROJECT_DIR/src/IMAGE_TAG
     - echo "{\"auths\":{\"https://index.docker.io/v1/\":{\"auth\":\"$DOCKER_HUB_AUTH\"}}}" > /kaniko/.docker/config.json
-    - /kaniko/executor --context $CI_PROJECT_DIR --dockerfile $CI_PROJECT_DIR/docker/Dockerfile --destination flagsmith/flagsmith-frontend:$IMAGE_TAG
+    - /kaniko/executor --context $CI_PROJECT_DIR --dockerfile $CI_PROJECT_DIR/Dockerfile --destination flagsmith/flagsmith-frontend:$IMAGE_TAG
   only:
     - master
     - tags
