@@ -17,6 +17,7 @@
 }
 .tag-filter {
     .tag {
+        opacity: 0.75;
         min-width: 100px;
         text-align: center;
         .flex-row {
@@ -26,6 +27,9 @@
         padding-top: 0.2em !important;
         padding-left: 1em !important;
         padding-right: 1em !important;
+        &.selected {
+            opacity: 1;
+        }
         .icon {
             margin-left: 5px;
         }
