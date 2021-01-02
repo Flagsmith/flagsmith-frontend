@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 import { BarChart, ResponsiveContainer, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import CreateProjectModal from '../modals/CreateProject';
 import InviteUsersModal from '../modals/InviteUsers';
@@ -10,6 +10,7 @@ import CancelPaymentPlanModal from '../modals/CancelPaymentPlan';
 import withAuditWebhooks from '../../../common/providers/withAuditWebhooks';
 import CreateAuditWebhookModal from '../modals/CreateAuditWebhook';
 import ConfirmRemoveAuditWebhook from '../modals/ConfirmRemoveAuditWebhook';
+import Button from '../base/forms/Button';
 
 
 const OrganisationSettingsPage = class extends Component {
@@ -36,6 +37,7 @@ const OrganisationSettingsPage = class extends Component {
     componentDidMount = () => {
         API.trackPage(Constants.pages.ORGANISATION_SETTINGS);
 
+        AppActions.generateInviteUser();
         if (AccountStore.getOrganisationRole() !== 'ADMIN') {
             this.context.router.history.replace('/projects');
         }
@@ -254,7 +256,7 @@ const OrganisationSettingsPage = class extends Component {
                             <FormGroup className="mt-5">
                                 <div>
                                     <OrganisationProvider>
-                                        {({ isLoading, name, projects, usage, users, invites, influx_data }) => (
+                                        {({ isLoading, name,error, projects, usage, users, invites, influx_data, invite_link }) => (
                                             <div>
                                                 <div className="panel--grey">
                                                     <div className="flex-row header--icon">
@@ -283,20 +285,56 @@ const OrganisationSettingsPage = class extends Component {
                                                     Invite members
                                                     </Button>
                                                 </Row>
-                                                {organisation.num_seats && (
-                                                <p>
-                                                    {'You are currently using '}
-                                                    <strong className={organisation.num_seats > (_.get(organisation, 'subscription.max_seats') || 1) ? 'text-danger' : ''}>
-                                                        {`${organisation.num_seats} / ${_.get(organisation, 'subscription.max_seats') || 1}`}
-                                                    </strong>
-                                                    {` seat${organisation.num_seats === 1 ? '' : 's'}. `}
-                                                    <br/>
-                                                    <br/>
-                                                    Users without an admin role will need to have their permissions managed per project and environment.
-                                                    {' '}
-                                                    <ButtonLink href="https://docs.flagsmith.com/permissions/">Learn about User Roles.</ButtonLink>
-                                                </p>
-                                                )}
+                                                {'You are currently using '}
+                                                <strong className={organisation.num_seats > (_.get(organisation, 'subscription.max_seats') || 1) ? 'text-danger' : ''}>
+                                                    {`${organisation.num_seats} / ${_.get(organisation, 'subscription.max_seats') || 1}`}
+                                                </strong>
+                                                {` seat${organisation.num_seats === 1 ? '' : 's'}. `}
+                                                {
+                                                    this.props.hasFeature("invite_link") &&(
+                                                      <form onSubmit={(e) => {
+                                                          e.preventDefault();
+                                                      }}
+                                                      >
+                                                          <div className="mt-3">
+                                                              <Row>
+                                                                  <div  className="mr-2">
+                                                                      <Input
+                                                                        style={{width:450}}
+                                                                        value={invite_link}
+                                                                        defaultValue={invite_link}
+                                                                        inputClassName="input input--wide"
+                                                                        className="full-width"
+                                                                        type="text"
+                                                                        readonly="readonly"
+                                                                        title={<h3>Link</h3>}
+                                                                        placeholder="Link"
+                                                                      />
+                                                                  </div>
+                                                                  <div>
+                                                                      <Button onClick={() => {
+                                                                          navigator.clipboard.writeText(invite_link)
+                                                                          toast('Link copied');
+                                                                      }}
+                                                                      >
+                                                                          Copy invite link
+                                                                      </Button>
+                                                                  </div>
+
+                                                              </Row>
+
+                                                          </div>
+                                                          <p className="mt-3">
+                                                              Anyone with link can join as a standard user, once they have joined you can edit their role from the team members panel.
+                                                              {' '}
+                                                              <ButtonLink target="_blank" href="https://docs.flagsmith.com/permissions/">Learn about User Roles.</ButtonLink>
+                                                          </p>
+                                                          <div className="text-right mt-2">
+                                                              {error && <Error error={error}/>}
+                                                          </div>
+                                                      </form>
+                                                    )
+                                                }
                                                 <div>
                                                     {isLoading && <div className="centered-container"><Loader/></div>}
                                                     {!isLoading && (
@@ -408,7 +446,7 @@ const OrganisationSettingsPage = class extends Component {
                                                                           </div>
                                                                           <Row>
                                                                               <Column>
-                                                                                  {link ? ' ' : 
+                                                                                  {link ? ' ' :
                                                                                     <button
                                                                                         id="resend-invite"
                                                                                         type="button"
