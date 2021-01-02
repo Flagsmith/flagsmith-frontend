@@ -346,6 +346,11 @@ const AppActions = Object.assign({}, require('./base/_app-actions'), {
             invites,
         });
     },
+    generateInviteUser() {
+        Dispatcher.handleViewAction({
+            actionType: Actions.GENERATE_INVITE_USER,
+        });
+    },
     deleteInvite(id) {
         Dispatcher.handleViewAction({
             actionType: Actions.DELETE_INVITE,
