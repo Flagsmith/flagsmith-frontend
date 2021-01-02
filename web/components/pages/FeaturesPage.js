@@ -229,7 +229,7 @@ const FeaturesPage = class extends Component {
                                                                                       <TagValues projectId={projectId} value={projectFlag.tags}/>
                                                                                   )}
                                                                                   <div>
-                                                                                      Created at {moment(created_date).format('Do MMM YYYY HH:mma')}{` - `}
+                                                                                      Created {moment(created_date).format('Do MMM YYYY HH:mma')}{` - `}
                                                                                       {description || 'No description'}
                                                                                   </div>
                                                                               </Row>
