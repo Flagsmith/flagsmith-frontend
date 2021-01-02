@@ -25,9 +25,9 @@ const OrganisationProvider = class extends Component {
                 project: OrganisationStore.getProject(),
                 users: OrganisationStore.getUsers(),
                 invites: OrganisationStore.getInvites(),
+                invite_link: OrganisationStore.getInviteLink(),
                 usage: OrganisationStore.getUsage(),
                 influx_data: OrganisationStore.getInflux(),
-
             });
         });
         this.listenTo(OrganisationStore, 'saved', () => {
