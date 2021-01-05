@@ -2,6 +2,7 @@
  * Created by kylejohnson on 25/07/2016.
  */
 import React, { Component } from 'react';
+import Constants from '../../../../common/constants';
 
 const FormGroup = class extends Component {
     static displayName = 'FormGroup'
@@ -21,7 +22,15 @@ const FormGroup = class extends Component {
         const { inputProps } = this.props;
         return (
             <div className={`${this.props.className} form-group`}>
-                <label htmlFor={id} className="cols-sm-2 control-label">{props.title}</label>
+                {this.props.tooltip ? (
+                    <Tooltip
+                      title={<label htmlFor={id} className="cols-sm-2 control-label">{props.title} <span className="icon ion-ios-information-circle"/></label>}
+                      place="right"
+                    >
+                        {this.props.tooltip}
+                    </Tooltip>
+                ) : <label htmlFor={id} className="cols-sm-2 control-label">{props.title}</label>}
+
                 {inputProps && inputProps.error && (
                     <span>
                         <span> - </span>

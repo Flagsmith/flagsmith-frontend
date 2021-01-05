@@ -1,5 +1,10 @@
 const BaseStore = require('./base/_store');
+window.Project = require('../project');
 
+window.Project = {
+    ...window.Project,
+    ...projectOverrides, // environment.js (also app.yaml if using app engine)
+};
 const controller = {
     get() {
         store.loading();

@@ -64,8 +64,11 @@
         height: 34px;
         line-height: 31px;
         padding: 0 12px;
+        margin-bottom: 3px;
     }
     .tag {
+        border-width: 2px;
+        border-style: solid;
         display: inline-block;
         min-width: 80px;
         .flex-row {

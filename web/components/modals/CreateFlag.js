@@ -19,17 +19,14 @@ const CreateFlag = class extends Component {
 
     constructor(props, context) {
         super(props, context);
-        const { name, feature_state_value, description, tags, enabled, hide_from_client, type } = this.props.isEdit ? Utils.getFlagValue(this.props.projectFlag, this.props.environmentFlag, this.props.identityFlag)
+        const { name, feature_state_value, description, tags, enabled, hide_from_client } = this.props.isEdit ? Utils.getFlagValue(this.props.projectFlag, this.props.environmentFlag, this.props.identityFlag)
             : {
-                type: 'FLAG',
             };
         const { allowEditDescription } = this.props;
         if (this.props.projectFlag) {
             this.userOverridesPage(1);
         }
         this.state = {
-            type,
-            tab: !type || type == 'FLAG' ? 0 : 1,
             default_enabled: enabled,
             hide_from_client,
             name,
@@ -79,21 +76,9 @@ const CreateFlag = class extends Component {
             });
     }
 
-    setTab = (tab) => {
-        this.setState({ tab, type: this.getTypeFromTab(tab) });
-    };
-
-    getTypeFromTab = (i) => {
-        switch (i) {
-            case 0:
-                return 'FLAG';
-        }
-        return 'CONFIG';
-    }
-
     save = (func, isSaving) => {
         const { projectFlag, segmentOverrides, environmentFlag, identity, identityFlag, environmentId } = this.props;
-        const { name, initial_value, description, type, default_enabled, hide_from_client } = this.state;
+        const { name, initial_value, description, default_enabled, hide_from_client } = this.state;
         if (identity) {
             !isSaving && name && func({
                 identity,
@@ -216,15 +201,13 @@ const CreateFlag = class extends Component {
             initial_value,
             hide_from_client,
             default_enabled,
-            featureType,
-            type,
             description,
             enabledSegment,
             enabledIndentity,
         } = this.state;
-        const { isEdit, hasFeature, projectFlag, environmentFlag, identity, identityName } = this.props;
+        const { isEdit, hasFeature, projectFlag, identity, identityName } = this.props;
         const Provider = identity ? IdentityProvider : FeatureListProvider;
-        const valueString = isEdit ? 'Value' : 'Initial value';
+        const valueString = 'Value';
         const enabledString = isEdit ? 'Enabled' : 'Enabled by default';
 
         return (
@@ -244,37 +227,6 @@ const CreateFlag = class extends Component {
                                   this.save(func, isSaving);
                               }}
                             >
-                                {!isEdit && !identity && (
-                                    <FormGroup className="mb-4 ml-3">
-                                        <label>Feature type</label>
-                                        <Tabs
-                                          className="pill" value={this.state.tab}
-                                          onChange={this.setTab}
-                                        >
-                                            <TabItem
-                                              id="btn-select-flags"
-                                              value="FLAG"
-                                              tabLabel={(
-                                                  <Row className="row-center">
-                                                      <span className="tab-icon ion-ios-switch"/>
-                                                      <span className="tab-text">Feature Flag</span>
-                                                  </Row>
-                                                )}
-                                            />
-                                            <TabItem
-                                              value="CONFIG"
-                                              data-test="btn-select-remote-config"
-                                              id="btn-select-remote-config"
-                                              tabLabel={(
-                                                  <Row className="row-center">
-                                                      <span className="tab-icon ion-ios-settings"/>
-                                                      <span className="tab-text">Remote config</span>
-                                                  </Row>
-                                            )}
-                                            />
-                                        </Tabs>
-                                    </FormGroup>
-                                )}
                                 <FormGroup className="mb-4 mr-3 ml-3">
                                     <InputGroup
                                       ref={e => this.input = e}
@@ -290,37 +242,39 @@ const CreateFlag = class extends Component {
                                       isValid={name && name.length}
                                       type="text" title={isEdit ? 'ID' : 'ID*'}
                                       placeholder="E.g. header_size"
-                                      // className={isEdit ? "mr-5" : ''}
                                     />
                                 </FormGroup>
-                                {type == 'CONFIG' ? (
-                                    <FormGroup className="ml-3 mb-4 mr-3">
-                                        <InputGroup
-                                          textarea
-                                          value={initial_value}
-                                          disabled={hide_from_client}
-                                          data-test="featureValue"
-                                          inputProps={{ name: 'featureValue', className: 'full-width' }}
-                                          onChange={e => this.setState({ initial_value: Utils.getTypedValue(Utils.safeParseEventValue(e)) })}
-                                          type="text"
-                                          title={`${valueString} (optional)${!isEdit ? ' - these can be set later per environment' : ''}`}
-                                          placeholder="e.g. 'big' "
-                                        />
-                                    </FormGroup>
-                                ) : (
-                                    <FormGroup className="mb-4 mr-3 ml-3">
-                                        <div>
-                                            <label>{enabledString}</label>
-                                        </div>
-                                        <Switch
-                                          data-test="toggle-feature-button"
-                                          defaultChecked={default_enabled}
-                                          disabled={hide_from_client}
-                                          checked={!hide_from_client && default_enabled}
-                                          onChange={default_enabled => this.setState({ default_enabled })}
-                                        />
-                                    </FormGroup>
-                                )}
+                                <FormGroup className="mb-4 mr-3 ml-3">
+                                    <div>
+                                        <label>{enabledString}</label>
+                                    </div>
+                                    <Switch
+                                      data-test="toggle-feature-button"
+                                      defaultChecked={default_enabled}
+                                      disabled={hide_from_client}
+                                      checked={!hide_from_client && default_enabled}
+                                      onChange={default_enabled => this.setState({ default_enabled })}
+                                    />
+                                </FormGroup>
+                                <FormGroup className="ml-3 mb-4 mr-3">
+                                    <InputGroup
+                                      textarea
+                                      value={initial_value}
+                                      disabled={hide_from_client}
+                                      data-test="featureValue"
+                                      inputProps={{ name: 'featureValue', className: 'full-width' }}
+                                      onChange={e => this.setState({ initial_value: Utils.getTypedValue(Utils.safeParseEventValue(e)) })}
+                                      type="text"
+                                      tooltip={Constants.strings.REMOTE_CONFIG_DESCRIPTION}
+                                      title={`${valueString} (optional)${' - these can be set per environment'}`}
+                                      placeholder="e.g. 'big' "
+                                    />
+                                </FormGroup>
+                                <div className="text-center">
+                                    <button onClick={this.addVariation} className="btn btn--outline ">
+                                        Add Variation
+                                    </button>
+                                </div>
                                 {hasFeature('tags') && !identity && this.state.tags && (
                                 <FormGroup className="mb-4 mr-3 ml-3" >
                                     <InputGroup
@@ -397,7 +351,6 @@ const CreateFlag = class extends Component {
                                                   feature={projectFlag.id}
                                                   projectId={this.props.projectId}
                                                   environmentId={this.props.environmentId}
-                                                  type={type}
                                                   value={this.props.segmentOverrides}
                                                   segments={this.props.segments}
                                                   onChange={this.props.updateSegments}
@@ -470,24 +423,22 @@ const CreateFlag = class extends Component {
                                           renderRow={({ id, feature_state_value, enabled, identity }) => (
                                               <Row
                                                 onClick={() => {
-                                                    if (type === 'FLAG') {
-                                                        this.toggleUserFlag({ id, feature_state_value, enabled, identity });
-                                                    } else {
-                                                        // todo: allow for editing from this screen
-                                                    }
+                                                    this.toggleUserFlag({ id, feature_state_value, enabled, identity });
                                                 }} space className="list-item cursor-pointer"
                                                 key={id}
                                               >
                                                   <Flex>
                                                       {identity.identifier}
                                                   </Flex>
-                                                  {type === 'FLAG' ? (
-                                                      <Switch checked={enabled}/>
-                                                  ) : (
+                                                  <Switch checked={enabled}/>
+                                                  <div>
+                                                      {feature_state_value && (
                                                       <FeatureValue
                                                         value={feature_state_value}
                                                       />
-                                                  )}
+                                                      )}
+                                                  </div>
+
 
                                                   <a
                                                     target="_blank"

@@ -14,7 +14,7 @@ const arrayMove = (array, from, to) => {
     return array;
 };
 
-const SortableItem = SortableElement(({ disabled, value: v, onSortEnd, index, type, confirmRemove, toggle, setValue }) => (
+const SortableItem = SortableElement(({ disabled, value: v, onSortEnd, index, confirmRemove, toggle, setValue }) => (
     <div data-test={`segment-override-${index}`} style={{ zIndex: 9999999999 }} className="panel panel--draggable mb-2">
         <Row className="panel-content" space>
             <div
@@ -26,21 +26,20 @@ const SortableItem = SortableElement(({ disabled, value: v, onSortEnd, index, ty
             </div>
             <Row>
                 <Column>
-                    {type === 'FLAG' ? (
+                    <div>
                         <Switch
                           disabled={disabled}
                           checked={v.enabled}
                           onChange={toggle}
                         />
-                    ) : (
-                        <textarea
-                          disabled={disabled}
-                          value={v.value}
-                          data-test={`segment-override-value-${index}`}
-                          onChange={e => setValue(Utils.getTypedValue(Utils.safeParseEventValue(e)))}
-                          placeholder="Value e.g. 'big' "
-                        />
-                    )}
+                    </div>
+                    <textarea
+                      disabled={disabled}
+                      value={v.value}
+                      data-test={`segment-override-value-${index}`}
+                      onChange={e => setValue(Utils.getTypedValue(Utils.safeParseEventValue(e)))}
+                      placeholder="Value e.g. 'big' "
+                    />
                 </Column>
 
                 {E2E && (
@@ -66,7 +65,7 @@ const SortableItem = SortableElement(({ disabled, value: v, onSortEnd, index, ty
     </div>
 ));
 
-const SortableList = SortableContainer(({ disabled, onSortEnd, items, type, confirmRemove, toggle, setValue }) => (
+const SortableList = SortableContainer(({ disabled, onSortEnd, items, confirmRemove, toggle, setValue }) => (
     <div>
         {items.map((value, index) => (
             <SortableItem
@@ -75,7 +74,6 @@ const SortableList = SortableContainer(({ disabled, onSortEnd, items, type, conf
               key={value.segment.name}
               index={index}
               value={value}
-              type={type}
               confirmRemove={() => confirmRemove(index)}
               toggle={() => toggle(index)}
               setValue={value => setValue(index, value)}
@@ -192,19 +190,11 @@ class TheComponent extends Component {
                                 >
                                     <label>Segment</label>
                                 </div>
-                                {this.props.type === 'FLAG' ? (
-                                    <Column className="text-left" style={{ width: 120 }}>
-                                        <label>
-                                            Enabled
-                                        </label>
-                                    </Column>
-                                ) : (
-                                    <Column className="text-left" style={{ width: 260 }}>
-                                        <label>
-                                            Value
-                                        </label>
-                                    </Column>
-                                )}
+                                <Column className="text-left" style={{ width: 120 }}>
+                                    <label>
+                                       Value
+                                    </label>
+                                </Column>
                             </Row>
                             <div className="mb-4 text-left faint">
                                 Prioritise a segment override by dragging it to the top of the list.
@@ -212,7 +202,6 @@ class TheComponent extends Component {
                             {value && (
                             <SortableList
                               disabled={isLoading}
-                              type={this.props.type}
                               confirmRemove={this.confirmRemove}
                               toggle={this.toggle}
                               setValue={this.setValue}
