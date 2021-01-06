@@ -34,7 +34,7 @@ const values = [
 ];
 const output = values.map(getVariable).join('');
 
-window.projectOverrides = {
+window.projectOverrides = `{
     ${output}
 };
 `;
