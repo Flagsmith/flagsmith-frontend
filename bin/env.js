@@ -33,7 +33,6 @@ const values = [
     { name: 'amplitude', value: process.env.AMPLITUDE },
 ];
 const output = values.map(getVariable).join('');
-const config = `window.E2E = ${process.env.E2E};
 
 window.projectOverrides = {
     ${output}

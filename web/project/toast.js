@@ -54,7 +54,7 @@ const Toast = class extends React.Component {
 
 
       const id = Utils.GUID();
-      if (!global.E2E) {
+      if (!E2E) {
           messages.unshift({ content, expiry, id });
           this.setState({ messages });
       }

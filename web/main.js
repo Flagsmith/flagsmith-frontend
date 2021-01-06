@@ -86,11 +86,11 @@ setTimeout(() => {
 // Setup for toast messages
 ReactDOM.render(<ToastMessages/>, document.getElementById('toast'));
 
-if (global.E2E) {
+if (E2E) {
     document.body.classList.add('disable-transitions');
 }
 
-if (!global.E2E && Project.crispChat) {
+if (!E2E && Project.crispChat) {
     window.$crisp = [];
     window.CRISP_WEBSITE_ID = Project.crispChat;
     (function () {

@@ -20,12 +20,12 @@ const Provider = class extends React.Component {
   close = () => { // use when you wish to trigger closing manually
       $(ReactDOM.findDOMNode(this)).off('hidden.bs.modal', this._closed);
       $(ReactDOM.findDOMNode(this)).off('shown.bs.modal', this._shown);
-      if (!global.E2E) {
+      if (!E2E) {
           $(ReactDOM.findDOMNode(this)).modal('hide');
           setTimeout(() => {
               ReactDOM.unmountComponentAtNode(document.getElementById(this.props.type == 'confirm' ? 'confirm' : 'modal'));
               document.body.classList.remove('modal-open');
-          }, global.E2E ? 0 : 500);
+          }, E2E ? 0 : 500);
       } else {
           // for e2e we disable any animations and immediately remove from the DOM
           $('.modal-backdrop').remove();
@@ -75,7 +75,7 @@ const Modal = class extends React.Component {
       return (
           <Provider ref="modal">
               <div
-                tabIndex="-1" className={`modal ${global.E2E ? 'transition-none ' : ''}${this.props.className ? this.props.className : 'alert fade expand'}`} role="dialog"
+                tabIndex="-1" className={`modal ${E2E ? 'transition-none ' : ''}${this.props.className ? this.props.className : 'alert fade expand'}`} role="dialog"
                 aria-hidden="true"
               >
                   <div className={`modal-dialog ${this.props.large ? 'modal-lg' : ''}`}>

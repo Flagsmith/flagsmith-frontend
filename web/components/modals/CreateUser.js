@@ -28,7 +28,7 @@ const CreateUser = class extends Component {
 
 
     componentDidMount = () => {
-        if (!global.E2E) {
+        if (!E2E) {
             this.focusTimeout = setTimeout(() => {
                 this.input.focus();
                 this.focusTimeout = null;

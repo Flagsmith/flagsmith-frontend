@@ -43,7 +43,7 @@ const SortableItem = SortableElement(({ disabled, value: v, onSortEnd, index, ty
                     )}
                 </Column>
 
-                {global.E2E && (
+                {E2E && (
                 <input
                   data-test={`sort-${index}`}
                   onChange={(e) => {

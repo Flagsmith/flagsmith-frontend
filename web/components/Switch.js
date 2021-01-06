@@ -10,7 +10,7 @@ export default class Switch extends PureComponent {
   render() {
       // const { props } = this;
 
-      if (global.E2E) {
+      if (E2E) {
           return (
               <div style={{ height: '28px', display: 'inline-block' }}>
                   <button
