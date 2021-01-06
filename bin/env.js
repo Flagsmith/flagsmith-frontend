@@ -10,7 +10,7 @@ const src = path.resolve(__dirname, `../env/project_${env}.js`);
 const overrideSrc = path.resolve(__dirname, '../web/static/project-overrides.js');
 const overrideTarget = path.resolve(__dirname, '../build/static/project-overrides.js');
 const target = path.resolve(__dirname, '../common/project.js');
-const buildDirExists = path.resolve(__dirname, '../build/static');
+const buildDir = path.resolve(__dirname, '../build/static');
 const getVariable = ({ name, value }) => {
     if (!value) {
         return '';
@@ -42,7 +42,7 @@ window.projectOverrides = {
 
 fs.writeFileSync(overrideSrc, config);
 
-if (buildDirExists) {
+if (fs.existsSync(buildDir)) {
     fs.copyFileSync(overrideSrc, overrideTarget);
 }
 
