@@ -33,8 +33,7 @@ const values = [
     { name: 'amplitude', value: process.env.AMPLITUDE },
 ];
 const output = values.map(getVariable).join('');
-
-window.projectOverrides = `{
+const config = `window.projectOverrides = {
     ${output}
 };
 `;
