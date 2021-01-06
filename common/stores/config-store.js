@@ -3,7 +3,7 @@ window.Project = require('../project');
 
 window.Project = {
     ...window.Project,
-    ...projectOverrides, // environment.js (also app.yaml if using app engine)
+    ...window.projectOverrides, // environment.js (also app.yaml if using app engine)
 };
 const controller = {
     get() {

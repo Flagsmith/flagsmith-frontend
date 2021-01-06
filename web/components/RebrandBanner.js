@@ -14,7 +14,7 @@ const RebrandBanner = class extends React.Component {
   }
 
   render() {
-      if (E2E) {
+      if (global.E2E) {
           return null;
       }
       if (API.getCookie('rebrand')) {

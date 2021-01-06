@@ -97,7 +97,7 @@ global.Select = class extends PureComponent {
 
     render() {
         const props = this.props;
-        return E2E ? (
+        return global.E2E ? (
             <div>
                 <input
                   type="text"

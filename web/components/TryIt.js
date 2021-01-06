@@ -20,7 +20,7 @@ const TryIt = class extends Component {
             headers: { 'X-Environment-Key': environmentId },
         };
 
-        if (E2E && document.getElementById('e2e-request')) {
+        if (global.E2E && document.getElementById('e2e-request')) {
             const payload = {
                 url,
                 options,

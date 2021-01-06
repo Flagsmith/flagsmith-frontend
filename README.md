@@ -54,9 +54,9 @@ npm start
 
 Variables that differ per environment are exported globally to ``window.Project in`` [common/project.js](./common/project.js), this file gets replaced by a project.js located in [env](./env) by webpack based on what is set to the "ENV" environment variable (e.g. ENV=prod).
  
-You can override each variable individually or add more by editing [environment.js](./environment.js). 
+You can override each variable individually or add more by editing [./bin/env.js](./bin/env.js). 
 
-Current variables used between [environment.js](./environment.js) and [common/project.js](./common/project.js):
+Current variables used between [environment.js](./bin/env.js) and [common/project.js](./bin/env.js):
 
 - API_URL: The API to hit for requests 
 - FLAGSMITH: The flagsmith environment key we use to manage features

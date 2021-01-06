@@ -3,7 +3,7 @@
  */
 require('colors');
 const fs = require('fs');
-const extra = require('fs-extra');
+const extra = require('fs');
 const path = require('path');
 
 const src = path.resolve(__dirname, '../app.yaml');

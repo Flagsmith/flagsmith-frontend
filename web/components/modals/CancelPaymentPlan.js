@@ -27,7 +27,7 @@ const CancelPaymentPlanModal = class extends Component {
             }),
         };
 
-        if (E2E && document.getElementById('e2e-request')) {
+        if (global.E2E && document.getElementById('e2e-request')) {
             const payload = {
                 url,
                 options,
