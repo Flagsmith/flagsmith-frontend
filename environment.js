@@ -1,6 +1,7 @@
 module.exports = {
     'E2E': process.env.E2E,
     'projectOverrides': JSON.stringify({
+        preventSignup: process.env.PREVENT_SIGNUP,
         flagsmith: process.env.FLAGSMITH,
         ga: process.env.GA,
         crispChat: process.env.CRISP_CHAT,

@@ -59,9 +59,13 @@ You can override each variable individually or add more by editing [environment.
 Current variables used between [environment.js](./environment.js) and [common/project.js](./common/project.js):
 
 - API_URL: The API to hit for requests 
-- FLAGSMITH: The flagsmith project we use to manage features
+- FLAGSMITH: The flagsmith environment key we use to manage features
+- FLAGSMITH_CLIENT_API: The api which the flagsmith client should communicate with
 - GA: Google analytics key
 - CRISP_CHAT: Chat widget key
+- PREVENT_SIGNUP: Determines whether to prevent manual signup without invite
+- MAINTENANCE: Puts the site into maintenance mode
+- AMPLITUDE: The ampitude key to use
 - MIXPANEL: Mixpanel analytics key
 - SENTRY: Sentry key
 - ASSET_URL: Used for replacing local static paths with a cdn, .e.g https://cdn.flagsmith.com
