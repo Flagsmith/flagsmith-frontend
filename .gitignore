@@ -22,3 +22,4 @@ coverage/*
 .env
 env.yaml
 .envrc
+web/static/project-overrides.js
