@@ -65,6 +65,7 @@ Current variables used between [environment.js](./environment.js) and [common/pr
 - MIXPANEL: Mixpanel analytics key
 - SENTRY: Sentry key
 - ASSET_URL: Used for replacing local static paths with a cdn, .e.g https://cdn.flagsmith.com
+- BASENAME: Used for specifying a base url path that's ignored during routing if serving from a subdirectory
 
 ## E2E testing
 
