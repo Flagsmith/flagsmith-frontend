@@ -11,5 +11,6 @@ module.exports = {
         assetURL: process.env.ASSET_URL,
         flagsmithClientAPI: process.env.FLAGSMITH_CLIENT_API,
         amplitude: process.env.AMPLITUDE,
+        basename: process.env.BASENAME
     }),
 };

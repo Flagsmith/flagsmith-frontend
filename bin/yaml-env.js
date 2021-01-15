@@ -20,6 +20,7 @@ env_variables:
   AMPLITUDE: ${process.env.AMPLITUDE}
   MAINTENANCE: ${process.env.MAINTENANCE}
   ASSET_URL: ${process.env.ASSET_URL}
+  BASENAME: ${process.env.BASENAME}
 `;
 
 fs.writeFileSync(src, str);
