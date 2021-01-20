@@ -1,5 +1,10 @@
 import flagsmith from 'flagsmith'; // Add this line if you're using flagsmith via npm
+window.Project = require('../../common/project');
 
+window.Project = {
+    ...window.Project,
+    ...window.projectOverrides, // environment.js (also app.yaml if using app engine)
+};
 import 'ionicons/dist/css/ionicons.min.css';
 
 // Optimise lodash
