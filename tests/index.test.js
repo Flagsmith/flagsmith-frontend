@@ -72,8 +72,10 @@ const sendFailure = (browser, done, request, error) => {
     const lastError = error && error.value ? JSON.parse(error.value) : 'No last error';
     console.log('Last request:', lastRequest);
     console.log('Last error:', lastError);
-    browser.getLogTypes((res) => {
-        console.log(res);
+    browser.getLog('browser', (logEntries) => {
+        logEntries.forEach((log) => {
+            console.log(`[${log.level}] ${log.message}`);
+        });
         browser
             .source((result) => {
                 // Source will be stored in result.value
