@@ -3,6 +3,7 @@ module.exports = global.Project = {
     flagsmithClientAPI: 'https://api.flagsmith.com/api/v1/',
     flagsmith: '4vfqhypYjcPoGGu8ByrBaj', // This is our Bullet Train API key - Bullet Train runs on Bullet Train!
     env: 'prod', // This is used for Sentry tracking
+    ga: 'UA-120237963-1', // This is our Google Analytics key
     sentry: 'https://11c8828dc24041b0a875e324b0380769@sentry.io/1320942',
     maintenance: false, // trigger maintenance mode
     cookieDomain: '.flagsmith.com',
@@ -15,5 +16,7 @@ module.exports = global.Project = {
     chargebee: {
         site: 'flagsmith',
     },
-    assetUrl: '/', // Location of the static files from build/, should contain a directory called static/
+    mixpanel: '9448f5be8a5555c380e5dd4b7ac2c345',
+    assetUrl: 'https://cdn.flagsmith.com', // Location of the static files from build/, should contain a directory called static/
+    amplitude: 'b44c681b1909c01d61972b8474cc8393',
 };
