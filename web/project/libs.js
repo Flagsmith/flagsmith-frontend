@@ -1,8 +1,8 @@
 import flagsmith from 'flagsmith'; // Add this line if you're using flagsmith via npm
-window.Project = require('../../common/project');
+const _Project = require('../../common/project');
 
 window.Project = {
-    ...window.Project,
+    ..._Project,
     ...window.projectOverrides, // environment.js (also app.yaml if using app engine)
 };
 import 'ionicons/dist/css/ionicons.min.css';
@@ -26,7 +26,6 @@ import get from 'lodash/get';
 import { isMobile } from 'react-device-detect';
 import propTypes from 'prop-types';
 import Bootstrap from '../../node_modules/bootstrap/dist/js/bootstrap';
-import Project from '../../common/project';
 
 
 window.isMobile = isMobile || $(window).width() <= 576;
