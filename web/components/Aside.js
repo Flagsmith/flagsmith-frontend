@@ -14,7 +14,6 @@ import CreateProjectModal from './modals/CreateProject';
 import LogoutIcon from './svg/LogoutIcon';
 import UserSettingsIcon from './svg/UserSettingsIcon';
 import DocumentationIcon from './svg/DocumentationIcon';
-import ProductRoadmapIcon from './svg/ProductRoadmapIcon';
 import NavIconSmall from './svg/NavIconSmall';
 import PlusIcon from './svg/PlusIcon';
 import FeaturesIcon from './svg/FeaturesIcon';
@@ -335,14 +334,6 @@ const Aside = class extends Component {
                                                       >
                                                           <DocumentationIcon className="aside__nav-item--icon"/>
                                                           Documentation
-                                                      </a>
-
-                                                      <a
-                                                        href="https://product-hub.io/roadmap/5d81f2406180537538d99f28"
-                                                        target="_blank" className="aside__nav-item hidden-sm-up"
-                                                      >
-                                                          <ProductRoadmapIcon className="aside__nav-item--icon"/>
-                                                          Product Roadmap
                                                       </a>
                                                       <NavLink
                                                         id="account-settings-link"

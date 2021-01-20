@@ -1,9 +1,9 @@
 import React from 'react';
 
-function ProductRoadmapIcon({ width, height, fill, className }) {
+function UpgradeIcon({ width, height, fill, className }) {
     return (
         <svg
-          className={className} width={width || '100%'} height={height || 'auto'}
+          className={className} width={width || '100%'} height={height}
           viewBox="0 0 21 21"
         >
             <path
@@ -15,4 +15,4 @@ function ProductRoadmapIcon({ width, height, fill, className }) {
     );
 }
 
-export default ProductRoadmapIcon;
+export default UpgradeIcon;
