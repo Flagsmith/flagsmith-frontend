@@ -53,22 +53,22 @@ npm start
 ## ENV variables
 
 Variables that differ per environment are exported globally to ``window.Project in`` [common/project.js](./common/project.js), this file gets replaced by a project.js located in [env](./env) by webpack based on what is set to the "ENV" environment variable (e.g. ENV=prod).
- 
+
 You can override each variable individually or add more by editing [./bin/env.js](./bin/env.js). 
 
 Current variables used between [environment.js](./bin/env.js) and [common/project.js](./bin/env.js):
 
-- API_URL: The API to hit for requests 
-- FLAGSMITH: The flagsmith environment key we use to manage features
-- FLAGSMITH_CLIENT_API: The api which the flagsmith client should communicate with
+- API_URL: The API to hit for requests. E.g. `https://api.flagsmith.com/api/v1/`
+- FLAGSMITH: The flagsmith environment key we use to manage features - Flagsmith runs on Flagsmith.
+- FLAGSMITH_CLIENT_API: The api which the flagsmith client should communicate with. Flagsmith runs on flagsmith. E.g. `https://api.flagsmith.com/api/v1/`.
 - GA: Google analytics key
-- CRISP_CHAT: Chat widget key
-- PREVENT_SIGNUP: Determines whether to prevent manual signup without invite
-- MAINTENANCE: Puts the site into maintenance mode
-- AMPLITUDE: The ampitude key to use
-- MIXPANEL: Mixpanel analytics key
-- SENTRY: Sentry key
-- ASSET_URL: Used for replacing local static paths with a cdn, .e.g https://cdn.flagsmith.com
+- CRISP_CHAT: Crisp Chat widget key
+- PREVENT_SIGNUP: Determines whether to prevent manual signup without invite. Set it to any value to disable signups.
+- MAINTENANCE: Puts the site into maintenance mode. Set it to any value to disable signups.
+- AMPLITUDE: The ampitude key to use for behaviour tracking.
+- MIXPANEL: Mixpanel analytics key to use for behaviour tracking.
+- SENTRY: Sentry key for error reporting.
+- ASSET_URL: Used for replacing local static paths with a cdn, .e.g https://cdn.flagsmith.com. Defaults to `/`, i.e. no CDN.
 
 ## E2E testing
 

@@ -17,6 +17,6 @@ module.exports = global.Project = {
         site: 'flagsmith',
     },
     mixpanel: '9448f5be8a5555c380e5dd4b7ac2c345',
-    assetUrl: 'https://cdn.flagsmith.com', // Location of the static files from build/, should contain a directory called static/
+    assetUrl: '/', // Location of the static files from build/, should contain a directory called static/
     amplitude: 'b44c681b1909c01d61972b8474cc8393',
 };
