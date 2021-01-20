@@ -16,7 +16,5 @@ module.exports = global.Project = {
     chargebee: {
         site: 'flagsmith',
     },
-    mixpanel: '9448f5be8a5555c380e5dd4b7ac2c345',
     assetUrl: '/', // Location of the static files from build/, should contain a directory called static/
-    amplitude: 'b44c681b1909c01d61972b8474cc8393',
 };

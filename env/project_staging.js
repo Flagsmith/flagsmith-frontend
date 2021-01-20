@@ -13,6 +13,4 @@ module.exports = global.Project = {
     chargebee: {
         site: 'flagsmith-test',
     },
-    mixpanel: '6143f9ceefb1c67640a0771345e8c095',
-    amplitude: '00c348027841be8f129bba0fd307a790',
 };
