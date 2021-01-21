@@ -328,7 +328,7 @@ const OrganisationSettingsPage = class extends Component {
                                                                 </div>
                                                                 <div>
                                                                     <Button onClick={() => {
-                                                                        navigator.clipboard.writeText(invite_link);
+                                                                        navigator.clipboard.writeText(`${document.location.origin}/invite/${inviteLinks.find(f => f.role === this.state.role).hash}`);
                                                                         toast('Link copied');
                                                                     }}
                                                                     >
