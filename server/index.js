@@ -58,6 +58,35 @@ app.get('/', (req, res) => {
     });
 });
 
+app.get('/static/project-overrides.js', (req, res) => {
+    const getVariable = ({ name, value }) => {
+        if (!value) {
+            return '';
+        }
+        return `    ${name}: '${value}',
+        `;
+    };
+    
+    const values = [
+        { name: 'preventSignup', value: process.env.PREVENT_SIGNUP },
+        { name: 'flagsmith', value: process.env.FLAGSMITH },
+        { name: 'ga', value: process.env.GA },
+        { name: 'crispChat', value: process.env.CRISP_CHAT },
+        { name: 'mixpanel', value: process.env.MIXPANEL },
+        { name: 'sentry', value: process.env.SENTRY },
+        { name: 'api', value: process.env.API_URL },
+        { name: 'maintenance', value: process.env.MAINTENANCE },
+        { name: 'assetURL', value: process.env.ASSET_URL },
+        { name: 'flagsmithClientAPI', value: process.env.FLAGSMITH_CLIENT_API },
+        { name: 'amplitude', value: process.env.AMPLITUDE },
+    ];
+    const output = values.map(getVariable).join('');
+    res.send(`window.projectOverrides = {
+        ${output}
+    };
+    `);
+});
+
 app.post('/api/event', (req, res) => {
     res.json({ });
     try {
