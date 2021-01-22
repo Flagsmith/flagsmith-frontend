@@ -3,7 +3,7 @@ import React from 'react';
 function ArrowUpIcon({ width, height, fill, className }) {
     return (
         <svg
-          className={className} width={width || '100%'} height={height || 'auto'}
+          className={className} width={width || '100%'} height={height}
           viewBox="0 0 11 7"
         >
             <path

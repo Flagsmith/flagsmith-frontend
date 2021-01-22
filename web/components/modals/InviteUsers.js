@@ -33,7 +33,6 @@ const InviteUsers = class extends Component {
             this.input.focus();
             this.focusTimeout = null;
         }, 500);
-        AppActions.generateInviteUser();
     };
 
     componentWillUnmount() {

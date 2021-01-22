@@ -11,11 +11,11 @@ import Maintenance from './Maintenance';
 import Blocked from './Blocked';
 import AppLoader from './AppLoader';
 import UserSettingsIcon from './svg/UserSettingsIcon';
-import ProductRoadmapIcon from './svg/ProductRoadmapIcon';
 import DocumentationIcon from './svg/DocumentationIcon';
 import ArrowUpIcon from './svg/ArrowUpIcon';
 import RebrandBanner from './RebrandBanner';
 import amplitude from 'amplitude-js';
+import UpgradeIcon from './svg/UpgradeIcon';
 
 const App = class extends Component {
     static propTypes = {
@@ -238,7 +238,7 @@ Click here to Sign
                                                                   />, null, { large: true });
                                                               }}
                                                             >
-                                                                <ArrowUpIcon/>
+                                                                <UpgradeIcon/>
                                                                 Upgrade
                                                             </a>
                                                             )}
@@ -248,13 +248,6 @@ Click here to Sign
                                                             >
                                                                 <DocumentationIcon/>
                                                                 Docs
-                                                            </a>
-                                                            <a
-                                                              href="https://product-hub.io/roadmap/5d81f2406180537538d99f28"
-                                                              target="_blank" className="nav-link p-2"
-                                                            >
-                                                                <ProductRoadmapIcon/>
-                                                                Roadmap
                                                             </a>
                                                             <NavLink
                                                               id="account-settings-link"

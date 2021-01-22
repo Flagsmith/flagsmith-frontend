@@ -23,6 +23,7 @@ const OrganisationSettingsPage = class extends Component {
     constructor(props, context) {
         super(props, context);
         this.state = {
+            role: 'ADMIN',
             manageSubscriptionLoaded: true,
         };
         AppActions.getOrganisation(AccountStore.getOrganisation().id);
@@ -37,7 +38,6 @@ const OrganisationSettingsPage = class extends Component {
     componentDidMount = () => {
         API.trackPage(Constants.pages.ORGANISATION_SETTINGS);
 
-        AppActions.generateInviteUser();
         if (AccountStore.getOrganisationRole() !== 'ADMIN') {
             this.context.router.history.replace('/projects');
         }
@@ -256,22 +256,22 @@ const OrganisationSettingsPage = class extends Component {
                             <FormGroup className="mt-5">
                                 <div>
                                     <OrganisationProvider>
-                                        {({ isLoading, name,error, projects, usage, users, invites, influx_data, invite_link }) => (
+                                        {({ isLoading, name, error, projects, usage, users, invites, influx_data, inviteLinks }) => (
                                             <div>
                                                 <div className="panel--grey">
                                                     <div className="flex-row header--icon">
                                                         <h5>API usage</h5>
                                                     </div>
                                                     {!isLoading && usage != null ? (
-                                                    <div>
-                                                        {this.props.hasFeature("usage_chart") ? this.drawChart(influx_data) :(
-                                                          <span>
-                                                              {'You have made '}
-                                                              <strong>{`${Utils.numberWithCommas(usage)}`}</strong>
-                                                              {' requests over the past 30 days.'}
-                                                          </span>
-                                                        )}
-                                                    </div>
+                                                        <div>
+                                                            {this.props.hasFeature('usage_chart') ? this.drawChart(influx_data) : (
+                                                                <span>
+                                                                    {'You have made '}
+                                                                    <strong>{`${Utils.numberWithCommas(usage)}`}</strong>
+                                                                    {' requests over the past 30 days.'}
+                                                                </span>
+                                                            )}
+                                                        </div>
                                                     ) : <div className="text-center"><Loader/></div> }
                                                 </div>
                                                 <Row space className="mt-5">
@@ -291,48 +291,63 @@ const OrganisationSettingsPage = class extends Component {
                                                 </strong>
                                                 {` seat${organisation.num_seats === 1 ? '' : 's'}. `}
                                                 {
-                                                    this.props.hasFeature("invite_link") &&(
-                                                      <form onSubmit={(e) => {
-                                                          e.preventDefault();
-                                                      }}
-                                                      >
-                                                          <div className="mt-3">
-                                                              <Row>
-                                                                  <div  className="mr-2">
-                                                                      <Input
-                                                                        style={{width:450}}
-                                                                        value={invite_link}
-                                                                        defaultValue={invite_link}
-                                                                        inputClassName="input input--wide"
-                                                                        className="full-width"
-                                                                        type="text"
-                                                                        readonly="readonly"
-                                                                        title={<h3>Link</h3>}
-                                                                        placeholder="Link"
-                                                                      />
-                                                                  </div>
-                                                                  <div>
-                                                                      <Button onClick={() => {
-                                                                          navigator.clipboard.writeText(invite_link)
-                                                                          toast('Link copied');
+                                                    this.props.hasFeature('invite_link') && inviteLinks && (
+                                                    <form onSubmit={(e) => {
+                                                        e.preventDefault();
+                                                    }}
+                                                    >
+                                                        <div className="mt-3">
+                                                            <Row>
+                                                                <div className="mr-2" style={{ width: 280 }}>
+                                                                    <Select
+                                                                      value={{
+                                                                          value: this.state.role,
+                                                                          label: this.state.role === "ADMIN"? "Organisation Administrator": "User",
                                                                       }}
-                                                                      >
+                                                                      onChange={(v)=>this.setState({role:v.value})}
+                                                                      options={[
+                                                                          { label: 'Organisation Administrator', value: 'ADMIN' },
+                                                                          { label: hasRbacPermission ? 'User' : 'User - Please upgrade for role based access',
+                                                                              value: 'USER',
+                                                                              isDisabled: !hasRbacPermission,
+                                                                          },
+                                                                      ]}
+                                                                    />
+                                                                </div>
+                                                                <div className="mr-2">
+                                                                    <Input
+                                                                      style={{ width: 450 }}
+                                                                      value={`${document.location.origin}/invite/${inviteLinks.find(f => f.role === this.state.role).hash}`}
+                                                                      inputClassName="input input--wide"
+                                                                      className="full-width"
+                                                                      type="text"
+                                                                      readonly="readonly"
+                                                                      title={<h3>Link</h3>}
+                                                                      placeholder="Link"
+                                                                    />
+                                                                </div>
+                                                                <div>
+                                                                    <Button onClick={() => {
+                                                                        navigator.clipboard.writeText(`${document.location.origin}/invite/${inviteLinks.find(f => f.role === this.state.role).hash}`);
+                                                                        toast('Link copied');
+                                                                    }}
+                                                                    >
                                                                           Copy invite link
-                                                                      </Button>
-                                                                  </div>
+                                                                    </Button>
+                                                                </div>
 
-                                                              </Row>
+                                                            </Row>
 
-                                                          </div>
-                                                          <p className="mt-3">
+                                                        </div>
+                                                        <p className="mt-3">
                                                               Anyone with link can join as a standard user, once they have joined you can edit their role from the team members panel.
-                                                              {' '}
-                                                              <ButtonLink target="_blank" href="https://docs.flagsmith.com/permissions/">Learn about User Roles.</ButtonLink>
-                                                          </p>
-                                                          <div className="text-right mt-2">
-                                                              {error && <Error error={error}/>}
-                                                          </div>
-                                                      </form>
+                                                            {' '}
+                                                            <ButtonLink target="_blank" href="https://docs.flagsmith.com/permissions/">Learn about User Roles.</ButtonLink>
+                                                        </p>
+                                                        <div className="text-right mt-2">
+                                                            {error && <Error error={error}/>}
+                                                        </div>
+                                                    </form>
                                                     )
                                                 }
                                                 <div>
@@ -428,7 +443,7 @@ const OrganisationSettingsPage = class extends Component {
                                                                         className="list-item" key={id}
                                                                       >
                                                                           <div className="flex flex-1">
-                                                                              {email ? email : link}
+                                                                              {email || link}
                                                                               <div className="list-item-footer faint">
                                                                                     Created
                                                                                   {' '}
@@ -446,15 +461,17 @@ const OrganisationSettingsPage = class extends Component {
                                                                           </div>
                                                                           <Row>
                                                                               <Column>
-                                                                                  {link ? ' ' :
-                                                                                    <button
-                                                                                        id="resend-invite"
-                                                                                        type="button"
-                                                                                        onClick={() => AppActions.resendInvite(id)}
-                                                                                        className="btn btn--anchor"
-                                                                                    >
+                                                                                  {link ? ' '
+                                                                                      : (
+                                                                                          <button
+                                                                                            id="resend-invite"
+                                                                                            type="button"
+                                                                                            onClick={() => AppActions.resendInvite(id)}
+                                                                                            className="btn btn--anchor"
+                                                                                          >
                                                                                       Resend
-                                                                                    </button>
+                                                                                          </button>
+                                                                                      )
                                                                                   }
                                                                               </Column>
                                                                               <Column>

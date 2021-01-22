@@ -72,18 +72,28 @@ const sendFailure = (browser, done, request, error) => {
     const lastError = error && error.value ? JSON.parse(error.value) : 'No last error';
     console.log('Last request:', lastRequest);
     console.log('Last error:', lastError);
-    if (SLACK_TOKEN && E2E_SLACK_CHANNEL && slackMessage) {
-        const uri = path.join(__dirname, 'screenshot.png');
-        browser.saveScreenshot(uri, () => {
-            slackUpload(uri, `E2E for Bullet Train Failed. ${formatCommit()}\n\`\`\`${JSON.stringify({
-                request: lastRequest,
-                error: lastError,
-            }, null, 2).replace(/\\/g, '')}\`\`\``, E2E_SLACK_CHANNEL, 'Screenshot')
-                .then(done);
+    browser.getLog('browser', (logEntries) => {
+        logEntries.forEach((log) => {
+            console.log(`[${log.level}] ${log.message}`);
         });
-        return;
-    }
-    done();
+        browser
+            .source((result) => {
+                // Source will be stored in result.value
+                console.log(result && result.value);
+                if (SLACK_TOKEN && E2E_SLACK_CHANNEL && slackMessage) {
+                    const uri = path.join(__dirname, 'screenshot.png');
+                    browser.saveScreenshot(uri, () => {
+                        slackUpload(uri, `E2E for Bullet Train Failed. ${formatCommit()}\n\`\`\`${JSON.stringify({
+                            request: lastRequest,
+                            error: lastError,
+                        }, null, 2).replace(/\\/g, '')}\`\`\``, E2E_SLACK_CHANNEL, 'Screenshot')
+                            .then(done);
+                    });
+                    return;
+                }
+                done();
+            });
+    });
 };
 
 let testsFailed;

@@ -25,7 +25,31 @@ const controller = {
                         data.get(`${Project.api}organisations/${id}/usage/`).then((usage) => {
                             store.model.usage = usage && usage.events;
                             store.loaded();
-                        }).catch(() => {});
+                        }).catch(() => {
+                        });
+                        data.get(`${Project.api}organisations/${id}/invite-links/`).then((links) => {
+                            store.model.inviteLinks = links;
+                            if (!links || !links.length) {
+                                Promise.all([
+                                    data.post(`${Project.api}organisations/${id}/invite-links/`, {
+                                        role: 'ADMIN',
+                                        expires_at: moment().add(30, 'days').toISOString(),
+                                    }),
+                                    data.post(`${Project.api}organisations/${id}/invite-links/`, {
+                                        role: 'USER',
+                                        expires_at: moment().add(30, 'days').toISOString(),
+                                    }),
+                                ]).then(() => {
+                                    data.get(`${Project.api}organisations/${id}/invite-links/`).then((links) => {
+                                        store.model.inviteLinks = links;
+
+                                        store.loaded();
+                                    });
+                                });
+                            } else {
+                                store.loaded();
+                            }
+                        });
                     }
 
                     return Promise.all(projects.map((project, i) => data.get(`${Project.api}environments/?project=${project.id}`)
@@ -123,19 +147,6 @@ const controller = {
             toast(`Failed to send invite(s). ${e && e.error ? e.error : 'Please try again later'}`);
         });
     },
-    generateInviteUser: () => {
-        store.saving();
-        data.post(`${Project.api}organisations/${store.id}/generate_invite/`, {
-            frontend_base_url: `${document.location.origin}/invite/`,
-        }).then((resp) => {
-            store.model.invite_link = resp;
-            store.saved();
-        }).catch((e) => {
-            console.error('Failed to generate invite', e);
-            store.saved();
-            toast(`Failed to generate invite. ${e && e.error ? e.error : 'Please try again later'}`);
-        });
-    },
     deleteInvite: (id) => {
         store.saving();
         data.delete(`${Project.api}organisations/${store.id}/invites/${id}/`)
@@ -218,8 +229,8 @@ var store = Object.assign({}, BaseStore, {
     getInflux() {
         return store.model && store.model.influx_data;
     },
-    getInviteLink() {
-        return store.model && store.model.invite_link;
+    getInviteLinks() {
+        return store.model && store.model.inviteLinks;
     },
 });
 
@@ -239,9 +250,6 @@ store.dispatcherIndex = Dispatcher.register(store, (payload) => {
             break;
         case Actions.INVITE_USERS:
             controller.inviteUsers(action.invites);
-            break;
-        case Actions.GENERATE_INVITE_USER:
-            controller.generateInviteUser();
             break;
         case Actions.DELETE_INVITE:
             controller.deleteInvite(action.id);

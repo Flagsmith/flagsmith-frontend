@@ -33,7 +33,7 @@ build-dockerhub:
   variables:
     DOCKER_HUB_AUTH: $DOCKER_HUB_AUTH
   script:
-    - if [ "$CI_COMMIT_REF_NAME" == "master" ]; then IMAGE_TAG="latest"; else IMAGE_TAG=$CI_COMMIT_REF_SLUG; fi
+    - if [ "$CI_COMMIT_REF_NAME" == "master" ]; then IMAGE_TAG="latest"; elif [ "$CI_COMMIT_REF_NAME" == "develop" ]; then IMAGE_TAG="develop"; else IMAGE_TAG=$CI_COMMIT_TAG; fi
     - echo $CI_COMMIT_REF_NAME > $CI_PROJECT_DIR/CI_COMMIT_REF_NAME
     - echo $CI_COMMIT_SHA > $CI_PROJECT_DIR/CI_COMMIT_SHA
     - echo $IMAGE_TAG > $CI_PROJECT_DIR/IMAGE_TAG
