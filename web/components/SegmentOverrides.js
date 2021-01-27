@@ -132,6 +132,9 @@ class TheComponent extends Component {
                         this.setState({ isLoading: false });
                     });
             },
+            () => {
+                this.setState({ isLoading: false });
+            },
         );
     }
 
