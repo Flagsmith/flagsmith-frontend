@@ -151,20 +151,25 @@ const OrganisationSettingsPage = class extends Component {
         />);
     };
 
-    drawChart = data => (
-        <ResponsiveContainer height={400} width="100%">
-            <BarChart data={data}>
-                <CartesianGrid strokeDasharray="3 5"/>
-                <XAxis allowDataOverflow={false} dataKey="name"/>
-                <YAxis allowDataOverflow={false} />
-                <Tooltip/>
-                <Legend />
-                <Bar dataKey="Flags" stackId="a" fill="#6633ff" />
-                <Bar dataKey="Identities" stackId="a" fill="#00a696" />
-                <Bar dataKey="Traits" stackId="a" fill="#f18e7f" />
-            </BarChart>
-        </ResponsiveContainer>
-    );
+    drawChart = (data) => {
+        if (data && data.hasOwnProperty && data.hasOwnProperty('length')) { // protect against influx setup incorrectly
+            return (
+                <ResponsiveContainer height={400} width="100%">
+                    <BarChart data={data}>
+                        <CartesianGrid strokeDasharray="3 5"/>
+                        <XAxis allowDataOverflow={false} dataKey="name"/>
+                        <YAxis allowDataOverflow={false} />
+                        <Tooltip/>
+                        <Legend />
+                        <Bar dataKey="Flags" stackId="a" fill="#6633ff" />
+                        <Bar dataKey="Identities" stackId="a" fill="#00a696" />
+                        <Bar dataKey="Traits" stackId="a" fill="#f18e7f" />
+                    </BarChart>
+                </ResponsiveContainer>
+            );
+        }
+        return null;
+    }
 
     render() {
         const { hasFeature, getValue } = this.props;
