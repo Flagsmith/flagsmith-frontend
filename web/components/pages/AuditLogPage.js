@@ -83,7 +83,17 @@ const AuditLogPage = class extends Component {
         const { environmentId } = this.props.match.params;
         const { state: { search } } = this;
         const { env: envFilter } = Utils.fromParam();
+        const hasRbacPermission = !this.props.hasFeature('plan_based_access') || Utils.getPlansPermission(AccountStore.getPlans(), 'AUDIT') || !this.props.hasFeature('scaleup_audit');
 
+        if (!hasRbacPermission) {
+            return (
+                <div>
+                    <div className="text-center">
+                      To access this feature please upgrade your account to scaleup or higher.
+                    </div>
+                </div>
+            );
+        }
         return (
             <div className="app-container container">
 

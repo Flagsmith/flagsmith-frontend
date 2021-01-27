@@ -164,6 +164,12 @@ $animation-timing-function: ease-in-out;
 
     &__nav-item {
         color: $aside-nav-color;
+        &.disabled {
+            opacity: 0.5;
+            &.active, &.active:hover {
+                color: $aside-nav-color;
+            }
+        }
         path {
             fill: $aside-nav-color;
         }

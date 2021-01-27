@@ -106,6 +106,7 @@ Team Members
                                                 </p>
                                             </li>
                                             <li><p>All Startup Features</p></li>
+                                            <li><p>Audit logs</p></li>
                                             <li><p>Private Discord Technical Support</p></li>
                                         </ul>
 
