@@ -163,7 +163,7 @@ const SegmentsPage = class extends Component {
                                                       icon="ion-ios-globe"
                                                       title="Segments"
                                                       items={segments}
-                                                      renderRow={({ name, id, enabled, created_date, type }, i) => (
+                                                      renderRow={({ name, id, enabled, description, type }, i) => (
                                                           <Row className="list-item clickable" key={id} space>
                                                               <div
                                                                 className="flex flex-1"
@@ -177,9 +177,7 @@ const SegmentsPage = class extends Component {
                                                                       </ButtonLink>
                                                                   </Row>
                                                                   <div className="list-item-footer faint">
-                                                                    Created
-                                                                      {' '}
-                                                                      {moment(created_date).format('DD/MMM/YYYY')}
+                                                                      {description||"No description"}
                                                                   </div>
                                                               </div>
                                                               <Row>
