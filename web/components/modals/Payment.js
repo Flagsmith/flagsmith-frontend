@@ -129,6 +129,7 @@ Team Members
                                                     <li><p>A/B and MVT Testing</p></li>
                                                     <li><p>Priority Email Technical Support</p></li>
                                                     <li><p>User Roles and Permissions</p></li>
+                                                    <li><p>Audit Logs</p></li>
                                                     <li><p>2FA and SAML Authentication</p></li>
                                                     <li><p>Online Ts and Cs</p></li>
                                                     </ul>
@@ -178,6 +179,7 @@ Team Members
                                                     <li><p>Priority Email Technical Support</p></li>
                                                     <li><p>User Roles and Permissions</p></li>
                                                     <li><p>2FA and SAML Authentication</p></li>
+                                                    <li><p>Audit Logs</p></li>
                                                     <li><p>Uptime and Support SLA</p></li>
                                                     <li><p>On-Boarding &amp; Training</p></li>
                                                     <li><p>Amendable MSA</p></li>
