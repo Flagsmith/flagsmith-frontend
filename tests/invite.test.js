@@ -64,11 +64,7 @@ module.exports = {
     '[Invite Tests] - Accept invite': function (browser) {
         let inviteUrl;
         browser
-            .url('https://mailinator.com/v3/#/#inboxpane')
-            .refresh()
-            .waitAndClick('.cc-dismiss')
-            .waitForElementVisible('#inbox_field')
-            .setValue('#inbox_field', ['bullet-train', browser.Keys.ENTER])
+            .url('https://www.mailinator.com/v3/index.jsp?zone=public&query=bullet-train#/#inboxpane')
             .useXpath()
             .waitForElementVisible(`//tbody/tr/td/a[contains(text(),"${`Bullet Train Org${append}`}")]`, 60000)
             .click(`//tbody/tr/td/a[contains(text(),"${`Bullet Train Org${append}`}")]`)
