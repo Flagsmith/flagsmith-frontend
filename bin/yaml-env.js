@@ -15,12 +15,13 @@ env_variables:
   FLAGSMITH: ${process.env.FLAGSMITH}
   GA: ${process.env.GA}
   CRISP_CHAT: ${process.env.CRISP_CHAT}
-  PREVENT_SIGNUP: ${process.env.CRISP_CHAT}
+  PREVENT_SIGNUP: ${process.env.PREVENT_SIGNUP}
   MIXPANEL: ${process.env.MIXPANEL}
   API_URL: ${process.env.API_URL}
   AMPLITUDE: ${process.env.AMPLITUDE}
   MAINTENANCE: ${process.env.MAINTENANCE}
   ASSET_URL: ${process.env.ASSET_URL}
+  BASENAME: ${process.env.BASENAME}
 `;
 
 fs.writeFileSync(src, str);
