@@ -153,7 +153,7 @@ const App = class extends Component {
         if (AccountStore.getOrganisation() && (AccountStore.getOrganisation().block_access_to_admin)) {
             return <Blocked/>;
         }
-        if (Project.maintenance || this.props.error) {
+        if (Project.maintenance || this.props.error || !window.projectOverrides) {
             return (
                 <Maintenance/>
             );
