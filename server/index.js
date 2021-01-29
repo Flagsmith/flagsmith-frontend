@@ -44,6 +44,8 @@ app.get('/static/project-overrides.js', (req, res) => {
         { name: 'amplitude', value: process.env.AMPLITUDE },
     ];
     const output = values.map(getVariable).join('');
+    
+    res.setHeader('content-type', 'text/javascript');
     res.send(`window.projectOverrides = {
         ${output}
     };
