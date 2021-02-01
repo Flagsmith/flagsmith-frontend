@@ -152,10 +152,10 @@ const OrganisationSettingsPage = class extends Component {
     };
 
     drawChart = (data) => {
-        if (data && data.hasOwnProperty && data.hasOwnProperty('length')) { // protect against influx setup incorrectly
+        if (data && data.events_list) { // protect against influx setup incorrectly
             return (
                 <ResponsiveContainer height={400} width="100%">
-                    <BarChart data={data}>
+                    <BarChart data={data.events_list}>
                         <CartesianGrid strokeDasharray="3 5"/>
                         <XAxis allowDataOverflow={false} dataKey="name"/>
                         <YAxis allowDataOverflow={false} />
