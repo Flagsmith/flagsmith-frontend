@@ -18,6 +18,8 @@ const slackMessage = SLACK_TOKEN && require('./slack-client');
 const E2E_SLACK_CHANNEL_NAME = process.env.E2E_SLACK_CHANNEL_NAME;
 
 const isDev = process.env.NODE_ENV !== 'production';
+const linkedin = process.env.LINKEDIN;
+
 const app = express();
 const port = process.env.PORT || 8080;
 
@@ -86,6 +88,7 @@ app.get('/', (req, res) => {
     }
     return res.render('static/index', {
         isDev,
+        linkedin,
     });
 });
 

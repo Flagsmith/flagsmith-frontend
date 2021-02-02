@@ -15,6 +15,7 @@ env_variables:
   FLAGSMITH: ${process.env.FLAGSMITH}
   GA: ${process.env.GA}
   CRISP_CHAT: ${process.env.CRISP_CHAT}
+  LINKEDIN: ${process.env.LINKEDIN}
   PREVENT_SIGNUP: ${process.env.PREVENT_SIGNUP}
   MIXPANEL: ${process.env.MIXPANEL}
   API_URL: ${process.env.API_URL}
