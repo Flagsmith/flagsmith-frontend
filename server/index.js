@@ -78,7 +78,6 @@ app.use(bodyParser.json());
 app.use('/api', api());
 app.use(spm);
 app.get('/', (req, res) => {
-    console.log('Returning index');
     if (isDev) {
         return res.render('index', {
             isDev,
