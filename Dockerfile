@@ -9,7 +9,7 @@ WORKDIR /srv/bt
 
 COPY --chown=node:node . .
 
-RUN npm install --quiet
+RUN npm install --quiet --production
 ENV ENV prod
 ENV ASSET_URL=/
 RUN npm run bundle
