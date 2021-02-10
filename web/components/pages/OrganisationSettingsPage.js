@@ -250,7 +250,7 @@ const OrganisationSettingsPage = class extends Component {
                                                         viewOnly={false}
                                                       />, null, { large: true })}
                                                     >
-                                                  View payment plans
+                                                  View plans
                                                     </button>
                                                 ) }
                                             </div>

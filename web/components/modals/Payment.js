@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import makeAsyncScriptLoader from 'react-async-script';
+import { ContactForm } from '../ContactForm';
 
 const PaymentModal = class extends Component {
     static displayName = 'Payment'
@@ -149,7 +150,10 @@ Team Members
                                                     <p className="text-small text-center">for enterprise pricing</p>
                                                     {!viewOnly ? (
                                                         <a
-                                                          href="mailto:enterprise@bullet-train.io"
+                                                          onClick={() => {
+                                                            openModal('Contact Sales', <ContactForm onComplete={closeModal}/>);
+                                                          }}
+                                                          href="#"
                                                           className="pricing-cta blue"
                                                         >
                                                             Contact Us

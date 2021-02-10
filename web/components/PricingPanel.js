@@ -1,4 +1,5 @@
 import React from 'react';
+import { ContactForm } from './ContactForm';
 
 const PricingPanel = class extends React.Component {
     static displayName = 'PricingPanel'
@@ -121,7 +122,12 @@ Team Members
                                         <img src="/images/cubes.svg" alt="Enterprise icon" className="pricing-icon"/>
                                         <p className="pricing-type">Contact Us</p>
                                         <p className="text-small text-center">for enterprise pricing</p>
-                                        <a href="mailto:enterprise@bullet-train.io" className="pricing-cta blue">Contact Us</a>
+                                        <a
+                                          onClick={() => {
+                                              openModal('Contact Sales', <ContactForm onComplete={closeModal}/>);
+                                          }} className="pricing-cta blue"
+                                        >Contact Us
+                                        </a>
                                     </div>
 
                                     <div className="panel-footer">
