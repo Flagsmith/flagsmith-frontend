@@ -55,6 +55,7 @@ export default (
             <Route path="/project/:projectId/settings" exact component={ProjectSettingsPage}/>
             <Route path="/project/:projectId/environment/:environmentId/segments" exact component={SegmentsPage}/>
             <Route path="/project/:projectId/environment/:environmentId/organisation-settings" exact component={OrganisationSettingsPage}/>
+            <Route path="/organisation-settings" exact component={OrganisationSettingsPage}/>
             <Route path="/project/:projectId/environment/:environmentId/account" exact component={AccountSettingsPage}/>
             <Route path="/account" exact component={AccountSettingsPage}/>
             <Route path="/project/:projectId/environment/:environmentId/audit-log" exact component={AuditLogPage}/>

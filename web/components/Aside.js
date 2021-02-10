@@ -327,7 +327,7 @@ const Aside = class extends Component {
                                                       </Permission>
                                                       )}
 
-                                                      {AccountStore.getOrganisationRole() === 'ADMIN' && (
+                                                      {E2E && AccountStore.getOrganisationRole() === 'ADMIN' && (
                                                       <NavLink
                                                         id="organisation-settings-link"
                                                         activeClassName="active"
@@ -355,16 +355,6 @@ const Aside = class extends Component {
                                                           <UserSettingsIcon className="aside__nav-item--icon"/>
                                                           Account Settings
                                                       </NavLink>
-
-                                                      <a
-                                                        id="logout-link" href="#"
-                                                        onClick={AppActions.logout}
-                                                        activeClassName="active"
-                                                        className="aside__nav-item"
-                                                      >
-                                                          <LogoutIcon className="aside__nav-item--icon"/>
-                                                        Logout
-                                                      </a>
                                                   </div>
                                               </div>
                                           </React.Fragment>

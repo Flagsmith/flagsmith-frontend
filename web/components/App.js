@@ -280,6 +280,8 @@ Click here to Sign
                                                                         <span className="popover-bt__title">Organisations</span>
                                                                         {organisation && (
                                                                         <OrganisationSelect
+                                                                          projectId={projectId}
+                                                                          environmentId={environmentId}
                                                                           clearableValue={false}
                                                                           onChange={(organisation) => {
                                                                               toggle();
