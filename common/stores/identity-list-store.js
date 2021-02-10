@@ -1,7 +1,7 @@
 const BaseStore = require('./base/_store');
 const data = require('../data/base/_data');
 
-const PAGE_SIZE = 100;
+const PAGE_SIZE = 10;
 
 const controller = {
     getIdentities: (envId, page, pageSize) => {
