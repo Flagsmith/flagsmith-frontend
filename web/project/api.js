@@ -169,6 +169,7 @@ global.API = {
                 amplitude.getInstance().identify(identify);
             }
             flagsmith.identify(id);
+            flagsmith.setTrait('organisations', user.organisations? user.organisations.map((o)=>`"${o.id}"`).join(",") : "");
             flagsmith.setTrait('email', id);
             if (window.$crisp) {
                 $crisp.push(['set', 'user:email', id]);

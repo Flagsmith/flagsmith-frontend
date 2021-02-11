@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { matchPath } from 'react-router';
 import { withRouter } from 'react-router-dom';
+import amplitude from 'amplitude-js';
 import Aside from './Aside';
 import Popover from './base/Popover';
 import Feedback from './modals/Feedback';
@@ -14,7 +15,6 @@ import UserSettingsIcon from './svg/UserSettingsIcon';
 import DocumentationIcon from './svg/DocumentationIcon';
 import ArrowUpIcon from './svg/ArrowUpIcon';
 import RebrandBanner from './RebrandBanner';
-import amplitude from 'amplitude-js';
 import UpgradeIcon from './svg/UpgradeIcon';
 
 const App = class extends Component {
@@ -202,7 +202,7 @@ Click here to Sign
                             <div className={pageHasAside ? `aside-body${isMobile && !asideIsVisible ? '-full-width' : ''}` : ''}>
                                 {!isHomepage && (!pageHasAside || !asideIsVisible || !isMobile) && (
                                     <nav
-                                      className={`navbar`}
+                                      className="navbar"
                                     >
                                         <Row space>
                                             <div className="navbar-left">
@@ -212,7 +212,7 @@ Click here to Sign
                                                         <span className="icon ion-md-menu"/>
                                                     </div>
                                                     )}
-                                                    {!projectId &&  (
+                                                    {!projectId && (
                                                         <a href={user ? '/projects' : 'https://flagsmith.com'}>
                                                             <img
                                                               title="Flagsmith" height={24}
@@ -280,6 +280,8 @@ Click here to Sign
                                                                         <span className="popover-bt__title">Organisations</span>
                                                                         {organisation && (
                                                                         <OrganisationSelect
+                                                                          projectId={projectId}
+                                                                          environmentId={environmentId}
                                                                           clearableValue={false}
                                                                           onChange={(organisation) => {
                                                                               toggle();
@@ -334,7 +336,14 @@ Click here to Sign
                                   asideIsVisible={asideIsVisible}
                                 />
                                 )}
-                                {isMobile && pageHasAside && asideIsVisible ? null : this.props.children}
+                                {isMobile && pageHasAside && asideIsVisible ? null : (
+                                    <div>
+                                        {this.props.getValue('butter_bar') && (
+                                        <div dangerouslySetInnerHTML={{ __html: this.props.getValue('butter_bar') }} className="butter-bar" />
+                                        )}
+                                        {this.props.children}
+                                    </div>
+                                )}
                             </div>
                             <RebrandBanner/>
                         </div>

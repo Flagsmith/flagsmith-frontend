@@ -22,10 +22,10 @@ export default class Paging extends PureComponent {
         } } = this;
         const currentIndex = paging.currentPage - 1;
         const lastPage = Math.ceil(paging.count / paging.pageSize);
-        const spaceBetween = 3;
+        const spaceBetween = 2;
         // const numberOfPages = Math.ceil(paging.count / paging.pageSize);
-        const from = Math.max(0, currentIndex - spaceBetween);
-        const to = Math.min(lastPage, currentIndex + spaceBetween);
+        const from = Math.max(0, (currentIndex+1) - spaceBetween);
+        const to = Math.min(lastPage, (currentIndex? currentIndex: currentIndex+1) + spaceBetween);
         const range = _.range(from, to);
         if (range.length < 2) {
             return <div/>;
@@ -37,6 +37,26 @@ export default class Paging extends PureComponent {
                   onClick={() => goToPage(currentIndex)}
                 />
                 <Row className="list-item">
+                    {!range.includes(0) && (
+                      <>
+                          <div
+                            role="button"
+                            className={cn({
+                                page: true,
+                                'active': currentIndex === 1,
+                            })}
+                            onClick={paging.currentPage === 1 + 1 ? undefined : () => goToPage(1)}
+                          >
+                              {1}
+                          </div>
+                          <div
+                            className={cn({
+                                page: true,
+                            })}>
+                              ...
+                          </div>
+                      </>
+                    )}
                     {_.map(range, index => (
                         <div
                           key={index} role="button"
@@ -49,6 +69,29 @@ export default class Paging extends PureComponent {
                             {index + 1}
                         </div>
                     ))}
+                    {!range.includes(lastPage-1) && (
+                      <>
+
+                          <div
+                            className={cn({
+                                page: true,
+                            })}
+                            onClick={paging.currentPage === lastPage + 1 ? undefined : () => goToPage(1)}
+                          >
+                              ...
+                          </div>
+                          <div
+                            role="button"
+                            className={cn({
+                                page: true,
+                                'active': currentIndex === lastPage,
+                            })}
+                            onClick={paging.currentPage === lastPage ? undefined : () => goToPage(lastPage)}
+                          >
+                              {lastPage}
+                          </div>
+                      </>
+                    )}
                 </Row>
                 <Button
                   className="icon btn-paging ion-ios-arrow-forward" disabled={!paging.next}

@@ -4,7 +4,13 @@
 @import "flexbox/index";
 @import "project/index";
 @import "project/segments";
+.butter-bar {
+    background-color: #fdf1dd;
+    text-align: center;
+    line-height: 44px;
+    margin-top: -10px;
 
+}
 bold,strong {
     font-weight: bold;
 }

@@ -77,6 +77,7 @@ const controller = {
 
 var store = Object.assign({}, BaseStore, {
     id: 'project',
+    getId: () => store.model && store.model.id,
     getEnvs: () => store.model && store.model.environments,
     getEnvironment: api_key => store.model && _.find(store.model.environments, { api_key }),
     getFlags: () => store.model && store.model.flags,

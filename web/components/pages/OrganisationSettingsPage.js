@@ -37,7 +37,7 @@ const OrganisationSettingsPage = class extends Component {
 
     componentDidMount = () => {
         API.trackPage(Constants.pages.ORGANISATION_SETTINGS);
-
+$("body").trigger("click")
         if (AccountStore.getOrganisationRole() !== 'ADMIN') {
             this.context.router.history.replace('/projects');
         }
@@ -250,7 +250,7 @@ const OrganisationSettingsPage = class extends Component {
                                                         viewOnly={false}
                                                       />, null, { large: true })}
                                                     >
-                                                  View payment plans
+                                                  View plans
                                                     </button>
                                                 ) }
                                             </div>
@@ -319,27 +319,32 @@ const OrganisationSettingsPage = class extends Component {
                                                                       ]}
                                                                     />
                                                                 </div>
-                                                                <div className="mr-2">
-                                                                    <Input
-                                                                      style={{ width: 450 }}
-                                                                      value={`${document.location.origin}/invite/${inviteLinks.find(f => f.role === this.state.role).hash}`}
-                                                                      inputClassName="input input--wide"
-                                                                      className="full-width"
-                                                                      type="text"
-                                                                      readonly="readonly"
-                                                                      title={<h3>Link</h3>}
-                                                                      placeholder="Link"
-                                                                    />
-                                                                </div>
-                                                                <div>
-                                                                    <Button onClick={() => {
-                                                                        navigator.clipboard.writeText(`${document.location.origin}/invite/${inviteLinks.find(f => f.role === this.state.role).hash}`);
-                                                                        toast('Link copied');
-                                                                    }}
-                                                                    >
-                                                                          Copy invite link
-                                                                    </Button>
-                                                                </div>
+                                                                {inviteLinks.find(f => f.role === this.state.role) && (
+                                                                  <>
+                                                                      <div className="mr-2">
+                                                                          <Input
+                                                                            style={{ width: 450 }}
+                                                                            value={`${document.location.origin}/invite/${inviteLinks.find(f => f.role === this.state.role).hash}`}
+                                                                            inputClassName="input input--wide"
+                                                                            className="full-width"
+                                                                            type="text"
+                                                                            readonly="readonly"
+                                                                            title={<h3>Link</h3>}
+                                                                            placeholder="Link"
+                                                                          />
+                                                                      </div>
+                                                                      <div>
+                                                                          <Button onClick={() => {
+                                                                              navigator.clipboard.writeText(`${document.location.origin}/invite/${inviteLinks.find(f => f.role === this.state.role).hash}`);
+                                                                              toast('Link copied');
+                                                                          }}
+                                                                          >
+                                                                              Copy invite link
+                                                                          </Button>
+                                                                      </div>
+                                                                  </>
+                                                                )}
+
 
                                                             </Row>
 
