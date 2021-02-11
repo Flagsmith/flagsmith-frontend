@@ -122,7 +122,6 @@ Team Members
                                                         </p>
                                                         </li>
                                                     <li><p><strong>5</strong>{' '}Team Members</p></li>
-                                                    <li><p>Unlimited Projects</p></li>
                                                     <li><p>Unlimited Environments</p></li>
                                                     <li><p>Unlimited Feature Flags</p></li>
                                                     <li><p>Unlimited Identities and Segments</p></li>
@@ -174,7 +173,6 @@ Team Members
                                                             Over <strong>5</strong> Team Members
                                                         </p>
                                                     </li>
-                                                    <li><p>Unlimited Projects</p></li>
                                                     <li><p>Unlimited Environments</p></li>
                                                     <li><p>Unlimited Feature Flags</p></li>
                                                     <li><p>Unlimited Identities and Segments</p></li>

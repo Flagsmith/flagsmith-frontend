@@ -39,7 +39,6 @@ const PricingPanel = class extends React.Component {
                                                     <strong>1</strong> Team Member
                                                 </p>
                                             </li>
-                                            <li><p>Unlimited Projects</p></li>
                                             <li><p>Unlimited Environments</p></li>
                                             <li><p>Unlimited Feature Flags</p></li>
                                         </ul>
@@ -72,7 +71,6 @@ requests per month
 Team Members
                                                 </p>
                                             </li>
-                                            <li><p>Unlimited Projects</p></li>
                                             <li><p>Unlimited Environments</p></li>
                                             <li><p>Unlimited Feature Flags</p></li>
                                             <li><p>Email Technical Support</p></li>
