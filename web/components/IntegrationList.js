@@ -119,7 +119,7 @@ class IntegrationList extends Component {
     }
 
     removeIntegration =(integration, id) => {
-        openConfirm('Confirm remove integration', 'This will remove your integration from the project, it will no longer recieve data. Are you sure?', () => {
+        openConfirm('Confirm remove integration', `This will remove your integration from the ${integration.flagsmithEnvironment}` ? 'environment' : 'project' + ', it will no longer recieve data. Are you sure?', () => {
             if (integration.flagsmithEnvironment) {
                 _data.delete(`${Project.api}environments/${integration.flagsmithEnvironment}/integrations/${id}/${integration.id}/`)
                     .then(this.fetch).catch(this.onError);
