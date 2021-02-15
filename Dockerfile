@@ -9,8 +9,8 @@ WORKDIR /srv/bt
 
 COPY --chown=node:node . .
 
-RUN npm install --quiet
-ENV ENV prod
+RUN npm install --quiet --production
+ENV ENV=prod
 ENV ASSET_URL=/
 RUN npm run bundle
 
@@ -22,7 +22,8 @@ USER node
 WORKDIR /srv/bt
 COPY --from=build --chown=node:node /srv/bt/ .
 
-ENV ENV prod
+ENV ENV=prod
+ENV NODE_ENV=production
 
 EXPOSE 8080
-ENTRYPOINT ["sh", "./bin/docker/run-docker.sh"] 
+CMD ["node",  "./server/index.js"]

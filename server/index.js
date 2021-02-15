@@ -39,7 +39,7 @@ app.get('/static/project-overrides.js', (req, res) => {
         { name: 'crispChat', value: process.env.CRISP_CHAT },
         { name: 'mixpanel', value: process.env.MIXPANEL },
         { name: 'sentry', value: process.env.SENTRY },
-        { name: 'api', value: process.env.API_URL },
+        { name: 'api', value: process.env.PROXY_API_URL ? '/api/v1/' : process.env.API_URL },
         { name: 'maintenance', value: process.env.MAINTENANCE },
         { name: 'assetURL', value: process.env.ASSET_URL },
         { name: 'flagsmithClientAPI', value: process.env.FLAGSMITH_CLIENT_API },
@@ -53,6 +53,14 @@ app.get('/static/project-overrides.js', (req, res) => {
     };
     `);
 });
+
+// Optionally proxy the API to get around CSRF issues, exposing the API to the world
+// PROXY_API_URL should end with the hostname and not /api/v1/ 
+// e.g. PROXY_API_URL=http://api.flagsmith.com/
+if (process.env.PROXY_API_URL) {
+    const { createProxyMiddleware } = require('http-proxy-middleware');
+    app.use('/api/v1/', createProxyMiddleware({ target: process.env.PROXY_API_URL, changeOrigin: true }));
+}
 
 if (isDev) { // Serve files from src directory and use webpack-dev-server
     console.log('Enabled Webpack Hot Reloading');
@@ -80,7 +88,6 @@ app.use(bodyParser.json());
 app.use('/api', api());
 app.use(spm);
 app.get('/', (req, res) => {
-    console.log('Returning index');
     if (isDev) {
         return res.render('index', {
             isDev,

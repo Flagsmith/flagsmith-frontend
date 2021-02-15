@@ -89,6 +89,7 @@ Current variables used between [environment.js](./bin/env.js) and [common/projec
 - API_URL: The API to hit for requests. E.g. `https://api.flagsmith.com/api/v1/`
 - FLAGSMITH: The flagsmith environment key we use to manage features - Flagsmith runs on Flagsmith.
 - FLAGSMITH_CLIENT_API: The api which the flagsmith client should communicate with. Flagsmith runs on flagsmith. E.g. `https://api.flagsmith.com/api/v1/`.
+- PROXY_API_URL: Proxies the API via this application. Set this to the hostname of the API being proxied. Proxies `/api/v1/` through to `PROXY_API_URL`. If you are using this, any setting to `API_URL` will be ignored and the browser will use the front end node server to send API requests. Do not prepend `api/v1/` - it will be added automatically.
 - GA: Google analytics key
 - CRISP_CHAT: Crisp Chat widget key
 - PREVENT_SIGNUP: Determines whether to prevent manual signup without invite. Set it to any value to disable signups.
