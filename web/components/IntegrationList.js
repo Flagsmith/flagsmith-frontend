@@ -56,7 +56,6 @@ class Integration extends Component {
                         <Row space>
                             <Flex>
                                 <CreateEditIntegration readOnly data={integration} integration={this.props.integration} />
-
                             </Flex>
                             <Button
                               onClick={(e) => {
@@ -102,9 +101,10 @@ class IntegrationList extends Component {
                         let allItems = [];
                         _.each(res, (envIntegrations, index) => {
                             if (envIntegrations && envIntegrations.length) {
-                                allItems = allItems.concat(envIntegrations.map(int => ({ ...int, environment: ProjectStore.getEnvs()[index].api_key })));
+                                allItems = allItems.concat(envIntegrations.map(int => ({ ...int, flagsmithEnvironment: ProjectStore.getEnvs()[index].api_key })));
                             }
                         });
+                        return allItems;
                     });
                 }
                 return _data.get(`${Project.api}projects/${this.props.projectId}/integrations/${key}/`)
@@ -120,8 +120,13 @@ class IntegrationList extends Component {
 
     removeIntegration =(integration, id) => {
         openConfirm('Confirm remove integration', 'This will remove your integration from the project, it will no longer recieve data. Are you sure?', () => {
-            _data.delete(`${Project.api}projects/${this.props.projectId}/integrations/${id}/${integration.id}/`)
-                .then(this.fetch).catch(this.onError);
+            if (integration.flagsmithEnvironment) {
+                _data.delete(`${Project.api}environments/${integration.flagsmithEnvironment}/integrations/${id}/${integration.id}/`)
+                    .then(this.fetch).catch(this.onError);
+            } else {
+                _data.delete(`${Project.api}projects/${this.props.projectId}/integrations/${id}/${integration.id}/`)
+                    .then(this.fetch).catch(this.onError);
+            }
         });
     }
 

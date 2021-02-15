@@ -14,6 +14,13 @@ const EnvironmentSelect = class extends Component {
             <ProjectProvider id={this.props.projectId}>
                 {({ isLoading, project }) => {
                     const selectedEnv = this.props.value && _.find(project.environments, { api_key: this.props.value });
+                    if (this.props.readOnly) {
+                        return (
+                          <div className="mb-2">
+                              {selectedEnv.name}
+                          </div>
+                        )
+                    }
                     return (
                         <div>
                             <Select
