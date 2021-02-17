@@ -37,7 +37,7 @@ const OrganisationSettingsPage = class extends Component {
 
     componentDidMount = () => {
         API.trackPage(Constants.pages.ORGANISATION_SETTINGS);
-$("body").trigger("click")
+        $('body').trigger('click');
         if (AccountStore.getOrganisationRole() !== 'ADMIN') {
             this.context.router.history.replace('/projects');
         }
@@ -292,9 +292,21 @@ $("body").trigger("click")
                                                 </Row>
                                                 {'You are currently using '}
                                                 <strong className={organisation.num_seats > (_.get(organisation, 'subscription.max_seats') || 1) ? 'text-danger' : ''}>
-                                                    {`${organisation.num_seats} / ${_.get(organisation, 'subscription.max_seats') || 1}`}
+                                                    {`${organisation.num_seats} of ${_.get(organisation, 'subscription.max_seats') || 1}`}
                                                 </strong>
-                                                {` seat${organisation.num_seats === 1 ? '' : 's'}. `}
+                                                {` seat${organisation.num_seats === 1 ? '' : 's'}. `} for your plan.
+                                                {' '}
+                                                {organisation.num_seats > (_.get(organisation, 'subscription.max_seats') || 1)
+                                                && (
+                                                <a
+                                                  href="#" onClick={() => openModal('Payment Plans', <PaymentModal
+                                                    viewOnly={false}
+                                                  />, null, { large: true })}
+                                                >
+                                                      Upgrade
+                                                </a>
+                                                )
+                                                }.
                                                 {
                                                     this.props.hasFeature('invite_link') && inviteLinks && (
                                                     <form onSubmit={(e) => {
@@ -307,9 +319,9 @@ $("body").trigger("click")
                                                                     <Select
                                                                       value={{
                                                                           value: this.state.role,
-                                                                          label: this.state.role === "ADMIN"? "Organisation Administrator": "User",
+                                                                          label: this.state.role === 'ADMIN' ? 'Organisation Administrator' : 'User',
                                                                       }}
-                                                                      onChange={(v)=>this.setState({role:v.value})}
+                                                                      onChange={v => this.setState({ role: v.value })}
                                                                       options={[
                                                                           { label: 'Organisation Administrator', value: 'ADMIN' },
                                                                           { label: hasRbacPermission ? 'User' : 'User - Please upgrade for role based access',
