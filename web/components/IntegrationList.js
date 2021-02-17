@@ -19,7 +19,7 @@ class Integration extends Component {
     }
 
     render() {
-        const { image, title, description, perEnvironment } = this.props.integration;
+        const { image, title, description, perEnvironment, docs } = this.props.integration;
         const activeIntegrations = this.props.activeIntegrations;
         const showAdd = !(!perEnvironment && activeIntegrations && activeIntegrations.length);
         return (
@@ -27,13 +27,11 @@ class Integration extends Component {
               className="no-pad m-4"
               title={(
                   <Row style={{ flexWrap: 'noWrap' }}>
-                      <img height={64} className="mr-4" src={image}/>
                       <Flex>
-                          <h4>
-                              {title}
-                          </h4>
+                          <img width={180} className="mr-4" src={image}/>
+
                           <div className="subtitle mt-2">
-                              {description}
+                              {description} {docs && <a href={docs} target="_blank">View docs</a> }
                           </div>
                       </Flex>
                       {showAdd && (
