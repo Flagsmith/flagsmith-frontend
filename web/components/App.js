@@ -345,7 +345,6 @@ Click here to Sign
                                     </div>
                                 )}
                             </div>
-                            <RebrandBanner/>
                         </div>
                     ))}
                 </AccountProvider>
