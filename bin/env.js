@@ -29,6 +29,7 @@ const values = [
     { name: 'api', value: process.env.API_URL },
     { name: 'maintenance', value: process.env.MAINTENANCE },
     { name: 'assetURL', value: process.env.ASSET_URL },
+    { name: 'flagsmithAnalytics', value: process.env.FLAGSMITH_ANALYTICS },
     { name: 'flagsmithClientAPI', value: process.env.FLAGSMITH_CLIENT_API },
     { name: 'amplitude', value: process.env.AMPLITUDE },
 ];

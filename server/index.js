@@ -26,12 +26,20 @@ const port = process.env.PORT || 8080;
 app.get('/static/project-overrides.js', (req, res) => {
     const getVariable = ({ name, value }) => {
         if (!value) {
+            if (typeof value === 'boolean') {
+                return `    ${name}: false`;
+            }
             return '';
         }
+
+        if (typeof value !== 'string') {
+            return `    ${name}: ${value}`;
+        }
+
         return `    ${name}: '${value}',
         `;
     };
-    
+
     const values = [
         { name: 'preventSignup', value: process.env.PREVENT_SIGNUP },
         { name: 'flagsmith', value: process.env.FLAGSMITH },
@@ -43,10 +51,11 @@ app.get('/static/project-overrides.js', (req, res) => {
         { name: 'maintenance', value: process.env.MAINTENANCE },
         { name: 'assetURL', value: process.env.ASSET_URL },
         { name: 'flagsmithClientAPI', value: process.env.FLAGSMITH_CLIENT_API },
+        { name: 'flagsmithAnalytics', value: !!process.env.FLAGSMITH_ANALYTICS },
         { name: 'amplitude', value: process.env.AMPLITUDE },
     ];
     const output = values.map(getVariable).join('');
-    
+
     res.setHeader('content-type', 'text/javascript');
     res.send(`window.projectOverrides = {
         ${output}
@@ -55,7 +64,7 @@ app.get('/static/project-overrides.js', (req, res) => {
 });
 
 // Optionally proxy the API to get around CSRF issues, exposing the API to the world
-// PROXY_API_URL should end with the hostname and not /api/v1/ 
+// PROXY_API_URL should end with the hostname and not /api/v1/
 // e.g. PROXY_API_URL=http://api.flagsmith.com/
 if (process.env.PROXY_API_URL) {
     const { createProxyMiddleware } = require('http-proxy-middleware');
@@ -79,7 +88,7 @@ app.set('view engine', 'handlebars');
 // Some infrastructure (e.g. Kubernetes) needs simple healthchecks
 app.get('/health', (req, res) => {
     console.log('Healthcheck complete');
-    res.send('OK');  
+    res.send('OK');
 });
 
 // parse various different custom JSON types as JSON

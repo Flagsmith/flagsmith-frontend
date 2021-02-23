@@ -13,6 +13,7 @@ env_variables:
   SLACK_TOKEN: ${process.env.SLACK_TOKEN}
   EVENTS_SLACK_CHANNEL: ${process.env.EVENTS_SLACK_CHANNEL}
   FLAGSMITH: ${process.env.FLAGSMITH}
+  FLAGSMITH_ANALYTICS: ${process.env.FLAGSMITH_ANALYTICS}
   GA: ${process.env.GA}
   CRISP_CHAT: ${process.env.CRISP_CHAT}
   LINKEDIN: ${process.env.LINKEDIN}
