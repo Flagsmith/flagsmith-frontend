@@ -150,6 +150,14 @@ const AppActions = Object.assign({}, require('./base/_app-actions'), {
             force: true,
         });
     },
+    getFlagInfluxData(projectId, flag, periodt) {
+        Dispatcher.handleViewAction({
+            actionType: Actions.GET_FLAG_INFLUX_DATA,
+            projectId,
+            flag,
+            periodt,
+        });
+    },
     createFlag(projectId, environmentId, flag, segmentOverrides) {
         Dispatcher.handleViewAction({
             actionType: Actions.CREATE_FLAG,
