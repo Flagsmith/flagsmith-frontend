@@ -27,13 +27,13 @@ app.get('/static/project-overrides.js', (req, res) => {
     const getVariable = ({ name, value }) => {
         if (!value) {
             if (typeof value === 'boolean') {
-                return `    ${name}: false`;
+                return `    ${name}: false,`;
             }
             return '';
         }
 
         if (typeof value !== 'string') {
-            return `    ${name}: ${value}`;
+            return `    ${name}: ${value},`;
         }
 
         return `    ${name}: '${value}',
