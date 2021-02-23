@@ -5,7 +5,7 @@ const PanelSearch = class extends Component {
     static displayName = 'PanelSearch'
 
     static propTypes = {
-        title: propTypes.string,
+        title: propTypes.node,
         items: propTypes.any,
         search: OptionalString,
         searchPanel: OptionalNode,
@@ -17,7 +17,7 @@ const PanelSearch = class extends Component {
         nextPage: OptionalFunc,
         goToPage: OptionalFunc,
         isLoading: OptionalBool,
-        action: OptionalFunc,
+        action: OptionalNode,
     }
 
     constructor(props, context) {

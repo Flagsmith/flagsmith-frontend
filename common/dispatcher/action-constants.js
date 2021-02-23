@@ -68,7 +68,7 @@ const Actions = Object.assign({}, require('./base/_action-constants'), {
     'UPDATE_USER_ROLE': 'UPDATE_USER_ROLE',
     'UPDATE_SUBSCRIPTION': 'UPDATE_SUBSCRIPTION',
     'GET_INFLUX_DATA': 'GET_INFLUX_DATA',
-
+    'GET_FLAG_INFLUX_DATA': 'GET_FLAG_INFLUX_DATA',
 });
 
 window.Actions = Actions;
