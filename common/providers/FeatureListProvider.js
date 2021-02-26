@@ -61,10 +61,6 @@ const FeatureListProvider = class extends Component {
         }
     };
 
-    getInfluxData = (projectId, flag, periodt) => {
-        AppActions.getFlagInfluxData(projectId, flag, periodt);
-    };
-
     removeFlag = (projectId, flag) => {
         AppActions.removeFlag(projectId, flag);
     };

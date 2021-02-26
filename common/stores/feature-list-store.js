@@ -68,12 +68,12 @@ const controller = {
             })
             .catch(e => API.ajaxHandler(store, e));
     },
-    getInfluxDate(projectId, flag, periodt) {
-        data.get(`${Project.api}projects/${projectId}/features/${flag}/influx-data/?periodt=${periodt}`)
-        .then((result)=> {
-            store.model.influxData = result;
-            store.changed();
-        }).catch(e => API.ajaxHandler(store, e))
+    getInfluxDate(projectId, environmentId, flag, period) {
+        data.get(`${Project.api}projects/${projectId}/features/${flag}/influx-data/?period=${period}&environment_id=${environmentId}`)
+            .then((result) => {
+                store.model.influxData = result;
+                store.changed();
+            }).catch(e => API.ajaxHandler(store, e));
     },
     toggleFlag: (index, environments, comment) => {
         const flag = store.model.features[index];
@@ -166,7 +166,7 @@ const store = Object.assign({}, BaseStore, {
     },
     getFlagInfluxData() {
         return store.model && store.model.influxData;
-    }
+    },
 });
 
 
@@ -181,7 +181,7 @@ store.dispatcherIndex = Dispatcher.register(store, (payload) => {
             controller.toggleFlag(action.index, action.environments, action.comment);
             break;
         case Actions.GET_FLAG_INFLUX_DATA:
-            controller.getInfluxDate(action.projectId, action.flag, action.periodt);
+            controller.getInfluxDate(action.projectId, action.environmentId, action.flag, action.period);
             break;
         case Actions.CREATE_FLAG:
             controller.createFlag(action.projectId, action.environmentId, action.flag, action.segmentOverrides);
