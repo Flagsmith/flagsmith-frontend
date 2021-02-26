@@ -150,12 +150,13 @@ const AppActions = Object.assign({}, require('./base/_app-actions'), {
             force: true,
         });
     },
-    getFlagInfluxData(projectId, flag, periodt) {
+    getFlagInfluxData(projectId, environmentId, flag, period) {
         Dispatcher.handleViewAction({
             actionType: Actions.GET_FLAG_INFLUX_DATA,
             projectId,
+            environmentId,
             flag,
-            periodt,
+            period,
         });
     },
     createFlag(projectId, environmentId, flag, segmentOverrides) {
