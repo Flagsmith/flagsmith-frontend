@@ -37,7 +37,7 @@ const CreateFlag = class extends Component {
             allowEditDescription,
             enabledIndentity: false,
             enabledSegment: false,
-            periodt: '24h',
+            period: '24h',
         };
     }
 
@@ -56,7 +56,7 @@ const CreateFlag = class extends Component {
         }
         AppActions.getIdentities(this.props.environmentId, 3);
         if (this.props.projectFlag) {
-          AppActions.getFlagInfluxData(this.props.projectId, this.props.projectFlag.id, this.state.periodt);
+          AppActions.getFlagInfluxData(this.props.projectId, this.props.environmentId, this.props.projectFlag.id, this.state.period);
         }
     };
 
@@ -93,23 +93,23 @@ const CreateFlag = class extends Component {
     }
 
     getIndluxData = () => {
-      AppActions.getFlagInfluxData(this.props.projectId, this.props.projectFlag.id, this.state.periodt);
+      AppActions.getFlagInfluxData(this.props.projectId, this.props.environmentId, this.props.projectFlag.id, this.state.period);
     }
 
     getDisplayPeriod = () => {
-      const { periodt } = this.state;
-      if (periodt == '24h') {
+      const { period } = this.state;
+      if (period == '24h') {
         return '30d';
       } else {
         return '24h';
       }
     }
 
-    changePeriodt = () => {
-      const changePeriodt = this.getDisplayPeriod();
+    changePeriod = () => {
+      const changePeriod = this.getDisplayPeriod();
       this.state = {
           ...this.state,
-          periodt: changePeriodt,
+          period: changePeriod,
       };
       this.getIndluxData();
     }
@@ -591,9 +591,9 @@ const CreateFlag = class extends Component {
                                 {(this.props.hasFeature('flag_analytics') && this.props.flagId) &&
                                 <FormGroup className="mb-4 mr-3 ml-3">
                                     <Panel
-                                      title={<h6 className="mb-0">Flag events for last {this.state.periodt}</h6>}
+                                      title={<h6 className="mb-0">Flag events for last {this.state.period}</h6>}
                                       action={
-                                          <Button onClick={() => this.changePeriodt()} type="button" className={`btn--outline`}>
+                                          <Button onClick={() => this.changePeriod()} type="button" className={`btn--outline`}>
                                               {`Change to ${this.getDisplayPeriod()}`}
                                           </Button>
                                       }
