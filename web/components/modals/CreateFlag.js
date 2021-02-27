@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { BarChart, ResponsiveContainer, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Legend } from 'recharts';
 import Tabs from '../base/forms/Tabs';
 import TabItem from '../base/forms/TabItem';
 import withSegmentOverrides from '../../../common/providers/withSegmentOverrides';
@@ -7,7 +8,6 @@ import SegmentOverrides from '../SegmentOverrides';
 import AddEditTags from '../AddEditTags';
 import Constants from '../../../common/constants';
 import _data from '../../../common/data/base/_data';
-import { BarChart, ResponsiveContainer, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip , Legend } from 'recharts';
 
 const FEATURE_ID_MAXLENGTH = Constants.forms.maxLength.FEATURE_ID;
 
@@ -55,8 +55,8 @@ const CreateFlag = class extends Component {
             }, 500);
         }
         AppActions.getIdentities(this.props.environmentId, 3);
-        if (this.props.projectFlag) {
-          AppActions.getFlagInfluxData(this.props.projectId, this.props.environmentId, this.props.projectFlag.id, this.state.period);
+        if (this.props.projectFlag && this.props.environmentFlag) {
+            this.getInfluxData()
         }
     };
 
@@ -92,26 +92,27 @@ const CreateFlag = class extends Component {
         return 'CONFIG';
     }
 
-    getIndluxData = () => {
-      AppActions.getFlagInfluxData(this.props.projectId, this.props.environmentId, this.props.projectFlag.id, this.state.period);
+    getInfluxData = () => {
+        if (this.props.hasFeature('flag_analytics') && this.props.environmentFlag) {
+            AppActions.getFlagInfluxData(this.props.projectId, this.props.environmentFlag.environment, this.props.projectFlag.id, this.state.period);
+        }
     }
 
     getDisplayPeriod = () => {
-      const { period } = this.state;
-      if (period == '24h') {
-        return '30d';
-      } else {
+        const { period } = this.state;
+        if (period == '24h') {
+            return '30d';
+        }
         return '24h';
-      }
     }
 
     changePeriod = () => {
-      const changePeriod = this.getDisplayPeriod();
-      this.state = {
-          ...this.state,
-          period: changePeriod,
-      };
-      this.getIndluxData();
+        const changePeriod = this.getDisplayPeriod();
+        this.state = {
+            ...this.state,
+            period: changePeriod,
+        };
+        this.getInfluxData();
     }
 
     save = (func, isSaving) => {
@@ -192,21 +193,21 @@ const CreateFlag = class extends Component {
     }
 
     drawChart = (data) => {
-      const { name } = this.state;
-      if (data && data.events_list) { // protect against influx setup incorrectly
-          return (
-              <ResponsiveContainer height={400} width="100%">
-                  <BarChart data={data.events_list}>
-                      <CartesianGrid strokeDasharray="3 5"/>
-                      <XAxis allowDataOverflow={false} dataKey="datetime"/>
-                      <YAxis allowDataOverflow={false}/>
-                      <RechartsTooltip/>
-                      <Bar dataKey={name} stackId="a" fill="#6633ff" />
-                  </BarChart>
-              </ResponsiveContainer>
-          );
-      }
-      return null
+        const { name } = this.state;
+        if (data && data.events_list) { // protect against influx setup incorrectly
+            return (
+                <ResponsiveContainer height={400} width="100%">
+                    <BarChart data={data.events_list}>
+                        <CartesianGrid strokeDasharray="3 5"/>
+                        <XAxis allowDataOverflow={false} dataKey="datetime"/>
+                        <YAxis allowDataOverflow={false}/>
+                        <RechartsTooltip/>
+                        <Bar dataKey={name} stackId="a" fill="#6633ff" />
+                    </BarChart>
+                </ResponsiveContainer>
+            );
+        }
+        return null;
     }
 
     addItem = () => {
@@ -588,19 +589,21 @@ const CreateFlag = class extends Component {
                                 }
 
 
-                                {(this.props.hasFeature('flag_analytics') && this.props.flagId) &&
+                                {(this.props.hasFeature('flag_analytics') && this.props.flagId)
+                                && (
                                 <FormGroup className="mb-4 mr-3 ml-3">
                                     <Panel
                                       title={<h6 className="mb-0">Flag events for last {this.state.period}</h6>}
-                                      action={
-                                          <Button onClick={() => this.changePeriod()} type="button" className={`btn--outline`}>
+                                      action={(
+                                          <Button onClick={() => this.changePeriod()} type="button" className="btn--outline">
                                               {`Change to ${this.getDisplayPeriod()}`}
                                           </Button>
-                                      }
+)}
                                     >
                                         {this.drawChart(influxData)}
                                     </Panel>
                                 </FormGroup>
+                                )
                                 }
 
 
