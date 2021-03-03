@@ -263,6 +263,7 @@ const OrganisationSettingsPage = class extends Component {
                                     <OrganisationProvider>
                                         {({ isLoading, name, error, projects, usage, users, invites, influx_data, inviteLinks }) => (
                                             <div>
+                                                {this.props.hasFeature('usage_chart') && (
                                                 <div className="panel--grey">
                                                     <div className="flex-row header--icon">
                                                         <h5>API usage</h5>
@@ -279,6 +280,7 @@ const OrganisationSettingsPage = class extends Component {
                                                         </div>
                                                     ) : <div className="text-center"><Loader/></div> }
                                                 </div>
+                                                )}
                                                 <Row space className="mt-5">
                                                     <h3 className="m-b-0">Team Members</h3>
                                                     <Button
