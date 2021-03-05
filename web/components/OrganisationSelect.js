@@ -40,7 +40,7 @@ const OrganisationSelect = class extends Component {
                               className="btn btn--outline btn-sm edit"
                               to={ '/organisation-settings'}
                             >
-															Manage
+															Edit
                             </NavLink>
                             )}
                         </Row>
