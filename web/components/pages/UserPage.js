@@ -160,6 +160,10 @@ const UserPage = class extends Component {
                                                   icon="ion-ios-rocket"
                                                   title="Features"
                                                   items={projectFlags}
+                                                  sorting={[
+                                                      { label: 'Name', value: 'name', order: 'asc', default: true },
+                                                      { label: 'Created Date', value: 'created_date', order: 'asc' },
+                                                  ]}
                                                   renderRow={({ name, id, enabled, created_date, feature, type }, i) => {
                                                       const identityFlag = identityFlags[id] || {};
                                                       const environmentFlag = environmentFlags[id];
