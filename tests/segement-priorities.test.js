@@ -57,8 +57,8 @@ module.exports = {
         testHelpers.createTrait(browser, 2, 'trait3', 3);
         browser.waitForElementVisible(byId('segment-0-name'));
         browser.expect.element(byId('segment-0-name')).text.to.equal('segment_1');
-        browser.waitForElementVisible(byId('user-feature-switch-0-on'));
-        browser.expect.element(byId('user-feature-value-1')).text.to.equal('1');
+        browser.waitForElementVisible(byId('user-feature-switch-1-on'));
+        browser.expect.element(byId('user-feature-value-0')).text.to.equal('1');
     },
     '[Segments Priority Tests] - Prioritise segment 2': function (browser) {
         testHelpers.gotoFeatures(browser);
@@ -69,8 +69,8 @@ module.exports = {
         testHelpers.setSegmentOverrideIndex(browser, 1, 0);
         testHelpers.saveFeature(browser);
         testHelpers.goToUser(browser, 0);
-        browser.expect.element(byId('user-feature-value-1')).text.to.equal('2');
-        browser.waitForElementVisible(byId('user-feature-switch-0-off'));
+        browser.expect.element(byId('user-feature-value-0')).text.to.equal('2');
+        browser.waitForElementVisible(byId('user-feature-switch-1-off'));
     },
     '[Segments Priority Tests] - Prioritise segment 3': function (browser) {
         testHelpers.gotoFeatures(browser);
@@ -81,8 +81,8 @@ module.exports = {
         testHelpers.setSegmentOverrideIndex(browser, 2, 0);
         testHelpers.saveFeature(browser);
         testHelpers.goToUser(browser, 0);
-        browser.expect.element(byId('user-feature-value-1')).text.to.equal('3');
-        browser.waitForElementVisible(byId('user-feature-switch-0-on'));
+        browser.expect.element(byId('user-feature-value-0')).text.to.equal('3');
+        browser.waitForElementVisible(byId('user-feature-switch-1-on'));
     },
     '[Segments Priority Tests] - Clear down features': function (browser) {
         testHelpers.gotoFeatures(browser);
