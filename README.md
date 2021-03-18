@@ -1,8 +1,36 @@
 [<img alt="Feature Flag, Remote Config and A/B Testing platform, Flagsmith" width="100%" src="./hero.png"/>](https://flagsmith.com/)
 
-[![Donate](https://liberapay.com/assets/widgets/donate.svg)](https://liberapay.com/Bullet-Train/donate)
+# Flagsmith
 
-Bullet Train is now Flagsmith read about it [here](https://flagsmith.com/blog/rebrand). 
+Flagsmith makes it easy to create and manage features flags across web, mobile, and server side applications. Just wrap a section of code with a flag, and then use Flagsmith to toggle that feature on or off for different environments, users or user segments.
+
+## Flagsmith Frontend
+
+The frontend application for [Flagsmith](https://flagsmith.com/). Flagsmith allows you to manage feature flags and remote config across multiple projects, environments and organisations.
+
+This project connects to the [Flagsmith API](https://github.com/Flagsmith/flagsmith-api).
+
+<img alt="Flagsmith Screenshot" width="100%" src="https://github.com/Flagsmith/flagsmith-api/raw/master/screenshot.png"/>
+
+## Features
+
+* **Feature flags**. Release features with confidence through phased rollouts.
+* **Remote config**. Easily toggle individual features on and off, and make changes without deploying new code.
+* **A/B and Multivariate Testing**. Use segments to run A/B and multivariate tests on new features. With segments, you can also introduce beta programs to get early user feedback.
+* **Organization Management**.  Organizations, projects, and roles for team members help keep your deployment organized.
+* **Integrations**. Easily enhance Flagsmith with your favourite tools.
+
+## Using Flagsmith Frontend
+
+* These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. 
+* See running in production for notes on how to deploy the project on a live system.
+
+## Resources
+
+* [Flagsmith API](https://github.com/Flagsmith/flagsmith-api)
+* [Website](https://www.flagsmith.com/)
+* [Documentation](https://docs.flagsmith.com/)
+* If you have any questions about our projects you can email [support@flagsmith.com](mailto:support@flagsmith.com)
 
 # Flagsmith Frontend
 
@@ -53,18 +81,25 @@ npm start
 ## ENV variables
 
 Variables that differ per environment are exported globally to ``window.Project in`` [common/project.js](./common/project.js), this file gets replaced by a project.js located in [env](./env) by webpack based on what is set to the "ENV" environment variable (e.g. ENV=prod).
- 
-You can override each variable individually or add more by editing [environment.js](./environment.js). 
 
-Current variables used between [environment.js](./environment.js) and [common/project.js](./common/project.js):
+You can override each variable individually or add more by editing [./bin/env.js](./bin/env.js). 
 
-- API_URL: The API to hit for requests 
-- FLAGSMITH: The flagsmith project we use to manage features
+Current variables used between [environment.js](./bin/env.js) and [common/project.js](./bin/env.js):
+
+- API_URL: The API to hit for requests. E.g. `https://api.flagsmith.com/api/v1/`
+- FLAGSMITH: The flagsmith environment key we use to manage features - Flagsmith runs on Flagsmith.
+- FLAGSMITH_CLIENT_API: The api which the flagsmith client should communicate with. Flagsmith runs on flagsmith. E.g. `https://api.flagsmith.com/api/v1/`.
+- FLAGSMITH_ANALYTICS: Determines if the fagsmith sdk should send usage analytics, if you want to disable analytics don't set this. E.g. `true`.
+- PROXY_API_URL: Proxies the API via this application. Set this to the hostname of the API being proxied. Proxies `/api/v1/` through to `PROXY_API_URL`. If you are using this, any setting to `API_URL` will be ignored and the browser will use the front end node server to send API requests. Do not prepend `api/v1/` - it will be added automatically.
 - GA: Google analytics key
-- CRISP_CHAT: Chat widget key
-- MIXPANEL: Mixpanel analytics key
-- SENTRY: Sentry key
-- ASSET_URL: Used for replacing local static paths with a cdn, .e.g https://cdn.flagsmith.com
+- CRISP_CHAT: Crisp Chat widget key
+- PREVENT_SIGNUP: Determines whether to prevent manual signup without invite. Set it to any value to disable signups.
+- MAINTENANCE: Puts the site into maintenance mode. Set it to any value to disable signups.
+- AMPLITUDE: The ampitude key to use for behaviour tracking.
+- MIXPANEL: Mixpanel analytics key to use for behaviour tracking.
+- SENTRY: Sentry key for error reporting.
+- ASSET_URL: Used for replacing local static paths with a cdn, .e.g https://cdn.flagsmith.com. Defaults to `/`, i.e. no CDN.
+- BASENAME: Used for specifying a base url path that's ignored during routing if serving from a subdirectory
 
 ## E2E testing
 

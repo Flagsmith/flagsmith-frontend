@@ -118,7 +118,6 @@ class TheComponent extends Component {
             <p>
                 {'Are you sure you want to delete this segment override?'}
                 <strong>{name}</strong>
-                {'?'}
             </p>,
             () => {
                 _data.delete(`${Project.api}features/feature-segments/${this.props.value[i].id}/`)
@@ -129,6 +128,9 @@ class TheComponent extends Component {
                         })));
                         this.setState({ isLoading: false });
                     });
+            },
+            () => {
+                this.setState({ isLoading: false });
             },
         );
     }

@@ -45,7 +45,7 @@ flagsmith.init({
     environmentID: Project.flagsmith,
     onChange: controller.loaded,
     api: Project.flagsmithClientAPI,
-    enableAnalytics: true,
+    enableAnalytics: projectOverrides.flagsmithAnalytics,
 }).catch(() => {
     controller.onError();
 });

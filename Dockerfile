@@ -1,4 +1,5 @@
-FROM node:12 AS development
+# Build Assets
+FROM node:12 AS build
 
 RUN mkdir /srv/bt && chown node:node /srv/bt
 
@@ -6,21 +7,23 @@ USER node
 
 WORKDIR /srv/bt
 
-COPY --chown=node:node package.json package-lock.json ./
+COPY --chown=node:node . .
 
-RUN npm install --quiet
+RUN npm install --quiet --production
+ENV ENV=prod
+ENV ASSET_URL=/
+RUN npm run bundle
 
 
-
+# Set up runtime container
 FROM node:12-slim AS production
+USER node
 
 WORKDIR /srv/bt
+COPY --from=build --chown=node:node /srv/bt/ .
 
-COPY --from=development --chown=root:root /srv/bt/node_modules ./node_modules
-
-COPY . .
-
-ENV ENV prod
+ENV ENV=prod
+ENV NODE_ENV=production
 
 EXPOSE 8080
-CMD [ "./bin/docker/run-docker.sh" ]
+CMD ["node",  "./server/index.js"]

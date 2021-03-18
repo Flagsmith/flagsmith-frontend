@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { matchPath } from 'react-router';
 import { withRouter } from 'react-router-dom';
+import amplitude from 'amplitude-js';
 import Aside from './Aside';
 import Popover from './base/Popover';
 import Feedback from './modals/Feedback';
@@ -11,11 +12,10 @@ import Maintenance from './Maintenance';
 import Blocked from './Blocked';
 import AppLoader from './AppLoader';
 import UserSettingsIcon from './svg/UserSettingsIcon';
-import ProductRoadmapIcon from './svg/ProductRoadmapIcon';
 import DocumentationIcon from './svg/DocumentationIcon';
 import ArrowUpIcon from './svg/ArrowUpIcon';
 import RebrandBanner from './RebrandBanner';
-import amplitude from 'amplitude-js';
+import UpgradeIcon from './svg/UpgradeIcon';
 
 const App = class extends Component {
     static propTypes = {
@@ -153,7 +153,7 @@ const App = class extends Component {
         if (AccountStore.getOrganisation() && (AccountStore.getOrganisation().block_access_to_admin)) {
             return <Blocked/>;
         }
-        if (Project.maintenance || this.props.error) {
+        if (Project.maintenance || this.props.error || !window.projectOverrides) {
             return (
                 <Maintenance/>
             );
@@ -202,7 +202,7 @@ Click here to Sign
                             <div className={pageHasAside ? `aside-body${isMobile && !asideIsVisible ? '-full-width' : ''}` : ''}>
                                 {!isHomepage && (!pageHasAside || !asideIsVisible || !isMobile) && (
                                     <nav
-                                      className={`navbar`}
+                                      className="navbar"
                                     >
                                         <Row space>
                                             <div className="navbar-left">
@@ -212,7 +212,7 @@ Click here to Sign
                                                         <span className="icon ion-md-menu"/>
                                                     </div>
                                                     )}
-                                                    {!projectId &&  (
+                                                    {!projectId && (
                                                         <a href={user ? '/projects' : 'https://flagsmith.com'}>
                                                             <img
                                                               title="Flagsmith" height={24}
@@ -238,7 +238,7 @@ Click here to Sign
                                                                   />, null, { large: true });
                                                               }}
                                                             >
-                                                                <ArrowUpIcon/>
+                                                                <UpgradeIcon/>
                                                                 Upgrade
                                                             </a>
                                                             )}
@@ -248,13 +248,6 @@ Click here to Sign
                                                             >
                                                                 <DocumentationIcon/>
                                                                 Docs
-                                                            </a>
-                                                            <a
-                                                              href="https://product-hub.io/roadmap/5d81f2406180537538d99f28"
-                                                              target="_blank" className="nav-link p-2"
-                                                            >
-                                                                <ProductRoadmapIcon/>
-                                                                Roadmap
                                                             </a>
                                                             <NavLink
                                                               id="account-settings-link"
@@ -287,6 +280,8 @@ Click here to Sign
                                                                         <span className="popover-bt__title">Organisations</span>
                                                                         {organisation && (
                                                                         <OrganisationSelect
+                                                                          projectId={projectId}
+                                                                          environmentId={environmentId}
                                                                           clearableValue={false}
                                                                           onChange={(organisation) => {
                                                                               toggle();
@@ -341,9 +336,15 @@ Click here to Sign
                                   asideIsVisible={asideIsVisible}
                                 />
                                 )}
-                                {isMobile && pageHasAside && asideIsVisible ? null : this.props.children}
+                                {isMobile && pageHasAside && asideIsVisible ? null : (
+                                    <div>
+                                        {this.props.getValue('butter_bar') && (
+                                        <div dangerouslySetInnerHTML={{ __html: this.props.getValue('butter_bar') }} className="butter-bar" />
+                                        )}
+                                        {this.props.children}
+                                    </div>
+                                )}
                             </div>
-                            <RebrandBanner/>
                         </div>
                     ))}
                 </AccountProvider>

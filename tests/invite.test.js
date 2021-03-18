@@ -37,8 +37,7 @@ module.exports = {
     },
     '[Invite Tests] - Invite user': function (browser) {
         browser.pause(200);
-        browser.click('#organisation-settings-link');
-        browser.pause(200); // Slide in transition
+        browser.url(`${url}/organisation-settings`);
         browser.waitAndClick('#btn-invite');
         browser.waitAndSet('[name="inviteEmail"]', inviteEmail);
         browser.waitAndSet(byId('select-role'), 'ADMIN');
@@ -64,11 +63,7 @@ module.exports = {
     '[Invite Tests] - Accept invite': function (browser) {
         let inviteUrl;
         browser
-            .url('https://mailinator.com/v3/#/#inboxpane')
-            .refresh()
-            .waitAndClick('.cc-dismiss')
-            .waitForElementVisible('#inbox_field')
-            .setValue('#inbox_field', ['bullet-train', browser.Keys.ENTER])
+            .url('https://www.mailinator.com/v3/index.jsp?zone=public&query=bullet-train#/#inboxpane')
             .useXpath()
             .waitForElementVisible(`//tbody/tr/td/a[contains(text(),"${`Bullet Train Org${append}`}")]`, 60000)
             .click(`//tbody/tr/td/a[contains(text(),"${`Bullet Train Org${append}`}")]`)
@@ -93,29 +88,9 @@ module.exports = {
                     .waitForElementPresent(`//div[contains(@class, "org-nav")]//a[contains(text(),"${`Bullet Train Org${append}`}")]`);
             });
     },
-    '[Invite Tests] - Delete organisation': function (browser) {
+    '[Invite Tests] - Finish': function (browser) {
         browser
-            .useCss()
-            .click('#org-menu')
-            .useXpath()
-            .waitForElementVisible(`//a[contains(text(),"${`Bullet Train Org${append}`}")]`)
-            .pause(200) // Allows the dropdown to fade in
-            .click(`//a[contains(text(),"${`Bullet Train Org${append}`}")]`)
-            .useCss()
-            .waitForElementVisible('#projects-list a.list-item')
-            .assert.containsText('#projects-list a.list-item', 'My Test Project')
-            .click('#projects-list a.list-item')
-            .waitForElementVisible('#organisation-settings-link')
-            .pause(200) // slide in transition
-            .click('#organisation-settings-link')
-            .waitForElementNotPresent('#org-invites-list')
-            .waitForElementVisible('#delete-org-btn')
-            .click('#delete-org-btn')
-            .waitForElementVisible('[name="confirm-org-name"]')
-            .setValue('[name="confirm-org-name"]', `Bullet Train Org${append}`)
-            .click('#confirm-del-org-btn');
-
-        browser.waitForElementVisible('#project-select-page');
-        browser.end();
+            .useCss();
+        helpers.logout(browser);
     },
 };

@@ -163,9 +163,9 @@ const testHelpers = {
         browser.waitAndSet(byId(`segment-override-value-${0}`), value);
     },
     setSegmentOverrideIndex: (browser, index, newIndex) => {
-        browser.pause(200);
+        browser.pause(2000);
         browser.setValue(byId(`sort-${index}`), `${newIndex}`);
-        browser.pause(1000);
+        browser.pause(2000);
     },
     createSegment: (browser, index, id, rules) => {
         const setSegmentRule = testHelpers.setSegmentRule;

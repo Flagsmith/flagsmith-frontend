@@ -20,11 +20,12 @@
             crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.2.0/js/tether.min.js" integrity="sha384-Plbmg8JY28KFelvJVai01l8WyZzrYWG825m+cZ0eDDS1f7d/js6ikvy1+X+guPIB"
         crossorigin="anonymous"></script>
-
+    <!--Project.js overrides-->
+    <script src="/static/project-overrides.js"></script>
     <style>
         @font-face {
             font-family: 'OpenSans';
-                src: local('OpenSans'), 
+                src: local('OpenSans'),
                 url('/fonts/OpenSans-Regular.ttf') format('ttf'),
                 url('/fonts/OpenSans-Regular.woff2') format('woff2'),
                 url('/fonts/OpenSans-Regular.woff') format('woff');
@@ -34,7 +35,7 @@
 
         @font-face {
             font-family: 'OpenSans';
-            src: local('OpenSans'), 
+            src: local('OpenSans'),
                 url('/fonts/OpenSans-Regular.woff2') format('woff2'),
                 url('/fonts/OpenSans-Regular.woff') format('woff');
             font-weight: 400;
@@ -43,7 +44,7 @@
 
         @font-face {
             font-family: 'OpenSans';
-            src: local('OpenSans'), 
+            src: local('OpenSans'),
                 url('/fonts/OpenSans-Light.woff2') format('woff2'),
                 url('/fonts/OpenSans-Light.woff') format('woff');
             font-weight: 300;
@@ -52,7 +53,7 @@
 
         @font-face {
             font-family: 'OpenSans';
-            src: local('OpenSans'), 
+            src: local('OpenSans'),
                 url('/fonts/OpenSans-Light.ttf') format('ttf'),
                 url('/fonts/OpenSans-Light.woff2') format('woff2'),
                 url('/fonts/OpenSans-Light.woff') format('woff');
@@ -62,7 +63,7 @@
 
         @font-face {
             font-family: 'OpenSans';
-            src: local('OpenSans'), 
+            src: local('OpenSans'),
                 url('/fonts/OpenSans-Light.ttf') format('ttf'),
                 url('/fonts/OpenSans-Light.woff2') format('woff2'),
                 url('/fonts/OpenSans-Light.woff') format('woff');
@@ -72,7 +73,7 @@
 
         @font-face {
             font-family: 'OpenSans';
-            src: local('OpenSans'), 
+            src: local('OpenSans'),
                 url('/fonts/OpenSans-Light.ttf') format('ttf'),
                 url('/fonts/OpenSans-Light.woff2') format('woff2'),
                 url('/fonts/OpenSans-Light.woff') format('woff');
@@ -83,7 +84,7 @@
 
         @font-face {
             font-family: 'OpenSans';
-            src: local('OpenSans'), 
+            src: local('OpenSans'),
                 url('/fonts/OpenSans-Bold.ttf') format('ttf'),
                 url('/fonts/OpenSans-Bold.woff2') format('woff2'),
                 url('/fonts/OpenSans-Bold.woff') format('woff');
@@ -93,7 +94,7 @@
 
         @font-face {
             font-family: 'OpenSans';
-            src: local('OpenSans'), 
+            src: local('OpenSans'),
                 url('/fonts/OpenSans-SemiBold.ttf') format('ttf'),
                 url('/fonts/OpenSans-SemiBold.woff2') format('woff2'),
                 url('/fonts/OpenSans-SemiBold.woff') format('woff');
@@ -103,7 +104,7 @@
 
         @font-face {
             font-family: 'OpenSans';
-            src: local('OpenSans'), 
+            src: local('OpenSans'),
                 url('/fonts/OpenSans-Bold.ttf') format('ttf'),
                 url('/fonts/OpenSans-Bold.woff2') format('woff2'),
                 url('/fonts/OpenSans-Bold.woff') format('woff');
@@ -114,28 +115,7 @@
 
     <title>Flagsmith - Feature Flags, Feature Toggles and Remote Config</title>
     <link rel="shortcut icon" href="/images/favicon.ico">
-    <!-- Begin Fullstory JS Code -->
-    <script>
-        window['_fs_debug'] = false;
-        window['_fs_host'] = 'fullstory.com';
-        window['_fs_org'] = 'KZSS1';
-        window['_fs_namespace'] = 'FS';
-        (function(m,n,e,t,l,o,g,y){
-            if (e in m) {if(m.console && m.console.log) { m.console.log('FullStory namespace conflict. Please set window["_fs_namespace"].');} return;}
-            g=m[e]=function(a,b,s){g.q?g.q.push([a,b,s]):g._api(a,b,s);};g.q=[];
-            o=n.createElement(t);o.async=1;o.crossOrigin='anonymous';o.src='https://'+_fs_host+'/s/fs.js';
-            y=n.getElementsByTagName(t)[0];y.parentNode.insertBefore(o,y);
-            g.identify=function(i,v,s){g(l,{uid:i},s);if(v)g(l,v,s)};g.setUserVars=function(v,s){g(l,v,s)};g.event=function(i,v,s){g('event',{n:i,p:v},s)};
-            g.shutdown=function(){g("rec",!1)};g.restart=function(){g("rec",!0)};
-            g.consent=function(a){g("consent",!arguments.length||a)};
-            g.identifyAccount=function(i,v){o='account';v=v||{};v.acctId=i;g(o,v)};
-            g.clearUserCookie=function(){};
-        })(window,document,window['_fs_namespace'],'script','user');
-    </script>
-    <!-- End Fullstory JS Code -->
-
 </head>
-
 <body>
     <div id="app"></div>
     <div id="toast"></div>
@@ -145,7 +125,4 @@
     <div class="e2e" id="e2e-request"></div>
     <div class="e2e" id="e2e-error"></div>
 </body>
-
-<script type="text/javascript"> _linkedin_partner_id = "1825844"; window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || []; window._linkedin_data_partner_ids.push(_linkedin_partner_id); </script><script type="text/javascript"> (function(){var s = document.getElementsByTagName("script")[0]; var b = document.createElement("script"); b.type = "text/javascript";b.async = true; b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js"; s.parentNode.insertBefore(b, s);})(); </script> <noscript> <img height="1" width="1" style="display:none;" alt="" src="https://px.ads.linkedin.com/collect/?pid=1825844&fmt=gif" /> </noscript>
-
 </html>

@@ -20,7 +20,7 @@ const HomePage = class extends React.Component {
                 We are currently undergoing some scheduled maintenance of the admin site, this will not affect your application's feature flags.
                 {
                       <>
-                          {' '}Check <a target="_blank" href="https://twitter.com/getbullettrain">@getbullettrain</a> for updates.
+                          {' '}Check <a target="_blank" href="https://twitter.com/getflagsmith">@getflagsmith</a> for updates.
                       </>
                 }
 

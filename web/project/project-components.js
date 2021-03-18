@@ -7,7 +7,6 @@ import Paging from '../components/Paging';
 import ToggleChip from '../components/ToggleChip';
 
 
-window.Project = require('../../common/project');
 window.Dispatcher = require('../../common/dispatcher/dispatcher');
 window.AppActions = require('../../common/dispatcher/app-actions');
 window.Actions = require('../../common/dispatcher/action-constants');

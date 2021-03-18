@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import makeAsyncScriptLoader from 'react-async-script';
+import { ContactForm } from '../ContactForm';
 
 const PaymentModal = class extends Component {
     static displayName = 'Payment'
@@ -121,7 +122,6 @@ Team Members
                                                         </p>
                                                         </li>
                                                     <li><p><strong>5</strong>{' '}Team Members</p></li>
-                                                    <li><p>Unlimited Projects</p></li>
                                                     <li><p>Unlimited Environments</p></li>
                                                     <li><p>Unlimited Feature Flags</p></li>
                                                     <li><p>Unlimited Identities and Segments</p></li>
@@ -129,6 +129,7 @@ Team Members
                                                     <li><p>A/B and MVT Testing</p></li>
                                                     <li><p>Priority Email Technical Support</p></li>
                                                     <li><p>User Roles and Permissions</p></li>
+                                                    <li><p>Audit Logs</p></li>
                                                     <li><p>2FA and SAML Authentication</p></li>
                                                     <li><p>Online Ts and Cs</p></li>
                                                     </ul>
@@ -148,7 +149,10 @@ Team Members
                                                     <p className="text-small text-center">for enterprise pricing</p>
                                                     {!viewOnly ? (
                                                         <a
-                                                          href="mailto:enterprise@bullet-train.io"
+                                                          onClick={() => {
+                                                            openModal('Contact Sales', <ContactForm onComplete={closeModal}/>);
+                                                          }}
+                                                          href="#"
                                                           className="pricing-cta blue"
                                                         >
                                                             Contact Us
@@ -169,7 +173,6 @@ Team Members
                                                             Over <strong>5</strong> Team Members
                                                         </p>
                                                     </li>
-                                                    <li><p>Unlimited Projects</p></li>
                                                     <li><p>Unlimited Environments</p></li>
                                                     <li><p>Unlimited Feature Flags</p></li>
                                                     <li><p>Unlimited Identities and Segments</p></li>
@@ -178,6 +181,7 @@ Team Members
                                                     <li><p>Priority Email Technical Support</p></li>
                                                     <li><p>User Roles and Permissions</p></li>
                                                     <li><p>2FA and SAML Authentication</p></li>
+                                                    <li><p>Audit Logs</p></li>
                                                     <li><p>Uptime and Support SLA</p></li>
                                                     <li><p>On-Boarding &amp; Training</p></li>
                                                     <li><p>Amendable MSA</p></li>

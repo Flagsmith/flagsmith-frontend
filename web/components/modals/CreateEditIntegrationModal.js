@@ -31,7 +31,15 @@ const CreateEditIntegration = class extends Component {
             return;
         }
         this.setState({ isLoading: true });
-        if (this.props.data) {
+        if (this.props.integration.perEnvironment) {
+            if (this.props.data) {
+                _data.put(`${Project.api}environments/${this.state.data.flagsmithEnvironment}/integrations/${this.props.id}/${this.props.data.id}/`, this.state.data)
+                    .then(this.onComplete).catch(this.onError);
+            } else {
+                _data.post(`${Project.api}environments/${this.state.data.flagsmithEnvironment}/integrations/${this.props.id}/`, this.state.data)
+                    .then(this.onComplete).catch(this.onError);
+            }
+        } else if (this.props.data) {
             _data.put(`${Project.api}projects/${this.props.projectId}/integrations/${this.props.id}/${this.props.data.id}/`, this.state.data)
                 .then(this.onComplete).catch(this.onError);
         } else {
@@ -65,11 +73,11 @@ const CreateEditIntegration = class extends Component {
               data-test="create-project-modal"
               id="create-project-modal" onSubmit={this.submit}
             >
-                {this.props.integration.perEnv && (
-                  <>
+                {this.props.integration.perEnvironment && (
+                  <div className="mb-2">
                       <label>Flagsmith Environment</label>
-                      <EnvironmentSelect value={this.state.api_key} onChange={environment => this.update(environment)}/>
-                  </>
+                      <EnvironmentSelect readOnly={!!this.props.data || this.props.readOnly} value={this.state.data.flagsmithEnvironment} onChange={environment => this.update('flagsmithEnvironment', environment)}/>
+                  </div>
                 )}
                 {this.props.integration.fields.map(field => (
                   <>

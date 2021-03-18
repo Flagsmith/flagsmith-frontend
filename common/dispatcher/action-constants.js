@@ -49,7 +49,6 @@ const Actions = Object.assign({}, require('./base/_action-constants'), {
     'GET_PROJECT': 'GET_PROJECT',
     'GET_SEGMENTS': 'GET_SEGMENTS',
     'INVITE_USERS': 'INVITE_USERS',
-    'GENERATE_INVITE_USER': 'GENERATE_INVITE_USER',
     'REMOVE_FLAG': 'REMOVE_FLAG',
     'REMOVE_SEGMENT': 'REMOVE_SEGMENT',
     'REMOVE_USER_FLAG': 'REMOVE_USER_FLAG',
@@ -69,7 +68,7 @@ const Actions = Object.assign({}, require('./base/_action-constants'), {
     'UPDATE_USER_ROLE': 'UPDATE_USER_ROLE',
     'UPDATE_SUBSCRIPTION': 'UPDATE_SUBSCRIPTION',
     'GET_INFLUX_DATA': 'GET_INFLUX_DATA',
-
+    'GET_FLAG_INFLUX_DATA': 'GET_FLAG_INFLUX_DATA',
 });
 
 window.Actions = Actions;

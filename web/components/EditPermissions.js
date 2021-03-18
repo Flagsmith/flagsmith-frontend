@@ -116,21 +116,24 @@ class _EditPermissionsModal extends Component {
                                     title="Permissions"
                                     className="no-pad"
                                     items={permissions}
-                                    renderRow={p => (
-                                        <div key={p.key} style={this.admin() ? { opacity: 0.5 } : null} className="list-item">
-                                            <Row>
-                                                <Flex>
-                                                    <bold>
-                                                        {Format.enumeration.get(p.key)}
-                                                    </bold>
-                                                    <div className="list-item-footer faint">
-                                                        {p.description}
-                                                    </div>
-                                                </Flex>
-                                                <Switch onChange={() => this.togglePermission(p.key)} disabled={this.admin() || !hasRbacPermission} checked={this.hasPermission(p.key)}/>
-                                            </Row>
-                                        </div>
-                                    )}
+                                    renderRow={(p) => {
+                                        const disabled = this.props.level === 'project' && p.key !== 'VIEW_PROJECT' && !this.hasPermission('VIEW_PROJECT');
+                                        return (
+                                            <div key={p.key} style={this.admin() ? { opacity: 0.5 } : null} className="list-item">
+                                                <Row>
+                                                    <Flex>
+                                                        <bold>
+                                                            {Format.enumeration.get(p.key)}
+                                                        </bold>
+                                                        <div className="list-item-footer faint">
+                                                            {p.description}
+                                                        </div>
+                                                    </Flex>
+                                                    <Switch onChange={() => this.togglePermission(p.key)} disabled={disabled || this.admin() || !hasRbacPermission} checked={!disabled && this.hasPermission(p.key)}/>
+                                                </Row>
+                                            </div>
+                                        );
+                                    }}
                                   />
                               </div>
 
@@ -222,9 +225,9 @@ export default class EditPermissions extends PureComponent {
                                                       key={id}
                                                     >
                                                         <div>
-                                                          <strong>
-                                                            {`${first_name} ${last_name}`}
-                                                          </strong>
+                                                            <strong>
+                                                                {`${first_name} ${last_name}`}
+                                                            </strong>
                                                             {' '}
                                                             {id == AccountStore.getUserId() && '(You)'}
                                                             <div className="list-item-footer faint">

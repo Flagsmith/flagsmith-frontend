@@ -1,4 +1,5 @@
 import React from 'react';
+import { ContactForm } from './ContactForm';
 
 const PricingPanel = class extends React.Component {
     static displayName = 'PricingPanel'
@@ -38,7 +39,6 @@ const PricingPanel = class extends React.Component {
                                                     <strong>1</strong> Team Member
                                                 </p>
                                             </li>
-                                            <li><p>Unlimited Projects</p></li>
                                             <li><p>Unlimited Environments</p></li>
                                             <li><p>Unlimited Feature Flags</p></li>
                                         </ul>
@@ -71,7 +71,6 @@ requests per month
 Team Members
                                                 </p>
                                             </li>
-                                            <li><p>Unlimited Projects</p></li>
                                             <li><p>Unlimited Environments</p></li>
                                             <li><p>Unlimited Feature Flags</p></li>
                                             <li><p>Email Technical Support</p></li>
@@ -106,6 +105,7 @@ Team Members
                                                 </p>
                                             </li>
                                             <li><p>All Startup Features</p></li>
+                                            <li><p>Audit logs</p></li>
                                             <li><p>Private Discord Technical Support</p></li>
                                         </ul>
 
@@ -120,7 +120,12 @@ Team Members
                                         <img src="/images/cubes.svg" alt="Enterprise icon" className="pricing-icon"/>
                                         <p className="pricing-type">Contact Us</p>
                                         <p className="text-small text-center">for enterprise pricing</p>
-                                        <a href="mailto:enterprise@bullet-train.io" className="pricing-cta blue">Contact Us</a>
+                                        <a
+                                          onClick={() => {
+                                              openModal('Contact Sales', <ContactForm onComplete={closeModal}/>);
+                                          }} className="pricing-cta blue"
+                                        >Contact Us
+                                        </a>
                                     </div>
 
                                     <div className="panel-footer">

@@ -29,7 +29,7 @@ const controller = {
         }
         Promise.all(['project', 'environment'].map(v => data.get(`${Project.api}${v}s/permissions/`)
             .then((res) => {
-                store.model.availablePermissions[v] = res && _.sortBy(res, 'key');
+                store.model.availablePermissions[v] = res;
             }))).then(() => {
             store.loaded();
         });

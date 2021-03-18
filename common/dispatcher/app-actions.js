@@ -150,6 +150,15 @@ const AppActions = Object.assign({}, require('./base/_app-actions'), {
             force: true,
         });
     },
+    getFlagInfluxData(projectId, environmentId, flag, period) {
+        Dispatcher.handleViewAction({
+            actionType: Actions.GET_FLAG_INFLUX_DATA,
+            projectId,
+            environmentId,
+            flag,
+            period,
+        });
+    },
     createFlag(projectId, environmentId, flag, segmentOverrides) {
         Dispatcher.handleViewAction({
             actionType: Actions.CREATE_FLAG,
@@ -344,11 +353,6 @@ const AppActions = Object.assign({}, require('./base/_app-actions'), {
         Dispatcher.handleViewAction({
             actionType: Actions.INVITE_USERS,
             invites,
-        });
-    },
-    generateInviteUser() {
-        Dispatcher.handleViewAction({
-            actionType: Actions.GENERATE_INVITE_USER,
         });
     },
     deleteInvite(id) {

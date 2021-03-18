@@ -4,3 +4,5 @@ npm-debug.log
 .git
 docker-compose*.yml
 Dockerfile
+.tool-versions
+.env*

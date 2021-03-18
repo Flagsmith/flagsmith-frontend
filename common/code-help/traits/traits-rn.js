@@ -6,11 +6,6 @@ Calling identify before will prevent flags being fetched twice.
 ***/
 ${LIB_NAME}.identify("${userId || USER_ID}"); // This will create a user in the dashboard if they don't already exist
 
-// Set a user trait
-${LIB_NAME}.setTrait("${TRAIT_NAME}", 21);
-// Decrease the current age trait by 1
-${LIB_NAME}.incrementTrait("${TRAIT_NAME}", -1);
-
 // Standard project initialisation
 ${LIB_NAME}.init({
     environmentID: "${envId}",
@@ -36,4 +31,9 @@ ${LIB_NAME}.init({
         
     }
 });
+
+// Set a user trait
+${LIB_NAME}.setTrait("${TRAIT_NAME}", 21);
+// Decrease the current age trait by 1
+${LIB_NAME}.incrementTrait("${TRAIT_NAME}", -1);
 `;

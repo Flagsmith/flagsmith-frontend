@@ -3,7 +3,7 @@ import React from 'react';
 function UserSettingsIcon({ width, height, className }) {
     return (
         <svg
-          className={className} width={width || '100%'} height={height || 'auto'}
+          className={className} width={width || '100%'} height={height}
           viewBox="0 0 26 18"
         >
             <path

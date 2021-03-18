@@ -14,7 +14,6 @@ import CreateProjectModal from './modals/CreateProject';
 import LogoutIcon from './svg/LogoutIcon';
 import UserSettingsIcon from './svg/UserSettingsIcon';
 import DocumentationIcon from './svg/DocumentationIcon';
-import ProductRoadmapIcon from './svg/ProductRoadmapIcon';
 import NavIconSmall from './svg/NavIconSmall';
 import PlusIcon from './svg/PlusIcon';
 import FeaturesIcon from './svg/FeaturesIcon';
@@ -68,6 +67,7 @@ const Aside = class extends Component {
       const { hasFeature, getValue, toggleAside, asideIsVisible } = this.props;
       let integrations = this.props.getValue('integrations') || '[]';
       integrations = JSON.parse(integrations);
+      const hasRbacPermission = !this.props.hasFeature('plan_based_access') || Utils.getPlansPermission(AccountStore.getPlans(), 'AUDIT') || !this.props.hasFeature('scaleup_audit');
       return (
           <OrganisationProvider>
               {({ isLoading: isLoadingOrg, projects }) => (
@@ -179,19 +179,19 @@ const Aside = class extends Component {
                                                   <Permission level="project" permission="CREATE_ENVIRONMENT" id={this.props.projectId}>
                                                       {({ permission, isLoading }) => permission && (
 
-                                                          <NavLink
-                                                            id="create-env-link"
-                                                            className="aside__header-link"
-                                                            to={`/project/${this.props.projectId}/environment/create`}
-                                                            exact
-                                                          >
-                                                              <AsideTitleLink
-                                                                tooltip="Create Environment"
-                                                                className="mt-4"
-                                                                title="Environments"
-                                                                iconClassName="ion-md-add"
-                                                              />
-                                                          </NavLink>
+                                                      <NavLink
+                                                        id="create-env-link"
+                                                        className="aside__header-link"
+                                                        to={`/project/${this.props.projectId}/environment/create`}
+                                                        exact
+                                                      >
+                                                          <AsideTitleLink
+                                                            tooltip="Create Environment"
+                                                            className="mt-4"
+                                                            title="Environments"
+                                                            iconClassName="ion-md-add"
+                                                          />
+                                                      </NavLink>
 
                                                       )}
 
@@ -240,14 +240,14 @@ const Aside = class extends Component {
                                                                                       Segments
                                                                                     </NavLink>
                                                                                     {environmentAdmin && (
-                                                                                        <NavLink
-                                                                                          id="env-settings-link"
-                                                                                          className="aside__environment-list-item"
-                                                                                          to={`/project/${project.id}/environment/${environment.api_key}/settings`}
-                                                                                        >
-                                                                                            <EnvironmentSettingsIcon className="aside__environment-list-item--icon"/>
+                                                                                    <NavLink
+                                                                                      id="env-settings-link"
+                                                                                      className="aside__environment-list-item"
+                                                                                      to={`/project/${project.id}/environment/${environment.api_key}/settings`}
+                                                                                    >
+                                                                                        <EnvironmentSettingsIcon className="aside__environment-list-item--icon"/>
                                                                                             Settings
-                                                                                        </NavLink>
+                                                                                    </NavLink>
                                                                                     )}
                                                                                 </div>
                                                                             ))}
@@ -283,16 +283,27 @@ const Aside = class extends Component {
                                                           Super cool demo feature!
                                                       </a>
                                                       )}
-                                                      {AccountStore.getOrganisationRole() === 'ADMIN' && (
-                                                      <NavLink
-                                                        id="audit-log-link"
-                                                        activeClassName="active"
-                                                        className="aside__nav-item"
-                                                        to={`/project/${this.props.projectId}/environment/${this.props.environmentId}/audit-log`}
-                                                      >
-                                                          <AuditLogIcon className="aside__nav-item--icon"/>
+                                                      {AccountStore.getOrganisationRole() === 'ADMIN' && hasRbacPermission ? (
+                                                          <NavLink
+                                                            id="audit-log-link"
+                                                            activeClassName="active"
+                                                            className="aside__nav-item"
+                                                            to={`/project/${this.props.projectId}/environment/${this.props.environmentId}/audit-log`}
+                                                          >
+                                                              <AuditLogIcon className="aside__nav-item--icon"/>
                                                           Audit Log
-                                                      </NavLink>
+                                                          </NavLink>
+                                                      ) : (
+                                                          <Tooltip
+                                                            title={(
+                                                                <a href="#" className="aside__nav-item disabled">
+                                                                    <AuditLogIcon className="aside__nav-item--icon"/>
+                                                              Audit Log
+                                                                </a>
+                                                          )}
+                                                          >
+                                                          This feature is available with our scaleup plan
+                                                          </Tooltip>
                                                       )}
                                                       {!!integrations.length && (
                                                       <Permission level="project" permission="CREATE_ENVIRONMENT" id={this.props.projectId}>
@@ -316,7 +327,7 @@ const Aside = class extends Component {
                                                       </Permission>
                                                       )}
 
-                                                      {AccountStore.getOrganisationRole() === 'ADMIN' && (
+                                                      {E2E && AccountStore.getOrganisationRole() === 'ADMIN' && (
                                                       <NavLink
                                                         id="organisation-settings-link"
                                                         activeClassName="active"
@@ -336,14 +347,6 @@ const Aside = class extends Component {
                                                           <DocumentationIcon className="aside__nav-item--icon"/>
                                                           Documentation
                                                       </a>
-
-                                                      <a
-                                                        href="https://product-hub.io/roadmap/5d81f2406180537538d99f28"
-                                                        target="_blank" className="aside__nav-item hidden-sm-up"
-                                                      >
-                                                          <ProductRoadmapIcon className="aside__nav-item--icon"/>
-                                                          Product Roadmap
-                                                      </a>
                                                       <NavLink
                                                         id="account-settings-link"
                                                         className="aside__nav-item hidden-sm-up"
@@ -352,16 +355,6 @@ const Aside = class extends Component {
                                                           <UserSettingsIcon className="aside__nav-item--icon"/>
                                                           Account Settings
                                                       </NavLink>
-
-                                                      <a
-                                                        id="logout-link" href="#"
-                                                        onClick={AppActions.logout}
-                                                        activeClassName="active"
-                                                        className="aside__nav-item"
-                                                      >
-                                                          <LogoutIcon className="aside__nav-item--icon"/>
-                                                        Logout
-                                                      </a>
                                                   </div>
                                               </div>
                                           </React.Fragment>

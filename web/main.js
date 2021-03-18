@@ -64,7 +64,7 @@ if (res && !isInvite) {
 }
 
 setTimeout(() => {
-    const browserHistory = createBrowserHistory();
+    const browserHistory = createBrowserHistory({ basename: Project.basename || '' });
 
     // redirect before login
     // todo: move to util to decide if url is public
@@ -78,7 +78,7 @@ setTimeout(() => {
     }
 
     ReactDOM.render(
-        <Router>{routes}</Router>,
+        <Router basename={Project.basename || ''}>{routes}</Router>,
         rootElement,
     );
 }, 1);

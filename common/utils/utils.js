@@ -102,6 +102,10 @@ module.exports = Object.assign({}, require('./base/_utils'), {
                 valid = !plan.includes('side-project');
                 break;
             }
+            case 'AUDIT': {
+                valid = !plan.includes('side-project') && !plan.includes('startup');
+                break;
+            }
             default:
                 valid = true;
                 break;

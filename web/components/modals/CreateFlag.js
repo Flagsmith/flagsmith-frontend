@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { BarChart, ResponsiveContainer, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Legend } from 'recharts';
 import Tabs from '../base/forms/Tabs';
 import TabItem from '../base/forms/TabItem';
 import withSegmentOverrides from '../../../common/providers/withSegmentOverrides';
@@ -12,10 +13,6 @@ const FEATURE_ID_MAXLENGTH = Constants.forms.maxLength.FEATURE_ID;
 
 const CreateFlag = class extends Component {
     static displayName = 'CreateFlag'
-
-    static contextTypes = {
-        router: propTypes.object.isRequired,
-    };
 
     constructor(props, context) {
         super(props, context);
@@ -37,6 +34,7 @@ const CreateFlag = class extends Component {
             allowEditDescription,
             enabledIndentity: false,
             enabledSegment: false,
+            period: '24h',
         };
     }
 
@@ -54,6 +52,9 @@ const CreateFlag = class extends Component {
             }, 500);
         }
         AppActions.getIdentities(this.props.environmentId, 3);
+        if (this.props.projectFlag && this.props.environmentFlag) {
+            this.getInfluxData()
+        }
     };
 
     componentWillUnmount() {
@@ -74,6 +75,28 @@ const CreateFlag = class extends Component {
                     },
                 });
             });
+    }
+    getInfluxData = () => {
+        if (this.props.hasFeature('flag_analytics') && this.props.environmentFlag) {
+            AppActions.getFlagInfluxData(this.props.projectId, this.props.environmentFlag.environment, this.props.projectFlag.id, this.state.period);
+        }
+    }
+
+    getDisplayPeriod = () => {
+        const { period } = this.state;
+        if (period == '24h') {
+            return '30d';
+        }
+        return '24h';
+    }
+
+    changePeriod = () => {
+        const changePeriod = this.getDisplayPeriod();
+        this.state = {
+            ...this.state,
+            period: changePeriod,
+        };
+        this.getInfluxData();
     }
 
     save = (func, isSaving) => {
@@ -153,6 +176,24 @@ const CreateFlag = class extends Component {
         });
     }
 
+    drawChart = (data) => {
+        const { name } = this.state;
+        if (data && data.events_list) { // protect against influx setup incorrectly
+            return (
+                <ResponsiveContainer height={400} width="100%">
+                    <BarChart data={data.events_list}>
+                        <CartesianGrid strokeDasharray="3 5"/>
+                        <XAxis allowDataOverflow={false} dataKey="datetime"/>
+                        <YAxis allowDataOverflow={false}/>
+                        <RechartsTooltip/>
+                        <Bar dataKey={name} stackId="a" fill="#6633ff" />
+                    </BarChart>
+                </ResponsiveContainer>
+            );
+        }
+        return null;
+    }
+
     addItem = () => {
         const { projectFlag, environmentFlag, environmentId, identity } = this.props;
         this.setState({ isLoading: true });
@@ -216,7 +257,7 @@ const CreateFlag = class extends Component {
             >
                 {({ project }) => (
                     <Provider onSave={this.close}>
-                        {({ isLoading, isSaving, error }, { createFlag, editFlag }) => (
+                        {({ isLoading, isSaving, error, influxData }, { createFlag, editFlag }) => (
                             <form
                               id="create-feature-modal"
                               className="mt-4"
@@ -303,7 +344,6 @@ const CreateFlag = class extends Component {
                                       placeholder="e.g. 'This determines what size the header is' "
                                     />
                                 </FormGroup>
-
 
                                 {!identity && hasFeature('hide_flag') && (
                                 <FormGroup className="mb-4 mr-3 ml-3">
@@ -497,6 +537,25 @@ const CreateFlag = class extends Component {
                                     </FormGroup>
                                     )
                                 }
+
+
+                                {(this.props.hasFeature('flag_analytics') && this.props.flagId)
+                                && (
+                                <FormGroup className="mb-4 mr-3 ml-3">
+                                    <Panel
+                                      title={<h6 className="mb-0">Flag events for last {this.state.period}</h6>}
+                                      action={(
+                                          <Button onClick={() => this.changePeriod()} type="button" className="btn--outline">
+                                              {`Change to ${this.getDisplayPeriod()}`}
+                                          </Button>
+)}
+                                    >
+                                        {this.drawChart(influxData)}
+                                    </Panel>
+                                </FormGroup>
+                                )
+                                }
+
 
                                 {error && <Error error={error}/>}
                                 <div className={identity ? 'pr-3' : 'side-modal__footer pr-5'}>
