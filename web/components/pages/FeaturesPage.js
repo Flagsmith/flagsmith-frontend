@@ -238,24 +238,25 @@ const FeaturesPage = class extends Component {
                                                                       <Row>
                                                                           {
                                                                               this.renderWithPermission(permission, Constants.environmentPermissions('Admin'), (
+                                                                                <>
                                                                                   <Column>
-                                                                                      {type === 'FLAG' ? (
-                                                                                          <Switch
-                                                                                            disabled={!permission}
-                                                                                            data-test={`feature-switch-${i}${environmentFlags[id] && environmentFlags[id].enabled ? '-on' : '-off'}`}
-                                                                                            checked={environmentFlags[id] && environmentFlags[id].enabled}
-                                                                                            onChange={() => this.confirmToggle(projectFlag, environmentFlags[id], (environments) => {
-                                                                                                toggleFlag(_.findIndex(projectFlags, { id }), environments);
-                                                                                            })}
-                                                                                          />
-                                                                                      ) : (
                                                                                           <FeatureValue
                                                                                             onClick={() => permission && this.editFlag(projectFlag, environmentFlags[id])}
                                                                                             value={environmentFlags[id] && environmentFlags[id].feature_state_value}
                                                                                             data-test={`feature-value-${i}`}
                                                                                           />
-                                                                                      )}
                                                                                   </Column>
+                                                                                    <Column>
+                                                                                        <Switch
+                                                                                          disabled={!permission}
+                                                                                          data-test={`feature-switch-${i}${environmentFlags[id] && environmentFlags[id].enabled ? '-on' : '-off'}`}
+                                                                                          checked={environmentFlags[id] && environmentFlags[id].enabled}
+                                                                                          onChange={() => this.confirmToggle(projectFlag, environmentFlags[id], (environments) => {
+                                                                                              toggleFlag(_.findIndex(projectFlags, { id }), environments);
+                                                                                          })}
+                                                                                        />
+                                                                                    </Column>
+                                                                                  </>
                                                                               ))
                                                                             }
 

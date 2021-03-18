@@ -75,8 +75,7 @@ const testHelpers = {
         browser
             .waitForElementNotPresent('#create-feature-modal')
             .waitAndClick('#show-create-feature-btn');
-        browser.waitAndClick(byId('btn-select-remote-config'))
-            .setValue(byId('featureID'), name)
+        browser.waitAndSet(byId('featureID'), name)
             .setValue(byId('featureValue'), value)
             .setValue(byId('featureDesc'), description)
             .click(byId('create-feature-btn'))

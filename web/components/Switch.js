@@ -27,7 +27,7 @@ export default class Switch extends PureComponent {
           );
       }
       return (
-          <div style={{ height: '28px', display: 'inline-block', position: 'relative' }}>
+          <div style={{ height: '28px', marginTop: 8, display: 'inline-block', position: 'relative' }}>
               <RCSwitch {...this.props}/>
               {this.props.checked ? <div className="switch-checked">On</div> : (
                   <div className="switch-unchecked">Off</div>

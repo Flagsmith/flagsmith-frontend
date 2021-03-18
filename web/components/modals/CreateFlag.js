@@ -116,7 +116,6 @@ const CreateFlag = class extends Component {
         } else {
             !isSaving && name && func(this.props.projectId, this.props.environmentId, {
                 name,
-                type,
                 initial_value,
                 default_enabled,
                 tags: this.state.tags,
@@ -311,11 +310,13 @@ const CreateFlag = class extends Component {
                                       placeholder="e.g. 'big' "
                                     />
                                 </FormGroup>
-                                <div className="text-center">
-                                    <button onClick={this.addVariation} className="btn btn--outline ">
-                                        Add Variation
-                                    </button>
-                                </div>
+                                {this.props.hasFeature("mv") && (
+                                  <div className="text-center">
+                                      <button onClick={this.addVariation} className="btn btn--outline ">
+                                          Add Variation
+                                      </button>
+                                  </div>
+                                )}
                                 {hasFeature('tags') && !identity && this.state.tags && (
                                 <FormGroup className="mb-4 mr-3 ml-3" >
                                     <InputGroup

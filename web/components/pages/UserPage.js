@@ -240,32 +240,29 @@ const UserPage = class extends Component {
                                                               </div>
                                                               <Row>
                                                                   <Column>
-                                                                      {type == 'FLAG' ? (
-                                                                          <div>
-                                                                              <Switch
-                                                                                data-test={`user-feature-switch-${i}${actualEnabled ? '-on' : '-off'}`}
-                                                                                checked={actualEnabled}
-                                                                                onChange={() => this.confirmToggle(_.find(projectFlags, { id }), environmentFlags[id], (environments) => {
-                                                                                      toggleFlag({
-                                                                                          environmentId: this.props.match.params.environmentId,
-                                                                                          identity: this.props.match.params.id,
-                                                                                          projectFlag: { id },
-                                                                                          environmentFlag: environmentFlags[id],
-                                                                                          identityFlag,
-                                                                                      });
-                                                                                  })}
-                                                                              />
-                                                                          </div>
-
-                                                                      ) : (
-                                                                          <div className="feature-value">
-                                                                              <FeatureValue
-                                                                                  data-test={`user-feature-value-${i}`}
-                                                                                  value={`${actualValue}`}
-                                                                                />
-                                                                          </div>
-                                                                      )}
-
+                                                                      <div className="feature-value">
+                                                                          <FeatureValue
+                                                                            data-test={`user-feature-value-${i}`}
+                                                                            value={actualValue}
+                                                                          />
+                                                                      </div>
+                                                                  </Column>
+                                                                  <Column>
+                                                                      <div>
+                                                                          <Switch
+                                                                            data-test={`user-feature-switch-${i}${actualEnabled ? '-on' : '-off'}`}
+                                                                            checked={actualEnabled}
+                                                                            onChange={() => this.confirmToggle(_.find(projectFlags, { id }), environmentFlags[id], (environments) => {
+                                                                                toggleFlag({
+                                                                                    environmentId: this.props.match.params.environmentId,
+                                                                                    identity: this.props.match.params.id,
+                                                                                    projectFlag: { id },
+                                                                                    environmentFlag: environmentFlags[id],
+                                                                                    identityFlag,
+                                                                                });
+                                                                            })}
+                                                                          />
+                                                                      </div>
                                                                   </Column>
                                                                   {hasUserOverride && (
                                                                   <Column>
@@ -346,7 +343,7 @@ const UserPage = class extends Component {
                                                               <Column>
                                                                   <FeatureValue
                                                                     data-test={`user-trait-value-${i}`}
-                                                                    value={`${trait_value}`}
+                                                                    value={trait_value}
                                                                   />
                                                               </Column>
                                                               <Column>

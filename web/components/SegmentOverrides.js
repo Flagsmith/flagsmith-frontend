@@ -18,49 +18,55 @@ const SortableItem = SortableElement(({ disabled, value: v, onSortEnd, index, co
     <div data-test={`segment-override-${index}`} style={{ zIndex: 9999999999 }} className="panel panel--draggable mb-2">
         <Row className="panel-content" space>
             <div
-              className="flex flex-1 text-left"
+              style={{ width: 200 }}
+              className="text-left"
             >
                 <strong>
                     {v.segment.name}
                 </strong>
             </div>
-            <Row>
-                <Column>
-                    <div>
-                        <Switch
+            <div className="flex flex-1">
+                <Row>
+                    <Column className="flex flex-1">
+                        <textarea
                           disabled={disabled}
-                          checked={v.enabled}
-                          onChange={toggle}
+                          value={v.value}
+                          data-test={`segment-override-value-${index}`}
+                          onChange={e => setValue(Utils.getTypedValue(Utils.safeParseEventValue(e)))}
+                          placeholder="Value e.g. 'big' "
                         />
-                    </div>
-                    <textarea
+                    </Column>
+                    <Column>
+                        <div>
+                            <Switch
+                              disabled={disabled}
+                              checked={v.enabled}
+                              onChange={toggle}
+                            />
+                        </div>
+                    </Column>
+
+                    {/*Input to adjust order without drag for E2E*/}
+                    {E2E && (
+                      <input
+                        data-test={`sort-${index}`}
+                        onChange={(e) => {
+                            onSortEnd({ oldIndex: index, newIndex: parseInt(Utils.safeParseEventValue(e)) });
+                        }}
+                        type="text"
+                      />
+                    )}
+
+                    <button
                       disabled={disabled}
-                      value={v.value}
-                      data-test={`segment-override-value-${index}`}
-                      onChange={e => setValue(Utils.getTypedValue(Utils.safeParseEventValue(e)))}
-                      placeholder="Value e.g. 'big' "
-                    />
-                </Column>
-
-                {E2E && (
-                <input
-                  data-test={`sort-${index}`}
-                  onChange={(e) => {
-                      onSortEnd({ oldIndex: index, newIndex: parseInt(Utils.safeParseEventValue(e)) });
-                  }}
-                  type="text"
-                />
-                )}
-
-                <button
-                  disabled={disabled}
-                  id="remove-feature"
-                  onClick={confirmRemove}
-                  className="btn btn--with-icon"
-                >
-                    <RemoveIcon/>
-                </button>
-            </Row>
+                      id="remove-feature"
+                      onClick={confirmRemove}
+                      className="btn btn--with-icon"
+                    >
+                        <RemoveIcon/>
+                    </button>
+                </Row>
+            </div>
         </Row>
     </div>
 ));

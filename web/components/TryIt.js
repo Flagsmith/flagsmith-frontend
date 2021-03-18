@@ -37,10 +37,9 @@ const TryIt = class extends Component {
                     res.traits = {};
                 }
                 const features = userId ? data.flags : data;
-                features.map(({ feature, type, enabled, feature_state_value }) => {
-                    (userId ? res.features : res)[feature.name] = feature.type == 'FLAG' ? {
+                features.map(({ feature, enabled, feature_state_value }) => {
+                    (userId ? res.features : res)[feature.name] = {
                         enabled,
-                    } : (userId ? res.features : res)[feature.name] = {
                         value: feature_state_value,
                     };
                 });
