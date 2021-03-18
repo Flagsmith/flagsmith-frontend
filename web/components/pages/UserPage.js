@@ -288,21 +288,23 @@ const UserPage = class extends Component {
                                                       <Panel
                                                         icon="ion-ios-rocket"
                                                         title="Features"
-                                                        className="text-center"
                                                       >
-                                                          This user has no features yet.
-                                                          {' '}
-                                                          <br/>
-                                                          When you start
-                                                          {' '}
-                                                          <Link
-                                                            className="dark"
-                                                            to={`project/${this.props.match.params.projectId}/environment/${this.props.match.params.environmentId}/features`}
-                                                          >
-                                                              creating features
-                                                          </Link>
-                                                          {' '}
-                                                          for your project you will set them per user here.
+                                                          <div className="text-center">
+                                                              This user has no features yet.
+                                                              {' '}
+                                                              <br/>
+                                                              When you start
+                                                              {' '}
+                                                              <Link
+                                                                className="dark"
+                                                                to={`project/${this.props.match.params.projectId}/environment/${this.props.match.params.environmentId}/features`}
+                                                              >
+                                                                  creating features
+                                                              </Link>
+                                                              {' '}
+                                                              for your project you will set them per user here.
+                                                          </div>
+
                                                       </Panel>
                                                     )}
                                                   filterRow={({ name }, search) => name.toLowerCase().indexOf(search) > -1}
@@ -365,12 +367,13 @@ const UserPage = class extends Component {
                                                       <Panel
                                                         icon="ion-ios-person"
                                                         title="Traits"
-                                                        className="text-center"
                                                       >
-                                                          This user has no traits.
-                                                          <FormGroup className="text-center mb-0 mt-2">
-                                                              <Button id="add-trait" onClick={this.createTrait}>Add new trait</Button>
-                                                          </FormGroup>
+                                                          <div className="text-center">
+                                                              This user has no traits.
+                                                              <FormGroup className="text-center mb-0 mt-2">
+                                                                  <Button id="add-trait" onClick={this.createTrait}>Add new trait</Button>
+                                                              </FormGroup>
+                                                          </div>
                                                       </Panel>
                                                     )}
                                                   filterRow={({ trait_key }, search) => trait_key.toLowerCase().indexOf(search) > -1}
@@ -419,9 +422,10 @@ const UserPage = class extends Component {
                                                               <Panel
                                                                 icon="ion-ios-globe"
                                                                 title="Segments"
-                                                                className="text-center"
                                                               >
-                                                                This user is not part of any segment.
+                                                                  <div className="text-center">
+                                                                      This user is not part of any segment.
+                                                                  </div>
                                                               </Panel>
                                                           )}
                                                           filterRow={({ name }, search) => name.toLowerCase().indexOf(search) > -1}
