@@ -198,9 +198,6 @@ const UserPage = class extends Component {
                                                                       <Row className="chip">
                                                                           <span>
                                                                             Overriding defaults
-                                                                            since
-                                                                              {' '}
-                                                                              {moment(created_date).format('DD/MMM/YYYY')}
                                                                           </span>
                                                                           <span
                                                                             className="chip-icon icon ion-md-information"
