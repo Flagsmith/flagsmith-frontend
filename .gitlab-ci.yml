@@ -1,6 +1,5 @@
 stages:
     - test
-    - build
     - deploy
 
 cache:
@@ -22,10 +21,9 @@ test:
     only:
         - master
         - staging
-#        - develop
 
 build-dockerhub:
-  stage: build
+  stage: deploy
   tags:
     - flagsmith-shell-runner
   script:
