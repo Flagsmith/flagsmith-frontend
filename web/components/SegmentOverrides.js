@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { SortableContainer, SortableElement } from 'react-sortable-hoc';
 import _data from '../../common/data/base/_data';
 import ProjectStore from '../../common/stores/project-store';
+import ValueEditor from './ValueEditor';
 
 const arrayMoveMutate = (array, from, to) => {
     array.splice(to < 0 ? array.length + to : to, 0, array.splice(from, 1)[0]);
@@ -28,7 +29,7 @@ const SortableItem = SortableElement(({ disabled, value: v, onSortEnd, index, co
             <div className="flex flex-1">
                 <Row>
                     <Column className="flex flex-1">
-                        <textarea
+                        <ValueEditor
                           disabled={disabled}
                           value={v.value}
                           data-test={`segment-override-value-${index}`}
@@ -46,15 +47,15 @@ const SortableItem = SortableElement(({ disabled, value: v, onSortEnd, index, co
                         </div>
                     </Column>
 
-                    {/*Input to adjust order without drag for E2E*/}
+                    {/* Input to adjust order without drag for E2E */}
                     {E2E && (
-                      <input
-                        data-test={`sort-${index}`}
-                        onChange={(e) => {
-                            onSortEnd({ oldIndex: index, newIndex: parseInt(Utils.safeParseEventValue(e)) });
-                        }}
-                        type="text"
-                      />
+                    <input
+                      data-test={`sort-${index}`}
+                      onChange={(e) => {
+                          onSortEnd({ oldIndex: index, newIndex: parseInt(Utils.safeParseEventValue(e)) });
+                      }}
+                      type="text"
+                    />
                     )}
 
                     <button
