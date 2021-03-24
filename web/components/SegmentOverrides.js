@@ -46,15 +46,15 @@ const SortableItem = SortableElement(({ disabled, value: v, onSortEnd, index, co
                         </div>
                     </Column>
 
-                    {/*Input to adjust order without drag for E2E*/}
+                    {/* Input to adjust order without drag for E2E */}
                     {E2E && (
-                      <input
-                        data-test={`sort-${index}`}
-                        onChange={(e) => {
-                            onSortEnd({ oldIndex: index, newIndex: parseInt(Utils.safeParseEventValue(e)) });
-                        }}
-                        type="text"
-                      />
+                    <input
+                      data-test={`sort-${index}`}
+                      onChange={(e) => {
+                          onSortEnd({ oldIndex: index, newIndex: parseInt(Utils.safeParseEventValue(e)) });
+                      }}
+                      type="text"
+                    />
                     )}
 
                     <button
@@ -108,6 +108,17 @@ class TheComponent extends Component {
             segment: this.state.selectedSegment.value,
             environment: ProjectStore.getEnvironmentIdFromKey(this.props.environmentId),
             priority: value.length,
+        }).then((res) => {
+            console.log('Hey');
+            return _data.post(`${Project.api}features/featurestates/`, {
+                enabled: false,
+                feature: this.props.feature,
+                environment: ProjectStore.getEnvironmentIdFromKey(this.props.environmentId),
+                feature_segment: res.id,
+                feature_state_value: {
+                    string_value: 'test',
+                },
+            });
         }).then((res) => {
             this.props.onChange([res].concat(value).map((v, i) => ({ ...v, priority: i })));
             this.setState({
