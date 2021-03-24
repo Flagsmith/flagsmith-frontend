@@ -238,7 +238,7 @@ const FeaturesPage = class extends Component {
                                                                       <Row>
                                                                           {
                                                                               this.renderWithPermission(permission, Constants.environmentPermissions('Admin'), (
-                                                                                <>
+                                                                                <Row>
                                                                                   <Column>
                                                                                           <FeatureValue
                                                                                             onClick={() => permission && this.editFlag(projectFlag, environmentFlags[id])}
@@ -256,7 +256,7 @@ const FeaturesPage = class extends Component {
                                                                                           })}
                                                                                         />
                                                                                     </Column>
-                                                                                  </>
+                                                                                  </Row>
                                                                               ))
                                                                             }
 
