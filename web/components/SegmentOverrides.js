@@ -116,6 +116,7 @@ class TheComponent extends Component {
                 environment: ProjectStore.getEnvironmentIdFromKey(this.props.environmentId),
                 feature_segment: res.id,
                 feature_state_value: {
+                    type:"unicode",
                     string_value: 'test',
                 },
             });
