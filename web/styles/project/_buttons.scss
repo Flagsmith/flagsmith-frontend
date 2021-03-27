@@ -37,13 +37,13 @@ a, .btn, button{
         }
 
         &--outline {
-            background: $body-bg;
+            background: $body-bg-dark;
             border: 2px solid $bt-brand-secondary-faint-dark !important;
             color: $bt-brand-secondary-faint-dark;
             line-height: 37px;
 
             &:hover {
-                background-color: white;
+                background-color: darken($body-bg-dark,2);
             }
         }
 

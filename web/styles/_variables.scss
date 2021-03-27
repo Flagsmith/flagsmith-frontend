@@ -23,9 +23,10 @@ $bt-brand-faint-hover-dark: #242230;
 
 
 $bt-brand-tertiary: #f18e7f;
+$bt-brand-tertiary-dark: #f1a092;
 $bt-brand-secondary: #00a696;
 $bt-brand-secondary-faint: #2d9189;
-$bt-brand-secondary-faint-dark: #194e4a;
+$bt-brand-secondary-faint-dark: #12776d;
 $bt-brand-secondary-light: lighten($bt-brand-secondary,40);
 $bt-brand-secondary-hover: darken($bt-brand-secondary, 5);
 $bt-brand-secondary-active: $bt-brand-secondary-hover;
@@ -56,7 +57,7 @@ $nav-link-color-active-dark: $bt-brand-primary-dark-desaturated-light;
 $navbar-height: 5rem;
 $navbar-background: transparent;
 $nav-icon-color: $bt-brand-secondary;
-$nav-icon-color-dark: $bt-brand-primary-dark-desaturated;
+$nav-icon-color-dark: $bt-brand-tertiary-dark;
 
 // Input
 $input-bg: #fff;
@@ -65,7 +66,7 @@ $input-color-dark: $body-text-dark;
 
 $bt-input-border: #d9d9e9;
 $bt-input-border-dark: $input-bg-dark;
-$bt-input-border-active: $bt-brand-primary;
+$bt-input-border-active: $input-bg-dark;
 
 
 
@@ -143,6 +144,7 @@ $input-font-size: inherit;
 $input-font-weight: 400;
 $input-border-color: rgb(224, 224, 224);
 $input-placeholder-color: rgb(224, 224, 224);
+$input-placeholder-color-dark: transparentize($header-color-dark, 0.9);
 $input-border-highlight-color: $bt-brand-primary-light;
 
 $pagination-color: #333;
@@ -171,6 +173,7 @@ $tab-active-background-dark: $panel-heading-bg-dark;
 $tab-inactive-background-dark: $panel-heading-bg-dark;
 
 $tab-line-color: $bt-brand-primary;
+$tab-line-color-dark: $bt-brand-primary-dark-desaturated-lighter;
 
 $tab-active-color: $header-color;
 $tab-active-color-dark: $header-color-dark;
@@ -190,7 +193,7 @@ $modal-backdrop-bg: rgba(0, 0, 0, 0.870588);
 $modal-header-background: $bt-brand-faint-alt;
 $modal-header-background-dark: $panel-heading-bg-dark;
 $side-modal-header-background: white;
-$side-modal-header-background-dark: white;
+$side-modal-header-background-dark: $panel-heading-bg-dark;
 
 $modal-header-color: $header-color;
 $modal-header-color-dark: $header-color-dark;
@@ -234,7 +237,7 @@ $aside-nav-hover:$header-color;
 $aside-nav-hover-dark:$header-color-dark;
 // Background of other links e.g. acreate environment/organisation
 $aside-link-alt-color:$bt-brand-secondary-faint;
-$aside-link-alt-color-dark:$bt-brand-primary-dark-desaturated-lighter;
+$aside-link-alt-color-dark:$bt-brand-tertiary-dark;
 $aside-add-color:white;
 $aside-add-color-dark:white;
 

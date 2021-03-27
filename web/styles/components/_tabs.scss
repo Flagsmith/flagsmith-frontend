@@ -15,6 +15,9 @@
 			}
 		}
 	}
+	.tab-line {
+		background-color: $tab-line-color-dark;
+	}
 }
 .tabs-nav {
 	display: flex;

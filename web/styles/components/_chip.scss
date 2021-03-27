@@ -1,5 +1,13 @@
 @import "../variables";
-
+.dark {
+	.chip {
+		background-color: $input-placeholder-color-dark;
+		.chip-icon {
+			color: $input-placeholder-color-dark;
+			background: darken($input-placeholder-color-dark, 10);
+		}
+	}
+}
 .chip {
 	align-self: flex-start !important;
 	height: 26px;

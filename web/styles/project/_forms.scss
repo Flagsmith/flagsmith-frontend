@@ -1,3 +1,17 @@
+.dark {
+    .or-divider {
+        color: $panel-heading-bg-dark;
+        &__line{
+            border-bottom: 1px dashed $panel-heading-bg-dark;
+        }
+    }
+    .and-divider {
+        color: $panel-heading-bg-dark;
+        &__line{
+            border-bottom: 1px dashed $panel-heading-bg-dark;
+        }
+    }
+}
 .or-divider {
     color: #ccc;
     font-weight: 400;
@@ -30,6 +44,9 @@
         input.input {
             border: 1px solid $bt-input-border-dark !important;
             background-color: $input-bg-dark !important;
+            &:focus {
+                border:1px solid $bt-input-border-active!important;
+            }
         }
     }
 }
