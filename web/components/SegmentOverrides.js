@@ -19,24 +19,14 @@ const SortableItem = SortableElement(({ disabled, value: v, onSortEnd, index, co
     <div data-test={`segment-override-${index}`} style={{ zIndex: 9999999999 }} className="panel panel--draggable mb-2">
         <Row className="panel-content" space>
             <div
-              style={{ width: 200 }}
-              className="text-left"
+              className="flex flex-1 text-left"
             >
                 <strong>
                     {v.segment.name}
                 </strong>
             </div>
-            <div className="flex flex-1">
+            <div>
                 <Row>
-                    <Column className="flex flex-1">
-                        <ValueEditor
-                          disabled={disabled}
-                          value={v.value}
-                          data-test={`segment-override-value-${index}`}
-                          onChange={e => setValue(Utils.getTypedValue(Utils.safeParseEventValue(e)))}
-                          placeholder="Value e.g. 'big' "
-                        />
-                    </Column>
                     <Column>
                         <div>
                             <Switch
@@ -69,6 +59,19 @@ const SortableItem = SortableElement(({ disabled, value: v, onSortEnd, index, co
                 </Row>
             </div>
         </Row>
+
+        <div className="mx-2 text-left">
+            <label>
+                Value (optional)
+            </label>
+            <ValueEditor
+                disabled={disabled}
+                value={v.value}
+                data-test={`segment-override-value-${index}`}
+                onChange={e => setValue(Utils.getTypedValue(Utils.safeParseEventValue(e)))}
+                placeholder="Value e.g. 'big' "
+            />
+        </div>
     </div>
 ));
 
@@ -199,7 +202,7 @@ class TheComponent extends Component {
                                 >
                                     <label>Segment</label>
                                 </div>
-                                <Column className="text-left" style={{ width: 120 }}>
+                                <Column className="text-right" style={{ width: 120 }}>
                                     <label>
                                        Value
                                     </label>

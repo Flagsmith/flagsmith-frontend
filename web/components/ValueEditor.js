@@ -10,6 +10,8 @@ class ValueEditor extends Component {
     };
 
     componentDidMount() {
+        if(!this.props.value)
+            return
         try {
             JSON.parse(this.props.value);
             this.setState({ language: 'json' });
@@ -64,7 +66,7 @@ class ValueEditor extends Component {
                     .yaml
                     </span>
                 </Row>
-                <Highlight onChange={rest.onChange} className={this.state.language}>
+                <Highlight data-test={rest['data-test']} onChange={rest.onChange} className={this.state.language}>
                     {rest.value}
                 </Highlight>
 

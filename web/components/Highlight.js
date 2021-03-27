@@ -46,7 +46,8 @@ class Highlight extends React.Component {
 
   shouldComponentUpdate(nextProps, nextState, nextContext) {
       if(nextProps.className !== this.props.className) return true
-      if (this.state.value.__html === nextProps.children) return false;
+      if(nextProps['data-test'] !== this.props['data-test']) return true
+      if (this.state.value.__html === `${nextProps.children}`) return false;
       return true;
   }
 
@@ -75,6 +76,7 @@ class Highlight extends React.Component {
           <pre style={this.props.style} ref={this.setEl}>
               <code
                 style={this.props.style}
+                data-test={this.props['data-test']}
                 contentEditable={!!this.props.onChange}
                 onBlur={this.highlightCode}
                 onInput={this._handleInput}
