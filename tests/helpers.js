@@ -143,9 +143,10 @@ const testHelpers = {
         browser.expect.element(byId(`user-trait-value-${index}`)).text.to.equal(expectedValue);
     },
     addSegmentOverride: (browser, index, value, selectionIndex = 0) => {
+        browser.waitAndClick(byId('overrides'));
         browser.waitAndClick(byId(`select-segment-option-${selectionIndex}`));
         browser.waitForElementVisible(byId(`segment-override-${0}`));
-        browser.pause(100);
+        browser.pause(2000);
         if (value) {
             browser.waitAndClick(`${byId(`segment-override-${0}`)} [role="switch"]`);
         }
@@ -157,11 +158,13 @@ const testHelpers = {
             .waitAndClick(byId(`user-item-${index}`));
     },
     addSegmentOverrideConfig: (browser, index, value, selectionIndex = 0) => {
+        browser.waitAndClick(byId('overrides'));
         browser.waitAndClick(byId(`select-segment-option-${selectionIndex}`));
         browser.waitForElementVisible(byId(`segment-override-value-${index}`));
         browser.waitAndSet(byId(`segment-override-value-${0}`), value);
     },
     setSegmentOverrideIndex: (browser, index, newIndex) => {
+        browser.waitAndClick(byId('overrides'));
         browser.pause(2000);
         browser.setValue(byId(`sort-${index}`), `${newIndex}`);
         browser.pause(2000);
