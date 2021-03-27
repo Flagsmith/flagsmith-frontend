@@ -55,6 +55,7 @@ $side-width: 66%;
     bottom:0;
     opacity: 1;
     .modal-header {
+            background: white !important;
         border-radius: 0;
         text-align: left;
     }
@@ -114,8 +115,8 @@ $side-width: 66%;
         }
         .tabs-nav {
             .btn.btn-tab {
-                border-radius: 0 !important;
-                background-color: white;
+                //border-radius: 0 !important;
+                //background-color: white;
             }
         }
     }

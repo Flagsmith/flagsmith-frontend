@@ -5,11 +5,15 @@ const Tabs = class extends React.Component {
     static displayName = 'Tabs'
 
     render() {
+        const children = this.props.children.filter((c)=>!!c);
         return (
             <div className={`tabs ${this.props.className || ''}`}>
                 <div className="tabs-nav" style={isMobile ? { flexWrap: 'wrap' } : {}}>
-                    {this.props.children.map((child, i) => {
+                    {children.map((child, i) => {
                         const isSelected = this.props.value == i;
+                        if (!child) {
+                            return  null
+                        }
                         return (
                             <Button
                               type="button"
@@ -30,12 +34,12 @@ const Tabs = class extends React.Component {
                 </div>
                 <div
                   className="tab-line" style={{
-                      width: `${100 / this.props.children.length}%`,
-                      left: `${100 / this.props.children.length * this.props.value}%`,
+                      width: `${100 / children.length}%`,
+                      left: `${100 / children.length * this.props.value}%`,
                   }}
                 />
                 <div className="tabs-content">
-                    {this.props.children.map((child, i) => {
+                    {children.map((child, i) => {
                         const isSelected = this.props.value == i;
                         return (
                             <div key={`content${i}`} className={`tab-item${isSelected ? ' tab-active' : ''}`}>

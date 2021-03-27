@@ -571,9 +571,8 @@ const CreateFlag = class extends Component {
                                                 )
                                             }
                                         </TabItem>
-                                        <TabItem data-test="analytics" tabLabel="Analytics">
-                                            {(this.props.hasFeature('flag_analytics') && this.props.flagId)
-                                            && (
+                                        { (this.props.hasFeature('flag_analytics') && this.props.flagId) && (
+                                            <TabItem data-test="analytics" tabLabel="Analytics">
                                                 <FormGroup className="mb-4 mr-3 ml-3">
                                                     <Panel
                                                         title={<h6 className="mb-0">Flag events for last {this.state.period}</h6>}
@@ -586,9 +585,9 @@ const CreateFlag = class extends Component {
                                                         {this.drawChart(influxData)}
                                                     </Panel>
                                                 </FormGroup>
-                                            )
-                                            }
-                                        </TabItem>
+                                            </TabItem>
+                                        )}
+
                                         <TabItem data-test="settings" tabLabel="Settings">
                                             {Settings}
                                         </TabItem>
