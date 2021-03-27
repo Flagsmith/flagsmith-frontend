@@ -144,7 +144,7 @@ $input-font-size: inherit;
 $input-font-weight: 400;
 $input-border-color: rgb(224, 224, 224);
 $input-placeholder-color: rgb(224, 224, 224);
-$input-placeholder-color-dark: transparentize($header-color-dark, 0.9);
+$input-placeholder-color-dark: $header-color-dark;
 $input-border-highlight-color: $bt-brand-primary-light;
 
 $pagination-color: #333;

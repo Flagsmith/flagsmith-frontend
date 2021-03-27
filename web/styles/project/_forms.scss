@@ -40,12 +40,17 @@
     }
 }
 .dark {
+
     .input-container {
         input.input {
             border: 1px solid $bt-input-border-dark !important;
             background-color: $input-bg-dark !important;
+            color: $body-text-dark;
             &:focus {
                 border:1px solid $bt-input-border-active!important;
+            }
+            &::placeholder{
+                color:$input-placeholder-color-dark !important;
             }
         }
     }

@@ -1,10 +1,22 @@
 @import "../mixins/box-shadow-mixin";
 @import "../mixins/transition-mixin";
 
+.dark {
+    .popover {
+        background: $body-bg-dark;
+        border-top: 8px solid $body-bg-dark;
+        &:before {
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-bottom: 16px solid $body-bg-dark;
+        }
+    }
+}
+
 .popover {
     @include transition(all 300ms ease);
     border: none;
-    background-color: white;
+    background-color: $body-bg;
     z-index: 2000;
     width: auto;
     transform-origin: top;
