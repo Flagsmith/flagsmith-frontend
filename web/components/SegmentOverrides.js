@@ -114,7 +114,7 @@ class TheComponent extends Component {
             priority: value.length,
         }).then((res) => {
             return _data.post(`${Project.api}features/featurestates/`, {
-                enabled: true,
+                enabled: false,
                 feature: this.props.feature,
                 environment: ProjectStore.getEnvironmentIdFromKey(this.props.environmentId),
                 feature_segment: res.id,

@@ -62,7 +62,7 @@ const testHelpers = {
     toggleFeature(browser, index, toValue) {
         browser
             .waitForElementNotPresent('#confirm-remove-feature-modal')
-            .pause(200) // Additional wait here as it seems rc-switch can be unresponsive for a while
+            .pause(400) // Additional wait here as it seems rc-switch can be unresponsive for a while
             .waitAndClick(byId(`feature-switch-${index}${toValue ? '-off' : 'on'}`))
             .waitForElementPresent('#confirm-toggle-feature-modal')
             .waitAndClick('#confirm-toggle-feature-btn')
@@ -103,26 +103,26 @@ const testHelpers = {
             .waitForElementVisible(byId(`feature-item-${index}`));
     },
     saveFeature(browser) {
-        browser.pause(200);
+        browser.pause(400);
         browser.click('#update-feature-btn')
             .waitForElementNotPresent('#create-feature-modal');
     },
     gotoSegments(browser) {
         browser.waitAndClick('#segments-link')
-            .pause(50);
+            .pause(100);
     },
     gotoTraits(browser) {
         browser
             .waitAndClick('#users-link')
             .waitAndClick(byId('user-item-0'))
             .waitForElementVisible('#add-trait')
-            .pause(50);
+            .pause(100);
     },
     gotoFeatures(browser) {
         browser
             .waitAndClick('#features-link')
             .waitForElementVisible('#show-create-feature-btn')
-            .pause(50);
+            .pause(100);
     },
     gotoFeature(browser, index) {
         browser.click(byId(`feature-item-${index}`))
@@ -145,11 +145,11 @@ const testHelpers = {
     addSegmentOverride: (browser, index, value, selectionIndex = 0) => {
         browser.waitAndClick(byId(`select-segment-option-${selectionIndex}`));
         browser.waitForElementVisible(byId(`segment-override-${0}`));
-        browser.pause(100);
+        browser.pause(200);
         if (value) {
             browser.waitAndClick(`${byId(`segment-override-${0}`)} [role="switch"]`);
         }
-        browser.pause(100);
+        browser.pause(200);
     },
     goToUser(browser, index) {
         browser
