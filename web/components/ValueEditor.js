@@ -23,7 +23,7 @@ class ValueEditor extends Component {
 
     render() {
         const { ...rest } = this.props;
-        if (!this.props.hasFeature('value-editor')) {
+        if (!this.props.hasFeature('value_editor')) {
             return (
                 <textarea
                     {...rest}
