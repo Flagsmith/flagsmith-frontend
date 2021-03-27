@@ -8,6 +8,7 @@ import SegmentOverrides from '../SegmentOverrides';
 import AddEditTags from '../AddEditTags';
 import Constants from '../../../common/constants';
 import _data from '../../../common/data/base/_data';
+import ValueEditor from '../ValueEditor';
 
 const FEATURE_ID_MAXLENGTH = Constants.forms.maxLength.FEATURE_ID;
 
@@ -53,7 +54,7 @@ const CreateFlag = class extends Component {
         }
         AppActions.getIdentities(this.props.environmentId, 3);
         if (this.props.projectFlag && this.props.environmentFlag) {
-            this.getInfluxData()
+            this.getInfluxData();
         }
     };
 
@@ -76,6 +77,7 @@ const CreateFlag = class extends Component {
                 });
             });
     }
+
     getInfluxData = () => {
         if (this.props.hasFeature('flag_analytics') && this.props.environmentFlag) {
             AppActions.getFlagInfluxData(this.props.projectId, this.props.environmentFlag.environment, this.props.projectFlag.id, this.state.period);
@@ -298,24 +300,26 @@ const CreateFlag = class extends Component {
                                 </FormGroup>
                                 <FormGroup className="ml-3 mb-4 mr-3">
                                     <InputGroup
-                                      textarea
-                                      value={initial_value}
-                                      disabled={hide_from_client}
-                                      data-test="featureValue"
-                                      inputProps={{ name: 'featureValue', className: 'full-width' }}
-                                      onChange={e => this.setState({ initial_value: Utils.getTypedValue(Utils.safeParseEventValue(e)) })}
-                                      type="text"
+                                      component={(
+                                          <ValueEditor
+                                            data-test="featureValue"
+                                            name="featureValue" className="full-width"
+                                            value={initial_value}
+                                            onChange={e => this.setState({ initial_value: Utils.getTypedValue(Utils.safeParseEventValue(e)) })}
+                                            disabled={hide_from_client}
+                                            placeholder="e.g. 'big' "
+                                          />
+                                      )}
                                       tooltip={Constants.strings.REMOTE_CONFIG_DESCRIPTION}
                                       title={`${valueString} (optional)${' - these can be set per environment'}`}
-                                      placeholder="e.g. 'big' "
                                     />
                                 </FormGroup>
-                                {this.props.hasFeature("mv") && (
-                                  <div className="text-center">
-                                      <button onClick={this.addVariation} className="btn btn--outline ">
+                                {this.props.hasFeature('mv') && (
+                                <div className="text-center">
+                                    <button onClick={this.addVariation} className="btn btn--outline ">
                                           Add Variation
-                                      </button>
-                                  </div>
+                                    </button>
+                                </div>
                                 )}
                                 {hasFeature('tags') && !identity && this.state.tags && (
                                 <FormGroup className="mb-4 mr-3 ml-3" >

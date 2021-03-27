@@ -47,7 +47,7 @@ $side-width: 66%;
         padding: 0;
         height: 100%;
     }
-    z-index: 20000000000;
+    z-index: 1000000;
     padding-left:0;
     left: 0;
     right:0;
@@ -217,8 +217,12 @@ $side-width: 66%;
 }
 
 .modal.modal-confirm {
-    z-index: 200000000000;
+    z-index: 100000;
     h3 {
         margin-bottom: 0;
     }
+}
+
+.modal-open #crisp-chatbox [data-chat-status="initial"] {
+    display: none !important;
 }

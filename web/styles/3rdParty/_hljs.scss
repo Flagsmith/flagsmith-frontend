@@ -28,7 +28,28 @@
   -webkit-transition-delay: $delay;
   transition-delay:         $delay;
 }
+.value-editor {
+  position: relative;
+  .select-language {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    span {
+      margin-right: 5px;
+      color: white;
+      font-weight: bold;
+      opacity: 0.5;
+      cursor: pointer;
+      font-size: 12px;
+      &.active {
+        color: $btn-code-button-color-alt;
+        opacity: 1;
+      }
+    }
+  }
+}
 .hljs {
+  outline: none;
   font-size: .8em;
   display: block;
   overflow-x: auto;
@@ -40,6 +61,17 @@
     margin-bottom: 0;
   }
 
+}
+.yaml {
+  .hljs-bullet {
+    color: #eee;
+  }
+  .hljs-attr {
+    color: #64c77c;
+  }
+  .hljs-string {
+    color: #4c96ec;
+  }
 }
 .hljs-container {
   position: relative;
