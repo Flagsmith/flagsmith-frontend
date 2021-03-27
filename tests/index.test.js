@@ -73,13 +73,13 @@ const sendFailure = (browser, done, request, error) => {
     console.log('Last request:', lastRequest);
     console.log('Last error:', lastError);
     browser.getLog('browser', (logEntries) => {
-        logEntries.forEach((log) => {
-            console.log(`[${log.level}] ${log.message}`);
-        });
+        // logEntries.forEach((log) => {
+        //     console.log(`[${log.level}] ${log.message}`);
+        // });
         browser
             .source((result) => {
                 // Source will be stored in result.value
-                console.log(result && result.value);
+                // console.log(result && result.value);
                 if (SLACK_TOKEN && E2E_SLACK_CHANNEL && slackMessage) {
                     const uri = path.join(__dirname, 'screenshot.png');
                     browser.saveScreenshot(uri, () => {
