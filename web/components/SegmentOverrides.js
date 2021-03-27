@@ -60,7 +60,7 @@ const SortableItem = SortableElement(({ disabled, value: v, onSortEnd, index, co
             </div>
         </Row>
 
-        <div className="mx-2 text-left">
+        <div className="mx-2 text-left mb-2">
             <label>
                 Value (optional)
             </label>
