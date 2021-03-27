@@ -2,7 +2,17 @@
 
 $switch-height: 25px;
 $switch-width: 60px;
-
+.dark {
+  .rc-switch-checked {
+    border: 1px solid $bt-switch-active-dark;
+    background-color: $bt-switch-active-dark;
+  }
+  .rc-switch {
+    &:after {
+      background: $panel-heading-bg-dark;
+    }
+  }
+}
 .switch-checked,.switch-unchecked, {
   position: absolute;
   top: 0;

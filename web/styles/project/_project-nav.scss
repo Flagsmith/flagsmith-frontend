@@ -31,6 +31,26 @@
         margin-right: 0;
     }
 }
+.dark {
+    .navbar {
+        svg {
+            path {
+                fill: $nav-icon-color-dark;
+            }
+        }
+    }
+
+    .nav-link {
+        color: $nav-link-color-dark;
+        .nav-link-featured {
+            color: $header-color-dark;
+            background-color: $bt-brand-faint-alt-dark;
+            &:hover {
+                background-color: $bt-brand-faint-hover-dark;
+            }
+        }
+    }
+}
 .nav-link  {
     img {
         max-height: 21px;
@@ -59,12 +79,7 @@
         &:hover {
             background-color: $bt-brand-faint-hover;
         }
-        .ion {
-            position: relative;
-            top: 2px;
-            right: -10px;
-            color: $bt-brand-primary;
-        }
+
         color: $header-color;
         padding: 5px 20px;
         -moz-transition:    opacity 200ms;

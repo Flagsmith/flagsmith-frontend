@@ -25,13 +25,21 @@
         border-bottom: 1px solid #ccc;
     }
 }
+.dark {
+    .input-container {
+        input.input {
+            border: 1px solid $bt-input-border-dark !important;
+            background-color: $input-bg-dark !important;
+        }
+    }
+}
 
 .input-container{
     height:$input-height;
 
     input.input{
-        border:1px solid $bt-input-border!important;
-        background-color: $bt-input-background !important;
+        border:1px solid $bt-input-border;
+        background-color: $input-bg;
         @include transition(all 200ms);
         &:focus {
             border:1px solid $bt-input-border-active!important;
@@ -60,7 +68,11 @@ label {
     color: $header-color;
     font-weight: 500;
 }
-
+.dark {
+    label {
+        color: $header-color-dark;
+    }
+}
 .hljs, .hljs-header {
     border-radius: $default-border-radius;
 }

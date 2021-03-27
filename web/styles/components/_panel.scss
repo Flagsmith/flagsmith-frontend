@@ -81,22 +81,9 @@
 		outline: none;
 		border: none;
 		border-radius: $border-radius-default;
-		background: rgba(0, 0, 0, .2);
 		//padding: 2px 10px 2px 30px;
 		font-weight: normal;
 		//color: $panel-heading-color;
-	}
-
-	&.panel-alt {
-		>.panel-heading {
-			background-color: $panel-alt-heading-bg;
-			color: $panel-alt-heading-color;
-
-			h1, h2, h3 {
-				color: $panel-alt-heading-color;
-				margin: 0;
-			}
-		}
 	}
 
 	.panel-icon {
@@ -137,6 +124,29 @@
 		.panel-content {
 			padding: 0;
 
+		}
+	}
+}
+
+.dark {
+	.panel {
+		.panel-content {
+			background-color: $panel-bg-dark;
+		}
+		.panel-heading {
+			h1, h2, h3 {
+				color: $panel-heading-color-dark;
+				margin: 0;
+			}
+			.title {
+				color: $header-color-dark;
+			}
+			background-color: $panel-heading-bg-dark;
+		}
+		border: $panel-heading-border-dark;
+		.panel-icon {
+			background-color: $panel-icon-background-color-dark;
+			border-color: $panel-icon-background-color-dark;
 		}
 	}
 }

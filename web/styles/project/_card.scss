@@ -67,6 +67,16 @@ pre {
     }
 }
 
+.dark {
+    .panel-card {
+        border: 1px solid transparent;
+        .panel-content {
+            background-color: $bt-brand-faint-alt-dark;
+        }
+    }
+
+}
+
 .card-link-wrapper {
     display: flex;
     justify-content: center;
