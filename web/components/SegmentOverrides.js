@@ -46,15 +46,15 @@ const SortableItem = SortableElement(({ disabled, value: v, onSortEnd, index, co
                         </div>
                     </Column>
 
-                    {/*Input to adjust order without drag for E2E*/}
+                    {/* Input to adjust order without drag for E2E */}
                     {E2E && (
-                      <input
-                        data-test={`sort-${index}`}
-                        onChange={(e) => {
-                            onSortEnd({ oldIndex: index, newIndex: parseInt(Utils.safeParseEventValue(e)) });
-                        }}
-                        type="text"
-                      />
+                    <input
+                      data-test={`sort-${index}`}
+                      onChange={(e) => {
+                          onSortEnd({ oldIndex: index, newIndex: parseInt(Utils.safeParseEventValue(e)) });
+                      }}
+                      type="text"
+                    />
                     )}
 
                     <button
@@ -109,6 +109,19 @@ class TheComponent extends Component {
             environment: ProjectStore.getEnvironmentIdFromKey(this.props.environmentId),
             priority: value.length,
         }).then((res) => {
+            return _data.post(`${Project.api}features/featurestates/`, {
+                enabled: true,
+                feature: this.props.feature,
+                environment: ProjectStore.getEnvironmentIdFromKey(this.props.environmentId),
+                feature_segment: res.id,
+                feature_state_value: Utils.valueToFeatureState(""),
+            }).then((res2) => {
+                return [res, res2];
+            });
+        }).then(([res,res2]) => {
+            res.value = Utils.featureStateToValue(res2.feature_state_value);
+            res.enabled = res2.enabled;
+            res.feature_segment_value = res2;
             this.props.onChange([res].concat(value).map((v, i) => ({ ...v, priority: i })));
             this.setState({
                 selectedSegment: null,

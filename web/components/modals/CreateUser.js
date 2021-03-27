@@ -1,10 +1,5 @@
 import React, { Component } from 'react';
-import Highlight from '../Highlight';
-import Tabs from '../base/forms/Tabs';
-import TabItem from '../base/forms/TabItem';
-import withSegmentOverrides from '../../../common/providers/withSegmentOverrides';
 import data from '../../../common/data/base/_data';
-import SegmentOverrides from '../SegmentOverrides';
 import ChipInput from '../ChipInput';
 
 const CreateUser = class extends Component {

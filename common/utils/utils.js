@@ -1,6 +1,42 @@
 module.exports = Object.assign({}, require('./base/_utils'), {
     numberWithCommas(x) {
-        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+        return x.toString()
+            .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    },
+    featureStateToValue(featureState) {
+        if (!featureState) {
+            return null;
+        }
+
+        return Utils.getTypedValue(featureState.boolean_value || featureState.integer_value || featureState.string_value);
+    },
+    valueToFeatureState(value) {
+        const val = Utils.getTypedValue(value);
+
+        if (typeof val === 'boolean') {
+            return {
+                type: 'bool',
+                boolean_value: val,
+                integer_value: null,
+                string_value: null,
+            };
+        }
+
+        if (typeof val === 'number') {
+            return {
+                type: 'int',
+                boolean_value: null,
+                integer_value: val,
+                string_value: null,
+            };
+        }
+
+        return {
+            type: 'unicode',
+            boolean_value: null,
+            integer_value: null,
+            string_value: val || '',
+        };
     },
     getFlagValue(projectFlag, environmentFlag, identityFlag) {
         if (!environmentFlag) {
@@ -60,13 +96,15 @@ module.exports = Object.assign({}, require('./base/_utils'), {
     },
 
     scrollToTop: (timeout = 500) => {
-        $('html,body').animate({ scrollTop: 0 }, timeout);
+        $('html,body')
+            .animate({ scrollTop: 0 }, timeout);
     },
 
     scrollToElement: (selector, timeout = 500) => {
         const el = $(selector);
         if (!el || !el.offset) return;
-        $('html,body').animate({ scrollTop: el.offset().top }, timeout);
+        $('html,body')
+            .animate({ scrollTop: el.offset().top }, timeout);
     },
 
     scrollToSignUp: () => {
@@ -90,7 +128,8 @@ module.exports = Object.assign({}, require('./base/_utils'), {
         }
         const date = AccountStore.getDate();
         const cutOff = moment('03-11-20', 'DD-MM-YY');
-        if (date && moment(date).valueOf() < cutOff.valueOf()) {
+        if (date && moment(date)
+            .valueOf() < cutOff.valueOf()) {
             return true;
         }
         switch (permission) {
