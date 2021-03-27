@@ -33,6 +33,11 @@ class Highlight extends React.Component {
   }
 
   componentWillUpdate(nextProps, nextState, nextContext) {
+      if (nextProps.className !== this.props.className) {
+          setTimeout(()=>{
+              this.highlightCode()
+          },100)
+      }
       if (this.state.prevValue != nextProps.children) {
           this.state.value.__html = nextProps.children;
           this.state.key = Date.now();
@@ -40,6 +45,7 @@ class Highlight extends React.Component {
   }
 
   shouldComponentUpdate(nextProps, nextState, nextContext) {
+      if(nextProps.className !== this.props.className) return true
       if (this.state.value.__html === nextProps.children) return false;
       return true;
   }
