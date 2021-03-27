@@ -49,6 +49,13 @@
                 background-color: $bt-brand-faint-hover-dark;
             }
         }
+
+        &.active {
+            color: $nav-link-color-active-dark;
+        }
+        &:hover {
+            color: $nav-link-color-hover-dark;
+        }
     }
 }
 .nav-link  {

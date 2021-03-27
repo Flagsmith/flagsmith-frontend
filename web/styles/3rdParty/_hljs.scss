@@ -119,6 +119,7 @@
 }
 
 .hljs-header {
+  user-select: none;
   font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   background-color: $btn-code-button-background;
   border: 1px solid $btn-code-button-border;

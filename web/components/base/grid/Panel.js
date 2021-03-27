@@ -5,7 +5,7 @@ const Panel = class extends PureComponent {
 
     render() {
         return (
-            <div className={`panel panel-default ${this.props.className || ''} ${this.props.title ? '' : 'pt-2'}`}>
+            <div className={`panel panel-default ${this.props.className || ''} ${this.props.title ? '' : 'mt-2'}`}>
                 {(this.props.title || this.props.action) && (
                 <div className="panel-heading">
                     <Row space>

@@ -70,7 +70,8 @@
 	.panel-content {
 		background-color: $panel-bg;
 		padding: $input-padding-y $input-padding-x;
-		border-radius: $border-radius-default !important;
+		border-bottom-left-radius: $border-radius-default !important;
+		border-bottom-right-radius: $border-radius-default !important;
 	}
 
 	input[type="text"] {

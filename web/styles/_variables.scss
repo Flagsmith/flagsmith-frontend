@@ -39,7 +39,7 @@ $body-text-faint-dark: darken(#e3e3e3,10);
 $body-text: #43424f;
 $body-text-dark: #c3c3c3;
 $header-color: #38386d; // for headers and labels
-$header-color-dark: #e3e3e3; // for headers and labels
+$header-color-dark: #d2d2d2; // for headers and labels
 $link-color: $bt-brand-secondary-faint; // for headers and labels
 $bt-link-color: $bt-brand-secondary-faint; // for headers and labels
 $bt-link-color-dark: lighten($bt-brand-primary-dark-desaturated,40); // for headers and labels
@@ -50,6 +50,9 @@ $nav-link-color: $header-color; // navbar link
 $nav-link-color-dark: darken($header-color-dark,10); // navbar link
 $nav-link-color-hover: $bt-brand-primary; //
 $nav-link-color-active: $bt-brand-primary-dark;
+$nav-link-color-hover-dark: $bt-brand-primary-dark-desaturated-light; //
+
+$nav-link-color-active-dark: $bt-brand-primary-dark-desaturated-light;
 $navbar-height: 5rem;
 $navbar-background: transparent;
 $nav-icon-color: $bt-brand-secondary;
@@ -57,7 +60,7 @@ $nav-icon-color-dark: $bt-brand-primary-dark-desaturated;
 
 // Input
 $input-bg: #fff;
-$input-bg-dark: #131216;
+$input-bg-dark: #19181d;
 $input-color-dark: $body-text-dark;
 
 $bt-input-border: #d9d9e9;
@@ -72,7 +75,7 @@ $alert-danger-border: $bt-brand-red;
 $alert-danger-text: rgb(255, 255, 255);
 
 $body-bg: #fff;
-$body-bg-dark: #0d0a10;
+$body-bg-dark: #120f18;
 
 
 $p-color: #22354a;
@@ -99,8 +102,10 @@ $panel-heading-bg-dark: #191522;
 $panel-heading-color: $header-color;
 $panel-heading-color-dark: $header-color-dark;
 $panel-heading-border: 1px solid #f1f1f1;
-$panel-heading-border-dark: 1px solid #0c0a10;
+$panel-heading-border-dark: 1px solid transparent;
 
+$panel-grey-background-dark: $panel-bg-dark;
+$panel-grey-background: #f7f7f7;
 //
 $panel-icon-color: $bt-brand-primary;
 $panel-icon-color: $bt-brand-primary-dark-desaturated-light;
@@ -120,6 +125,8 @@ $btn-code-button-color: $header-color;
 $btn-code-button-color-dark: $header-color-dark;
 $btn-code-button-color-alt: $bt-brand-tertiary;
 $btn-code-button-color-alt-dark: lighten($bt-brand-primary-dark-desaturated,40);
+$btn-color: white;
+$btn-color-dark: #d9d9d9;
 
 
 //Nav
@@ -181,8 +188,12 @@ $input-padding-y: 1rem !default;
 //MODALS
 $modal-backdrop-bg: rgba(0, 0, 0, 0.870588);
 $modal-header-background: $bt-brand-faint-alt;
+$modal-header-background-dark: $panel-heading-bg-dark;
+$side-modal-header-background: white;
+$side-modal-header-background-dark: white;
 
 $modal-header-color: $header-color;
+$modal-header-color-dark: $header-color-dark;
 $modal-header-border-width: 0;
 $border-radius-default: 8px;
 //TRANSITIONS
@@ -235,7 +246,7 @@ $aside-width:330px;
 
 // Shadows
 $aside-box-shadow: 0 6px 13px 0 transparentize($bt-brand-primary-dark-desaturated-light,.75); // Box shadow right menu
-$aside-box-shadow-dark: 0 6px 13px 0 transparentize($bt-brand-primary-dark-desaturated-lighter-dark,.75); // Box shadow right menu
+$aside-box-shadow-dark: 0 6px 16px 0 rgba(0,0,0,.25); // Box shadow right menu
 $aside-project-link-active-box-shadow: none;
 
 

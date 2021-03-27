@@ -30,6 +30,8 @@ a, .btn, button{
             background: lighten($bt-brand-primary-dark-desaturated-lighter-dark, 10);
         }
 
+        color:$btn-color-dark;
+
         &:hover {
             box-shadow: none;
         }
@@ -65,7 +67,7 @@ a, .btn, button{
     background: $bt-brand-primary-dark-desaturated-lighter;
     transition: $button-transition;
     border-radius: $border-radius-default !important;
-    color:#fff;
+    color:$btn-color;
     text-align: center;
     border: none !important;
     padding: 0 20px;
