@@ -145,7 +145,7 @@ const testHelpers = {
     addSegmentOverride: (browser, index, value, selectionIndex = 0) => {
         browser.waitAndClick(byId(`select-segment-option-${selectionIndex}`));
         browser.waitForElementVisible(byId(`segment-override-${0}`));
-        browser.pause(200);
+        browser.pause(2000);
         if (value) {
             browser.waitAndClick(`${byId(`segment-override-${0}`)} [role="switch"]`);
         }
