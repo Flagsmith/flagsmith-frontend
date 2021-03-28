@@ -31,6 +31,14 @@
         margin-right: 0;
     }
 }
+.dark-mode {
+    .rc-switch {
+        width:75px;
+        &.rc-switch-checked:after {
+            left:45px;
+        }
+    }
+}
 .dark {
     .navbar {
         svg {
