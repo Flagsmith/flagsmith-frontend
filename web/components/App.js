@@ -286,9 +286,6 @@ const App = class extends Component {
                                                             </NavLink>
                                                         </nav>
 
-                                                        <div className='mr-2 dark-mode'>
-                                                            <Switch checked={flagsmith.hasFeature("dark_mode")} onChange={this.toggleDarkMode} onMarkup='Light' offMarkup='Dark' />
-                                                        </div>
 
                                                         <div className='org-nav'>
                                                             <Popover
@@ -352,6 +349,10 @@ const App = class extends Component {
                                                                     </div>
                                                                 )}
                                                             </Popover>
+                                                        </div>
+
+                                                        <div style={{marginRight:-15,marginTop:5}} className='ml-4 dark-mode'>
+                                                            <Switch checked={flagsmith.hasFeature("dark_mode")} onChange={this.toggleDarkMode} onMarkup='Light' offMarkup='Dark' />
                                                         </div>
                                                     </React.Fragment>
                                                 ) : (
