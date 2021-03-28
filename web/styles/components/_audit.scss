@@ -22,10 +22,10 @@
 			color: $body-text-faint-dark;
 		}
 		&__item:nth-child(odd) {
-			background: lighten($bt-brand-faint-alt-dark,1);
+			background: $dark-bg-0;
 		}
 		&__item:nth-child(even) {
-			background: $bt-brand-faint-alt-dark;
+			background: $dark-bg-2;
 		}
 	}
 }

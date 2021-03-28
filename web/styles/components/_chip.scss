@@ -1,10 +1,10 @@
 @import "../variables";
 .dark {
 	.chip {
-		background-color: $input-placeholder-color-dark;
+		background-color: $dark-bg-0;
 		.chip-icon {
 			color: $input-placeholder-color-dark;
-			background: darken($input-placeholder-color-dark, 10);
+			background: $dark-bg-2;
 		}
 	}
 }
