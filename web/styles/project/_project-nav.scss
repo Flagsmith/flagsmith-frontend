@@ -44,9 +44,9 @@
         color: $nav-link-color-dark;
         .nav-link-featured {
             color: $header-color-dark;
-            background-color: $bt-brand-faint-alt-dark;
+            background-color: $button-bg-dark;
             &:hover {
-                background-color: $bt-brand-faint-hover-dark;
+                background-color: $button-bg-dark-hover;
             }
         }
 

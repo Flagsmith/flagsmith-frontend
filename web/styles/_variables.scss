@@ -2,6 +2,25 @@
 $font-family: "OpenSans", sans-serif;
 $font-family-header: 'OpenSans', sans-serif;
 
+
+
+$dark-bg-0: #14151d;
+$dark-bg-2: #1a1c26;
+$dark-bg-5: #1a1c26;
+$dark-bg-10: #252836;
+$dark-bg-20: #3A3D4A;
+$dark-bg-50: #B3B3B3;
+$dark-highlight: #554aac;
+$dark-highlight2: $dark-bg-20;
+$dark-highlight3: #f18e7f;
+
+$dark-highlight-color: #fff;
+$dark-color: #747484;
+
+
+$button-bg-dark: $dark-bg-0;
+$button-bg-dark-hover: darken($button-bg-dark,1);
+
 // COLORS
 
 $bt-brand-primary: #6633ff;
@@ -23,7 +42,7 @@ $bt-brand-faint-hover-dark: #242230;
 
 
 $bt-brand-tertiary: #f18e7f;
-$bt-brand-tertiary-dark: #f1a092;
+$bt-brand-tertiary-dark: $dark-highlight3;
 $bt-brand-secondary: #00a696;
 $bt-brand-secondary-faint: #2d9189;
 $bt-brand-secondary-faint-dark: #12776d;
@@ -38,12 +57,11 @@ $bt-brand-red: #f2576e;
 $body-text-faint: #717186;
 $body-text-faint-dark: darken(#e3e3e3,10);
 $body-text: #43424f;
-$body-text-dark: #c3c3c3;
+$body-text-dark: $dark-color;
 $header-color: #38386d; // for headers and labels
 $header-color-dark: #d2d2d2; // for headers and labels
-$link-color: $bt-brand-secondary-faint; // for headers and labels
 $bt-link-color: $bt-brand-secondary-faint; // for headers and labels
-$bt-link-color-dark: lighten($bt-brand-primary-dark-desaturated,40); // for headers and labels
+$bt-link-color-dark: $dark-highlight-color; // for headers and labels
 $bt-link-color-hover: lighten($header-color,10); // for headers and labels
 
 //Navbar
@@ -57,11 +75,11 @@ $nav-link-color-active-dark: $bt-brand-primary-dark-desaturated-light;
 $navbar-height: 5rem;
 $navbar-background: transparent;
 $nav-icon-color: $bt-brand-secondary;
-$nav-icon-color-dark: $bt-brand-tertiary-dark;
+$nav-icon-color-dark: $dark-highlight;
 
 // Input
 $input-bg: #fff;
-$input-bg-dark: #19181d;
+$input-bg-dark: $dark-bg-0;
 $input-color-dark: $body-text-dark;
 
 $bt-input-border: #d9d9e9;
@@ -76,36 +94,40 @@ $alert-danger-border: $bt-brand-red;
 $alert-danger-text: rgb(255, 255, 255);
 
 $body-bg: #fff;
-$body-bg-dark: #120f18;
+$body-bg-dark: $dark-bg-5;
 
 
 $p-color: #22354a;
 $p-color-dark: #757678;
 $butter-bar-bg: #fdf1dd;
-$butter-bar-bg-dark: #191522;
+$butter-bar-bg-dark: $dark-bg-10;
 
 $bt-gradient-text: $body-text;
 $bt-gradient-start: $bt-brand-faint-alt;
 $bt-gradient-end: #fff;
 
-$bt-code-background: #2b273c;
-$bt-code-background-dark: #100d15;
-$bt-switch-active:$header-color;
-$bt-switch-active-dark: $bt-brand-primary-dark-desaturated;
-
 
 //Panel
 $panel-heading-height: 50px;
 $panel-bg: #fff;
-$panel-bg-dark: #0d0a10;
+$panel-bg-dark: $dark-bg-10;
 $panel-heading-bg: #f7f7f7;
-$panel-heading-bg-dark: #191522;
+$panel-heading-bg-dark: $dark-bg-10;
 $panel-heading-color: $header-color;
 $panel-heading-color-dark: $header-color-dark;
 $panel-heading-border: 1px solid #f1f1f1;
 $panel-heading-border-dark: 1px solid transparent;
 
-$panel-grey-background-dark: $panel-bg-dark;
+
+$bt-code-background: $dark-bg-0;
+$bt-code-background-dark: $dark-bg-0;
+$bt-switch-active:$header-color;
+$bt-switch-active-dark: $dark-highlight;
+$bt-switch: #999;
+$bt-switch-dark: $dark-bg-5;
+
+
+$panel-grey-background-dark: $dark-bg-0;
 $panel-grey-background: #f7f7f7;
 //
 $panel-icon-color: $bt-brand-primary;
@@ -113,8 +135,9 @@ $panel-icon-color: $bt-brand-primary-dark-desaturated-light;
 $panel-icon-border-color: #ddd;
 $panel-icon-background-color: #fff;
 
-$panel-icon-border-color-dark: darken($panel-heading-bg-dark,5);
-$panel-icon-background-color-dark: darken($panel-heading-bg-dark,5);
+$panel-icon-border-color-dark: $dark-bg-20;
+$panel-icon-background-color-dark: $dark-bg-20;
+$panel-icon-color-dark: $dark-bg-50;
 
 // Code help e.g. installing the SDK
 $btn-code-button-background-hover: darken($bt-brand-faint-alt,2);
@@ -123,9 +146,9 @@ $btn-code-button-background-dark-hover: lighten($panel-heading-bg-dark,2);
 $btn-code-button-background-dark: $panel-heading-bg-dark;
 $btn-code-button-border: $bt-brand-faint-alt;
 $btn-code-button-color: $header-color;
-$btn-code-button-color-dark: $header-color-dark;
+$btn-code-button-color-dark: $dark-highlight-color;
 $btn-code-button-color-alt: $bt-brand-tertiary;
-$btn-code-button-color-alt-dark: lighten($bt-brand-primary-dark-desaturated,40);
+$btn-code-button-color-alt-dark: $dark-color;
 $btn-color: white;
 $btn-color-dark: #d9d9d9;
 
@@ -214,16 +237,16 @@ $card-default-dark: 0 6px 13px 0 rgba(0,0,0,0.10);
 
 
 $aside-base-background: $bt-brand-faint-alt;
-$aside-base-background-dark: $panel-heading-bg-dark;
+$aside-base-background-dark: $dark-bg-0;
 $aside-logo: $bt-brand-primary-dark-desaturated-lighter;
 // active project and environment
 $aside-base-highlight: $bt-brand-primary-dark-desaturated-lighter;
-$aside-base-highlight-dark: $bt-brand-primary-dark-desaturated;
+$aside-base-highlight-dark: $dark-highlight2;
 $aside-base-highlight-color: white;
 $aside-base-highlight-color-dark: white;
 // active project and environment
 $aside-base-link: $bt-brand-faint-alt;
-$aside-base-link-dark: $bt-brand-faint-alt-dark;
+$aside-base-link-dark: $dark-bg-5;
 $aside-base-link-color: $body-text-faint;
 $aside-base-link-color-dark: $body-text-faint-dark;
 // Environment link
@@ -237,7 +260,7 @@ $aside-nav-hover:$header-color;
 $aside-nav-hover-dark:$header-color-dark;
 // Background of other links e.g. acreate environment/organisation
 $aside-link-alt-color:$bt-brand-secondary-faint;
-$aside-link-alt-color-dark:$bt-brand-tertiary-dark;
+$aside-link-alt-color-dark:$dark-highlight-color;
 $aside-add-color:white;
 $aside-add-color-dark:white;
 
@@ -257,13 +280,13 @@ $aside-project-link-active-box-shadow: none;
 $aside-bg:$aside-base-background;  // left aside menu
 $aside-bg-dark:$aside-base-background-dark;  // left aside menu
 $aside-left-bg:$bt-brand-primary-dark; // main aside menu
-$aside-left-bg-dark:$body-bg-dark; // main aside menu
+$aside-left-bg-dark:$dark-bg-5; // main aside menu
 $aside-left-color:white; // main aside menu
 $aside-left-color-dark:white; // main aside menu
 $aside-left-color-active:white; // main aside menu
 $aside-left-color-active-dark:white; // main aside menu
 $aside-nav-collapse:darken($aside-base-background,2); // selected environment background
-$aside-nav-collapse-dark:darken($aside-base-background-dark,2); // selected environment background
+$aside-nav-collapse-dark:lighten($aside-base-background-dark,2); // selected environment background
 
 // project link
 $aside-project-link-color: $aside-base-link-color;

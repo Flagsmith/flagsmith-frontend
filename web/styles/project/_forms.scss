@@ -1,14 +1,14 @@
 .dark {
     .or-divider {
-        color: $panel-heading-bg-dark;
+        color: $dark-color;
         &__line{
-            border-bottom: 1px dashed $panel-heading-bg-dark;
+            border-bottom: 1px dashed $dark-color;
         }
     }
     .and-divider {
-        color: $panel-heading-bg-dark;
+        color: $dark-color;
         &__line{
-            border-bottom: 1px dashed $panel-heading-bg-dark;
+            border-bottom: 1px dashed $dark-color;
         }
     }
 }

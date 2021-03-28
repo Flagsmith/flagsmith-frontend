@@ -239,6 +239,7 @@ const FeaturesPage = class extends Component {
                                                                           {
                                                                               this.renderWithPermission(permission, Constants.environmentPermissions('Admin'), (
                                                                                 <Row style={{
+                                                                                    marginTop: 5,
                                                                                     marginBottom: 5,
                                                                                     marginRight: 15
                                                                                 }}>

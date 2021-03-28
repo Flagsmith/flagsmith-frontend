@@ -24,10 +24,10 @@ a, .btn, button{
 }
 .dark {
     .btn {
-        background: $bt-brand-primary-dark-desaturated-lighter-dark;
+        background: $button-bg-dark;
 
         &:hover, &:disabled:hover {
-            background: lighten($bt-brand-primary-dark-desaturated-lighter-dark, 10);
+            background: $button-bg-dark-hover;
         }
 
         color:$btn-color-dark;
@@ -38,15 +38,32 @@ a, .btn, button{
 
         &--outline {
             background: $body-bg-dark;
-            border: 2px solid $bt-brand-secondary-faint-dark !important;
-            color: $bt-brand-secondary-faint-dark;
+            border: 2px solid $dark-highlight !important;
+            color: $dark-highlight-color;
             line-height: 37px;
 
             &:hover {
                 background-color: darken($body-bg-dark,2);
             }
         }
+        &--with-icon {
+            background: none !important;
 
+            &.primary {
+                color: $dark-highlight-color;
+
+                path {
+                    fill: $dark-highlight-color;
+                }
+            }
+            &:hover, &:focus {
+                background:none !important;
+                color:$dark-highlight3 !important;
+                path {
+                    fill:$dark-highlight3 !important;
+                }
+            }
+        }
         &--link {
             color: $bt-link-color-dark;
             background-color: transparent;

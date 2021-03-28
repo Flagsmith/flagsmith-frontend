@@ -142,12 +142,29 @@
 			.title {
 				color: $header-color-dark;
 			}
+			color: $header-color-dark;
+
 			background-color: $panel-heading-bg-dark;
 		}
 		border: $panel-heading-border-dark;
+		color: $panel-heading-color-dark;
+		a {
+			color: $dark-highlight-color;
+			&:hover {
+				color: $dark-highlight-color !important;
+			}
+		}
+		.list-item:hover a {
+			color: $dark-highlight-color !important;
+
+		}
 		.panel-icon {
 			background-color: $panel-icon-background-color-dark;
 			border-color: $panel-icon-background-color-dark;
+			.icon {
+
+				color: $panel-icon-color-dark;
+			}
 		}
 	}
 }

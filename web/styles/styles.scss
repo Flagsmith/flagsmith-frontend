@@ -103,6 +103,7 @@ bold, strong {
 }
 
 .feature-value-container {
+  display: inline-block;
   font-size: 0.8em;
   background: $bt-code-background;
   color: #bababa;
@@ -168,10 +169,14 @@ body {
 
 body.dark {
   background-color: $body-bg-dark;
+  a {
+    color: $bt-link-color-dark;
+
+  }
 }
 
 a {
-  color: $link-color;
+  color: $bt-link-color;
   font-weight: 500;
   cursor: pointer;
 }

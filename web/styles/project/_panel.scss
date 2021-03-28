@@ -8,15 +8,27 @@
         &--grey{
             background:$panel-grey-background-dark;
         }
+
+        &--draggable {
+            &:hover {
+                background: $dark-bg-0 !important;
+                .panel-content {
+                    background: $dark-bg-0 !important;
+                }
+            }
+        }
     }
 }
 .panel{
     &--draggable {
         cursor: move;
+        @include transition(background 200ms ease-in-out);
+
         .panel-content {
-            @include transition(background 500ms ease-in-out);
+            @include transition(background 200ms ease-in-out);
         }
         &:hover {
+            background: #f9f9f9 !important;
             .panel-content {
                 background: #f9f9f9 !important;
             }
