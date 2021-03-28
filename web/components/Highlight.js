@@ -2,6 +2,7 @@ import React from 'react';
 
 hljs.initHighlightingOnLoad();
 
+const defaultValue = {__html:"Enter a value..."}
 class Highlight extends React.Component {
   state = {
       value: { __html: this.props.children },
@@ -34,9 +35,9 @@ class Highlight extends React.Component {
 
   componentWillUpdate(nextProps, nextState, nextContext) {
       if (nextProps.className !== this.props.className) {
-          setTimeout(()=>{
-              this.highlightCode()
-          },100)
+          setTimeout(() => {
+              this.highlightCode();
+          }, 100);
       }
       if (this.state.prevValue != nextProps.children) {
           this.state.value.__html = nextProps.children;
@@ -45,8 +46,9 @@ class Highlight extends React.Component {
   }
 
   shouldComponentUpdate(nextProps, nextState, nextContext) {
-      if(nextProps.className !== this.props.className) return true
-      if(nextProps['data-test'] !== this.props['data-test']) return true
+      if (nextState.focus !== this.state.focus) return true;
+      if (nextProps.className !== this.props.className) return true;
+      if (nextProps['data-test'] !== this.props['data-test']) return true;
       if (this.state.value.__html === `${nextProps.children}`) return false;
       return true;
   }
@@ -57,35 +59,44 @@ class Highlight extends React.Component {
       this.props.onChange(value);
   };
 
-  render() {
-      const { children, className, element: Element, innerHTML } = this.props;
-      const props = { ref: this.setEl, className };
+    onFocus= () => {
+        this.setState({focus:true})
+    }
+    onBlur= () => {
+        this.setState({focus:false})
+        this.highlightCode();
+    }
 
-      if (innerHTML) {
-          props.dangerouslySetInnerHTML = { __html: children };
-          if (Element) {
-              return <Element {...props} />;
-          }
-          return <div {...props} />;
-      }
+    render() {
+        const { children, className, element: Element, innerHTML } = this.props;
+        const props = { ref: this.setEl, className };
 
-      if (Element) {
-          return <Element {...props}>{children}</Element>;
-      }
-      return (
-          <pre style={this.props.style} ref={this.setEl}>
-              <code
-                style={this.props.style}
-                data-test={this.props['data-test']}
-                contentEditable={!!this.props.onChange}
-                onBlur={this.highlightCode}
-                onInput={this._handleInput}
-                className={className}
-                dangerouslySetInnerHTML={this.state.value}
-              />
-          </pre>
-      );
-  }
+        if (innerHTML) {
+            props.dangerouslySetInnerHTML = { __html: children };
+            if (Element) {
+                return <Element {...props} />;
+            }
+            return <div {...props} />;
+        }
+
+        if (Element) {
+            return <Element {...props}>{children}</Element>;
+        }
+        return (
+            <pre style={this.props.style} ref={this.setEl}>
+                <code
+                  style={this.props.style}
+                  data-test={this.props['data-test']}
+                  contentEditable={!!this.props.onChange}
+                  onBlur={this.onBlur}
+                  onFocus={this.onFocus}
+                  onInput={this._handleInput}
+                  className={className}
+                  dangerouslySetInnerHTML={this.state.focus? this.state.value : this.props.children ? this.state.value : defaultValue}
+                />
+            </pre>
+        );
+    }
 }
 
 Highlight.defaultProps = {

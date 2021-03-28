@@ -360,7 +360,24 @@ const CreateFlag = class extends Component {
                         </button>
                     </div>
                 )}
-                {!isEdit && Settings}
+                {identity && (
+                    <FormGroup className="mb-4 mr-3 ml-3" >
+                        <InputGroup
+                            value={description}
+                            data-test="featureDesc"
+                            inputProps={{
+                                className: 'full-width',
+                                readOnly: !!identity,
+                                name: 'featureDesc',
+                            }}
+                            onChange={e => this.setState({ description: Utils.safeParseEventValue(e) })}
+                            isValid={name && name.length}
+                            type="text" title={identity ? 'Description' : 'Description (optional)'}
+                            placeholder="e.g. 'This determines what size the header is' "
+                        />
+                    </FormGroup>
+                )}
+                {!isEdit && !identity && Settings}
             </>
         )
         return (
@@ -379,7 +396,7 @@ const CreateFlag = class extends Component {
                                   this.save(func, isSaving);
                               }}
                             >
-                                {isEdit? (
+                                {isEdit && !identity ? (
                                     <Tabs value={this.state.tab} onChange={tab => this.setState({ tab })}>
                                         <TabItem data-test="value" tabLabel="Value">
                                             <FormGroup className="mr-3 ml-3">
