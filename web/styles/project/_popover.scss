@@ -3,12 +3,37 @@
 
 .dark {
     .popover {
-        background: $body-bg-dark;
-        border-top: 8px solid $body-bg-dark;
-        &:before {
-            border-left: 15px solid transparent;
-            border-right: 15px solid transparent;
-            border-bottom: 16px solid $body-bg-dark;
+        background-color: $dark-bg-2;
+        &-bt {
+            border-top: 8px solid $dark-bg-2;
+            &:before {
+                border-left: 15px solid transparent;
+                border-right: 15px solid transparent;
+                border-bottom: 16px solid $dark-bg-2;
+            }
+
+            &__title {
+                color: $dark-highlight-color;
+                border-bottom: 1px solid $dark-bg-2;
+            }
+
+            &__list-item{
+                border-bottom: 1px solid $dark-bg-0 !important;
+
+                .btn {
+                    color: $bt-link-color-dark !important;
+                }
+
+                a {
+                    color: $dark-color !important;
+                    &:hover {
+                        color: $dark-highlight-color !important;
+                        //background-color: $bt-brand-faint-alt;
+                        text-decoration: none;
+                    }
+                }
+                border-bottom: 1px solid $dark-bg-2;
+            }
         }
     }
 }

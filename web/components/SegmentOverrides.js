@@ -16,7 +16,7 @@ const arrayMove = (array, from, to) => {
 };
 
 const SortableItem = SortableElement(({ disabled, value: v, onSortEnd, index, confirmRemove, toggle, setValue }) => (
-    <div data-test={`segment-override-${index}`} style={{ zIndex: 9999999999 }} className="panel panel--draggable mb-2">
+    <div data-test={`segment-override-${index}`} style={{ zIndex: 9999999999 }} className="panel panel-without-heading panel--draggable mb-2">
         <Row className="panel-content" space>
             <div
               className="flex flex-1 text-left"
@@ -60,7 +60,7 @@ const SortableItem = SortableElement(({ disabled, value: v, onSortEnd, index, co
             </div>
         </Row>
 
-        <div className="mx-2 text-left mb-2">
+        <div className="mx-2 text-left pb-2">
             <label>
                 Value (optional)
             </label>

@@ -22,5 +22,11 @@
     &__menu {
       background: $input-bg-dark;
     }
+    &__option {
+      background: $dark-bg-0;
+      &:hover {
+        background: darken($dark-bg-0,2);
+      }
+    }
   }
 }

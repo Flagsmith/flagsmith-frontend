@@ -7,11 +7,17 @@
         }
         &--grey{
             background:$panel-grey-background-dark;
+            .panel {
+                background-color: $panel-bg-darker;
+                .panel-content {
+                    background-color: $panel-bg-darker;
+                }
+            }
         }
 
         &--draggable {
             &:hover {
-                background: $dark-bg-0 !important;
+                background: $dark-bg-2 !important;
                 .panel-content {
                     background: $dark-bg-0 !important;
                 }

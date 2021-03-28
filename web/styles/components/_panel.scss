@@ -73,6 +73,12 @@
 		border-bottom-left-radius: $border-radius-default !important;
 		border-bottom-right-radius: $border-radius-default !important;
 	}
+	&.panel-without-heading {
+		.panel-content {
+			border-top-left-radius: $border-radius-default !important;
+			border-top-right-radius: $border-radius-default !important;
+		}
+	}
 
 	input[type="text"] {
 		opacity: 0.5;
@@ -131,6 +137,7 @@
 
 .dark {
 	.panel {
+
 		.panel-content {
 			background-color: $panel-bg-dark;
 		}
@@ -146,7 +153,7 @@
 
 			background-color: $panel-heading-bg-dark;
 		}
-		border: $panel-heading-border-dark;
+		border: none;
 		color: $panel-heading-color-dark;
 		a {
 			color: $dark-highlight-color;
@@ -156,7 +163,6 @@
 		}
 		.list-item:hover a {
 			color: $dark-highlight-color !important;
-
 		}
 		.panel-icon {
 			background-color: $panel-icon-background-color-dark;
@@ -164,6 +170,13 @@
 			.icon {
 
 				color: $panel-icon-color-dark;
+			}
+		}
+
+		.panel {
+			background-color: $panel-bg-darker;
+			.panel-content {
+				background-color: $panel-bg-darker;
 			}
 		}
 	}
