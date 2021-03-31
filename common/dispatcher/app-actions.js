@@ -180,12 +180,12 @@ const AppActions = Object.assign({}, require('./base/_app-actions'), {
         });
     },
 
-    editFlag(projectId, flag, segmentOverrides) {
+    editFlag(projectId, flag,onComplete) {
         Dispatcher.handleViewAction({
             actionType: Actions.EDIT_FLAG,
             projectId,
             flag,
-            segmentOverrides,
+            onComplete
         });
     },
     editProject(id, project) {
