@@ -295,7 +295,7 @@ const CreateFlag = class extends Component {
         const controlValue = multivariate_options && this.calculateControl(multivariate_options);
         const valueString = multivariate_options && multivariate_options.length ? `Control Value - ${controlValue}%` : `Value (optional)${' - these can be set per environment'}`;
         const enabledString = isEdit ? 'Enabled' : 'Enabled by default';
-        const invalid = multivariate_options.length && controlValue < 0;
+        const invalid = multivariate_options && multivariate_options.length && controlValue < 0;
         const Settings = (
             <>
                 {hasFeature('tags') && !identity && this.state.tags && (
@@ -404,7 +404,7 @@ const CreateFlag = class extends Component {
                                 Your variation percentage splits total to over 100%
                             </div>
                         )}
-                        {multivariate_options.length ? (
+                        {multivariate_options && multivariate_options.length ? (
                             <FormGroup className="ml-3 mb-4 mr-3">
 
 
