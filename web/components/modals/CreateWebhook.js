@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import Highlight from '../Highlight';
-import withSegmentOverrides from '../../../common/providers/withSegmentOverrides';
 import ErrorMessage from '../ErrorMessage';
 import Constants from '../../../common/constants';
 import TestWebhook from '../TestWebhook';
 
 const exampleJSON = Constants.exampleWebhook;
 
-const CreateFlag = class extends Component {
-  static displayName = 'CreateFlag';
+const CreateWebhook = class extends Component {
+  static displayName = 'CreateWebhook';
 
   static contextTypes = {
       router: propTypes.object.isRequired,
@@ -126,6 +125,6 @@ const CreateFlag = class extends Component {
   }
 };
 
-CreateFlag.propTypes = {};
+CreateWebhook.propTypes = {};
 
-module.exports = ConfigProvider(withSegmentOverrides(CreateFlag));
+module.exports = ConfigProvider(CreateWebhook);

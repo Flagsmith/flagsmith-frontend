@@ -22,28 +22,38 @@ export default (WrappedComponent) => {
 
         componentDidMount() {
             if (this.props.projectFlag) {
-                data.get(`${Project.api}features/feature-segments/?environment=${ProjectStore.getEnvironmentIdFromKey(this.props.environmentId)}&feature=${this.props.projectFlag.id}`)
-                    .then((res) => {
+                Promise.all([
+                    data.get(`${Project.api}features/feature-segments/?environment=${ProjectStore.getEnvironmentIdFromKey(this.props.environmentId)}&feature=${this.props.projectFlag.id}`),
+                    data.get(`${Project.api}features/featurestates/?environment=${ProjectStore.getEnvironmentIdFromKey(this.props.environmentId)}&feature=${this.props.projectFlag.id}`),
+                ])
+                    .then(([res, res2]) => {
+                        const results = res.results;
+                        const featureStates = res2.results;
+                        _.each(featureStates, (f) => {
+                            if (f.feature_segment) {
+                                const index = _.findIndex(results, { id: f.feature_segment });
+                                if (index !== -1) {
+                                    results[index].value = Utils.featureStateToValue(f.feature_state_value);
+                                    results[index].enabled = f.enabled;
+                                    results[index].feature_segment_value = f;
+                                }
+                            }
+                        });
                         this.setState({ segmentOverrides: res.results });
                     });
             }
         }
 
 
-        updateSegments = segmentOverrides => this.setState({ segmentOverrides })
-
-        saveSegmentOverrides = () => {
-            const { state: { segmentOverrides } } = this;
-            Promise.all(segmentOverrides.map(override => data.put(`${Project.api}features/feature-segments/${override.id}`, override)));
-        }
+        updateSegments = segmentOverrides => this.setState({ segmentOverrides });
 
         render() {
             return (
                 <WrappedComponent
-                  ref="wrappedComponent"
-                  updateSegments={this.updateSegments}
-                  {...this.props}
-                  {...this.state}
+                    ref='wrappedComponent'
+                    updateSegments={this.updateSegments}
+                    {...this.props}
+                    {...this.state}
                 />
             );
         }

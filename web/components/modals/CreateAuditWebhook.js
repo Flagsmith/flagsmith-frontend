@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Highlight from '../Highlight';
-import withSegmentOverrides from '../../../common/providers/withSegmentOverrides';
 import ErrorMessage from '../ErrorMessage';
 import Constants from '../../../common/constants';
 import TestWebhook from '../TestWebhook';
@@ -132,4 +131,4 @@ const CreateAuditWebhook = class extends Component {
 
 CreateAuditWebhook.propTypes = {};
 
-module.exports = ConfigProvider(withSegmentOverrides(CreateAuditWebhook));
+module.exports = ConfigProvider(CreateAuditWebhook);

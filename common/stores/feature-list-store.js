@@ -119,11 +119,13 @@ const controller = {
             ? data.post(`${Project.api}features/feature-segments/update-priorities/`, segmentOverrides.map((override, index) => ({
                 id: override.id,
                 priority: index,
-            }))).then(() => Promise.all(segmentOverrides.map(override => data.put(`${Project.api}features/feature-segments/${override.id}/`, {
-                ...override,
-                feature: projectFlag.id,
-                value: (override.value === null || typeof override.value === 'undefined') ? '' : override.value,
-            })))) : Promise.resolve();
+            }))).then(() => Promise.all(segmentOverrides.map(override => {
+                return data.put(`${Project.api}features/featurestates/${override.feature_segment_value.id}/`, {
+                    ...override.feature_segment_value,
+                    feature_state_value: Utils.valueToFeatureState(override.value),
+                    enabled: override.enabled,
+                });
+            }))) : Promise.resolve();
 
 
         Promise.all([prom, segmentOverridesRequest]).then(([res, segmentRes]) => {
