@@ -5,7 +5,7 @@ const path = require('path');
 
 const SLACK_TOKEN = process.env.SLACK_TOKEN;
 const slackUpload = SLACK_TOKEN && require('./slack-upload.test');
-const slackMessage = false && require('../server/slack-client'); // to enable e2e slack messages change to SLACK_TOKEN && require
+const slackMessage = true && require('../server/slack-client'); // to enable e2e slack messages change to SLACK_TOKEN && require
 const fork = require('child_process').fork;
 
 process.env.PORT = 8081;
