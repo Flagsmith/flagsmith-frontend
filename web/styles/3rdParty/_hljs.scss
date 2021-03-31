@@ -28,6 +28,9 @@
   -webkit-transition-delay: $delay;
   transition-delay:         $delay;
 }
+.invalid .value-editor .hljs{
+  border: 2px solid $brand-danger;
+}
 .value-editor {
   position: relative;
   code {

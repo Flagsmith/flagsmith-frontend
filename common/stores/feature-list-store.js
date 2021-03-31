@@ -55,12 +55,15 @@ const controller = {
             })),
         };
     },
-    editFlag(projectId, flag) {
+    editFlag(projectId, flag,onComplete) {
         data.put(`${Project.api}projects/${projectId}/features/${flag.id}/`, {
             ...flag,
             project: projectId,
         })
             .then((res) => {
+                if(onComplete) {
+                    onComplete(res);
+                }
                 const index = _.findIndex(store.model.features, { id: flag.id });
                 store.model.features[index] = controller.parseFlag(flag);
                 store.model.lastSaved = new Date().valueOf();
@@ -192,7 +195,7 @@ store.dispatcherIndex = Dispatcher.register(store, (payload) => {
             controller.editFeatureState(action.projectId, action.environmentId, action.flag, action.projectFlag, action.environmentFlag, action.segmentOverrides);
             break;
         case Actions.EDIT_FLAG:
-            controller.editFlag(action.projectId, action.flag);
+            controller.editFlag(action.projectId, action.flag, action.onComplete);
             break;
         case Actions.REMOVE_FLAG:
             controller.removeFlag(action.projectId, action.flag);

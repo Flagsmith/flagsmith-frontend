@@ -55,10 +55,15 @@ const FeatureListProvider = class extends Component {
     };
 
     editFlag = (projectId, environmentId, flag, projectFlag, environmentFlag, segmentOverrides) => {
-        AppActions.editEnvironmentFlag(projectId, environmentId, flag, projectFlag, environmentFlag, segmentOverrides);
-        if (flag.description !== projectFlag.description || flag.tags !== projectFlag.tags) {
-            AppActions.editFlag(projectId, Object.assign({}, projectFlag, flag));
-        }
+        AppActions.editFlag(projectId, Object.assign({}, projectFlag, flag), (newProjectFlag) => {
+            AppActions.editEnvironmentFlag(projectId, environmentId, flag, projectFlag, {
+                ...environmentFlag,
+                multivariate_feature_state_values: newProjectFlag.multivariate_options && newProjectFlag.multivariate_options.map((v)=>({
+                    multivariate_feature_option:v.id,
+                    percentage_allocation:v.default_percentage_allocation
+                }))
+            }, segmentOverrides);
+        });
     };
 
     removeFlag = (projectId, flag) => {

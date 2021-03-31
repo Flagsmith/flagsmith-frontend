@@ -126,6 +126,7 @@ const CreateFlag = class extends Component {
                 tags: this.state.tags,
                 hide_from_client,
                 description,
+                multivariate_options: this.state.multivariate_options,
             }, projectFlag, environmentFlag, segmentOverrides);
         }
     }
@@ -245,7 +246,7 @@ const CreateFlag = class extends Component {
             multivariate_options: this.state.multivariate_options.concat([
                 {
                     ...Utils.valueToFeatureState(''),
-                    default_percentage_aollocation: 0,
+                    default_percentage_allocation: 0,
                 },
             ]),
         });
@@ -264,11 +265,18 @@ const CreateFlag = class extends Component {
     }
 
     updateVariation = (i, e) => {
-        this.state.multivariate_options[i] = {
-            ...this.state.multivariate_options[i],
-            ...Utils.valueToFeatureState(e),
-        };
+        this.state.multivariate_options[i] = e;
         this.forceUpdate();
+    }
+
+    calculateControl = () => {
+
+    }
+
+    calculateControl = (multivariate_options) => {
+        let total = 0;
+        multivariate_options.map(v => total += v.default_percentage_allocation);
+        return 100 - total;
     }
 
     render() {
@@ -284,9 +292,10 @@ const CreateFlag = class extends Component {
         } = this.state;
         const { isEdit, hasFeature, projectFlag, identity, identityName } = this.props;
         const Provider = identity ? IdentityProvider : FeatureListProvider;
-        const valueString = multivariate_options.length ? 'Control Value' : `Value (optional)${' - these can be set per environment'}`;
+        const controlValue = this.calculateControl(multivariate_options);
+        const valueString = multivariate_options.length ? `Control Value - ${controlValue}%` : `Value (optional)${' - these can be set per environment'}`;
         const enabledString = isEdit ? 'Enabled' : 'Enabled by default';
-
+        const invalid = multivariate_options.length && controlValue < 0;
         const Settings = (
             <>
                 {hasFeature('tags') && !identity && this.state.tags && (
@@ -390,6 +399,11 @@ const CreateFlag = class extends Component {
                 </FormGroup>
                 {this.props.hasFeature('mv') && (
                     <div>
+                        {invalid && (
+                            <div className="alert alert-danger">
+                                Your variation percentage splits total to over 100%
+                            </div>
+                        )}
                         {multivariate_options.length ? (
                             <FormGroup className="ml-3 mb-4 mr-3">
 
@@ -725,7 +739,7 @@ const CreateFlag = class extends Component {
                                     </div>
                                     <div className="text-right mb-2">
                                         {isEdit ? (
-                                            <Button data-test="update-feature-btn" id="update-feature-btn" disabled={isSaving || !name}>
+                                            <Button data-test="update-feature-btn" id="update-feature-btn" disabled={isSaving || !name || invalid}>
                                                 {isSaving ? 'Updating' : 'Update Feature'}
                                             </Button>
                                         ) : (

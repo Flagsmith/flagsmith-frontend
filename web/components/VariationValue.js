@@ -7,50 +7,60 @@ const VariationValue = ({
     onChange,
     weightTitle,
     onRemove,
-}) => {
-    return (
-        <div className="panel panel-without-heading mb-2">
-            <div className="panel-content">
-                <Row>
-                    <div className="flex flex-1">
-                        <InputGroup
-                            component={(
-                                <ValueEditor
-                                    data-test="featureValue"
-                                    name="featureValue" className="full-width"
-                                    value={Utils.getTypedValue(Utils.featureStateToValue(value))}
-                                    onChange={onChange}
-                                    placeholder="e.g. 'big' "
-                                />
+}) => (
+    <div className="panel panel-without-heading mb-2">
+        <div className="panel-content">
+            <Row>
+                <div className="flex flex-1">
+                    <InputGroup
+                      component={(
+                          <ValueEditor
+                            data-test="featureValue"
+                            name="featureValue" className="full-width"
+                            value={Utils.getTypedValue(Utils.featureStateToValue(value))}
+                            onChange={(e) => {
+                                onChange({
+                                    ...value,
+                                    ...Utils.valueToFeatureState(Utils.safeParseEventValue(e)),
+                                });
+                            }}
+                            placeholder="e.g. 'big' "
+                          />
                             )}
-                            tooltip={Constants.strings.REMOTE_CONFIG_DESCRIPTION}
-                            title="Value"
-                        />
-                    </div>
-                    <div className="ml-2" style={{ width: 200 }}>
-                        <InputGroup
-                            type="text"
-                            inputProps={{ style: { marginTop: 2 } }}
-                            title={weightTitle}
-                        />
-                    </div>
-                    {!!onRemove && (
-                        <div className="ml-2" style={{ width: 30, marginTop: 22 }}>
-                            <button
-                                onClick={onRemove}
-                                id="delete-multivariate"
-                                type="button"
-                                className="btn btn--with-icon ml-auto btn--remove"
-                            >
-                                <RemoveIcon/>
-                            </button>
-                        </div>
-                    )}
+                      tooltip={Constants.strings.REMOTE_CONFIG_DESCRIPTION}
+                      title="Value"
+                    />
+                </div>
+                <div className="ml-2" style={{ width: 200 }}>
+                    <InputGroup
+                      type="text"
+                      onChange={(e) => {
+                          onChange({
+                              ...value,
+                              default_percentage_allocation: parseInt(Utils.safeParseEventValue(e)),
+                          });
+                      }}
+                      value={value.default_percentage_allocation}
+                      inputProps={{ style: { marginTop: 2 } }}
+                      title={weightTitle}
+                    />
+                </div>
+                {!!onRemove && (
+                <div className="ml-2" style={{ width: 30, marginTop: 22 }}>
+                    <button
+                      onClick={onRemove}
+                      id="delete-multivariate"
+                      type="button"
+                      className="btn btn--with-icon ml-auto btn--remove"
+                    >
+                        <RemoveIcon/>
+                    </button>
+                </div>
+                )}
 
-                </Row>
-            </div>
+            </Row>
         </div>
-    );
-};
+    </div>
+);
 
 export default VariationValue;
