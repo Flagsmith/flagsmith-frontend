@@ -284,7 +284,7 @@ const CreateFlag = class extends Component {
         } = this.state;
         const { isEdit, hasFeature, projectFlag, identity, identityName } = this.props;
         const Provider = identity ? IdentityProvider : FeatureListProvider;
-        const valueString = multivariate_options.length ? 'Control Value' : `Value (optional)${' - these can be set per environment'}`;
+        const valueString = multivariate_options && multivariate_options.length ? 'Control Value' : `Value (optional)${' - these can be set per environment'}`;
         const enabledString = isEdit ? 'Enabled' : 'Enabled by default';
 
         const Settings = (
