@@ -37,6 +37,168 @@ $animation-timing-function: ease-in-out;
     }
 }
 
+.dark {
+    .aside {
+        box-shadow:  $aside-box-shadow-dark;
+        background-color: $aside-left-bg-dark;
+
+        &__add-btn {
+            path {
+                fill: $aside-add-color-dark;
+            }
+        }
+
+        .btn--project {
+            &:hover {
+                color: white;
+            }
+            background:  $aside-project-link-dark !important;
+            color: $aside-project-link-color-dark !important;
+            &.active {
+                color: $aside-project-link-color-active-dark !important;
+                background: $aside-project-link-active-dark !important;
+                box-shadow: $aside-project-link-active-box-shadow;
+            }
+        }
+
+        .collapsible {
+            &__header {
+                color: $aside-nav-color-dark;
+                svg {
+                    path {
+                        fill: $aside-nav-color-dark;
+                    }
+                }
+            }
+
+            &.active {
+                &__header {
+                    color: $aside-nav-color-dark;
+                    svg {
+                        path {
+                            fill: $aside-nav-color-dark;
+                        }
+                    }
+                }
+
+            }
+        }
+
+
+        &__projects-item {
+            &-title {
+                color: $aside-left-color-dark;
+                &.active {
+                    color: $aside-left-color-active-dark;
+                }
+            }
+        }
+
+        &__main-content {
+            background-color: $aside-bg-dark;
+        }
+        &__nav-item {
+            color: $aside-nav-color-dark;
+            &.disabled {
+                &.active, &.active:hover {
+                    color: $aside-nav-color-dark;
+                }
+            }
+            path {
+                fill: $aside-nav-color-dark;
+            }
+            &.active, &.active:hover {
+                background-color: $aside-nav-active-dark;
+                color: $aside-nav-active-color-dark;
+                .aside__nav-item--icon {
+                    path {
+                        fill: $aside-nav-active-color-dark !important;
+                    }
+                }
+            }
+
+            &:hover {
+                color: $aside-nav-hover-dark;
+                path {
+                    color: $aside-nav-hover-dark;
+                }
+            }
+        }
+        .aside__header-link {
+            &.active, &.active:hover {
+                .aside__title-wrapper {
+                    background-color: $aside-nav-active-dark;
+                    color: $aside-nav-active-color-dark;
+                    path {
+                        fill: $aside-nav-active-color-dark;
+                    }
+                }
+            }
+        }
+
+        &__link-text {
+            color: $aside-link-alt-color-dark;
+        }
+
+        &__link-icon {
+            color: $aside-link-alt-color-dark;
+        }
+
+        &__project-title {
+            color: $aside-nav-color-dark;
+        }
+
+        .collapsible.active {
+            background-color: $aside-nav-collapse-dark;
+            box-shadow: inset 4px 0 0 $aside-nav-collapse-border-dark;
+        }
+
+
+        &__environment-list-item {
+            color: $aside-nav-inactive-color-dark;
+            path {
+                fill: $aside-nav-inactive-color-dark;
+            }
+            &:hover {
+                color: $aside-nav-inactive-hover-color-dark;
+                path {
+                    fill: $aside-nav-inactive-hover-color-dark;
+                }
+            }
+            &.active, &.active:hover {
+                background-color: $aside-nav-active-dark;
+                color: $aside-nav-active-color-dark;
+                path {
+                    fill: $aside-nav-active-color-dark;
+                }
+            }
+
+            &:hover {
+                color: $aside-nav-hover-dark;
+            }
+
+        }
+
+        &__footer {
+            background-color: $aside-bg-dark;
+        }
+
+
+
+        .aside {
+            &__main-content {
+                background-color: $aside-bg-dark;
+                width: 250px;
+            }
+            .collapsible.active {
+                background-color: $aside-nav-collapse-dark;
+                box-shadow: inset 4px 0 0 $aside-nav-collapse-border-dark;
+            }
+        }
+    }
+
+}
+
 .aside {
     position: fixed;
     animation-name: asideIn;

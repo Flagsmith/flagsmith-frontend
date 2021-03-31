@@ -29,14 +29,25 @@ const App = class extends Component {
     state = {
         asideIsVisible: !isMobile,
         pin: '',
-    }
+    };
 
     constructor(props, context) {
         super(props, context);
+        ES6Component(this);
     }
 
     componentDidMount = () => {
         window.addEventListener('scroll', this.handleScroll);
+    };
+
+    toggleDarkMode = () => {
+        const newValue = !flagsmith.hasFeature('dark_mode');
+        flagsmith.setTrait('dark_mode', newValue);
+        if (newValue) {
+            document.body.classList.add('dark');
+        } else {
+            document.body.classList.remove('dark');
+        }
     };
 
     componentWillReceiveProps(nextProps) {
@@ -52,11 +63,11 @@ const App = class extends Component {
         if (this.mobileNav && this.mobileNav.isActive()) {
             this.mobileNav.toggle();
         }
-    }
+    };
 
     toggleAside = () => {
         this.setState({ asideIsVisible: !this.state.asideIsVisible });
-    }
+    };
 
     onLogin = () => {
         let { redirect } = Utils.fromParam();
@@ -110,16 +121,24 @@ const App = class extends Component {
                     });
             }
         }
+
+
+        if (flagsmith.hasFeature('dark_mode')) {
+            document.body.classList.add('dark');
+        }
     };
 
     handleScroll = () => {
-        if (this.scrollPos < 768 && $(document).scrollTop() >= 768) {
+        if (this.scrollPos < 768 && $(document)
+            .scrollTop() >= 768) {
             this.setState({ myClassName: 'scrolled' });
-        } else if (this.scrollPos >= 768 && $(document).scrollTop() < 768) {
+        } else if (this.scrollPos >= 768 && $(document)
+            .scrollTop() < 768) {
             this.setState({ myClassName: '' });
         }
-        this.scrollPos = $(document).scrollTop();
-    }
+        this.scrollPos = $(document)
+            .scrollTop();
+    };
 
     onLogout = () => {
         this.context.router.history.replace('/');
@@ -127,10 +146,18 @@ const App = class extends Component {
 
     feedback = () => {
         openModal('Feedback', <Feedback />);
-    }
+    };
 
     render() {
-        const { hasFeature, getValue, match: { params }, location } = this.props;
+        if (flagsmith.hasFeature('dark_mode') && !document.body.classList.contains('dark')) {
+            document.body.classList.add('dark');
+        }
+        const {
+            hasFeature,
+            getValue,
+            match: { params },
+            location,
+        } = this.props;
         const pathname = location.pathname;
         const { asideIsVisible } = this.state;
         const match = matchPath(pathname, {
@@ -148,21 +175,22 @@ const App = class extends Component {
         const pageHasAside = environmentId || projectId;
         const isHomepage = pathname == '/' || pathname == '/login' || pathname == '/signup' || pathname.includes('/invite');
         if (Project.amplitude) {
-            amplitude.getInstance().init(Project.amplitude);
+            amplitude.getInstance()
+                .init(Project.amplitude);
         }
         if (AccountStore.getOrganisation() && (AccountStore.getOrganisation().block_access_to_admin)) {
-            return <Blocked/>;
+            return <Blocked />;
         }
         if (Project.maintenance || this.props.error || !window.projectOverrides) {
             return (
-                <Maintenance/>
+                <Maintenance />
             );
         }
         if (this.props.isLoading) {
             return (
                 <AccountProvider onNoUser={this.onNoUser} onLogout={this.onLogout} onLogin={this.onLogin}>
                     {() => (
-                        <AppLoader/>
+                        <AppLoader />
                     )}
                 </AccountProvider>
             );
@@ -170,7 +198,12 @@ const App = class extends Component {
         return (
             <div>
                 <AccountProvider onNoUser={this.onNoUser} onLogout={this.onLogout} onLogin={this.onLogin}>
-                    {({ isLoading, isSaving, user, organisation }, { twoFactorLogin }) => (user && user.twoFactorPrompt ? (
+                    {({
+                        isLoading,
+                        isSaving,
+                        user,
+                        organisation,
+                    }, { twoFactorLogin }) => (user && user.twoFactorPrompt ? (
                         <div className="col-md-6 push-md-3 mt-5">
                             <TwoFactorPrompt
                               pin={this.state.pin}
@@ -188,18 +221,20 @@ const App = class extends Component {
                     ) : (
                         <div>
                             {AccountStore.isDemo && (
-                            <AlertBar className="pulse">
-                                <div>
-                                            You are using a demo account. Finding this useful?
-                                    {' '}
-                                    <Link onClick={() => AppActions.setUser(null)} to="/">
-Click here to Sign
-                                                up
-                                    </Link>
-                                </div>
-                            </AlertBar>
+                                <AlertBar className="pulse">
+                                    <div>
+                                        You are using a demo account. Finding this useful?
+                                        {' '}
+                                        <Link onClick={() => AppActions.setUser(null)} to="/">
+                                            Click here to Sign
+                                            up
+                                        </Link>
+                                    </div>
+                                </AlertBar>
                             )}
-                            <div className={pageHasAside ? `aside-body${isMobile && !asideIsVisible ? '-full-width' : ''}` : ''}>
+                            <div
+                              className={pageHasAside ? `aside-body${isMobile && !asideIsVisible ? '-full-width' : ''}` : ''}
+                            >
                                 {!isHomepage && (!pageHasAside || !asideIsVisible || !isMobile) && (
                                     <nav
                                       className="navbar"
@@ -208,9 +243,12 @@ Click here to Sign
                                             <div className="navbar-left">
                                                 <div className="navbar-nav">
                                                     {pageHasAside && !asideIsVisible && (
-                                                    <div role="button" className="clickable toggle" onClick={this.toggleAside}>
-                                                        <span className="icon ion-md-menu"/>
-                                                    </div>
+                                                        <div
+                                                          role="button" className="clickable toggle"
+                                                          onClick={this.toggleAside}
+                                                        >
+                                                            <span className="icon ion-md-menu" />
+                                                        </div>
                                                     )}
                                                     {!projectId && (
                                                         <a href={user ? '/projects' : 'https://flagsmith.com'}>
@@ -228,25 +266,25 @@ Click here to Sign
                                                     <React.Fragment>
                                                         <nav className="my-2 my-md-0 hidden-xs-down">
                                                             {organisation && !organisation.subscription && (
-                                                            <a
-                                                              href="#"
-                                                              disabled={!this.state.manageSubscriptionLoaded}
-                                                              className="cursor-pointer nav-link p-2"
-                                                              onClick={() => {
-                                                                  openModal('Payment plans', <PaymentModal
-                                                                    viewOnly={false}
-                                                                  />, null, { large: true });
-                                                              }}
-                                                            >
-                                                                <UpgradeIcon/>
-                                                                Upgrade
-                                                            </a>
+                                                                <a
+                                                                  href="#"
+                                                                  disabled={!this.state.manageSubscriptionLoaded}
+                                                                  className="cursor-pointer nav-link p-2"
+                                                                  onClick={() => {
+                                                                      openModal('Payment plans', <PaymentModal
+                                                                        viewOnly={false}
+                                                                      />, null, { large: true });
+                                                                  }}
+                                                                >
+                                                                    <UpgradeIcon />
+                                                                    Upgrade
+                                                                </a>
                                                             )}
                                                             <a
                                                               href="https://docs.flagsmith.com"
                                                               target="_blank" className="nav-link p-2"
                                                             >
-                                                                <DocumentationIcon/>
+                                                                <DocumentationIcon />
                                                                 Docs
                                                             </a>
                                                             <NavLink
@@ -255,17 +293,21 @@ Click here to Sign
                                                               className="nav-link p-2"
                                                               to={projectId ? `/project/${projectId}/environment/${environmentId}/account` : '/account'}
                                                             >
-                                                                <UserSettingsIcon/>
+                                                                <UserSettingsIcon />
                                                                 Account
                                                             </NavLink>
                                                         </nav>
+
 
                                                         <div className="org-nav">
                                                             <Popover
                                                               className="popover-right"
                                                               contentClassName="popover-bt"
                                                               renderTitle={toggle => (
-                                                                  <a className="nav-link" id="org-menu" onClick={toggle}>
+                                                                  <a
+                                                                    className="nav-link" id="org-menu"
+                                                                    onClick={toggle}
+                                                                  >
                                                                       <span className="nav-link-featured relative">
                                                                           {organisation ? organisation.name : ''}
                                                                           <span
@@ -277,19 +319,22 @@ Click here to Sign
                                                             >
                                                                 {toggle => (
                                                                     <div className="popover-inner__content">
-                                                                        <span className="popover-bt__title">Organisations</span>
+                                                                        <span
+                                                                          className="popover-bt__title"
+                                                                        >Organisations
+                                                                        </span>
                                                                         {organisation && (
-                                                                        <OrganisationSelect
-                                                                          projectId={projectId}
-                                                                          environmentId={environmentId}
-                                                                          clearableValue={false}
-                                                                          onChange={(organisation) => {
-                                                                              toggle();
-                                                                              AppActions.selectOrganisation(organisation.id);
-                                                                              AppActions.getOrganisation(organisation.id);
-                                                                              this.context.router.history.push('/projects');
-                                                                          }}
-                                                                        />
+                                                                            <OrganisationSelect
+                                                                              projectId={projectId}
+                                                                              environmentId={environmentId}
+                                                                              clearableValue={false}
+                                                                              onChange={(organisation) => {
+                                                                                  toggle();
+                                                                                  AppActions.selectOrganisation(organisation.id);
+                                                                                  AppActions.getOrganisation(organisation.id);
+                                                                                  this.context.router.history.push('/projects');
+                                                                              }}
+                                                                            />
                                                                         )}
 
 
@@ -300,7 +345,9 @@ Click here to Sign
                                                                             >
                                                                                 <Button>
 
-                                                                                Create Organisation <span className="ion-md-add"/>
+                                                                                    Create Organisation <span
+                                                                                      className="ion-md-add"
+                                                                                    />
 
                                                                                 </Button>
                                                                             </Link>
@@ -311,12 +358,22 @@ Click here to Sign
                                                                           onClick={AppActions.logout}
                                                                           className="popover-bt__list-item"
                                                                         >
-                                                                            <img src="/images/icons/aside/logout-dark.svg" className="mr-2" />
-                                                                        Logout
+                                                                            <img
+                                                                              src="/images/icons/aside/logout-dark.svg"
+                                                                              className="mr-2"
+                                                                            />
+                                                                            Logout
                                                                         </a>
                                                                     </div>
                                                                 )}
                                                             </Popover>
+                                                        </div>
+
+                                                        <div style={{ marginRight: -15, marginTop: 5 }} className="ml-4 dark-mode">
+                                                            <Switch
+                                                              checked={flagsmith.hasFeature('dark_mode')} onChange={this.toggleDarkMode} onMarkup="Light"
+                                                              offMarkup="Dark"
+                                                            />
                                                         </div>
                                                     </React.Fragment>
                                                 ) : (
@@ -328,18 +385,21 @@ Click here to Sign
                                     </nav>
                                 )}
                                 {pageHasAside && (
-                                <Aside
-                                  className={`${AccountStore.isDemo ? 'demo' : ''} ${AccountStore.isDemo ? 'footer' : ''}`}
-                                  projectId={projectId}
-                                  environmentId={environmentId}
-                                  toggleAside={this.toggleAside}
-                                  asideIsVisible={asideIsVisible}
-                                />
+                                    <Aside
+                                      className={`${AccountStore.isDemo ? 'demo' : ''} ${AccountStore.isDemo ? 'footer' : ''}`}
+                                      projectId={projectId}
+                                      environmentId={environmentId}
+                                      toggleAside={this.toggleAside}
+                                      asideIsVisible={asideIsVisible}
+                                    />
                                 )}
                                 {isMobile && pageHasAside && asideIsVisible ? null : (
                                     <div>
                                         {this.props.getValue('butter_bar') && (
-                                        <div dangerouslySetInnerHTML={{ __html: this.props.getValue('butter_bar') }} className="butter-bar" />
+                                            <div
+                                              dangerouslySetInnerHTML={{ __html: this.props.getValue('butter_bar') }}
+                                              className="butter-bar"
+                                            />
                                         )}
                                         {this.props.children}
                                     </div>

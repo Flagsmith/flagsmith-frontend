@@ -5,6 +5,7 @@
   }
   .feature-value {
     .feature-value-container {
+      display: inline-block;
       .quot,.feature-value {
         color: $bt-brand-secondary !important;
       }

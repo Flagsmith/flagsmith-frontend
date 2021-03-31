@@ -36,7 +36,7 @@ const PaymentModal = class extends Component {
                         organisation,
                     }, { createOrganisation, selectOrganisation, editOrganisation, deleteOrganisation }) => (
                         <div>
-                            <div style={{ backgroundColor: 'white' }}>
+                            <div>
                                 <div className="col-md-12">
                                     <div className="flex-row row-center">
                                         <div className="col-md-4 pricing-panel">

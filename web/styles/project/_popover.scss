@@ -1,10 +1,47 @@
 @import "../mixins/box-shadow-mixin";
 @import "../mixins/transition-mixin";
 
+.dark {
+    .popover {
+        background-color: $dark-bg-2;
+        &-bt {
+            border-top: 8px solid $dark-bg-2;
+            &:before {
+                border-left: 15px solid transparent;
+                border-right: 15px solid transparent;
+                border-bottom: 16px solid $dark-bg-2;
+            }
+
+            &__title {
+                color: $dark-highlight-color;
+                border-bottom: 1px solid $dark-bg-2;
+            }
+
+            &__list-item{
+                border-bottom: 1px solid $dark-bg-0 !important;
+
+                .btn {
+                    color: $bt-link-color-dark !important;
+                }
+
+                a {
+                    color: $dark-color !important;
+                    &:hover {
+                        color: $dark-highlight-color !important;
+                        //background-color: $bt-brand-faint-alt;
+                        text-decoration: none;
+                    }
+                }
+                border-bottom: 1px solid $dark-bg-2;
+            }
+        }
+    }
+}
+
 .popover {
     @include transition(all 300ms ease);
     border: none;
-    background-color: white;
+    background-color: $body-bg;
     z-index: 2000;
     width: auto;
     transform-origin: top;
@@ -71,7 +108,7 @@
                 &:hover {
                     box-shadow: none !important;
                 }
-                color: $link-color !important;
+                color: $bt-link-color !important;
             }
 
             &.active {

@@ -21,7 +21,7 @@ const FormGroup = class extends Component {
         const id = Utils.GUID();
         const { inputProps } = this.props;
         return (
-            <div className={`${this.props.className} form-group`}>
+            <div className={`${this.props.className} form-group ${(this.props.isInvalid ? 'invalid' : '')}`}>
                 {this.props.tooltip ? (
                     <Tooltip
                       title={<label htmlFor={id} className="cols-sm-2 control-label">{props.title} <span className="icon ion-ios-information-circle"/></label>}
@@ -49,6 +49,7 @@ const FormGroup = class extends Component {
                                   ref={c => this.input = c} {...props.inputProps} isValid={props.isValid}
                                   disabled={props.disabled}
                                   value={props.value}
+                                  defaultValue={props.defaultValue}
                                   data-test={props['data-test']}
                                   onChange={props.onChange} type={props.type || 'text'} id={id}
                                   placeholder={props.placeholder}
@@ -57,6 +58,7 @@ const FormGroup = class extends Component {
                                 <Input
                                   ref={c => this.input = c} {...props.inputProps} isValid={props.isValid}
                                   disabled={props.disabled}
+                                  defaultValue={props.defaultValue}
                                   value={props.value}
                                   data-test={props['data-test']}
                                   onChange={props.onChange} type={props.type || 'text'} id={id}

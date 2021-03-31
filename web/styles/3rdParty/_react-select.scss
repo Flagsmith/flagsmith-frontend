@@ -10,3 +10,23 @@
     padding: 0px 8px;
   }
 }
+.dark {
+  .react-select {
+    &__control {
+      background: $input-bg-dark;
+      border: none;
+    }
+    &__indicator-separator {
+      display: none;
+    }
+    &__menu {
+      background: $input-bg-dark;
+    }
+    &__option {
+      background: $dark-bg-0;
+      &:hover {
+        background: darken($dark-bg-0,2);
+      }
+    }
+  }
+}

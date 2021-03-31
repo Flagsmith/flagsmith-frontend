@@ -73,9 +73,9 @@ const sendFailure = (browser, done, request, error) => {
     console.log('Last request:', lastRequest);
     console.log('Last error:', lastError);
     browser.getLog('browser', (logEntries) => {
-        // logEntries.forEach((log) => {
-        //     console.log(`[${log.level}] ${log.message}`);
-        // });
+        logEntries.forEach((log) => {
+            console.log(`[${log.level}] ${log.message}`);
+        });
         browser
             .source((result) => {
                 // Source will be stored in result.value

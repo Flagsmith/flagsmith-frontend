@@ -2,7 +2,20 @@
 
 $switch-height: 25px;
 $switch-width: 60px;
+.dark {
+  .rc-switch {
+    &:after {
+      background: $panel-heading-bg-dark;
+    }
+    background-color: $bt-switch-dark;
+    border: 1px solid $bt-switch-dark;
 
+  }
+  .rc-switch-checked {
+    border: 1px solid $bt-switch-active-dark;
+    background-color: $bt-switch-active-dark;
+  }
+}
 .switch-checked,.switch-unchecked, {
   position: absolute;
   top: 0;
@@ -92,8 +105,8 @@ $switch-width: 60px;
   height: $switch-height;
   vertical-align: middle;
   border-radius: 20px 20px;
-  border: 1px solid #999;
-  background-color: #999;
+  border: 1px solid $bt-switch;
+  background-color: $bt-switch;
   cursor: pointer;
   -webkit-transition: all 0.3s cubic-bezier(0.35, 0, 0.25, 1);
   transition: all 0.3s cubic-bezier(0.35, 0, 0.25, 1);

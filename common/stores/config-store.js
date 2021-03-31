@@ -14,7 +14,7 @@ const controller = {
         store.goneABitWest();
     },
     loaded(oldFlags) { // Occurs whenever flags are changed
-        if (!oldFlags) {
+        if (!Object.keys(oldFlags).length) {
             store.loaded();
         } else {
             store.changed();

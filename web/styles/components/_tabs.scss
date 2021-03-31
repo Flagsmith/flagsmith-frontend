@@ -1,5 +1,24 @@
 @import "../variables";
-
+.dark {
+	.tabs-nav {
+		background-color: $tab-inactive-background-dark;
+		button,button.btn,button.btn-primary {
+			background-color: $tab-inactive-background-dark;
+			color: $tab-inactive-color-dark;
+			&:hover {
+				color: $tab-active-color-dark;
+				background-color: $tab-inactive-background-dark;
+			}
+			&.tab-active {
+				background: $tab-active-background-dark;
+				color: $tab-active-color-dark;
+			}
+		}
+	}
+	.tab-line {
+		background-color: $tab-line-color-dark;
+	}
+}
 .tabs-nav {
 	display: flex;
 	flex-direction: row;
@@ -27,7 +46,6 @@
 			box-shadow: none;
 		}
 		&:active {
-			background: #dedede !important;
 			box-shadow: none;
 		}
 		min-height: 34px;

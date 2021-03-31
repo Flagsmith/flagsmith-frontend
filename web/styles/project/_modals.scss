@@ -13,7 +13,7 @@
         }
         font-weight: 500;
         font-family: $headings-font-family;
-        border-radius: 4px 4px 0 0;
+        border-radius: 0;
         font-size: 1.75rem;
         letter-spacing: 0.8px;
         -webkit-font-smoothing:antialiased;
@@ -34,6 +34,35 @@
 }
 
 $side-width: 66%;
+.dark {
+    .inline-modal {
+        background: $body-bg-dark;
+        border-color: $body-bg-dark;
+        box-shadow:rgba(0, 0, 0, 0.25) 0px 1px 6px 0px, rgba(0, 0, 0, 0.25) 0px 1px 4px 0px;
+
+    }
+    .modal-footer {
+        background: $body-bg-dark;
+    }
+    .side-modal {
+        .modal-header {
+            background: $side-modal-header-background-dark;
+        }
+        &__footer {
+            background: $side-modal-header-background-dark;
+        }
+    }
+    .modal-header {
+        background: $modal-header-background-dark;
+        color: $modal-header-color-dark !important;
+    }
+    .modal-body {
+        background: $body-bg-dark;
+    }
+    .modal-content {
+        box-shadow:rgba(0, 0, 0, 0.25) 0px 1px 6px 0px, rgba(0, 0, 0, 0.25) 0px 1px 4px 0px;
+    }
+}
 .side-modal {
     overflow-y: hidden!important;
     .close {
@@ -55,7 +84,7 @@ $side-width: 66%;
     bottom:0;
     opacity: 1;
     .modal-header {
-            background: white !important;
+        background: $modal-header-background;
         border-radius: 0;
         text-align: left;
     }
@@ -93,7 +122,7 @@ $side-width: 66%;
         right: 0;
         padding: 20px;
         height:130px;
-        background-color: white;
+        background-color: $side-modal-header-background;
     }
     .modal-content {
         border: none;
@@ -143,7 +172,7 @@ $side-width: 66%;
 
 .inline-modal {
     position: absolute;
-    background: white;
+    background: $body-bg;
     border-radius: 4px;
     z-index: 1;
     box-shadow:rgba(75, 75, 75, 0.11) 0px 1px 6px 0px, rgba(75, 75, 75, 0.11) 0px 1px 4px 0px;

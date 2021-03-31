@@ -3,6 +3,14 @@ h1,h2,h3,h4,h5,h6{
     font-family: $font-family-header;
 }
 
+.dark {
+    h1,h2,h3,h4,h5,h6 {
+        color: $header-color-dark;
+
+    }
+}
+
+
 * {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -30,10 +38,14 @@ a.dark{
 }
 
 p{
-    color: #22354a;
+    color: $p-color;
     opacity: 0.85;
     font-family: $font-family;
     line-height: 1.5;
+}
+
+.dark p {
+    color: $p-color-dark;
 }
 
 .text {

@@ -22,13 +22,72 @@ a, .btn, button{
         }
     }
 }
+.dark {
+    .btn {
+        &.btn-link {
+            background: transparent;
+        }
+        background: $button-bg-dark;
 
+        &:hover, &:disabled:hover {
+            background: $button-bg-dark-hover;
+        }
+
+        color:$btn-color-dark;
+
+        &:hover {
+            box-shadow: none;
+        }
+
+        &--outline {
+            background: $body-bg-dark;
+            border: 2px solid $dark-highlight !important;
+            color: $dark-highlight-color;
+            line-height: 37px;
+
+            &:hover {
+                background-color: darken($body-bg-dark,2);
+            }
+        }
+        &--with-icon {
+            background: none !important;
+
+            &.primary {
+                color: $dark-highlight-color;
+
+                path {
+                    fill: $dark-highlight-color;
+                }
+            }
+            &:hover, &:focus {
+                background:none !important;
+                color:$dark-highlight3 !important;
+                path {
+                    fill:$dark-highlight3 !important;
+                }
+            }
+        }
+        &--link {
+            color: $bt-link-color-dark;
+            background-color: transparent;
+            &:hover, &:active  {
+                background-color: transparent;
+            }
+        }
+        &__oauth {
+            color: $header-color-dark !important;
+            svg path {
+                fill: $header-color-dark !important;
+            }
+        }
+    }
+}
 .btn, button.btn{
     outline: none !important;
     background: $bt-brand-primary-dark-desaturated-lighter;
     transition: $button-transition;
     border-radius: $border-radius-default !important;
-    color:#fff;
+    color:$btn-color;
     text-align: center;
     border: none !important;
     padding: 0 20px;
@@ -61,26 +120,11 @@ a, .btn, button{
         background:#d9534f;
     }
 
-    &--secondary{
-        background:$bt-brand-secondary;
-        &:hover {
-            background-color: lighten($bt-brand-secondary, 10);
-        }
-    }
+
     &--outline{
         background: white;
         border: 2px solid $bt-brand-secondary-faint !important;
         color: $bt-brand-secondary-faint;
-        line-height: 37px;
-        &:hover {
-            background-color: white;
-        }
-    }
-
-    &--outline-red{
-        background: white;
-        border: 2px solid $bt-brand-red !important;
-        color: $bt-brand-red;
         line-height: 37px;
         &:hover {
             background-color: white;
@@ -170,7 +214,7 @@ a, .btn, button{
         }
     }
     &--with-icon{
-        background:none;
+        background:none !important;
         &.primary {
             color:$bt-brand-primary-dark-desaturated-lighter;
             path {
@@ -213,7 +257,7 @@ a, .btn, button{
         display: inline-block;
         color: #000 !important;
         font-weight: bold;
-        width: 150px;
+        text-align: left;
         &:hover {
             text-decoration: none;
         }
@@ -221,7 +265,12 @@ a, .btn, button{
         -webkit-user-select: none;
         -ms-user-select: none;
         -moz-user-select: none;
-        img {
+        position: relative;
+        padding-left: 55px;
+        svg {
+            position: absolute;
+            left: 20px;
+            top: 7px;
             height: 24px;
         }
         margin-top: 10px;

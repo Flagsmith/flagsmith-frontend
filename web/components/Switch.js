@@ -21,16 +21,16 @@ export default class Switch extends PureComponent {
                         this.props.onChange(!this.props.checked);
                     }}
                   >
-                      {this.props.checked ? 'On' : 'Off'}
+                      {this.props.checked ? this.props.offMarkup || 'On' : this.props.onMarkup || 'Off'}
                   </button>
               </div>
           );
       }
       return (
-          <div style={{ height: '28px', marginTop: 8, display: 'inline-block', position: 'relative' }}>
+          <div style={{ height: '28px', display: 'inline-block', position: 'relative' }}>
               <RCSwitch {...this.props}/>
-              {this.props.checked ? <div className="switch-checked">On</div> : (
-                  <div className="switch-unchecked">Off</div>
+              {this.props.checked ? <div className="switch-checked">{this.props.offMarkup || 'On'}</div> : (
+                  <div className="switch-unchecked">{this.props.onMarkup || 'Off'}</div>
               )}
           </div>
       );

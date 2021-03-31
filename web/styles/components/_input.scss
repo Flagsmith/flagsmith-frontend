@@ -12,6 +12,8 @@ textarea {
 	}
 }
 
+
+
 .input-container {
 	font-family: $font-family;
 	font-size: $input-font-size;
@@ -55,7 +57,7 @@ textarea {
 		}
 	}
 
-	input, input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
+		input, input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
 		font-weight: $input-font-weight;
 		-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 		padding: 0px;
@@ -70,7 +72,7 @@ textarea {
 		background-image: none;
 		color: rgba(0, 0, 0, 0.870588);
 		height: 100%;
-		background-color: white;
+		background-color: $input-bg;
 		&::-webkit-input-placeholder {
 			font-family: $font-family;
 			font-weight: 100;
@@ -105,3 +107,16 @@ textarea {
 	}
 }
 
+
+
+.dark .input-container {
+	input, input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
+		background-color: $input-bg-dark;
+		color: $body-text-dark;
+	}
+}
+.dark textarea {
+	background-color: $input-bg-dark;
+	color: $body-text-dark;
+	border-bottom-color: $dark-bg-5;
+}
