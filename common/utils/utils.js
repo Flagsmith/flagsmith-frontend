@@ -44,6 +44,7 @@ module.exports = Object.assign({}, require('./base/_utils'), {
                 name: projectFlag.name,
                 type: projectFlag.type,
                 feature_state_value: projectFlag.initial_value,
+                multivariate_options: projectFlag.multivariate_options,
                 tags: projectFlag.tags,
                 enabled: false,
                 hide_from_client: false,
@@ -54,6 +55,7 @@ module.exports = Object.assign({}, require('./base/_utils'), {
             return {
                 type: projectFlag.type,
                 name: projectFlag.name,
+                multivariate_options: projectFlag.multivariate_options,
                 feature_state_value: identityFlag.feature_state_value,
                 hide_from_client: environmentFlag.hide_from_client,
                 enabled: identityFlag.enabled,
@@ -66,6 +68,7 @@ module.exports = Object.assign({}, require('./base/_utils'), {
             tags: projectFlag.tags,
             hide_from_client: environmentFlag.hide_from_client,
             feature_state_value: environmentFlag.feature_state_value,
+            multivariate_options: projectFlag.multivariate_options,
             enabled: environmentFlag.enabled,
             description: projectFlag.description,
         };

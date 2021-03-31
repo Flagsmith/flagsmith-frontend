@@ -16,6 +16,7 @@ import DocumentationIcon from './svg/DocumentationIcon';
 import ArrowUpIcon from './svg/ArrowUpIcon';
 import RebrandBanner from './RebrandBanner';
 import UpgradeIcon from './svg/UpgradeIcon';
+
 const App = class extends Component {
     static propTypes = {
         children: propTypes.element.isRequired,
@@ -40,12 +41,12 @@ const App = class extends Component {
     };
 
     toggleDarkMode = () => {
-        const newValue = !flagsmith.hasFeature("dark_mode");
+        const newValue = !flagsmith.hasFeature('dark_mode');
         flagsmith.setTrait('dark_mode', newValue);
-        if(newValue) {
-            document.body.classList.add("dark");
+        if (newValue) {
+            document.body.classList.add('dark');
         } else {
-            document.body.classList.remove("dark");
+            document.body.classList.remove('dark');
         }
     };
 
@@ -120,6 +121,11 @@ const App = class extends Component {
                     });
             }
         }
+
+
+        if (flagsmith.hasFeature('dark_mode')) {
+            document.body.classList.add('dark');
+        }
     };
 
     handleScroll = () => {
@@ -143,6 +149,9 @@ const App = class extends Component {
     };
 
     render() {
+        if (flagsmith.hasFeature('dark_mode') && !document.body.classList.contains('dark')) {
+            document.body.classList.add('dark');
+        }
         const {
             hasFeature,
             getValue,
@@ -195,28 +204,28 @@ const App = class extends Component {
                         user,
                         organisation,
                     }, { twoFactorLogin }) => (user && user.twoFactorPrompt ? (
-                        <div className='col-md-6 push-md-3 mt-5'>
+                        <div className="col-md-6 push-md-3 mt-5">
                             <TwoFactorPrompt
-                                pin={this.state.pin}
-                                error={this.state.error}
-                                onSubmit={() => {
-                                    this.setState({ error: false });
-                                    twoFactorLogin(this.state.pin, () => {
-                                        this.setState({ error: true });
-                                    });
-                                }}
-                                isLoading={isSaving}
-                                onChange={e => this.setState({ pin: Utils.safeParseEventValue(e) })}
+                              pin={this.state.pin}
+                              error={this.state.error}
+                              onSubmit={() => {
+                                  this.setState({ error: false });
+                                  twoFactorLogin(this.state.pin, () => {
+                                      this.setState({ error: true });
+                                  });
+                              }}
+                              isLoading={isSaving}
+                              onChange={e => this.setState({ pin: Utils.safeParseEventValue(e) })}
                             />
                         </div>
                     ) : (
                         <div>
                             {AccountStore.isDemo && (
-                                <AlertBar className='pulse'>
+                                <AlertBar className="pulse">
                                     <div>
                                         You are using a demo account. Finding this useful?
                                         {' '}
-                                        <Link onClick={() => AppActions.setUser(null)} to='/'>
+                                        <Link onClick={() => AppActions.setUser(null)} to="/">
                                             Click here to Sign
                                             up
                                         </Link>
@@ -224,62 +233,65 @@ const App = class extends Component {
                                 </AlertBar>
                             )}
                             <div
-                                className={pageHasAside ? `aside-body${isMobile && !asideIsVisible ? '-full-width' : ''}` : ''}>
+                              className={pageHasAside ? `aside-body${isMobile && !asideIsVisible ? '-full-width' : ''}` : ''}
+                            >
                                 {!isHomepage && (!pageHasAside || !asideIsVisible || !isMobile) && (
                                     <nav
-                                        className='navbar'
+                                      className="navbar"
                                     >
                                         <Row space>
-                                            <div className='navbar-left'>
-                                                <div className='navbar-nav'>
+                                            <div className="navbar-left">
+                                                <div className="navbar-nav">
                                                     {pageHasAside && !asideIsVisible && (
-                                                        <div role='button' className='clickable toggle'
-                                                             onClick={this.toggleAside}>
-                                                            <span className='icon ion-md-menu' />
+                                                        <div
+                                                          role="button" className="clickable toggle"
+                                                          onClick={this.toggleAside}
+                                                        >
+                                                            <span className="icon ion-md-menu" />
                                                         </div>
                                                     )}
                                                     {!projectId && (
                                                         <a href={user ? '/projects' : 'https://flagsmith.com'}>
                                                             <img
-                                                                title='Flagsmith' height={24}
-                                                                src='/images/nav-logo.svg'
-                                                                className='brand' alt='Flagsmith logo'
+                                                              title="Flagsmith" height={24}
+                                                              src="/images/nav-logo.svg"
+                                                              className="brand" alt="Flagsmith logo"
                                                             />
                                                         </a>
                                                     )}
                                                 </div>
                                             </div>
-                                            <Row className='navbar-right'>
+                                            <Row className="navbar-right">
                                                 {user ? (
                                                     <React.Fragment>
-                                                        <nav className='my-2 my-md-0 hidden-xs-down'>
+                                                        <nav className="my-2 my-md-0 hidden-xs-down">
                                                             {organisation && !organisation.subscription && (
                                                                 <a
-                                                                    href='#'
-                                                                    disabled={!this.state.manageSubscriptionLoaded}
-                                                                    className='cursor-pointer nav-link p-2'
-                                                                    onClick={() => {
-                                                                        openModal('Payment plans', <PaymentModal
-                                                                            viewOnly={false}
-                                                                        />, null, { large: true });
-                                                                    }}
+                                                                  href="#"
+                                                                  disabled={!this.state.manageSubscriptionLoaded}
+                                                                  className="cursor-pointer nav-link p-2"
+                                                                  onClick={() => {
+                                                                      openModal('Payment plans', <PaymentModal
+                                                                        viewOnly={false}
+                                                                      />, null, { large: true });
+                                                                  }}
                                                                 >
                                                                     <UpgradeIcon />
                                                                     Upgrade
                                                                 </a>
                                                             )}
                                                             <a
-                                                                href='https://docs.flagsmith.com'
-                                                                target='_blank' className='nav-link p-2'
+                                                              href="https://docs.flagsmith.com"
+                                                              target="_blank" className="nav-link p-2"
                                                             >
                                                                 <DocumentationIcon />
                                                                 Docs
                                                             </a>
                                                             <NavLink
-                                                                id='account-settings-link'
-                                                                activeClassName='active'
-                                                                className='nav-link p-2'
-                                                                to={projectId ? `/project/${projectId}/environment/${environmentId}/account` : '/account'}
+                                                              id="account-settings-link"
+                                                              activeClassName="active"
+                                                              className="nav-link p-2"
+                                                              to={projectId ? `/project/${projectId}/environment/${environmentId}/account` : '/account'}
                                                             >
                                                                 <UserSettingsIcon />
                                                                 Account
@@ -287,63 +299,69 @@ const App = class extends Component {
                                                         </nav>
 
 
-                                                        <div className='org-nav'>
+                                                        <div className="org-nav">
                                                             <Popover
-                                                                className='popover-right'
-                                                                contentClassName='popover-bt'
-                                                                renderTitle={toggle => (
-                                                                    <a className='nav-link' id='org-menu'
-                                                                       onClick={toggle}>
-                                                                      <span className='nav-link-featured relative'>
+                                                              className="popover-right"
+                                                              contentClassName="popover-bt"
+                                                              renderTitle={toggle => (
+                                                                  <a
+                                                                    className="nav-link" id="org-menu"
+                                                                    onClick={toggle}
+                                                                  >
+                                                                      <span className="nav-link-featured relative">
                                                                           {organisation ? organisation.name : ''}
                                                                           <span
-                                                                              className='flex-column ion ion-ios-arrow-down'
+                                                                            className="flex-column ion ion-ios-arrow-down"
                                                                           />
                                                                       </span>
-                                                                    </a>
-                                                                )}
+                                                                  </a>
+                                                              )}
                                                             >
                                                                 {toggle => (
-                                                                    <div className='popover-inner__content'>
+                                                                    <div className="popover-inner__content">
                                                                         <span
-                                                                            className='popover-bt__title'>Organisations</span>
+                                                                          className="popover-bt__title"
+                                                                        >Organisations
+                                                                        </span>
                                                                         {organisation && (
                                                                             <OrganisationSelect
-                                                                                projectId={projectId}
-                                                                                environmentId={environmentId}
-                                                                                clearableValue={false}
-                                                                                onChange={(organisation) => {
-                                                                                    toggle();
-                                                                                    AppActions.selectOrganisation(organisation.id);
-                                                                                    AppActions.getOrganisation(organisation.id);
-                                                                                    this.context.router.history.push('/projects');
-                                                                                }}
+                                                                              projectId={projectId}
+                                                                              environmentId={environmentId}
+                                                                              clearableValue={false}
+                                                                              onChange={(organisation) => {
+                                                                                  toggle();
+                                                                                  AppActions.selectOrganisation(organisation.id);
+                                                                                  AppActions.getOrganisation(organisation.id);
+                                                                                  this.context.router.history.push('/projects');
+                                                                              }}
                                                                             />
                                                                         )}
 
 
-                                                                        <div className='pl-3 pr-3 mt-2 mb-2'>
+                                                                        <div className="pl-3 pr-3 mt-2 mb-2">
                                                                             <Link
-                                                                                id='create-org-link' onClick={toggle}
-                                                                                to='/create'
+                                                                              id="create-org-link" onClick={toggle}
+                                                                              to="/create"
                                                                             >
                                                                                 <Button>
 
                                                                                     Create Organisation <span
-                                                                                    className='ion-md-add' />
+                                                                                      className="ion-md-add"
+                                                                                    />
 
                                                                                 </Button>
                                                                             </Link>
                                                                         </div>
 
                                                                         <a
-                                                                            id='logout-link' href='#'
-                                                                            onClick={AppActions.logout}
-                                                                            className='popover-bt__list-item'
+                                                                          id="logout-link" href="#"
+                                                                          onClick={AppActions.logout}
+                                                                          className="popover-bt__list-item"
                                                                         >
                                                                             <img
-                                                                                src='/images/icons/aside/logout-dark.svg'
-                                                                                className='mr-2' />
+                                                                              src="/images/icons/aside/logout-dark.svg"
+                                                                              className="mr-2"
+                                                                            />
                                                                             Logout
                                                                         </a>
                                                                     </div>
@@ -351,8 +369,11 @@ const App = class extends Component {
                                                             </Popover>
                                                         </div>
 
-                                                        <div style={{marginRight:-15,marginTop:5}} className='ml-4 dark-mode'>
-                                                            <Switch checked={flagsmith.hasFeature("dark_mode")} onChange={this.toggleDarkMode} onMarkup='Light' offMarkup='Dark' />
+                                                        <div style={{ marginRight: -15, marginTop: 5 }} className="ml-4 dark-mode">
+                                                            <Switch
+                                                              checked={flagsmith.hasFeature('dark_mode')} onChange={this.toggleDarkMode} onMarkup="Light"
+                                                              offMarkup="Dark"
+                                                            />
                                                         </div>
                                                     </React.Fragment>
                                                 ) : (
@@ -365,18 +386,20 @@ const App = class extends Component {
                                 )}
                                 {pageHasAside && (
                                     <Aside
-                                        className={`${AccountStore.isDemo ? 'demo' : ''} ${AccountStore.isDemo ? 'footer' : ''}`}
-                                        projectId={projectId}
-                                        environmentId={environmentId}
-                                        toggleAside={this.toggleAside}
-                                        asideIsVisible={asideIsVisible}
+                                      className={`${AccountStore.isDemo ? 'demo' : ''} ${AccountStore.isDemo ? 'footer' : ''}`}
+                                      projectId={projectId}
+                                      environmentId={environmentId}
+                                      toggleAside={this.toggleAside}
+                                      asideIsVisible={asideIsVisible}
                                     />
                                 )}
                                 {isMobile && pageHasAside && asideIsVisible ? null : (
                                     <div>
                                         {this.props.getValue('butter_bar') && (
-                                            <div dangerouslySetInnerHTML={{ __html: this.props.getValue('butter_bar') }}
-                                                 className='butter-bar' />
+                                            <div
+                                              dangerouslySetInnerHTML={{ __html: this.props.getValue('butter_bar') }}
+                                              className="butter-bar"
+                                            />
                                         )}
                                         {this.props.children}
                                     </div>

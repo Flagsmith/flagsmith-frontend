@@ -117,6 +117,7 @@ const Constants = {
     strings: {
         HIDE_FROM_SDKS_DESCRIPTION: 'Enable this if you want to prevent the Flagsmith API from returning this feature regardless of if it is enabled. Use this if you don\'t want users to see that a feature name whilst it is in development.',
         SEGMENT_OVERRIDES_DESCRIPTION: 'Set different values for your feature based on what segments users are in.',
+        MULTIVARIATE_DESCRIPTION: `Features by default have 1 value and enabled state. Adding variations (or multivariates)  lets you do % spit abn tests.<br/>Values for variations are set per projects but their % values are configured per environment, segment and identity.`,
         ENVIRONMENT_OVERRIDE_DESCRIPTION: (name)=> `Features are created once per project<br/>but their <strong>value</strong> and <strong>enabled state</strong> are set per environment.<br/>Saving this feature will override the <strong>${name}</strong> environment.`,
         IDENTITY_OVERRIDES_DESCRIPTION: 'See which identities have specific overridden values for this feature.<br/>Identity overrides take priority over segment overrides and environment values.',
         REMOTE_CONFIG_DESCRIPTION: 'Features can have values as well as being simply on or off, E.g. a font size for a banner or an environment variable for a server.',

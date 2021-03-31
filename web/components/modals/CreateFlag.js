@@ -9,6 +9,7 @@ import AddEditTags from '../AddEditTags';
 import Constants from '../../../common/constants';
 import _data from '../../../common/data/base/_data';
 import ValueEditor from '../ValueEditor';
+import VariationValue from '../VariationValue';
 
 const FEATURE_ID_MAXLENGTH = Constants.forms.maxLength.FEATURE_ID;
 
@@ -17,8 +18,9 @@ const CreateFlag = class extends Component {
 
     constructor(props, context) {
         super(props, context);
-        const { name, feature_state_value, description, tags, enabled, hide_from_client } = this.props.isEdit ? Utils.getFlagValue(this.props.projectFlag, this.props.environmentFlag, this.props.identityFlag)
+        const { name, feature_state_value, description, tags, enabled, hide_from_client, multivariate_options } = this.props.isEdit ? Utils.getFlagValue(this.props.projectFlag, this.props.environmentFlag, this.props.identityFlag)
             : {
+                multivariate_options: [],
             };
         const { allowEditDescription } = this.props;
         if (this.props.projectFlag) {
@@ -31,6 +33,7 @@ const CreateFlag = class extends Component {
             tags,
             initial_value: Utils.getTypedValue(feature_state_value),
             description,
+            multivariate_options,
             selectedIdentity: null,
             allowEditDescription,
             enabledIndentity: false,
@@ -237,19 +240,51 @@ const CreateFlag = class extends Component {
         AppActions.searchIdentities(this.props.environmentId, Utils.safeParseEventValue(e), 3);
     }
 
+    addVariation = () => {
+        this.setState({
+            multivariate_options: this.state.multivariate_options.concat([
+                {
+                    ...Utils.valueToFeatureState(''),
+                    default_percentage_aollocation: 0,
+                },
+            ]),
+        });
+    }
+
+    removeVariation = (i) => {
+        if (this.state.multivariate_options[i].id) {
+            openConfirm('Please confirm', 'This will remove the variation on your feature for all environments, if you wish to turn it off just for this environment you can set the % value to 0.', () => {
+                this.state.multivariate_options.splice(i, 1);
+                this.forceUpdate();
+            });
+        } else {
+            this.state.multivariate_options.splice(i, 1);
+            this.forceUpdate();
+        }
+    }
+
+    updateVariation = (i, e) => {
+        this.state.multivariate_options[i] = {
+            ...this.state.multivariate_options[i],
+            ...Utils.valueToFeatureState(e),
+        };
+        this.forceUpdate();
+    }
+
     render() {
         const {
             name,
             initial_value,
             hide_from_client,
             default_enabled,
+            multivariate_options,
             description,
             enabledSegment,
             enabledIndentity,
         } = this.state;
         const { isEdit, hasFeature, projectFlag, identity, identityName } = this.props;
         const Provider = identity ? IdentityProvider : FeatureListProvider;
-        const valueString = 'Value';
+        const valueString = multivariate_options.length ? 'Control Value' : `Value (optional)${' - these can be set per environment'}`;
         const enabledString = isEdit ? 'Enabled' : 'Enabled by default';
 
         const Settings = (
@@ -257,70 +292,70 @@ const CreateFlag = class extends Component {
                 {hasFeature('tags') && !identity && this.state.tags && (
                     <FormGroup className="mb-4 mr-3 ml-3" >
                         <InputGroup
-                            title={identity ? 'Tags' : 'Tags (optional)'}
-                            component={(
-                                <AddEditTags
-                                    readOnly={!!identity} projectId={this.props.projectId} value={this.state.tags}
-                                    onChange={tags => this.setState({ tags })}
-                                />
+                          title={identity ? 'Tags' : 'Tags (optional)'}
+                          component={(
+                              <AddEditTags
+                                readOnly={!!identity} projectId={this.props.projectId} value={this.state.tags}
+                                onChange={tags => this.setState({ tags })}
+                              />
                             )}
                         />
                     </FormGroup>
                 )}
                 <FormGroup className="mb-4 mr-3 ml-3" >
                     <InputGroup
-                        value={description}
-                        data-test="featureDesc"
-                        inputProps={{
-                            className: 'full-width',
-                            readOnly: !!identity,
-                            name: 'featureDesc',
-                        }}
-                        onChange={e => this.setState({ description: Utils.safeParseEventValue(e) })}
-                        isValid={name && name.length}
-                        type="text" title={identity ? 'Description' : 'Description (optional)'}
-                        placeholder="e.g. 'This determines what size the header is' "
+                      value={description}
+                      data-test="featureDesc"
+                      inputProps={{
+                          className: 'full-width',
+                          readOnly: !!identity,
+                          name: 'featureDesc',
+                      }}
+                      onChange={e => this.setState({ description: Utils.safeParseEventValue(e) })}
+                      isValid={name && name.length}
+                      type="text" title={identity ? 'Description' : 'Description (optional)'}
+                      placeholder="e.g. 'This determines what size the header is' "
                     />
                 </FormGroup>
 
                 {!identity && hasFeature('hide_flag') && (
                     <FormGroup className="mb-4 mr-3 ml-3">
                         <Tooltip
-                            title={<label className="cols-sm-2 control-label">Hide from SDKs <span className="icon ion-ios-information-circle"/></label>}
-                            place="right"
+                          title={<label className="cols-sm-2 control-label">Hide from SDKs <span className="icon ion-ios-information-circle"/></label>}
+                          place="right"
                         >
                             {Constants.strings.HIDE_FROM_SDKS_DESCRIPTION}
                         </Tooltip>
                         <div>
                             <Switch
-                                data-test="toggle-feature-button"
-                                defaultChecked={hide_from_client}
-                                checked={hide_from_client}
-                                onChange={hide_from_client => this.setState({ hide_from_client })}
+                              data-test="toggle-feature-button"
+                              defaultChecked={hide_from_client}
+                              checked={hide_from_client}
+                              onChange={hide_from_client => this.setState({ hide_from_client })}
                             />
                         </div>
                     </FormGroup>
                 )}
             </>
-        )
+        );
         const Value = (
             <>
                 {!isEdit && (
                     <FormGroup className="mb-4 mr-3 ml-3">
                         <InputGroup
-                            ref={e => this.input = e}
-                            data-test="featureID"
-                            inputProps={{
-                                readOnly: isEdit,
-                                className: 'full-width',
-                                name: 'featureID',
-                                maxLength: FEATURE_ID_MAXLENGTH,
-                            }}
-                            value={name}
-                            onChange={e => this.setState({ name: Format.enumeration.set(Utils.safeParseEventValue(e)).toLowerCase() })}
-                            isValid={name && name.length}
-                            type="text" title={isEdit ? 'ID' : 'ID*'}
-                            placeholder="E.g. header_size"
+                          ref={e => this.input = e}
+                          data-test="featureID"
+                          inputProps={{
+                              readOnly: isEdit,
+                              className: 'full-width',
+                              name: 'featureID',
+                              maxLength: FEATURE_ID_MAXLENGTH,
+                          }}
+                          value={name}
+                          onChange={e => this.setState({ name: Format.enumeration.set(Utils.safeParseEventValue(e)).toLowerCase() })}
+                          isValid={name && name.length}
+                          type="text" title={isEdit ? 'ID' : 'ID*'}
+                          placeholder="E.g. header_size"
                         />
                     </FormGroup>
                 )}
@@ -330,56 +365,93 @@ const CreateFlag = class extends Component {
                         <label>{enabledString}</label>
                     </div>
                     <Switch
-                        data-test="toggle-feature-button"
-                        defaultChecked={default_enabled}
-                        disabled={hide_from_client}
-                        checked={!hide_from_client && default_enabled}
-                        onChange={default_enabled => this.setState({ default_enabled })}
+                      data-test="toggle-feature-button"
+                      defaultChecked={default_enabled}
+                      disabled={hide_from_client}
+                      checked={!hide_from_client && default_enabled}
+                      onChange={default_enabled => this.setState({ default_enabled })}
                     />
                 </FormGroup>
                 <FormGroup className="ml-3 mb-4 mr-3">
                     <InputGroup
-                        component={(
-                            <ValueEditor
-                                data-test="featureValue"
-                                name="featureValue" className="full-width"
-                                value={initial_value}
-                                onChange={e => this.setState({ initial_value: Utils.getTypedValue(Utils.safeParseEventValue(e)) })}
-                                disabled={hide_from_client}
-                                placeholder="e.g. 'big' "
-                            />
+                      component={(
+                          <ValueEditor
+                            data-test="featureValue"
+                            name="featureValue" className="full-width"
+                            value={initial_value}
+                            onChange={e => this.setState({ initial_value: Utils.getTypedValue(Utils.safeParseEventValue(e)) })}
+                            disabled={hide_from_client}
+                            placeholder="e.g. 'big' "
+                          />
                         )}
-                        tooltip={Constants.strings.REMOTE_CONFIG_DESCRIPTION}
-                        title={`${valueString} (optional)${' - these can be set per environment'}`}
+                      tooltip={Constants.strings.REMOTE_CONFIG_DESCRIPTION}
+                      title={`${valueString}`}
                     />
                 </FormGroup>
                 {this.props.hasFeature('mv') && (
-                    <div className="text-center">
-                        <button onClick={this.addVariation} className="btn btn--outline ">
-                            Add Variation
-                        </button>
+                    <div>
+                        {multivariate_options.length ? (
+                            <FormGroup className="ml-3 mb-4 mr-3">
+
+
+                                <Tooltip
+                                  title={(
+                                      <label>Variations <span className="icon ion-ios-information-circle"/></label>
+                                    )}
+                                  html
+                                  place="right"
+                                >
+                                    {Constants.strings.MULTIVARIATE_DESCRIPTION}
+                                </Tooltip>
+                                {
+                                            multivariate_options.map((m, i) => (
+                                                <VariationValue
+                                                  key={i}
+                                                  value={m}
+                                                  onChange={e => this.updateVariation(i, e)}
+                                                  weightTitle={isEdit ? 'Environment Weight %' : 'Default Weight %'}
+                                                  onRemove={() => this.removeVariation(i)}
+                                                />
+                                            ))
+                                        }
+                            </FormGroup>
+                        ) : null}
+                        <div className="text-center">
+                            <Tooltip
+                              title={(
+                                  <button type="button" onClick={this.addVariation} className="btn btn--outline ">
+                                        Add Variation
+                                  </button>
+                                )}
+                              place="right"
+                            >
+                                {Constants.strings.MULTIVARIATE_DESCRIPTION}
+                            </Tooltip>
+
+                        </div>
                     </div>
+
                 )}
                 {identity && (
                     <FormGroup className="mb-4 mr-3 ml-3" >
                         <InputGroup
-                            value={description}
-                            data-test="featureDesc"
-                            inputProps={{
-                                className: 'full-width',
-                                readOnly: !!identity,
-                                name: 'featureDesc',
-                            }}
-                            onChange={e => this.setState({ description: Utils.safeParseEventValue(e) })}
-                            isValid={name && name.length}
-                            type="text" title={identity ? 'Description' : 'Description (optional)'}
-                            placeholder="e.g. 'This determines what size the header is' "
+                          value={description}
+                          data-test="featureDesc"
+                          inputProps={{
+                              className: 'full-width',
+                              readOnly: !!identity,
+                              name: 'featureDesc',
+                          }}
+                          onChange={e => this.setState({ description: Utils.safeParseEventValue(e) })}
+                          isValid={name && name.length}
+                          type="text" title={identity ? 'Description' : 'Description (optional)'}
+                          placeholder="e.g. 'This determines what size the header is' "
                         />
                     </FormGroup>
                 )}
                 {!isEdit && !identity && Settings}
             </>
-        )
+        );
         return (
             <ProjectProvider
               id={this.props.projectId}
@@ -402,12 +474,13 @@ const CreateFlag = class extends Component {
                                             <FormGroup className="mr-3 ml-3">
                                                 <Panel title={(
                                                     <Tooltip
-                                                        title={<h6 className="mb-0">Environment Value <span className="icon ion-ios-information-circle"/></h6>}
-                                                        place="top"
+                                                      title={<h6 className="mb-0">Environment Value <span className="icon ion-ios-information-circle"/></h6>}
+                                                      place="top"
                                                     >
-                                                        {Constants.strings.ENVIRONMENT_OVERRIDE_DESCRIPTION( _.find(project.environments, { api_key: this.props.environmentId }).name)}
+                                                        {Constants.strings.ENVIRONMENT_OVERRIDE_DESCRIPTION(_.find(project.environments, { api_key: this.props.environmentId }).name)}
                                                     </Tooltip>
-                                                )}>
+                                                )}
+                                                >
                                                     {Value}
                                                 </Panel>
                                             </FormGroup>
@@ -419,16 +492,16 @@ const CreateFlag = class extends Component {
 
                                                         <FormGroup className="mb-4 mr-3 ml-3">
                                                             <Panel
-                                                                icon="ion-ios-settings"
-                                                                title={(
-                                                                    <Tooltip
-                                                                        title={<h6 className="mb-0">Segment Overrides <span className="icon ion-ios-information-circle"/></h6>}
-                                                                        place="right"
-                                                                    >
-                                                                        {Constants.strings.SEGMENT_OVERRIDES_DESCRIPTION}
-                                                                    </Tooltip>
+                                                              icon="ion-ios-settings"
+                                                              title={(
+                                                                  <Tooltip
+                                                                    title={<h6 className="mb-0">Segment Overrides <span className="icon ion-ios-information-circle"/></h6>}
+                                                                    place="right"
+                                                                  >
+                                                                      {Constants.strings.SEGMENT_OVERRIDES_DESCRIPTION}
+                                                                  </Tooltip>
                                                                 )}
-                                                                action={
+                                                              action={
                                                                     this.props.hasFeature('killswitch') && (
                                                                         <Button onClick={() => this.changeSegment(this.props.segmentOverrides)} type="button" className={`btn--outline${enabledSegment ? '' : '-red'}`}>
                                                                             {enabledSegment ? 'Enable All' : 'Disable All'}
@@ -438,12 +511,12 @@ const CreateFlag = class extends Component {
                                                             >
                                                                 {this.props.segmentOverrides ? (
                                                                     <SegmentOverrides
-                                                                        feature={projectFlag.id}
-                                                                        projectId={this.props.projectId}
-                                                                        environmentId={this.props.environmentId}
-                                                                        value={this.props.segmentOverrides}
-                                                                        segments={this.props.segments}
-                                                                        onChange={this.props.updateSegments}
+                                                                      feature={projectFlag.id}
+                                                                      projectId={this.props.projectId}
+                                                                      environmentId={this.props.environmentId}
+                                                                      value={this.props.segmentOverrides}
+                                                                      segments={this.props.segments}
+                                                                      onChange={this.props.updateSegments}
                                                                     />
                                                                 ) : (
                                                                     <div className="text-center">
@@ -461,48 +534,48 @@ const CreateFlag = class extends Component {
                                                 && isEdit && (
                                                     <FormGroup className="mb-4 mr-3 ml-3">
                                                         <PanelSearch
-                                                            id="users-list"
-                                                            title={(
-                                                                <Tooltip
-                                                                    title={<h6 className="mb-0">Identity Overrides <span className="icon ion-ios-information-circle"/></h6>}
-                                                                    place="right"
-                                                                >
-                                                                    {Constants.strings.IDENTITY_OVERRIDES_DESCRIPTION}
-                                                                </Tooltip>
+                                                          id="users-list"
+                                                          title={(
+                                                              <Tooltip
+                                                                title={<h6 className="mb-0">Identity Overrides <span className="icon ion-ios-information-circle"/></h6>}
+                                                                place="right"
+                                                              >
+                                                                  {Constants.strings.IDENTITY_OVERRIDES_DESCRIPTION}
+                                                              </Tooltip>
                                                             )}
-                                                            action={
+                                                          action={
                                                                 this.props.hasFeature('killswitch') && (
                                                                     <Button onClick={() => this.changeIdentity(this.state.userOverrides)} type="button" className={`btn--outline${enabledIndentity ? '' : '-red'}`}>
                                                                         {enabledIndentity ? 'Enable All' : 'Disable All'}
                                                                     </Button>
                                                                 )
                                                             }
-                                                            icon="ion-md-person"
-                                                            items={this.state.userOverrides}
-                                                            paging={this.state.userOverridesPaging}
-                                                            nextPage={() => this.userOverridesPage(this.state.userOverridesPaging.currentPage + 1)}
-                                                            prevPage={() => this.userOverridesPage(this.state.userOverridesPaging.currentPage - 1)}
-                                                            goToPage={page => this.userOverridesPage(page)}
-                                                            searchPanel={
+                                                          icon="ion-md-person"
+                                                          items={this.state.userOverrides}
+                                                          paging={this.state.userOverridesPaging}
+                                                          nextPage={() => this.userOverridesPage(this.state.userOverridesPaging.currentPage + 1)}
+                                                          prevPage={() => this.userOverridesPage(this.state.userOverridesPaging.currentPage - 1)}
+                                                          goToPage={page => this.userOverridesPage(page)}
+                                                          searchPanel={
                                                                 this.props.hasFeature('improved_identity_overrides') && (
                                                                     <div className="text-center mt-2 mb-2">
                                                                         <IdentityListProvider>
                                                                             {({ isLoading, identities }) => (
                                                                                 <Flex className="text-left">
                                                                                     <Select
-                                                                                        onInputChange={this.onSearchIdentityChange}
-                                                                                        data-test="select-identity"
-                                                                                        placeholder="Search"
-                                                                                        value={this.state.selectedIdentity}
-                                                                                        onChange={selectedIdentity => this.setState({ selectedIdentity }, this.addItem)}
-                                                                                        options={this.identityOptions(identities, this.state.userOverrides, isLoading)}
-                                                                                        styles={{
-                                                                                            control: base => ({
-                                                                                                ...base,
-                                                                                                '&:hover': { borderColor: '$bt-brand-secondary' },
-                                                                                                border: '1px solid $bt-brand-secondary',
-                                                                                            }),
-                                                                                        }}
+                                                                                      onInputChange={this.onSearchIdentityChange}
+                                                                                      data-test="select-identity"
+                                                                                      placeholder="Search"
+                                                                                      value={this.state.selectedIdentity}
+                                                                                      onChange={selectedIdentity => this.setState({ selectedIdentity }, this.addItem)}
+                                                                                      options={this.identityOptions(identities, this.state.userOverrides, isLoading)}
+                                                                                      styles={{
+                                                                                          control: base => ({
+                                                                                              ...base,
+                                                                                              '&:hover': { borderColor: '$bt-brand-secondary' },
+                                                                                              border: '1px solid $bt-brand-secondary',
+                                                                                          }),
+                                                                                      }}
                                                                                     />
                                                                                 </Flex>
                                                                             )}
@@ -510,79 +583,79 @@ const CreateFlag = class extends Component {
                                                                     </div>
                                                                 )
                                                             }
-                                                            renderRow={({ id, feature_state_value, enabled, identity }) => (
-                                                                <Row
-                                                                    onClick={() => {
-                                                                        this.toggleUserFlag({ id, feature_state_value, enabled, identity });
-                                                                    }} space className="list-item cursor-pointer"
-                                                                    key={id}
-                                                                >
-                                                                    <Flex>
-                                                                        {identity.identifier}
-                                                                    </Flex>
-                                                                    <Switch checked={enabled}/>
-                                                                    <div>
-                                                                        {feature_state_value && (
-                                                                            <FeatureValue
-                                                                                value={feature_state_value}
-                                                                            />
-                                                                        )}
-                                                                    </div>
+                                                          renderRow={({ id, feature_state_value, enabled, identity }) => (
+                                                              <Row
+                                                                onClick={() => {
+                                                                    this.toggleUserFlag({ id, feature_state_value, enabled, identity });
+                                                                }} space className="list-item cursor-pointer"
+                                                                key={id}
+                                                              >
+                                                                  <Flex>
+                                                                      {identity.identifier}
+                                                                  </Flex>
+                                                                  <Switch checked={enabled}/>
+                                                                  <div>
+                                                                      {feature_state_value && (
+                                                                      <FeatureValue
+                                                                        value={feature_state_value}
+                                                                      />
+                                                                      )}
+                                                                  </div>
 
 
-                                                                    <a
-                                                                        target="_blank"
-                                                                        href={`/project/${this.props.projectId}/environment/${this.props.environmentId}/users/${identity.identifier}/${identity.id}`}
-                                                                        className="ml-2 btn btn-link btn--link" onClick={() => {
+                                                                  <a
+                                                                    target="_blank"
+                                                                    href={`/project/${this.props.projectId}/environment/${this.props.environmentId}/users/${identity.identifier}/${identity.id}`}
+                                                                    className="ml-2 btn btn-link btn--link" onClick={() => {
                                                                     }}
-                                                                    >
+                                                                  >
                                                                         View user
-                                                                    </a>
-                                                                </Row>
-                                                            )}
-                                                            renderNoResults={(
-                                                                <Panel
-                                                                    id="users-list"
-                                                                    title={(
-                                                                        <Tooltip
-                                                                            title={<h6 className="mb-0">Identity Overrides <span className="icon ion-ios-information-circle"/></h6>}
-                                                                            place="right"
-                                                                        >
-                                                                            {Constants.strings.IDENTITY_OVERRIDES_DESCRIPTION}
-                                                                        </Tooltip>
+                                                                  </a>
+                                                              </Row>
+                                                          )}
+                                                          renderNoResults={(
+                                                              <Panel
+                                                                id="users-list"
+                                                                title={(
+                                                                    <Tooltip
+                                                                      title={<h6 className="mb-0">Identity Overrides <span className="icon ion-ios-information-circle"/></h6>}
+                                                                      place="right"
+                                                                    >
+                                                                        {Constants.strings.IDENTITY_OVERRIDES_DESCRIPTION}
+                                                                    </Tooltip>
                                                                     )}
-                                                                >
-                                                                    {this.props.hasFeature('improved_identity_overrides') && (
-                                                                        <IdentityListProvider>
-                                                                            {({ isLoading, identities }) => (
-                                                                                <div>
-                                                                                    <Flex className="text-left">
-                                                                                        <Select
-                                                                                            data-test="select-identity"
-                                                                                            placeholder="Search"
-                                                                                            onInputChange={this.onSearchIdentityChange}
-                                                                                            value={this.state.selectedIdentity}
-                                                                                            onChange={selectedIdentity => this.setState({ selectedIdentity }, this.addItem)}
-                                                                                            options={this.identityOptions(identities, this.state.userOverrides, isLoading)}
-                                                                                            styles={{
-                                                                                                control: base => ({
-                                                                                                    ...base,
-                                                                                                    '&:hover': { borderColor: '$bt-brand-secondary' },
-                                                                                                    border: '1px solid $bt-brand-secondary',
-                                                                                                }),
-                                                                                            }}
-                                                                                        />
-                                                                                    </Flex>
-                                                                                    <div className="mt-2">
+                                                              >
+                                                                  {this.props.hasFeature('improved_identity_overrides') && (
+                                                                  <IdentityListProvider>
+                                                                      {({ isLoading, identities }) => (
+                                                                          <div>
+                                                                              <Flex className="text-left">
+                                                                                  <Select
+                                                                                    data-test="select-identity"
+                                                                                    placeholder="Search"
+                                                                                    onInputChange={this.onSearchIdentityChange}
+                                                                                    value={this.state.selectedIdentity}
+                                                                                    onChange={selectedIdentity => this.setState({ selectedIdentity }, this.addItem)}
+                                                                                    options={this.identityOptions(identities, this.state.userOverrides, isLoading)}
+                                                                                    styles={{
+                                                                                        control: base => ({
+                                                                                            ...base,
+                                                                                            '&:hover': { borderColor: '$bt-brand-secondary' },
+                                                                                            border: '1px solid $bt-brand-secondary',
+                                                                                        }),
+                                                                                    }}
+                                                                                  />
+                                                                              </Flex>
+                                                                              <div className="mt-2">
                                                                                         No identities are overriding this feature.
-                                                                                    </div>
-                                                                                </div>
-                                                                            )}
-                                                                        </IdentityListProvider>
-                                                                    )}
-                                                                </Panel>
+                                                                              </div>
+                                                                          </div>
+                                                                      )}
+                                                                  </IdentityListProvider>
+                                                                  )}
+                                                              </Panel>
                                                             )}
-                                                            isLoading={!this.state.userOverrides}
+                                                          isLoading={!this.state.userOverrides}
                                                         />
                                                     </FormGroup>
                                                 )
@@ -592,11 +665,11 @@ const CreateFlag = class extends Component {
                                             <TabItem data-test="analytics" tabLabel="Analytics">
                                                 <FormGroup className="mb-4 mr-3 ml-3">
                                                     <Panel
-                                                        title={<h6 className="mb-0">Flag events for last {this.state.period}</h6>}
-                                                        action={(
-                                                            <Button onClick={() => this.changePeriod()} type="button" className="btn--outline">
-                                                                {`Change to ${this.getDisplayPeriod()}`}
-                                                            </Button>
+                                                      title={<h6 className="mb-0">Flag events for last {this.state.period}</h6>}
+                                                      action={(
+                                                          <Button onClick={() => this.changePeriod()} type="button" className="btn--outline">
+                                                              {`Change to ${this.getDisplayPeriod()}`}
+                                                          </Button>
                                                         )}
                                                     >
                                                         {this.drawChart(influxData)}
