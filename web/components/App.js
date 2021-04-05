@@ -221,7 +221,7 @@ const App = class extends Component {
                     ) : (
                         <div>
                             {AccountStore.isDemo && (
-                                <AlertBar className="pulse">
+                                <AlertBar preventClose className="pulse">
                                     <div>
                                         You are using a demo account. Finding this useful?
                                         {' '}

@@ -20,7 +20,9 @@ const AlertBar = class extends React.Component {
         return (
             <Row className={`alert-bar ${this.props.className || ''}${this.state.hide ? 'animated slideOut' : ''}`}>
                 <Flex className="alert-bar__text">{this.props.children}</Flex>
-                <a className="close-btn" onClick={this.hide}><span className="icon ion-md-close"/></a>
+                {!this.props.preventClose && (
+                    <a className="close-btn" onClick={this.hide}><span className="icon ion-md-close"/></a>
+                )}
             </Row>
         );
     }
