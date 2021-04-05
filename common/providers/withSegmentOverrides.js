@@ -38,6 +38,8 @@ export default (WrappedComponent) => {
                                     results[index].value = Utils.featureStateToValue(f.feature_state_value);
                                     results[index].enabled = f.enabled;
                                     results[index].feature_segment_value = f;
+                                    const multiVariates = res2 && res2.results.find(mv => mv.feature_segment = f.feature_segment);
+                                    results[index].multivariate_feature_state_values = multiVariates && multiVariates.multivariate_feature_state_values || [];
                                 }
                             }
                         });

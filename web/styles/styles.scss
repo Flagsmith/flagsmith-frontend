@@ -106,22 +106,23 @@ bold, strong {
   display: inline-block;
   font-size: 0.8em;
   background: $bt-code-background;
-  color: #bababa;
+  color: #fff;
   padding: 5px 10px;
   border-radius: 20px;
   font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 
+  font-weight: bold;
   .feature-value {
-    color: #6896ba;
+    color: #fff;
   }
 
   &.string {
     .quot {
-      color: #eee;
+      color: #fff;
     }
 
     .feature-value {
-      color: #eee;
+      color: #fff;
     }
   }
 }

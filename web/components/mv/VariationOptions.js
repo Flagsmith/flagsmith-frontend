@@ -2,7 +2,7 @@ import React from 'react';
 import Constants from '../../../common/constants';
 import VariationValue from './VariationValue';
 
-export default function VariationOptions({ multivariateOptions, controlValue, weightTitle, variationOverrides, removeVariation, updateVariation }) {
+export default function VariationOptions({ multivariateOptions, disabled, controlValue, weightTitle, variationOverrides, removeVariation, updateVariation }) {
     const invalid = multivariateOptions.length && controlValue < 0;
 
     if (!multivariateOptions || !multivariateOptions.length) {
@@ -29,6 +29,7 @@ export default function VariationOptions({ multivariateOptions, controlValue, we
                     const override = variationOverrides && variationOverrides.find(v => v.multivariate_feature_option === m.id);
                     return (
                         <VariationValue
+                          disabled={disabled}
                           key={i}
                           value={{
                               ...m,

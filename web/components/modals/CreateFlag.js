@@ -272,16 +272,6 @@ const CreateFlag = class extends Component {
         this.forceUpdate();
     }
 
-    calculateControl = (multivariate_options) => {
-        let total = 0;
-        const environmentVariations = this.props.environmentVariations;
-        multivariate_options.map((v) => {
-            const variation = environmentVariations && environmentVariations.find(env => env.multivariate_feature_option === v.id);
-            total += variation ? variation.percentage_allocation : v.default_percentage_allocation;
-            return null
-        });
-        return 100 - total;
-    }
 
     render() {
         const {
@@ -296,7 +286,7 @@ const CreateFlag = class extends Component {
         } = this.state;
         const { isEdit, hasFeature, projectFlag, identity, identityName } = this.props;
         const Provider = identity ? IdentityProvider : FeatureListProvider;
-        const controlValue = this.calculateControl(multivariate_options);
+        const controlValue = Utils.calculateControl(multivariate_options, environmentVariations);
         const valueString = multivariate_options.length ? `Control Value - ${controlValue}%` : `Value (optional)${' - these can be set per environment'}`;
         const enabledString = isEdit ? 'Enabled' : 'Enabled by default';
         const environmentVariations = this.props.environmentVariations;
@@ -500,6 +490,7 @@ const CreateFlag = class extends Component {
                                                                     <SegmentOverrides
                                                                       feature={projectFlag.id}
                                                                       projectId={this.props.projectId}
+                                                                      multivariateOptions={multivariate_options}
                                                                       environmentId={this.props.environmentId}
                                                                       value={this.props.segmentOverrides}
                                                                       segments={this.props.segments}

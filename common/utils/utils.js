@@ -3,6 +3,15 @@ module.exports = Object.assign({}, require('./base/_utils'), {
         return x.toString()
             .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     },
+    calculateControl(multivariateOptions, variations) {
+        let total = 0;
+        multivariateOptions.map((v) => {
+            const variation = variations && variations.find(env => env.multivariate_feature_option === v.id);
+            total += variation ? variation.percentage_allocation : v.default_percentage_allocation;
+            return null;
+        });
+        return 100 - total;
+    },
     featureStateToValue(featureState) {
         if (!featureState) {
             return null;

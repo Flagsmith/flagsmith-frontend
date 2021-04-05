@@ -23,7 +23,7 @@ $button-bg-dark-hover: darken($button-bg-dark,1);
 
 // COLORS
 
-$bt-brand-primary: #6633ff;
+$bt-brand-primary: #7B51FB;
 $bt-brand-primary-light: lighten($bt-brand-primary,40);
 $bt-brand-primary-lighter: lighten($bt-brand-primary,70);
 
@@ -60,7 +60,7 @@ $body-text: #43424f;
 $body-text-dark: $dark-color;
 $header-color: #38386d; // for headers and labels
 $header-color-dark: #d2d2d2; // for headers and labels
-$bt-link-color: $bt-brand-secondary-faint; // for headers and labels
+$bt-link-color: $bt-brand-primary-dark; // for headers and labels
 $bt-link-color-dark: $dark-highlight-color; // for headers and labels
 $bt-link-color-hover: lighten($header-color,10); // for headers and labels
 
@@ -122,7 +122,7 @@ $panel-heading-border-dark: 1px solid transparent;
 
 $bt-code-background: $dark-bg-0;
 $bt-code-background-dark: $dark-bg-0;
-$bt-switch-active:$header-color;
+$bt-switch-active:$bt-brand-primary;
 $bt-switch-active-dark: $dark-highlight;
 $bt-switch: #999;
 $bt-switch-dark: $dark-bg-0;
