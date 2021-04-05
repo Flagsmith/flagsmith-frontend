@@ -1,6 +1,6 @@
 @import "../variables";
 
-$switch-height: 25px;
+$switch-height: 28px;
 $switch-width: 60px;
 .dark {
   .rc-switch {
@@ -20,7 +20,7 @@ $switch-width: 60px;
   position: absolute;
   top: 0;
   height: 28px;
-  line-height: 27px;
+  line-height: 28px;
   font-size: 10px;
   font-weight: bold;
   text-transform: uppercase;
@@ -105,7 +105,7 @@ $switch-width: 60px;
   height: $switch-height;
   vertical-align: middle;
   border-radius: 20px 20px;
-  border: 1px solid $bt-switch;
+  border: none !important;
   background-color: $bt-switch;
   cursor: pointer;
   -webkit-transition: all 0.3s cubic-bezier(0.35, 0, 0.25, 1);
@@ -119,15 +119,15 @@ $switch-width: 60px;
 }
 .rc-switch:after {
   position: absolute;
-  width: $switch-height + 5;
-  height: $switch-height + 5;
-  left: -5px;
-  top: -4px;
+  width: 22px;
+  height: 22px;
+  left: 3px;
+  top: 3px;
   border-radius: 50% 50%;
   background-color: #ffffff;
   content: " ";
   cursor: pointer;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.26);
+  //box-shadow: 0 2px 5px rgba(0, 0, 0, 0.26);
   -webkit-transform: scale(1);
   transform: scale(1);
   -webkit-transition: left 0.3s cubic-bezier(0.35, 0, 0.25, 1);
@@ -157,7 +157,7 @@ $switch-width: 60px;
   left: 6px;
 }
 .rc-switch-checked:after {
-  left: $switch-width/1.9;
+  left: $switch-width/1.7;
 }
 .rc-switch-disabled {
   cursor: no-drop;

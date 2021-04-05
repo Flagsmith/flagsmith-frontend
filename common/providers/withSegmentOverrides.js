@@ -29,6 +29,8 @@ export default (WrappedComponent) => {
                     .then(([res, res2]) => {
                         const results = res.results;
                         const featureStates = res2.results;
+                        const environmentOverride = res2.results.find(v => !v.feature_segment && !v.identity);
+
                         _.each(featureStates, (f) => {
                             if (f.feature_segment) {
                                 const index = _.findIndex(results, { id: f.feature_segment });
@@ -36,12 +38,18 @@ export default (WrappedComponent) => {
                                     results[index].value = Utils.featureStateToValue(f.feature_state_value);
                                     results[index].enabled = f.enabled;
                                     results[index].feature_segment_value = f;
+                                    const multiVariates = res2 && res2.results.find(mv => mv.feature_segment = f.feature_segment);
+                                    results[index].multivariate_feature_state_values = multiVariates && multiVariates.multivariate_feature_state_values || [];
                                 }
                             }
                         });
-                        this.setState({ segmentOverrides: res.results });
+                        this.setState({ segmentOverrides: res.results, environmentVariations: environmentOverride && environmentOverride.multivariate_feature_state_values && environmentOverride.multivariate_feature_state_values });
                     });
             }
+        }
+
+        onEnvironmentVariationsChange = (environmentVariations) => {
+            this.setState({ environmentVariations });
         }
 
 
@@ -50,10 +58,11 @@ export default (WrappedComponent) => {
         render() {
             return (
                 <WrappedComponent
-                    ref='wrappedComponent'
-                    updateSegments={this.updateSegments}
-                    {...this.props}
-                    {...this.state}
+                  ref="wrappedComponent"
+                  updateSegments={this.updateSegments}
+                  onEnvironmentVariationsChange={this.onEnvironmentVariationsChange}
+                  {...this.props}
+                  {...this.state}
                 />
             );
         }

@@ -9,7 +9,9 @@ import AddEditTags from '../AddEditTags';
 import Constants from '../../../common/constants';
 import _data from '../../../common/data/base/_data';
 import ValueEditor from '../ValueEditor';
-import VariationValue from '../VariationValue';
+import VariationValue from '../mv/VariationValue';
+import AddVariationButton from '../mv/AddVariationButton';
+import VariationOptions from '../mv/VariationOptions';
 
 const FEATURE_ID_MAXLENGTH = Constants.forms.maxLength.FEATURE_ID;
 
@@ -264,20 +266,12 @@ const CreateFlag = class extends Component {
         }
     }
 
-    updateVariation = (i, e) => {
+    updateVariation = (i, e, environmentVariations) => {
+        this.props.onEnvironmentVariationsChange(environmentVariations);
         this.state.multivariate_options[i] = e;
         this.forceUpdate();
     }
 
-    calculateControl = () => {
-
-    }
-
-    calculateControl = (multivariate_options) => {
-        let total = 0;
-        multivariate_options.map(v => total += v.default_percentage_allocation);
-        return 100 - total;
-    }
 
     render() {
         const {
@@ -292,10 +286,12 @@ const CreateFlag = class extends Component {
         } = this.state;
         const { isEdit, hasFeature, projectFlag, identity, identityName } = this.props;
         const Provider = identity ? IdentityProvider : FeatureListProvider;
-        const controlValue = multivariate_options && this.calculateControl(multivariate_options);
-        const valueString = multivariate_options && multivariate_options.length ? `Control Value - ${controlValue}%` : `Value (optional)${' - these can be set per environment'}`;
+        const controlValue = Utils.calculateControl(multivariate_options, environmentVariations);
+        const valueString = !!multivariate_options && multivariate_options.length ? `Control Value - ${controlValue}%` : `Value (optional)${' - these can be set per environment'}`;
         const enabledString = isEdit ? 'Enabled' : 'Enabled by default';
-        const invalid = multivariate_options && multivariate_options.length && controlValue < 0;
+        const environmentVariations = this.props.environmentVariations;
+
+        const invalid = !!multivariate_options && multivariate_options.length && controlValue < 0;
         const Settings = (
             <>
                 {hasFeature('tags') && !identity && this.state.tags && (
@@ -399,50 +395,17 @@ const CreateFlag = class extends Component {
                 </FormGroup>
                 {this.props.hasFeature('mv') && (
                     <div>
-                        {invalid && (
-                            <div className="alert alert-danger">
-                                Your variation percentage splits total to over 100%
-                            </div>
-                        )}
-                        {multivariate_options && multivariate_options.length ? (
-                            <FormGroup className="ml-3 mb-4 mr-3">
-
-
-                                <Tooltip
-                                  title={(
-                                      <label>Variations <span className="icon ion-ios-information-circle"/></label>
-                                    )}
-                                  html
-                                  place="right"
-                                >
-                                    {Constants.strings.MULTIVARIATE_DESCRIPTION}
-                                </Tooltip>
-                                {
-                                            multivariate_options.map((m, i) => (
-                                                <VariationValue
-                                                  key={i}
-                                                  value={m}
-                                                  onChange={e => this.updateVariation(i, e)}
-                                                  weightTitle={isEdit ? 'Environment Weight %' : 'Default Weight %'}
-                                                  onRemove={() => this.removeVariation(i)}
-                                                />
-                                            ))
-                                        }
-                            </FormGroup>
-                        ) : null}
-                        <div className="text-center">
-                            <Tooltip
-                              title={(
-                                  <button type="button" onClick={this.addVariation} className="btn btn--outline ">
-                                        Add Variation
-                                  </button>
-                                )}
-                              place="right"
-                            >
-                                {Constants.strings.MULTIVARIATE_DESCRIPTION}
-                            </Tooltip>
-
-                        </div>
+                        <FormGroup className="ml-3 mb-4 mr-3">
+                            <VariationOptions
+                              controlValue={controlValue}
+                              variationOverrides={environmentVariations}
+                              updateVariation={this.updateVariation}
+                              weightTitle={isEdit ? 'Environment Weight %' : 'Default Weight %'}
+                              multivariateOptions={multivariate_options}
+                              removeVariation={this.removeVariation}
+                            />
+                        </FormGroup>
+                        <AddVariationButton onClick={this.addVariation}/>
                     </div>
 
                 )}
@@ -527,6 +490,7 @@ const CreateFlag = class extends Component {
                                                                     <SegmentOverrides
                                                                       feature={projectFlag.id}
                                                                       projectId={this.props.projectId}
+                                                                      multivariateOptions={multivariate_options}
                                                                       environmentId={this.props.environmentId}
                                                                       value={this.props.segmentOverrides}
                                                                       segments={this.props.segments}
