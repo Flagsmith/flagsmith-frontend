@@ -9,7 +9,9 @@ import AddEditTags from '../AddEditTags';
 import Constants from '../../../common/constants';
 import _data from '../../../common/data/base/_data';
 import ValueEditor from '../ValueEditor';
-import VariationValue from '../VariationValue';
+import VariationValue from '../mv/VariationValue';
+import AddVariationButton from '../mv/AddVariationButton';
+import VariationOptions from '../mv/VariationOptions';
 
 const FEATURE_ID_MAXLENGTH = Constants.forms.maxLength.FEATURE_ID;
 
@@ -269,10 +271,6 @@ const CreateFlag = class extends Component {
         this.forceUpdate();
     }
 
-    calculateControl = () => {
-
-    }
-
     calculateControl = (multivariate_options) => {
         let total = 0;
         multivariate_options.map(v => total += v.default_percentage_allocation);
@@ -399,50 +397,16 @@ const CreateFlag = class extends Component {
                 </FormGroup>
                 {this.props.hasFeature('mv') && (
                     <div>
-                        {invalid && (
-                            <div className="alert alert-danger">
-                                Your variation percentage splits total to over 100%
-                            </div>
-                        )}
-                        {multivariate_options.length ? (
                             <FormGroup className="ml-3 mb-4 mr-3">
-
-
-                                <Tooltip
-                                  title={(
-                                      <label>Variations <span className="icon ion-ios-information-circle"/></label>
-                                    )}
-                                  html
-                                  place="right"
-                                >
-                                    {Constants.strings.MULTIVARIATE_DESCRIPTION}
-                                </Tooltip>
-                                {
-                                            multivariate_options.map((m, i) => (
-                                                <VariationValue
-                                                  key={i}
-                                                  value={m}
-                                                  onChange={e => this.updateVariation(i, e)}
-                                                  weightTitle={isEdit ? 'Environment Weight %' : 'Default Weight %'}
-                                                  onRemove={() => this.removeVariation(i)}
-                                                />
-                                            ))
-                                        }
+                                <VariationOptions
+                                  controlValue={controlValue}
+                                  updateVariation={this.updateVariation}
+                                  weightTitle={isEdit ? 'Environment Weight %' : 'Default Weight %'}
+                                  multivariateOptions={multivariate_options}
+                                  removeVariation={this.removeVariation}
+                                />
                             </FormGroup>
-                        ) : null}
-                        <div className="text-center">
-                            <Tooltip
-                              title={(
-                                  <button type="button" onClick={this.addVariation} className="btn btn--outline ">
-                                        Add Variation
-                                  </button>
-                                )}
-                              place="right"
-                            >
-                                {Constants.strings.MULTIVARIATE_DESCRIPTION}
-                            </Tooltip>
-
-                        </div>
+                        <AddVariationButton onClick={this.addVariation}/>
                     </div>
 
                 )}

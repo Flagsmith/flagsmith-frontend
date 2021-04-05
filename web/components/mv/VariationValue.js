@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import ValueEditor from './ValueEditor'; // we need this to make JSX compile
+import ValueEditor from '../ValueEditor'; // we need this to make JSX compile
 
 
 const VariationValue = ({
@@ -37,11 +37,11 @@ const VariationValue = ({
                       onChange={(e) => {
                           onChange({
                               ...value,
-                              default_percentage_allocation: parseInt(Utils.safeParseEventValue(e)),
+                              default_percentage_allocation: Utils.safeParseEventValue(e) ? parseInt(Utils.safeParseEventValue(e)) : null,
                           });
                       }}
                       value={value.default_percentage_allocation}
-                      inputProps={{ style: { marginTop: 2 } }}
+                      inputProps={{ style: { marginTop: 2 }, maxLength:3 }}
                       title={weightTitle}
                     />
                 </div>
