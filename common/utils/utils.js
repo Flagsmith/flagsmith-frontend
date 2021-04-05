@@ -4,6 +4,9 @@ module.exports = Object.assign({}, require('./base/_utils'), {
             .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     },
     calculateControl(multivariateOptions, variations) {
+        if(!multivariateOptions || !multivariateOptions.length) {
+            return 100
+        }
         let total = 0;
         multivariateOptions.map((v) => {
             const variation = variations && variations.find(env => env.multivariate_feature_option === v.id);

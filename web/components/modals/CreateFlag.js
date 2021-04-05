@@ -287,11 +287,11 @@ const CreateFlag = class extends Component {
         const { isEdit, hasFeature, projectFlag, identity, identityName } = this.props;
         const Provider = identity ? IdentityProvider : FeatureListProvider;
         const controlValue = Utils.calculateControl(multivariate_options, environmentVariations);
-        const valueString = multivariate_options.length ? `Control Value - ${controlValue}%` : `Value (optional)${' - these can be set per environment'}`;
+        const valueString = !!multivariate_options && multivariate_options.length ? `Control Value - ${controlValue}%` : `Value (optional)${' - these can be set per environment'}`;
         const enabledString = isEdit ? 'Enabled' : 'Enabled by default';
         const environmentVariations = this.props.environmentVariations;
 
-        const invalid = multivariate_options.length && controlValue < 0;
+        const invalid = !!multivariate_options && multivariate_options.length && controlValue < 0;
         const Settings = (
             <>
                 {hasFeature('tags') && !identity && this.state.tags && (
