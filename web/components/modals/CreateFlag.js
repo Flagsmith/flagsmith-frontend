@@ -266,14 +266,20 @@ const CreateFlag = class extends Component {
         }
     }
 
-    updateVariation = (i, e) => {
+    updateVariation = (i, e, environmentVariations) => {
+        this.props.onEnvironmentVariationsChange(environmentVariations);
         this.state.multivariate_options[i] = e;
         this.forceUpdate();
     }
 
     calculateControl = (multivariate_options) => {
         let total = 0;
-        multivariate_options.map(v => total += v.default_percentage_allocation);
+        const environmentVariations = this.props.environmentVariations;
+        multivariate_options.map((v) => {
+            const variation = environmentVariations && environmentVariations.find(env => env.multivariate_feature_option === v.id);
+            total += variation ? variation.percentage_allocation : v.default_percentage_allocation;
+            return null
+        });
         return 100 - total;
     }
 
@@ -293,6 +299,8 @@ const CreateFlag = class extends Component {
         const controlValue = this.calculateControl(multivariate_options);
         const valueString = multivariate_options.length ? `Control Value - ${controlValue}%` : `Value (optional)${' - these can be set per environment'}`;
         const enabledString = isEdit ? 'Enabled' : 'Enabled by default';
+        const environmentVariations = this.props.environmentVariations;
+
         const invalid = multivariate_options.length && controlValue < 0;
         const Settings = (
             <>
@@ -397,15 +405,16 @@ const CreateFlag = class extends Component {
                 </FormGroup>
                 {this.props.hasFeature('mv') && (
                     <div>
-                            <FormGroup className="ml-3 mb-4 mr-3">
-                                <VariationOptions
-                                  controlValue={controlValue}
-                                  updateVariation={this.updateVariation}
-                                  weightTitle={isEdit ? 'Environment Weight %' : 'Default Weight %'}
-                                  multivariateOptions={multivariate_options}
-                                  removeVariation={this.removeVariation}
-                                />
-                            </FormGroup>
+                        <FormGroup className="ml-3 mb-4 mr-3">
+                            <VariationOptions
+                              controlValue={controlValue}
+                              variationOverrides={environmentVariations}
+                              updateVariation={this.updateVariation}
+                              weightTitle={isEdit ? 'Environment Weight %' : 'Default Weight %'}
+                              multivariateOptions={multivariate_options}
+                              removeVariation={this.removeVariation}
+                            />
+                        </FormGroup>
                         <AddVariationButton onClick={this.addVariation}/>
                     </div>
 

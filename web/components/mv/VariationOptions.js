@@ -2,7 +2,7 @@ import React from 'react';
 import Constants from '../../../common/constants';
 import VariationValue from './VariationValue';
 
-export default function VariationOptions({ multivariateOptions, controlValue, weightTitle, removeVariation, updateVariation }) {
+export default function VariationOptions({ multivariateOptions, controlValue, weightTitle, variationOverrides, removeVariation, updateVariation }) {
     const invalid = multivariateOptions.length && controlValue < 0;
 
     if (!multivariateOptions || !multivariateOptions.length) {
@@ -25,15 +25,26 @@ export default function VariationOptions({ multivariateOptions, controlValue, we
                 {Constants.strings.MULTIVARIATE_DESCRIPTION}
             </Tooltip>
             {
-                multivariateOptions.map((m, i) => (
-                    <VariationValue
-                      key={i}
-                      value={m}
-                      onChange={e => updateVariation(i, e)}
-                      weightTitle={weightTitle}
-                      onRemove={() => removeVariation(i)}
-                    />
-                ))
+                multivariateOptions.map((m, i) => {
+                    const override = variationOverrides && variationOverrides.find(v => v.multivariate_feature_option === m.id);
+                    return (
+                        <VariationValue
+                          key={i}
+                          value={{
+                              ...m,
+                              ...(override ? { default_percentage_allocation: override.percentage_allocation } : {}),
+                          }}
+                          onChange={(e) => {
+                              if (override) {
+                                  override.percentage_allocation = e.default_percentage_allocation;
+                              }
+                              updateVariation(i, e, variationOverrides);
+                          }}
+                          weightTitle={weightTitle}
+                          onRemove={() => removeVariation(i)}
+                        />
+                    );
+                })
             }
         </>
     );
