@@ -70,7 +70,6 @@ const SegmentOverride = ConfigProvider(SortableElement(({ hasFeature, multivaria
                     Value (optional)
                 </label>
                 <ValueEditor
-                  disabled
                   value={v.value}
                   data-test={`segment-override-value-${index}`}
                   onChange={e => setValue(Utils.getTypedValue(Utils.safeParseEventValue(e)))}
