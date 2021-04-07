@@ -45,6 +45,7 @@ const VariationValue = ({
                                     default_percentage_allocation: Utils.safeParseEventValue(e) ? parseInt(Utils.safeParseEventValue(e)) : null,
                                 });
                             }}
+                            disabled={disabled}
                             value={value.default_percentage_allocation}
                             inputProps={{ style: { marginTop: 2 }, maxLength: 3 }}
                             title={weightTitle}

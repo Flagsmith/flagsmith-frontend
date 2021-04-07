@@ -52,6 +52,9 @@ textarea {
 		-webkit-appearance: none;
 		background-image: none;
 
+		&:disabled {
+			opacity: 0.5;
+		}
 		&:read-only {
 			color: #777;
 		}

@@ -115,6 +115,7 @@ const CreateFlag = class extends Component {
                 projectFlag,
                 environmentFlag,
                 identityFlag: Object.assign({}, identityFlag || {}, {
+                    multivariate_options: [],
                     feature_state_value: initial_value,
                     enabled: default_enabled,
                 }),
@@ -287,7 +288,7 @@ const CreateFlag = class extends Component {
         const { isEdit, hasFeature, projectFlag, identity, identityName } = this.props;
         const Provider = identity ? IdentityProvider : FeatureListProvider;
         const controlValue = Utils.calculateControl(multivariate_options, environmentVariations);
-        const valueString = !!multivariate_options && multivariate_options.length ? `Control Value - ${controlValue}%` : `Value (optional)${' - these can be set per environment'}`;
+        const valueString = identity ? 'User override' : !!multivariate_options && multivariate_options.length ? `Control Value - ${controlValue}%` : `Value (optional)${' - these can be set per environment'}`;
         const enabledString = isEdit ? 'Enabled' : 'Enabled by default';
         const environmentVariations = this.props.environmentVariations;
 
@@ -393,10 +394,11 @@ const CreateFlag = class extends Component {
                       title={`${valueString}`}
                     />
                 </FormGroup>
-                {this.props.hasFeature('mv') && (
+                {this.props.hasFeature('mv') && !identity&& (
                     <div>
                         <FormGroup className="ml-3 mb-4 mr-3">
                             <VariationOptions
+                              disabled={!!identity}
                               controlValue={controlValue}
                               variationOverrides={environmentVariations}
                               updateVariation={this.updateVariation}

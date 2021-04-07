@@ -179,6 +179,11 @@ const UserPage = class extends Component {
                                                       const flagEnabledDifferent = type === 'FLAG' && (hasUserOverride ? false
                                                           : actualEnabled !== flagEnabled);
                                                       const flagValueDifferent = type !== 'FLAG' && (hasUserOverride ? false : actualValue !== flagValue);
+                                                      const projectFlag = projectFlags && projectFlags.find(p => p.id === (environmentFlag && environmentFlag.feature));
+                                                      const isMultiVariateOverride = flagValueDifferent && projectFlag && projectFlag.multivariate_options && projectFlag.multivariate_options.find((v) => {
+                                                          const value = Utils.featureStateToValue(v);
+                                                          return value === actualValue;
+                                                      });
                                                       const flagDifferent = flagEnabledDifferent || flagValueDifferent;
                                                       return (
                                                           <Row
@@ -207,17 +212,36 @@ const UserPage = class extends Component {
                                                                   ) : (
                                                                       flagEnabledDifferent ? (
                                                                           <span data-test={`feature-override-${i}`} className="flex-row chip">
+                                                                              {isMultiVariateOverride ? (
+                                                                                  <span>
+                                                                              This flag is being overridden by a variation defined on your feature, the control value is <strong>{flagEnabled ? 'on' : 'off'}</strong> for this user
+                                                                                  </span>
+                                                                              ) : (
+                                                                                  <span>
+                                                                              This flag is being overridden by segments and would normally be <strong>{flagEnabled ? 'on' : 'off'}</strong> for this user
+                                                                                  </span>
+                                                                              )}
+
+                                                                              <span
+                                                                                className="chip-icon icon ion-md-information"
+                                                                              />
+                                                                          </span>
+                                                                      ) : flagValueDifferent ? isMultiVariateOverride ? (
+                                                                          <span data-test={`feature-override-${i}`} className="flex-row chip">
                                                                               <span>
-                                                                              This flag is being overriden by segments and would normally be <strong>{flagEnabled ? 'on' : 'off'}</strong> for this user
+                                                                              This feature is being overriden by a % variation for this user, the control value of this feature is  <FeatureValue
+                                                                                data-test={`user-feature-original-value-${i}`}
+                                                                                value={`${flagValue}`}
+                                                                              />
                                                                               </span>
                                                                               <span
                                                                                 className="chip-icon icon ion-md-information"
                                                                               />
                                                                           </span>
-                                                                      ) : flagValueDifferent ? (
+                                                                      ) : (
                                                                           <span data-test={`feature-override-${i}`} className="flex-row chip">
                                                                               <span>
-                                                                              This flag is being overriden by segments and would normally be <FeatureValue
+                                                                              This feature is being overriden by segments and would normally be <FeatureValue
                                                                                 data-test={`user-feature-original-value-${i}`}
                                                                                 value={`${flagValue}`}
                                                                               /> for this user
