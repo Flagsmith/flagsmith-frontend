@@ -1,0 +1,21 @@
+# Build Assets
+FROM registry.redhat.io/ubi8/nodejs-12 AS build
+
+COPY . .
+RUN pwd
+RUN npm install --production
+ENV ENV=prod
+ENV ASSET_URL=/
+RUN npm run bundle
+
+
+# Set up runtime container
+FROM registry.redhat.io/ubi8/nodejs-12 as application
+
+COPY --from=build /opt/app-root/src .
+
+ENV ENV=prod
+ENV NODE_ENV=production
+
+EXPOSE 8080
+CMD ["node",  "./server/index.js"]
