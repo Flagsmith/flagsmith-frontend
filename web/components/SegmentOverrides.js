@@ -76,21 +76,6 @@ const SegmentOverride = ConfigProvider(SortableElement(({ hasFeature, multivaria
                   onChange={e => setValue(Utils.getTypedValue(Utils.safeParseEventValue(e)))}
                   placeholder="Value e.g. 'big' "
                 />
-                {hasFeature('mv') && (
-                    <div>
-                        <FormGroup className="mb-4 mt-4">
-                            <VariationOptions
-                              disabled
-                              controlValue={controlValue}
-                              variationOverrides={v.multivariate_options}
-                              updateVariation={() => {}}
-                              weightTitle="Override Weight %"
-                              multivariateOptions={multivariateOptions}
-                              removeVariation={() => {}}
-                            />
-                        </FormGroup>
-                    </div>
-                )}
             </div>
         </div>
     );

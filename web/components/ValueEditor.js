@@ -10,8 +10,7 @@ class ValueEditor extends Component {
     };
 
     componentDidMount() {
-        if(!this.props.value)
-            return
+        if (!this.props.value) return;
         try {
             JSON.parse(this.props.value);
             this.setState({ language: 'json' });
@@ -28,47 +27,54 @@ class ValueEditor extends Component {
         if (!this.props.hasFeature('value_editor')) {
             return (
                 <textarea
-                    {...rest}
+                  {...rest}
                 />
             );
         }
         return (
-            <div className='value-editor'>
-                <Row className='select-language'>
+            <div className={cx('value-editor', { light: this.state.language === 'txt' })}>
+                <Row className="select-language">
                     <span
-                        onClick={() => this.setState({ language: 'txt' })}
-                        className={cx('txt', { active: this.state.language === 'txt' })}
+                      onClick={() => this.setState({ language: 'txt' })}
+                      className={cx('txt', { active: this.state.language === 'txt' })}
                     >
                     .txt
                     </span>
                     <span
-                        onClick={() => this.setState({ language: 'json' })}
-                        className={cx('json', { active: this.state.language === 'json' })}
+                      onClick={() => this.setState({ language: 'json' })}
+                      className={cx('json', { active: this.state.language === 'json' })}
                     >
                     .json
                     </span>
                     <span
-                        onClick={() => this.setState({ language: 'xml' })}
-                        className={cx('xml', { active: this.state.language === 'xml' })}
+                      onClick={() => this.setState({ language: 'xml' })}
+                      className={cx('xml', { active: this.state.language === 'xml' })}
                     >
                     .xml
                     </span>
                     <span
-                        onClick={() => this.setState({ language: 'ini' })}
-                        className={cx('ini', { active: this.state.language === 'ini' })}
+                      onClick={() => this.setState({ language: 'ini' })}
+                      className={cx('ini', { active: this.state.language === 'ini' })}
                     >
                     .toml
                     </span>
                     <span
-                        onClick={() => this.setState({ language: 'yaml' })}
-                        className={cx('yaml', { active: this.state.language === 'yaml' })}
+                      onClick={() => this.setState({ language: 'yaml' })}
+                      className={cx('yaml', { active: this.state.language === 'yaml' })}
                     >
                     .yaml
                     </span>
                 </Row>
-                <Highlight data-test={rest['data-test']} onChange={rest.onChange} className={this.state.language}>
-                    {rest.value}
-                </Highlight>
+                {this.state.language === 'txt' ? (
+                    <textarea
+                      {...rest}
+                    />
+                ) : (
+                    <Highlight data-test={rest['data-test']} onChange={rest.onChange} className={this.state.language}>
+                        {rest.value}
+                    </Highlight>
+                )}
+
 
             </div>
         );

@@ -32,7 +32,8 @@ const controller = {
         if (AccountStore.model.organisations.length === 1 && OrganisationStore.model.projects.length === 1 && (!store.model.features || !store.model.features.length)) {
             API.trackEvent(Constants.events.CREATE_FIRST_FEATURE);
         }
-        data.post(`${Project.api}projects/${projectId}/features/`, Object.assign({}, flag, { project: projectId }))
+        data.post(`${Project.api}projects/${projectId}/features/`, Object.assign({}, flag, { project: projectId, type: flag.multivariate_options && flag.multivariate_options.length ? 'MULTIVARIATE' : 'STANDARD',
+        }))
             .then(res => Promise.all([
                 data.get(`${Project.api}projects/${projectId}/features/`),
                 data.get(`${Project.api}environments/${environmentId}/featurestates/`),
@@ -55,13 +56,14 @@ const controller = {
             })),
         };
     },
-    editFlag(projectId, flag,onComplete) {
+    editFlag(projectId, flag, onComplete) {
         data.put(`${Project.api}projects/${projectId}/features/${flag.id}/`, {
             ...flag,
+            type: flag.multivariate_options && flag.multivariate_options.length ? 'MULTIVARIATE' : 'STANDARD',
             project: projectId,
         })
             .then((res) => {
-                if(onComplete) {
+                if (onComplete) {
                     onComplete(res);
                 }
                 const index = _.findIndex(store.model.features, { id: flag.id });
@@ -125,6 +127,7 @@ const controller = {
             }))).then(() => Promise.all(segmentOverrides.map(override => {
                 return data.put(`${Project.api}features/featurestates/${override.feature_segment_value.id}/`, {
                     ...override.feature_segment_value,
+                    multivariate_feature_state_values: [], // for now we don't set mv for segments
                     feature_state_value: Utils.valueToFeatureState(override.value),
                     enabled: override.enabled,
                 });

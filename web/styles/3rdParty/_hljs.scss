@@ -33,12 +33,28 @@
 }
 .value-editor {
   position: relative;
+  textarea,.hljs {
+    padding-top: 20px;
+  }
+  textarea {
+    min-height: 50px;
+    padding-bottom: 5px;
+    text-indent: 10px;
+  }
+  &.light {
+    .select-language {
+      span {
+        color: $body-text;
+
+      }
+    }
+  }
   code {
   }
   .select-language {
     position: absolute;
     top: 5px;
-    right: 5px;
+    right: 10px;
     span {
       margin-right: 5px;
       color: white;
@@ -153,7 +169,7 @@
 
 .hljs {
   color: #bababa;
-  padding: 15px 15px 15px 15px;
+  padding: 14px 14px 14px 14px;
 }
 
 .hljs-strong,
