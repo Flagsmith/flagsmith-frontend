@@ -54,7 +54,7 @@ const FeaturesPage = class extends Component {
 
     editFlag = (projectFlag, environmentFlag) => {
         API.trackEvent(Constants.events.VIEW_FEATURE);
-        openModal('Edit Feature', <CreateFlagModal
+        openModal(`Edit Feature: ${projectFlag.name}`, <CreateFlagModal
           isEdit
           router={this.context.router}
           environmentId={this.props.match.params.environmentId}

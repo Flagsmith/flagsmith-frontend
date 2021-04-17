@@ -84,6 +84,7 @@ $side-width: 66%;
     bottom:0;
     opacity: 1;
     .modal-header {
+        text-transform: none;
         background: $modal-header-background;
         border-radius: 0;
         text-align: left;
