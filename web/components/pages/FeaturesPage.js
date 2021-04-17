@@ -142,8 +142,8 @@ const FeaturesPage = class extends Component {
                 <FeatureListProvider onSave={this.onSave} onError={this.onError}>
                     {({ isLoading, projectFlags, environmentFlags }, { environmentHasFlag, toggleFlag, editFlag, removeFlag }) => (
                         <div className="features-page">
-                            {isLoading && <div className="centered-container"><Loader/></div>}
-                            {!isLoading && (
+                            {isLoading && (!projectFlags || !projectFlags.length) && <div className="centered-container"><Loader/></div>}
+                            {(!isLoading || (projectFlags && projectFlags.length)) && (
                                 <div>
                                     {projectFlags && projectFlags.length ? (
                                         <div>
@@ -229,7 +229,7 @@ const FeaturesPage = class extends Component {
                                                                                       <TagValues projectId={projectId} value={projectFlag.tags}/>
                                                                                   )}
                                                                                   <div>
-                                                                                      Created {moment(created_date).format('Do MMM YYYY HH:mma')}{` - `}
+                                                                                      Created {moment(created_date).format('Do MMM YYYY HH:mma')}{' - '}
                                                                                       {description || 'No description'}
                                                                                   </div>
                                                                               </Row>
@@ -238,28 +238,29 @@ const FeaturesPage = class extends Component {
                                                                       <Row>
                                                                           {
                                                                               this.renderWithPermission(permission, Constants.environmentPermissions('Admin'), (
-                                                                                <Row style={{
-                                                                                    marginTop: 5,
-                                                                                    marginBottom: 5,
-                                                                                    marginRight: 15
-                                                                                }}>
-                                                                                  <Column>
+                                                                                  <Row style={{
+                                                                                      marginTop: 5,
+                                                                                      marginBottom: 5,
+                                                                                      marginRight: 15,
+                                                                                  }}
+                                                                                  >
+                                                                                      <Column>
                                                                                           <FeatureValue
                                                                                             onClick={() => permission && this.editFlag(projectFlag, environmentFlags[id])}
                                                                                             value={environmentFlags[id] && environmentFlags[id].feature_state_value}
                                                                                             data-test={`feature-value-${i}`}
                                                                                           />
-                                                                                  </Column>
-                                                                                    <Column>
-                                                                                        <Switch
-                                                                                          disabled={!permission}
-                                                                                          data-test={`feature-switch-${i}${environmentFlags[id] && environmentFlags[id].enabled ? '-on' : '-off'}`}
-                                                                                          checked={environmentFlags[id] && environmentFlags[id].enabled}
-                                                                                          onChange={() => this.confirmToggle(projectFlag, environmentFlags[id], (environments) => {
-                                                                                              toggleFlag(_.findIndex(projectFlags, { id }), environments);
-                                                                                          })}
-                                                                                        />
-                                                                                    </Column>
+                                                                                      </Column>
+                                                                                      <Column>
+                                                                                          <Switch
+                                                                                            disabled={!permission}
+                                                                                            data-test={`feature-switch-${i}${environmentFlags[id] && environmentFlags[id].enabled ? '-on' : '-off'}`}
+                                                                                            checked={environmentFlags[id] && environmentFlags[id].enabled}
+                                                                                            onChange={() => this.confirmToggle(projectFlag, environmentFlags[id], (environments) => {
+                                                                                                toggleFlag(_.findIndex(projectFlags, { id }), environments);
+                                                                                            })}
+                                                                                          />
+                                                                                      </Column>
                                                                                   </Row>
                                                                               ))
                                                                             }

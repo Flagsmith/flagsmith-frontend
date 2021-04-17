@@ -337,7 +337,12 @@ $add-btn-size: 34px;
         line-height: $remove-btn-size;
     }
 }
-
+.btn--radio {
+    cursor: pointer;
+    padding:10px;
+    font-size: 16px;
+    color: $bt-brand-primary;
+}
 .btn.btn-add {
     line-height: $add-btn-size;
     height: $add-btn-size;

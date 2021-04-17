@@ -35,7 +35,7 @@ const CreateFlag = class extends Component {
             tags,
             initial_value: Utils.getTypedValue(feature_state_value),
             description,
-            multivariate_options,
+            multivariate_options: _.cloneDeep(multivariate_options),
             selectedIdentity: null,
             allowEditDescription,
             enabledIndentity: false,
@@ -258,6 +258,10 @@ const CreateFlag = class extends Component {
     removeVariation = (i) => {
         if (this.state.multivariate_options[i].id) {
             openConfirm('Please confirm', 'This will remove the variation on your feature for all environments, if you wish to turn it off just for this environment you can set the % value to 0.', () => {
+                const idToRemove = this.state.multivariate_options[i].id;
+                if (!!idToRemove) {
+                    this.props.removeMultiVariateOption(idToRemove)
+                }
                 this.state.multivariate_options.splice(i, 1);
                 this.forceUpdate();
             });
@@ -436,7 +440,10 @@ const CreateFlag = class extends Component {
               id={this.props.projectId}
             >
                 {({ project }) => (
-                    <Provider onSave={this.close}>
+                    <Provider onSave={()=>{
+                        this.close()
+                        AppActions.getFeatures(this.props.projectId, this.props.environmentId, true )
+                    }}>
                         {({ isLoading, isSaving, error, influxData }, { createFlag, editFlag }) => (
                             <form
                               id="create-feature-modal"
@@ -495,6 +502,7 @@ const CreateFlag = class extends Component {
                                                                       multivariateOptions={multivariate_options}
                                                                       environmentId={this.props.environmentId}
                                                                       value={this.props.segmentOverrides}
+                                                                      controlValue={initial_value}
                                                                       segments={this.props.segments}
                                                                       onChange={this.props.updateSegments}
                                                                     />

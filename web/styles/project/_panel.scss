@@ -16,28 +16,19 @@
         }
 
         &--draggable {
-            &:hover {
-                background: $dark-bg-2 !important;
-                .panel-content {
-                    background: $dark-bg-0 !important;
-                }
-            }
         }
     }
 }
 .panel{
+    &--flat {
+        box-shadow: none !important;
+    }
     &--draggable {
         cursor: move;
         @include transition(background 200ms ease-in-out);
 
         .panel-content {
             @include transition(background 200ms ease-in-out);
-        }
-        &:hover {
-            background: #f9f9f9 !important;
-            .panel-content {
-                background: #f9f9f9 !important;
-            }
         }
     }
     border-radius:$border-radius-default;

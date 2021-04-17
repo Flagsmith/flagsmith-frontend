@@ -12,7 +12,8 @@ class ValueEditor extends Component {
     componentDidMount() {
         if (!this.props.value) return;
         try {
-            JSON.parse(this.props.value);
+            const v = JSON.parse(this.props.value);
+            if (typeof v !== 'object') return;
             this.setState({ language: 'json' });
         } catch (e) {
         }

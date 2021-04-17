@@ -21,6 +21,10 @@ export default (WrappedComponent) => {
         }
 
         componentDidMount() {
+            this.getOverrides();
+        }
+
+        getOverrides = () => {
             if (this.props.projectFlag) {
                 Promise.all([
                     data.get(`${Project.api}features/feature-segments/?environment=${ProjectStore.getEnvironmentIdFromKey(this.props.environmentId)}&feature=${this.props.projectFlag.id}`),
@@ -40,6 +44,7 @@ export default (WrappedComponent) => {
                                     results[index].feature_segment_value = f;
                                     const multiVariates = res2 && res2.results.find(mv => mv.feature_segment = f.feature_segment);
                                     results[index].multivariate_feature_state_values = multiVariates && multiVariates.multivariate_feature_state_values || [];
+                                    results[index].multivariate_options = f.multivariate_feature_state_values;
                                 }
                             }
                         });
@@ -53,6 +58,15 @@ export default (WrappedComponent) => {
         }
 
 
+        removeMultiVariateOption = (id) => {
+            this.setState({
+                segmentOverrides: this.state.segmentOverrides && this.state.segmentOverrides.map(v => ({
+                    ...v,
+                    multivariate_options: v.multivariate_options && v.multivariate_options.filter(m => m.multivariate_feature_option !== id),
+                })),
+            });
+        }
+
         updateSegments = segmentOverrides => this.setState({ segmentOverrides });
 
         render() {
@@ -61,6 +75,7 @@ export default (WrappedComponent) => {
                   ref="wrappedComponent"
                   updateSegments={this.updateSegments}
                   onEnvironmentVariationsChange={this.onEnvironmentVariationsChange}
+                  removeMultiVariateOption={this.removeMultiVariateOption}
                   {...this.props}
                   {...this.state}
                 />

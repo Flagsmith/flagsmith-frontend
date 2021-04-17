@@ -17,70 +17,91 @@ const arrayMove = (array, from, to) => {
     return array;
 };
 
-const SegmentOverride = ConfigProvider(SortableElement(({ hasFeature, multivariateOptions, disabled, value: v, onSortEnd, index, confirmRemove, toggle, setValue }) => {
-    const controlValue = Utils.calculateControl(multivariateOptions, v.multivariate_options);
-
-    return (
-        <div data-test={`segment-override-${index}`} style={{ zIndex: 9999999999 }} className="panel panel-without-heading panel--draggable mb-2">
-            <Row className="panel-content" space>
-                <div
-                  className="flex flex-1 text-left"
-                >
-                    <strong>
-                        {v.segment.name}
-                    </strong>
-                </div>
-                <div>
-                    <Row>
-                        <Column>
-                            <div>
-                                <Switch
-                                  disabled={disabled}
-                                  checked={v.enabled}
-                                  onChange={toggle}
-                                />
-                            </div>
-                        </Column>
-
-                        {/* Input to adjust order without drag for E2E */}
-                        {E2E && (
-                            <input
-                              data-test={`sort-${index}`}
-                              onChange={(e) => {
-                                  onSortEnd({ oldIndex: index, newIndex: parseInt(Utils.safeParseEventValue(e)) });
-                              }}
-                              type="text"
-                            />
-                        )}
-
-                        <button
-                          disabled={disabled}
-                          id="remove-feature"
-                          onClick={confirmRemove}
-                          className="btn btn--with-icon"
-                        >
-                            <RemoveIcon/>
-                        </button>
-                    </Row>
-                </div>
-            </Row>
-
-            <div className="mx-2 text-left pb-2">
-                <label>
-                    Value (optional)
-                </label>
-                <ValueEditor
-                  value={v.value}
-                  data-test={`segment-override-value-${index}`}
-                  onChange={e => setValue(Utils.getTypedValue(Utils.safeParseEventValue(e)))}
-                  placeholder="Value e.g. 'big' "
-                />
+const SegmentOverride = ConfigProvider(SortableElement(({ hasFeature, controlValue, multivariateOptions, setVariations, disabled, value: v, onSortEnd, index, confirmRemove, toggle, setValue }) => (
+    <div data-test={`segment-override-${index}`} style={{ zIndex: 9999999999 }} className="panel panel-without-heading panel--draggable mb-2">
+        <Row className="panel-content" space>
+            <div
+              className="flex flex-1 text-left"
+            >
+                <strong>
+                    {v.segment.name}
+                </strong>
             </div>
-        </div>
-    );
-}));
+            <div>
+                <Row>
+                    <Column>
+                        <div>
+                            <Switch
+                              disabled={disabled}
+                              checked={v.enabled}
+                              onChange={toggle}
+                            />
+                        </div>
+                    </Column>
 
-const SegmentOverrideList = SortableContainer(({ disabled, multivariateOptions, onSortEnd, items, confirmRemove, toggle, setValue }) => (
+                    {/* Input to adjust order without drag for E2E */}
+                    {E2E && (
+                    <input
+                      data-test={`sort-${index}`}
+                      onChange={(e) => {
+                          onSortEnd({ oldIndex: index, newIndex: parseInt(Utils.safeParseEventValue(e)) });
+                      }}
+                      type="text"
+                    />
+                    )}
+
+                    <button
+                      disabled={disabled}
+                      id="remove-feature"
+                      onClick={confirmRemove}
+                      className="btn btn--with-icon"
+                    >
+                        <RemoveIcon/>
+                    </button>
+                </Row>
+            </div>
+        </Row>
+
+        <div className="mx-2 text-left pb-2">
+
+            {!(multivariateOptions || !multivariateOptions.length) && (
+                    <>
+                        <label>
+                            Value (optional)
+                        </label>
+                        <ValueEditor
+                          value={v.value}
+                          data-test={`segment-override-value-${index}`}
+                          onChange={e => setValue(Utils.getTypedValue(Utils.safeParseEventValue(e)))}
+                          placeholder="Value e.g. 'big' "
+                        />
+                    </>
+
+            )}
+
+            {hasFeature('mv') && (
+            <div>
+                <FormGroup className="mb-4">
+                    <VariationOptions
+                      disabled
+                      select
+                      controlValue={controlValue}
+                      variationOverrides={v.multivariate_options}
+                      setVariations={setVariations}
+                      setValue={setValue}
+                      updateVariation={() => {}}
+                      weightTitle="Override Weight %"
+                      multivariateOptions={multivariateOptions}
+                      removeVariation={() => {}}
+                    />
+                </FormGroup>
+            </div>
+            )}
+        </div>
+    </div>
+)));
+
+const SegmentOverrideList = SortableContainer(({ disabled, multivariateOptions, onSortEnd, items, controlValue, confirmRemove, toggle, setValue, setVariations }) => (
     <div>
         {items.map((value, index) => (
             <SegmentOverride
@@ -91,7 +112,9 @@ const SegmentOverrideList = SortableContainer(({ disabled, multivariateOptions, 
               index={index}
               value={value}
               confirmRemove={() => confirmRemove(index)}
+              controlValue={controlValue}
               toggle={() => toggle(index)}
+              setVariations={newVariations => setVariations(index, newVariations)}
               setValue={value => setValue(index, value)}
             />
         ))}
@@ -165,6 +188,11 @@ class TheComponent extends Component {
         this.props.onChange(this.props.value);
     }
 
+    setVariations = (i, value) => {
+        this.props.value[i].multivariate_options = value;
+        this.props.onChange(this.props.value);
+    }
+
     toggle = (i) => {
         this.props.value[i].enabled = !this.props.value[i].enabled;
         this.props.onChange(this.props.value);
@@ -229,8 +257,10 @@ class TheComponent extends Component {
                             {value && (
                             <SegmentOverrideList
                               disabled={isLoading}
+                              controlValue={this.props.controlValue}
                               multivariateOptions={multivariateOptions}
                               confirmRemove={this.confirmRemove}
+                              setVariations={this.setVariations}
                               toggle={this.toggle}
                               setValue={this.setValue}
                               items={value.map(v => (

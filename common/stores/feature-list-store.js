@@ -5,8 +5,8 @@ const data = require('../data/base/_data');
 
 const controller = {
 
-    getFeatures: (projectId, environmentId) => {
-        if (!store.model || store.envId != environmentId) { // todo: change logic a bit
+    getFeatures: (projectId, environmentId, force) => {
+        if (!store.model || store.envId != environmentId||force) { // todo: change logic a bit
             store.loading();
             store.envId = environmentId;
 
@@ -124,14 +124,18 @@ const controller = {
             ? data.post(`${Project.api}features/feature-segments/update-priorities/`, segmentOverrides.map((override, index) => ({
                 id: override.id,
                 priority: index,
-            }))).then(() => Promise.all(segmentOverrides.map(override => {
-                return data.put(`${Project.api}features/featurestates/${override.feature_segment_value.id}/`, {
-                    ...override.feature_segment_value,
-                    multivariate_feature_state_values: [], // for now we don't set mv for segments
-                    feature_state_value: Utils.valueToFeatureState(override.value),
-                    enabled: override.enabled,
-                });
-            }))) : Promise.resolve();
+            }))).then(() => Promise.all(segmentOverrides.map(override => data.put(`${Project.api}features/featurestates/${override.feature_segment_value.id}/`, {
+                ...override.feature_segment_value,
+                multivariate_feature_state_values: override.multivariate_options && override.multivariate_options.map((o) => {
+                    if (o.multivariate_feature_option) return o;
+                    return {
+                        multivariate_feature_option: environmentFlag.multivariate_feature_state_values[o.multivariate_feature_option_index].multivariate_feature_option,
+                        percentage_allocation: o.percentage_allocation,
+                    };
+                }),
+                feature_state_value: Utils.valueToFeatureState(override.value),
+                enabled: override.enabled,
+            })))) : Promise.resolve();
 
 
         Promise.all([prom, segmentOverridesRequest]).then(([res, segmentRes]) => {
@@ -183,7 +187,7 @@ store.dispatcherIndex = Dispatcher.register(store, (payload) => {
 
     switch (action.actionType) {
         case Actions.GET_FLAGS:
-            controller.getFeatures(action.projectId, action.environmentId);
+            controller.getFeatures(action.projectId, action.environmentId, action.force);
             break;
         case Actions.TOGGLE_FLAG:
             controller.toggleFlag(action.index, action.environments, action.comment);

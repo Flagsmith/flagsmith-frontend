@@ -12,11 +12,12 @@ const AppActions = Object.assign({}, require('./base/_app-actions'), {
             data,
         });
     },
-    getFeatures(projectId, environmentId) {
+    getFeatures(projectId, environmentId, force) {
         Dispatcher.handleViewAction({
             actionType: Actions.GET_FLAGS,
             projectId,
             environmentId,
+            force
         });
     },
     createProject(name) {
