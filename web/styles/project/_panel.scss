@@ -19,6 +19,9 @@
         }
     }
 }
+.dark .panel--flat {
+    border: 1px solid #252836;
+}
 .panel{
     &--flat {
         box-shadow: none !important;

@@ -8,7 +8,7 @@ const VariationValue = ({
     weightTitle,
     onRemove,
 }) => (
-    <div className="panel panel-without-heading mb-2">
+    <div className="panel panel--flat panel-without-heading mb-2">
         <div className="panel-content">
             <Row>
                 <div className="flex flex-1">
