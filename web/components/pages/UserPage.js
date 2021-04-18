@@ -72,7 +72,7 @@ const UserPage = class extends Component {
 
     editFlag = (projectFlag, environmentFlag, identityFlag) => {
         API.trackEvent(Constants.events.VIEW_USER_FEATURE);
-        openModal('Edit User Feature', <CreateFlagModal
+        openModal('Edit User Feature: ' + projectFlag.name, <CreateFlagModal
           isEdit
           identity={this.props.match.params.id}
           identityName={this.props.match.params.identity}
@@ -81,7 +81,7 @@ const UserPage = class extends Component {
           projectFlag={projectFlag}
           identityFlag={identityFlag}
           environmentFlag={environmentFlag}
-        />);
+        />, null, { className: 'side-modal fade' });
     };
 
     createTrait = () => {

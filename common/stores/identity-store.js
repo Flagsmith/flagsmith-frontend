@@ -67,11 +67,13 @@ const controller = {
             ? data.put(`${Project.api}environments/${environmentId}/identities/${identity}/featurestates/${identityFlag.id}/`, Object.assign({}, {
                 id: identityFlag.id,
                 enabled: identityFlag.enabled,
+                multivariate_feature_state_values:identityFlag.multivariate_options,
                 feature_state_value: identityFlag.feature_state_value,
             }))
             : data.post(`${Project.api}environments/${environmentId}/identities/${identity}/featurestates/`, {
                 feature: projectFlag.id,
                 enabled: environmentFlag.enabled,
+                multivariate_feature_state_values:identityFlag.multivariate_options,
                 feature_state_value: identityFlag.feature_state_value,
             });
 

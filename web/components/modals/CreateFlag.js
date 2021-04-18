@@ -36,6 +36,7 @@ const CreateFlag = class extends Component {
             initial_value: Utils.getTypedValue(feature_state_value),
             description,
             multivariate_options: _.cloneDeep(multivariate_options),
+            identityVariations: this.props.identityFlag && this.props.identityFlag.multivariate_feature_state_values ? _.cloneDeep(this.props.identityFlag.multivariate_feature_state_values) : [],
             selectedIdentity: null,
             allowEditDescription,
             enabledIndentity: false,
@@ -115,7 +116,7 @@ const CreateFlag = class extends Component {
                 projectFlag,
                 environmentFlag,
                 identityFlag: Object.assign({}, identityFlag || {}, {
-                    multivariate_options: [],
+                    multivariate_options: this.state.identityVariations,
                     feature_state_value: initial_value,
                     enabled: default_enabled,
                 }),
@@ -370,6 +371,23 @@ const CreateFlag = class extends Component {
                     </FormGroup>
                 )}
 
+                {identity && description && (
+                    <FormGroup className="mb-4 mr-3 ml-3" >
+                        <InputGroup
+                            value={description}
+                            data-test="featureDesc"
+                            inputProps={{
+                                className: 'full-width',
+                                readOnly: !!identity,
+                                name: 'featureDesc',
+                            }}
+                            onChange={e => this.setState({ description: Utils.safeParseEventValue(e) })}
+                            isValid={name && name.length}
+                            type="text" title={identity ? 'Description' : 'Description (optional)'}
+                            placeholder="No description"
+                        />
+                    </FormGroup>
+                )}
                 <FormGroup className="mb-4 mr-3 ml-3">
                     <div>
                         <label>{enabledString}</label>
@@ -384,7 +402,7 @@ const CreateFlag = class extends Component {
                 </FormGroup>
 
                 {!(!!identity && (multivariate_options && !!multivariate_options.length)) && (
-                    <FormGroup className="ml-3 mb-4 mr-3">
+                    <FormGroup className="mx-3 mb-4 mr-3">
                         <InputGroup
                           component={(
                               <ValueEditor
@@ -402,6 +420,25 @@ const CreateFlag = class extends Component {
                     </FormGroup>
                 ) }
 
+                {!!identity &&   hasFeature('mv') && (
+                    <div>
+                        <FormGroup className="mb-4 mx-3">
+                            <VariationOptions
+                              disabled
+                              select
+                              controlValue={this.props.environmentFlag.feature_state_value}
+                              variationOverrides={this.state.identityVariations}
+                              setVariations={(identityVariations) => {
+                                  this.setState({ identityVariations });
+                              }}
+                              updateVariation={() => {}}
+                              weightTitle="Override Weight %"
+                              multivariateOptions={projectFlag.multivariate_options}
+                              removeVariation={() => {}}
+                            />
+                        </FormGroup>
+                    </div>
+                )}
                 {this.props.hasFeature('mv') && !identity && (
                     <div>
                         <FormGroup className="ml-3 mb-4 mr-3">
@@ -418,23 +455,6 @@ const CreateFlag = class extends Component {
                         <AddVariationButton onClick={this.addVariation}/>
                     </div>
 
-                )}
-                {identity && (
-                    <FormGroup className="mb-4 mr-3 ml-3" >
-                        <InputGroup
-                          value={description}
-                          data-test="featureDesc"
-                          inputProps={{
-                              className: 'full-width',
-                              readOnly: !!identity,
-                              name: 'featureDesc',
-                          }}
-                          onChange={e => this.setState({ description: Utils.safeParseEventValue(e) })}
-                          isValid={name && name.length}
-                          type="text" title={identity ? 'Description' : 'Description (optional)'}
-                          placeholder="e.g. 'This determines what size the header is' "
-                        />
-                    </FormGroup>
                 )}
                 {!isEdit && !identity && Settings}
             </>
