@@ -259,8 +259,8 @@ const CreateFlag = class extends Component {
         if (this.state.multivariate_options[i].id) {
             openConfirm('Please confirm', 'This will remove the variation on your feature for all environments, if you wish to turn it off just for this environment you can set the % value to 0.', () => {
                 const idToRemove = this.state.multivariate_options[i].id;
-                if (!!idToRemove) {
-                    this.props.removeMultiVariateOption(idToRemove)
+                if (idToRemove) {
+                    this.props.removeMultiVariateOption(idToRemove);
                 }
                 this.state.multivariate_options.splice(i, 1);
                 this.forceUpdate();
@@ -382,23 +382,27 @@ const CreateFlag = class extends Component {
                       onChange={default_enabled => this.setState({ default_enabled })}
                     />
                 </FormGroup>
-                <FormGroup className="ml-3 mb-4 mr-3">
-                    <InputGroup
-                      component={(
-                          <ValueEditor
-                            data-test="featureValue"
-                            name="featureValue" className="full-width"
-                            value={initial_value}
-                            onChange={e => this.setState({ initial_value: Utils.getTypedValue(Utils.safeParseEventValue(e)) })}
-                            disabled={hide_from_client}
-                            placeholder="e.g. 'big' "
-                          />
-                        )}
-                      tooltip={Constants.strings.REMOTE_CONFIG_DESCRIPTION}
-                      title={`${valueString}`}
-                    />
-                </FormGroup>
-                {this.props.hasFeature('mv') && !identity&& (
+
+                {!(!!identity && (multivariate_options && !!multivariate_options.length)) && (
+                    <FormGroup className="ml-3 mb-4 mr-3">
+                        <InputGroup
+                          component={(
+                              <ValueEditor
+                                data-test="featureValue"
+                                name="featureValue" className="full-width"
+                                value={initial_value}
+                                onChange={e => this.setState({ initial_value: Utils.getTypedValue(Utils.safeParseEventValue(e)) })}
+                                disabled={hide_from_client}
+                                placeholder="e.g. 'big' "
+                              />
+                            )}
+                          tooltip={Constants.strings.REMOTE_CONFIG_DESCRIPTION}
+                          title={`${valueString}`}
+                        />
+                    </FormGroup>
+                ) }
+
+                {this.props.hasFeature('mv') && !identity && (
                     <div>
                         <FormGroup className="ml-3 mb-4 mr-3">
                             <VariationOptions
@@ -440,10 +444,11 @@ const CreateFlag = class extends Component {
               id={this.props.projectId}
             >
                 {({ project }) => (
-                    <Provider onSave={()=>{
-                        this.close()
-                        AppActions.getFeatures(this.props.projectId, this.props.environmentId, true )
-                    }}>
+                    <Provider onSave={() => {
+                        this.close();
+                        AppActions.getFeatures(this.props.projectId, this.props.environmentId, true);
+                    }}
+                    >
                         {({ isLoading, isSaving, error, influxData }, { createFlag, editFlag }) => (
                             <form
                               id="create-feature-modal"

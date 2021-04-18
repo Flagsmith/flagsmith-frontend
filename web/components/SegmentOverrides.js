@@ -17,89 +17,92 @@ const arrayMove = (array, from, to) => {
     return array;
 };
 
-const SegmentOverride = ConfigProvider(SortableElement(({ hasFeature, controlValue, multivariateOptions, setVariations, disabled, value: v, onSortEnd, index, confirmRemove, toggle, setValue }) => (
-    <div data-test={`segment-override-${index}`} style={{ zIndex: 9999999999 }} className="panel panel-without-heading panel--draggable mb-2">
-        <Row className="panel-content" space>
-            <div
-              className="flex flex-1 text-left"
-            >
-                <strong>
-                    {v.segment.name}
-                </strong>
-            </div>
-            <div>
-                <Row>
-                    <Column>
-                        <div>
-                            <Switch
-                              disabled={disabled}
-                              checked={v.enabled}
-                              onChange={toggle}
+const SegmentOverride = ConfigProvider(SortableElement(({ hasFeature, controlValue, multivariateOptions, setVariations, disabled, value: v, onSortEnd, index, confirmRemove, toggle, setValue }) => {
+    const showValue = !(multivariateOptions && multivariateOptions.length);
+    return (
+        <div data-test={`segment-override-${index}`} style={{ zIndex: 9999999999 }} className="panel panel-without-heading panel--draggable mb-2">
+            <Row className="panel-content" space>
+                <div
+                    className="flex flex-1 text-left"
+                >
+                    <strong>
+                        {v.segment.name}
+                    </strong>
+                </div>
+                <div>
+                    <Row>
+                        <Column>
+                            <div>
+                                <Switch
+                                    disabled={disabled}
+                                    checked={v.enabled}
+                                    onChange={toggle}
+                                />
+                            </div>
+                        </Column>
+
+                        {/* Input to adjust order without drag for E2E */}
+                        {E2E && (
+                            <input
+                                data-test={`sort-${index}`}
+                                onChange={(e) => {
+                                    onSortEnd({ oldIndex: index, newIndex: parseInt(Utils.safeParseEventValue(e)) });
+                                }}
+                                type="text"
                             />
-                        </div>
-                    </Column>
+                        )}
 
-                    {/* Input to adjust order without drag for E2E */}
-                    {E2E && (
-                    <input
-                      data-test={`sort-${index}`}
-                      onChange={(e) => {
-                          onSortEnd({ oldIndex: index, newIndex: parseInt(Utils.safeParseEventValue(e)) });
-                      }}
-                      type="text"
-                    />
-                    )}
+                        <button
+                            disabled={disabled}
+                            id="remove-feature"
+                            onClick={confirmRemove}
+                            className="btn btn--with-icon"
+                        >
+                            <RemoveIcon/>
+                        </button>
+                    </Row>
+                </div>
+            </Row>
 
-                    <button
-                      disabled={disabled}
-                      id="remove-feature"
-                      onClick={confirmRemove}
-                      className="btn btn--with-icon"
-                    >
-                        <RemoveIcon/>
-                    </button>
-                </Row>
-            </div>
-        </Row>
+            <div className="mx-2 text-left pb-2">
 
-        <div className="mx-2 text-left pb-2">
-
-            {!(multivariateOptions || !multivariateOptions.length) && (
+                {showValue && (
                     <>
                         <label>
                             Value (optional)
                         </label>
                         <ValueEditor
-                          value={v.value}
-                          data-test={`segment-override-value-${index}`}
-                          onChange={e => setValue(Utils.getTypedValue(Utils.safeParseEventValue(e)))}
-                          placeholder="Value e.g. 'big' "
+                            value={v.value}
+                            data-test={`segment-override-value-${index}`}
+                            onChange={e => setValue(Utils.getTypedValue(Utils.safeParseEventValue(e)))}
+                            placeholder="Value e.g. 'big' "
                         />
                     </>
 
-            )}
+                )}
 
-            {hasFeature('mv') && (
-            <div>
-                <FormGroup className="mb-4">
-                    <VariationOptions
-                      disabled
-                      select
-                      controlValue={controlValue}
-                      variationOverrides={v.multivariate_options}
-                      setVariations={setVariations}
-                      setValue={setValue}
-                      updateVariation={() => {}}
-                      weightTitle="Override Weight %"
-                      multivariateOptions={multivariateOptions}
-                      removeVariation={() => {}}
-                    />
-                </FormGroup>
+                {hasFeature('mv') && (
+                    <div>
+                        <FormGroup className="mb-4">
+                            <VariationOptions
+                                disabled
+                                select
+                                controlValue={controlValue}
+                                variationOverrides={v.multivariate_options}
+                                setVariations={setVariations}
+                                setValue={setValue}
+                                updateVariation={() => {}}
+                                weightTitle="Override Weight %"
+                                multivariateOptions={multivariateOptions}
+                                removeVariation={() => {}}
+                            />
+                        </FormGroup>
+                    </div>
+                )}
             </div>
-            )}
         </div>
-    </div>
-)));
+    )
+}));
 
 const SegmentOverrideList = SortableContainer(({ disabled, multivariateOptions, onSortEnd, items, controlValue, confirmRemove, toggle, setValue, setVariations }) => (
     <div>
