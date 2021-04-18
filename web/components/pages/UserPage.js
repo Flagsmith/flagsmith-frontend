@@ -81,7 +81,7 @@ const UserPage = class extends Component {
           projectFlag={projectFlag}
           identityFlag={identityFlag}
           environmentFlag={environmentFlag}
-        />, null, { className: 'side-modal fade' });
+        />);
     };
 
     createTrait = () => {
