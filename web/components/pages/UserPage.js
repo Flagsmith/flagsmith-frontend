@@ -229,7 +229,7 @@ const UserPage = class extends Component {
                                                                       ) : flagValueDifferent ? isMultiVariateOverride ? (
                                                                           <span data-test={`feature-override-${i}`} className="flex-row chip">
                                                                               <span>
-                                                                              This feature is being overriden by a % variation for this user, the control value of this feature is  <FeatureValue
+                                                                              This feature is being overriden by a % variation in the environment, the control value of this feature is  <FeatureValue
                                                                                 data-test={`user-feature-original-value-${i}`}
                                                                                 value={`${flagValue}`}
                                                                               />
