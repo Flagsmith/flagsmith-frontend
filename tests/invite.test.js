@@ -65,8 +65,8 @@ module.exports = {
         browser
             .url('https://www.mailinator.com/v3/index.jsp?zone=public&query=bullet-train#/#inboxpane')
             .useXpath()
-            .waitForElementVisible("//*[contains(text(), 'Organisation Invite - Site Assist')]", 60000)
-            .click("//*[contains(text(), 'Organisation Invite - Site Assist')]")
+            .waitForElementVisible(`//tbody/tr/td/a[contains(text(),"${`Bullet Train Org${append}`}")]`, 60000)
+            .click(`//tbody/tr/td/a[contains(text(),"${`Bullet Train Org${append}`}")]`)
             .useCss()
             .waitForElementVisible('#msg_body')
             .pause(1000) // TODO revise this. currently necessary as the msg_body does not appear to show text immediately leading to an empty result
