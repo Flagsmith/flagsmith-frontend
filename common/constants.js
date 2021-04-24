@@ -140,6 +140,7 @@ const Constants = {
             '.NET': require('./code-help/create-user/create-user-dotnet')(envId, keywords),
             'Flutter': require('./code-help/create-user/create-user-flutter')(envId, keywords),
             'Go': require('./code-help/create-user/create-user-go')(envId, keywords),
+            'iOS': require('./code-help/create-user/create-user-ios')(envId, keywords),
             'Java': require('./code-help/create-user/create-user-java')(envId, keywords),
             'JavaScript': require('./code-help/create-user/create-user-js')(envId, keywords),
             'Node JS': require('./code-help/create-user/create-user-node')(envId, keywords),
@@ -149,13 +150,13 @@ const Constants = {
             'React Native': require('./code-help/create-user/create-user-rn')(envId, keywords),
             'Ruby': require('./code-help/create-user/create-user-ruby')(envId, keywords),
             'Rust': require('./code-help/create-user/create-user-rust')(envId, keywords),
-            'iOS': require('./code-help/create-user/create-user-ios')(envId, keywords),
         }),
 
         'SEGMENTS': envId => ({
             '.NET': require('./code-help/create-user/create-user-dotnet')(envId, keywords),
             'Flutter': require('./code-help/create-user/create-user-flutter')(envId, keywords),
             'Go': require('./code-help/create-user/create-user-go')(envId, keywords),
+            'iOS': require('./code-help/create-user/create-user-ios')(envId, keywords),
             'Java': require('./code-help/create-user/create-user-java')(envId, keywords),
             'JavaScript': require('./code-help/create-user/create-user-js')(envId, keywords),
             'Node JS': require('./code-help/create-user/create-user-node')(envId, keywords),
@@ -165,7 +166,6 @@ const Constants = {
             'React Native': require('./code-help/create-user/create-user-rn')(envId, keywords),
             'Ruby': require('./code-help/create-user/create-user-ruby')(envId, keywords),
             'Rust': require('./code-help/create-user/create-user-rust')(envId, keywords),
-            'iOS': require('./code-help/create-user/create-user-ios')(envId, keywords),
         }),
 
         'USER_TRAITS': (envId, userId) => ({
@@ -181,6 +181,7 @@ const Constants = {
             '.NET': require('./code-help/init/init-dotnet')(envId, keywords),
             'Flutter': require('./code-help/init/init-flutter')(envId, keywords),
             'Go': require('./code-help/init/init-go')(envId, keywords),
+            'iOS': require('./code-help/init/init-ios')(envId, keywords),
             'Java': require('./code-help/init/init-java')(envId, keywords),
             'JavaScript': require('./code-help/init/init-js')(envId, keywords),
             'Node JS': require('./code-help/init/init-node')(envId, keywords),
@@ -190,13 +191,13 @@ const Constants = {
             'React Native': require('./code-help/init/init-rn')(envId, keywords),
             'Ruby': require('./code-help/init/init-ruby')(envId, keywords),
             'Rust': require('./code-help/init/init-rust')(envId, keywords),
-            'iOS': require('./code-help/init/init-ios')(envId, keywords),
         }),
 
         'INSTALL': {
             '.NET': require('./code-help/install/install-dotnet')(keywords),
             'Flutter': require('./code-help/install/install-flutter')(keywords),
             'Go': require('./code-help/install/install-go')(keywords),
+            'iOS': require('./code-help/install/install-ios')(keywords),
             'Java': require('./code-help/install/install-java')(keywords),
             'JavaScript': require('./code-help/install/install-js')(keywords),
             'Node JS': require('./code-help/install/install-node')(keywords),
@@ -206,7 +207,6 @@ const Constants = {
             'React Native': require('./code-help/install/install-rn')(keywords),
             'Ruby': require('./code-help/install/install-ruby')(keywords),
             'Rust': require('./code-help/install/install-rust')(keywords),
-            'iOS': require('./code-help/install/install-ios')(keywords),
         },
     },
     simulate: {},
