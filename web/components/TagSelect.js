@@ -22,7 +22,7 @@ class TagSelect extends PureComponent {
                 <div className="ml-1">
                     <Row>
                         {projectTags.map(tag => (
-                          <div className="mr-1">
+                          <div className="mr-1 mb-2">
                               <Tag
                                 key={tag.id}
                                 selected={this.isSelected(tag)}

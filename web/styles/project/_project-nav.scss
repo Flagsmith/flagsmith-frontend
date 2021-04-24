@@ -7,6 +7,10 @@
         right:0;
     }
     z-index: 10;
+    .ion {
+        font-size: 18px;
+        color: $nav-icon-color;
+    }
     svg {
         height: 18px;
         max-width: 21px;

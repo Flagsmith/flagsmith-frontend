@@ -607,7 +607,7 @@ const CreateFlag = class extends Component {
                                                                       {identity.identifier}
                                                                   </Flex>
                                                                   <Switch checked={enabled}/>
-                                                                  <div>
+                                                                  <div className="ml-2">
                                                                       {feature_state_value && (
                                                                       <FeatureValue
                                                                         value={feature_state_value}

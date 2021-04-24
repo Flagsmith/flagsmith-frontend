@@ -153,19 +153,90 @@ const OrganisationSettingsPage = class extends Component {
 
     drawChart = (data) => {
         if (data && data.events_list) { // protect against influx setup incorrectly
+            let totalFlags = 0;
+            let totalTraits = 0;
+            let totalIdentities = 0;
+            data.events_list.map((v) => {
+                totalFlags += v.Flags;
+                totalTraits += v.Traits;
+                totalIdentities += v.Identities;
+            });
             return (
-                <ResponsiveContainer height={400} width="100%">
-                    <BarChart data={data.events_list}>
-                        <CartesianGrid strokeDasharray="3 5"/>
-                        <XAxis allowDataOverflow={false} dataKey="name"/>
-                        <YAxis allowDataOverflow={false} />
-                        <Tooltip/>
-                        <Legend />
-                        <Bar dataKey="Flags" stackId="a" fill="#6633ff" />
-                        <Bar dataKey="Identities" stackId="a" fill="#00a696" />
-                        <Bar dataKey="Traits" stackId="a" fill="#f18e7f" />
-                    </BarChart>
-                </ResponsiveContainer>
+                <div>
+                    <div className="flex-row header--icon">
+                        <h5>API usage</h5>
+
+                    </div>
+                    <div className="col-md-6 row mb-2">
+
+                        <table className="table">
+                            <thead>
+                            <th style={{width:200, borderBottom:"1px solid #ccc"}}>
+                                <td>
+                                    Usage type
+                                </td>
+                            </th>
+                            <th style={{ borderBottom:"1px solid #ccc"}}>
+                                <td>
+                                    API calls
+                                </td>
+                            </th>
+                            </thead>
+                            <tbody>
+                            <tr style={{borderBottom:"1px solid #ccc"}}>
+                                <td>
+                                    Flags
+                                </td>
+                                <td>
+                                    {totalFlags}
+                                </td>
+                            </tr>
+                            <tr style={{borderBottom:"1px solid #ccc"}}>
+                                <td>
+                                    Identities
+                                </td>
+                                <td>
+                                    {totalIdentities}
+                                </td>
+                            </tr>
+                            <tr style={{borderBottom:"1px solid #ccc"}}>
+                                <td>
+                                    Traits
+                                </td>
+                                <td>
+                                    {totalTraits}
+                                </td>
+                            </tr>
+                            <tr style={{ borderTop:"1px solid #ccc"}}>
+                                <td>
+                                    <strong>
+                                        Total
+                                    </strong>
+                                </td>
+                                <td>
+                                    <strong>
+                                        {totalFlags+totalIdentities+totalTraits}
+                                    </strong>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <ResponsiveContainer height={400} width="100%">
+                        <BarChart data={data.events_list}>
+                            <CartesianGrid strokeDasharray="3 5"/>
+                            <XAxis allowDataOverflow={false} dataKey="name"/>
+                            <YAxis allowDataOverflow={false} />
+                            <Tooltip/>
+                            <Legend />
+                            <Bar dataKey="Flags" stackId="a" fill="#6633ff" />
+                            <Bar dataKey="Identities" stackId="a" fill="#00a696" />
+                            <Bar dataKey="Traits" stackId="a" fill="#f18e7f" />
+                        </BarChart>
+                    </ResponsiveContainer>
+                </div>
+
             );
         }
         return null;
@@ -265,17 +336,19 @@ const OrganisationSettingsPage = class extends Component {
                                             <div>
                                                 {this.props.hasFeature('usage_chart') && (
                                                 <div className="panel--grey">
-                                                    <div className="flex-row header--icon">
-                                                        <h5>API usage</h5>
-                                                    </div>
                                                     {!isLoading && usage != null ? (
                                                         <div>
                                                             {this.props.hasFeature('usage_chart') ? this.drawChart(influx_data) : (
-                                                                <span>
-                                                                    {'You have made '}
-                                                                    <strong>{`${Utils.numberWithCommas(usage)}`}</strong>
-                                                                    {' requests over the past 30 days.'}
-                                                                </span>
+                                                                <>
+                                                                    <div className="flex-row header--icon">
+                                                                        <h5>API usage</h5>
+                                                                    </div>
+                                                                    <span>
+                                                                        {'You have made '}
+                                                                        <strong>{`${Utils.numberWithCommas(usage)}`}</strong>
+                                                                        {' requests over the past 30 days.'}
+                                                                    </span>
+                                                                </>
                                                             )}
                                                         </div>
                                                     ) : <div className="text-center"><Loader/></div> }

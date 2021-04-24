@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { matchPath } from 'react-router';
 import { withRouter } from 'react-router-dom';
 import amplitude from 'amplitude-js';
+import NavLink from 'react-router-dom/NavLink';
 import Aside from './Aside';
 import Popover from './base/Popover';
 import Feedback from './modals/Feedback';
@@ -296,6 +297,19 @@ const App = class extends Component {
                                                                 <UserSettingsIcon />
                                                                 Account
                                                             </NavLink>
+
+
+                                                            {AccountStore.getOrganisationRole() === 'ADMIN' && (
+                                                            <NavLink
+                                                              id="org-settings-link"
+                                                              activeClassName="active"
+                                                              className="nav-link p-2"
+                                                              to={`/organisation-settings`}
+                                                            >
+                                                                <ion style={{ marginRight: 4 }} className="icon--primary ion ion-md-settings"/>
+                                                                {'Manage'}
+                                                            </NavLink>
+                                                            )}
                                                         </nav>
 
 
