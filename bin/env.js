@@ -31,6 +31,7 @@ const values = [
     { name: 'assetURL', value: process.env.ASSET_URL },
     { name: 'flagsmithAnalytics', value: process.env.FLAGSMITH_ANALYTICS },
     { name: 'flagsmithClientAPI', value: process.env.FLAGSMITH_CLIENT_API },
+    { name: 'disableInflux', value: process.env.DISABLE_INFLUXDB_FEATURES },
     { name: 'amplitude', value: process.env.AMPLITUDE },
 ];
 const output = values.map(getVariable).join('');

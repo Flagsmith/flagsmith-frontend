@@ -28,7 +28,7 @@ const OrganisationSettingsPage = class extends Component {
         };
         AppActions.getOrganisation(AccountStore.getOrganisation().id);
 
-        if (this.props.hasFeature('usage_chart')) {
+        if (this.props.hasFeature('usage_chart') && !projectOverrides.disableInflux) {
             AppActions.getInfluxData(AccountStore.getOrganisation().id);
         }
 
@@ -334,7 +334,7 @@ const OrganisationSettingsPage = class extends Component {
                                     <OrganisationProvider>
                                         {({ isLoading, name, error, projects, usage, users, invites, influx_data, inviteLinks }) => (
                                             <div>
-                                                {this.props.hasFeature('usage_chart') && (
+                                                {this.props.hasFeature('usage_chart') && !projectOverrides.disableInflux && (
                                                 <div className="panel--grey">
                                                     {!isLoading && usage != null ? (
                                                         <div>
@@ -381,7 +381,7 @@ const OrganisationSettingsPage = class extends Component {
                                                       Upgrade
                                                 </a>
                                                 )
-                                                }.
+                                                }
                                                 {
                                                     this.props.hasFeature('invite_link') && inviteLinks && (
                                                     <form onSubmit={(e) => {

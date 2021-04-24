@@ -26,14 +26,15 @@ module.exports = (WrappedComponent) => {
             const { isLoading,error } = this.state;
             const { getValue, hasFeature } = flagsmith;
 
+
             return (
                 <WrappedComponent
                   ref="wrappedComponent"
                   isLoading={isLoading}
-                  getValue={getValue}
                   error={error}
-                  hasFeature={hasFeature}
                   {...this.props}
+                  getValue={getValue}
+                  hasFeature={hasFeature}
                 />
             );
         }

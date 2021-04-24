@@ -12,6 +12,7 @@ import TwoFactorPrompt from './SimpleTwoFactor/prompt';
 import Maintenance from './Maintenance';
 import Blocked from './Blocked';
 import AppLoader from './AppLoader';
+import ButterBar from './ButterBar';
 import UserSettingsIcon from './svg/UserSettingsIcon';
 import DocumentationIcon from './svg/DocumentationIcon';
 import ArrowUpIcon from './svg/ArrowUpIcon';
@@ -154,8 +155,6 @@ const App = class extends Component {
             document.body.classList.add('dark');
         }
         const {
-            hasFeature,
-            getValue,
             match: { params },
             location,
         } = this.props;
@@ -409,19 +408,7 @@ const App = class extends Component {
                                 )}
                                 {isMobile && pageHasAside && asideIsVisible ? null : (
                                     <div>
-                                        {this.props.getValue('butter_bar') && !this.props.hasFeature('read_only_mode')(
-                                            <div
-                                              dangerouslySetInnerHTML={{ __html: this.props.getValue('butter_bar') }}
-                                              className="butter-bar"
-                                            />,
-                                        )}
-                                        {this.props.hasFeature('read_only_mode') && (
-                                            <div
-                                              className="butter-bar"
-                                            >
-                                                Your organisation is over its usage limit, please <Link to="/organisation-settings">upgrade your plan</Link>.
-                                            </div>
-                                        )}
+                                        <ButterBar/>
                                         {this.props.children}
                                     </div>
                                 )}
@@ -441,4 +428,4 @@ App.propTypes = {
     history: RequiredObject,
 };
 
-export default hot(module)(withRouter(ConfigProvider(App)));
+export default withRouter(App);
