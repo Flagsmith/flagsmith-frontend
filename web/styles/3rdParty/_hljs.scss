@@ -90,14 +90,21 @@
   }
 }
 .hljs {
+  a {
+    color: white !important;
+    text-decoration: underline;
+    .hljs-regexp,.hljs-comment {
+      color: white !important;;
+    }
+  }
   cursor: text;
   outline: none;
-  font-size: .8em;
+  font-size: 17px;
   display: block;
   overflow-x: auto;
   padding: 0.5em;
   background: $bt-code-background;
-  border-radius: 15px;
+  border-radius: 10px;
   &.no-pad {
     margin-bottom: 0;
   }
@@ -118,11 +125,32 @@
   position: relative;
   &:hover {
     .hljs-copy {
-
+      opacity: 1;
+    }
+    .hljs-docs {
+      opacity: 1;
+    }
+    .hljs-github {
       opacity: 1;
     }
   }
 }
+.btn--docs {
+  background: transparent!important;
+  border-width: 1px !important;
+  border-color: $bt-brand-primary !important;
+  box-shadow: none !important;
+  &:hover {
+    color: $bt-brand-primary;
+  }
+}
+.hljs-docs {
+  position: absolute;
+  opacity: 0;
+  bottom:45px;
+  right: 140px;
+}
+
 .btn.hljs-copy {
   border-radius: 15px;
   opacity: 0;

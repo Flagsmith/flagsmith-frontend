@@ -1,21 +1,26 @@
-module.exports = (envId, { LIB_NAME, USER_ID, LIB_NAME_JAVA, FEATURE_NAME, FEATURE_FUNCTION, FEATURE_NAME_ALT, FEATURE_NAME_ALT_VALUE, NPM_CLIENT }, userId) => `User user = new User();
-user.setIdentifier("${userId || USER_ID}");
+module.exports = (envId, { LIB_NAME, USER_ID, TRAIT_NAME, LIB_NAME_JAVA, FEATURE_NAME, FEATURE_FUNCTION, FEATURE_NAME_ALT, FEATURE_NAME_ALT_VALUE, NPM_CLIENT }, userId) => `FeatureUser user = new FeatureUser();
+user.setIdentifier("${USER_ID}");
 
-${LIB_NAME_JAVA} ${LIB_NAME} = ${LIB_NAME_JAVA}.newBuilder()
-    .setApiKey("${envId}")
-    .build();
+flagsmithClient.identifyUserWithTraits(FeatureUser user, Arrays.asList(
+    trait(null, "${TRAIT_NAME}", "21")
+));
 
-boolean featureEnabled = ${LIB_NAME}.hasFeatureFlag("${FEATURE_NAME}", user);
-if (featureEnabled) {
-    // Run the code to execute enabled feature
+// Or to update a trait given context
+Trait userTrait = flagsmithClient.getTrait(user, "${TRAIT_NAME}");
+if (userTrait != null) {    
+    // update the value for a user trait
+    userTrait.setValue("21");
+    Trait updated = flagsmithClient.updateTrait(user, userTrait);
 } else {
-    // Run the code if feature switched off
+    // run the code that doesn't depend on the user trait
 }
 
-String myRemoteConfig = ${LIB_NAME}.getFeatureFlagValue("${FEATURE_NAME_ALT}", user);
-if (myRemoteConfig != null) {
-    // Run the code to use remote config value
+List<Trait> userTraits = flagsmithClient.getTraits(user, "${TRAIT_NAME}", "other_trait");
+if (userTraits != null) {    
+    // run the code that uses the user traits
 } else {
-    // Run the code without remote config
+    // run the code doesn't depend on user traits
 }
+
+
 `;

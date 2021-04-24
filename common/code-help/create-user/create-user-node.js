@@ -4,6 +4,7 @@ ${LIB_NAME}.init({
     environmentID:"${envId}"
 });
 
+// This will create a user in the dashboard if they don't already exist
 ${LIB_NAME}.hasFeature("${FEATURE_NAME}", "${userId || USER_ID}")
     .then((featureEnabled) => {
         if (featureEnabled) {

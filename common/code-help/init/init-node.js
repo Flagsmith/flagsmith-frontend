@@ -4,13 +4,15 @@ ${LIB_NAME}.init({
     environmentID: "${envId}"
 });
 
+// Check for a feature
 ${LIB_NAME}.hasFeature("${customFeature || FEATURE_NAME}")
     .then((featureEnabled) => {
         if (featureEnabled) {
-            // Show my awesome cool new feature to the world
+           ${FEATURE_FUNCTION}();
         }
     });
 
+// Or, use the value of a feature
 ${LIB_NAME}.getValue("${customFeature || FEATURE_NAME_ALT}")
     .then((value) => {
         // Show a value to the world

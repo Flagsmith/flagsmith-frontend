@@ -3,9 +3,17 @@ module.exports = Object.assign({}, require('./base/_utils'), {
         return x.toString()
             .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     },
+
+    escapeHtml(html) {
+        const text = document.createTextNode(html);
+        const p = document.createElement('p');
+        p.appendChild(text);
+        return p.innerHTML;
+    },
+
     calculateControl(multivariateOptions, variations) {
-        if(!multivariateOptions || !multivariateOptions.length) {
-            return 100
+        if (!multivariateOptions || !multivariateOptions.length) {
+            return 100;
         }
         let total = 0;
         multivariateOptions.map((v) => {

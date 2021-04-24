@@ -1,18 +1,16 @@
-module.exports = (envId, { LIB_NAME, USER_ID, LIB_NAME_JAVA, FEATURE_NAME, FEATURE_FUNCTION, FEATURE_NAME_ALT, FEATURE_NAME_ALT_VALUE, NPM_CLIENT }, userId) => `${LIB_NAME_JAVA} ${LIB_NAME} = new ${LIB_NAME_JAVA}() {
-    environmentKey = "${envId}"
+module.exports = (envId, { LIB_NAME, USER_ID, LIB_NAME_JAVA, FEATURE_NAME, FEATURE_FUNCTION, FEATURE_NAME_ALT, FEATURE_NAME_ALT_VALUE, NPM_CLIENT }, userId) => `BulletTrainConfiguration configuration = new BulletTrainConfiguration()
+{
+    ApiUrl = "https://api.flagsmith.com/api/v1/",
+    EnvironmentKey = "${envId}"
 };
 
-bool featureEnabled = await ${LIB_NAME}.HasFeatureFlag("${FEATURE_NAME}", ${USER_ID});
-if (featureEnabled) {
-    // Run the code to execute enabled feature
-} else {
-    // Run the code if feature switched off
-}
+// This will create a user in the dashboard if they don't already exist
+BulletTrainClient bulletClient = new BulletTrainClient(configuration);
 
-string myRemoteConfig = await ${LIB_NAME}.getFeatureValue("${FEATURE_NAME_ALT}", ${USER_ID});
-if (myRemoteConfig != null) {
-    // Run the code to use remote config value
-} else {
-    // Run the code without remote config
-}
+bool featureEnabled = await BulletTrainClient.instance
+    .HasFeatureFlag("${FEATURE_NAME}", "${USER_ID}");
+    
+string myRemoteConfig = await BulletTrainClient.instance
+    .GetFeatureValue("${FEATURE_NAME_ALT}", "${USER_ID}");
+
 `;

@@ -225,11 +225,16 @@ const UsersPage = class extends Component {
                                                 for you so you always have an example user to
                                                 test with on your environments.
                                                 </p>
-                                                <CodeHelp
-                                                  showInitially
-                                                  title="Creating users and getting their feature settings"
-                                                  snippets={Constants.codeHelp.CREATE_USER(this.props.match.params.environmentId, identities && identities[0] && identities[0].identifier)}
-                                                />
+                                                <div className="row">
+                                                    <div style={{overflow:'hidden'}} className="col-md-12">
+                                                        <CodeHelp
+                                                            showInitially
+                                                            title="Creating users and getting their feature settings"
+                                                            snippets={Constants.codeHelp.CREATE_USER(this.props.match.params.environmentId, identities && identities[0] && identities[0].identifier)}
+                                                        />
+                                                    </div>
+                                                </div>
+
                                             </FormGroup>
                                         </div>
                                     )}

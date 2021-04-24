@@ -2,17 +2,10 @@ module.exports = (envId, { LIB_NAME, LIB_NAME_JAVA, FEATURE_NAME, FEATURE_FUNCTI
     .setApiKey("${envId}")
     .build();
 
+// Check for a feature
 boolean featureEnabled = ${LIB_NAME}.hasFeatureFlag("${customFeature || FEATURE_NAME}");
-if (featureEnabled) {
-    // Run the code to execute enabled feature
-} else {
-    // Run the code if feature switched off
-}
 
+// Or, use the value of a feature
 String myRemoteConfig = ${LIB_NAME}.getFeatureFlagValue("${customFeature || FEATURE_NAME_ALT}");
-if (myRemoteConfig != null) {
-    // Run the code to use remote config value
-} else {
-    // Run the code without remote config
-}
+
 `;

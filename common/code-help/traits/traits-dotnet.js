@@ -1,18 +1,12 @@
-module.exports = (envId, { LIB_NAME, USER_ID, LIB_NAME_JAVA, FEATURE_NAME, FEATURE_FUNCTION, FEATURE_NAME_ALT, FEATURE_NAME_ALT_VALUE, NPM_CLIENT }, userId) => `${LIB_NAME_JAVA} ${LIB_NAME} = new ${LIB_NAME_JAVA}() {
-    environmentKey = "${envId}"
-};
+module.exports = (envId, { LIB_NAME, USER_ID, TRAIT_NAME, LIB_NAME_JAVA, FEATURE_NAME, FEATURE_FUNCTION, FEATURE_NAME_ALT, FEATURE_NAME_ALT_VALUE, NPM_CLIENT }, userId) => `
+// Set a user trait
+Trait userTrait = await BulletTrainClient.instance.SetTrait("${USER_ID}", "${TRAIT_NAME}", "blue");
 
-bool featureEnabled = await ${LIB_NAME}.HasFeatureFlag("${FEATURE_NAME}", ${USER_ID});
-if (featureEnabled) {
-    // Run the code to execute enabled feature
-} else {
-    // Run the code if feature switched off
-}
+// Increment a trait
+Trait userTrait = await BulletTrainClient.instance.IncrementTrait("${USER_ID}", "${TRAIT_NAME}", 1);
 
-string myRemoteConfig = await ${LIB_NAME}.getFeatureValue("${FEATURE_NAME_ALT}", ${USER_ID});
-if (myRemoteConfig != null) {
-    // Run the code to use remote config value
-} else {
-    // Run the code without remote config
+Identity userIdentity = await BulletTrainClient.instance.GetUserIdentity("${USER_ID}");
+if (userIdentity != null) {
+  // Run the code to use user identity i.e. userIdentity.flags or userIdentity.traits
 }
 `;

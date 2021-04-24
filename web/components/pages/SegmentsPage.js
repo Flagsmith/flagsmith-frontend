@@ -167,7 +167,7 @@ const SegmentsPage = class extends Component {
                                                           <Row className="list-item clickable" key={id} space>
                                                               <div
                                                                 className="flex flex-1"
-                                                                onClick={() => this.editSegment(_.find(segments,{id}), !permission)}
+                                                                onClick={() => this.editSegment(_.find(segments, { id }), !permission)}
                                                               >
                                                                   <Row>
                                                                       <ButtonLink>
@@ -177,7 +177,7 @@ const SegmentsPage = class extends Component {
                                                                       </ButtonLink>
                                                                   </Row>
                                                                   <div className="list-item-footer faint">
-                                                                      {description||"No description"}
+                                                                      {description || 'No description'}
                                                                   </div>
                                                               </div>
                                                               <Row>
@@ -203,6 +203,9 @@ const SegmentsPage = class extends Component {
                                                     />
                                                 </FormGroup>
 
+                                                <div className="mt-2">
+                                                    Segments require you to identitfy users, setting traits will add users to segments.
+                                                </div>
                                                 <FormGroup className="mt-4">
                                                     <CodeHelp
                                                       title="Using segments"
