@@ -58,6 +58,8 @@ const UsersPage = class extends Component {
     render() {
         const { projectId, environmentId } = this.props.match.params;
         const { hasFeature, getValue } = this.props;
+        const preventAddTrait = !AccountStore.getOrganisation().persist_trait_data;
+
         return (
             <div className="app-container container">
                 <Permission level="environment" permission="ADMIN" id={environmentId}>
@@ -171,7 +173,7 @@ const UsersPage = class extends Component {
                                                 />
                                             </FormGroup>
 
-                                            {permission && (
+                                            {permission && !preventAddTrait && (
                                             <EnvironmentTraitsProvider environmentId={environmentId}>
                                                 {({ isLoading, error, traits, deleteTrait, isDeleting }) => (
                                                     <div>

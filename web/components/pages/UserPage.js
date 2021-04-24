@@ -72,7 +72,7 @@ const UserPage = class extends Component {
 
     editFlag = (projectFlag, environmentFlag, identityFlag) => {
         API.trackEvent(Constants.events.VIEW_USER_FEATURE);
-        openModal('Edit User Feature: ' + projectFlag.name, <CreateFlagModal
+        openModal(`Edit User Feature: ${projectFlag.name}`, <CreateFlagModal
           isEdit
           identity={this.props.match.params.id}
           identityName={this.props.match.params.identity}
@@ -133,6 +133,7 @@ const UserPage = class extends Component {
     render() {
         const { hasFeature } = this.props;
         const { actualFlags } = this.state;
+        const preventAddTrait = !AccountStore.getOrganisation().persist_trait_data;
         return (
             <div className="app-container">
                 <IdentityProvider onSave={this.onSave}>
@@ -331,75 +332,77 @@ const UserPage = class extends Component {
                                                   filterRow={({ name }, search) => name.toLowerCase().indexOf(search) > -1}
                                                 />
                                             </FormGroup>
-                                            <FormGroup>
-                                                <PanelSearch
-                                                  id="user-traits-list"
-                                                  className="no-pad"
-                                                  icon="ion-ios-person"
-                                                  itemHeight={65}
-                                                  title="Traits"
-                                                  items={traits}
-                                                  renderFooter={() => (
-                                                      <FormGroup className="text-center mb-2">
-                                                          <Button id="add-trait" onClick={this.createTrait}>Add new trait</Button>
-                                                      </FormGroup>
-                                                  )}
-                                                  renderRow={({ id, trait_value, trait_key }, i) => (
-                                                      <Row
-                                                        className="list-item clickable" key={trait_key}
-                                                        space data-test={`user-trait-${i}`}
-                                                      >
-                                                          <div
-                                                            onClick={() => this.editTrait({
-                                                                trait_value,
-                                                                trait_key,
-                                                            })}
-                                                            className="flex flex-1"
+                                            {!preventAddTrait && (
+                                                <FormGroup>
+                                                    <PanelSearch
+                                                      id="user-traits-list"
+                                                      className="no-pad"
+                                                      icon="ion-ios-person"
+                                                      itemHeight={65}
+                                                      title="Traits"
+                                                      items={traits}
+                                                      renderFooter={() => (
+                                                          <FormGroup className="text-center mb-2">
+                                                              <Button id="add-trait" onClick={this.createTrait}>Add new trait</Button>
+                                                          </FormGroup>
+                                                      )}
+                                                      renderRow={({ id, trait_value, trait_key }, i) => (
+                                                          <Row
+                                                            className="list-item clickable" key={trait_key}
+                                                            space data-test={`user-trait-${i}`}
                                                           >
+                                                              <div
+                                                                onClick={() => this.editTrait({
+                                                                    trait_value,
+                                                                    trait_key,
+                                                                })}
+                                                                className="flex flex-1"
+                                                              >
+                                                                  <Row>
+                                                                      <ButtonLink className={`js-trait-key-${i}`} href="#">
+                                                                          {trait_key}
+                                                                      </ButtonLink>
+                                                                  </Row>
+                                                              </div>
                                                               <Row>
-                                                                  <ButtonLink className={`js-trait-key-${i}`} href="#">
-                                                                      {trait_key}
-                                                                  </ButtonLink>
+                                                                  <Column>
+                                                                      <FeatureValue
+                                                                        data-test={`user-trait-value-${i}`}
+                                                                        value={trait_value}
+                                                                      />
+                                                                  </Column>
+                                                                  <Column>
+                                                                      <button
+                                                                        id="remove-feature"
+                                                                        className="btn btn--with-icon"
+                                                                        type="button"
+                                                                        onClick={() => this.removeTrait(id, trait_key)}
+                                                                        data-test={`delete-user-trait-${i}`}
+                                                                      >
+                                                                          <RemoveIcon/>
+                                                                      </button>
+                                                                  </Column>
                                                               </Row>
-                                                          </div>
-                                                          <Row>
-                                                              <Column>
-                                                                  <FeatureValue
-                                                                    data-test={`user-trait-value-${i}`}
-                                                                    value={trait_value}
-                                                                  />
-                                                              </Column>
-                                                              <Column>
-                                                                  <button
-                                                                    id="remove-feature"
-                                                                    className="btn btn--with-icon"
-                                                                    type="button"
-                                                                    onClick={() => this.removeTrait(id, trait_key)}
-                                                                    data-test={`delete-user-trait-${i}`}
-                                                                  >
-                                                                      <RemoveIcon/>
-                                                                  </button>
-                                                              </Column>
                                                           </Row>
-                                                      </Row>
-                                                  )
+                                                      )
                                                     }
-                                                  renderNoResults={(
-                                                      <Panel
-                                                        icon="ion-ios-person"
-                                                        title="Traits"
-                                                      >
-                                                          <div className="text-center">
+                                                      renderNoResults={(
+                                                          <Panel
+                                                            icon="ion-ios-person"
+                                                            title="Traits"
+                                                          >
+                                                              <div className="text-center">
                                                               This user has no traits.
-                                                              <FormGroup className="text-center mb-0 mt-2">
-                                                                  <Button id="add-trait" onClick={this.createTrait}>Add new trait</Button>
-                                                              </FormGroup>
-                                                          </div>
-                                                      </Panel>
+                                                                  <FormGroup className="text-center mb-0 mt-2">
+                                                                      <Button id="add-trait" onClick={this.createTrait}>Add new trait</Button>
+                                                                  </FormGroup>
+                                                              </div>
+                                                          </Panel>
                                                     )}
-                                                  filterRow={({ trait_key }, search) => trait_key.toLowerCase().indexOf(search) > -1}
-                                                />
-                                            </FormGroup>
+                                                      filterRow={({ trait_key }, search) => trait_key.toLowerCase().indexOf(search) > -1}
+                                                    />
+                                                </FormGroup>
+                                            )}
                                             <IdentitySegmentsProvider>
                                                 {({ isLoading: segmentsLoading, segments }) => (segmentsLoading ? <div className="text-center"><Loader/></div> : (
                                                     <FormGroup>
