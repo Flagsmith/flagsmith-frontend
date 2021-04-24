@@ -188,7 +188,7 @@ const OrganisationSettingsPage = class extends Component {
                                     Flags
                                 </td>
                                 <td>
-                                    {totalFlags}
+                                    {Utils.numberWithCommas(totalFlags)}
                                 </td>
                             </tr>
                             <tr style={{borderBottom:"1px solid #ccc"}}>
@@ -196,7 +196,7 @@ const OrganisationSettingsPage = class extends Component {
                                     Identities
                                 </td>
                                 <td>
-                                    {totalIdentities}
+                                    {Utils.numberWithCommas(totalIdentities)}
                                 </td>
                             </tr>
                             <tr style={{borderBottom:"1px solid #ccc"}}>
@@ -204,7 +204,7 @@ const OrganisationSettingsPage = class extends Component {
                                     Traits
                                 </td>
                                 <td>
-                                    {totalTraits}
+                                    {Utils.numberWithCommas(totalTraits)}
                                 </td>
                             </tr>
                             <tr style={{ borderTop:"1px solid #ccc"}}>
@@ -215,7 +215,7 @@ const OrganisationSettingsPage = class extends Component {
                                 </td>
                                 <td>
                                     <strong>
-                                        {totalFlags+totalIdentities+totalTraits}
+                                        {Utils.numberWithCommas(totalFlags+totalIdentities+totalTraits)}
                                     </strong>
                                 </td>
                             </tr>
