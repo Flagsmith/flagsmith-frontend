@@ -304,7 +304,7 @@ const App = class extends Component {
                                                               id="org-settings-link"
                                                               activeClassName="active"
                                                               className="nav-link p-2"
-                                                              to={`/organisation-settings`}
+                                                              to="/organisation-settings"
                                                             >
                                                                 <ion style={{ marginRight: 4 }} className="icon--primary ion ion-md-settings"/>
                                                                 {'Manage'}
@@ -409,15 +409,23 @@ const App = class extends Component {
                                 )}
                                 {isMobile && pageHasAside && asideIsVisible ? null : (
                                     <div>
-                                        {this.props.getValue('butter_bar') && (
+                                        {this.props.getValue('butter_bar') && !this.props.hasFeature('read_only_mode')(
                                             <div
                                               dangerouslySetInnerHTML={{ __html: this.props.getValue('butter_bar') }}
                                               className="butter-bar"
-                                            />
+                                            />,
+                                        )}
+                                        {this.props.hasFeature('read_only_mode') && (
+                                            <div
+                                              className="butter-bar"
+                                            >
+                                                Your organisation is over its usage limit, please <Link to="/organisation-settings">upgrade your plan</Link>.
+                                            </div>
                                         )}
                                         {this.props.children}
                                     </div>
                                 )}
+
                             </div>
                         </div>
                     ))}

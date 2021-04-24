@@ -137,6 +137,7 @@ const FeaturesPage = class extends Component {
 
     render() {
         const { projectId, environmentId } = this.props.match.params;
+        const readOnly = this.props.hasFeature('read_only_mode');
         return (
             <div data-test="features-page" id="features-page" className="app-container container">
                 <FeatureListProvider onSave={this.onSave} onError={this.onError}>
@@ -178,7 +179,7 @@ const FeaturesPage = class extends Component {
                                                     {projectFlags && projectFlags.length ? this.createFeaturePermission(perm => (
                                                         <div className="text-right">
                                                             <Button
-                                                              disabled={!perm} data-test="show-create-feature-btn" id="show-create-feature-btn"
+                                                              disabled={!perm || readOnly} data-test="show-create-feature-btn" id="show-create-feature-btn"
                                                               onClick={this.newFlag}
                                                             >
                                                               Create Feature
@@ -216,7 +217,7 @@ const FeaturesPage = class extends Component {
                                                                       <div
                                                                         style={{ overflow: 'hidden' }}
                                                                         className="flex flex-1"
-                                                                        onClick={() => permission && this.editFlag(projectFlag, environmentFlags[id])}
+                                                                        onClick={() => !readOnly && permission && this.editFlag(projectFlag, environmentFlags[id])}
                                                                       >
                                                                           <div>
                                                                               <ButtonLink>
@@ -246,14 +247,14 @@ const FeaturesPage = class extends Component {
                                                                                   >
                                                                                       <Column>
                                                                                           <FeatureValue
-                                                                                            onClick={() => permission && this.editFlag(projectFlag, environmentFlags[id])}
+                                                                                            onClick={() => permission && !readOnly && this.editFlag(projectFlag, environmentFlags[id])}
                                                                                             value={environmentFlags[id] && environmentFlags[id].feature_state_value}
                                                                                             data-test={`feature-value-${i}`}
                                                                                           />
                                                                                       </Column>
                                                                                       <Column>
                                                                                           <Switch
-                                                                                            disabled={!permission}
+                                                                                            disabled={!permission || readOnly}
                                                                                             data-test={`feature-switch-${i}${environmentFlags[id] && environmentFlags[id].enabled ? '-on' : '-off'}`}
                                                                                             checked={environmentFlags[id] && environmentFlags[id].enabled}
                                                                                             onChange={() => this.confirmToggle(projectFlag, environmentFlags[id], (environments) => {
@@ -290,7 +291,7 @@ const FeaturesPage = class extends Component {
                                                                                         html
                                                                                         title={(
                                                                                             <button
-                                                                                              disabled={!removeFeaturePermission}
+                                                                                              disabled={!removeFeaturePermission || readOnly}
                                                                                               onClick={() => this.confirmRemove(projectFlag, () => {
                                                                                                   removeFlag(this.props.match.params.projectId, projectFlag);
                                                                                               })}
