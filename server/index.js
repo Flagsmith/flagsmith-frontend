@@ -3,6 +3,8 @@ require('dotenv').config();
 const bodyParser = require('body-parser');
 const exphbs = require('express-handlebars');
 const express = require('express');
+const fs = require('fs');
+const path = require('path');
 const Project = require('../common/project');
 
 const postToSlack = Project.env === 'prod';
@@ -39,12 +41,17 @@ app.get('/static/project-overrides.js', (req, res) => {
         return `    ${name}: '${value}',
         `;
     };
+    let sha = '';
+    if (fs.existsSync(path.join(__dirname, 'CI_COMMIT_SHA'))) {
+        sha = fs.readFileSync(path.join(__dirname, 'CI_COMMIT_SHA'));
+    }
 
     const values = [
         { name: 'preventSignup', value: process.env.PREVENT_SIGNUP },
         { name: 'flagsmith', value: process.env.FLAGSMITH },
         { name: 'ga', value: process.env.GA },
         { name: 'crispChat', value: process.env.CRISP_CHAT },
+        { name: 'sha', value: sha },
         { name: 'mixpanel', value: process.env.MIXPANEL },
         { name: 'sentry', value: process.env.SENTRY },
         { name: 'api', value: process.env.PROXY_API_URL ? '/api/v1/' : process.env.API_URL },
