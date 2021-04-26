@@ -54,6 +54,9 @@ app.get('/static/project-overrides.js', (req, res) => {
         { name: 'disableInflux', value: process.env.DISABLE_INFLUXDB_FEATURES },
         { name: 'flagsmithAnalytics', value: !!process.env.FLAGSMITH_ANALYTICS },
         { name: 'amplitude', value: process.env.AMPLITUDE },
+        { name: 'IMAGE_TAG', value: process.env.IMAGE_TAG },
+        { name: 'CI_COMMIT_REF_NAME', value: process.env.CI_COMMIT_REF_NAME },
+        { name: 'CI_COMMIT_SHA', value: process.env.CI_COMMIT_SHA },
     ];
     const output = values.map(getVariable).join('');
 
