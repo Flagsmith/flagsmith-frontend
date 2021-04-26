@@ -428,4 +428,7 @@ App.propTypes = {
     history: RequiredObject,
 };
 
+if (typeof IMAGE_TAG !== 'undefined') {
+    window.IMAGE_TAG = IMAGE_TAG;
+}
 export default withRouter(App);
