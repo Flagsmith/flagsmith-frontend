@@ -23,10 +23,7 @@ env_variables:
   AMPLITUDE: ${process.env.AMPLITUDE}
   MAINTENANCE: ${process.env.MAINTENANCE}
   ASSET_URL: ${process.env.ASSET_URL}
-  BASENAME: ${process.env.BASENAME},
-  IMAGE_TAG: ${process.env.IMAGE_TAG},
-  CI_COMMIT_REF_NAME: ${process.env.CI_COMMIT_REF_NAME},
-  CI_COMMIT_SHA: ${process.env.CI_COMMIT_SHA},
+  BASENAME: ${process.env.BASENAME}
 `;
 
 fs.writeFileSync(src, str);

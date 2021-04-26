@@ -50,13 +50,9 @@ module.exports = {
             // Clear out build folder
             new CleanWebpackPlugin(['build'], { root: path.join(__dirname, '../') }),
 
-
             new webpack.DefinePlugin({
                 __DEV__: false,
                 SENTRY_RELEASE_VERSION: moment().valueOf().toString(),
-                IMAGE_TAG: process.env.IMAGE_TAG,
-                CI_COMMIT_REF_NAME: process.env.CI_COMMIT_REF_NAME,
-                CI_COMMIT_SHA: process.env.CI_COMMIT_SHA,
             }),
 
             // reduce filesize

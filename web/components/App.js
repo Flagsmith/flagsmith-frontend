@@ -428,7 +428,4 @@ App.propTypes = {
     history: RequiredObject,
 };
 
-if (typeof CI_COMMIT_SHA !== 'undefined') {
-    window.IMAGE_TAG = CI_COMMIT_SHA;
-}
 export default withRouter(App);
