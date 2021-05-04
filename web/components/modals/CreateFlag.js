@@ -59,7 +59,7 @@ const CreateFlag = class extends Component {
             }, 500);
         }
         AppActions.getIdentities(this.props.environmentId, 3);
-        if (this.props.projectFlag && this.props.environmentFlag) {
+        if (!projectOverrides.disableInflux && this.props.projectFlag && this.props.environmentFlag) {
             this.getInfluxData();
         }
     };
