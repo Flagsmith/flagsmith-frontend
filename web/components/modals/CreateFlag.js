@@ -674,7 +674,7 @@ const CreateFlag = class extends Component {
                                                 )
                                             }
                                         </TabItem>
-                                        { (this.props.hasFeature('flag_analytics') && this.props.flagId) && (
+                                        { !projectOverrides.disableInflux && (this.props.hasFeature('flag_analytics') && this.props.flagId) && (
                                             <TabItem data-test="analytics" tabLabel="Analytics">
                                                 <FormGroup className="mb-4 mr-3 ml-3">
                                                     <Panel
