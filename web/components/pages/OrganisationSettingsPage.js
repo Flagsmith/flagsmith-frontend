@@ -157,9 +157,9 @@ const OrganisationSettingsPage = class extends Component {
             let totalTraits = 0;
             let totalIdentities = 0;
             data.events_list.map((v) => {
-                totalFlags += v.Flags;
-                totalTraits += v.Traits;
-                totalIdentities += v.Identities;
+                totalFlags += v.Flags||0;
+                totalTraits += v.Traits||0;
+                totalIdentities += v.Identities||0;
             });
             return (
                 <div>
