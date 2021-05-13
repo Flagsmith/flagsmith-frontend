@@ -61,6 +61,7 @@ app.get('/static/project-overrides.js', (req, res) => {
         { name: 'disableInflux', value: process.env.DISABLE_INFLUXDB_FEATURES },
         { name: 'flagsmithAnalytics', value: !!process.env.FLAGSMITH_ANALYTICS },
         { name: 'amplitude', value: process.env.AMPLITUDE },
+        { name: 'basename', value: process.env.BASENAME },
     ];
     const output = values.map(getVariable).join('');
 
