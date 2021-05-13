@@ -428,4 +428,4 @@ App.propTypes = {
     history: RequiredObject,
 };
 
-export default withRouter(App);
+export default withRouter(ConfigProvider(App));
