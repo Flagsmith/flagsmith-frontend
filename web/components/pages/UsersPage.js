@@ -50,7 +50,7 @@ const UsersPage = class extends Component {
     }
 
     deleteTrait = (id, func) => {
-        openConfirm(<h3>Delete Invite</h3>, <p>
+        openConfirm(<h3>Delete Trait</h3>, <p>
             Are you sure you want to delete the trait <strong>{id}</strong> for all users in this environment?
         </p>, func);
     }
