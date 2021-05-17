@@ -28,6 +28,8 @@ const controller = {
     },
     oauth: (type, _data) => {
         store.loading();
+        API.trackEvent(Constants.events.OAUTH(type));
+
         data.post(`${Project.api}auth/oauth/${type}/`, _data)
             .then((res) => {
                 // const isDemo = email == Project.demoAccount.email;

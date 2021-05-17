@@ -154,6 +154,7 @@ global.API = {
                     '$email': id, // only reserved properties need the $
                     'USER_ID': id, // use human-readable names
                     '$first_name': user.first_name,
+                    'isCompanyEmail': !user.email.contains('@gmail') && !user.email.contains('@yahoo') && !user.email.contains('@hotmail') && !user.email.contains('@icloud'),
                     '$last_name': user.last_name,
                     'plan': plans && plans.join(','),
                     orgs,
@@ -169,7 +170,7 @@ global.API = {
                 amplitude.getInstance().identify(identify);
             }
             flagsmith.identify(id);
-            flagsmith.setTrait('organisations', user.organisations? user.organisations.map((o)=>`"${o.id}"`).join(",") : "");
+            flagsmith.setTrait('organisations', user.organisations ? user.organisations.map(o => `"${o.id}"`).join(',') : '');
             flagsmith.setTrait('email', id);
             if (window.$crisp) {
                 $crisp.push(['set', 'user:email', id]);

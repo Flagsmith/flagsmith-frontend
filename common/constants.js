@@ -69,6 +69,7 @@ const Constants = {
         'ACCEPT_INVITE': org => ({ 'event': 'Invite accepted', 'category': 'Invite', extra: org }),
         'LOGIN_DEMO': { 'event': 'User demo login', 'category': 'User' },
         'LOGIN': { 'event': 'User login', 'category': 'User' },
+        'OAUTH': type => ({ 'event': `User oauth ${type}`, 'category': 'User' }),
         'REGISTER': { 'event': 'User register', 'category': 'User' },
         'REMOVE_ENVIRONMENT': { 'event': 'Environment edited', 'category': 'Environment' },
         'REMOVE_FEATURE': { 'event': 'Feature removed', 'category': 'Features' },
