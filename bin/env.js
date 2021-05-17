@@ -32,6 +32,7 @@ const values = [
     { name: 'flagsmithAnalytics', value: process.env.FLAGSMITH_ANALYTICS },
     { name: 'flagsmithClientAPI', value: process.env.FLAGSMITH_CLIENT_API },
     { name: 'amplitude', value: process.env.AMPLITUDE },
+    { name: 'basename', value: process.env.BASENAME },
 ];
 const output = values.map(getVariable).join('');
 const config = `window.projectOverrides = {
