@@ -154,7 +154,7 @@ global.API = {
                     '$email': id, // only reserved properties need the $
                     'USER_ID': id, // use human-readable names
                     '$first_name': user.first_name,
-                    'isCompanyEmail': !user.email.contains('@gmail') && !user.email.contains('@yahoo') && !user.email.contains('@hotmail') && !user.email.contains('@icloud'),
+                    'isCompanyEmail': !user.email.includes('@gmail') && !user.email.includes('@yahoo') && !user.email.includes('@hotmail') && !user.email.includes('@icloud'),
                     '$last_name': user.last_name,
                     'plan': plans && plans.join(','),
                     orgs,
