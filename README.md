@@ -139,7 +139,7 @@ A list of the flags and remote config we're currently using in production can be
 
 [Website](https://flagsmith.com)
 
-[Product Roadmap](https://product-hub.io/roadmap/5d81f2406180537538d99f28)
+[Product Roadmap](https://github.com/Flagsmith/flagsmith-api/projects/1)
 
 [Documentation](https://docs.flagsmith.com/)
 
