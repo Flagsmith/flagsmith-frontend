@@ -2,11 +2,12 @@ const BaseStore = require('./base/_store');
 const OrganisationStore = require('./organisation-store');
 const data = require('../data/base/_data');
 
+let createdFirstFeature = false;
 
 const controller = {
 
     getFeatures: (projectId, environmentId, force) => {
-        if (!store.model || store.envId != environmentId||force) { // todo: change logic a bit
+        if (!store.model || store.envId != environmentId || force) { // todo: change logic a bit
             store.loading();
             store.envId = environmentId;
 
@@ -15,6 +16,9 @@ const controller = {
                 data.get(`${Project.api}projects/${projectId}/features/`),
                 data.get(`${Project.api}environments/${environmentId}/featurestates/`),
             ]).then(([features, environmentFeatures]) => {
+                if (features.results.length) {
+                    createdFirstFeature = true;
+                }
                 store.model = {
                     features: features.results.map((controller.parseFlag)),
                     keyedEnvironmentFeatures: environmentFeatures.results && _.keyBy(environmentFeatures.results, 'feature'),
@@ -29,7 +33,9 @@ const controller = {
     createFlag(projectId, environmentId, flag, segmentOverrides) {
         store.saving();
         API.trackEvent(Constants.events.CREATE_FEATURE);
-        if (AccountStore.model.organisations.length === 1 && OrganisationStore.model.projects.length === 1 && (!store.model.features || !store.model.features.length)) {
+        if ((!createdFirstFeature && !flagsmith.getTrait('first_feature')) && AccountStore.model.organisations.length === 1 && OrganisationStore.model.projects.length === 1 && (!store.model.features || !store.model.features.length)) {
+            createdFirstFeature = true;
+            flagsmith.setTrait('first_feature', 'true');
             API.trackEvent(Constants.events.CREATE_FIRST_FEATURE);
         }
         data.post(`${Project.api}projects/${projectId}/features/`, Object.assign({}, flag, { project: projectId, type: flag.multivariate_options && flag.multivariate_options.length ? 'MULTIVARIATE' : 'STANDARD',
