@@ -33,11 +33,9 @@ const controller = {
                                 Promise.all([
                                     data.post(`${Project.api}organisations/${id}/invite-links/`, {
                                         role: 'ADMIN',
-                                        expires_at: moment().add(30, 'days').toISOString(),
                                     }),
                                     data.post(`${Project.api}organisations/${id}/invite-links/`, {
                                         role: 'USER',
-                                        expires_at: moment().add(30, 'days').toISOString(),
                                     }),
                                 ]).then(() => {
                                     data.get(`${Project.api}organisations/${id}/invite-links/`).then((links) => {
